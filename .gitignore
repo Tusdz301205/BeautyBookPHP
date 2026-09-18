@@ -1,0 +1,51 @@
+# Dependencies
+/vendor
+/node_modules
+
+# Build & Generated Public Assets
+/public/build
+/public/storage
+/public/hot
+/public/fonts-manifest.dev.json
+
+# Environment & Secrets (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+
+# Storage & Logs
+/storage/*.key
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/pail
+*.log
+
+# Testing & Coverage
+/.phpunit.cache
+.phpunit.result.cache
+/coverage
+/test-results
+/playwright-report
+
+# IDE & Editor files
+/.idea
+/.vscode
+/.cursor/
+/.codex
+/.nova
+/.zed
+.phpactor.json
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+
+# OS & Temporary Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak
+*.backup
+*.dump
+*.tmp
