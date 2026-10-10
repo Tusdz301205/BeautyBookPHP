@@ -2,119 +2,83 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\BranchOperationalStatus;
+use App\Enums\BranchReviewStatus;
+use App\Enums\BranchStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Branch extends Model
 {
-    use HasFactory, SoftDeletes;
-
     protected $fillable = [
         'business_id',
-        'district_id',
         'name',
         'slug',
-        'address',
+        'public_name',
+        'description',
+        'address_line',
         'phone',
         'email',
-        'latitude',
-        'longitude',
+        'timezone',
         'status',
+        'review_status',
+        'operational_status',
+        'review_note',
+        'submitted_at',
+        'reviewed_at',
+        'published_at',
     ];
 
-    protected static function booted(): void
+    protected function casts(): array
     {
-        static::creating(function (Branch $branch) {
-            if (empty($branch->slug)) {
-                $branch->slug = Str::slug($branch->name) . '-' . Str::random(6);
-            }
-        });
+        return [
+            'status' => BranchStatus::class,
+            'review_status' => BranchReviewStatus::class,
+            'operational_status' => BranchOperationalStatus::class,
+            'submitted_at' => 'datetime',
+            'reviewed_at' => 'datetime',
+            'published_at' => 'datetime',
+        ];
     }
 
-    /* ========== Relations ========== */
+    public function scopePublicReady(Builder $query): Builder
+    {
+        return $query
+            ->where('status', BranchStatus::Active->value)
+            ->where('review_status', BranchReviewStatus::Approved->value)
+            ->where('operational_status', BranchOperationalStatus::Active->value)
+            ->whereHas('business', fn (Builder $business) => $business->publicReady());
+    }
 
-    public function business()
+    public function business(): BelongsTo
     {
         return $this->belongsTo(Business::class);
     }
 
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(BranchImage::class)->orderBy('sort_order');
-    }
-
-    public function workingHours()
+    public function workingHours(): HasMany
     {
         return $this->hasMany(BranchWorkingHour::class)->orderBy('day_of_week');
     }
 
-    public function services()
+    public function offerings(): HasMany
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(BranchServiceOffering::class);
     }
 
-    public function staff()
+    public function stateTransitions(): HasMany
     {
-        return $this->hasMany(Staff::class);
+        return $this->hasMany(BranchStateTransition::class);
     }
 
-    public function bookings()
+    public function staffProfiles(): HasMany
+    {
+        return $this->hasMany(StaffProfile::class);
+    }
+
+    public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    /* ========== Scopes ========== */
-
-    public function scopeActive($query)
-    {
-        return $query->where('status', 'active');
-    }
-
-    /* ========== Accessors ========== */
-
-    public function getCoverImageUrlAttribute(): ?string
-    {
-        $firstImage = $this->images->first();
-        return $firstImage ? asset('storage/' . $firstImage->image_path) : null;
-    }
-
-    public function getAverageRatingAttribute(): float
-    {
-        return (float) ($this->reviews()->where('status', 'approved')->avg('overall_rating') ?? 0);
-    }
-
-    public function getReviewCountAttribute(): int
-    {
-        return $this->reviews()->where('status', 'approved')->count();
-    }
-
-    /**
-     * Kiểm tra branch có đang mở cửa hay không.
-     */
-    public function getIsOpenNowAttribute(): bool
-    {
-        $now = now();
-        $dayOfWeek = $now->dayOfWeekIso - 1; // 0=Mon, 6=Sun
-        $currentTime = $now->format('H:i:s');
-
-        $hours = $this->workingHours->firstWhere('day_of_week', $dayOfWeek);
-
-        if (!$hours || $hours->is_closed) {
-            return false;
-        }
-
-        return $currentTime >= $hours->open_time && $currentTime <= $hours->close_time;
     }
 }

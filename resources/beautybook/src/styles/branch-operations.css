@@ -1,0 +1,85 @@
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · genre: product-operations · tone: warm editorial luxury · anchor: rose · macrostructure: guided-rail + operational-canvas · contrast: pass (40–41) · nav: existing-shell · footer: n/a · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive/mobile: pass (34,49–57) · icons: pass (30) */
+.branch-wizard__layout {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.branch-wizard__rail {
+  position: sticky;
+  top: 5.5rem;
+  max-height: calc(100vh - 7rem);
+  overflow: auto;
+  border: 1px solid var(--bb-border);
+  border-radius: var(--bb-radius-card);
+  background: var(--bb-surface);
+  padding: 1rem;
+}
+
+.branch-wizard__step {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+  gap: 0.5rem;
+  border-radius: var(--bb-radius-control);
+  padding: 0.5rem;
+  text-align: left;
+  color: var(--bb-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.branch-wizard__step > span:first-child {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--bb-surface-subtle);
+}
+
+.branch-wizard__step:hover,
+.branch-wizard__step.is-active {
+  background: var(--bb-brand-soft);
+  color: var(--bb-brand-strong);
+}
+
+.branch-wizard__step:focus-visible {
+  outline: 2px solid var(--bb-brand);
+  outline-offset: 2px;
+}
+
+.branch-wizard__step:active {
+  background: var(--bb-surface-subtle);
+}
+
+.branch-wizard__step:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (min-width: 64rem) {
+  .branch-wizard__layout {
+    grid-template-columns: 17rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 63.9375rem) {
+  .branch-wizard__rail {
+    position: static;
+    max-height: none;
+  }
+
+  .branch-wizard__rail ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 30rem) {
+  .branch-wizard__rail ol {
+    grid-template-columns: 1fr;
+  }
+}

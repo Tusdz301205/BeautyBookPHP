@@ -1,215 +1,51 @@
-# BeautyBook — Open Source Programming Edition
+# BeautyBookPHP — Laravel cho môn Lập trình mã nguồn mở
 
-[![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=flat&logo=php&logoColor=white)](https://php.net)
-[![Laravel Framework](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
-[![MySQL](https://img.shields.io/badge/MySQL-8.4%20LTS-4479A1?style=flat&logo=mysql&logoColor=white)](https://mysql.com)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![Tests](https://img.shields.io/badge/PHPUnit-42%2F42%20Passed-brightgreen?style=flat&logo=phpunit&logoColor=white)](https://phpunit.de)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+BeautyBookPHP là đồ án PHP/Laravel/MySQL cho môn Lập trình mã nguồn mở. Backend, Eloquent, migration, middleware và Blade entry nằm tại thư mục gốc. Frontend BeautyBook gốc được sao chép vào `resources/beautybook`, giữ React, component, CSS, state và tương tác; API thật do Laravel xử lý. Nguồn người dùng bổ sung tại `../beauty-booking-api-main` chỉ được đọc, không chỉnh sửa.
 
-> **Hệ Thống Đặt Lịch Dịch Vụ Làm Đẹp Trực Tuyến Mã Nguồn Mở**  
-> Dự án triển khai cho học phần: **LẬP TRÌNH MÃ NGUỒN MỞ (Open Source Programming)**  
-> Được phân tích, thiết kế lại và phát triển dựa trên nền tảng nghiệp vụ của BeautyBook Reference Platform.
+## Chạy bản PHP
 
----
+Runtime được kiểm tra qua Docker: PHP 8.4, MySQL 8.4, Laravel theo `composer.lock`. Lockfile hiện yêu cầu PHP >=8.4.1; PHP 8.3 cục bộ không chạy được bộ dependency này. Dùng Docker Desktop ở Windows, hoặc Docker Compose trên Linux.
 
-## 📖 1. Giới Thiệu Dự Án (Introduction)
-
-**BeautyBook — Open Source Programming Edition** là nền tảng thương mại điện tử kết nối các cơ sở làm đẹp (Spa, Salon tóc, Thẩm mỹ viện, Nail studio) với khách hàng có nhu cầu đặt lịch trực tuyến.
-
-Hệ thống được phát triển theo mô hình **Modern Monolithic MVC** hoàn chỉnh bằng **Laravel 11**, loại bỏ sự cồng kềnh của kiến trúc microservices/SPA đa tầng, thay vào đó tối ưu hóa trải nghiệm mượt mà với **Server-Side Rendering (SSR Blade)** kết hợp **Alpine.js**, **Tailwind CSS**, tương tác bán đồng bộ **Vanilla Fetch AJAX** và bản đồ nguồn mở **Leaflet / OpenStreetMap**.
-
-### ✨ Điểm Nổi Bật (Highlights)
-- **Chuẩn Mã Nguồn Mở 100%:** Không sử dụng bất kỳ thư viện hoặc API bản quyền tính phí nào (toàn bộ bản đồ hiển thị bằng OpenStreetMap/Leaflet, không phụ thuộc Google Maps API).
-- **Phân Quyền 2 Vai Trò Thực Tế:** 
-  - `customer`: Tìm kiếm thông minh, xem salon/chi nhánh, đặt lịch hẹn trực quan, lưu dịch vụ yêu thích, quản lý đơn hẹn, hủy đơn, đánh giá dịch vụ sau khi hoàn thành.
-  - `business_owner`: Quản lý thông tin salon, danh mục, chi nhánh, dịch vụ, nhân sự kỹ thuật viên, theo dõi doanh thu/đơn hẹn, xử lý vòng đời đơn hẹn (State Machine), phản hồi đánh giá.
-- **Máy Trạng Thái & Lịch Sử Kiểm Toán:** 6 trạng thái đặt lịch (`pending`, `confirmed`, `in_progress`, `completed`, `cancelled`, `no_show`) kèm bảng audit trail tự động lưu từng lần thay đổi trạng thái.
-- **Tìm Kiếm Tức Thì (Live AJAX Search):** Gợi ý dịch vụ, salon, danh mục ngay khi gõ không cần tải lại trang.
-- **Kiểm Thử Tự Động Toàn Diện:** Bộ test PHPUnit tích hợp 42 bài kiểm thử (116 assertions) đạt tỷ lệ vượt qua 100%.
-
----
-
-## 🛠️ 2. Công Nghệ Sử Dụng (Technology Stack)
-
-- **Backend:** PHP 8.3+, Laravel 11.x
-- **Cơ sở dữ liệu:** MySQL 8.4 LTS (InnoDB, UTF8MB4)
-- **Frontend:** Blade Templates, Tailwind CSS 3.x, Alpine.js
-- **Bản đồ số:** Leaflet.js + OpenStreetMap (FOSS)
-- **Xác thực:** Laravel Breeze (Session & Cookie-based, CSRF protection)
-- **Tương tác Frontend:** Vanilla JavaScript Fetch API (AJAX có kèm CSRF token)
-- **Kiểm thử:** PHPUnit 11 (Feature Tests, Unit Tests, SQLite In-Memory)
-
----
-
-## 🚀 3. Hướng Dẫn Cài Đặt & Chạy Nhanh (Quick Start)
-
-### Yêu cầu môi trường
-- PHP 8.3 hoặc mới hơn (kèm extensions: `curl`, `fileinfo`, `mbstring`, `openssl`, `pdo_mysql`, `pdo_sqlite`, `sqlite3`, `zip`, `gd`, `exif`)
-- Composer 2.x
-- Node.js 18+ & NPM
-- MySQL Server 8.0+
-
-### Các bước cài đặt
-
-#### Bước 1: Di chuyển vào thư mục dự án
 ```bash
-cd beautybook-laravel
-```
-
-#### Bước 2: Cài đặt thư viện phụ thuộc
-```bash
-composer install
-npm install
-```
-
-#### Bước 3: Thiết lập tệp môi trường `.env`
-Sao chép tệp `.env.example` thành `.env` (hoặc cấu hình trực tiếp `.env`):
-```env
-APP_NAME="BeautyBook"
-APP_ENV=local
-APP_KEY=base64:YOUR_GENERATED_KEY
-APP_DEBUG=true
-APP_URL=http://localhost:8000
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=beautybook
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-#### Bước 4: Tạo App Key và liên kết thư mục Storage
-```bash
-php artisan key:generate
-php artisan storage:link
-```
-
-#### Bước 5: Chạy Migration và Seed dữ liệu mẫu
-```bash
-php artisan migrate:fresh --seed
-```
-*Lệnh này sẽ tự động tạo 19 bảng CSDL, nạp danh mục địa giới hành chính mẫu (Hà Nội, TP.HCM, Đà Nẵng) và khởi tạo tài khoản demo, salon, chi nhánh, dịch vụ, nhân viên và các đơn hẹn thực tế.*
-
-#### Bước 6: Build giao diện Frontend
-```bash
+docker compose -f docker-compose.laravel.yml up -d --wait mysql mysql_test
+docker compose -f docker-compose.laravel.yml run --build --rm --no-deps app composer install
+npm ci
 npm run build
+docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan migrate --seed
+docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan db:seed --class=BeautybookSourceReferenceSeeder
+docker compose -f docker-compose.laravel.yml up -d --wait app realtime web scheduler
 ```
 
-#### Bước 7: Khởi động máy chủ ứng dụng
-```bash
-php artisan serve
-```
-Truy cập ứng dụng tại: [http://localhost:8000](http://localhost:8000)
+Trong Visual Studio Code, chọn **File → Open Folder → BeautyBookPHP**, mở **Terminal → New Terminal** rồi chạy các lệnh trên. Cần Docker Desktop đang chạy và Node.js 22. `npm run build` build cả giao diện Blade và React nguồn.
 
----
+Mở [BeautyBook](http://localhost:8000/beautybook). Địa chỉ `http://localhost:8000` tự chuyển tới giao diện này; nginx chỉ redirect trang `/`, các route Laravel hiện có được giữ. Nginx phục vụ asset và WebSocket cùng origin; port 8001 dùng chẩn đoán app, không thay cho port 8000 khi demo realtime. Readiness ở `/ready`. Compose dùng MySQL demo `beautybook_php` ở port 3307 và MySQL test `beautybook_test` ở port 3308, tách database BeautyBook nguồn. Không chạy test hoặc migration vào database nguồn. Cấu hình demo chỉ dành cho local; xem `.env.example` và Compose để cấu hình máy riêng.
 
-## 👥 4. Tài Khoản Trải Nghiệm Mẫu (Demo Credentials)
+Tài khoản seed Laravel: `customer@beautybook.local`, `owner@beautybook.local`, `owner2@beautybook.local`, `receptionist@beautybook.local`, `staff@beautybook.local`, `admin@beautybook.local`; mật khẩu fixture `BeautyBook123!`. Seeder chỉ tạo dữ liệu tổng hợp ở môi trường local/testing, không sao chép dữ liệu cá nhân của source.
 
-| Vai trò | Email đăng nhập | Mật khẩu | Chức năng chính |
-| :--- | :--- | :--- | :--- |
-| **Business Owner (Chủ Salon)** | `owner@beautybook.vn` | `password` | Quản lý Salon "Aura Beauty Spa", xem báo cáo doanh thu, duyệt đơn hẹn, CRUD chi nhánh/dịch vụ/nhân viên, trả lời đánh giá |
-| **Customer (Khách Hàng)** | `customer@beautybook.vn` | `password` | Tìm kiếm dịch vụ, đặt lịch hẹn tại chi nhánh, quản lý danh sách đơn, hủy lịch, đánh giá dịch vụ |
+## Dữ liệu tham chiếu BeautyBook
 
-*Bạn cũng có thể đăng ký tài khoản mới trực tiếp tại trang `/register` và lựa chọn vai trò "Khách hàng" hoặc "Chủ cơ sở làm đẹp".*
-
----
-
-## 🧪 5. Kiểm Thử Tự Động (Automated Testing)
-
-Dự án đi kèm bộ kiểm thử tự động toàn diện kiểm tra từ luồng xác thực đến luồng nghiệp vụ kinh doanh:
+Fixture `database/data/beautybook-source-reference.json` lấy tên/địa chỉ/UUID từ entity plan và template seed nguồn. Để thêm 5 doanh nghiệp, 11 chi nhánh và 116 dịch vụ cùng ánh xạ minh họa gốc vào database demo đã migrate:
 
 ```bash
-php vendor/bin/phpunit --no-coverage
+docker compose -f docker-compose.laravel.yml exec -T app php artisan db:seed --class=BeautybookSourceReferenceSeeder
 ```
 
-### Kết quả kiểm thử:
-```
-PHPUnit 11.5.7 by Sebastian Bergmann and contributors.
+Seeder bổ sung, không reset dữ liệu hoặc ghi đè chỉnh sửa sau import; giữ tài khoản demo ở trên. Chủ doanh nghiệp tham chiếu dùng email/mật khẩu template nguồn `Password123!`; nhân viên dùng mẫu cố định `Demo Nhân viên`. Giá/thời lượng là `TEMPLATE_BASE_PRICE`, không phải export giá ngẫu nhiên/rating/booking/lịch sử thanh toán database gốc. Ảnh giữ `illustration: true`, không gán thành ảnh thực tế.
 
-Runtime:       PHP 8.3.16
-Configuration: phpunit.xml
+Khi cần tạo lại fixture từ cây nguồn còn được giữ, chạy `node scripts/export-source-reference.mjs`; script chỉ đọc hằng số seed/entity plan và ghi JSON trong đồ án, không chạy seed/database nguồn. Runtime thông thường không cần cây nguồn bên cạnh.
 
-..........................................                        42 / 42 (100%)
+## Kiểm tra và tác vụ nền
 
-Time: 00:02.313, Memory: 42.00 MB
-
-OK (42 tests, 116 assertions)
+```bash
+docker compose -f docker-compose.laravel.yml exec -T app php artisan test
+docker compose -f docker-compose.laravel.yml exec -T app php artisan beautybook:maintain
+docker compose -f docker-compose.laravel.yml logs --tail=20 scheduler
 ```
 
----
+`beautybook:maintain` xử lý giữ chỗ/yêu cầu thay đổi hết hạn, database inbox outbox, dọn gói privacy export, offer waitlist hết hạn, chuyển chủ đến hạn và hồ sơ ảnh hưởng quá hạn. Container `scheduler` tự chạy lịch mỗi phút; log cho biết các lần thực thi. Outbox `SENT` ở đây là thông báo trong hộp thư database.
 
-## 📁 6. Cấu Trúc Thư Mục Dự Án (Project Structure)
+Các màn hình Laravel gồm marketplace/booking, workspace theo 5 vai trò, catalog/staff/media, voucher/combo/lịch định kỳ, review/favorite, payment/refund/package/invoice/statement, waitlist/loyalty, impact/ownership/privacy, profile/avatar và admin/settings/trust/report/audit. Xem [rubric](docs/course/RUBRIC_TRACEABILITY.md) và [ERD/use case/demo](docs/course/ERD_USE_CASE.md).
 
-```
-beautybook-laravel/
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   ├── Customer/             # Controller dành riêng cho Khách hàng
-│   │   │   │   ├── BookingController.php
-│   │   │   │   ├── DashboardController.php
-│   │   │   │   ├── FavoriteController.php
-│   │   │   │   ├── ProfileController.php
-│   │   │   │   └── ReviewController.php
-│   │   │   ├── Owner/                # Controller dành riêng cho Chủ salon
-│   │   │   │   ├── BookingController.php
-│   │   │   │   ├── BranchController.php
-│   │   │   │   ├── BusinessController.php
-│   │   │   │   ├── DashboardController.php
-│   │   │   │   ├── ReviewController.php
-│   │   │   │   ├── ServiceCategoryController.php
-│   │   │   │   ├── ServiceController.php
-│   │   │   │   └── StaffController.php
-│   │   │   ├── ExploreController.php # Trang chủ, tìm kiếm công khai, Live AJAX
-│   │   │   ├── SalonController.php
-│   │   │   ├── PublicBranchController.php
-│   │   │   └── PublicServiceController.php
-│   │   ├── Middleware/               # EnsureUserIsCustomer, EnsureUserIsOwner
-│   │   └── Requests/                 # 6 Form Requests kiểm tra tính hợp lệ dữ liệu
-│   ├── Models/                       # 16 Eloquent Models (User, Business, Branch,...)
-│   ├── Policies/                     # 6 Eloquent Policies bảo mật tài nguyên
-│   └── View/Components/              # Blade Layout Components
-├── database/
-│   ├── migrations/                   # 10 migration files (19 tables)
-│   └── seeders/                      # BeautyBookSeeder, LocationSeeder
-├── docs/
-│   └── course/                       # Tài liệu chuyên sâu môn Lập trình mã nguồn mở
-│       ├── ARCHITECTURE.md           # Thiết kế kiến trúc Monolith MVC
-│       ├── ERD.md                    # Sơ đồ quan hệ thực thể Mermaid chi tiết
-│       └── RUBRIC_TRACEABILITY.md    # Bảng đối chiếu tiêu chuẩn chấm điểm
-├── resources/
-│   ├── css/                          # Tailwind CSS custom styles
-│   └── views/
-│       ├── auth/                     # Giao diện đăng ký, đăng nhập
-│       ├── customer/                 # Portal khách hàng (Dashboard, Đặt lịch,...)
-│       ├── owner/                    # Portal chủ salon (Dashboard, Quản lý,...)
-│       ├── explore/                  # Trang khám phá & tìm kiếm dịch vụ
-│       ├── salons/                   # Trang chi tiết salon
-│       ├── branches/                 # Trang chi tiết chi nhánh (bản đồ Leaflet)
-│       └── layouts/                  # Master layouts (public, customer, owner)
-├── routes/
-│   ├── web.php                       # 75 routes phân nhóm rõ ràng
-│   └── auth.php                      # Breeze authentication routes
-└── tests/
-    ├── Feature/
-    │   ├── BeautyBookFlowTest.php    # 16 test cases nghiệp vụ cốt lõi
-    │   └── Auth/                     # 6 test cases xác thực
-    └── Unit/
-```
+Phạm vi chuyển đổi, chứng cứ và các giới hạn còn lại được ghi tại [IMPLEMENTATION_STATUS](docs/course/IMPLEMENTATION_STATUS.md) và [đối chiếu giao diện/luồng với nguồn](docs/course/UI_SOURCE_PARITY.md). Xem [prompt triển khai đã áp dụng](docs/course/PORT_IMPLEMENTATION_PROMPT.md) và [phạm vi](docs/course/COURSE_SCOPE.md). Chưa tuyên bố parity toàn bộ BeautyBook hay phát hành công khai.
 
----
-
-## 📑 7. Tài Liệu Môn Học (Course Documentation)
-
-Để nắm rõ hơn về cách thức thiết kế và triển khai đáp ứng đề cương môn học, vui lòng tham khảo các tài liệu trong thư mục `docs/course/`:
-- 🏗️ [**docs/course/ARCHITECTURE.md**](docs/course/ARCHITECTURE.md): Phân tích kiến trúc hệ thống, đối chiếu với bản gốc NestJS và lý do chọn Laravel 11.
-- 🗄️ [**docs/course/ERD.md**](docs/course/ERD.md): Toàn bộ lược đồ CSDL 19 bảng kèm biểu đồ quan hệ Mermaid và chiến lược Indexing.
-- 🎯 [**docs/course/RUBRIC_TRACEABILITY.md**](docs/course/RUBRIC_TRACEABILITY.md): Bảng đối chiếu chi tiết từng tiêu chí chấm điểm của giảng viên với mã nguồn thực tế.
-
----
-
-## 📄 8. Bản Quyền (License)
-
-Dự án được phát hành theo giấy phép [MIT License](LICENSE) dành cho mục đích học tập và nghiên cứu môn Lập trình Mã nguồn mở.
+Danh sách tài liệu phục vụ báo cáo và thuyết trình nằm trong [docs/README.md](docs/README.md).

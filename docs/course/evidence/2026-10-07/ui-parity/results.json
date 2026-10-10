@@ -1,0 +1,1215 @@
+{
+  "results": [
+    {
+      "role": "guest",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "role": "guest",
+      "page": "home",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "guest",
+      "page": "home",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "guest",
+      "page": "home",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "guest",
+      "page": "home",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "guest",
+      "page": "home",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "guest",
+      "path": "/explore",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/app",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/bookings",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/explore",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/favorites",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/vouchers",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/loyalty",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/recurring",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/waitlist",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/payments",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/finance",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/reviews",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/profile",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/privacy",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/notifications",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/security",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "page": "dashboard",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "dashboard",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "dashboard",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "dashboard",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "dashboard",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "path": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "page": "bookings",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "bookings",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "bookings",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "bookings",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "bookings",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "path": "/bookings/calendar?view=week",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "page": "calendar-week",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "calendar-week",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "calendar-week",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "calendar-week",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "calendar-week",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "path": "/bookings/calendar?view=day",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "calendar": "day/week navigation passed"
+    },
+    {
+      "role": "customer",
+      "path": "/finance",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "page": "finance",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "finance",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "finance",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "finance",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "finance",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/explore/beautybook-demo/tan-tao",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "path": "http://127.0.0.1:8000/booking/11?offering=25",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "page": "booking-service",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-service",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-service",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-service",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-service",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "page": "booking-confirm",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-confirm",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-confirm",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-confirm",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "customer",
+      "page": "booking-confirm",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "customer",
+      "wizard": "all five steps and authoritative slot to confirmation passed",
+      "submitted": false
+    },
+    {
+      "role": "owner",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/app",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/bookings",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/owner/businesses",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/owner/businesses/3/catalog",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/owner/businesses/3/staff",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/owner/branches/11/combos",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/operations/branches/11/waitlist",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/owner/businesses/3/promotions",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/reviews",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/payments",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/finance",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/dashboard",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/impacts",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/audit-logs",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/notifications",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/ownership",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/workspace",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "http://127.0.0.1:8000/security",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "page": "dashboard",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "dashboard",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "dashboard",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "dashboard",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "dashboard",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "owner",
+      "path": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "page": "bookings",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "bookings",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "bookings",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "bookings",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "bookings",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "owner",
+      "path": "/bookings/calendar?view=week",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "page": "calendar-week",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "calendar-week",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "calendar-week",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "calendar-week",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "owner",
+      "page": "calendar-week",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "owner",
+      "path": "/bookings/calendar?view=day",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "calendar": "day/week navigation passed"
+    },
+    {
+      "role": "receptionist",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/app",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/bookings",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/payments",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/finance",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/operations/branches/11/waitlist",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/notifications",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/ownership",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/workspace",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "http://127.0.0.1:8000/security",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "page": "dashboard",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "dashboard",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "dashboard",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "dashboard",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "dashboard",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "receptionist",
+      "path": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "page": "bookings",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "bookings",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "bookings",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "bookings",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "bookings",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "receptionist",
+      "path": "/bookings/calendar?view=week",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "page": "calendar-week",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "calendar-week",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "calendar-week",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "calendar-week",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "receptionist",
+      "page": "calendar-week",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "receptionist",
+      "path": "/bookings/calendar?view=day",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "calendar": "day/week navigation passed"
+    },
+    {
+      "role": "staff",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/app",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/bookings",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/notifications",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/ownership",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/workspace",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "http://127.0.0.1:8000/security",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "page": "dashboard",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "dashboard",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "dashboard",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "dashboard",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "dashboard",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "staff",
+      "path": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "page": "bookings",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "bookings",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "bookings",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "bookings",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "bookings",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "staff",
+      "path": "/bookings/calendar?view=week",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "page": "calendar-week",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "calendar-week",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "calendar-week",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "calendar-week",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "staff",
+      "page": "calendar-week",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "staff",
+      "path": "/bookings/calendar?view=day",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "calendar": "day/week navigation passed"
+    },
+    {
+      "role": "admin",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/app",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/payments",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/finance",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/dashboard",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/impacts",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/audit-logs",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/bookings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/business-directory",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/users",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/reviews",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/promotions",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/trust",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/admin/settings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/notifications",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/ownership",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/workspace",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "http://127.0.0.1:8000/security",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "path": "/app",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "page": "dashboard",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "dashboard",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "dashboard",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "dashboard",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "dashboard",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "admin",
+      "path": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "page": "bookings",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "bookings",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "bookings",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "bookings",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "bookings",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "admin",
+      "path": "/bookings/calendar?view=week",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "page": "calendar-week",
+      "width": 320,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "calendar-week",
+      "width": 375,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "calendar-week",
+      "width": 414,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "calendar-week",
+      "width": 768,
+      "bounds": "pass",
+      "drawer": "pass"
+    },
+    {
+      "role": "admin",
+      "page": "calendar-week",
+      "width": 1440,
+      "bounds": "pass",
+      "drawer": "desktop"
+    },
+    {
+      "role": "admin",
+      "path": "/bookings/calendar?view=day",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "calendar": "day/week navigation passed"
+    }
+  ],
+  "errors": []
+}

@@ -1,36 +1,27 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'BeautyBook')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/shell.js'])
+</head>
+<body class="{{ $ui['isApp'] ? 'bb-app' : 'bb-public' }}">
+    <a class="bb-skip-link" href="#main-content">Đến nội dung chính</a>
+    @include('layouts.chrome')
+    <main id="main-content" class="bb-main">
+        @if (session('status'))
+            <div class="flash" role="status">{{ session('status') }}</div>
+        @endif
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+        @if ($errors->any())
+            <div class="bb-error-summary" role="alert"><strong>Vui lòng kiểm tra thông tin</strong><ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
+        @endif
+        @yield('content')
+    </main>
+    @unless($ui['isApp'])
+        <footer class="bb-footer"><a class="brand" href="{{ route('home') }}">BeautyBook</a><p>Khám phá địa điểm. Chọn dịch vụ. Đặt lịch theo cách của bạn.</p><a href="{{ route('marketplace.index') }}">Khám phá dịch vụ</a><span>© {{ now()->year }} BeautyBook</span></footer>
+    @endunless
+</body>
 </html>

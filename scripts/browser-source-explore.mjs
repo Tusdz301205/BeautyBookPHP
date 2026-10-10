@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import { chromium } from 'file:///C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
+
+const base=process.env.APP_URL||'http://127.0.0.1:8000';
+const prefix=process.env.SOURCE_PREFIX??'/beautybook';
+const out='docs/course/evidence/2026-10-07/source-parity';
+await fs.mkdir(out,{recursive:true});
+const evidence={checks:[],errors:[]};
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:900}});
+page.setDefaultTimeout(90000);
+page.on('pageerror',error=>evidence.errors.push({kind:'javascript',message:error.message}));
+page.on('response',response=>{if(response.url().includes('/api/v1/')&&!response.url().includes('/auth/refresh')&&response.status()>=400)evidence.errors.push({kind:'api',url:response.url(),status:response.status()});});
+const cardIds=()=>page.locator('#results .bb-home-salon-card__media-link').evaluateAll(rows=>rows.map(row=>row.getAttribute('href').split('/').pop()));
+const searchResponse=()=>page.waitForResponse(response=>response.url().includes('/api/v1/services/search?')&&response.ok());
+const normalize=text=>String(text).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').toLowerCase();
+try{
+ const initialResponse=searchResponse();
+ await page.goto(base+prefix+'/explore',{waitUntil:'domcontentloaded'});
+ const initial=await initialResponse;const first=await initial.json();
+ assert.equal(first.hasMore,true,'Real fixtures must expose a second search page');
+ await page.waitForFunction(count=>document.querySelectorAll('#results .bb-home-salon-card').length===count,first.data.length);
+ const before=await cardIds();
+ const nextResponse=page.waitForResponse(response=>response.url().includes('/api/v1/services/search?')&&new URL(response.url()).searchParams.get('page')==='2'&&response.ok());
+ await page.getByRole('button',{name:'Xem thêm dịch vụ',exact:true}).click();
+ const next=await nextResponse;const second=await next.json();
+ const expected=[...new Set([...first.data,...second.data].map(row=>String(row.id)))];
+ await page.waitForFunction(count=>document.querySelectorAll('#results .bb-home-salon-card').length===count,expected.length);
+ const after=await cardIds();
+ assert.deepEqual(after,expected);assert.deepEqual(after.slice(0,before.length),before);assert(after.length>before.length);
+ evidence.checks.push({kind:'pagination',firstUrl:initial.url(),nextUrl:next.url(),before,secondPage:second.data.map(row=>row.id),after,hasMore:first.hasMore,overlap:second.data.filter(row=>before.includes(String(row.id))).map(row=>row.id)});
+ assert.deepEqual(evidence.checks[0].overlap,[],'Stable adjacent API pages must not overlap');
+ const sample=first.data.find(row=>row.canonicalServiceId&&row.districtName);
+ assert(sample,'Need a mapped real service with district');
+ const form=page.getByRole('form',{name:'Tìm dịch vụ làm đẹp'});
+ async function submit(kind,validate){const pending=searchResponse();await form.getByRole('button',{name:'Tìm kiếm',exact:true}).click();const response=await pending;const body=await response.json();assert(body.data.length>0,kind+' must find real services');await page.waitForFunction(count=>document.querySelectorAll('#results .bb-home-salon-card').length===count,body.data.length);assert.deepEqual(await cardIds(),body.data.map(row=>String(row.id)));validate(body.data,new URL(response.url()).searchParams);evidence.checks.push({kind,url:response.url(),browserUrl:page.url(),ids:body.data.map(row=>row.id),total:body.total});}
+ await page.locator('#explore-salon-search').fill(sample.canonicalServiceName);
+ await submit('query',(rows,params)=>{assert.equal(params.get('query'),sample.canonicalServiceName);assert(rows.every(row=>normalize(row.name+' '+row.canonicalServiceName).includes(normalize(sample.canonicalServiceName))));});
+ await page.locator('#explore-salon-search').fill('');
+ await page.locator('#explore-category').click();
+ await page.getByRole('option',{name:sample.canonicalServiceName,exact:true}).click();
+ await submit('canonical',(rows,params)=>{assert.equal(params.get('canonicalServiceId'),String(sample.canonicalServiceId));assert(rows.every(row=>String(row.canonicalServiceId)===String(sample.canonicalServiceId)));});
+ await page.locator('#explore-area').fill(sample.districtName);
+ await submit('canonical-and-location',(rows,params)=>{assert.equal(params.get('location'),sample.districtName);assert(rows.every(row=>String(row.canonicalServiceId)===String(sample.canonicalServiceId)&&normalize(row.districtName)===normalize(sample.districtName)));});
+ await page.screenshot({path:out+'/explore-filtered-desktop.png',fullPage:false});
+ await page.setViewportSize({width:375,height:900});await page.screenshot({path:out+'/explore-filtered-mobile.png',fullPage:false});
+ assert.deepEqual(evidence.errors,[]);
+ console.log('PASS',JSON.stringify(evidence.checks));
+}catch(error){evidence.failure=error.stack;throw error;}finally{await fs.writeFile(out+'/explore-interactions.json',JSON.stringify(evidence,null,2));await browser.close();}

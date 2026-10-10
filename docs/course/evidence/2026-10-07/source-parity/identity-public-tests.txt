@@ -1,0 +1,17 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookIdentityEngagementApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90msource login has one valid workspace and bearer is bound to sessio[39m[90m…[39m [90m46.92s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrefresh revalidates revoked current assignment and customer cannot[39m[90m… [39m [90m0.47s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner registration creates real private draft and verification toke[39m[90m…[39m [90m1.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpassword reset is single use and revokes existing sessions[39m[90m          [39m [90m0.32s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnotification filters and read actions never cross accounts[39m[90m          [39m [90m0.35s[39m  
+  [32;1m✓[39;22m[90m [39m[90msaved offering and profile edits are real and self scoped[39m[90m           [39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivate avatar needs session and does not accept another user id[39m[90m    [39m [90m0.33s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookPublicApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90msource public search filters prices and paginates without authentic[39m[90m…[39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90msource public detail hides unpublished entities and returns bookabl[39m[90m…[39m [90m0.47s[39m  
+
+  [90mTests:[39m    [32;1m9 passed[39;22m[90m (61 assertions)[39m
+  [90mDuration:[39m [39m66.17s[39m
+

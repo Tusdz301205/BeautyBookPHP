@@ -1,0 +1,737 @@
+{
+  "requests": [
+    {
+      "id": 0,
+      "stage": "login",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "method": "POST",
+      "started": 1791372766974,
+      "status": 401,
+      "responseAt": 1791372770648,
+      "finishedAt": 1791372770765,
+      "finishedByResponseAt": 1791372770765,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372770767,
+      "bodyBytes": 17237,
+      "timing": {
+        "startTime": 1791372766973.98,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.467,
+        "responseStart": 3673.883,
+        "responseEnd": 3708.254
+      }
+    },
+    {
+      "id": 1,
+      "stage": "login",
+      "url": "http://localhost:8000/api/v1/auth/login",
+      "method": "POST",
+      "started": 1791372770927,
+      "status": 200,
+      "responseAt": 1791372774649,
+      "finishedAt": 1791372774650,
+      "finishedByResponseAt": 1791372774650,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372774658,
+      "bodyBytes": 999,
+      "timing": {
+        "startTime": 1791372770925.991,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.213,
+        "responseStart": 3722.238,
+        "responseEnd": 3722.99
+      }
+    },
+    {
+      "id": 2,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/bookings/my-appointments?tab=upcoming",
+      "method": "GET",
+      "started": 1791372774713,
+      "timing": {
+        "startTime": 0,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": -1,
+        "responseStart": -1,
+        "responseEnd": -1
+      }
+    },
+    {
+      "id": 3,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/platform-settings/public",
+      "method": "GET",
+      "started": 1791372774713,
+      "status": 200,
+      "responseAt": 1791372776076,
+      "finishedAt": 1791372776077,
+      "finishedByResponseAt": 1791372776077,
+      "responseFinishError": null,
+      "bodyError": "response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.",
+      "timing": {
+        "startTime": 1791372774711.384,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.13,
+        "responseStart": 1363.784,
+        "responseEnd": 1364.7
+      }
+    },
+    {
+      "id": 4,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/recurring/mine",
+      "method": "GET",
+      "started": 1791372774713,
+      "timing": {
+        "startTime": 0,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": -1,
+        "responseStart": -1,
+        "responseEnd": -1
+      }
+    },
+    {
+      "id": 5,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/branches?sort=popular&limit=3",
+      "method": "GET",
+      "started": 1791372774713,
+      "timing": {
+        "startTime": 0,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": -1,
+        "responseStart": -1,
+        "responseEnd": -1
+      }
+    },
+    {
+      "id": 6,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "method": "GET",
+      "started": 1791372774713,
+      "timing": {
+        "startTime": 0,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": -1,
+        "responseStart": -1,
+        "responseEnd": -1
+      }
+    },
+    {
+      "id": 7,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "method": "POST",
+      "started": 1791372776222,
+      "status": 200,
+      "responseAt": 1791372776803,
+      "finishedAt": 1791372776803,
+      "finishedByResponseAt": 1791372776803,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372776806,
+      "bodyBytes": 999,
+      "timing": {
+        "startTime": 1791372776222.4238,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.216,
+        "responseStart": 579.809,
+        "responseEnd": 580.452
+      }
+    },
+    {
+      "id": 8,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/users/me/profile",
+      "method": "GET",
+      "started": 1791372776820,
+      "status": 200,
+      "responseAt": 1791372777166,
+      "finishedAt": 1791372777167,
+      "finishedByResponseAt": 1791372777167,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372777169,
+      "bodyBytes": 949,
+      "timing": {
+        "startTime": 1791372776820.649,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.133,
+        "responseStart": 345.248,
+        "responseEnd": 345.862
+      }
+    },
+    {
+      "id": 9,
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "method": "GET",
+      "started": 1791372776821,
+      "status": 200,
+      "responseAt": 1791372777253,
+      "finishedAt": 1791372777253,
+      "finishedByResponseAt": 1791372777253,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372777254,
+      "bodyBytes": 11,
+      "timing": {
+        "startTime": 1791372776821.017,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.102,
+        "responseStart": 431.19,
+        "responseEnd": 432.091
+      }
+    },
+    {
+      "id": 10,
+      "stage": "/book",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "method": "POST",
+      "started": 1791372800116,
+      "status": 200,
+      "responseAt": 1791372804558,
+      "finishedAt": 1791372804558,
+      "finishedByResponseAt": 1791372804558,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372804560,
+      "bodyBytes": 999,
+      "timing": {
+        "startTime": 1791372800115.9922,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.153,
+        "responseStart": 4441.414,
+        "responseEnd": 4442.077
+      }
+    },
+    {
+      "id": 11,
+      "stage": "/book",
+      "url": "http://localhost:8000/api/v1/branches?",
+      "method": "GET",
+      "started": 1791372804598,
+      "status": 200,
+      "responseAt": 1791372807683,
+      "finishedAt": 1791372807684,
+      "finishedByResponseAt": 1791372807684,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372807684,
+      "bodyBytes": 1152,
+      "timing": {
+        "startTime": 1791372804597.6318,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.129,
+        "responseStart": 3085.247,
+        "responseEnd": 3085.897
+      }
+    },
+    {
+      "id": 12,
+      "stage": "/customer/security",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "method": "POST",
+      "started": 1791372828826,
+      "status": 200,
+      "responseAt": 1791372831845,
+      "finishedAt": 1791372831846,
+      "finishedByResponseAt": 1791372831846,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372831848,
+      "bodyBytes": 999,
+      "timing": {
+        "startTime": 1791372828826.749,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.199,
+        "responseStart": 3018.24,
+        "responseEnd": 3019.225
+      }
+    },
+    {
+      "id": 13,
+      "stage": "/customer/security",
+      "url": "http://localhost:8000/api/v1/auth/sessions",
+      "method": "GET",
+      "started": 1791372831856,
+      "status": 200,
+      "responseAt": 1791372833631,
+      "finishedAt": 1791372833644,
+      "finishedByResponseAt": 1791372833644,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372833645,
+      "bodyBytes": 4352,
+      "timing": {
+        "startTime": 1791372831856.129,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.15,
+        "responseStart": 1774.541,
+        "responseEnd": 1788.962
+      }
+    },
+    {
+      "id": 14,
+      "stage": "/customer/security",
+      "url": "http://localhost:8000/api/v1/auth/security-history",
+      "method": "GET",
+      "started": 1791372831856,
+      "status": 200,
+      "responseAt": 1791372833772,
+      "finishedAt": 1791372833772,
+      "finishedByResponseAt": 1791372833772,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372833781,
+      "bodyBytes": 6913,
+      "timing": {
+        "startTime": 1791372831856.504,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.191,
+        "responseStart": 1915.182,
+        "responseEnd": 1916.116
+      }
+    },
+    {
+      "id": 15,
+      "stage": "/customer/security",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "method": "GET",
+      "started": 1791372831856,
+      "status": 200,
+      "responseAt": 1791372833716,
+      "finishedAt": 1791372833716,
+      "finishedByResponseAt": 1791372833716,
+      "responseFinishError": null,
+      "bodyReadAt": 1791372833717,
+      "bodyBytes": 11,
+      "timing": {
+        "startTime": 1791372831856.6401,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.17,
+        "responseStart": 1859.163,
+        "responseEnd": 1860.32
+      }
+    }
+  ],
+  "stages": [
+    {
+      "stage": "/customer/profile",
+      "url": "http://localhost:8000/beautybook/customer/profile",
+      "pending": [
+        {
+          "id": 2,
+          "url": "http://localhost:8000/api/v1/bookings/my-appointments?tab=upcoming",
+          "age": 22782,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 4,
+          "url": "http://localhost:8000/api/v1/recurring/mine",
+          "age": 22782,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 5,
+          "url": "http://localhost:8000/api/v1/branches?sort=popular&limit=3",
+          "age": 22782,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 6,
+          "url": "http://localhost:8000/api/v1/notifications/unread-count",
+          "age": 22782,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        }
+      ],
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nLịch hẹn\n4\nHD\nKhách hàng Demo\nKhách hàng\n\nTÀI KHOẢN\n\nHồ sơ cá nhân\n\nThông tin nhận diện tài khoản và liên kết hồ sơ nhân sự nếu có.\n\nThông tin cơ bản\n\nChỉ cập nhật thông tin của chính bạn.\n\nẢnh đại diện\n\nJPG, PNG, WebP hoặc AVIF; tối đa 10 MB.\n\nChọn tệp\nHọ và tên*\n(bắt buộc)\n \nSố điện thoại\n \nGiới tính\nChưa chọn\n \nNgày sinh\n \nĐịa chỉ\n \nLưu thay đổi\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập"
+    },
+    {
+      "stage": "/book",
+      "url": "http://localhost:8000/beautybook/book",
+      "pending": [
+        {
+          "id": 2,
+          "url": "http://localhost:8000/api/v1/bookings/my-appointments?tab=upcoming",
+          "age": 50791,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 4,
+          "url": "http://localhost:8000/api/v1/recurring/mine",
+          "age": 50791,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 5,
+          "url": "http://localhost:8000/api/v1/branches?sort=popular&limit=3",
+          "age": 50791,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 6,
+          "url": "http://localhost:8000/api/v1/notifications/unread-count",
+          "age": 50791,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        }
+      ],
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nVào hệ thống\nĐặt lịch\n1\nDịch vụ\n2\nChuyên viên\n3\nThời gian\n4\nThông tin\n5\nXác nhận\n\nBƯỚC 1 / 5\n\nChọn chi nhánh và dịch vụ\n\nChọn dịch vụ bạn cần. Giá và thời lượng sẽ được kiểm tra lại trước khi xác nhận.\n\n1. Chi nhánh\nBeautyBook Tân Tạo\nTân Tạo, Bình Tân, TP.HCM\n2. Dịch vụ (có thể chọn nhiều)\nHãy chọn chi nhánh\n\nDịch vụ sẽ được tải theo chi nhánh bạn chọn.\n\nChọn chi nhánh để xem dịch vụ.\n\nChọn chuyên viên\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập"
+    },
+    {
+      "stage": "/customer/security",
+      "url": "http://localhost:8000/beautybook/customer/security",
+      "pending": [
+        {
+          "id": 2,
+          "url": "http://localhost:8000/api/v1/bookings/my-appointments?tab=upcoming",
+          "age": 77950,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 4,
+          "url": "http://localhost:8000/api/v1/recurring/mine",
+          "age": 77950,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 5,
+          "url": "http://localhost:8000/api/v1/branches?sort=popular&limit=3",
+          "age": 77950,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        },
+        {
+          "id": 6,
+          "url": "http://localhost:8000/api/v1/notifications/unread-count",
+          "age": 77950,
+          "bodyRead": false,
+          "timing": {
+            "startTime": 0,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": -1,
+            "responseStart": -1,
+            "responseEnd": -1
+          }
+        }
+      ],
+      "text": "Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 · 172.21.0.1\n\nHoạt động gần nhất: 16:49:37 7/10/2026\n\nThu hồi\nThiết bị khác\n\nMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 · 172.21.0.1\n\nHoạt động gần nhất: 16:45:49 7/10/2026\n\nThu hồi\nThiết bị khác\n\nMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 · 172.21.0.1\n\nHoạt động gần nhất: 16:42:21 7/10/2026\n\nThu hồi\nThiết bị khác\n\nMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 · 172.21.0.1\n\nHoạt động gần nhất: 16:38:50 7/10/2026\n\nThu hồi\nLịch sử bảo mật\n\n50 sự kiện gần nhất liên quan đến đăng nhập, mật khẩu và hồ sơ.\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:32:54 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:29:39 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:20:19 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:17:43 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:16:42 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:13:57 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n18:06:01 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n17:52:15 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n17:38:51 7/10/2026\n\nĐăng nhập thành công\n\n· LOGIN\n\n17:33:01 7/10/2026\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập"
+    }
+  ],
+  "pageErrors": [],
+  "chromiumNetwork": [
+    {
+      "requestId": "27400.19",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "documentURL": "http://localhost:8000/beautybook/login",
+      "started": 1791372766974,
+      "status": 401,
+      "finished": 1791372770765,
+      "bytes": 18541
+    },
+    {
+      "requestId": "27400.25",
+      "url": "http://localhost:8000/api/v1/auth/login",
+      "documentURL": "http://localhost:8000/beautybook/login",
+      "started": 1791372770927,
+      "status": 200,
+      "finished": 1791372774650,
+      "bytes": 2294
+    },
+    {
+      "requestId": "27400.32",
+      "url": "http://localhost:8000/api/v1/bookings/my-appointments?tab=upcoming",
+      "documentURL": "http://localhost:8000/beautybook/customer/appointments",
+      "started": 1791372774713
+    },
+    {
+      "requestId": "27400.33",
+      "url": "http://localhost:8000/api/v1/platform-settings/public",
+      "documentURL": "http://localhost:8000/beautybook/customer/appointments",
+      "started": 1791372774713,
+      "status": 200,
+      "finished": 1791372776077,
+      "bytes": 1422
+    },
+    {
+      "requestId": "27400.34",
+      "url": "http://localhost:8000/api/v1/recurring/mine",
+      "documentURL": "http://localhost:8000/beautybook/customer/appointments",
+      "started": 1791372774713
+    },
+    {
+      "requestId": "27400.35",
+      "url": "http://localhost:8000/api/v1/branches?sort=popular&limit=3",
+      "documentURL": "http://localhost:8000/beautybook/customer/appointments",
+      "started": 1791372774713
+    },
+    {
+      "requestId": "27400.36",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "documentURL": "http://localhost:8000/beautybook/customer/appointments",
+      "started": 1791372774713
+    },
+    {
+      "requestId": "27400.55",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "documentURL": "http://localhost:8000/beautybook/customer/profile",
+      "started": 1791372776222,
+      "status": 200,
+      "finished": 1791372776803,
+      "bytes": 2295
+    },
+    {
+      "requestId": "27400.58",
+      "url": "http://localhost:8000/api/v1/users/me/profile",
+      "documentURL": "http://localhost:8000/beautybook/customer/profile",
+      "started": 1791372776820,
+      "status": 200,
+      "finished": 1791372777167,
+      "bytes": 2177
+    },
+    {
+      "requestId": "27400.59",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "documentURL": "http://localhost:8000/beautybook/customer/profile",
+      "started": 1791372776820,
+      "status": 200,
+      "finished": 1791372777253,
+      "bytes": 1237
+    },
+    {
+      "requestId": "27400.79",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "documentURL": "http://localhost:8000/beautybook/book",
+      "started": 1791372800115,
+      "status": 200,
+      "finished": 1791372804558,
+      "bytes": 2295
+    },
+    {
+      "requestId": "27400.84",
+      "url": "http://localhost:8000/api/v1/branches?",
+      "documentURL": "http://localhost:8000/beautybook/book",
+      "started": 1791372804598,
+      "status": 200,
+      "finished": 1791372807684,
+      "bytes": 2380
+    },
+    {
+      "requestId": "27400.103",
+      "url": "http://localhost:8000/api/v1/auth/refresh",
+      "documentURL": "http://localhost:8000/beautybook/customer/security",
+      "started": 1791372828826,
+      "status": 200,
+      "finished": 1791372831846,
+      "bytes": 2295
+    },
+    {
+      "requestId": "27400.105",
+      "url": "http://localhost:8000/api/v1/auth/sessions",
+      "documentURL": "http://localhost:8000/beautybook/customer/security",
+      "started": 1791372831856,
+      "status": 200,
+      "finished": 1791372833644,
+      "bytes": 5587
+    },
+    {
+      "requestId": "27400.106",
+      "url": "http://localhost:8000/api/v1/auth/security-history",
+      "documentURL": "http://localhost:8000/beautybook/customer/security",
+      "started": 1791372831856,
+      "status": 200,
+      "finished": 1791372833772,
+      "bytes": 8148
+    },
+    {
+      "requestId": "27400.107",
+      "url": "http://localhost:8000/api/v1/notifications/unread-count",
+      "documentURL": "http://localhost:8000/beautybook/customer/security",
+      "started": 1791372831856,
+      "status": 200,
+      "finished": 1791372833716,
+      "bytes": 1237
+    }
+  ]
+}

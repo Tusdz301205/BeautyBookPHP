@@ -1,31 +1,26 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+@extends('layouts.app')
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </div>
+@section('title', 'Xác minh email · BeautyBook')
+
+@section('content')
+<section class="page-shell narrow-shell">
+    <p class="eyebrow">Xác minh email</p>
+    <h1>Kiểm tra hộp thư của bạn.</h1>
+    <p class="lede">Bạn cần xác minh địa chỉ email trước khi mở không gian BeautyBook.</p>
+
+    @if (session('status') === 'verification-link-sent')
+        <div class="notice">Liên kết xác minh mới đã được gửi.</div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
+    <div class="action-row">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
+            <button class="button button-primary" type="submit">Gửi lại liên kết</button>
         </form>
-
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
+            <button class="button button-secondary" type="submit">Đăng xuất</button>
         </form>
     </div>
-</x-guest-layout>
+</section>
+@endsection

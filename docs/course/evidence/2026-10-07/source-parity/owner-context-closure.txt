@@ -1,0 +1,34 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\AdminDetailContractTest[39m
+  [32;1m✓[39;22m[90m [39m[90mplatform business detail reports real owner counts catalog and mem[39m[90m…[39m [90m47.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbranch detail keeps source readiness progress and reason contract[39m[90m   [39m [90m0.48s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookGovernanceApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic policy and admin setting override reset contract[39m[90m             [39m [90m0.76s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreport authorization and cash include only selected tenant[39m[90m          [39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner dashboard and financial summary supply original chart contrac[39m[90m…[39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfinancial discounts follow applied local day instead of appointment[39m[90m…[39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivacy contract persists preferences and exports once[39m[90m              [39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreal cash collection stays on its branch local day after seventeen[39m[90m… [39m [90m0.67s[39m  
+  [32;1m✓[39;22m[90m [39m[90mownership versions are encrypted masked and scope bound[39m[90m             [39m [90m0.54s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookIdentityEngagementApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90msource login has one valid workspace and bearer is bound to session[39m[90m [39m [90m1.00s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrefresh revalidates revoked current assignment and customer cannot[39m[90m… [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner registration creates real private draft and verification toke[39m[90m…[39m [90m1.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpassword reset is single use and revokes existing sessions[39m[90m          [39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnotification filters and read actions never cross accounts[39m[90m          [39m [90m0.53s[39m  
+  [32;1m✓[39;22m[90m [39m[90msaved offering and profile edits are real and self scoped[39m[90m           [39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivate avatar needs session and does not accept another user id[39m[90m    [39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90monly platform can list users and admin phone search uses real profi[39m[90m…[39m [90m0.47s[39m  
+  [32;1m✓[39;22m[90m [39m[90mmanagement review queue keeps all rows relations and exact source a[39m[90m…[39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtemporarily unavailable saved service retains its identity[39m[90m          [39m [90m0.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivate staff reviews resolve live staff grant without receptionist[39m[90m…[39m [90m0.47s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ManagementMultiRoleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreception grant in other branch does not unlock staff private detai[39m[90m…[39m [90m0.62s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcatalog retains explicit authorized branch and uses owner grant wit[39m[90m…[39m [90m0.85s[39m  
+
+  [90mTests:[39m    [32;1m22 passed[39;22m[90m (220 assertions)[39m
+  [90mDuration:[39m [39m68.15s[39m
+

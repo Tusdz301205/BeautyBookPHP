@@ -1,0 +1,46 @@
+/* Booking flow: compact progress and a reachable action without changing desktop content. */
+.bb-booking { min-width: 0; }
+.bb-public-shell:has(.bb-booking) .bb-public-header { margin-bottom: 0; }
+.bb-booking-progress__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .25rem; }
+.bb-booking-progress__step { min-width: 0; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.bb-booking-progress__number { flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--bb-border); border-radius: 50%; background: white; color: var(--bb-muted); font-size: .75rem; font-weight: 700; }
+.bb-booking-progress__number--done { border-color: var(--bb-brand); background: var(--bb-brand); color: white; }
+.bb-booking-progress__number--current { border-color: var(--bb-ink); background: var(--bb-ink); color: white; }
+.bb-booking-progress__label { min-width: 0; color: var(--bb-muted); font-size: .75rem; font-weight: 650; white-space: nowrap; }
+.bb-booking-progress__step--current .bb-booking-progress__label { color: var(--bb-ink); }
+.bb-booking-selection { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .75rem; align-items: start; }
+.bb-booking-selection:not(:has(.bb-booking-selection__icon)) { grid-template-columns: minmax(0, 1fr); }
+.bb-booking-selection__body { display: block; min-width: 0; }
+.bb-booking-selection__title, .bb-booking-selection__meta { display: block; overflow-wrap: anywhere; }
+.bb-booking-selection__trailing { display: block; margin-top: .4rem; overflow-wrap: anywhere; }
+.bb-booking-selection__icon { flex: none; }
+.bb-booking-service-row { min-width: 0; }
+.bb-booking-service-row > div { min-width: 0; overflow-wrap: anywhere; }
+.bb-booking-service-row > p { flex: none; white-space: nowrap; }
+.bb-booking-mobile-action { display: none; }
+.bb-booking-days { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+
+@media (max-width: 47.99rem) {
+  .bb-public-main:has(.bb-booking) { padding-bottom: calc(7rem + env(safe-area-inset-bottom)); }
+  .bb-booking-progress { margin-bottom: 1.4rem; }
+  .bb-booking-progress__step { flex-direction: column; gap: .3rem; }
+  .bb-booking-progress__number { width: 1.85rem; height: 1.85rem; }
+  .bb-booking-progress__label { font-size: .58rem; letter-spacing: -.02em; }
+  .bb-booking-heading h1 { overflow-wrap: anywhere; }
+  .bb-booking-content { margin-top: 1.25rem; }
+  .bb-booking-panel { min-width: 0; }
+  .bb-booking-actions { display: none; }
+  .bb-booking-mobile-action { display: block; position: fixed; inset-inline: 0; bottom: 0; z-index: var(--z-sticky); border-top: 1px solid var(--bb-border); background: var(--bb-surface); box-shadow: 0 -10px 32px rgb(30 18 28 / .09); padding: .65rem max(1rem, env(safe-area-inset-right)) calc(.65rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); }
+  .bb-booking-mobile-action__inner { display: flex; align-items: center; gap: .55rem; max-width: 72rem; margin-inline: auto; }
+  .bb-booking-mobile-action__summary { min-width: 0; font-size: .76rem; font-weight: 700; color: var(--bb-brand-strong); white-space: nowrap; }
+  .bb-booking-mobile-action__back .bb-button { padding-inline: .65rem; }
+  .bb-booking-mobile-action__next { min-width: 0; flex: 1; }
+  .bb-booking-aside .bb-card { position: static; }
+  .bb-booking-days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .bb-booking-service-row { flex-wrap: wrap; }
+}
+
+@media (max-width: 22.5rem) {
+  .bb-booking-progress__label { font-size: .53rem; }
+  .bb-booking-mobile-action__summary { display: none; }
+}

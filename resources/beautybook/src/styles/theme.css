@@ -1,0 +1,73 @@
+@import './fonts.css';
+@import '../../tokens.css';
+@import './public-home.css';
+@import './business-landing.css';
+@import './polish.css';
+
+:root {
+  --bb-canvas: var(--color-paper);
+  --bb-surface: var(--color-surface-2);
+  --bb-surface-subtle: var(--color-paper-2);
+  --bb-surface-raised: var(--color-surface-3);
+  --bb-surface-overlay: var(--color-surface-4);
+  --bb-ink: var(--color-ink);
+  --bb-ink-soft: var(--color-ink-2);
+  --bb-muted: var(--color-muted);
+  --bb-border: var(--color-border-base);
+  --bb-border-soft: var(--color-border-soft);
+  --bb-border-strong: var(--color-border-strong);
+  --bb-brand: var(--color-accent);
+  --bb-brand-strong: var(--color-accent-strong);
+  --bb-brand-soft: var(--color-accent-soft);
+  --bb-focus: var(--color-focus);
+  --bb-success: var(--color-success);
+  --bb-warning: var(--color-warning);
+  --bb-danger: var(--color-danger);
+  --bb-info: var(--color-info);
+  --bb-radius-control: 0.625rem;
+  --bb-radius-card: 0.875rem;
+  --bb-radius-panel: 1rem;
+  --bb-shadow-float: var(--shadow-float);
+  --bb-shadow-xs: var(--shadow-xs);
+  --bb-shadow-sm: var(--shadow-sm);
+  --bb-shadow-md: var(--shadow-md);
+  --bb-shadow-lg: var(--shadow-lg);
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: light; background: var(--bb-canvas); overflow-x: clip; }
+body { margin: 0; min-width: 0; background: var(--bb-canvas); color: var(--bb-ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+#root { min-width: 0; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:not(:disabled), a[href] { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--bb-focus); outline-offset: 2px; }
+::selection { background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-display { font-family: var(--font-display); }
+.bb-mono { font-family: var(--font-mono); }
+.bg-white { background-color: var(--bb-surface) !important; }
+.text-white { color: var(--color-accent-ink) !important; }
+.border-white { border-color: var(--bb-surface) !important; }
+.bb-scrollbar { scrollbar-color: var(--color-rule) transparent; scrollbar-width: thin; }
+.bb-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+.bb-scrollbar::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 999px; }
+.bb-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Keep the password-recovery action comfortably tappable on narrow screens. */
+a[href="/"],
+a[href="/forgot-password"],
+a[href="/book"] {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 639px) {
+  .min-h-9 {
+    min-height: 44px !important;
+  }
+}

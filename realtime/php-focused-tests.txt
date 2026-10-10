@@ -1,0 +1,16 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookGovernanceApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic policy and admin setting override reset contract[39m[90m            [39m [90m48.66s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreport authorization and cash include only selected tenant[39m[90m          [39m [90m0.89s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner dashboard and financial summary supply original chart contrac[39m[90m…[39m [90m0.74s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivacy contract persists preferences and exports once[39m[90m              [39m [90m0.78s[39m  
+  [32;1m✓[39;22m[90m [39m[90mownership versions are encrypted masked and scope bound[39m[90m             [39m [90m0.86s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookRealtimeTest[39m
+  [32;1m✓[39;22m[90m [39m[90mtransactional journal records bulk updates and discards rollback[39m[90m    [39m [90m0.63s[39m  
+  [32;1m✓[39;22m[90m [39m[90mevents are tenant scoped and staff receives invalidation without fo[39m[90m…[39m [90m0.69s[39m  
+  [32;1m✓[39;22m[90m [39m[90msession expiry or revoked assignment prevents realtime lease[39m[90m        [39m [90m0.72s[39m  
+
+  [90mTests:[39m    [32;1m8 passed[39;22m[90m (78 assertions)[39m
+  [90mDuration:[39m [39m70.54s[39m
+

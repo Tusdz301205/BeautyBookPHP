@@ -1,0 +1,32 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookBookingApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mmultiservice contract real prices slots create replay and customer[39m[90m…[39m [90m51.15s[39m  
+  [32;1m✓[39;22m[90m [39m[90mservice price rules use local date and quote snapshot[39m[90m               [39m [90m0.36s[39m  
+  [32;1m✓[39;22m[90m [39m[90mauthoritative holiday blocks advertising and booking[39m[90m                [39m [90m0.81s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner scheduler resize reprice and payment persist exact amounts[39m[90m    [39m [90m0.60s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrecurring multiservice creates real atomic occurrences[39m[90m              [39m [90m0.57s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontact consent validation and booking scope are authoritative[39m[90m      [39m [90m0.93s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontrolled overbooking stays unassigned and never bypasses named st[39m[90m…[39m [90m0.77s[39m  
+  [32;1m✓[39;22m[90m [39m[90msource item completion records actual time without completing appoi[39m[90m…[39m [90m0.52s[39m  
+  [32;1m✓[39;22m[90m [39m[90mgrouped payment refund reserves across verified transactions atomic[39m[90m…[39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mscheduler cannot resize an internal item or remove the last active[39m[90m… [39m [90m1.22s[39m  
+  [32;1m✓[39;22m[90m [39m[90mactual correction requires strict observed intervals and can reconc[39m[90m…[39m [90m0.69s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo auto preview create and actual time history permissions[39m[90m       [39m [90m0.92s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookLoginContextTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer workspace cannot be used to enter salon and invalid worksp[39m[90m…[39m [90m0.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mmultiple businesses require a real challenge then select only the r[39m[90m…[39m [90m0.31s[39m  
+  [32;1m✓[39;22m[90m [39m[90mplatform and salon are ambiguous and explicit platform strips tenan[39m[90m…[39m [90m0.37s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot request a branch from another business[39m[90m                 [39m [90m0.35s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexpired roles do not authorize login or an existing bearer session[39m[90m  [39m [90m0.37s[39m  
+  [32;1m✓[39;22m[90m [39m[90mlogin challenges do not leave an authenticated session or issue a t[39m[90m…[39m [90m0.55s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookMultiRoleTest[39m
+  [32;1m✓[39;22m[90m [39m[90midentity unions live same context permissions without foreign busin[39m[90m…[39m [90m0.35s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexpired primary assignment can refresh with another live grant in t[39m[90m…[39m [90m0.32s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreceptionist staff executes only assigned items without changing se[39m[90m…[39m [90m0.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreceptionist in another branch does not expand staff authority on t[39m[90m…[39m [90m0.53s[39m  
+
+  [90mTests:[39m    [32;1m22 passed[39;22m[90m (196 assertions)[39m
+  [90mDuration:[39m [39m71.82s[39m
+

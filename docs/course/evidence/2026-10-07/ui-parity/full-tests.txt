@@ -1,0 +1,283 @@
+
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
+
+   PASS  Tests\Unit\FinanceMoneyTest
+  ✓ large proportional allocation does not multiply past integer capaci… 0.22s  
+  ✓ money parsing preserves decimal json values
+
+   PASS  Tests\Feature\AdvancedFinanceTest
+  ✓ exact email lookup adds first time customer only to authorized wor… 53.28s  
+  ✓ policy version and booking deposit snapshot are immutable            0.77s  
+  ✓ real booking captures service policy after items and honors branch…  0.86s  
+  ✓ package installments split remainder and manual verify activate the… 1.56s  
+  ✓ package reservation has customer branch scope and cancel release co… 0.74s  
+  ✓ fees statements and invoice request issue replacement lifecycle      1.46s  
+
+   PASS  Tests\Feature\AuthSecurityTest
+  ✓ public registration always creates a customer with customer assignm… 0.77s  
+  ✓ all five demo actors can login and login regenerates the session     2.74s  
+  ✓ email verification notice send and signed verification work          0.60s  
+  ✓ password reset notification and reset work                           0.87s  
+  ✓ workspace selection is limited to the authenticated operational use… 0.69s  
+  ✓ deleted active assignment blocks the app on the next request         0.56s  
+  ✓ security session revocation requires current password and deletes d… 0.53s  
+  ✓ csrf middleware rejects a post without a token                       0.51s  
+
+   PASS  Tests\Feature\BookingBoardTest
+  ✓ platform admin can read and filter platform bookings without operat… 1.12s  
+  ✓ customer board only shows own bookings and exposes direct and late…  0.88s  
+  ✓ owner sees business scope while receptionist is limited to exact br… 1.24s  
+  ✓ staff board only shows assigned bookings and assigned items          0.81s  
+  ✓ assigned staff can start and complete item at exact boundaries       0.67s  
+  ✓ item transition rejects unassigned staff too early start and stale…  0.59s  
+
+   PASS  Tests\Feature\BookingCalendarTest
+  ✓ customer week includes cross midnight overlap and hides other custo… 0.97s  
+  ✓ owner calendar remains tenant scoped even with foreign filters       1.45s  
+  ✓ staff calendar hides unassigned booking and other staff service det… 0.68s  
+
+   PASS  Tests\Feature\BookingChangeRequestTest
+  ✓ local reschedule form uses branch timezone and preserves duration    0.64s  
+  ✓ customer cancellation request is rejected at and after appointment…  0.51s  
+  ✓ rejected request cannot be rejected or approved again                0.66s  
+  ✓ reschedule approval moves booking and item times without changing d… 0.62s  
+  ✓ reschedule request must preserve total duration                      0.61s  
+  ✓ reschedule approval rejects customer or staff overlap and keeps req… 0.65s  
+  ✓ staff change approval rejects wrong scope and missing capability     0.74s  
+  ✓ staff change approval updates staff and revision when candidate is…  0.60s  
+  ✓ staff change approval rejects candidate with overlapping booking     0.62s  
+
+   PASS  Tests\Feature\BookingCreationTest
+  ✓ day slot picker excludes an existing booking and keeps branch timez… 0.97s  
+  ✓ slot picker rejects staff from another branch and past days          0.65s  
+  ✓ customer booking creates profile link snapshots and history          0.62s  
+  ✓ operational booking uses contact without linking customer profile    0.51s  
+  ✓ operational booking requires contact and receptionist requires supp… 0.72s  
+  ✓ receptionist is scoped to exact branch and guest is denied           0.57s  
+  ✓ same idempotency key replays same payload and rejects different pay… 0.54s  
+  ✓ half open adjacency is allowed but overlap is rejected               0.74s  
+  ✓ same customer cannot overlap across branches                         0.49s  
+  ✓ cross branch offering and staff tampering are rejected               0.39s  
+  ✓ operational booking is blocked when branch is paused                 0.42s  
+  ✓ fixed variant controls snapshot price duration and buffers           0.45s  
+  ✓ non deterministic variant types are rejected at quote                0.79s  
+  ✓ booking snapshot does not change after catalog edit                  0.89s  
+  ✓ staff without capability is rejected                                 0.40s  
+
+   PASS  Tests\Feature\BookingLifecycleTest
+  ✓ customer direct cancel is allowed at exactly four hours              0.48s  
+  ✓ late customer cancel requires request and records violation at requ… 0.42s  
+  ✓ no show is strictly after fifteen minutes and records violation      0.95s  
+  ✓ cancellation request evidence blocks no show and can be approved     1.23s  
+  ✓ expired change request cannot be approved and expiration persists    0.71s  
+  ✓ receptionist and staff follow checkin start and completion time gat… 0.45s  
+  ✓ staff cannot confirm pending and admin cannot mark no show           0.41s  
+  ✓ arrival history and service progress each block no show              0.51s  
+
+   PASS  Tests\Feature\BookingNotificationTest
+  ✓ notification and outbox are deduplicated together                    0.49s  
+  ✓ notification failure rolls back booking transition history and outb… 0.43s  
+
+   PASS  Tests\Feature\BookingPolicyTest
+  ✓ score three requires ack score four restricts only same business     0.50s  
+  ✓ expired restriction stays expired until new violation                0.38s  
+
+   PASS  Tests\Feature\BookingPolicyUiTest
+  ✓ customer sees warning at two points without acknowledgment checkbox  0.58s  
+  ✓ customer at three points must acknowledge before self booking        0.66s  
+  ✓ active restriction disables self booking only for the affected busi… 0.66s  
+
+   PASS  Tests\Feature\BranchClosureTest
+  ✓ closure commits new impact coverage and requires completed current…  0.61s  
+  ✓ empty paused branch can close without an unresolvable empty case     0.39s  
+
+   PASS  Tests\Feature\BranchLifecycleTest
+  ✓ owner can create submit admin approve and owner publish branch       0.63s  
+  ✓ hours validation rejects open day without valid time range           0.46s  
+  ✓ owner cannot manage branch from another tenant                       0.54s  
+
+   PASS  Tests\Feature\CartBookingTest
+  ✓ ordered cart is one booking with exact lines snapshot and stable re… 0.47s  
+  ✓ variant buffers do not overlap and occupied windows stay in hours    0.92s  
+  ✓ auto rejects disjoint provider skills instead of silently splitting… 0.84s  
+  ✓ auto retries whole itinerary when first provider is busy only on se… 1.18s  
+  ✓ cross branch and duplicate and incapable staff are rejected without… 0.46s  
+  ✓ cart slots cover all items and remove busy start then store recheck… 0.70s  
+  ✓ voucher is reserved once for entire cart and quota failure rolls ba… 0.54s  
+  ✓ operational contacts and workspace scope remain required             0.43s  
+
+   PASS  Tests\Feature\CustomerProfileTest
+  ✓ customer can update only self profile fields                         1.10s  
+  ✓ operational user and unverified customer cannot use customer profil… 0.43s  
+  ✓ profile validation rejects future birth date and foreign avatar      0.43s  
+  ✓ real avatar upload has self ownership and public read only while re… 0.75s  
+  ✓ avatar rejects executable or svg and private media cannot be read a… 0.51s  
+
+   PASS  Tests\Feature\EngagementTest
+  ✓ only customer owner can review completed booking once                0.65s  
+  ✓ anonymous public review and hidden summary are safe                  0.56s  
+  ✓ owner reply and platform moderation report appeal lifecycle          0.72s  
+  ✓ cross business reply and foreign service rating are rejected         0.43s  
+  ✓ favorites are idempotent scoped and keep unavailable entries         0.75s  
+  ✓ public summaries include only public staff metadata and no customer… 0.59s  
+  ✓ public review avatar uses self public reference and respects anonym… 0.57s  
+
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                        0.93s  
+
+   PASS  Tests\Feature\FinanceTest
+  ✓ exact cents partial cash and pending bank reservations cannot overc… 1.03s  
+  ✓ customer foreign owner and closed booking cannot collect             0.70s  
+  ✓ reversal is append only once and idempotency payload is checked      0.56s  
+  ✓ refund reservation maker checker and processing are idempotent       0.53s  
+  ✓ transfer requires proof and settlement reference cannot be reused    0.62s  
+
+   PASS  Tests\Feature\FoundationReadinessTest
+  ✓ readiness requires database and seed                                 0.45s  
+
+   PASS  Tests\Feature\GovernanceTest
+  ✓ admin user directory search and customer access rejection            0.71s  
+  ✓ suspend revokes sessions remember token and blocks login and live s… 0.66s  
+  ✓ role grants enforce account separation and exact scope               0.44s  
+  ✓ owner can only grant staff within selected business                  0.42s  
+  ✓ customer cancellation and no show do not reduce salon trust          0.43s  
+  ✓ trust warning is durable and notifies owner                          0.92s  
+  ✓ trust suspension with future booking keeps branch active and create… 0.45s  
+  ✓ configured violation threshold suspends and restore recovers origin… 0.46s  
+  ✓ automatic threshold suspension waits for future booking impact       0.43s  
+  ✓ business suspension preflight records impact for each branch withou… 0.47s  
+  ✓ business restriction without bookings applies and blocks public boo… 0.42s  
+  ✓ dashboard reports actual payment ledger not booking face value and…  0.37s  
+
+   PASS  Tests\Feature\IdentityScopeTest
+  ✓ seed contains exactly the five official roles                        0.49s  
+  ✓ customer account cannot receive an operational role                  0.43s  
+  ✓ operational account cannot receive customer role                     0.39s  
+  ✓ branch scoped role rejects a branch from another business            0.44s  
+  ✓ duplicate grant is idempotent                                        0.37s  
+  ✓ mysql scope check rejects invalid normalized scope                   0.37s  
+  ✓ business and branch policies do not cross tenants                    0.44s  
+  ✓ operational session context re resolves the active assignment        0.47s  
+  ✓ revoking an assignment invalidates all database sessions for that u… 0.45s  
+
+   PASS  Tests\Feature\ImpactTest
+  ✓ branch case snapshots scope and blade render                         1.31s  
+  ✓ stale resolved booking reopens before completion and closure         1.08s  
+  ✓ new booking is detected after previous case completion               1.30s  
+  ✓ cancel refund reserves verified amount and never marks money refund… 1.43s  
+  ✓ reschedule rechecks open hours conflicts and preserves price snapsh… 1.85s  
+  ✓ reassign requires authoritative staff capability                     0.44s  
+  ✓ transfer branch preserves booking item ids and price snapshots       0.49s  
+  ✓ transfer rejects package reference and retains item and entitlement… 0.47s  
+
+   PASS  Tests\Feature\InvoiceArithmeticTest
+  ✓ inclusive and exclusive line taxes equal the rounded header          0.46s  
+  ✓ discount rounding never makes a line negative and matches header     0.52s  
+
+   PASS  Tests\Feature\MarketplaceTest
+  ✓ guest search returns only public ready branches with pagination      0.78s  
+  ✓ guest filters marketplace by location category and price             0.70s  
+  ✓ public detail hides draft and suspended branches                     0.68s  
+
+   PASS  Tests\Feature\OnboardingTest
+  ✓ operational user can create submit resubmit and get business approv… 0.50s  
+  ✓ owner cannot self approve and non admin cannot open review queue     0.45s  
+  ✓ owner cannot manage another tenant business                          0.48s  
+
+   PASS  Tests\Feature\OperationsTest
+  ✓ waitlist join has duplicate guard and customer scope                 0.77s  
+  ✓ offer stores only token hash and accept uses real booking transacti… 0.47s  
+  ✓ expired offer cannot be accepted and releases join guard             0.47s  
+  ✓ receptionist cannot operate other branch waitlist                    0.61s  
+  ✓ loyalty rules are versioned scoped and balance is self only          0.67s  
+  ✓ loyalty redemption in booking is atomic idempotent and reversible    0.45s  
+  ✓ earn does not award unpaid completed booking                         0.44s  
+  ✓ verified payment awards once and refund reconciles points            0.40s  
+
+   PASS  Tests\Feature\OwnershipTest
+  ✓ transfer requires recipient acceptance and verified versions and re… 0.90s  
+  ✓ pending financial obligation blocks execution                        1.00s  
+  ✓ customer cannot receive transfer and owner cannot platform review    0.74s  
+
+   PASS  Tests\Feature\PlatformMaintenanceTest
+  ✓ expiry is idempotent and does not expire confirmed bookings          1.06s  
+  ✓ outbox delivery is idempotent and read scope is private              0.78s  
+  ✓ admin settings validate and log while owner cannot mutate            0.58s  
+
+   PASS  Tests\Feature\PrivacyTest
+  ✓ export requires password and has one time customer scoped download   0.44s  
+  ✓ data request duplicate is serialized and expired packages are clean… 0.69s  
+  ✓ export includes self booking finance and review details without for… 0.40s  
+
+   PASS  Tests\Feature\PromotionTest
+  ✓ quote selects best rule with stable tie and exact money              0.40s  
+  ✓ voucher wins without stacking and stacks on remaining price when al… 0.40s  
+  ✓ scopes audiences expiry and entitlement are enforced                 0.43s  
+  ✓ reservation quota release and apply are idempotent                   0.40s  
+  ✓ owner crud ui and cross business scope rejection                     0.70s  
+  ✓ server quote ignores client price and enforces voucher minimum and…  0.42s  
+  ✓ booking transaction reserves once and keeps immutable discount snap… 0.49s  
+  ✓ platform workspace isolated from tenant campaigns                    0.56s  
+  ✓ automatic issue requires related business and matching segment       0.52s  
+  ✓ combo discount only uses allocated lines in service scope            0.37s  
+
+   PASS  Tests\Feature\SchedulingTest
+  ✓ owner combo snapshots validation and archive                         0.51s  
+  ✓ combo owner requires current workspace and rejects customer          0.88s  
+  ✓ active combo requires staff and update increments version            0.44s  
+  ✓ public combo hides expired exhausted and archived services           0.46s  
+  ✓ weekly create replays stably and rejects changed key payload         1.07s  
+  ✓ conflict rolls back all occurrences and skip conflicts records reas… 1.42s  
+  ✓ same staff and any available preview enforce capability              0.81s  
+  ✓ dates use biweekly and original month rollover semantics             0.73s  
+  ✓ restricted customer cannot create any series even when skipping con… 0.82s  
+  ✓ pause occurrence cancel and series cancel preserve customer scope    0.55s  
+  ✓ scheduling blade pages render                                        0.90s  
+  ✓ full combo booking expands quantities allocates exact price and rep… 0.50s  
+  ✓ combo discount applies only service scoped allocation and cancel re… 0.44s  
+  ✓ combo last item conflict rolls back booking usage and idempotency    0.46s  
+  ✓ per service provider combo accepts server scoped assignments and us… 0.53s  
+  ✓ combo recurring preview create replay and cancel reuse authoritativ… 0.54s  
+
+   PASS  Tests\Feature\ServiceCrudTest
+  ✓ owner catalog ui creates updates and archives service without losin… 0.49s  
+  ✓ owner cannot create catalog offering for another business branch     0.36s  
+
+   PASS  Tests\Feature\ServiceHierarchyTest
+  ✓ seed preserves canonical business service and branch offering hiera… 0.39s  
+
+   PASS  Tests\Feature\StaffCapabilityTest
+  ✓ owner staff ui creates profile and assigns capability in the same b… 0.42s  
+  ✓ capability service rejects an offering from another branch           0.42s  
+  ✓ database foreign keys reject cross branch staff capability rows      0.39s  
+  ✓ owner cannot create staff profile in another business branch         0.40s  
+  ✓ archiving staff preserves capability and ends assignment history     0.47s  
+
+   PASS  Tests\Feature\UploadTest
+  ✓ owner upload route persists public media with server derived scope   1.10s  
+  ✓ private media is readable only by owner of the scoped business       0.59s  
+  ✓ upload rejects cross tenant entity scope                             0.60s  
+  ✓ upload validates content extension and size                          0.50s  
+
+   PASS  Tests\Feature\VariantPricingTest
+  ✓ range and quote variants preserve their pricing contract             1.91s  
+  ✓ invalid range is rejected                                            0.56s  
+  ✓ price rule cannot reference variant from another offering            0.37s  
+
+   PASS  Tests\Feature\WorkspaceUiTest
+  ✓ navigation follows selected role instead of all grants               1.07s  
+  ✓ owner dashboard metrics and upcoming are tenant scoped               0.67s  
+
+   PASS  Tests\Feature\ZConcurrentRoleGrantTest
+  ✓ concurrent role grants from multiple processes create exactly one…  42.07s  
+
+   PASS  Tests\Feature\ZZConcurrentBookingLifecycleRaceTest
+  ✓ booking lifecycle policy and change request races remain consisten… 53.09s  
+
+   PASS  Tests\Feature\ZZConcurrentBookingRaceTest
+  ✓ two five and ten parallel commands have exactly one winner per slo… 71.61s  
+
+  Tests:    197 passed (1453 assertions)
+  Duration: 359.97s
+

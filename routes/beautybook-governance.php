@@ -1,0 +1,31 @@
+<?php
+use App\Http\Controllers\Beautybook\{GovernanceController as G,ReportsController as Reports};
+use Illuminate\Support\Facades\Route;
+
+Route::get('/reports/{kind}',[Reports::class,'report'])->whereIn('kind',['overview','revenue','categories','services','top-salons','user-growth','staff-performance','owner-dashboard','financial-summary']);
+Route::get('/admin/finance-overview',[Reports::class,'financeOverview']);
+foreach(['settings'=>'settings','trust-snapshots'=>'trustSnapshots','trust-actions'=>'trustActions','audit-logs'=>'audit','business-directory'=>'businessDirectory','branch-directory'=>'branchDirectory','compliance-queue'=>'compliance','marketing-overview'=>'marketing'] as$path=>$method) Route::get('/admin/'.$path,[G::class,$method]);
+Route::patch('/admin/settings',[G::class,'updateSettings']);
+Route::post('/admin/settings/reset',[G::class,'resetSettings']);
+Route::post('/admin/trust-snapshots/rebuild',[G::class,'rebuildTrust']);
+Route::post('/admin/trust-actions',[G::class,'createTrustAction']);
+Route::get('/privacy/center',[G::class,'privacyCenter']);
+Route::get('/privacy/data-requests',[G::class,'privacyRequests']);
+Route::post('/privacy/data-requests',[G::class,'requestData']);
+Route::get('/privacy/marketing-preferences',[G::class,'privacyPreferences']);
+Route::put('/privacy/marketing-preferences',[G::class,'updatePreferences']);
+Route::post('/privacy/exports',[G::class,'exportData'])->middleware('throttle:6,1');
+Route::get('/privacy/exports/{id}/download',[G::class,'downloadData']);
+Route::get('/operational-impacts',[G::class,'impacts']);
+Route::get('/operational-impacts/{id}',[G::class,'impactDetail']);
+Route::patch('/operational-impacts/{id}/items/{itemId}',[G::class,'resolveImpact']);
+Route::patch('/operational-impacts/{id}/items',[G::class,'batchImpact']);
+Route::post('/operational-impacts/{id}/complete',[G::class,'completeImpact']);
+Route::get('/ownership-transfers/platform/pending',[G::class,'pendingTransfers']);
+Route::get('/ownership-transfers/pending-for-me',[G::class,'incomingTransfers']);
+Route::get('/ownership-transfers',[G::class,'transfers']);
+Route::post('/ownership-transfers',[G::class,'createTransfer']);
+Route::get('/ownership-transfers/business/{businessId}/versions',[G::class,'versions']);
+Route::post('/ownership-transfers/business/{businessId}/{type}',[G::class,'createVersion'])->whereIn('type',['legal-entity','payout-account']);
+Route::patch('/ownership-transfers/platform/{type}/{id}/verify',[G::class,'verifyVersion'])->whereIn('type',['legal-entity','payout-account']);
+Route::match(['PATCH','POST'],'/ownership-transfers/{id}/{action}',[G::class,'transferAction'])->whereIn('action',['accept','submit-more-info','cancel','review','execute']);

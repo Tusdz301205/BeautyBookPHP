@@ -1,0 +1,1415 @@
+{
+  "rows": [
+    {
+      "path": "src/api/apiClient.js",
+      "original": "fcfea9ce558a217a103d7858185b1d86262154a118c747528aed9a2326608949",
+      "copied": "a031648e7a9e44d7db3313dcc0d7fcac00869801022fee07b3ff3769a692a79a",
+      "equal": false,
+      "integrationSeam": true
+    },
+    {
+      "path": "src/App.css",
+      "original": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c",
+      "copied": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/App.jsx",
+      "original": "97bd273077f5331ff79c9e5990a8dab0b12ba9364b3c9375776ad298129439af",
+      "copied": "d945945d726521f467602fbf3a61da5cfddd1cf721d0fa2992748da1233c995b",
+      "equal": false,
+      "integrationSeam": true
+    },
+    {
+      "path": "src/assets/hero.png",
+      "original": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+      "copied": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/assets/react.svg",
+      "original": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "copied": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/assets/vite.svg",
+      "original": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+      "copied": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/AccountStatusControl.jsx",
+      "original": "768db6e77197ec667755b9b5e6489f43b3bea5dc05e50e7261b05ceb64f9e95d",
+      "copied": "768db6e77197ec667755b9b5e6489f43b3bea5dc05e50e7261b05ceb64f9e95d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/CategoryFilterChips.jsx",
+      "original": "eb8cad21385e2bbaaa54cf2ae8f94507ebdc7635da6538334c21f62214348363",
+      "copied": "eb8cad21385e2bbaaa54cf2ae8f94507ebdc7635da6538334c21f62214348363",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/LegalDocuments.jsx",
+      "original": "03e80e195f0ddb4269f6092f512d165d5d9bb20114c4bc5d73433621df469026",
+      "copied": "03e80e195f0ddb4269f6092f512d165d5d9bb20114c4bc5d73433621df469026",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/ActualTimeCorrection.jsx",
+      "original": "9fa884bbda08d3491a1ef1735afde2abdb70d2edfd8e94c402105fada5d780a2",
+      "copied": "9fa884bbda08d3491a1ef1735afde2abdb70d2edfd8e94c402105fada5d780a2",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/ActualTimeCorrection.test.js",
+      "original": "8a13ddd33addc0756d56529139bc24ba07032fe594dc5096ac0ba6e94383cf43",
+      "copied": "8a13ddd33addc0756d56529139bc24ba07032fe594dc5096ac0ba6e94383cf43",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/ActualTimeCorrectionHistory.jsx",
+      "original": "ab08c69429af553b939bdd6cfd0b140c4b243c107229e9d7d87d2219069c7a46",
+      "copied": "ab08c69429af553b939bdd6cfd0b140c4b243c107229e9d7d87d2219069c7a46",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/ActualTimeCorrectionHistory.test.js",
+      "original": "755aeb05f81a106228f0fe3b13438ffe1eff7ee5985dfb2dbf29196920b74532",
+      "copied": "755aeb05f81a106228f0fe3b13438ffe1eff7ee5985dfb2dbf29196920b74532",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/BookingBar.jsx",
+      "original": "b43bbd643f75d9563b4ff2d4ae7f387ec48e07fc528555afea9df7efdf379223",
+      "copied": "b43bbd643f75d9563b4ff2d4ae7f387ec48e07fc528555afea9df7efdf379223",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/BookingDetailDrawer.jsx",
+      "original": "45a72654fc82ede094e934c96daed8c47269097a2632f4ec314d8ac983ad9f71",
+      "copied": "424920a862a1b461534b7bb1c5d7638ce1c1fd8a46d5d3ee2ba0d20d75f5473d",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/BookingEventCard.jsx",
+      "original": "270dd1ef7b269b7cd0671e74cc77861a6c99020b8bf5d0f02c999e5d9afaf3d0",
+      "copied": "270dd1ef7b269b7cd0671e74cc77861a6c99020b8bf5d0f02c999e5d9afaf3d0",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/CalendarStates.jsx",
+      "original": "e6b577eae41b308b1f56a9d008bf879c6f0d6f05d20bf40461dc8d7638460355",
+      "copied": "e6b577eae41b308b1f56a9d008bf879c6f0d6f05d20bf40461dc8d7638460355",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/DayBookingsDrawer.jsx",
+      "original": "10d7fdd4ee1e0cd3cb82f68b29aa571d14b05df0318d726a0934b997147d81ca",
+      "copied": "10d7fdd4ee1e0cd3cb82f68b29aa571d14b05df0318d726a0934b997147d81ca",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/index.js",
+      "original": "e4edf61d6bae405866dda40b49427d2d06ad33b5d6ff286ee1e2c02ec06a9fe0",
+      "copied": "e4edf61d6bae405866dda40b49427d2d06ad33b5d6ff286ee1e2c02ec06a9fe0",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/OperationalTiming.jsx",
+      "original": "b4f13ea955318ec1ac3f89e586b0341b1474cf3769339632aea8ef77abb3b4f9",
+      "copied": "b4f13ea955318ec1ac3f89e586b0341b1474cf3769339632aea8ef77abb3b4f9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerDayView.jsx",
+      "original": "741b3104a1930310d7b34aebcdd2b13ec75b3f92782d329aea85c044a4bcfb42",
+      "copied": "741b3104a1930310d7b34aebcdd2b13ec75b3f92782d329aea85c044a4bcfb42",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerListView.jsx",
+      "original": "5ee33f978b2120bf3b7161ba95c2d3ae296f3c981a7eea4efb016ce5c7b8a575",
+      "copied": "3ce0eb400eeaafaeeea7222220f8d5d5ac52355877f5b116cf575465ad4df38f",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerMonthView.jsx",
+      "original": "b075baee32f379ff073e380c2ea58a02988e4cf67dac78645213c0c58f23f0ca",
+      "copied": "b075baee32f379ff073e380c2ea58a02988e4cf67dac78645213c0c58f23f0ca",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerSidebar.jsx",
+      "original": "c27d9c49b0ca16aa2ec82e097922da90d80314e0cff36875c49c378280577466",
+      "copied": "c27d9c49b0ca16aa2ec82e097922da90d80314e0cff36875c49c378280577466",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerStats.jsx",
+      "original": "28d17372e77de9daefe4fdbf61eecd32e3fd6c6c6ddcb3074f0ace8533c96bc0",
+      "copied": "28d17372e77de9daefe4fdbf61eecd32e3fd6c6c6ddcb3074f0ace8533c96bc0",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerTimeline.jsx",
+      "original": "9c1e661a293fba6e23cced4ee6f1155d1b21388ebab04404847b54aff9b2a3d1",
+      "copied": "9c1e661a293fba6e23cced4ee6f1155d1b21388ebab04404847b54aff9b2a3d1",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerView.jsx",
+      "original": "42b51369b7f87b5571685e435281c3aaa59b2b0ffc4a0642e7210d0e6c91c440",
+      "copied": "357e331dff07dc78cb19e6eceea9f5c9a78470171e871d87d5a01422a49fddca",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerWeekView.jsx",
+      "original": "d5f0d672158d469ae000be92476de23f60510f5b49494ffee2e6b0e72fbb820b",
+      "copied": "d5f0d672158d469ae000be92476de23f60510f5b49494ffee2e6b0e72fbb820b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/appointments/AppointmentQueues.jsx",
+      "original": "ddf058fe4b0ee3a7d662fca5d0a5fa9b6e1ec77cf494742f16d5274b12e2913d",
+      "copied": "ddf058fe4b0ee3a7d662fca5d0a5fa9b6e1ec77cf494742f16d5274b12e2913d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/CategoryBookingBarChart.jsx",
+      "original": "ef028d26a2ce948890fe4e27a72cf517e3959520bd51e5b252220383c9899bae",
+      "copied": "ef028d26a2ce948890fe4e27a72cf517e3959520bd51e5b252220383c9899bae",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/CategoryPieChart.jsx",
+      "original": "f6521cb5aa1e9217cb0b7942145ef7842dc06ac4777b7fdff2bdbc2b39199bf9",
+      "copied": "f6521cb5aa1e9217cb0b7942145ef7842dc06ac4777b7fdff2bdbc2b39199bf9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/index.js",
+      "original": "d55771ae445655d518844afc6d499d484d76542abfe280fa9d5daa7b08490451",
+      "copied": "d55771ae445655d518844afc6d499d484d76542abfe280fa9d5daa7b08490451",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/RevenueBarChart.jsx",
+      "original": "2cdb8a1143395d95eef1f4a6e7d5e7d4e74dc4a4759d2af6d7548e26b03a2aca",
+      "copied": "2cdb8a1143395d95eef1f4a6e7d5e7d4e74dc4a4759d2af6d7548e26b03a2aca",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/RevenueLineChart.jsx",
+      "original": "6f56c19319521951f310cd5abdc2eb1a28fb29ecec36e54696f969cc22fcc236",
+      "copied": "6f56c19319521951f310cd5abdc2eb1a28fb29ecec36e54696f969cc22fcc236",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/ServiceBookingPieChartLabeled.jsx",
+      "original": "742ad24d26d8ad7584bde38c6cd4d01be03015bc754d6389d6475e00be9e54c8",
+      "copied": "742ad24d26d8ad7584bde38c6cd4d01be03015bc754d6389d6475e00be9e54c8",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/StylistPerformanceBars.jsx",
+      "original": "d5ba1548893146278cfaa807a4a6ef581c2990f849020242810a50962ed52349",
+      "copied": "d5ba1548893146278cfaa807a4a6ef581c2990f849020242810a50962ed52349",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/TopSalonsBarChart.jsx",
+      "original": "834d778d55df9a91b78f3fce5ed7f4534f70e781bb61074ad38d4042b0857daf",
+      "copied": "834d778d55df9a91b78f3fce5ed7f4534f70e781bb61074ad38d4042b0857daf",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/TopSalonsBookingBarChart.jsx",
+      "original": "01406028fa0b9081e8bf5a1cccca023c8be66e80a0430e6301ece8064632c066",
+      "copied": "01406028fa0b9081e8bf5a1cccca023c8be66e80a0430e6301ece8064632c066",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/charts/UserGrowthLineChart.jsx",
+      "original": "dc0307529a02f4b2ba30b4c1a2cb1e0cb39d83759f11044169e9319d5e25852f",
+      "copied": "dc0307529a02f4b2ba30b4c1a2cb1e0cb39d83759f11044169e9319d5e25852f",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/common/CancellationPolicyCard.jsx",
+      "original": "8cb7551375965d7aa65679cc7a1edd293263e3bc1356eb830cca19f993423ac6",
+      "copied": "8cb7551375965d7aa65679cc7a1edd293263e3bc1356eb830cca19f993423ac6",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/customer/BookingLayout.jsx",
+      "original": "747778651c3c955b609f2794b4384fab2d6be8763db2e45cde97ea3bb5bf69a1",
+      "copied": "747778651c3c955b609f2794b4384fab2d6be8763db2e45cde97ea3bb5bf69a1",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/customer/BookingPolicyNotice.jsx",
+      "original": "8484ddd5ca25684a8a763f33dfb80bf1c7965d5a7c59cdf2527faefb6bd453d3",
+      "copied": "8484ddd5ca25684a8a763f33dfb80bf1c7965d5a7c59cdf2527faefb6bd453d3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/customer/RescheduleModal.jsx",
+      "original": "4b5bb3b406bfc01de6fb12ed8043fedd0618633467260d22fc83aad04a835918",
+      "copied": "4b5bb3b406bfc01de6fb12ed8043fedd0618633467260d22fc83aad04a835918",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/customer/ReviewModal.jsx",
+      "original": "93e9064459445044ea71dea24fe812e34367aaa688e12f77ce87c4cf3d17e431",
+      "copied": "93e9064459445044ea71dea24fe812e34367aaa688e12f77ce87c4cf3d17e431",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/AppErrorBoundary.jsx",
+      "original": "0b92e88a58b3634dcef36af0d773afc75ffb3ee9eb6b9a4490e85fe550a9a67e",
+      "copied": "0b92e88a58b3634dcef36af0d773afc75ffb3ee9eb6b9a4490e85fe550a9a67e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/AppShell.jsx",
+      "original": "2f3bdaf823c57736f4eb948f48e31be19aaa01b647eddea6e77e97c8f1bcd959",
+      "copied": "5da33f587a89898befb5a6cb4270d5547f77cf353e425ed1896fd206d1ab03c1",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/CustomerShell.jsx",
+      "original": "f2dc822e3bd4eb51bbe180fbb55777103589cd6ea126e439e85103c48ea9f6e9",
+      "copied": "b8fb7aff58d43753199f6fdcf029fb4ccb92037896cef3aa7736c727e1d70bd1",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/PlatformShell.jsx",
+      "original": "e7b38ec34741093cf7f99f37dce294cf6b0e4784852be218cc7eced41ce90839",
+      "copied": "e7b38ec34741093cf7f99f37dce294cf6b0e4784852be218cc7eced41ce90839",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/PublicShell.jsx",
+      "original": "0ed96392fc30c37054a7301cc049b12d56cf8f2e3a91fc949df7c40a89f896ce",
+      "copied": "048ad98948e361d22377a175b9e06b58be3f11ae0afad53e6ed3dc54e4408a2b",
+      "equal": false,
+      "integrationSeam": true
+    },
+    {
+      "path": "src/components/layout/SalonShell.jsx",
+      "original": "87464591b0a9973fdd7b81dc7e06e1e38e73bb9e949f77913f4c7a699912ef03",
+      "copied": "87464591b0a9973fdd7b81dc7e06e1e38e73bb9e949f77913f4c7a699912ef03",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/media/FileUpload.jsx",
+      "original": "fa7da58a137446ce5450014b0d5e63917be6d2c2298a4a85d204f63309c44caf",
+      "copied": "a5a1fb1322d39290c4aaf855702a90f2a157fc2935c783404e616f9829fb1ec6",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/notifications/NotificationCenter.jsx",
+      "original": "c59e9954a393c7d191a8a694535e06dc6d7f821c421953e74229e47ba087b41f",
+      "copied": "55531bb78c042de746c91c7d76e287cd424283f73093d6c24bc3050dc53aab1e",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/public/AuthShell.jsx",
+      "original": "abb089ff0470a9f5eee590834803e9f0b20a545d131f87ec1afea4c691b55f02",
+      "copied": "abb089ff0470a9f5eee590834803e9f0b20a545d131f87ec1afea4c691b55f02",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/public/HomeMedia.jsx",
+      "original": "d3b3c73eef703759c59a9a8f4cbae34eb330b4de17f17cca398c97ecfec957d6",
+      "copied": "1b3e9a64f61052fb24c181ec34f481a46c52f0c74a34aa311116a9d33f6b16ef",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/public/MarketplaceRail.jsx",
+      "original": "681362b1727a2db6c1e71b77ea06df66e6cf130a3594c39c65ee23f12d9e53d6",
+      "copied": "681362b1727a2db6c1e71b77ea06df66e6cf130a3594c39c65ee23f12d9e53d6",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/public/PublicChrome.jsx",
+      "original": "0c7a8afd04c3a4b791fbe981421d22842b825ee7a11f0b240f17e239c0669904",
+      "copied": "0c7a8afd04c3a4b791fbe981421d22842b825ee7a11f0b240f17e239c0669904",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/salon/ChangeRequestCard.jsx",
+      "original": "b69a9ed4245739e243e283a0ba080da3cec9beb6ae31df79e7796b3c05a695be",
+      "copied": "b69a9ed4245739e243e283a0ba080da3cec9beb6ae31df79e7796b3c05a695be",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/ui/index.jsx",
+      "original": "f125d62d19b100d9a1e0248b3a124a030571b238e67e19b6b22c0db1344e3506",
+      "copied": "f125d62d19b100d9a1e0248b3a124a030571b238e67e19b6b22c0db1344e3506",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/UnavailableFeature.jsx",
+      "original": "7e11229fcbef828a20c7b54c2df06aa43bf0fd3df1d4c35f4a0e6dc4087d08f2",
+      "copied": "7e11229fcbef828a20c7b54c2df06aa43bf0fd3df1d4c35f4a0e6dc4087d08f2",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/config/entityMedia.generated.js",
+      "original": "58407f4b51bf999561ebc32c949845e11e40e71680d2ffc3168f81372727ab88",
+      "copied": "58407f4b51bf999561ebc32c949845e11e40e71680d2ffc3168f81372727ab88",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/config/featureAvailability.js",
+      "original": "e99ee639c7e9f9c9a9553c9b7615dd0b44edc59e0f88f3be8a58af6ed2446972",
+      "copied": "e99ee639c7e9f9c9a9553c9b7615dd0b44edc59e0f88f3be8a58af6ed2446972",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/config/homeMedia.js",
+      "original": "4b8b3fb2dc9e1c69389490e4ff6cee163ec677d9b0456db063cc3d291d62f1b2",
+      "copied": "4b8b3fb2dc9e1c69389490e4ff6cee163ec677d9b0456db063cc3d291d62f1b2",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/constants/status.js",
+      "original": "992768219233d2c7f63f8252d5e725b716afbd6c3063936539be49bcd9647b4e",
+      "copied": "992768219233d2c7f63f8252d5e725b716afbd6c3063936539be49bcd9647b4e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/hooks/useAsyncResource.js",
+      "original": "7319c157789e8f1be613299babc28b6ebdf1099f4f1d2db41d26252c26a5cd87",
+      "copied": "7319c157789e8f1be613299babc28b6ebdf1099f4f1d2db41d26252c26a5cd87",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/hooks/useOperationalRefresh.js",
+      "original": "b65d86b21fbb6d9b616ca80986ce396b1a057206c5ba8fb71582c580664d35cd",
+      "copied": "b65d86b21fbb6d9b616ca80986ce396b1a057206c5ba8fb71582c580664d35cd",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/hooks/useOperationalRefresh.test.js",
+      "original": "b3bb48ea148d2332bd1fc0345857c5d191192cc6713284768c3dd977ac8d4813",
+      "copied": "b3bb48ea148d2332bd1fc0345857c5d191192cc6713284768c3dd977ac8d4813",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/hooks/useUnreadNotifications.js",
+      "original": "06f105fbf77df0e52f71d63696eeac38bb75c8c310ff096fab940a40801c5fbb",
+      "copied": "06f105fbf77df0e52f71d63696eeac38bb75c8c310ff096fab940a40801c5fbb",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/hooks/useUnreadNotifications.test.js",
+      "original": "cc86b3a83fbdaf1ba40f7046cf5239c8d57cd805fcd53698bf8d3b0f72e87994",
+      "copied": "cc86b3a83fbdaf1ba40f7046cf5239c8d57cd805fcd53698bf8d3b0f72e87994",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/index.css",
+      "original": "f715f88112f352a5791d7eabd1628733901c515d27eab209c36acc0d3e110369",
+      "copied": "f715f88112f352a5791d7eabd1628733901c515d27eab209c36acc0d3e110369",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/main.jsx",
+      "original": "9d6c35fcc235ebdfaafbe1c63bd11b6688fe303c5888e639cf68fb86e173661b",
+      "copied": "9d6c35fcc235ebdfaafbe1c63bd11b6688fe303c5888e639cf68fb86e173661b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminAppointmentsView.jsx",
+      "original": "f69d68557753db5cd4ec84b7424120f3ca0e2f94476a9b36e413f3ed226651ed",
+      "copied": "f69d68557753db5cd4ec84b7424120f3ca0e2f94476a9b36e413f3ed226651ed",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminAudit.jsx",
+      "original": "7956ec4744dad62d5f2997304c5e122884bbcd7c84ce533eddc74589780fe3e6",
+      "copied": "53966c0c857d55dbcbcd983c34de67431fc6f23e6dd8fbd6428f5a389ad00c1e",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminCompliance.jsx",
+      "original": "95ccc892ba1d0135f334f3eed8ec005bf39009fdf4bf63826fd22cfee22173da",
+      "copied": "95ccc892ba1d0135f334f3eed8ec005bf39009fdf4bf63826fd22cfee22173da",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminEntityDetails.jsx",
+      "original": "2cefbaa12a18f4d44f774a60495141308a45694e3701d718bde11c7f1d8f7e84",
+      "copied": "ba21a30b053b9ac4e70910ebf3125d79313083935c6b25f6b5854283acca4847",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminNotifications.jsx",
+      "original": "4fcf34f1763aa1f44b99df95ea62935a6dae4a396d1639f7b48aab44b7747077",
+      "copied": "4fcf34f1763aa1f44b99df95ea62935a6dae4a396d1639f7b48aab44b7747077",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminOverview.jsx",
+      "original": "55f763f533b2a95bdce507265d1f9b0e21112887fd64272ebfbccd7b2a8438b9",
+      "copied": "a959fd613b72cb248c47943c05a88a42a55458c902a6bf7dda04f6ed39b61978",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminOwnership.jsx",
+      "original": "cc8baae5e102e276be6a131ad22b92eff8d8091e63f06249c834111f8ab39b6b",
+      "copied": "cc8baae5e102e276be6a131ad22b92eff8d8091e63f06249c834111f8ab39b6b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminReports.jsx",
+      "original": "2b5da201593322ba9851e86cf63324c8972c9609b9a2337df8c794e11530118c",
+      "copied": "2b5da201593322ba9851e86cf63324c8972c9609b9a2337df8c794e11530118c",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminReviewsModeration.jsx",
+      "original": "8c8957a524d34dfba0b63d28a1d780634f1716e01187e690e0f9242b341e9fd2",
+      "copied": "8c8957a524d34dfba0b63d28a1d780634f1716e01187e690e0f9242b341e9fd2",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminSalons.jsx",
+      "original": "4070785267e7b53e3fb39ae20a3032a72034062a18c4b5517a064d687cd27158",
+      "copied": "4070785267e7b53e3fb39ae20a3032a72034062a18c4b5517a064d687cd27158",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminServiceTaxonomy.jsx",
+      "original": "1dc6fb500e627d88066a66fc30922a9bcdbbbd2f140e09be7824473a3b732417",
+      "copied": "1dc6fb500e627d88066a66fc30922a9bcdbbbd2f140e09be7824473a3b732417",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminSettings.jsx",
+      "original": "9a0345322c020edfdbb3781c9ed658cc0df61ad3654ec386d5e83b47c09d5574",
+      "copied": "9a0345322c020edfdbb3781c9ed658cc0df61ad3654ec386d5e83b47c09d5574",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminUsers.jsx",
+      "original": "498edf0d7f5bd824537790ea122816419cdacfc2116af5eaa52ed97478003bdf",
+      "copied": "37939bf2eeb34165e49c7806e2ffaf48a7b3ed957b02b4fc6f2c918bb14e48c2",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminViolations.jsx",
+      "original": "06272b8836a207f234fcb0f9e16f736a9cf7c676d291ca4e2c0946e66ad01cdc",
+      "copied": "06272b8836a207f234fcb0f9e16f736a9cf7c676d291ca4e2c0946e66ad01cdc",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/BookingConfirm.jsx",
+      "original": "e67532336d8d0263f1af990516635e8f6218d7fd70c0a01928d52f32d8591f92",
+      "copied": "42d0bb7ca39c321b9a4839b5a71d2cb3fdc0bfffad9de63d9353b76c75bbd4cb",
+      "equal": false,
+      "integrationSeam": true
+    },
+    {
+      "path": "src/pages/Customer/BookingStep1.jsx",
+      "original": "2e28205343665d3751a132b480497a338e68a98c536ee115696b0a14d6ad437c",
+      "copied": "2e28205343665d3751a132b480497a338e68a98c536ee115696b0a14d6ad437c",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/BookingStep2.jsx",
+      "original": "c6704d22cdacce026e3713e500dfecdbea5b4da3898f346f724c3cc008c28e9b",
+      "copied": "c6704d22cdacce026e3713e500dfecdbea5b4da3898f346f724c3cc008c28e9b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/BookingStep3.jsx",
+      "original": "d31b231bcd17c630941b6a71e72e50f0619210edac75829174d6f04a55a1a11f",
+      "copied": "d31b231bcd17c630941b6a71e72e50f0619210edac75829174d6f04a55a1a11f",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/BookingStep4.jsx",
+      "original": "d6989c20a2d133381d37995f945061ac829b41f8fbf2343f4e0e2f1a02a91df6",
+      "copied": "d6989c20a2d133381d37995f945061ac829b41f8fbf2343f4e0e2f1a02a91df6",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/BookingSuccess.jsx",
+      "original": "9f2fb23e7d575c747b792fcd3ff396588cef522a6effa20e973336cc9707dd42",
+      "copied": "9f2fb23e7d575c747b792fcd3ff396588cef522a6effa20e973336cc9707dd42",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerAppointmentDetail.jsx",
+      "original": "b6edf725f29537655457b43ba10ad66b209743e6d0200ac485fd4bb6370f3142",
+      "copied": "b6edf725f29537655457b43ba10ad66b209743e6d0200ac485fd4bb6370f3142",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerAppointments.jsx",
+      "original": "5f461ac02c17907077b3948c10509dfba1aabf464cbb3845124972152a4c34d6",
+      "copied": "5f461ac02c17907077b3948c10509dfba1aabf464cbb3845124972152a4c34d6",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerBenefits.jsx",
+      "original": "3220c6b0ab14581e54298d64de1bd071d428b76f129ec063eeac9331fa5803d0",
+      "copied": "3220c6b0ab14581e54298d64de1bd071d428b76f129ec063eeac9331fa5803d0",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerNotifications.jsx",
+      "original": "e10cf18dddb762eaf42f168c261d81b9e64dbf920e06507f6744bac5a12d9ce1",
+      "copied": "e10cf18dddb762eaf42f168c261d81b9e64dbf920e06507f6744bac5a12d9ce1",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerReviews.jsx",
+      "original": "fe6a50c51285421cb7853d123d2899a4cbbf48319d8b60313d940d867926895a",
+      "copied": "fe6a50c51285421cb7853d123d2899a4cbbf48319d8b60313d940d867926895a",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Customer/CustomerVouchers.jsx",
+      "original": "e2cc13048be3c12e29149f5957db0e50dfa7e53e140a85c07535159b636f5b97",
+      "copied": "e2cc13048be3c12e29149f5957db0e50dfa7e53e140a85c07535159b636f5b97",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Login/AuthActionPages.jsx",
+      "original": "251671af9e0730131a8f27eb74d646eae9fb0bad711db5ad8ab2bd5a12331326",
+      "copied": "251671af9e0730131a8f27eb74d646eae9fb0bad711db5ad8ab2bd5a12331326",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Login/LoginScreen.jsx",
+      "original": "e9e055ac211b60a947566ec87785c5e93f83ab1a6fb7a89255373148e0e82131",
+      "copied": "e9e055ac211b60a947566ec87785c5e93f83ab1a6fb7a89255373148e0e82131",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Login/RegisterScreen.jsx",
+      "original": "f1cd6e6ec97ebc59f499e2b2d1e2028f1a4218c1d9d42feaf3f63203e85a6bbf",
+      "copied": "f1cd6e6ec97ebc59f499e2b2d1e2028f1a4218c1d9d42feaf3f63203e85a6bbf",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/ProfileSettings.jsx",
+      "original": "78f399c67d1571d296a73cee8d9acb6d01504d6bdec15b2d79adb56cb6b8e4dc",
+      "copied": "78f399c67d1571d296a73cee8d9acb6d01504d6bdec15b2d79adb56cb6b8e4dc",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/BusinessLanding.jsx",
+      "original": "614e8827dfca58f23d7c61725429e398ed9bb8e7954443b5c9af35cc8dbf5ebd",
+      "copied": "fed9937e670350d0448dc65d320db3eceed10ea6591a9b23f1789419132c7d7a",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/PublicDetails.jsx",
+      "original": "4c6a710b49854d6f4a51f09c1501934f4fea3a869da6bed3c99c68889ebe253f",
+      "copied": "ccce081d76522efc9812c6f036755935c3740be928d195c176ede1f5bdb3a3f8",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/PublicHome.jsx",
+      "original": "bb1d00df022f43621d005ff6e8d7847b7e0a18f5b1ff3f52426e2b8cf3b5365a",
+      "copied": "bb1d00df022f43621d005ff6e8d7847b7e0a18f5b1ff3f52426e2b8cf3b5365a",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/PublicNotFound.jsx",
+      "original": "8e1b04dfe0ad233bd1af67ca3fa47f9193c1d069649335ac1a698b80f8347d48",
+      "copied": "8e1b04dfe0ad233bd1af67ca3fa47f9193c1d069649335ac1a698b80f8347d48",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/BranchOnboardingWizard.jsx",
+      "original": "6853c3aa328cb74278c07a9f968b57071841f82f7c63354ebc4dcae3de4e4ed3",
+      "copied": "6853c3aa328cb74278c07a9f968b57071841f82f7c63354ebc4dcae3de4e4ed3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/BusinessOnboarding.jsx",
+      "original": "2cc138d3773ec0e6b5ae2ebdaac22a90cfd7e4c5ded1397a2c1ba1f0b9038f5f",
+      "copied": "1b49adf6064d474a3a21251c3417184eddf588e09f64e542baac746f8642dbc8",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/IncomingOwnership.jsx",
+      "original": "c5a3526464301d610a379d05cfb8bd2471878f331a23e24fd8152eb6ff9383a9",
+      "copied": "c5a3526464301d610a379d05cfb8bd2471878f331a23e24fd8152eb6ff9383a9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/PaymentCorePanels.jsx",
+      "original": "aeab34e72483b0dff82b8b2f45198f04bd6f62466cc9c5cf01bc1d2d8d5f6235",
+      "copied": "aeab34e72483b0dff82b8b2f45198f04bd6f62466cc9c5cf01bc1d2d8d5f6235",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/PaymentsWorkspace.jsx",
+      "original": "4170a62815511e41a050413363a5b0e5bcf14d38f677a23bedb43ef95774b83c",
+      "copied": "4170a62815511e41a050413363a5b0e5bcf14d38f677a23bedb43ef95774b83c",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonAppointments.jsx",
+      "original": "302cc5839558c9791038de06de3eb76742de39d0b7a18632070a99e37b7ccbf3",
+      "copied": "302cc5839558c9791038de06de3eb76742de39d0b7a18632070a99e37b7ccbf3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonAppointments.test.js",
+      "original": "b64af1f7dec5a6a6117ee37d0f3ef35eccd30df3c9a7752f42768cc858128a04",
+      "copied": "b64af1f7dec5a6a6117ee37d0f3ef35eccd30df3c9a7752f42768cc858128a04",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonCombos.jsx",
+      "original": "937d141508eb7f8f308f465ee2c5af88bfa15ff2a07106ae7fb4de1dcdb48029",
+      "copied": "937d141508eb7f8f308f465ee2c5af88bfa15ff2a07106ae7fb4de1dcdb48029",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonNotifications.jsx",
+      "original": "af79528af6357cdf0cecc0ad704f92a80b8099370d1ab444b9503c8bad1c823b",
+      "copied": "af79528af6357cdf0cecc0ad704f92a80b8099370d1ab444b9503c8bad1c823b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonOperations.jsx",
+      "original": "c4fb0fdcbc8bc8ec08e0a5651c7e8c960320b0345464d173f3492c4e7e88482a",
+      "copied": "c4fb0fdcbc8bc8ec08e0a5651c7e8c960320b0345464d173f3492c4e7e88482a",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonOverview.jsx",
+      "original": "5e2758d6a908087f8ea1bfc1d78549a1714b7b5c1f4df265c8f721a9725f0835",
+      "copied": "a188851334547ab83adea270af1109b391782300748ebe8ef9386fa2a8af041c",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonProfile.jsx",
+      "original": "67f34d82c18d169fd08fd754fc2d4f182a332bedd30bd62658fb4849d3133b80",
+      "copied": "67f34d82c18d169fd08fd754fc2d4f182a332bedd30bd62658fb4849d3133b80",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonPromotions.jsx",
+      "original": "29f206b7194bf9701ad026777d0ecc7af4c5d15641418412f8340a82fe033c30",
+      "copied": "29f206b7194bf9701ad026777d0ecc7af4c5d15641418412f8340a82fe033c30",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonReviews.jsx",
+      "original": "d10e5501ae34a74e0acd11e21835728c9a3e643958c5998fd3bf936c0c943ac4",
+      "copied": "d10e5501ae34a74e0acd11e21835728c9a3e643958c5998fd3bf936c0c943ac4",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonServices.jsx",
+      "original": "6e2593aa9dbd26c78f4e6538982fb5b5a7e206291735ee892a1f28cc4bd4edf6",
+      "copied": "6da47461bd5c4a3699af19068716ce839232cdd1b9aca78c8e9d7940a91aff0d",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonStaffManagement.jsx",
+      "original": "1cdf66f1be26ac016308f1298b309cba44539e1228b33abe9d9b44eedeae9b6e",
+      "copied": "1cdf66f1be26ac016308f1298b309cba44539e1228b33abe9d9b44eedeae9b6e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonStats.jsx",
+      "original": "af1fa5a871d1908794e32ee2147c62b4232d8f7a65cec5a60a75793ddd70d343",
+      "copied": "af1fa5a871d1908794e32ee2147c62b4232d8f7a65cec5a60a75793ddd70d343",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/StaffDetail.jsx",
+      "original": "b5876ce1acfb576130a25934c5916dad5b252b6dfeed63b468f574495a3be7b9",
+      "copied": "b5876ce1acfb576130a25934c5916dad5b252b6dfeed63b468f574495a3be7b9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/SecuritySettings.jsx",
+      "original": "ef943b22794b32fcba7ef364ab74fbaf89cb42edc3f09e9c6818928550c1745b",
+      "copied": "ef943b22794b32fcba7ef364ab74fbaf89cb42edc3f09e9c6818928550c1745b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/store/authStore.js",
+      "original": "94c4830c6b043a7ae15e998615fe8d5d01b53669477268a9d3df66ff9f7f9ad9",
+      "copied": "94c4830c6b043a7ae15e998615fe8d5d01b53669477268a9d3df66ff9f7f9ad9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/store/bookingStore.js",
+      "original": "ab06c7717eca6ad379d10ebd0cf9322f46f43f2352f7774c97fd913c35477b05",
+      "copied": "ab06c7717eca6ad379d10ebd0cf9322f46f43f2352f7774c97fd913c35477b05",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/store/bookingStore.test.js",
+      "original": "72a9750b2cdcc2db3a79d586b45ac794d194f7ea4cddb392c91c2ef2f591cdbf",
+      "copied": "72a9750b2cdcc2db3a79d586b45ac794d194f7ea4cddb392c91c2ef2f591cdbf",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/branch-operations.css",
+      "original": "8a8e91469bc2523630f7887e7f23bd0c303b77cb04b4b8017f622e08e66c5654",
+      "copied": "8a8e91469bc2523630f7887e7f23bd0c303b77cb04b4b8017f622e08e66c5654",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/business-landing.css",
+      "original": "d9f74258d01fa3ad752deaaa7611a40b21d992d78fe00f98a46ad8849d756c4e",
+      "copied": "d9f74258d01fa3ad752deaaa7611a40b21d992d78fe00f98a46ad8849d756c4e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/mobile-booking.css",
+      "original": "725cbeaf46470d6134ad61c655357220b4ee397fedf6a8ed1890d82948677e5b",
+      "copied": "725cbeaf46470d6134ad61c655357220b4ee397fedf6a8ed1890d82948677e5b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/mobile-public.css",
+      "original": "fa34d1476749ef567b771b90bc7b8dbebb782db2a5852728533235486fbefbb9",
+      "copied": "fa34d1476749ef567b771b90bc7b8dbebb782db2a5852728533235486fbefbb9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/polish.css",
+      "original": "e9182c73641d75780520b80731b97f0c357c9243feebccd408e59b38809b8cd9",
+      "copied": "e9182c73641d75780520b80731b97f0c357c9243feebccd408e59b38809b8cd9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/public-home.css",
+      "original": "0ac149f332d9961036afb82e3e03891bd7241cc11a14d9500112150604c9bc03",
+      "copied": "0ac149f332d9961036afb82e3e03891bd7241cc11a14d9500112150604c9bc03",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/styles/theme.css",
+      "original": "7c87acff527a2e50db966d556648b4abf2d77fd31705286d406a34e0d1829cb6",
+      "copied": "1ba7a0a75c8fd965e20a87e92e05b80d7a8d1638cdb8c5904f816b335ee21eec",
+      "equal": false,
+      "integrationSeam": true
+    },
+    {
+      "path": "src/utils/actualTimeCorrection.js",
+      "original": "7031d279fe0d2a98d4f7c58f2ec7cbe577cd681fa0a98a6488a549ad542544a8",
+      "copied": "7031d279fe0d2a98d4f7c58f2ec7cbe577cd681fa0a98a6488a549ad542544a8",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/actualTimeCorrection.test.js",
+      "original": "2c64ff6c78d4ca81c52a356543036db74d187e62f18a2a8762df9de4dcbe3b97",
+      "copied": "2c64ff6c78d4ca81c52a356543036db74d187e62f18a2a8762df9de4dcbe3b97",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/authScope.js",
+      "original": "e6b52a6896d40fc48f745bfcfe24655b95c66bd99fb4c0a7c3c386bcc7ba57f9",
+      "copied": "e6b52a6896d40fc48f745bfcfe24655b95c66bd99fb4c0a7c3c386bcc7ba57f9",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/authScope.test.js",
+      "original": "078cc5e31be8cf73480361018f3991c20ee049284623719c9ee5a52760fef748",
+      "copied": "078cc5e31be8cf73480361018f3991c20ee049284623719c9ee5a52760fef748",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingActualTime.js",
+      "original": "4b33146f44d44ceb6e1ad7a35e73975033cad5a3869d186613b1763b60b7a3d7",
+      "copied": "4b33146f44d44ceb6e1ad7a35e73975033cad5a3869d186613b1763b60b7a3d7",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingActualTime.test.js",
+      "original": "f3956d8a7908432a084f54b4903b72a7112abd0237512a3bd4854b71b8227112",
+      "copied": "f3956d8a7908432a084f54b4903b72a7112abd0237512a3bd4854b71b8227112",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingAffordances.js",
+      "original": "9a0cd1de30cc19f77d923a7519fe8d674259400504143e501a562c7d3e1d848a",
+      "copied": "9a0cd1de30cc19f77d923a7519fe8d674259400504143e501a562c7d3e1d848a",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingCalendar.adapter.js",
+      "original": "a446c76a6f99c3ace1b84bd2772996576609a76a75918c5be32c7ccb9c6b020e",
+      "copied": "a446c76a6f99c3ace1b84bd2772996576609a76a75918c5be32c7ccb9c6b020e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingCalendar.utils.js",
+      "original": "2544667a08e833a9eafdb0a9f8de09daf8ffb41a236d51c008f5306afed214b7",
+      "copied": "2544667a08e833a9eafdb0a9f8de09daf8ffb41a236d51c008f5306afed214b7",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingSubmission.js",
+      "original": "b8a5dd1d6159905b48bf0d61623ede3283cbdad30cfe324b52e4d4a69f629cd3",
+      "copied": "b8a5dd1d6159905b48bf0d61623ede3283cbdad30cfe324b52e4d4a69f629cd3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingSubmission.test.js",
+      "original": "5bd017d04e36367767c1fc3cf091454a1bc33563c5f4b6e6f798f8b1f3f40e5b",
+      "copied": "5bd017d04e36367767c1fc3cf091454a1bc33563c5f4b6e6f798f8b1f3f40e5b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingWallTime.js",
+      "original": "27ed8f6d16cc2e2a219145063ac85a90e44f66e86bc82bb24ebf14515514ed26",
+      "copied": "27ed8f6d16cc2e2a219145063ac85a90e44f66e86bc82bb24ebf14515514ed26",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/bookingWallTime.test.js",
+      "original": "96e02e27f3cc6dd5a1b26fba6735f33f92070a26c631e9231d65f7e1c52817a7",
+      "copied": "96e02e27f3cc6dd5a1b26fba6735f33f92070a26c631e9231d65f7e1c52817a7",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/branchSlotTime.js",
+      "original": "e27307373214d4194ea7cefecbcaee34c7d59d7b19f75398de4b78a0c20cdb37",
+      "copied": "e27307373214d4194ea7cefecbcaee34c7d59d7b19f75398de4b78a0c20cdb37",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/businessCompletionRules.js",
+      "original": "ee3faad2c87821876c063b81ec14f229e080e6cf4821e5218af6b3ecfdba5a5d",
+      "copied": "ee3faad2c87821876c063b81ec14f229e080e6cf4821e5218af6b3ecfdba5a5d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/businessCompletionRules.test.js",
+      "original": "ad766aed6c6efc7ded9f1ecc88f1341814390c6a64554bb3fa81b5d40c51d256",
+      "copied": "ad766aed6c6efc7ded9f1ecc88f1341814390c6a64554bb3fa81b5d40c51d256",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/businessOnboardingValidation.js",
+      "original": "bb493ffd7638be4df996d804c58925a470c34d0b503a1653ee53fabf7d24dc43",
+      "copied": "bb493ffd7638be4df996d804c58925a470c34d0b503a1653ee53fabf7d24dc43",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/businessOnboardingValidation.test.js",
+      "original": "428bf3193d775223f2f3326d4d04255cbc321162310b101dc9a3dbe7ced8d857",
+      "copied": "428bf3193d775223f2f3326d4d04255cbc321162310b101dc9a3dbe7ced8d857",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/coalescedRefresh.js",
+      "original": "976e20dbd3b01cd2ad5e2ed41ddf0d5a06dc32550a1d51dc4ebdfe842cdfb1e7",
+      "copied": "976e20dbd3b01cd2ad5e2ed41ddf0d5a06dc32550a1d51dc4ebdfe842cdfb1e7",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/coalescedRefresh.test.js",
+      "original": "f2f7915193555075ea32fdf1f231af4cac747a8e0290ab763eb1301a73ebf11e",
+      "copied": "f2f7915193555075ea32fdf1f231af4cac747a8e0290ab763eb1301a73ebf11e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/customerCancellation.js",
+      "original": "054ccab5a7648d8bc8617fa4a272db5aa0f35946b4fd9592ac79c94e59669d44",
+      "copied": "054ccab5a7648d8bc8617fa4a272db5aa0f35946b4fd9592ac79c94e59669d44",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/customerCancellation.test.js",
+      "original": "d8cc8771386730dd466ca1604678f6dabb646fee008eb3acfacce49197dbaa66",
+      "copied": "d8cc8771386730dd466ca1604678f6dabb646fee008eb3acfacce49197dbaa66",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/displayLabels.js",
+      "original": "7d1d31622d96e4d58372ec3fd1086cb8bf495f0a8132cb2ef9946f727c4eec35",
+      "copied": "7d1d31622d96e4d58372ec3fd1086cb8bf495f0a8132cb2ef9946f727c4eec35",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/helpers.js",
+      "original": "829e91e7b572fd3d46bd01461b3fb583b9e7d80331449921835cf8b4e37be9d3",
+      "copied": "829e91e7b572fd3d46bd01461b3fb583b9e7d80331449921835cf8b4e37be9d3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/latestRequest.js",
+      "original": "c3ba6a68bd61bdebf4b734f26493366497e5764f9af67acccafbe286eaf76c55",
+      "copied": "c3ba6a68bd61bdebf4b734f26493366497e5764f9af67acccafbe286eaf76c55",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/latestRequest.test.js",
+      "original": "8aa4fabbfc56d81c3dbea0bc3af65693b005c21e3d7f4f9534a93befc04e812b",
+      "copied": "8aa4fabbfc56d81c3dbea0bc3af65693b005c21e3d7f4f9534a93befc04e812b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/mediaUrl.js",
+      "original": "b66e48582baae8ebfc40a1a38ffe47bdc9bdc1d0bec7956602607860adfb25ba",
+      "copied": "e1d5a289498c0959131249294087591bedae29784da0372fdca62392be76598a",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/mediaUrl.test.js",
+      "original": "367c6ec84294cce6aee5c962fad0d7037e222476522db98ebc4cfe36b82077b6",
+      "copied": "367c6ec84294cce6aee5c962fad0d7037e222476522db98ebc4cfe36b82077b6",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/mediaValidation.js",
+      "original": "d146d7e251ea3105c5ebe267c6a599c744c5974a6809d7619ae15861084a3027",
+      "copied": "d146d7e251ea3105c5ebe267c6a599c744c5974a6809d7619ae15861084a3027",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/mediaValidation.test.js",
+      "original": "a2fea139a4df78867a5af591e4aa9f6bfc05c7e4f78b2853644f4a35a6047b74",
+      "copied": "a2fea139a4df78867a5af591e4aa9f6bfc05c7e4f78b2853644f4a35a6047b74",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/nameSearch.js",
+      "original": "16ee44d6f333962038ff666a562d0deeead4c335fb78316cf041e8d2a7c1f6ff",
+      "copied": "16ee44d6f333962038ff666a562d0deeead4c335fb78316cf041e8d2a7c1f6ff",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/nameSearch.test.js",
+      "original": "85b22b8722b305a524859f982b929348a1aa789c3c1c68a8c013e8d85c37a503",
+      "copied": "85b22b8722b305a524859f982b929348a1aa789c3c1c68a8c013e8d85c37a503",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationalListRows.js",
+      "original": "8c306838316ff22468df1ba49af1c333c7e3b901123081e20c21b6cfe9ff145d",
+      "copied": "8c306838316ff22468df1ba49af1c333c7e3b901123081e20c21b6cfe9ff145d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationalListRows.test.js",
+      "original": "f1c7e4edbe0bf8e6f62f1a78575d17910238e23f6aa940ebef53e729146ef287",
+      "copied": "f1c7e4edbe0bf8e6f62f1a78575d17910238e23f6aa940ebef53e729146ef287",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationalTiming.js",
+      "original": "f8638717dd8801d2aac7e2fb68cb150e2a278cb2d267661c1f3c9bf0e38d3a41",
+      "copied": "f8638717dd8801d2aac7e2fb68cb150e2a278cb2d267661c1f3c9bf0e38d3a41",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationalTiming.test.js",
+      "original": "0ff2dfd66cebefb0216fbfa45d52ade599af430cde182b85b0dc8a59798ac801",
+      "copied": "0ff2dfd66cebefb0216fbfa45d52ade599af430cde182b85b0dc8a59798ac801",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationsScope.js",
+      "original": "23fa0a6b3f68cddbfea8dc1879a8d5491785e27dfc3f890aef37d09fbacb684d",
+      "copied": "23fa0a6b3f68cddbfea8dc1879a8d5491785e27dfc3f890aef37d09fbacb684d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/operationsScope.test.js",
+      "original": "93b57c5ca373ddf08bc1191fdc8a9efa299c280f8d472cf20424d8ee8c5b989f",
+      "copied": "93b57c5ca373ddf08bc1191fdc8a9efa299c280f8d472cf20424d8ee8c5b989f",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/profileBirthDate.js",
+      "original": "8e7a5e5d50ca837ef31f1d1bc3f919d35e9d83d3ad23d0d07eebf54d1cdb4ac1",
+      "copied": "8e7a5e5d50ca837ef31f1d1bc3f919d35e9d83d3ad23d0d07eebf54d1cdb4ac1",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/profileBirthDate.test.js",
+      "original": "87e769dc504373958554be2e049cec9f3ddab7614aae2c1b616ae10d6ff1d36b",
+      "copied": "87e769dc504373958554be2e049cec9f3ddab7614aae2c1b616ae10d6ff1d36b",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/registrationIntent.js",
+      "original": "f2eb52fb6d9f7fdb6ad9c315c194cb5eff3042e786f341df5aae207a0fdb3f72",
+      "copied": "f2eb52fb6d9f7fdb6ad9c315c194cb5eff3042e786f341df5aae207a0fdb3f72",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/registrationIntent.test.js",
+      "original": "7b9c1e6c696406fc6a5b35debd1a0c79b5dd0edc4d40bb0d67404ffc0b45f4b3",
+      "copied": "7b9c1e6c696406fc6a5b35debd1a0c79b5dd0edc4d40bb0d67404ffc0b45f4b3",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/requestError.js",
+      "original": "ab0eb27469cdc19dede1c3a2b2d69a29c7663d84407f5248785786da63a165f7",
+      "copied": "ab0eb27469cdc19dede1c3a2b2d69a29c7663d84407f5248785786da63a165f7",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/schedulerSocketEvents.js",
+      "original": "ebbd6a29634238d8b3310f6fe52a7453b0be1335af5d8ae419fd145c518d88cb",
+      "copied": "ebbd6a29634238d8b3310f6fe52a7453b0be1335af5d8ae419fd145c518d88cb",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/schedulerSocketEvents.test.js",
+      "original": "1882e46848a1a387ecd937ccdb3ffd8f7b2c31e3812a11ad93522b6296fb6f1e",
+      "copied": "1882e46848a1a387ecd937ccdb3ffd8f7b2c31e3812a11ad93522b6296fb6f1e",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/schedulerUtils.js",
+      "original": "d0faa2cde83a16acd3611843c6fd08c818547909545b39e2dd4b1320fcf6c1fb",
+      "copied": "d0faa2cde83a16acd3611843c6fd08c818547909545b39e2dd4b1320fcf6c1fb",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/seo.js",
+      "original": "38d022cb86c33736528b76e2c12110c30b9a871fef58b5d06a5dfd1e6d08859d",
+      "copied": "38d022cb86c33736528b76e2c12110c30b9a871fef58b5d06a5dfd1e6d08859d",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/socketEndpoint.js",
+      "original": "62005dd97dbfe83639b75b679bddf609ad021d3cac7fc27a3a8a25804227cec4",
+      "copied": "62005dd97dbfe83639b75b679bddf609ad021d3cac7fc27a3a8a25804227cec4",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/socketEndpoint.test.js",
+      "original": "5b7b0a9d8b3712626e2e5d953814aeaf0a2a6cd4dd97d66951a35e0210c04b11",
+      "copied": "5b7b0a9d8b3712626e2e5d953814aeaf0a2a6cd4dd97d66951a35e0210c04b11",
+      "equal": true,
+      "integrationSeam": false
+    },
+    {
+      "path": "tokens.css",
+      "original": "ec7cd40cb68b156d2496f8d9ce648a15c352418a8c99ce83fd7a56e0a9afae50",
+      "copied": "ec7cd40cb68b156d2496f8d9ce648a15c352418a8c99ce83fd7a56e0a9afae50",
+      "equal": true,
+      "integrationSeam": false
+    }
+  ],
+  "sourceFiles": 183,
+  "unchanged": 160,
+  "unexpectedChanges": [
+    {
+      "path": "src/components/admin/scheduler/BookingDetailDrawer.jsx",
+      "original": "45a72654fc82ede094e934c96daed8c47269097a2632f4ec314d8ac983ad9f71",
+      "copied": "424920a862a1b461534b7bb1c5d7638ce1c1fd8a46d5d3ee2ba0d20d75f5473d",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerListView.jsx",
+      "original": "5ee33f978b2120bf3b7161ba95c2d3ae296f3c981a7eea4efb016ce5c7b8a575",
+      "copied": "3ce0eb400eeaafaeeea7222220f8d5d5ac52355877f5b116cf575465ad4df38f",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/admin/scheduler/SchedulerView.jsx",
+      "original": "42b51369b7f87b5571685e435281c3aaa59b2b0ffc4a0642e7210d0e6c91c440",
+      "copied": "357e331dff07dc78cb19e6eceea9f5c9a78470171e871d87d5a01422a49fddca",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/AppShell.jsx",
+      "original": "2f3bdaf823c57736f4eb948f48e31be19aaa01b647eddea6e77e97c8f1bcd959",
+      "copied": "5da33f587a89898befb5a6cb4270d5547f77cf353e425ed1896fd206d1ab03c1",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/layout/CustomerShell.jsx",
+      "original": "f2dc822e3bd4eb51bbe180fbb55777103589cd6ea126e439e85103c48ea9f6e9",
+      "copied": "b8fb7aff58d43753199f6fdcf029fb4ccb92037896cef3aa7736c727e1d70bd1",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/media/FileUpload.jsx",
+      "original": "fa7da58a137446ce5450014b0d5e63917be6d2c2298a4a85d204f63309c44caf",
+      "copied": "a5a1fb1322d39290c4aaf855702a90f2a157fc2935c783404e616f9829fb1ec6",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/notifications/NotificationCenter.jsx",
+      "original": "c59e9954a393c7d191a8a694535e06dc6d7f821c421953e74229e47ba087b41f",
+      "copied": "55531bb78c042de746c91c7d76e287cd424283f73093d6c24bc3050dc53aab1e",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/components/public/HomeMedia.jsx",
+      "original": "d3b3c73eef703759c59a9a8f4cbae34eb330b4de17f17cca398c97ecfec957d6",
+      "copied": "1b3e9a64f61052fb24c181ec34f481a46c52f0c74a34aa311116a9d33f6b16ef",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminAudit.jsx",
+      "original": "7956ec4744dad62d5f2997304c5e122884bbcd7c84ce533eddc74589780fe3e6",
+      "copied": "53966c0c857d55dbcbcd983c34de67431fc6f23e6dd8fbd6428f5a389ad00c1e",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminEntityDetails.jsx",
+      "original": "2cefbaa12a18f4d44f774a60495141308a45694e3701d718bde11c7f1d8f7e84",
+      "copied": "ba21a30b053b9ac4e70910ebf3125d79313083935c6b25f6b5854283acca4847",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminOverview.jsx",
+      "original": "55f763f533b2a95bdce507265d1f9b0e21112887fd64272ebfbccd7b2a8438b9",
+      "copied": "a959fd613b72cb248c47943c05a88a42a55458c902a6bf7dda04f6ed39b61978",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Admin/AdminUsers.jsx",
+      "original": "498edf0d7f5bd824537790ea122816419cdacfc2116af5eaa52ed97478003bdf",
+      "copied": "37939bf2eeb34165e49c7806e2ffaf48a7b3ed957b02b4fc6f2c918bb14e48c2",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/BusinessLanding.jsx",
+      "original": "614e8827dfca58f23d7c61725429e398ed9bb8e7954443b5c9af35cc8dbf5ebd",
+      "copied": "fed9937e670350d0448dc65d320db3eceed10ea6591a9b23f1789419132c7d7a",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Public/PublicDetails.jsx",
+      "original": "4c6a710b49854d6f4a51f09c1501934f4fea3a869da6bed3c99c68889ebe253f",
+      "copied": "ccce081d76522efc9812c6f036755935c3740be928d195c176ede1f5bdb3a3f8",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/BusinessOnboarding.jsx",
+      "original": "2cc138d3773ec0e6b5ae2ebdaac22a90cfd7e4c5ded1397a2c1ba1f0b9038f5f",
+      "copied": "1b49adf6064d474a3a21251c3417184eddf588e09f64e542baac746f8642dbc8",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonOverview.jsx",
+      "original": "5e2758d6a908087f8ea1bfc1d78549a1714b7b5c1f4df265c8f721a9725f0835",
+      "copied": "a188851334547ab83adea270af1109b391782300748ebe8ef9386fa2a8af041c",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/pages/Salon/SalonServices.jsx",
+      "original": "6e2593aa9dbd26c78f4e6538982fb5b5a7e206291735ee892a1f28cc4bd4edf6",
+      "copied": "6da47461bd5c4a3699af19068716ce839232cdd1b9aca78c8e9d7940a91aff0d",
+      "equal": false,
+      "integrationSeam": false
+    },
+    {
+      "path": "src/utils/mediaUrl.js",
+      "original": "b66e48582baae8ebfc40a1a38ffe47bdc9bdc1d0bec7956602607860adfb25ba",
+      "copied": "e1d5a289498c0959131249294087591bedae29784da0372fdca62392be76598a",
+      "equal": false,
+      "integrationSeam": false
+    }
+  ]
+}

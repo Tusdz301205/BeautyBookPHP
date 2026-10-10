@@ -1,0 +1,32 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookGovernanceApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreal cash collection stays on its branch local day after seventeen[39m[90m…[39m [90m45.95s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ManagementMultiRoleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreception grant in other branch does not unlock staff private detai[39m[90m…[39m [90m0.87s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcatalog retains explicit authorized branch and uses owner grant wit[39m[90m…[39m [90m0.46s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\ZConcurrentRoleGrantTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mconcurrent role grants from multiple processes create exactly one[39m[90m… [39m [90m42.04s[39m  
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ZConcurrentRoleGrantTest[22m [90m>[39m concurrent role grants f…   
+[39;1m  All worker processes must reach the barrier before the grant race begins.
+Failed asserting that 4 is identical to 5.[39;22m
+
+  at [32mtests/Feature/ZConcurrentRoleGrantTest.php[39m:[32m118[39m
+    114▕ 
+    115▕                 usleep(10000);
+    116▕             } while (microtime(true) < $deadline);
+    117▕ 
+  ➜ 118▕             $this->assertSame(
+    119▕                 $workerCount,
+    120▕                 count(array_filter($readyFiles, is_file(...))),
+    121▕                 'All worker processes must reach the barrier before the grant race begins.',
+    122▕             );
+
+  [33m1   [39m[39;1mtests/Feature/ZConcurrentRoleGrantTest.php[39;22m:[39;1m118[39;22m
+
+
+  [90mTests:[39m    [31;1m1 failed[39;22m[90m,[39m[39m [39m[32;1m3 passed[39;22m[90m (31 assertions)[39m
+  [90mDuration:[39m [39m100.75s[39m
+

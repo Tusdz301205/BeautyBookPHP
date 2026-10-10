@@ -1,0 +1,113 @@
+{
+  "checks": [
+    {
+      "kind": "pagination",
+      "firstUrl": "http://127.0.0.1:8000/api/v1/services/search?page=1&limit=12",
+      "nextUrl": "http://127.0.0.1:8000/api/v1/services/search?page=2&limit=12",
+      "before": [
+        "164",
+        "163",
+        "162",
+        "161",
+        "160",
+        "159",
+        "158",
+        "157",
+        "156",
+        "155",
+        "154",
+        "153"
+      ],
+      "secondPage": [
+        "152",
+        "151",
+        "150",
+        "149",
+        "148",
+        "147",
+        "146",
+        "145",
+        "144",
+        "143",
+        "142",
+        "141"
+      ],
+      "after": [
+        "164",
+        "163",
+        "162",
+        "161",
+        "160",
+        "159",
+        "158",
+        "157",
+        "156",
+        "155",
+        "154",
+        "153",
+        "152",
+        "151",
+        "150",
+        "149",
+        "148",
+        "147",
+        "146",
+        "145",
+        "144",
+        "143",
+        "142",
+        "141"
+      ],
+      "hasMore": true,
+      "overlap": []
+    },
+    {
+      "kind": "query",
+      "url": "http://127.0.0.1:8000/api/v1/services/search?query=S%C6%A1n+gel&page=1&limit=12",
+      "browserUrl": "http://127.0.0.1:8000/beautybook/explore?serviceQuery=S%C6%A1n+gel",
+      "ids": [
+        "162",
+        "145",
+        "144",
+        "143",
+        "128",
+        "119",
+        "77",
+        "65",
+        "64",
+        "63",
+        "56"
+      ],
+      "total": 11
+    },
+    {
+      "kind": "canonical",
+      "url": "http://127.0.0.1:8000/api/v1/services/search?canonicalServiceId=17&page=1&limit=12",
+      "browserUrl": "http://127.0.0.1:8000/beautybook/explore?categoryId=17",
+      "ids": [
+        "162",
+        "145",
+        "144",
+        "143",
+        "128",
+        "119",
+        "77",
+        "65",
+        "64",
+        "63",
+        "56"
+      ],
+      "total": 11
+    },
+    {
+      "kind": "canonical-and-location",
+      "url": "http://127.0.0.1:8000/api/v1/services/search?location=TP.+D%C4%A9+An&canonicalServiceId=17&page=1&limit=12",
+      "browserUrl": "http://127.0.0.1:8000/beautybook/explore?categoryId=17&area=TP.+D%C4%A9+An",
+      "ids": [
+        "162"
+      ],
+      "total": 1
+    }
+  ],
+  "errors": []
+}

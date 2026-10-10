@@ -1,0 +1,9 @@
+
+   PASS  Tests\Feature\BookingCalendarTest
+  ✓ customer week includes cross midnight overlap and hides other cust… 48.32s  
+  ✓ owner calendar remains tenant scoped even with foreign filters       0.96s  
+  ✓ staff calendar hides unassigned booking and other staff service det… 0.48s  
+
+  Tests:    3 passed (18 assertions)
+  Duration: 64.10s
+

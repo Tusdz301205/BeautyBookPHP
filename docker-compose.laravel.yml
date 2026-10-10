@@ -1,0 +1,117 @@
+name: beautybook-php
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/laravel/Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    environment: &laravel_environment
+      APP_NAME: BeautyBook
+      APP_ENV: local
+      APP_KEY: ${LARAVEL_APP_KEY:-base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=}
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      APP_TIMEZONE: Asia/Ho_Chi_Minh
+      APP_LOCALE: vi
+      APP_FALLBACK_LOCALE: vi
+      PHP_CLI_SERVER_WORKERS: 4
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: beautybook_php
+      DB_USERNAME: beautybook
+      DB_PASSWORD: beautybook_local_only
+      SESSION_DRIVER: database
+      SESSION_ENCRYPT: "true"
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+      MAIL_MAILER: log
+    ports:
+      - "127.0.0.1:8001:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  scheduler:
+    image: beautybook-php-app
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    environment: *laravel_environment
+    command: ["php", "artisan", "schedule:work"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  realtime:
+    image: node:22-alpine
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html:ro
+    command: ["node", "realtime/server.mjs"]
+    environment:
+      LARAVEL_URL: http://app:8000
+      REALTIME_ORIGINS: http://localhost:8000,http://127.0.0.1:8000
+    depends_on:
+      - app
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  web:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./docker/realtime/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./public:/var/www/html/public:ro
+    ports:
+      - "8000:80"
+    depends_on:
+      realtime:
+        condition: service_healthy
+      app:
+        condition: service_started
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: beautybook_php
+      MYSQL_USER: beautybook
+      MYSQL_PASSWORD: beautybook_local_only
+      MYSQL_ROOT_PASSWORD: beautybook_root_local_only
+    ports:
+      - "3307:3306"
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--log-bin-trust-function-creators=1"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pbeautybook_root_local_only"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - beautybook_mysql_data:/var/lib/mysql
+
+  mysql_test:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: beautybook_test
+      MYSQL_USER: beautybook_test
+      MYSQL_PASSWORD: beautybook_test_local_only
+      MYSQL_ROOT_PASSWORD: beautybook_test_root_local_only
+    ports:
+      - "3308:3306"
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--log-bin-trust-function-creators=1"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pbeautybook_test_root_local_only"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - beautybook_mysql_test_data:/var/lib/mysql
+
+volumes:
+  beautybook_mysql_data:
+  beautybook_mysql_test_data:

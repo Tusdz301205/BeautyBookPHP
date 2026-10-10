@@ -1,0 +1,7 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookBookingApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mgrouped payment refund reserves across verified transactions atomi[39m[90m…[39m [90m64.27s[39m  
+
+  [90mTests:[39m    [32;1m1 passed[39;22m[90m (9 assertions)[39m
+  [90mDuration:[39m [39m76.65s[39m
+

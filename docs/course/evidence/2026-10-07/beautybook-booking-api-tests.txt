@@ -1,0 +1,11 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookBookingApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mmultiservice contract real prices slots create replay and customer[39m[90m…[39m [90m54.13s[39m  
+  [32;1m✓[39;22m[90m [39m[90mservice price rules use local date and quote snapshot[39m[90m               [39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90mauthoritative holiday blocks advertising and booking[39m[90m                [39m [90m2.90s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner scheduler resize reprice and payment persist exact amounts[39m[90m    [39m [90m1.19s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrecurring multiservice creates real atomic occurrences[39m[90m              [39m [90m1.04s[39m  
+
+  [90mTests:[39m    [32;1m5 passed[39;22m[90m (49 assertions)[39m
+  [90mDuration:[39m [39m130.01s[39m
+

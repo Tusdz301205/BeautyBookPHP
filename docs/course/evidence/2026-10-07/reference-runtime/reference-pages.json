@@ -1,0 +1,729 @@
+{
+  "results": [
+    {
+      "role": "guest",
+      "path": "/",
+      "status": 200,
+      "url": "http://localhost:18081/",
+      "heading": "Tìm dịch vụ làm đẹp hợp với bạn.",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\n\nSALON · SPA · BEAUTY SERVICES\n\nTìm dịch vụ làm đẹp hợp với bạn.\n\nBắt đầu từ điều bạn muốn làm, rồi so sánh giá, thời lượng, chi nhánh và chuyên viên đang nhận lịch.\n\nBẠN MUỐN LÀM DỊCH VỤ GÌ?\nNHÓM NHU CẦU\nTất cả dịch vụ\nKHU VỰC\nTìm kiếm\nBộ lọc chi tiết\nKhám phá dịch vụ\nBắt đầu đặt lịch\n\nChỉ hiển thị cơ sở đang đủ điều kiện nhận đặt lịch.\n\nẢNH MINH HỌA\n\n01\nMột khoảng dành cho vẻ đẹp của riêng bạn.\n\nTÌM THEO NHU CẦU\n\nBắt đầu từ dịch vụ bạn muốn\n\nCác nhóm bên dưới được tải trực tiếp từ danh mục dịch vụ đang có trong hệ thống.\n\nXem tất cả\nẢNH MINH HỌA\nChăm sóc da\nKhám phá\nẢNH MINH HỌA\nCắt tóc nam\nKhám phá\nẢNH MINH HỌA\nCắt tóc nữ\nKhám phá\nẢNH MINH HỌA\nMassage body\nKhám phá\nẢNH MINH HỌA\nMassage foot\nKhám phá\nNhuộm tóc\nKhám phá\nSơn gel\nKhám phá\nUốn tóc\nKhám phá\n\nCƠ SỞ NỔI BẬT\n\nKhám phá địa điểm làm đẹp phù hợp với bạn\n\nCác cơ sở bên dưới đã được duyệt, đang hoạt động và đủ điều kiện nhận lịch trong dữ liệu công khai hiện tại.\n\nXem tất cả cơ sở\nThanh Hương Spa & Clinic\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.5\nThanh Hương Spa & Clinic\nThanh Hương Spa & Clinic - Quận 7\n\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\n\nCắt tóc\nNhuộm tóc\nChăm sóc da\nGiá từ 119.000₫\n14 dịch vụ\n08:00 - 23:00\nMinh Hoàng Hair Studio\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.4\nMinh Hoàng Hair Studio\nMinh Hoàng Hair Studio - Quận Hai Bà Trưng\n\n383 Lê Lợi, Quận Hai Bà Trưng, Hà Nội\n\nThiết kế lông mày\nSơn gel\nChăm sóc da\nGiá từ 116.000₫\n9 dịch vụ\n08:00 - 23:00\nLan Anh Beauty Salon\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.2\nLan Anh Beauty Salon\nLan Anh Beauty Salon - Quận Sơn Trà\n\n104 Pasteur, Quận Sơn Trà, Đà Nẵng\n\nThiết kế lông mày\nSơn gel\nCắt tóc\nGiá từ 136.000₫\n10 dịch vụ\n08:00 - 23:00\nMinh Hoàng Hair Studio\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.1\nMinh Hoàng Hair Studio\nMinh Hoàng Hair Studio - Huyện Long Thành\n\n424 Trần Não, Huyện Long Thành, Đồng Nai\n\nChăm sóc da\nTrang điểm\nCắt tóc\nGiá từ 136.000₫\n13 dịch vụ\n08:00 - 23:00\n\nDỊCH VỤ ĐƯỢC QUAN TÂM TRÊN BEAUTYBOOK\n\nBắt đầu từ điều bạn muốn làm\n\nMỗi kết quả là một dịch vụ có giá, thời lượng, chi nhánh và nhân sự đang nhận lịch.\n\nKhám phá thêm\nPhun xăm lông mày\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n5.0\nThiết kế lông mày\n1.385.000₫\nPhun xăm lông mày\n\nMinh Hoàng Hair Studio - Quận Hai Bà Trưng · Minh Hoàng Hair Studio\n\n383 Lê Lợi, Quận Hai Bà Trưng, Hà Nội\n\n135 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nSơn gel ta",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/home/beautybook-home-hero-480.webp",
+          "alt": "Bộ sản phẩm chăm sóc sắc đẹp và dụng cụ làm tóc",
+          "complete": true,
+          "width": 368,
+          "height": 460
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/skincare-editorial-320.webp",
+          "alt": "Sản phẩm chăm sóc da và dụng cụ massage mặt",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/hair-care-editorial-320.webp",
+          "alt": "Dụng cụ chăm sóc và tạo kiểu tóc",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/hair-care-editorial-320.webp",
+          "alt": "Dụng cụ chăm sóc và tạo kiểu tóc",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/spa-wellness-editorial-320.webp",
+          "alt": "Khăn spa, đá massage và dầu chăm sóc cơ thể",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/spa-wellness-editorial-320.webp",
+          "alt": "Khăn spa, đá massage và dầu chăm sóc cơ thể",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/hair-care-editorial-320.webp",
+          "alt": "Dụng cụ chăm sóc và tạo kiểu tóc",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/nail-care-editorial-320.webp",
+          "alt": "Sơn móng và dụng cụ chăm sóc móng",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/categories/hair-care-editorial-320.webp",
+          "alt": "Dụng cụ chăm sóc và tạo kiểu tóc",
+          "complete": true,
+          "width": 272,
+          "height": 203
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/home/availability-planning-editorial-768.webp",
+          "alt": "Ảnh minh họa lịch hẹn làm đẹp với đồng hồ và vật dụng chăm sóc",
+          "complete": true,
+          "width": 719,
+          "height": 404
+        },
+        {
+          "src": "http://localhost:18081/images/beautybook/home/final-cta-editorial-768.webp",
+          "alt": "Ảnh minh họa vật dụng cho một buổi chăm sóc sắc đẹp",
+          "complete": true,
+          "width": 719,
+          "height": 404
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/explore",
+      "status": 200,
+      "url": "http://localhost:18081/explore",
+      "heading": "Tìm đúng dịch vụ, rồi chọn nơi phù hợp.",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\n\nBEAUTYBOOK EXPLORE\n\nTìm đúng dịch vụ, rồi chọn nơi phù hợp.\n\nKết quả chỉ gồm dịch vụ tại chi nhánh đã được duyệt, đang hoạt động và có chuyên viên nhận lịch.\n\nBẠN MUỐN LÀM DỊCH VỤ GÌ?\nNHÓM NHU CẦU\nTất cả dịch vụ\nKHU VỰC\nTìm kiếm\nBộ lọc chi tiết\n\nKẾT QUẢ THEO DỊCH VỤ\n\nDịch vụ phù hợp với nhu cầu của bạn\n\n12 lựa chọn dịch vụ phù hợp trong dữ liệu hiện tại.\n\nSơn gel tay\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n5.0\nSơn gel\n201.000₫\nSơn gel tay\n\nMinh Hoàng Hair Studio - Quận Hai Bà Trưng · Minh Hoàng Hair Studio\n\n383 Lê Lợi, Quận Hai Bà Trưng, Hà Nội\n\n60 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nPhun xăm lông mày\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n5.0\nThiết kế lông mày\n1.385.000₫\nPhun xăm lông mày\n\nMinh Hoàng Hair Studio - Quận Hai Bà Trưng · Minh Hoàng Hair Studio\n\n383 Lê Lợi, Quận Hai Bà Trưng, Hà Nội\n\n135 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nNhuộm highlight\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.8\nNhuộm tóc\n1.950.000₫\nNhuộm highlight\n\nMinh Hoàng Hair Studio - Huyện Long Thành · Minh Hoàng Hair Studio\n\n424 Trần Não, Huyện Long Thành, Đồng Nai\n\n210 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nCắt tóc nam theo yêu cầu\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.8\nCắt tóc nam\n164.000₫\nCắt tóc nam theo yêu cầu\n\nThanh Hương Spa & Clinic - Quận 7 · Thanh Hương Spa & Clinic\n\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\n\n30 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nCắt tóc nữ theo yêu cầu\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.7\nCắt tóc nữ\n228.000₫\nCắt tóc nữ theo yêu cầu\n\nLan Anh Beauty Salon - Quận Sơn Trà · Lan Anh Beauty Salon\n\n104 Pasteur, Quận Sơn Trà, Đà Nẵng\n\n60 phút\n·\n2 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nSơn gel chân\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.6\nSơn gel\n250.000₫\nSơn gel chân\n\nLan Anh Beauty Salon - Quận Sơn Trà · Lan Anh Beauty Salon\n\n104 Pasteur, Quận Sơn Trà, Đà Nẵng\n\n45 phút\n·\n2 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nSơn gel chân\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.5\nSơn gel\n254.000₫\nSơn gel chân\n\nThanh Hương Spa & Clinic - Quận 7 · Thanh Hương Spa & Clinic\n\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\n\n60 phút\n·\n1 chuyên viên đang nhận lịch\n\nLưu\nXem chi tiết\nĐặt dịch vụ\nTrang điểm cô dâu\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n4.5\nTrang điểm\n2.654.000₫\nTrang điểm cô dâu\n\nThanh Hương Spa & Clinic - Quận 7 · Thanh Hương Spa & Clinic\n\n30",
+      "images": []
+    },
+    {
+      "role": "guest",
+      "path": "/for-business",
+      "status": 200,
+      "url": "http://localhost:18081/for-business",
+      "heading": "Một nơi để vận hành cơ sở làm đẹp — từ lịch hẹn đầu tiên.",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\n\nBEAUTYBOOK BUSINESS\n\nMột nơi để vận hành cơ sở làm đẹp — từ lịch hẹn đầu tiên.\n\nĐưa dịch vụ lên marketplace, sắp lịch đội ngũ và theo dõi hoạt động theo từng chi nhánh trong một không gian làm việc thống nhất.\n\nĐăng ký cơ sở của bạn\nĐã có tài khoản? Đăng nhập\n\nCơ sở chỉ được công khai sau khi hồ sơ được xét duyệt.\n\nẢNH MINH HỌA\nKhông gian cơ sở\nTuần này\nTổng quan\nLịch hẹn\nDịch vụ\nĐội ngũ\n\nLịch vận hành\n\nThứ 2\nThứ 3\nThứ 4\nThứ 5\n\nNHẬN ĐẶT LỊCH TRỰC TUYẾN\n\nQUẢN LÝ NHIỀU CHI NHÁNH\n\nKIỂM SOÁT QUYỀN TRUY CẬP\n\nKHÔNG CÔNG KHAI TRƯỚC DUYỆT\n\nTỪ MARKETPLACE TỚI QUẦY LỄ TÂN\n\nCác công cụ cùng nhìn vào một nguồn dữ liệu.\n\nKhông cần ghép nhiều màn hình rời rạc để biết hôm nay cơ sở đang vận hành như thế nào.\n\n01\nLịch hẹn trực quan\n\nVận hành theo ngày, tuần hoặc tháng; theo dõi trạng thái và xử lý thay đổi tại đúng lịch hẹn.\n\n02\nDịch vụ và gói liệu trình\n\nQuản lý giá, thời lượng, chuyên môn nhân viên và những liệu trình nhiều bước trong cùng một lịch hẹn.\n\n03\nĐội ngũ theo chi nhánh\n\nPhân quyền quản lý, lễ tân và chuyên viên; năng lực dịch vụ luôn gắn với đúng cơ sở.\n\n04\nGiữ chỗ an toàn\n\nKiểm tra giờ mở cửa và xung đột theo thời gian thực để tránh hai lịch dùng cùng một chuyên viên.\n\n05\nBáo cáo vận hành\n\nTheo dõi lịch hẹn, doanh thu và hiệu suất từ dữ liệu phát sinh trong hệ thống.\n\n06\nQuyền truy cập rõ ràng\n\nMỗi tài khoản chỉ xem và xử lý dữ liệu trong phạm vi doanh nghiệp, chi nhánh được phân quyền.\n\nBẮT ĐẦU NHẸ NHÀNG\n\nTạo tài khoản trước. Hoàn thiện cơ sở theo nhịp của bạn.\n\nWizard tự lưu bản nháp để bạn có thể dừng và tiếp tục trên thiết bị khác. Hồ sơ, dịch vụ dự kiến và giấy tờ xác minh được tách rõ trước khi gửi duyệt.\n\n1\n\nTạo tài khoản chủ doanh nghiệp\n\n2\n\nHoàn thiện hồ sơ theo 10 bước\n\n3\n\nXem trước trang hiển thị trên marketplace\n\n4\n\nGửi giấy tờ và chờ quản trị BeautyBook xét duyệt\n\nBEAUTYBOOK BUSINESS\n\nSẵn sàng xây không gian đặt lịch của riêng bạn?\n\nĐăng ký miễn phí để bắt đầu hồ sơ. Việc tạo tài khoản không tự động đưa cơ sở lên marketplace.\n\nBắt đầu với BeautyBook Business\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/business/business-hero-editorial-480.webp",
+          "alt": "Ảnh minh họa bàn làm việc vận hành cơ sở làm đẹp",
+          "complete": true,
+          "width": 480,
+          "height": 270
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/login",
+      "status": 200,
+      "url": "http://localhost:18081/login",
+      "heading": "Đăng nhập BeautyBook",
+      "text": "Bỏ qua phần giới thiệu\nBeautyBook\n\nBEAUTY, THOUGHTFULLY BOOKED\n\nLịch hẹn đẹp bắt đầu từ một lựa chọn rõ ràng.\n\nTìm cơ sở, chọn dịch vụ và giữ mọi lịch hẹn của bạn trong cùng một nơi.\nẢNH MINH HỌA\nTrang chủ\n\nCHÀO MỪNG TRỞ LẠI\n\nĐăng nhập BeautyBook\nDùng tài khoản đã đăng ký hoặc thông tin được doanh nghiệp cấp.\nĐịa chỉ email *\n(bắt buộc)\n \nMật khẩu *\n(bắt buộc)\n \nQuên mật khẩu?\nĐăng nhập\n\nChưa có tài khoản BeautyBook?\n\nTạo tài khoản\n\nBạn có thể khám phá cơ sở trước khi đăng nhập. Khám phá BeautyBook",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/auth/auth-login-editorial-720.webp",
+          "alt": "",
+          "complete": true,
+          "width": 662,
+          "height": 529
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/register",
+      "status": 200,
+      "url": "http://localhost:18081/register",
+      "heading": "Tạo tài khoản khách hàng",
+      "text": "Bỏ qua phần giới thiệu\nBeautyBook\n\nBEAUTY, THOUGHTFULLY BOOKED\n\nMột điểm bắt đầu, cho khách hàng và người làm đẹp.\n\nĐặt lịch chăm sóc cho riêng bạn, hoặc đưa doanh nghiệp lên BeautyBook qua quy trình xét duyệt minh bạch.\nẢNH MINH HỌA\nTrang chủ\n\nBẮT ĐẦU CÙNG BEAUTYBOOK\n\nTạo tài khoản khách hàng\nTạo tài khoản cá nhân để đặt lịch và quản lý các cuộc hẹn của bạn.\nChọn loại tài khoản\nKhách hàng\nTìm cơ sở và quản lý lịch hẹn\nChủ doanh nghiệp\nĐăng ký cơ sở để chờ xét duyệt\nHọ và tên *\n(bắt buộc)\n \nĐịa chỉ email *\n(bắt buộc)\n \nSố điện thoại\nKhông bắt buộc · ví dụ 0912 345 678\nMật khẩu *\n(bắt buộc)\nÍt nhất 8 ký tự, có chữ hoa, chữ thường và số.\n\nĐộ mạnh mật khẩu: Chưa nhập\n\nNhập lại mật khẩu *\n(bắt buộc)\n \nTôi đồng ý với điều khoản sử dụng và chính sách bảo mật của BeautyBook.\nTạo tài khoản\n\nĐã có tài khoản?\n\nĐăng nhập",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/auth/auth-register-editorial-720.webp",
+          "alt": "",
+          "complete": true,
+          "width": 662,
+          "height": 529
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/register/business",
+      "status": 200,
+      "url": "http://localhost:18081/register/business",
+      "heading": "Tạo tài khoản chủ doanh nghiệp",
+      "text": "Bỏ qua phần giới thiệu\nBeautyBook\n\nBEAUTY, THOUGHTFULLY BOOKED\n\nMột điểm bắt đầu, cho khách hàng và người làm đẹp.\n\nĐặt lịch chăm sóc cho riêng bạn, hoặc đưa doanh nghiệp lên BeautyBook qua quy trình xét duyệt minh bạch.\nẢNH MINH HỌA\nTrang chủ\n\nBEAUTYBOOK BUSINESS\n\nTạo tài khoản chủ doanh nghiệp\nChỉ cần thông tin tài khoản trước. Sau đó bạn có thể hoàn thiện hồ sơ cơ sở theo từng bước.\nChọn loại tài khoản\nKhách hàng\nTìm cơ sở và quản lý lịch hẹn\nChủ doanh nghiệp\nĐăng ký cơ sở để chờ xét duyệt\n\nCơ sở chưa được công khai cho đến khi hồ sơ và giấy tờ được duyệt.\n\nHọ và tên *\n(bắt buộc)\n \nĐịa chỉ email *\n(bắt buộc)\n \nSố điện thoại\nKhông bắt buộc · ví dụ 0912 345 678\nMật khẩu *\n(bắt buộc)\nÍt nhất 8 ký tự, có chữ hoa, chữ thường và số.\n\nĐộ mạnh mật khẩu: Chưa nhập\n\nNhập lại mật khẩu *\n(bắt buộc)\n \nTôi đồng ý với điều khoản sử dụng và chính sách bảo mật của BeautyBook.\nTạo tài khoản\n\nĐã có tài khoản?\n\nĐăng nhập",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/auth/auth-register-editorial-720.webp",
+          "alt": "",
+          "complete": true,
+          "width": 662,
+          "height": 529
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/forgot-password",
+      "status": 200,
+      "url": "http://localhost:18081/forgot-password",
+      "heading": "Khôi phục mật khẩu",
+      "text": "Bỏ qua phần giới thiệu\nBeautyBook\n\nBEAUTY, THOUGHTFULLY BOOKED\n\nTrở lại lịch hẹn của bạn, theo cách an toàn.\n\nCác liên kết bảo mật có thời hạn và chỉ được gửi tới email đã đăng ký.\nẢNH MINH HỌA\nTrang chủ\n\nBẢO MẬT TÀI KHOẢN\n\nKhôi phục mật khẩu\nNếu email tồn tại, BeautyBook sẽ gửi một liên kết đặt lại có hiệu lực trong 30 phút.\nĐịa chỉ email *\n(bắt buộc)\n \nGửi hướng dẫn\n\nQuay lại đăng nhập",
+      "images": [
+        {
+          "src": "http://localhost:18081/images/beautybook/auth/auth-recovery-editorial-720.webp",
+          "alt": "",
+          "complete": true,
+          "width": 662,
+          "height": 529
+        }
+      ]
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/927dbd16-3d72-4427-b466-b3f2a4fd883f",
+      "status": 200,
+      "url": "http://localhost:18081/explore/branches/927dbd16-3d72-4427-b466-b3f2a4fd883f",
+      "heading": "Thanh Hương Spa & Clinic - Quận 7",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\nQuay lại khám phá\n\nCƠ SỞ LÀM ĐẸP\n\nThanh Hương Spa & Clinic - Quận 7\n\nSpa và chăm sóc da công nghệ cao Hàn Quốc.\n\nTHƯƠNG HIỆU\nThanh Hương Spa & Clinic\nĐỊA CHỈ\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\nĐặt lịch trực tuyến\nThanh Hương Spa & Clinic - Quận 7\n\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\n\nChọn dịch vụ\nThời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.\n01\n\nTHÔNG TIN GHÉ THĂM\n\nMột địa chỉ, mọi thông tin cần thiết\n\nGiờ hoạt động được lấy trực tiếp từ hồ sơ cơ sở.\n\n306 Phổ Quang, Quận 7, TP. Hồ Chí Minh\nThanh Hương Spa & Clinic\nChủ nhật\n15:00 – 06:00\nThứ 2\n15:00 – 06:00\nThứ 3\n15:00 – 06:00\nThứ 4\n15:00 – 06:00\nThứ 5\n15:00 – 06:00\nThứ 6\n15:00 – 06:00\nThứ 7\n15:00 – 06:00\n02\n\nDANH MỤC\n\nDịch vụ đang nhận lịch\nCắt tóc\nCắt tóc nam theo yêu cầu\n\n30 phút\n\n164.000₫\nNhuộm tóc\nNhuộm tóc thời trang\n\n195 phút\n\n1.349.000₫\nChăm sóc da\nChăm sóc da mặt cơ bản\n\n75 phút\n\n465.000₫\nUốn/Duỗi tóc\nDuỗi tóc thẳng\n\n135 phút\n\n1.423.000₫\nTrang điểm\nTrang điểm dự tiệc\n\n120 phút\n\n1.416.000₫\nCắt tóc\nCắt tóc trẻ em\n\n40 phút\n\n119.000₫\nThiết kế lông mày\nĐiêu khắc lông mày 8D\n\n120 phút\n\n785.000₫\nSơn gel\nSơn gel tay + chân\n\n90 phút\n\n399.000₫\nCắt tóc\nCắt tóc nữ theo yêu cầu\n\n75 phút\n\n294.000₫\nTrang điểm\nTrang điểm cô dâu\n\n135 phút\n\n2.654.000₫\nSơn gel\nSơn gel chân\n\n60 phút\n\n254.000₫\nTriệt lông\nTriệt lông tay/chân\n\n45 phút\n\n530.000₫\nChăm sóc da\nChăm sóc da mặt chuyên sâu\n\n75 phút\n\n902.000₫\nNhuộm tóc\nNhuộm highlight\n\n210 phút\n\n2.091.000₫\n03\n\nĐỘI NGŨ\n\nChọn người phù hợp\nChuyên viên nail\nPhan Trúc Giang Kiên\nCắt tóc nam theo yêu cầu · Duỗi tóc thẳng · Cắt tóc trẻ em · Sơn gel tay + chân · Cắt tóc nữ theo yêu cầu · Trang điểm cô dâu · Sơn gel chân · Nhuộm highlight\n4.5 · 21 đánh giá\n04\n\nKHÔNG GIAN\n\nHình ảnh do cơ sở cung cấp\n\nChưa có hình ảnh do cơ sở tải lên.\n\n05\n\nTRẢI NGHIỆM THẬT\n\nĐánh giá đã được duyệt\n4.5\n21 lượt đánh giá\nĐỗ Tuyết Ly Tuấn\n4/5\n\nRất hài lòng, sẽ quay lại.\n\nHồ Đức Vũ\n4/5\n\nKhông gian thoải mái, dịch vụ tốt.\n\nTô Kim Trang\n3/5\n\nRất hài lòng, sẽ quay lại.\n\nĐỗ Khánh Long\n5/5\n\nRất hài lòng, sẽ quay lại.\n\nĐỗ Thùy Vân\n5/5\n\nHơi chờ lâu nhưng kết quả đẹp.\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": []
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/7b1f5658-c8b7-44c3-9bbc-082f69388129",
+      "status": 200,
+      "url": "http://localhost:18081/explore/branches/7b1f5658-c8b7-44c3-9bbc-082f69388129",
+      "heading": "Minh Hoàng Hair Studio - Huyện Long Thành",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\nQuay lại khám phá\n\nCƠ SỞ LÀM ĐẸP\n\nMinh Hoàng Hair Studio - Huyện Long Thành\n\nStudio tóc cao cấp, chuyên nhuộm và tạo kiểu chuyên nghiệp.\n\nTHƯƠNG HIỆU\nMinh Hoàng Hair Studio\nĐỊA CHỈ\n424 Trần Não, Huyện Long Thành, Đồng Nai\nĐặt lịch trực tuyến\nMinh Hoàng Hair Studio - Huyện Long Thành\n\n424 Trần Não, Huyện Long Thành, Đồng Nai\n\nChọn dịch vụ\nThời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.\n01\n\nTHÔNG TIN GHÉ THĂM\n\nMột địa chỉ, mọi thông tin cần thiết\n\nGiờ hoạt động được lấy trực tiếp từ hồ sơ cơ sở.\n\n424 Trần Não, Huyện Long Thành, Đồng Nai\nMinh Hoàng Hair Studio\nChủ nhật\n15:00 – 06:00\nThứ 2\n15:00 – 06:00\nThứ 3\n15:00 – 06:00\nThứ 4\n15:00 – 06:00\nThứ 5\n15:00 – 06:00\nThứ 6\n15:00 – 06:00\nThứ 7\n15:00 – 06:00\n02\n\nDANH MỤC\n\nDịch vụ đang nhận lịch\nChăm sóc da\nChăm sóc da mặt chuyên sâu\n\n90 phút\n\n803.000₫\nTrang điểm\nTrang điểm cô dâu\n\n135 phút\n\n2.278.000₫\nCắt tóc\nCắt tóc nam theo yêu cầu\n\n45 phút\n\n151.000₫\nSơn gel\nSơn gel chân\n\n45 phút\n\n286.000₫\nThiết kế lông mày\nĐiêu khắc lông mày 8D\n\n90 phút\n\n780.000₫\nThiết kế lông mày\nPhun xăm lông mày\n\n105 phút\n\n1.483.000₫\nSơn gel\nSơn gel tay + chân\n\n90 phút\n\n429.000₫\nCắt tóc\nCắt tóc trẻ em\n\n40 phút\n\n136.000₫\nNhuộm tóc\nNhuộm highlight\n\n210 phút\n\n1.950.000₫\nChăm sóc da\nChăm sóc da mặt cơ bản\n\n75 phút\n\n515.000₫\nSpa & Massage\nMassage body 60 phút\n\n90 phút\n\n578.000₫\nCắt tóc\nCắt tóc nữ theo yêu cầu\n\n45 phút\n\n275.000₫\nSơn gel\nSơn gel tay\n\n45 phút\n\n212.000₫\n03\n\nĐỘI NGŨ\n\nChọn người phù hợp\nMassage therapist\nHồ Uyên Mai\nChăm sóc da mặt chuyên sâu · Sơn gel chân · Điêu khắc lông mày 8D · Phun xăm lông mày · Sơn gel tay + chân · Cắt tóc trẻ em · Nhuộm highlight · Massage body 60 phút · Sơn gel tay\n4.1 · 38 đánh giá\n04\n\nKHÔNG GIAN\n\nHình ảnh do cơ sở cung cấp\n\nChưa có hình ảnh do cơ sở tải lên.\n\n05\n\nTRẢI NGHIỆM THẬT\n\nĐánh giá đã được duyệt\n4.1\n38 lượt đánh giá\nTô Hồng Như\n4/5\n\nRất hài lòng, sẽ quay lại.\n\nBùi Thiên Long\n1/5\n\nRất hài lòng, sẽ quay lại.\n\nĐặng Hữu Khoa\n5/5\n\nKhông gian thoải mái, dịch vụ tốt.\n\nVõ Nhật Hải Hiền\n5/5\n\nOk, tạm ổn.\n\nBùi Thùy Anh\n5/5\n\nDịch vụ tuyệt vời, nhân viên nhiệt tình.\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": []
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "status": 200,
+      "url": "http://localhost:18081/explore/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "heading": "Phun xăm lông mày",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\nQuay lại khám phá\n\nTHIẾT KẾ LÔNG MÀY\n\nPhun xăm lông mày\n\nPhun xăm lông mày với sản phẩm cao cấp, nhân viên chuyên nghiệp.\n\nGIÁ\n1.467.000đ\nTHỜI LƯỢNG\n120 phút\nĐỊA ĐIỂM\nThanh Hương Spa & Clinic · Thanh Hương Spa & Clinic - Huyện Long Thành\nĐặt lịch trực tuyến\nPhun xăm lông mày\n\n1.467.000đ · 120 phút\n\nĐặt dịch vụ này\nThời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.\nĐăng nhập để lưu\n01\n\nTHỰC HIỆN BỞI\n\nChuyên viên phù hợp\n\nChưa có chuyên viên công khai cho lựa chọn này.\n\n02\n\nHÌNH ẢNH\n\nHình ảnh dịch vụ\n\nChưa có hình ảnh do cơ sở tải lên.\n\n03\n\nTRẢI NGHIỆM THẬT\n\nĐánh giá dịch vụ\n\nChưa có đánh giá đã được duyệt.\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": []
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "status": 200,
+      "url": "http://localhost:18081/explore/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "heading": "Trẻ hóa da Hàn Quốc",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\nQuay lại khám phá\n\nCHĂM SÓC DA\n\nTrẻ hóa da Hàn Quốc\n\nTrẻ hóa da Hàn Quốc với sản phẩm cao cấp, nhân viên chuyên nghiệp.\n\nGIÁ\n1.439.000đ\nTHỜI LƯỢNG\n120 phút\nĐỊA ĐIỂM\nThanh Hương Spa & Clinic · Thanh Hương Spa & Clinic - Huyện Long Thành\nĐặt lịch trực tuyến\nTrẻ hóa da Hàn Quốc\n\n1.439.000đ · 120 phút\n\nĐặt dịch vụ này\nThời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.\nĐăng nhập để lưu\n01\n\nTHỰC HIỆN BỞI\n\nChuyên viên phù hợp\n\nChưa có chuyên viên công khai cho lựa chọn này.\n\n02\n\nHÌNH ẢNH\n\nHình ảnh dịch vụ\n\nChưa có hình ảnh do cơ sở tải lên.\n\n03\n\nTRẢI NGHIỆM THẬT\n\nĐánh giá dịch vụ\n\nChưa có đánh giá đã được duyệt.\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": []
+    },
+    {
+      "role": "guest",
+      "path": "/explore/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "status": 200,
+      "url": "http://localhost:18081/explore/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "heading": "Phan Trúc Giang Kiên",
+      "text": "Bỏ qua điều hướng\nBeautyBook\nKhám phá\nDịch vụ\nCơ sở\nCách đặt\nĐăng nhập\nĐặt lịch\nQuay lại khám phá\n\nCHUYÊN VIÊN NAIL\n\nPhan Trúc Giang Kiên\n\nChuyên viên nail với 6 năm kinh nghiệm.\n\nCƠ SỞ\nThanh Hương Spa & Clinic · Thanh Hương Spa & Clinic - Quận 7\nCHUYÊN MÔN\nCắt tóc nam theo yêu cầu, Duỗi tóc thẳng, Cắt tóc trẻ em, Sơn gel tay + chân, Cắt tóc nữ theo yêu cầu, Trang điểm cô dâu, Sơn gel chân, Nhuộm highlight\nĐÁNH GIÁ\n4.5/5 · 21 lượt\nĐặt lịch trực tuyến\nPhan Trúc Giang Kiên\n\nChuyên viên nail\n\nĐặt lịch với chuyên viên\nThời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.\n01\n\nCHUYÊN MÔN\n\nDịch vụ phụ trách\nDịch vụ\nCắt tóc nam theo yêu cầu\n\n30 phút\n\n164.000₫\nDịch vụ\nDuỗi tóc thẳng\n\n135 phút\n\n1.423.000₫\nDịch vụ\nCắt tóc trẻ em\n\n40 phút\n\n119.000₫\nDịch vụ\nSơn gel tay + chân\n\n90 phút\n\n399.000₫\nDịch vụ\nCắt tóc nữ theo yêu cầu\n\n75 phút\n\n294.000₫\nDịch vụ\nTrang điểm cô dâu\n\n135 phút\n\n2.654.000₫\nDịch vụ\nSơn gel chân\n\n60 phút\n\n254.000₫\nDịch vụ\nNhuộm highlight\n\n210 phút\n\n2.091.000₫\n02\n\nHỒ SƠ HÌNH ẢNH\n\nHình ảnh do cơ sở cung cấp\n\nChưa có hình ảnh do cơ sở tải lên.\n\n03\n\nTRẢI NGHIỆM THẬT\n\nĐánh giá chuyên viên\n4.5\n21 lượt đánh giá\nĐỗ Tuyết Ly Tuấn\n4/5\n\nKhách hàng không để lại nhận xét.\n\nHồ Đức Vũ\n4/5\n\nKhách hàng không để lại nhận xét.\n\nTô Kim Trang\n3/5\n\nKhách hàng không để lại nhận xét.\n\nĐỗ Khánh Long\n5/5\n\nKhách hàng không để lại nhận xét.\n\nĐỗ Thùy Vân\n5/5\n\nKhách hàng không để lại nhận xét.\n\nTô Hồng Như\n5/5\n\nKhách hàng không để lại nhận xét.\n\nLý Uyên Bích\n5/5\n\nKhách hàng không để lại nhận xét.\n\nBùi Hồng Xuân Phong\n5/5\n\nKhách hàng không để lại nhận xét.\n\nBEAUTYBOOK\n\nChọn nơi bạn tin tưởng. Đặt thời gian phù hợp. Dành phần còn lại cho chính mình.\n\nBeautyBook\n\nNền tảng tìm kiếm và đặt lịch dịch vụ làm đẹp.\n\nKhám phá\nDịch vụ\nCách đặt lịch\nDành cho cơ sở\nĐăng nhập",
+      "images": []
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "role": "guest",
+      "path": "/",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 1,
+      "startedAt": 1791382867268,
+      "finishedAt": 1791382867490,
+      "timing": {
+        "startTime": 1791382867267.735,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.134,
+        "responseStart": 17.942,
+        "responseEnd": 19.468
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/",
+      "url": "http://localhost:18081/api/v1/services/search?sort=rating&limit=10",
+      "documentEpoch": 1,
+      "startedAt": 1791382867321,
+      "finishedAt": 1791382867488,
+      "timing": {
+        "startTime": 1791382867320.3508,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.125,
+        "responseStart": 21.244,
+        "responseEnd": 21.846
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/",
+      "url": "http://localhost:18081/api/v1/services/search?limit=10",
+      "documentEpoch": 1,
+      "startedAt": 1791382867321,
+      "finishedAt": 1791382867488,
+      "timing": {
+        "startTime": 1791382867320.6128,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.084,
+        "responseStart": 31.305,
+        "responseEnd": 31.957
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/",
+      "url": "http://localhost:18081/api/v1/services/categories",
+      "documentEpoch": 1,
+      "startedAt": 1791382867321,
+      "finishedAt": 1791382867488,
+      "timing": {
+        "startTime": 1791382867320.8,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.068,
+        "responseStart": 17.861,
+        "responseEnd": 18.4
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/",
+      "url": "http://localhost:18081/api/v1/branches?sort=rating&limit=4",
+      "documentEpoch": 1,
+      "startedAt": 1791382867322,
+      "finishedAt": 1791382867488,
+      "timing": {
+        "startTime": 1791382867321.065,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.12,
+        "responseStart": 44.808,
+        "responseEnd": 45.373
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 2,
+      "startedAt": 1791382869432,
+      "finishedAt": 1791382869495,
+      "timing": {
+        "startTime": 1791382869430.957,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.121,
+        "responseStart": 4.579,
+        "responseEnd": 5.742
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore",
+      "url": "http://localhost:18081/api/v1/services/search?page=1&limit=12",
+      "documentEpoch": 2,
+      "startedAt": 1791382869451,
+      "finishedAt": 1791382869472,
+      "timing": {
+        "startTime": 1791382869448.4712,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.142,
+        "responseStart": 22.387,
+        "responseEnd": 22.969
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore",
+      "url": "http://localhost:18081/api/v1/services/categories",
+      "documentEpoch": 2,
+      "startedAt": 1791382869451,
+      "finishedAt": 1791382869463,
+      "timing": {
+        "startTime": 1791382869448.879,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.128,
+        "responseStart": 7.485,
+        "responseEnd": 8.008
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/for-business",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 3,
+      "startedAt": 1791382871078,
+      "finishedAt": 1791382871137,
+      "timing": {
+        "startTime": 1791382871078.851,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.22,
+        "responseStart": 3.102,
+        "responseEnd": 3.834
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/login",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 4,
+      "startedAt": 1791382872736,
+      "finishedAt": 1791382872804,
+      "timing": {
+        "startTime": 1791382872736.788,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.194,
+        "responseStart": 3.182,
+        "responseEnd": 4.414
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/register",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 5,
+      "startedAt": 1791382874355,
+      "finishedAt": 1791382874416,
+      "timing": {
+        "startTime": 1791382874355.673,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.101,
+        "responseStart": 3.101,
+        "responseEnd": 3.766
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/register/business",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 6,
+      "startedAt": 1791382875983,
+      "finishedAt": 1791382876040,
+      "timing": {
+        "startTime": 1791382875983.3782,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.139,
+        "responseStart": 3.189,
+        "responseEnd": 3.903
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/forgot-password",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 7,
+      "startedAt": 1791382877598,
+      "finishedAt": 1791382877652,
+      "timing": {
+        "startTime": 1791382877597.2148,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.163,
+        "responseStart": 3.158,
+        "responseEnd": 4.014
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/927dbd16-3d72-4427-b466-b3f2a4fd883f",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 8,
+      "startedAt": 1791382879205,
+      "finishedAt": 1791382879278,
+      "timing": {
+        "startTime": 1791382879205.4832,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.189,
+        "responseStart": 3.097,
+        "responseEnd": 3.76
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/927dbd16-3d72-4427-b466-b3f2a4fd883f",
+      "url": "http://localhost:18081/api/v1/branches/927dbd16-3d72-4427-b466-b3f2a4fd883f",
+      "documentEpoch": 8,
+      "startedAt": 1791382879219,
+      "finishedAt": 1791382879259,
+      "timing": {
+        "startTime": 1791382879219.291,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.183,
+        "responseStart": 38.551,
+        "responseEnd": 39.566
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/7b1f5658-c8b7-44c3-9bbc-082f69388129",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 9,
+      "startedAt": 1791382880482,
+      "finishedAt": 1791382880556,
+      "timing": {
+        "startTime": 1791382880482.1501,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.237,
+        "responseStart": 4.984,
+        "responseEnd": 5.79
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/branches/7b1f5658-c8b7-44c3-9bbc-082f69388129",
+      "url": "http://localhost:18081/api/v1/branches/7b1f5658-c8b7-44c3-9bbc-082f69388129",
+      "documentEpoch": 9,
+      "startedAt": 1791382880500,
+      "finishedAt": 1791382880532,
+      "timing": {
+        "startTime": 1791382880500.05,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.203,
+        "responseStart": 30.497,
+        "responseEnd": 31.597
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 10,
+      "startedAt": 1791382881721,
+      "finishedAt": 1791382881782,
+      "timing": {
+        "startTime": 1791382881720.849,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.214,
+        "responseStart": 4.436,
+        "responseEnd": 5.377
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "url": "http://localhost:18081/api/v1/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "documentEpoch": 10,
+      "startedAt": 1791382881733,
+      "finishedAt": 1791382881762,
+      "timing": {
+        "startTime": 1791382881733.5051,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.223,
+        "responseStart": 26.76,
+        "responseEnd": 27.665
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "url": "http://localhost:18081/api/v1/reviews/service/a3296567-8f8e-4f37-baf8-08a390acfc5a",
+      "documentEpoch": 10,
+      "startedAt": 1791382881762,
+      "finishedAt": 1791382881774,
+      "timing": {
+        "startTime": 1791382881762.332,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.134,
+        "responseStart": 10.52,
+        "responseEnd": 11.309
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 11,
+      "startedAt": 1791382882964,
+      "finishedAt": 1791382883019,
+      "timing": {
+        "startTime": 1791382882963.9138,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.126,
+        "responseStart": 4.115,
+        "responseEnd": 4.82
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "url": "http://localhost:18081/api/v1/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "documentEpoch": 11,
+      "startedAt": 1791382882974,
+      "finishedAt": 1791382882991,
+      "timing": {
+        "startTime": 1791382882974.074,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.147,
+        "responseStart": 16.299,
+        "responseEnd": 17.047
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/services/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "url": "http://localhost:18081/api/v1/reviews/service/80ccdb54-e9ae-4468-b27c-c4568c2da651",
+      "documentEpoch": 11,
+      "startedAt": 1791382882992,
+      "finishedAt": 1791382883002,
+      "timing": {
+        "startTime": 1791382882991.98,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.199,
+        "responseStart": 8.888,
+        "responseEnd": 9.583
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "url": "http://localhost:18081/api/v1/auth/refresh",
+      "documentEpoch": 12,
+      "startedAt": 1791382884203,
+      "finishedAt": 1791382884268,
+      "timing": {
+        "startTime": 1791382884200.757,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.174,
+        "responseStart": 3.886,
+        "responseEnd": 4.598
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "url": "http://localhost:18081/api/v1/staff/public/d33f074a-d543-467b-9030-3f168250b88f",
+      "documentEpoch": 12,
+      "startedAt": 1791382884223,
+      "finishedAt": 1791382884238,
+      "timing": {
+        "startTime": 1791382884222.924,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.155,
+        "responseStart": 13.772,
+        "responseEnd": 14.635
+      }
+    },
+    {
+      "role": "guest",
+      "path": "/explore/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "url": "http://localhost:18081/api/v1/reviews/public/staff/d33f074a-d543-467b-9030-3f168250b88f",
+      "documentEpoch": 12,
+      "startedAt": 1791382884238,
+      "finishedAt": 1791382884255,
+      "timing": {
+        "startTime": 1791382884238.478,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.166,
+        "responseStart": 14.851,
+        "responseEnd": 15.684
+      }
+    }
+  ],
+  "navigationCancellations": [],
+  "semanticChecks": []
+}

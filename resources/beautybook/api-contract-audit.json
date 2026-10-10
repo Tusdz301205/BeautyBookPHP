@@ -1,0 +1,2686 @@
+{
+  "reachableFiles": 125,
+  "operations": 242,
+  "activeOperations": 197,
+  "missingActive": [],
+  "missingInactive": [
+    {
+      "group": "bookingsApi",
+      "operation": "createGuest",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/guest"
+      ],
+      "line": 238,
+      "active": false,
+      "missing": [
+        "/bookings/guest"
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "group": "authApi",
+      "operation": "login",
+      "method": "POST",
+      "endpoints": [
+        "/auth/login"
+      ],
+      "line": 155,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "register",
+      "method": "POST",
+      "endpoints": [
+        "/auth/register"
+      ],
+      "line": 161,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "verifyEmail",
+      "method": "POST",
+      "endpoints": [
+        "/auth/verify-email"
+      ],
+      "line": 167,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "forgotPassword",
+      "method": "POST",
+      "endpoints": [
+        "/auth/forgot-password"
+      ],
+      "line": 168,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "resetPassword",
+      "method": "POST",
+      "endpoints": [
+        "/auth/reset-password"
+      ],
+      "line": 169,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "changePassword",
+      "method": "POST",
+      "endpoints": [
+        "/auth/change-password"
+      ],
+      "line": 170,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "logout",
+      "method": "POST",
+      "endpoints": [
+        "/auth/logout"
+      ],
+      "line": 171,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "getSessions",
+      "method": "GET",
+      "endpoints": [
+        "/auth/sessions"
+      ],
+      "line": 172,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "revokeSession",
+      "method": "DELETE",
+      "endpoints": [
+        "/auth/sessions/1"
+      ],
+      "line": 173,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "revokeOtherSessions",
+      "method": "DELETE",
+      "endpoints": [
+        "/auth/sessions"
+      ],
+      "line": 174,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "getSecurityHistory",
+      "method": "GET",
+      "endpoints": [
+        "/auth/security-history"
+      ],
+      "line": 175,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "selfBookingPolicy",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/self-booking-policy"
+      ],
+      "line": 191,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/bookings"
+      ],
+      "line": 199,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/1"
+      ],
+      "line": 202,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getForceCancelPreview",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/1/force-cancel-preview"
+      ],
+      "line": 204,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "forceCancel",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/status"
+      ],
+      "line": 206,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getStats",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/stats"
+      ],
+      "line": 211,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getByCategory",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/by-category"
+      ],
+      "line": 214,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getByBranch",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/by-branch/1"
+      ],
+      "line": 216,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getByCustomer",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/by-customer/1"
+      ],
+      "line": 218,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "updateStatus",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/status"
+      ],
+      "line": 223,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/bookings"
+      ],
+      "line": 230,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "createGuest",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/guest"
+      ],
+      "line": 238,
+      "active": false,
+      "missing": [
+        "/bookings/guest"
+      ]
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "availableSlots",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/available-slots"
+      ],
+      "line": 252,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "counterSlots",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/counter-slots"
+      ],
+      "line": 264,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getScheduler",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/scheduler"
+      ],
+      "line": 268,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "moveBooking",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/move"
+      ],
+      "line": 273,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "resizeBooking",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/resize"
+      ],
+      "line": 279,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "checkin",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/1/checkin"
+      ],
+      "line": 284,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "assignStaff",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/assign"
+      ],
+      "line": 287,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "addItem",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/1/items"
+      ],
+      "line": 291,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "updateItem",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/items/1"
+      ],
+      "line": 292,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "correctActualTime",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/1/items/1/actual-time"
+      ],
+      "line": 293,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "actualTimeCorrectionHistory",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/1/items/1/actual-time"
+      ],
+      "line": 294,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "myAppointments",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/my-appointments"
+      ],
+      "line": 298,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "salonQueue",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/salon-queue"
+      ],
+      "line": 300,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "salonViolations",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/salon-violations"
+      ],
+      "line": 302,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "previewPrice",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/preview-price"
+      ],
+      "line": 305,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "createChangeRequest",
+      "method": "POST",
+      "endpoints": [
+        "/bookings/1/change-requests"
+      ],
+      "line": 311,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "approveChangeRequest",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/change-requests/1/approve"
+      ],
+      "line": 317,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "rejectChangeRequest",
+      "method": "PATCH",
+      "endpoints": [
+        "/bookings/change-requests/1/reject"
+      ],
+      "line": 323,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "pendingChangeRequests",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/change-requests/pending"
+      ],
+      "line": 328,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getOverview",
+      "method": "GET",
+      "endpoints": [
+        "/reports/overview"
+      ],
+      "line": 333,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getDashboardOverview",
+      "method": "GET",
+      "endpoints": [
+        "/reports/overview"
+      ],
+      "line": 334,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getRevenue",
+      "method": "GET",
+      "endpoints": [
+        "/reports/revenue"
+      ],
+      "line": 336,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getCategories",
+      "method": "GET",
+      "endpoints": [
+        "/reports/categories"
+      ],
+      "line": 337,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getServices",
+      "method": "GET",
+      "endpoints": [
+        "/reports/services"
+      ],
+      "line": 338,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getTopSalons",
+      "method": "GET",
+      "endpoints": [
+        "/reports/top-salons"
+      ],
+      "line": 339,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getUserGrowth",
+      "method": "GET",
+      "endpoints": [
+        "/reports/user-growth"
+      ],
+      "line": 341,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getStaffPerformance",
+      "method": "GET",
+      "endpoints": [
+        "/reports/staff-performance"
+      ],
+      "line": 343,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getOwnerDashboard",
+      "method": "GET",
+      "endpoints": [
+        "/reports/owner-dashboard"
+      ],
+      "line": 349,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reportsApi",
+      "operation": "getFinancialSummary",
+      "method": "GET",
+      "endpoints": [
+        "/reports/financial-summary"
+      ],
+      "line": 354,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/users"
+      ],
+      "line": 367,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/users/1"
+      ],
+      "line": 370,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "getMe",
+      "method": "GET",
+      "endpoints": [
+        "/users/me/profile"
+      ],
+      "line": 371,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "updateMe",
+      "method": "PATCH",
+      "endpoints": [
+        "/users/me/profile"
+      ],
+      "line": 372,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "suspend",
+      "method": "POST",
+      "endpoints": [
+        "/users/1/suspend"
+      ],
+      "line": 373,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "assignRole",
+      "method": "POST",
+      "endpoints": [
+        "/users/1/roles"
+      ],
+      "line": 374,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "revokeRole",
+      "method": "DELETE",
+      "endpoints": [
+        "/users/1/roles/1"
+      ],
+      "line": 379,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/branches"
+      ],
+      "line": 392,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getManage",
+      "method": "GET",
+      "endpoints": [
+        "/branches/manage"
+      ],
+      "line": 400,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getAccessible",
+      "method": "GET",
+      "endpoints": [
+        "/branches/accessible"
+      ],
+      "line": 403,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getAccessibleById",
+      "method": "GET",
+      "endpoints": [
+        "/branches/accessible/1"
+      ],
+      "line": 404,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getPreview",
+      "method": "GET",
+      "endpoints": [
+        "/branches/1/preview"
+      ],
+      "line": 405,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getDistricts",
+      "method": "GET",
+      "endpoints": [
+        "/branches/locations/districts"
+      ],
+      "line": 406,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "createDraft",
+      "method": "POST",
+      "endpoints": [
+        "/branches"
+      ],
+      "line": 407,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "saveOnboarding",
+      "method": "PATCH",
+      "endpoints": [
+        "/branches/1/onboarding"
+      ],
+      "line": 411,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "copyServices",
+      "method": "POST",
+      "endpoints": [
+        "/branches/1/copy-services"
+      ],
+      "line": 415,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "attachDocument",
+      "method": "POST",
+      "endpoints": [
+        "/branches/1/documents"
+      ],
+      "line": 419,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "archiveDocument",
+      "method": "DELETE",
+      "endpoints": [
+        "/branches/1/documents/1"
+      ],
+      "line": 423,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "submit",
+      "method": "POST",
+      "endpoints": [
+        "/branches/1/submit"
+      ],
+      "line": 426,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "publish",
+      "method": "POST",
+      "endpoints": [
+        "/branches/1/publish"
+      ],
+      "line": 427,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/branches/1"
+      ],
+      "line": 429,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/branches/1"
+      ],
+      "line": 434,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "getDetail",
+      "method": "GET",
+      "endpoints": [
+        "/branches/accessible/1"
+      ],
+      "line": 435,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "branchesApi",
+      "operation": "updateStatus",
+      "method": "PATCH",
+      "endpoints": [
+        "/branches/1/status"
+      ],
+      "line": 438,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "search",
+      "method": "GET",
+      "endpoints": [
+        "/services/search"
+      ],
+      "line": 451,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/services"
+      ],
+      "line": 458,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getManage",
+      "method": "GET",
+      "endpoints": [
+        "/services/manage"
+      ],
+      "line": 462,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getWorkspace",
+      "method": "GET",
+      "endpoints": [
+        "/services/workspace/manage"
+      ],
+      "line": 465,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getCategories",
+      "method": "GET",
+      "endpoints": [
+        "/services/categories"
+      ],
+      "line": 467,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getManageCategories",
+      "method": "GET",
+      "endpoints": [
+        "/services/categories/manage"
+      ],
+      "line": 468,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "createCategory",
+      "method": "POST",
+      "endpoints": [
+        "/services/categories"
+      ],
+      "line": 469,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getCanonical",
+      "method": "GET",
+      "endpoints": [
+        "/services/canonical"
+      ],
+      "line": 472,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getCanonicalManage",
+      "method": "GET",
+      "endpoints": [
+        "/services/canonical/manage"
+      ],
+      "line": 473,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "createCanonical",
+      "method": "POST",
+      "endpoints": [
+        "/services/canonical"
+      ],
+      "line": 474,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "updateCanonical",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/canonical/1"
+      ],
+      "line": 477,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/services/1"
+      ],
+      "line": 481,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getVariants",
+      "method": "GET",
+      "endpoints": [
+        "/services/1/variants"
+      ],
+      "line": 482,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "createVariant",
+      "method": "POST",
+      "endpoints": [
+        "/services/1/variants"
+      ],
+      "line": 483,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "updateVariant",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/variants/1"
+      ],
+      "line": 484,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "addDependency",
+      "method": "POST",
+      "endpoints": [
+        "/services/1/dependencies"
+      ],
+      "line": 485,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "createPriceRule",
+      "method": "POST",
+      "endpoints": [
+        "/services/1/price-rules"
+      ],
+      "line": 486,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/services"
+      ],
+      "line": 489,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "createCatalog",
+      "method": "POST",
+      "endpoints": [
+        "/services/catalog"
+      ],
+      "line": 494,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "updateCatalog",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/catalog/1"
+      ],
+      "line": 498,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "archiveCatalog",
+      "method": "DELETE",
+      "endpoints": [
+        "/services/catalog/1"
+      ],
+      "line": 502,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "setBranchAvailability",
+      "method": "POST",
+      "endpoints": [
+        "/services/catalog/1/branches/1/1"
+      ],
+      "line": 505,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "updateOfferingStatus",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/offerings/1/status"
+      ],
+      "line": 507,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "updateOfferingPricing",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/offerings/1/pricing"
+      ],
+      "line": 511,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/services/1"
+      ],
+      "line": 516,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/services/1"
+      ],
+      "line": 522,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getPublic",
+      "method": "GET",
+      "endpoints": [
+        "/staff/public"
+      ],
+      "line": 530,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getPublicById",
+      "method": "GET",
+      "endpoints": [
+        "/staff/public/1"
+      ],
+      "line": 532,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/staff"
+      ],
+      "line": 535,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/staff/1"
+      ],
+      "line": 537,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getMine",
+      "method": "GET",
+      "endpoints": [
+        "/staff/me"
+      ],
+      "line": 538,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/staff"
+      ],
+      "line": 541,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/staff/1"
+      ],
+      "line": 547,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getOffboardingImpact",
+      "method": "GET",
+      "endpoints": [
+        "/staff/1/offboarding-impact"
+      ],
+      "line": 552,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "deactivate",
+      "method": "DELETE",
+      "endpoints": [
+        "/staff/1"
+      ],
+      "line": 554,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getServices",
+      "method": "GET",
+      "endpoints": [
+        "/staff/1/services"
+      ],
+      "line": 556,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "assignServices",
+      "method": "PATCH",
+      "endpoints": [
+        "/staff/1/services"
+      ],
+      "line": 559,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getCommission",
+      "method": "GET",
+      "endpoints": [
+        "/staff/1/commission"
+      ],
+      "line": 568,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "invite",
+      "method": "POST",
+      "endpoints": [
+        "/staff/invitations"
+      ],
+      "line": 570,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getInvitations",
+      "method": "GET",
+      "endpoints": [
+        "/staff/invitations"
+      ],
+      "line": 574,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "getInvitationContext",
+      "method": "GET",
+      "endpoints": [
+        "/staff/invitations/context"
+      ],
+      "line": 576,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "acceptExistingInvitation",
+      "method": "POST",
+      "endpoints": [
+        "/staff/invitations/accept-existing"
+      ],
+      "line": 577,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "resendInvitation",
+      "method": "POST",
+      "endpoints": [
+        "/staff/invitations/1/resend"
+      ],
+      "line": 578,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "changeInvitationEmail",
+      "method": "PATCH",
+      "endpoints": [
+        "/staff/invitations/1/email"
+      ],
+      "line": 579,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "revokeInvitation",
+      "method": "DELETE",
+      "endpoints": [
+        "/staff/invitations/1"
+      ],
+      "line": 580,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "acceptInvitation",
+      "method": "POST",
+      "endpoints": [
+        "/staff/invitations/accept"
+      ],
+      "line": 581,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "upsertHoliday",
+      "method": "PATCH",
+      "endpoints": [
+        "/staff/branches/1/holidays"
+      ],
+      "line": 582,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "createSpecialDay",
+      "method": "POST",
+      "endpoints": [
+        "/staff/branches/1/special-days"
+      ],
+      "line": 583,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "staffApi",
+      "operation": "assignBranch",
+      "method": "POST",
+      "endpoints": [
+        "/staff/1/branch-assignments"
+      ],
+      "line": 584,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "promotionsApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/promotions"
+      ],
+      "line": 599,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "promotionsApi",
+      "operation": "getActiveForService",
+      "method": "GET",
+      "endpoints": [
+        "/promotions/service/1"
+      ],
+      "line": 603,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "promotionsApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/promotions"
+      ],
+      "line": 606,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "promotionsApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/promotions/1"
+      ],
+      "line": 612,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "promotionsApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/promotions/1"
+      ],
+      "line": 618,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "getPublic",
+      "method": "GET",
+      "endpoints": [
+        "/combos/public"
+      ],
+      "line": 623,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/combos"
+      ],
+      "line": 627,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "getById",
+      "method": "GET",
+      "endpoints": [
+        "/combos/1"
+      ],
+      "line": 629,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/combos"
+      ],
+      "line": 630,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/combos/1"
+      ],
+      "line": 631,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "combosApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/combos/1"
+      ],
+      "line": 632,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "preview",
+      "method": "POST",
+      "endpoints": [
+        "/recurring/preview"
+      ],
+      "line": 637,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/recurring"
+      ],
+      "line": 638,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "mine",
+      "method": "GET",
+      "endpoints": [
+        "/recurring/mine"
+      ],
+      "line": 642,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "changeStatus",
+      "method": "PATCH",
+      "endpoints": [
+        "/recurring/1/status"
+      ],
+      "line": 643,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "cancelOccurrence",
+      "method": "DELETE",
+      "endpoints": [
+        "/recurring/1/occurrences/1"
+      ],
+      "line": 644,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "recurringApi",
+      "operation": "cancel",
+      "method": "DELETE",
+      "endpoints": [
+        "/recurring/1"
+      ],
+      "line": 645,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "mediaApi",
+      "operation": "upload",
+      "method": "POST",
+      "endpoints": [
+        "/media/upload"
+      ],
+      "line": 654,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "mediaApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/media/1"
+      ],
+      "line": 656,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "mediaApi",
+      "operation": "download",
+      "method": "GET",
+      "endpoints": [
+        "/media/1/content"
+      ],
+      "line": 657,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "getMine",
+      "method": "GET",
+      "endpoints": [
+        "/vouchers/mine"
+      ],
+      "line": 662,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/vouchers"
+      ],
+      "line": 665,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/vouchers"
+      ],
+      "line": 668,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "update",
+      "method": "PATCH",
+      "endpoints": [
+        "/vouchers/1"
+      ],
+      "line": 674,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "grant",
+      "method": "POST",
+      "endpoints": [
+        "/vouchers/1/grant"
+      ],
+      "line": 680,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "vouchersApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/vouchers/1"
+      ],
+      "line": 686,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "notificationsApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/notifications"
+      ],
+      "line": 700,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "notificationsApi",
+      "operation": "getUnreadCount",
+      "method": "GET",
+      "endpoints": [
+        "/notifications/unread-count"
+      ],
+      "line": 703,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "notificationsApi",
+      "operation": "markAsRead",
+      "method": "PATCH",
+      "endpoints": [
+        "/notifications/1/read"
+      ],
+      "line": 706,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "notificationsApi",
+      "operation": "markAllAsRead",
+      "method": "PATCH",
+      "endpoints": [
+        "/notifications/read-all"
+      ],
+      "line": 709,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "notificationsApi",
+      "operation": "registerDeviceToken",
+      "method": "POST",
+      "endpoints": [
+        "/notifications/device-token"
+      ],
+      "line": 712,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "getByBusiness",
+      "method": "GET",
+      "endpoints": [
+        "/reviews/business/1"
+      ],
+      "line": 721,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "getForManagement",
+      "method": "GET",
+      "endpoints": [
+        "/reviews/manage"
+      ],
+      "line": 730,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "getByStaff",
+      "method": "GET",
+      "endpoints": [
+        "/reviews/staff/1"
+      ],
+      "line": 733,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "getPublicByStaff",
+      "method": "GET",
+      "endpoints": [
+        "/reviews/public/staff/1"
+      ],
+      "line": 734,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "getByService",
+      "method": "GET",
+      "endpoints": [
+        "/reviews/service/1"
+      ],
+      "line": 735,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/reviews"
+      ],
+      "line": 738,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "reply",
+      "method": "POST",
+      "endpoints": [
+        "/reviews/1/reply"
+      ],
+      "line": 744,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "moderate",
+      "method": "PATCH",
+      "endpoints": [
+        "/reviews/1/moderate"
+      ],
+      "line": 750,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "report",
+      "method": "POST",
+      "endpoints": [
+        "/reviews/1/report"
+      ],
+      "line": 754,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "appeal",
+      "method": "POST",
+      "endpoints": [
+        "/reviews/1/appeals"
+      ],
+      "line": 755,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "reviewsApi",
+      "operation": "resolveAppeal",
+      "method": "PATCH",
+      "endpoints": [
+        "/reviews/appeals/1"
+      ],
+      "line": 756,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getSettings",
+      "method": "GET",
+      "endpoints": [
+        "/admin/settings"
+      ],
+      "line": 761,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "updateSettings",
+      "method": "PATCH",
+      "endpoints": [
+        "/admin/settings"
+      ],
+      "line": 762,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "resetSettings",
+      "method": "POST",
+      "endpoints": [
+        "/admin/settings/reset"
+      ],
+      "line": 763,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getTrustSnapshots",
+      "method": "GET",
+      "endpoints": [
+        "/admin/trust-snapshots"
+      ],
+      "line": 764,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "rebuildTrustSnapshots",
+      "method": "POST",
+      "endpoints": [
+        "/admin/trust-snapshots/rebuild"
+      ],
+      "line": 765,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getTrustActions",
+      "method": "GET",
+      "endpoints": [
+        "/admin/trust-actions"
+      ],
+      "line": 766,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "createTrustAction",
+      "method": "POST",
+      "endpoints": [
+        "/admin/trust-actions"
+      ],
+      "line": 767,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getAuditLogs",
+      "method": "GET",
+      "endpoints": [
+        "/admin/audit-logs"
+      ],
+      "line": 768,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getBusinessDirectory",
+      "method": "GET",
+      "endpoints": [
+        "/admin/business-directory"
+      ],
+      "line": 772,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getBranchDirectory",
+      "method": "GET",
+      "endpoints": [
+        "/admin/branch-directory"
+      ],
+      "line": 777,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getComplianceQueue",
+      "method": "GET",
+      "endpoints": [
+        "/admin/compliance-queue"
+      ],
+      "line": 779,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getFinanceOverview",
+      "method": "GET",
+      "endpoints": [
+        "/admin/finance-overview"
+      ],
+      "line": 780,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "adminApi",
+      "operation": "getMarketingOverview",
+      "method": "GET",
+      "endpoints": [
+        "/admin/marketing-overview"
+      ],
+      "line": 781,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "platformPolicyApi",
+      "operation": "getPublic",
+      "method": "GET",
+      "endpoints": [
+        "/platform-settings/public"
+      ],
+      "line": 785,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "getDetail",
+      "method": "GET",
+      "endpoints": [
+        "/business/1/detail"
+      ],
+      "line": 790,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "getMembers",
+      "method": "GET",
+      "endpoints": [
+        "/business/1/members"
+      ],
+      "line": 791,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "getCancellationPolicy",
+      "method": "GET",
+      "endpoints": [
+        "/business/1/cancellation-policy"
+      ],
+      "line": 792,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "updateCancellationPolicy",
+      "method": "PATCH",
+      "endpoints": [
+        "/business/1/cancellation-policy"
+      ],
+      "line": 793,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "createDraft",
+      "method": "POST",
+      "endpoints": [
+        "/business/onboarding/draft"
+      ],
+      "line": 797,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "getOnboardingConfig",
+      "method": "GET",
+      "endpoints": [
+        "/business/onboarding/config"
+      ],
+      "line": 798,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "getMyOnboarding",
+      "method": "GET",
+      "endpoints": [
+        "/business/onboarding/mine"
+      ],
+      "line": 799,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "updateDraft",
+      "method": "PATCH",
+      "endpoints": [
+        "/business/1/onboarding"
+      ],
+      "line": 800,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "submit",
+      "method": "POST",
+      "endpoints": [
+        "/business/1/submit"
+      ],
+      "line": 801,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "businessApi",
+      "operation": "review",
+      "method": "PATCH",
+      "endpoints": [
+        "/business/1/review"
+      ],
+      "line": 802,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getAll",
+      "method": "GET",
+      "endpoints": [
+        "/payments"
+      ],
+      "line": 807,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "collect",
+      "method": "POST",
+      "endpoints": [
+        "/payments/collect"
+      ],
+      "line": 808,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getProviders",
+      "method": "GET",
+      "endpoints": [
+        "/payments/providers"
+      ],
+      "line": 812,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getCheckout",
+      "method": "GET",
+      "endpoints": [
+        "/payments/checkout/1"
+      ],
+      "line": 813,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "verifyTransaction",
+      "method": "POST",
+      "endpoints": [
+        "/payments/transactions/1/verify"
+      ],
+      "line": 815,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "reverseTransaction",
+      "method": "POST",
+      "endpoints": [
+        "/payments/transactions/1/reverse"
+      ],
+      "line": 820,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getPolicies",
+      "method": "GET",
+      "endpoints": [
+        "/payments/policies"
+      ],
+      "line": 824,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "createPolicy",
+      "method": "POST",
+      "endpoints": [
+        "/payments/policies"
+      ],
+      "line": 825,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getLedger",
+      "method": "GET",
+      "endpoints": [
+        "/payments/ledger"
+      ],
+      "line": 831,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getStatements",
+      "method": "GET",
+      "endpoints": [
+        "/payments/platform-statements"
+      ],
+      "line": 833,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "generateStatement",
+      "method": "POST",
+      "endpoints": [
+        "/payments/platform-statements/generate"
+      ],
+      "line": 834,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "transitionStatement",
+      "method": "PATCH",
+      "endpoints": [
+        "/payments/platform-statements/1/status"
+      ],
+      "line": 835,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getPackages",
+      "method": "GET",
+      "endpoints": [
+        "/payments/packages"
+      ],
+      "line": 841,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "createPackage",
+      "method": "POST",
+      "endpoints": [
+        "/payments/packages"
+      ],
+      "line": 843,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "purchasePackage",
+      "method": "POST",
+      "endpoints": [
+        "/payments/packages/1/purchases"
+      ],
+      "line": 844,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "getPackagePurchases",
+      "method": "GET",
+      "endpoints": [
+        "/payments/package-purchases"
+      ],
+      "line": 845,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "payPackageInstallment",
+      "method": "POST",
+      "endpoints": [
+        "/payments/package-installments/1/pay"
+      ],
+      "line": 846,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "reservePackageSession",
+      "method": "POST",
+      "endpoints": [
+        "/payments/package-purchases/1/sessions/reserve"
+      ],
+      "line": 847,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "requestRefund",
+      "method": "POST",
+      "endpoints": [
+        "/payments/1/refund-requests"
+      ],
+      "line": 849,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "reviewRefund",
+      "method": "PATCH",
+      "endpoints": [
+        "/payments/refunds/1/review"
+      ],
+      "line": 854,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "paymentsApi",
+      "operation": "processRefund",
+      "method": "POST",
+      "endpoints": [
+        "/payments/refunds/1/process"
+      ],
+      "line": 859,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "getCenter",
+      "method": "GET",
+      "endpoints": [
+        "/privacy/center"
+      ],
+      "line": 867,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "createDataRequest",
+      "method": "POST",
+      "endpoints": [
+        "/privacy/data-requests"
+      ],
+      "line": 868,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "getDataRequests",
+      "method": "GET",
+      "endpoints": [
+        "/privacy/data-requests"
+      ],
+      "line": 872,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "getMarketingPreferences",
+      "method": "GET",
+      "endpoints": [
+        "/privacy/marketing-preferences"
+      ],
+      "line": 873,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "updateMarketingPreferences",
+      "method": "PUT",
+      "endpoints": [
+        "/privacy/marketing-preferences"
+      ],
+      "line": 874,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "createExport",
+      "method": "POST",
+      "endpoints": [
+        "/privacy/exports"
+      ],
+      "line": 878,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "privacyApi",
+      "operation": "downloadExport",
+      "method": "GET",
+      "endpoints": [
+        "/privacy/exports/1/download"
+      ],
+      "line": 882,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "savedServicesApi",
+      "operation": "list",
+      "method": "GET",
+      "endpoints": [
+        "/customer/saved-services"
+      ],
+      "line": 890,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "savedServicesApi",
+      "operation": "save",
+      "method": "POST",
+      "endpoints": [
+        "/customer/saved-services/1"
+      ],
+      "line": 891,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "savedServicesApi",
+      "operation": "remove",
+      "method": "DELETE",
+      "endpoints": [
+        "/customer/saved-services/1"
+      ],
+      "line": 892,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "impactApi",
+      "operation": "list",
+      "method": "GET",
+      "endpoints": [
+        "/operational-impacts"
+      ],
+      "line": 896,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "impactApi",
+      "operation": "detail",
+      "method": "GET",
+      "endpoints": [
+        "/operational-impacts/1"
+      ],
+      "line": 897,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "impactApi",
+      "operation": "resolve",
+      "method": "PATCH",
+      "endpoints": [
+        "/operational-impacts/1/items/1"
+      ],
+      "line": 898,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "impactApi",
+      "operation": "resolveBatch",
+      "method": "PATCH",
+      "endpoints": [
+        "/operational-impacts/1/items"
+      ],
+      "line": 899,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "impactApi",
+      "operation": "complete",
+      "method": "POST",
+      "endpoints": [
+        "/operational-impacts/1/complete"
+      ],
+      "line": 900,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "list",
+      "method": "GET",
+      "endpoints": [
+        "/ownership-transfers"
+      ],
+      "line": 904,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "platformQueue",
+      "method": "GET",
+      "endpoints": [
+        "/ownership-transfers/platform/pending"
+      ],
+      "line": 905,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "incoming",
+      "method": "GET",
+      "endpoints": [
+        "/ownership-transfers/pending-for-me"
+      ],
+      "line": 906,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "create",
+      "method": "POST",
+      "endpoints": [
+        "/ownership-transfers"
+      ],
+      "line": 907,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "accept",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/1/accept"
+      ],
+      "line": 908,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "submitMoreInfo",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/1/submit-more-info"
+      ],
+      "line": 909,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "cancel",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/1/cancel"
+      ],
+      "line": 910,
+      "active": false,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "review",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/1/review"
+      ],
+      "line": 911,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "execute",
+      "method": "POST",
+      "endpoints": [
+        "/ownership-transfers/1/execute"
+      ],
+      "line": 912,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "versions",
+      "method": "GET",
+      "endpoints": [
+        "/ownership-transfers/business/1/versions"
+      ],
+      "line": 913,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "legalVersion",
+      "method": "POST",
+      "endpoints": [
+        "/ownership-transfers/business/1/legal-entity"
+      ],
+      "line": 914,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "payoutVersion",
+      "method": "POST",
+      "endpoints": [
+        "/ownership-transfers/business/1/payout-account"
+      ],
+      "line": 915,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "verifyLegalVersion",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/platform/legal-entity/1/verify"
+      ],
+      "line": 916,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "ownershipApi",
+      "operation": "verifyPayoutVersion",
+      "method": "PATCH",
+      "endpoints": [
+        "/ownership-transfers/platform/payout-account/1/verify"
+      ],
+      "line": 917,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "authApi",
+      "operation": "refresh",
+      "method": "POST",
+      "endpoints": [
+        "/auth/refresh"
+      ],
+      "active": true,
+      "missing": []
+    }
+  ]
+}

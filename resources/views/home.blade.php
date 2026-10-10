@@ -1,0 +1,14 @@
+@extends('layouts.app')
+@section('title', 'BeautyBook · Đặt lịch làm đẹp')
+@section('content')
+<div class="bb-home">
+<section class="bb-home-hero"><div><p class="eyebrow">Làm đẹp theo cách của bạn</p><h1>Một lịch hẹn.<br><span>Một chút yêu mình.</span></h1><p>Khám phá dịch vụ và địa điểm phù hợp. Chọn chuyên viên, tìm thời gian thuận tiện và dành một khoảng riêng cho bản thân.</p><form class="bb-home-search" action="{{ route('marketplace.index') }}" method="GET"><label><x-icon name="search"/><input name="q" placeholder="Bạn muốn tìm dịch vụ gì?" aria-label="Tìm dịch vụ hoặc địa điểm"></label><button class="button button-primary" type="submit">Khám phá<x-icon name="arrow"/></button></form><p>Tóc · Chăm sóc da · Nails · Spa & massage</p></div><figure><img src="{{ asset('images/beautybook/beautybook-home-hero-768.webp') }}" width="768" height="960" alt="Bộ sản phẩm chăm sóc sắc đẹp và dụng cụ làm tóc" fetchpriority="high"></figure></section>
+<section class="bb-home-section" id="dich-vu"><div class="section-heading-row"><h2>Bạn muốn chăm sóc điều gì?</h2><a class="text-link" href="{{ route('marketplace.index') }}">Khám phá tất cả<x-icon name="arrow"/></a></div><p>Bắt đầu từ điều bạn đang cần hôm nay.</p><div class="bb-category-grid">
+@foreach ([['Tóc','hair-care-editorial-640.webp','tóc'],['Nails','nail-care-editorial-640.webp','nail'],['Chăm sóc da','skincare-editorial-640.webp','da'],['Spa & massage','spa-wellness-editorial-640.webp','spa']] as [$label,$image,$keyword])
+<a class="bb-category-card" href="{{ route('marketplace.index',['q'=>$keyword]) }}"><img src="{{ asset('images/beautybook/'.$image) }}" alt="Minh họa {{ $label }}" width="640" height="480" loading="lazy"><span>{{ $label }}<x-icon name="arrow"/></span></a>
+@endforeach
+</div></section>
+<section class="bb-home-section"><div class="section-heading-row"><h2>Khám phá địa điểm làm đẹp</h2><a class="text-link" href="{{ route('marketplace.index') }}">Xem tất cả<x-icon name="arrow"/></a></div><p>Xem dịch vụ, giờ hoạt động và chọn lịch phù hợp tại từng cơ sở.</p>@if($featured->count())<div class="market-grid">@foreach($featured as $branch)<x-branch-card :branch="$branch"/>@endforeach</div>@else<div class="empty-state">Chưa có địa điểm được giới thiệu. Hãy quay lại sau để khám phá.</div>@endif</section>
+<section class="bb-home-section" id="cach-dat"><h2>Đặt lịch, nhẹ nhàng trong vài bước.</h2><p>Thông tin rõ ràng từ lúc chọn dịch vụ đến khi xác nhận.</p><div class="bb-how-grid"><article><strong>01</strong><h3>Tìm nơi phù hợp</h3><p>Khám phá địa điểm, dịch vụ và mức giá theo nhu cầu của bạn.</p></article><article><strong>02</strong><h3>Chọn người, chọn giờ</h3><p>Chọn chuyên viên và khung giờ còn trống trong lịch của cơ sở.</p></article><article><strong>03</strong><h3>Xác nhận & sẵn sàng</h3><p>Kiểm tra thông tin, áp dụng ưu đãi và theo dõi lịch trong tài khoản của bạn.</p></article></div></section>
+</div>
+@endsection

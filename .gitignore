@@ -1,51 +1,66 @@
-# Dependencies
-/vendor
-/node_modules
+# Secrets and local configuration
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
 
-# Build & Generated Public Assets
-/public/build
-/public/storage
-/public/hot
-/public/fonts-manifest.dev.json
+# Dependencies and build output
+**/node_modules/
+**/vendor/
+**/dist/
+**/build/
+/public/beautybook-build/
+**/coverage/
+**/.cache/
+**/vite.config.*.timestamp-*
 
-# Environment & Secrets (NEVER COMMIT)
-.env
-.env.*
-!.env.example
+# Local database dumps
+*.sql
+*.dump
 
-# Storage & Logs
-/storage/*.key
-/storage/logs/*
-/storage/framework/cache/*
-/storage/framework/sessions/*
-/storage/framework/views/*
-/storage/pail
+# Runtime and editor files
 *.log
-
-# Testing & Coverage
-/.phpunit.cache
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*.swo
+*.pid
 .phpunit.result.cache
-/coverage
-/test-results
-/playwright-report
-
-# IDE & Editor files
-/.idea
-/.vscode
-/.cursor/
-/.codex
-/.nova
-/.zed
-.phpactor.json
-_ide_helper.php
-Homestead.json
-Homestead.yaml
-
-# OS & Temporary Artifacts
+.qa-browser-profile/
+.tmp-chrome-acceptance/
+.tmp-ui-acceptance/
+.tmp-*.mjs
 .DS_Store
 Thumbs.db
-desktop.ini
-*.bak
-*.backup
-*.dump
-*.tmp
+.idea/
+.vscode/
+
+# Local exports, generated reports and temporary QA artifacts.
+/tmp/
+/output/
+*.zip
+*.7z
+*.rar
+**/.hallmark/
+**/.agents/
+.kilo/
+**/playwright-report/
+**/test-results/
+**/playwright/.auth/
+**/uploads/
+storage/app/private/*
+!storage/app/private/.gitignore
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+public/storage
+.env.laravel
+.env.testing.local

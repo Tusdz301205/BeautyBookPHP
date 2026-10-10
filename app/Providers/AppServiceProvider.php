@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Support\Facades\View::composer(['layouts.app','marketplace.show'], function ($view) {
+            $view->with('ui', app(\App\Services\Ui\Navigation::class)->forRequest(request()));
+        });
     }
 }

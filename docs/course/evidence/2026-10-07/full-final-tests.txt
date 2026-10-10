@@ -1,0 +1,260 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthat true is true[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\FinanceMoneyTest[39m
+  [32;1m✓[39;22m[90m [39m[90mlarge proportional allocation does not multiply past integer capaci[39m[90m…[39m [90m0.15s[39m  
+  [32;1m✓[39;22m[90m [39m[90mmoney parsing preserves decimal json values[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\AdvancedFinanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mexact email lookup adds first time customer only to authorized wor[39m[90m…[39m [90m55.00s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpolicy version and booking deposit snapshot are immutable[39m[90m           [39m [90m1.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreal booking captures service policy after items and honors branch[39m[90m… [39m [90m1.30s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpackage installments split remainder and manual verify activate the[39m[90m…[39m [90m1.76s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpackage reservation has customer branch scope and cancel release co[39m[90m…[39m [90m0.74s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfees statements and invoice request issue replacement lifecycle[39m[90m     [39m [90m0.88s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\AuthSecurityTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic registration always creates a customer with customer assignm[39m[90m…[39m [90m1.09s[39m  
+  [32;1m✓[39;22m[90m [39m[90mall five demo actors can login and login regenerates the session[39m[90m    [39m [90m1.33s[39m  
+  [32;1m✓[39;22m[90m [39m[90memail verification notice send and signed verification work[39m[90m         [39m [90m0.92s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpassword reset notification and reset work[39m[90m                          [39m [90m1.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mworkspace selection is limited to the authenticated operational use[39m[90m…[39m [90m0.84s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdeleted active assignment blocks the app on the next request[39m[90m        [39m [90m0.53s[39m  
+  [32;1m✓[39;22m[90m [39m[90msecurity session revocation requires current password and deletes d[39m[90m…[39m [90m0.62s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcsrf middleware rejects a post without a token[39m[90m                      [39m [90m0.65s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingBoardTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer board only shows own bookings and exposes direct and late[39m[90m… [39m [90m0.70s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner sees business scope while receptionist is limited to exact br[39m[90m…[39m [90m0.85s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff board only shows assigned bookings and assigned items[39m[90m         [39m [90m0.74s[39m  
+  [32;1m✓[39;22m[90m [39m[90massigned staff can start and complete item at exact boundaries[39m[90m      [39m [90m0.73s[39m  
+  [32;1m✓[39;22m[90m [39m[90mitem transition rejects unassigned staff too early start and stale[39m[90m… [39m [90m0.55s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingChangeRequestTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer cancellation request is rejected at and after appointment[39m[90m… [39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrejected request cannot be rejected or approved again[39m[90m               [39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreschedule approval moves booking and item times without changing d[39m[90m…[39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreschedule request must preserve total duration[39m[90m                     [39m [90m0.64s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreschedule approval rejects customer or staff overlap and keeps req[39m[90m…[39m [90m0.64s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff change approval rejects wrong scope and missing capability[39m[90m    [39m [90m0.63s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff change approval updates staff and revision when candidate is[39m[90m… [39m [90m0.66s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff change approval rejects candidate with overlapping booking[39m[90m    [39m [90m0.67s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingCreationTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer booking creates profile link snapshots and history[39m[90m         [39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational booking uses contact without linking customer profile[39m[90m   [39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational booking requires contact and receptionist requires supp[39m[90m…[39m [90m0.63s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreceptionist is scoped to exact branch and guest is denied[39m[90m          [39m [90m0.73s[39m  
+  [32;1m✓[39;22m[90m [39m[90msame idempotency key replays same payload and rejects different pay[39m[90m…[39m [90m0.71s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhalf open adjacency is allowed but overlap is rejected[39m[90m              [39m [90m0.71s[39m  
+  [32;1m✓[39;22m[90m [39m[90msame customer cannot overlap across branches[39m[90m                        [39m [90m0.60s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcross branch offering and staff tampering are rejected[39m[90m              [39m [90m0.67s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational booking is blocked when branch is paused[39m[90m                [39m [90m0.62s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfixed variant controls snapshot price duration and buffers[39m[90m          [39m [90m0.65s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnon deterministic variant types are rejected at quote[39m[90m               [39m [90m0.69s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbooking snapshot does not change after catalog edit[39m[90m                 [39m [90m0.62s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff without capability is rejected[39m[90m                                [39m [90m0.65s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingLifecycleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer direct cancel is allowed at exactly four hours[39m[90m             [39m [90m0.65s[39m  
+  [32;1m✓[39;22m[90m [39m[90mlate customer cancel requires request and records violation at requ[39m[90m…[39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90mno show is strictly after fifteen minutes and records violation[39m[90m     [39m [90m0.73s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcancellation request evidence blocks no show and can be approved[39m[90m    [39m [90m0.67s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexpired change request cannot be approved and expiration persists[39m[90m   [39m [90m0.67s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreceptionist and staff follow checkin start and completion time gat[39m[90m…[39m [90m0.64s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff cannot confirm pending and admin cannot mark no show[39m[90m          [39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90marrival history and service progress each block no show[39m[90m             [39m [90m0.59s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingNotificationTest[39m
+  [32;1m✓[39;22m[90m [39m[90mnotification and outbox are deduplicated together[39m[90m                   [39m [90m0.52s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnotification failure rolls back booking transition history and outb[39m[90m…[39m [90m0.59s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingPolicyTest[39m
+  [32;1m✓[39;22m[90m [39m[90mscore three requires ack score four restricts only same business[39m[90m    [39m [90m0.64s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexpired restriction stays expired until new violation[39m[90m               [39m [90m0.59s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BookingPolicyUiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer sees warning at two points without acknowledgment checkbox[39m[90m [39m [90m0.64s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcustomer at three points must acknowledge before self booking[39m[90m       [39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90mactive restriction disables self booking only for the affected busi[39m[90m…[39m [90m0.65s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BranchClosureTest[39m
+  [32;1m✓[39;22m[90m [39m[90mclosure commits new impact coverage and requires completed current[39m[90m… [39m [90m0.82s[39m  
+  [32;1m✓[39;22m[90m [39m[90mempty paused branch can close without an unresolvable empty case[39m[90m    [39m [90m0.56s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BranchLifecycleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mowner can create submit admin approve and owner publish branch[39m[90m      [39m [90m0.92s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhours validation rejects open day without valid time range[39m[90m          [39m [90m0.41s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot manage branch from another tenant[39m[90m                      [39m [90m0.55s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\CustomerProfileTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcustomer can update only self profile fields[39m[90m                        [39m [90m1.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational user and unverified customer cannot use customer profil[39m[90m…[39m [90m0.86s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprofile validation rejects future birth date and foreign avatar[39m[90m     [39m [90m0.92s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreal avatar upload has self ownership and public read only while re[39m[90m…[39m [90m1.73s[39m  
+  [32;1m✓[39;22m[90m [39m[90mavatar rejects executable or svg and private media cannot be read a[39m[90m…[39m [90m1.24s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\EngagementTest[39m
+  [32;1m✓[39;22m[90m [39m[90monly customer owner can review completed booking once[39m[90m               [39m [90m1.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90manonymous public review and hidden summary are safe[39m[90m                 [39m [90m1.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner reply and platform moderation report appeal lifecycle[39m[90m         [39m [90m1.92s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcross business reply and foreign service rating are rejected[39m[90m        [39m [90m0.59s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfavorites are idempotent scoped and keep unavailable entries[39m[90m        [39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublic summaries include only public staff metadata and no customer[39m[90m…[39m [90m0.45s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublic review avatar uses self public reference and respects anonym[39m[90m…[39m [90m0.53s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthe application returns a successful response[39m[90m                       [39m [90m0.35s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\FinanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mexact cents partial cash and pending bank reservations cannot overc[39m[90m…[39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcustomer foreign owner and closed booking cannot collect[39m[90m            [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreversal is append only once and idempotency payload is checked[39m[90m     [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrefund reservation maker checker and processing are idempotent[39m[90m      [39m [90m0.66s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtransfer requires proof and settlement reference cannot be reused[39m[90m   [39m [90m0.61s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\FoundationReadinessTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreadiness requires database and seed[39m[90m                                [39m [90m0.43s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\GovernanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin user directory search and customer access rejection[39m[90m           [39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90msuspend revokes sessions remember token and blocks login and live s[39m[90m…[39m [90m0.66s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrole grants enforce account separation and exact scope[39m[90m              [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner can only grant staff within selected business[39m[90m                 [39m [90m0.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcustomer cancellation and no show do not reduce salon trust[39m[90m         [39m [90m0.41s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtrust warning is durable and notifies owner[39m[90m                         [39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtrust suspension with future booking keeps branch active and create[39m[90m…[39m [90m0.49s[39m  
+  [32;1m✓[39;22m[90m [39m[90mconfigured violation threshold suspends and restore recovers origin[39m[90m…[39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mautomatic threshold suspension waits for future booking impact[39m[90m      [39m [90m0.45s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbusiness suspension preflight records impact for each branch withou[39m[90m…[39m [90m0.42s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbusiness restriction without bookings applies and blocks public boo[39m[90m…[39m [90m0.41s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdashboard reports actual payment ledger not booking face value and[39m[90m… [39m [90m0.47s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\IdentityScopeTest[39m
+  [32;1m✓[39;22m[90m [39m[90mseed contains exactly the five official roles[39m[90m                       [39m [90m0.42s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcustomer account cannot receive an operational role[39m[90m                 [39m [90m0.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational account cannot receive customer role[39m[90m                    [39m [90m0.36s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbranch scoped role rejects a branch from another business[39m[90m           [39m [90m0.49s[39m  
+  [32;1m✓[39;22m[90m [39m[90mduplicate grant is idempotent[39m[90m                                       [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mmysql scope check rejects invalid normalized scope[39m[90m                  [39m [90m0.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbusiness and branch policies do not cross tenants[39m[90m                   [39m [90m0.44s[39m  
+  [32;1m✓[39;22m[90m [39m[90moperational session context re resolves the active assignment[39m[90m       [39m [90m0.34s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrevoking an assignment invalidates all database sessions for that u[39m[90m…[39m [90m0.43s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ImpactTest[39m
+  [32;1m✓[39;22m[90m [39m[90mbranch case snapshots scope and blade render[39m[90m                        [39m [90m0.57s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstale resolved booking reopens before completion and closure[39m[90m        [39m [90m0.52s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnew booking is detected after previous case completion[39m[90m              [39m [90m0.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcancel refund reserves verified amount and never marks money refund[39m[90m…[39m [90m0.52s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreschedule rechecks open hours conflicts and preserves price snapsh[39m[90m…[39m [90m0.49s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreassign requires authoritative staff capability[39m[90m                    [39m [90m0.45s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtransfer branch preserves booking item ids and price snapshots[39m[90m      [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtransfer rejects package reference and retains item and entitlement[39m[90m…[39m [90m0.54s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\InvoiceArithmeticTest[39m
+  [32;1m✓[39;22m[90m [39m[90minclusive and exclusive line taxes equal the rounded header[39m[90m         [39m [90m0.66s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdiscount rounding never makes a line negative and matches header[39m[90m    [39m [90m0.61s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\MarketplaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mguest search returns only public ready branches with pagination[39m[90m     [39m [90m0.73s[39m  
+  [32;1m✓[39;22m[90m [39m[90mguest filters marketplace by location category and price[39m[90m            [39m [90m1.15s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublic detail hides draft and suspended branches[39m[90m                    [39m [90m0.67s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\OnboardingTest[39m
+  [32;1m✓[39;22m[90m [39m[90moperational user can create submit resubmit and get business approv[39m[90m…[39m [90m0.77s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot self approve and non admin cannot open review queue[39m[90m    [39m [90m1.06s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot manage another tenant business[39m[90m                         [39m [90m1.23s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\OperationsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mwaitlist join has duplicate guard and customer scope[39m[90m                [39m [90m0.53s[39m  
+  [32;1m✓[39;22m[90m [39m[90moffer stores only token hash and accept uses real booking transacti[39m[90m…[39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexpired offer cannot be accepted and releases join guard[39m[90m            [39m [90m0.40s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreceptionist cannot operate other branch waitlist[39m[90m                   [39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mloyalty rules are versioned scoped and balance is self only[39m[90m         [39m [90m0.44s[39m  
+  [32;1m✓[39;22m[90m [39m[90mloyalty redemption in booking is atomic idempotent and reversible[39m[90m   [39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mearn does not award unpaid completed booking[39m[90m                        [39m [90m0.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90mverified payment awards once and refund reconciles points[39m[90m           [39m [90m0.50s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\OwnershipTest[39m
+  [32;1m✓[39;22m[90m [39m[90mtransfer requires recipient acceptance and verified versions and re[39m[90m…[39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpending financial obligation blocks execution[39m[90m                       [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcustomer cannot receive transfer and owner cannot platform review[39m[90m   [39m [90m0.50s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\PlatformMaintenanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mexpiry is idempotent and does not expire confirmed bookings[39m[90m         [39m [90m0.48s[39m  
+  [32;1m✓[39;22m[90m [39m[90moutbox delivery is idempotent and read scope is private[39m[90m             [39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin settings validate and log while owner cannot mutate[39m[90m           [39m [90m0.54s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\PrivacyTest[39m
+  [32;1m✓[39;22m[90m [39m[90mexport requires password and has one time customer scoped download[39m[90m  [39m [90m0.42s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdata request duplicate is serialized and expired packages are clean[39m[90m…[39m [90m0.58s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexport includes self booking finance and review details without for[39m[90m…[39m [90m0.46s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\PromotionTest[39m
+  [32;1m✓[39;22m[90m [39m[90mquote selects best rule with stable tie and exact money[39m[90m             [39m [90m0.44s[39m  
+  [32;1m✓[39;22m[90m [39m[90mvoucher wins without stacking and stacks on remaining price when al[39m[90m…[39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90mscopes audiences expiry and entitlement are enforced[39m[90m                [39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreservation quota release and apply are idempotent[39m[90m                  [39m [90m0.57s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner crud ui and cross business scope rejection[39m[90m                    [39m [90m0.59s[39m  
+  [32;1m✓[39;22m[90m [39m[90mserver quote ignores client price and enforces voucher minimum and[39m[90m… [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbooking transaction reserves once and keeps immutable discount snap[39m[90m…[39m [90m0.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mplatform workspace isolated from tenant campaigns[39m[90m                   [39m [90m0.46s[39m  
+  [32;1m✓[39;22m[90m [39m[90mautomatic issue requires related business and matching segment[39m[90m      [39m [90m0.44s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo discount only uses allocated lines in service scope[39m[90m           [39m [90m0.38s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\SchedulingTest[39m
+  [32;1m✓[39;22m[90m [39m[90mowner combo snapshots validation and archive[39m[90m                        [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo owner requires current workspace and rejects customer[39m[90m         [39m [90m0.45s[39m  
+  [32;1m✓[39;22m[90m [39m[90mactive combo requires staff and update increments version[39m[90m           [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublic combo hides expired exhausted and archived services[39m[90m          [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mweekly create replays stably and rejects changed key payload[39m[90m        [39m [90m0.52s[39m  
+  [32;1m✓[39;22m[90m [39m[90mconflict rolls back all occurrences and skip conflicts records reas[39m[90m…[39m [90m0.56s[39m  
+  [32;1m✓[39;22m[90m [39m[90msame staff and any available preview enforce capability[39m[90m             [39m [90m0.42s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdates use biweekly and original month rollover semantics[39m[90m            [39m [90m0.39s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrestricted customer cannot create any series even when skipping con[39m[90m…[39m [90m0.42s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpause occurrence cancel and series cancel preserve customer scope[39m[90m   [39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90mscheduling blade pages render[39m[90m                                       [39m [90m0.63s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfull combo booking expands quantities allocates exact price and rep[39m[90m…[39m [90m0.58s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo discount applies only service scoped allocation and cancel re[39m[90m…[39m [90m0.45s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo last item conflict rolls back booking usage and idempotency[39m[90m   [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mper service provider combo accepts server scoped assignments and us[39m[90m…[39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo recurring preview create replay and cancel reuse authoritativ[39m[90m…[39m [90m0.60s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ServiceCrudTest[39m
+  [32;1m✓[39;22m[90m [39m[90mowner catalog ui creates updates and archives service without losin[39m[90m…[39m [90m0.53s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot create catalog offering for another business branch[39m[90m    [39m [90m0.44s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ServiceHierarchyTest[39m
+  [32;1m✓[39;22m[90m [39m[90mseed preserves canonical business service and branch offering hiera[39m[90m…[39m [90m0.54s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\StaffCapabilityTest[39m
+  [32;1m✓[39;22m[90m [39m[90mowner staff ui creates profile and assigns capability in the same b[39m[90m…[39m [90m0.61s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcapability service rejects an offering from another branch[39m[90m          [39m [90m0.58s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdatabase foreign keys reject cross branch staff capability rows[39m[90m     [39m [90m0.43s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner cannot create staff profile in another business branch[39m[90m        [39m [90m0.47s[39m  
+  [32;1m✓[39;22m[90m [39m[90marchiving staff preserves capability and ends assignment history[39m[90m    [39m [90m0.54s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\UploadTest[39m
+  [32;1m✓[39;22m[90m [39m[90mowner upload route persists public media with server derived scope[39m[90m  [39m [90m0.84s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprivate media is readable only by owner of the scoped business[39m[90m      [39m [90m1.08s[39m  
+  [32;1m✓[39;22m[90m [39m[90mupload rejects cross tenant entity scope[39m[90m                            [39m [90m0.58s[39m  
+  [32;1m✓[39;22m[90m [39m[90mupload validates content extension and size[39m[90m                         [39m [90m0.89s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\VariantPricingTest[39m
+  [32;1m✓[39;22m[90m [39m[90mrange and quote variants preserve their pricing contract[39m[90m            [39m [90m0.95s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid range is rejected[39m[90m                                           [39m [90m0.93s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprice rule cannot reference variant from another offering[39m[90m           [39m [90m0.44s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ZConcurrentRoleGrantTest[39m
+  [32;1m✓[39;22m[90m [39m[90mconcurrent role grants from multiple processes create exactly one[39m[90m… [39m [90m40.82s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ZZConcurrentBookingLifecycleRaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mbooking lifecycle policy and change request races remain consisten[39m[90m…[39m [90m54.71s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ZZConcurrentBookingRaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mtwo five and ten parallel commands have exactly one winner per slo[39m[90m…[39m [90m58.82s[39m  
+
+  [90mTests:[39m    [32;1m180 passed[39;22m[90m (1342 assertions)[39m
+  [90mDuration:[39m [39m328.68s[39m
+

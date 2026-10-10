@@ -2,91 +2,64 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\BusinessStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Business extends Model
 {
-    use HasFactory, SoftDeletes;
-
     protected $fillable = [
-        'owner_id',
+        'owner_profile_id',
         'name',
         'slug',
         'description',
-        'logo',
-        'phone',
-        'email',
-        'website',
-        'tax_code',
+        'contact_email',
+        'contact_phone',
+        'address_line',
         'status',
+        'review_note',
+        'submitted_at',
+        'reviewed_at',
     ];
 
-    protected static function booted(): void
+    protected function casts(): array
     {
-        static::creating(function (Business $business) {
-            if (empty($business->slug)) {
-                $business->slug = Str::slug($business->name) . '-' . Str::random(6);
-            }
-        });
+        return [
+            'status' => BusinessStatus::class,
+            'submitted_at' => 'datetime',
+            'reviewed_at' => 'datetime',
+        ];
     }
 
-    /* ========== Relations ========== */
-
-    public function owner()
+    public function scopePublicReady(Builder $query): Builder
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $query->whereIn('status', [BusinessStatus::Approved->value, BusinessStatus::Active->value])->whereNull('booking_restricted_at');
     }
 
-    public function branches()
+    public function ownerProfile(): BelongsTo
+    {
+        return $this->belongsTo(BusinessOwnerProfile::class, 'owner_profile_id');
+    }
+
+    public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
     }
 
-    public function serviceCategories()
+    public function services(): HasMany
     {
-        return $this->hasMany(ServiceCategory::class);
+        return $this->hasMany(BusinessService::class);
     }
 
-    public function categories()
+    public function reviewEvents(): HasMany
     {
-        return $this->hasMany(ServiceCategory::class);
+        return $this->hasMany(BusinessReviewEvent::class);
     }
 
-    /* ========== Scopes ========== */
-
-    public function scopeActive($query)
+    public function staffProfiles(): HasMany
     {
-        return $query->where('status', 'active');
-    }
-
-    /* ========== Accessors ========== */
-
-    public function getLogoUrlAttribute(): string
-    {
-        if ($this->logo) {
-            return asset('storage/' . $this->logo);
-        }
-
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=8b5cf6&color=fff&size=128';
-    }
-
-    /**
-     * Tính average rating cho tất cả branches của business.
-     */
-    public function getAverageRatingAttribute(): float
-    {
-        return (float) Review::whereIn('branch_id', $this->branches()->pluck('id'))
-            ->where('status', 'approved')
-            ->avg('overall_rating') ?? 0;
-    }
-
-    public function getTotalReviewsAttribute(): int
-    {
-        return Review::whereIn('branch_id', $this->branches()->pluck('id'))
-            ->where('status', 'approved')
-            ->count();
+        return $this->hasMany(StaffProfile::class);
     }
 }

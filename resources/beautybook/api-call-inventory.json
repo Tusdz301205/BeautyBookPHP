@@ -1,0 +1,1424 @@
+[
+  {
+    "source": "src/api/apiClient.js",
+    "line": 15,
+    "endpoint": "/auth/refresh",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 145,
+    "endpoint": "/auth/login",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 151,
+    "endpoint": "/auth/register",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 157,
+    "endpoint": "/auth/verify-email",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 158,
+    "endpoint": "/auth/forgot-password",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 159,
+    "endpoint": "/auth/reset-password",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 160,
+    "endpoint": "/auth/change-password",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 161,
+    "endpoint": "/auth/logout",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 162,
+    "endpoint": "/auth/sessions",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 163,
+    "endpoint": "/auth/sessions/${sessionId}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 164,
+    "endpoint": "/auth/sessions",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 165,
+    "endpoint": "/auth/security-history",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 181,
+    "endpoint": "/bookings/self-booking-policy?branchId=${encodeURIComponent(branchId)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 189,
+    "endpoint": "/bookings?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 192,
+    "endpoint": "/bookings/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 194,
+    "endpoint": "/bookings/${id}/force-cancel-preview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 196,
+    "endpoint": "/bookings/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 201,
+    "endpoint": "/bookings/stats",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 204,
+    "endpoint": "/bookings/by-category?name=${encodeURIComponent(name)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 206,
+    "endpoint": "/bookings/by-branch/${branchId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 208,
+    "endpoint": "/bookings/by-customer/${userId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 213,
+    "endpoint": "/bookings/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 220,
+    "endpoint": "/bookings",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 228,
+    "endpoint": "/bookings/guest",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 242,
+    "endpoint": "/bookings/available-slots?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 254,
+    "endpoint": "/bookings/counter-slots?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 261,
+    "endpoint": "/bookings/scheduler/batch?branchIds=${encodeURIComponent(chunk.join(','))}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 266,
+    "endpoint": "/bookings/scheduler?branchId=${branchId}&startDate=${startDate}&endDate=${endDate}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 271,
+    "endpoint": "/bookings/${id}/move",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 277,
+    "endpoint": "/bookings/${id}/resize",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 282,
+    "endpoint": "/bookings/${id}/checkin",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 285,
+    "endpoint": "/bookings/${id}/assign",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 289,
+    "endpoint": "/bookings/${id}/items",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 290,
+    "endpoint": "/bookings/${id}/items/${itemId}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 291,
+    "endpoint": "/bookings/${id}/items/${itemId}/actual-time",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 292,
+    "endpoint": "/bookings/${id}/items/${itemId}/actual-time",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 296,
+    "endpoint": "/bookings/my-appointments?tab=${tab}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 298,
+    "endpoint": "/bookings/salon-queue",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 300,
+    "endpoint": "/bookings/salon-violations",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 303,
+    "endpoint": "/bookings/preview-price",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 309,
+    "endpoint": "/bookings/${bookingId}/change-requests",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 315,
+    "endpoint": "/bookings/change-requests/${reqId}/approve",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 321,
+    "endpoint": "/bookings/change-requests/${reqId}/reject",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 326,
+    "endpoint": "/bookings/change-requests/pending",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 331,
+    "endpoint": "/reports/overview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 332,
+    "endpoint": "/reports/overview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 334,
+    "endpoint": "/reports/revenue${year ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 335,
+    "endpoint": "/reports/categories",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 336,
+    "endpoint": "/reports/services",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 337,
+    "endpoint": "/reports/top-salons?limit=${limit}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 339,
+    "endpoint": "/reports/user-growth${year ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 341,
+    "endpoint": "/reports/staff-performance${branchId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 347,
+    "endpoint": "/reports/owner-dashboard?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 352,
+    "endpoint": "/reports/financial-summary?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 365,
+    "endpoint": "/users?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 368,
+    "endpoint": "/users/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 369,
+    "endpoint": "/users/me/profile",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 370,
+    "endpoint": "/users/me/profile",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 371,
+    "endpoint": "/users/${id}/suspension-impact",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 372,
+    "endpoint": "/users/${id}/suspend",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 373,
+    "endpoint": "/users/${id}/roles",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 378,
+    "endpoint": "/users/${id}/roles/${roleCode}?${query.toString()}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 391,
+    "endpoint": "/branches?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 399,
+    "endpoint": "/branches/manage?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 402,
+    "endpoint": "/branches/accessible",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 403,
+    "endpoint": "/branches/accessible/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 404,
+    "endpoint": "/branches/${id}/preview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 405,
+    "endpoint": "/branches/locations/districts",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 406,
+    "endpoint": "/branches",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 410,
+    "endpoint": "/branches/${id}/onboarding",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 414,
+    "endpoint": "/branches/${id}/copy-services",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 418,
+    "endpoint": "/branches/${id}/documents",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 422,
+    "endpoint": "/branches/${id}/documents/${documentId}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 425,
+    "endpoint": "/branches/${id}/submit",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 426,
+    "endpoint": "/branches/${id}/publish",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 428,
+    "endpoint": "/branches/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 433,
+    "endpoint": "/branches/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 434,
+    "endpoint": "/branches/accessible/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 437,
+    "endpoint": "/branches/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 450,
+    "endpoint": "/services/search${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 457,
+    "endpoint": "/services${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 461,
+    "endpoint": "/services/manage${branchId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 464,
+    "endpoint": "/services/workspace/manage${branchId && branchId !== 'ALL' ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 466,
+    "endpoint": "/services/categories",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 467,
+    "endpoint": "/services/categories/manage",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 468,
+    "endpoint": "/services/categories",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 471,
+    "endpoint": "/services/canonical",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 472,
+    "endpoint": "/services/canonical/manage",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 473,
+    "endpoint": "/services/canonical",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 476,
+    "endpoint": "/services/canonical/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 480,
+    "endpoint": "/services/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 481,
+    "endpoint": "/services/${id}/variants",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 482,
+    "endpoint": "/services/${id}/variants",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 483,
+    "endpoint": "/services/variants/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 484,
+    "endpoint": "/services/${id}/dependencies",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 485,
+    "endpoint": "/services/${id}/price-rules",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 488,
+    "endpoint": "/services",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 493,
+    "endpoint": "/services/catalog",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 497,
+    "endpoint": "/services/catalog/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 501,
+    "endpoint": "/services/catalog/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 504,
+    "endpoint": "/services/catalog/${id}/branches/${branchId}/${action}",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 506,
+    "endpoint": "/services/offerings/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 510,
+    "endpoint": "/services/offerings/${id}/pricing",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 515,
+    "endpoint": "/services/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 521,
+    "endpoint": "/services/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 529,
+    "endpoint": "/staff/public?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 531,
+    "endpoint": "/staff/public/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 534,
+    "endpoint": "/staff${branchId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 536,
+    "endpoint": "/staff/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 537,
+    "endpoint": "/staff/me",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 540,
+    "endpoint": "/staff",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 546,
+    "endpoint": "/staff/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 551,
+    "endpoint": "/staff/${id}/offboarding-impact",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 553,
+    "endpoint": "/staff/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 555,
+    "endpoint": "/staff/${id}/services",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 558,
+    "endpoint": "/staff/${id}/services",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 567,
+    "endpoint": "/staff/${id}/commission?${params.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 569,
+    "endpoint": "/staff/invitations",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 573,
+    "endpoint": "/staff/invitations?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 575,
+    "endpoint": "/staff/invitations/context?token=${encodeURIComponent(token)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 576,
+    "endpoint": "/staff/invitations/accept-existing",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 577,
+    "endpoint": "/staff/invitations/${id}/resend",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 578,
+    "endpoint": "/staff/invitations/${id}/email",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 579,
+    "endpoint": "/staff/invitations/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 580,
+    "endpoint": "/staff/invitations/accept",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 581,
+    "endpoint": "/staff/branches/${branchId}/holidays",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 582,
+    "endpoint": "/staff/branches/${branchId}/special-days",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 583,
+    "endpoint": "/staff/${id}/branch-assignments",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 598,
+    "endpoint": "/promotions?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 602,
+    "endpoint": "/promotions/service/${serviceId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 605,
+    "endpoint": "/promotions",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 611,
+    "endpoint": "/promotions/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 617,
+    "endpoint": "/promotions/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 622,
+    "endpoint": "/combos/public${branchId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 626,
+    "endpoint": "/combos${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 628,
+    "endpoint": "/combos/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 629,
+    "endpoint": "/combos",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 630,
+    "endpoint": "/combos/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 631,
+    "endpoint": "/combos/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 636,
+    "endpoint": "/recurring/preview",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 637,
+    "endpoint": "/recurring",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 641,
+    "endpoint": "/recurring/mine",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 642,
+    "endpoint": "/recurring/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 643,
+    "endpoint": "/recurring/${id}/occurrences/${bookingId}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 644,
+    "endpoint": "/recurring/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 653,
+    "endpoint": "/media/upload",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 655,
+    "endpoint": "/media/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 656,
+    "endpoint": "/media/${id}/content",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 661,
+    "endpoint": "/vouchers/mine",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 664,
+    "endpoint": "/vouchers${status ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 667,
+    "endpoint": "/vouchers",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 673,
+    "endpoint": "/vouchers/${id}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 679,
+    "endpoint": "/vouchers/${id}/grant",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 685,
+    "endpoint": "/vouchers/${id}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 699,
+    "endpoint": "/notifications?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 702,
+    "endpoint": "/notifications/unread-count",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 705,
+    "endpoint": "/notifications/${id}/read",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 708,
+    "endpoint": "/notifications/read-all",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 711,
+    "endpoint": "/notifications/device-token",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 720,
+    "endpoint": "/reviews/business/${businessId}?page=${page}&limit=${limit}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 729,
+    "endpoint": "/reviews/manage?${query.toString()}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 732,
+    "endpoint": "/reviews/staff/${staffId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 733,
+    "endpoint": "/reviews/public/staff/${staffId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 734,
+    "endpoint": "/reviews/service/${serviceId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 737,
+    "endpoint": "/reviews",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 743,
+    "endpoint": "/reviews/${reviewId}/reply",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 749,
+    "endpoint": "/reviews/${reviewId}/moderate",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 753,
+    "endpoint": "/reviews/${reviewId}/report",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 754,
+    "endpoint": "/reviews/${reviewId}/appeals",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 755,
+    "endpoint": "/reviews/appeals/${appealId}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 760,
+    "endpoint": "/admin/settings",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 761,
+    "endpoint": "/admin/settings",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 762,
+    "endpoint": "/admin/settings/reset",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 763,
+    "endpoint": "/admin/trust-snapshots",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 764,
+    "endpoint": "/admin/trust-snapshots/rebuild",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 765,
+    "endpoint": "/admin/trust-actions",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 766,
+    "endpoint": "/admin/trust-actions",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 767,
+    "endpoint": "/admin/audit-logs",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 771,
+    "endpoint": "/admin/business-directory${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 776,
+    "endpoint": "/admin/branch-directory${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 778,
+    "endpoint": "/admin/compliance-queue",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 779,
+    "endpoint": "/admin/finance-overview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 780,
+    "endpoint": "/admin/marketing-overview",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 784,
+    "endpoint": "/platform-settings/public",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 789,
+    "endpoint": "/business/${businessId}/detail",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 790,
+    "endpoint": "/business/${businessId}/members",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 791,
+    "endpoint": "/business/${businessId}/cancellation-policy",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 792,
+    "endpoint": "/business/${businessId}/cancellation-policy",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 796,
+    "endpoint": "/business/onboarding/draft",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 797,
+    "endpoint": "/business/onboarding/config",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 798,
+    "endpoint": "/business/onboarding/mine",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 799,
+    "endpoint": "/business/${businessId}/onboarding",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 800,
+    "endpoint": "/business/${businessId}/submit",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 801,
+    "endpoint": "/business/${businessId}/review",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 806,
+    "endpoint": "/payments",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 807,
+    "endpoint": "/payments/collect",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 811,
+    "endpoint": "/payments/providers",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 812,
+    "endpoint": "/payments/checkout/${bookingId}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 814,
+    "endpoint": "/payments/transactions/${transactionId}/verify",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 819,
+    "endpoint": "/payments/transactions/${transactionId}/reverse",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 823,
+    "endpoint": "/payments/policies?businessId=${encodeURIComponent(businessId)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 824,
+    "endpoint": "/payments/policies",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 830,
+    "endpoint": "/payments/ledger${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 832,
+    "endpoint": "/payments/platform-statements${businessId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 833,
+    "endpoint": "/payments/platform-statements/generate",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 834,
+    "endpoint": "/payments/platform-statements/${id}/status",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 840,
+    "endpoint": "/payments/packages${query.size ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 842,
+    "endpoint": "/payments/packages",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 843,
+    "endpoint": "/payments/packages/${packageId}/purchases",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 844,
+    "endpoint": "/payments/package-purchases${businessId ? ",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 845,
+    "endpoint": "/payments/package-installments/${installmentId}/pay",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 846,
+    "endpoint": "/payments/package-purchases/${purchaseId}/sessions/reserve",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 848,
+    "endpoint": "/payments/${paymentId}/refund-requests",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 853,
+    "endpoint": "/payments/refunds/${refundId}/review",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 858,
+    "endpoint": "/payments/refunds/${refundId}/process",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 866,
+    "endpoint": "/customer/saved-services",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 867,
+    "endpoint": "/customer/saved-services/${serviceId}",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 868,
+    "endpoint": "/customer/saved-services/${serviceId}",
+    "method": "DELETE"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 872,
+    "endpoint": "/operational-impacts",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 873,
+    "endpoint": "/operational-impacts/${id}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 874,
+    "endpoint": "/operational-impacts/${id}/items/${itemId}",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 875,
+    "endpoint": "/operational-impacts/${id}/items",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 876,
+    "endpoint": "/operational-impacts/${id}/complete",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 880,
+    "endpoint": "/ownership-transfers?businessId=${encodeURIComponent(businessId)}",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 881,
+    "endpoint": "/ownership-transfers/platform/pending",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 882,
+    "endpoint": "/ownership-transfers/pending-for-me",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 883,
+    "endpoint": "/ownership-transfers",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 884,
+    "endpoint": "/ownership-transfers/${id}/accept",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 885,
+    "endpoint": "/ownership-transfers/${id}/submit-more-info",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 886,
+    "endpoint": "/ownership-transfers/${id}/cancel",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 887,
+    "endpoint": "/ownership-transfers/${id}/review",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 888,
+    "endpoint": "/ownership-transfers/${id}/execute",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 889,
+    "endpoint": "/ownership-transfers/business/${businessId}/versions",
+    "method": "GET"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 890,
+    "endpoint": "/ownership-transfers/business/${businessId}/legal-entity",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 891,
+    "endpoint": "/ownership-transfers/business/${businessId}/payout-account",
+    "method": "POST"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 892,
+    "endpoint": "/ownership-transfers/platform/legal-entity/${id}/verify",
+    "method": "PATCH"
+  },
+  {
+    "source": "src/api/apiClient.js",
+    "line": 893,
+    "endpoint": "/ownership-transfers/platform/payout-account/${id}/verify",
+    "method": "PATCH"
+  }
+]

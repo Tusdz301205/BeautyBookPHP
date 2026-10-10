@@ -1,0 +1,61 @@
+guest / 200 Tìm dịch vụ làm đẹp hợp với bạn.
+guest /explore 200 Tìm đúng dịch vụ, rồi chọn nơi phù hợp.
+guest /for-business 200 Một nơi để vận hành cơ sở làm đẹp — từ lịch hẹn đầu tiên.
+guest /login 200 Đăng nhập BeautyBook
+guest /register 200 Tạo tài khoản khách hàng
+guest /register/business 200 Tạo tài khoản chủ doanh nghiệp
+guest /forgot-password 200 Khôi phục mật khẩu
+guest /explore/branches/11 200 BeautyBook Tân Tạo
+guest /explore/branches/28 200 Quốc Bảo Hair Salon - Quận Cầu Giấy
+guest /explore/services/126 200 Nhuộm highlight
+guest /explore/services/125 200 Massage body 60 phút
+guest /explore/staff/3 200 Demo Nhân viên
+guest /explore/staff/4 200 Demo Nhân viên
+customer /customer/appointments 200 Lịch hẹn của tôi
+customer /customer/notifications 200 Thông báo
+customer /customer/vouchers 200 Voucher
+customer /customer/reviews 200 Đánh giá
+customer /customer/benefits 200 Dịch vụ đã lưu
+customer /customer/profile 200 Hồ sơ cá nhân
+customer /customer/security 200 Bảo mật & phiên đăng nhập
+customer /customer/privacy 200 Trung tâm quyền riêng tư
+customer /book 200 Chọn chi nhánh và dịch vụ
+owner /salon 200 Tổng quan doanh nghiệp
+owner /salon/services 200 Dịch vụ
+owner /salon/combos 200 Combo dịch vụ
+owner /salon/appointments 200 Lịch hẹn toàn doanh nghiệp
+owner /salon/staff 200 Nhân sự
+owner /salon/branches/new 200 Thêm chi nhánh mới
+owner /salon/promotions 200 Khuyến mãi của doanh nghiệp
+owner /salon/reviews 200 Đánh giá khách hàng
+owner /salon/stats 200 Báo cáo vận hành & tài chính
+owner /salon/profile 200 Hồ sơ doanh nghiệp & chi nhánh
+owner /salon/payments 200 Thanh toán toàn doanh nghiệp
+owner /salon/operations 200 Trung tâm vận hành
+owner /salon/audit 200 Nhật ký kiểm toán
+owner /salon/account 200 Hồ sơ cá nhân
+owner /salon/security 200 Bảo mật & phiên đăng nhập
+owner /salon/incoming-ownership 200 Lời mời tiếp nhận doanh nghiệp
+receptionist /salon/appointments 200 Lịch hẹn tại quầy
+receptionist /salon/staff 200 Nhân sự
+receptionist /salon/payments 200 Thu tiền tại quầy
+receptionist /salon/operations 200 Trung tâm vận hành
+receptionist /salon/account 200 Hồ sơ cá nhân
+receptionist /salon/security 200 Bảo mật & phiên đăng nhập
+staff /salon/appointments 200 Lịch của tôi
+staff /salon/account 200 Hồ sơ cá nhân
+staff /salon/security 200 Bảo mật & phiên đăng nhập
+admin /admin 200 Xin chào, Quản trị Demo
+admin /admin/salons 200 Doanh nghiệp & chi nhánh
+admin /admin/users 200 Người dùng
+admin /admin/appointments 200 Quản lý lịch hẹn
+admin /admin/payments 200 Giao dịch & hoàn tiền
+admin /admin/reports 200 Báo cáo nền tảng
+admin /admin/reviews 200 Hậu kiểm đánh giá
+admin /admin/ownership 200 Chuyển quyền sở hữu
+admin /admin/audit 200 Nhật ký kiểm toán
+admin /admin/notifications 200 Thông báo
+admin /admin/settings 200 Cài đặt hệ thống
+admin /admin/security 200 Bảo mật & phiên đăng nhập
+admin /admin/profile 200 Hồ sơ cá nhân
+RESULT {"screens":60,"errors":[]}

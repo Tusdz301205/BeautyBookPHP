@@ -1,0 +1,128 @@
+vite v5.4.21 building for production...
+transforming...
+node_modules/react-hot-toast/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/react-hot-toast/dist/index.mjs" was ignored.
+
+/beautybook-fonts/dc085e2fba3414e5c5bf1e6172f921a9f81c5859946a4ed3d63c1e470d96a9e2.woff2 referenced in /beautybook-fonts/dc085e2fba3414e5c5bf1e6172f921a9f81c5859946a4ed3d63c1e470d96a9e2.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/f7a2811e471c2973a1179ce39da3ad6bb8082381aa8d1535ccfcbc3d6d78a052.woff2 referenced in /beautybook-fonts/f7a2811e471c2973a1179ce39da3ad6bb8082381aa8d1535ccfcbc3d6d78a052.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/03d1b589cff172e1a670b3573e731d3380bc326f80cf83b0d3504e3188e2e074.woff2 referenced in /beautybook-fonts/03d1b589cff172e1a670b3573e731d3380bc326f80cf83b0d3504e3188e2e074.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/86341610cbe907eecf461c9159c168d5efb52bb1a33963813a08f520555d8e66.woff2 referenced in /beautybook-fonts/86341610cbe907eecf461c9159c168d5efb52bb1a33963813a08f520555d8e66.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/947d592eb7676914507ff68fc11fcf2cfdecd6ebaf0fa2af6047f66a63ea7d0f.woff2 referenced in /beautybook-fonts/947d592eb7676914507ff68fc11fcf2cfdecd6ebaf0fa2af6047f66a63ea7d0f.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/b621f77d35f777023aa11ca524462d511b4b28a813adbc0e9d15a10fc61dfe4e.woff2 referenced in /beautybook-fonts/b621f77d35f777023aa11ca524462d511b4b28a813adbc0e9d15a10fc61dfe4e.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/97658c6f9a384f29a3005c3d96e2a0d1c810192cf68979071c290f5a377a9f99.woff2 referenced in /beautybook-fonts/97658c6f9a384f29a3005c3d96e2a0d1c810192cf68979071c290f5a377a9f99.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/20cc75daeaaaa0fa8af2b616b2de2b2900f0ce14ae8e9faa47d272cedd93827f.woff2 referenced in /beautybook-fonts/20cc75daeaaaa0fa8af2b616b2de2b2900f0ce14ae8e9faa47d272cedd93827f.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/9503dec2a7c532c8331e9600bcafea287a4fd208573b8668d85ab8d8de1863c7.woff2 referenced in /beautybook-fonts/9503dec2a7c532c8331e9600bcafea287a4fd208573b8668d85ab8d8de1863c7.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/4f58af2d1c3e28a9ba14c51c82db2751d78344b75bdcb34de24a1031ebe59da6.woff2 referenced in /beautybook-fonts/4f58af2d1c3e28a9ba14c51c82db2751d78344b75bdcb34de24a1031ebe59da6.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/33d57e5bd840b03921568e08d2be1082d453e55f1ba55f421e41a1aa54e12601.woff2 referenced in /beautybook-fonts/33d57e5bd840b03921568e08d2be1082d453e55f1ba55f421e41a1aa54e12601.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/a193dd87699bd2e18ddf72dc271493ea82a23dad9f5c334d9f2a257b1e05fc30.woff2 referenced in /beautybook-fonts/a193dd87699bd2e18ddf72dc271493ea82a23dad9f5c334d9f2a257b1e05fc30.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/f18853f63a870ebef013e30e789d8d544f102e4acd94988e57c223d9c796ddf4.woff2 referenced in /beautybook-fonts/f18853f63a870ebef013e30e789d8d544f102e4acd94988e57c223d9c796ddf4.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/a2930b27d13a228bd9ab6a49269b5f800237892ad560cb9dd7fab01b1620f88e.woff2 referenced in /beautybook-fonts/a2930b27d13a228bd9ab6a49269b5f800237892ad560cb9dd7fab01b1620f88e.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783.woff2 referenced in /beautybook-fonts/7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/f8c22ec1804bd6966b70f43ac7c327025645b4c09597117fca2a5a6c750106fe.woff2 referenced in /beautybook-fonts/f8c22ec1804bd6966b70f43ac7c327025645b4c09597117fca2a5a6c750106fe.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/7635422bd10ddbbcb0e0caa1154b928298f5c8319b8c00b30978d4395f4783ce.woff2 referenced in /beautybook-fonts/7635422bd10ddbbcb0e0caa1154b928298f5c8319b8c00b30978d4395f4783ce.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/62632b6375305e70ddcafdd895218e6ae41a184fcd280a69c739460604ca00a9.woff2 referenced in /beautybook-fonts/62632b6375305e70ddcafdd895218e6ae41a184fcd280a69c739460604ca00a9.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/6bc0f226a5b7884a8170e3f62c63d7675609d4631bdc5931b5cdab81821f00eb.woff2 referenced in /beautybook-fonts/6bc0f226a5b7884a8170e3f62c63d7675609d4631bdc5931b5cdab81821f00eb.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7.woff2 referenced in /beautybook-fonts/08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/3febe5c7f22e4b07b4552738673c3dbe8bced2dc5f48b866edf7ccd9552d109a.woff2 referenced in /beautybook-fonts/3febe5c7f22e4b07b4552738673c3dbe8bced2dc5f48b866edf7ccd9552d109a.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/1d89462e86cb8e87e7e9d6f6635605bd7c3081baca6caaecee84916bf7b60edc.woff2 referenced in /beautybook-fonts/1d89462e86cb8e87e7e9d6f6635605bd7c3081baca6caaecee84916bf7b60edc.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/781633d95de88040fb77141d1e65d928c87c0144691fbc74da5a64d137a7e910.woff2 referenced in /beautybook-fonts/781633d95de88040fb77141d1e65d928c87c0144691fbc74da5a64d137a7e910.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/6bb06407c97584b0867a959e05e8874693bfeb8c317de190811c51598f2d99ea.woff2 referenced in /beautybook-fonts/6bb06407c97584b0867a959e05e8874693bfeb8c317de190811c51598f2d99ea.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/beautybook-fonts/01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22.woff2 referenced in /beautybook-fonts/01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 3299 modules transformed.
+rendering chunks...
+computing gzip size...
+public/beautybook-build/manifest.json                                  28.80 kB │ gzip:   2.65 kB
+public/beautybook-build/assets/BranchOnboardingWizard-aZu1vUkf.css      1.36 kB │ gzip:   0.55 kB
+public/beautybook-build/assets/PrivacySettings-D1WDCoev.css            12.68 kB │ gzip:   2.47 kB
+public/beautybook-build/assets/main-BILvWb98.css                      166.10 kB │ gzip:  29.01 kB
+public/beautybook-build/assets/SalonNotifications-NTtN-nFJ.js           0.23 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/AdminNotifications-B5imyBjE.js           0.24 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/CustomerNotifications-Bfrf3VEf.js        0.25 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/useAsyncResource-B4x0TYo7.js             0.84 kB │ gzip:   0.41 kB
+public/beautybook-build/assets/PublicNotFound-CKzJLpex.js               1.00 kB │ gzip:   0.57 kB
+public/beautybook-build/assets/PublicShell-Bd74CLGG.js                  1.43 kB │ gzip:   0.94 kB
+public/beautybook-build/assets/BookingPolicyNotice-DxLOFuHO.js          1.51 kB │ gzip:   0.97 kB
+public/beautybook-build/assets/HomeMedia-C-BMBnRB.js                    1.52 kB │ gzip:   0.84 kB
+public/beautybook-build/assets/bookingSubmission-6GpzPlyn.js            1.91 kB │ gzip:   0.97 kB
+public/beautybook-build/assets/LoginScreen-CyHvnAuk.js                  2.37 kB │ gzip:   1.30 kB
+public/beautybook-build/assets/IncomingOwnership-gCn5Er2f.js            2.54 kB │ gzip:   1.31 kB
+public/beautybook-build/assets/BookingStep2-bkfV5qkS.js                 2.59 kB │ gzip:   1.48 kB
+public/beautybook-build/assets/BookingSuccess-M6WPBKv-.js               2.98 kB │ gzip:   1.37 kB
+public/beautybook-build/assets/CustomerBenefits-CooxCChm.js             3.01 kB │ gzip:   1.45 kB
+public/beautybook-build/assets/BookingStep4-E13EeS1i.js                 3.27 kB │ gzip:   1.76 kB
+public/beautybook-build/assets/FileUpload-Deosyejy.js                   3.33 kB │ gzip:   1.74 kB
+public/beautybook-build/assets/AuthShell-D_MsyJu_.js                    3.40 kB │ gzip:   1.61 kB
+public/beautybook-build/assets/BookingLayout-D_eyg9GT.js                3.56 kB │ gzip:   1.42 kB
+public/beautybook-build/assets/ReviewModal-BLSKfKEa.js                  3.60 kB │ gzip:   1.80 kB
+public/beautybook-build/assets/CustomerVouchers-wkXJlxcr.js             4.05 kB │ gzip:   1.99 kB
+public/beautybook-build/assets/CustomerReviews-DlxFbQPg.js              4.20 kB │ gzip:   2.13 kB
+public/beautybook-build/assets/customerCancellation-J-CVgI95.js         4.26 kB │ gzip:   2.08 kB
+public/beautybook-build/assets/SalonStats-B7A3io-8.js                   5.04 kB │ gzip:   2.03 kB
+public/beautybook-build/assets/ProfileSettings-5jAhQzzh.js              5.28 kB │ gzip:   2.12 kB
+public/beautybook-build/assets/BusinessLanding-D7cbiGDh.js              5.43 kB │ gzip:   2.19 kB
+public/beautybook-build/assets/BookingStep3-BLypC1ta.js                 5.67 kB │ gzip:   2.49 kB
+public/beautybook-build/assets/BookingStep1-CaucSMel.js                 6.50 kB │ gzip:   2.76 kB
+public/beautybook-build/assets/AdminOwnership-D-PO6Y9H.js               6.52 kB │ gzip:   2.60 kB
+public/beautybook-build/assets/AdminOverview-BCwWeJ15.js                6.72 kB │ gzip:   3.06 kB
+public/beautybook-build/assets/AuthActionPages-DRU-guQ0.js              6.84 kB │ gzip:   2.65 kB
+public/beautybook-build/assets/AdminReports-D7cEjyix.js                 6.91 kB │ gzip:   2.78 kB
+public/beautybook-build/assets/AdminSettings-CH1zD1RZ.js                6.93 kB │ gzip:   3.24 kB
+public/beautybook-build/assets/vi-CQKqJgsw.js                           7.03 kB │ gzip:   2.51 kB
+public/beautybook-build/assets/bookingCalendar.adapter-CNI_i-8O.js      7.26 kB │ gzip:   2.42 kB
+public/beautybook-build/assets/AdminAudit-CsC-htX0.js                   7.57 kB │ gzip:   2.65 kB
+public/beautybook-build/assets/RegisterScreen-CjY0GtsO.js               8.08 kB │ gzip:   3.43 kB
+public/beautybook-build/assets/SecuritySettings-BGSNh-bQ.js             8.13 kB │ gzip:   3.04 kB
+public/beautybook-build/assets/AdminReviewsModeration-BRHmOi0x.js       8.42 kB │ gzip:   3.35 kB
+public/beautybook-build/assets/StaffDetail-Di6s_o3t.js                  8.44 kB │ gzip:   3.18 kB
+public/beautybook-build/assets/NotificationCenter-BG7tc6Hq.js           8.99 kB │ gzip:   3.86 kB
+public/beautybook-build/assets/SalonReviews-DfjCUgfk.js                 9.16 kB │ gzip:   3.58 kB
+public/beautybook-build/assets/SalonAppointments-CABddUFN.js            9.88 kB │ gzip:   3.89 kB
+public/beautybook-build/assets/CustomerAppointmentDetail-BDzMZd50.js   10.35 kB │ gzip:   4.04 kB
+public/beautybook-build/assets/PrivacySettings-DAAf1iMs.js             10.85 kB │ gzip:   4.30 kB
+public/beautybook-build/assets/BookingConfirm-jb44CXVP.js              11.27 kB │ gzip:   4.10 kB
+public/beautybook-build/assets/SalonOperations-BBN9i1jt.js             11.89 kB │ gzip:   4.38 kB
+public/beautybook-build/assets/SalonProfile-C2-vNLWj.js                12.33 kB │ gzip:   4.46 kB
+public/beautybook-build/assets/AdminUsers-BE33DbEV.js                  13.52 kB │ gzip:   4.66 kB
+public/beautybook-build/assets/CustomerAppointments-DLAXrXCE.js        15.57 kB │ gzip:   5.84 kB
+public/beautybook-build/assets/SalonCombos-DxieS3bX.js                 16.82 kB │ gzip:   5.53 kB
+public/beautybook-build/assets/AdminEntityDetails-DppFDIk-.js          17.57 kB │ gzip:   5.51 kB
+public/beautybook-build/assets/SalonStaffManagement-CKYIW_we.js        17.65 kB │ gzip:   5.82 kB
+public/beautybook-build/assets/SalonOverview-CxvGDX11.js               18.01 kB │ gzip:   6.13 kB
+public/beautybook-build/assets/SalonPromotions-jlFEwV-b.js             20.35 kB │ gzip:   6.18 kB
+public/beautybook-build/assets/PublicDetails-BbG0skBm.js               20.52 kB │ gzip:   6.68 kB
+public/beautybook-build/assets/PaymentsWorkspace-DOomWXwe.js           22.23 kB │ gzip:   6.81 kB
+public/beautybook-build/assets/PublicHome-DNwa7OYd.js                  23.61 kB │ gzip:   7.57 kB
+public/beautybook-build/assets/BusinessOnboarding-BLWqrRpo.js          25.18 kB │ gzip:   8.95 kB
+public/beautybook-build/assets/date-vendor-L55P0-KY.js                 25.45 kB │ gzip:   7.33 kB
+public/beautybook-build/assets/SalonServices-B2YPKML_.js               27.59 kB │ gzip:   8.11 kB
+public/beautybook-build/assets/BranchOnboardingWizard-CZHUlwZ3.js      32.85 kB │ gzip:  10.14 kB
+public/beautybook-build/assets/AdminSalons-BfAs24Oi.js                 35.46 kB │ gzip:   9.23 kB
+public/beautybook-build/assets/icons-C6IDre8-.js                       43.04 kB │ gzip:   7.92 kB
+public/beautybook-build/assets/AdminAppointmentsView-ByEW2ehT.js      131.61 kB │ gzip:  39.83 kB
+public/beautybook-build/assets/react-vendor-D4YY06rQ.js               168.22 kB │ gzip:  54.98 kB
+public/beautybook-build/assets/main-DQuRCRc3.js                       196.40 kB │ gzip:  45.27 kB
+public/beautybook-build/assets/charts-CMwvYlGQ.js                     422.47 kB │ gzip: 112.75 kB
+✓ built in 22.64s

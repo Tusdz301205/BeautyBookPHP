@@ -1,0 +1,40 @@
+<?php
+
+use App\Http\Controllers\Beautybook\BookingController as B;
+use Illuminate\Support\Facades\Route;
+
+Route::get('bookings/self-booking-policy', [B::class, 'policy']);
+Route::get('bookings/stats', [B::class, 'stats']);
+Route::get('bookings/salon-queue', [B::class, 'appointments']);
+Route::get('bookings/salon-violations', [B::class, 'violations']);
+Route::get('bookings/my-appointments', [B::class, 'appointments']);
+Route::get('bookings/available-slots', [B::class, 'slots']);
+Route::get('bookings/counter-slots', [B::class, 'slots']);
+Route::get('bookings/scheduler', [B::class, 'scheduler']);
+Route::get('bookings/scheduler/batch', [B::class, 'schedulerBatch']);
+Route::get('bookings/by-category', [B::class, 'byCategory']);
+Route::get('bookings/by-branch/{id}', [B::class, 'byBranch'])->whereNumber('id');
+Route::get('bookings/by-customer/{id}', [B::class, 'byCustomer'])->whereNumber('id');
+Route::get('bookings/change-requests/pending', [B::class, 'pending']);
+Route::patch('bookings/change-requests/{id}/{decision}', [B::class, 'reviewChange'])->whereNumber('id')->whereIn('decision', ['approve', 'reject']);
+Route::post('bookings/preview-price', [B::class, 'preview']);
+Route::get('bookings', [B::class, 'index']);
+Route::post('bookings', [B::class, 'store']);
+Route::get('bookings/{id}', [B::class, 'show'])->whereNumber('id');
+Route::patch('bookings/{id}/status', [B::class, 'status'])->whereNumber('id');
+Route::post('bookings/{id}/checkin', [B::class, 'checkin'])->whereNumber('id');
+Route::post('bookings/{id}/change-requests', [B::class, 'change'])->whereNumber('id');
+Route::get('bookings/{id}/force-cancel-preview', [B::class, 'forcePreview'])->whereNumber('id');
+Route::patch('bookings/{id}/move', [B::class, 'move'])->whereNumber('id');
+Route::patch('bookings/{id}/resize', [B::class, 'resize'])->whereNumber('id');
+Route::patch('bookings/{id}/assign', [B::class, 'assign'])->whereNumber('id');
+Route::post('bookings/{id}/items', [B::class, 'addItem'])->whereNumber('id');
+Route::patch('bookings/{id}/items/{itemId}', [B::class, 'updateItem'])->whereNumber('id')->whereNumber('itemId');
+Route::patch('bookings/{id}/items/{itemId}/actual-time', [B::class, 'actual'])->whereNumber('id')->whereNumber('itemId');
+Route::get('bookings/{id}/items/{itemId}/actual-time', [B::class, 'actualHistory'])->whereNumber('id')->whereNumber('itemId');
+Route::post('recurring/preview', [B::class, 'recurringPreview']);
+Route::post('recurring', [B::class, 'recurringStore']);
+Route::get('recurring/mine', [B::class, 'recurringMine']);
+Route::patch('recurring/{id}/status', [B::class, 'recurringStatus'])->whereNumber('id');
+Route::delete('recurring/{id}/occurrences/{bookingId}', [B::class, 'recurringCancel'])->whereNumber('id')->whereNumber('bookingId');
+Route::delete('recurring/{id}',[B::class, 'recurringCancel'])->whereNumber('id');

@@ -1,0 +1,1782 @@
+[
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\app.controller.spec.ts",
+    "hash": "88FAF5523FD7F5DAE5A6C78BE2DD1709EB6C20EE82C64FC399F8A2E8FB767527"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\app.controller.ts",
+    "hash": "9819D9962381524D16016FE1C0981270967711DC5FA63F1B3BFC03FC2E60DC2C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\app.module.ts",
+    "hash": "93B4B039DE536D8FCEF7B04D99A3EE77A488AE4D050BF96933DB172E1CBAA4AB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\app.service.ts",
+    "hash": "EAF8514CE110FA428A93A27408DF4D06D133DBD9ED0A775C315DDFDD507853A9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\health.controller.ts",
+    "hash": "EC0DC1B85501547990D4777C76327FD0EF3704959B88BDBF0E1486F3953ACA17"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\main.spec.ts",
+    "hash": "C59363BBAF3967CC4D75819ECEED0B173443560A2F43F6631ACD2D032D069699"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\main.ts",
+    "hash": "0EA8571D7749CE88CEE5B449346250434159E27A9435E51C5A83509A6E8D317C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\admin\\admin.controller.ts",
+    "hash": "3201EFB8CE9DE4FC288A5DEE5020FD42C89DFA6C6EF5E0938C0392C44D9480BB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\admin\\admin.module.ts",
+    "hash": "3B8A43A34016DA29897CCD8EFBCE5DD84FEAB904552183DDBD15B627889ACB5B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\admin\\trust-snapshot.service.spec.ts",
+    "hash": "C982D5F958FD00BB695D21116A863DF9C36EE2616644D3ADAD23AB5C9BE51F93"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\admin\\trust-snapshot.service.ts",
+    "hash": "794DED752EB4B09CD2C0E8490C78555FFA8AAE10145D2855AE59AD01B5FC3BEC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\admin\\dto\\platform-settings.dto.ts",
+    "hash": "D1A1164FA764D31B2389179AD693C06BD82E116440D3EC0302C1CDE2233C3E5C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\account-separation.spec.ts",
+    "hash": "96E01ED277E16F75B45C74E5F9825727A60A0D44A32E5ED85E19664929E1EF49"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\account-separation.ts",
+    "hash": "32AB6B60DBE13099EC4F4C84C613C1ED3C405C190B939D11C5CC075E323BEECB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth-mobile-challenge.spec.ts",
+    "hash": "8C374AAF819959F3474E12305D3AA76C775446EA3361A770349D64137495C3A2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth-remediation.spec.ts",
+    "hash": "5FD35F0376C594F7EE8EC3127A9D0BD20CDA7C386D7C0BFBA1FE13A58A9C1C64"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth-workspace.spec.ts",
+    "hash": "A4ECD3A78FACBE110AA965B6AB9DAF554EAABB61564E71E9B7CEA1B23B72E879"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth-workspace.ts",
+    "hash": "CFBDC35AE51883C5863716D43BAA33E46CE2AF99D5DA1A02427D743F8E34B63B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth.controller.spec.ts",
+    "hash": "E69125DD46050EE28FB1B0969EF6634DACC88D22E486B6CA9CF1369B0CCA5F5B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth.controller.ts",
+    "hash": "A844DE4B5DAE10F02CC1787C03C161DD112D0B362293D027624BD13F6B8DC946"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth.module.ts",
+    "hash": "5F85BAE47B33A517455808DA6D1DCE05F986DAC77E3BCBCFFCD7DF700A3DA070"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth.service.spec.ts",
+    "hash": "09FD24F5EBE90C0F56127DD8969D2DA2BBF0814DB97CF0A3F78C3A8A87D6A656"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\auth.service.ts",
+    "hash": "10296AC70875D2709C247BDB6EE2441F867C0A8E61F1812842F25508EA8A5B17"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\jwt.strategy.ts",
+    "hash": "9A8B8DD7583252689EC0519C0124FDB6E34349521CEC138BDD43AAA9CA22494F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\token-blacklist.service.spec.ts",
+    "hash": "E7DC54DF00D7E1E936D4020F9BA1CBC57E012314C71134668A68AB526B4B2A7F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\token-blacklist.service.ts",
+    "hash": "B2685B9A461BB2B39E594243F0B000256E443A1077A5300B0BC0EA023EBB32A9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\dto\\auth.dto.spec.ts",
+    "hash": "8923B5EE4EE2294F38EA3E667205A263DA86313ABE86532B6F6613AB0FAF6F87"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\auth\\dto\\auth.dto.ts",
+    "hash": "6EED607648229CACD85A42CACDFBDA924F2D936ECECC7A95F967B890ABC36326"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\actual-time-corrections.service.ts",
+    "hash": "2D82CEEEE692246CAAE399EE2FDC413CD72A2FAF78E3E6191F6015860101A668"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\actual-time-corrections.spec.ts",
+    "hash": "B55B7177A0ADA230F0A78D954C664A613B18FCB26F9E06CA2654516E4D33DD79"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\available-slots-policy.spec.ts",
+    "hash": "2A857A48DBE2DF2CF2805D31F7603FE689B013DF89108C63158CB9B25FB81CC9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-actual-timing.spec.ts",
+    "hash": "0275EDCF4B758BBD19BA9E0D067E2E3BF965B12A1712219D3EC7563D0C4E4254"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-actual-timing.ts",
+    "hash": "6450258FE0AD51211D1DE2D83330B5FEFD74364E905FAEB77A807AD2B22DD108"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-channel-policy.ts",
+    "hash": "1D59DE3EF17EAF3E1C10B319A4930D0039558073966D25F38187A50610ACBB4B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-item-lifecycle.spec.ts",
+    "hash": "107182ACFEA9016A5646B1DAD249C719A9971FB76DAA7A026762CEBFE91DF5CF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-item-lifecycle.ts",
+    "hash": "711CD31002B25D069BC8E6DD79620A48C4CE976A58EDC1F668C3DDFEED7A793C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-item-values.spec.ts",
+    "hash": "38ABDE3FD54B81C83065718BD4F17DD09BFF38ABB597574CB6105D0F994CFE9E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-item-values.ts",
+    "hash": "54F9624A7BBCD02808B0C731118E713097BC7A2674D97394D7E9554DABD3B8FA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-items.service.ts",
+    "hash": "1C3C60FF8EDAB052BE0CC4965599AD7B712E102108DC17A68A2D98077930D15C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-lead-channel.spec.ts",
+    "hash": "1FE7C32916FA83AFF8467BE9641387B6F263415FDB457A48353E64FD6B113B89"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-lead-policy.ts",
+    "hash": "929CCD5D38363A5F7E18C806773CF1715289CFF0EC5827FE86881AF00F72CEA1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-overrun.spec.ts",
+    "hash": "38D6D10B93B55B38C9BC34E0B00F6B00F8E411FF444AB1652015980823EEC14B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-postcommit.spec.ts",
+    "hash": "678036DE6194678578E556353B74F2EA5FE2FB6DDE2FF4C380E5A57B17D59FC5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-provider-audit.spec.ts",
+    "hash": "6B189AAACD3E8C423E6C6F77D0FBC588F1BEAAB20A64F23496DE4457A3F89CCB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-provider-audit.ts",
+    "hash": "548F1EA4AAEEF95D47AD7A00398E9CECB286C290945172B706B5EE13DAF1FEFC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-realtime.ts",
+    "hash": "9E75F5E105AECDB95DFA41809031EDEAA65C6416140EC9F9182D25C49BC77F54"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-role-refactor.spec.ts",
+    "hash": "E9CC24DB0A686E9F0B2A89E07549428C579CFF5D3E32163FC6DDB41E3FD0826D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-schedule-integrity.ts",
+    "hash": "32E1F933DCA7B3BB584571C9C0CD5B9589F3D014D026E6FF99829344007F7E46"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\booking-violation-policy.ts",
+    "hash": "26D8366D79405A4B221E63900FB84CB48FCF0C73EF9C8A3286683F7775C16CD0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-access.service.ts",
+    "hash": "7EF416FD9A42A6289A2272CD47C1F37A5E621709365E8A883BA480C2FA927AFE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-access.spec.ts",
+    "hash": "BD461BCB7E0D82854F1664E3C0C9CA59D01FE320F8B8CD3FD356153A3CEF5A7B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-channel-policy.spec.ts",
+    "hash": "96FB44542411C1CB69133E2A3140D4F3476B440FC74F5AEE9E29E1985C405332"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-tenant-scope.spec.ts",
+    "hash": "C277B8AD3A0731F4672D9EEF8B17BEE1863CC3AE5683E78AF0AFB6F3795D080A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-time-guard.spec.ts",
+    "hash": "E9875091957489DDFF7D3C4910D00972431D82334BCFA5DA82283DD4BA4BD0C9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings-voucher-lifecycle.spec.ts",
+    "hash": "61C7694BD36F5A9573CD6DA2326AC8A231B18E679F9827A1E321DF87A8574007"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.controller.spec.ts",
+    "hash": "88F1B0F7CC3F902D815EFF2713997A2F4A706694AE05129E7E1CCED7FFD764DD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.controller.ts",
+    "hash": "A513D1197500C099346592392EEA1E17ECD9E6D3C8FBF0B1B25E3C5F4CDD9C95"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.module.ts",
+    "hash": "5000B057A68592D4A8C64AFB4B8064759BC6952881763357C01A81DA68CDF856"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.scheduler.spec.ts",
+    "hash": "E842E9129C2699EE8795D24A91945C45D939BFD29C0099253B96CBC018E32EC9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.service.ts",
+    "hash": "326493F045208799D1F7CF90A2AAC22B3571EFF7626D328194D7A967D32A8A1F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.validation.spec.ts",
+    "hash": "B1104DEAADF99141E9B0123D37FE3FD3ACFD259841E462A0F49D15FDEB515231"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bookings.validation.ts",
+    "hash": "C7B3051DDEC8FCD793C6032C29E535393B04B033D6AFC139E1743D0E5B30DEB9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\bulk-assignment-integrity.spec.ts",
+    "hash": "55133481EE2430322D7CDE45F3573C2EB3C4CDC0846342156C14CA916302DA74"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\change-request-expiry.worker.spec.ts",
+    "hash": "865D636C1C72E0A65138B929BB1842D501F30BDF9E5931D804A45B543E499317"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\change-request-expiry.worker.ts",
+    "hash": "0E4862D6D922A2BACD0063149AB18859F648979911290D958009FFE0613C468C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\change-requests.service.spec.ts",
+    "hash": "EB92D9C65C20FF53EABDF80036206AABE3A5DC0C980E267E9F5838C5D79886CA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\change-requests.service.ts",
+    "hash": "B97246C37E823E0C673F5BDAE49A0417D6760A95CC586B841BD85CB45DBCFFD0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-booking-policy.integration.spec.ts",
+    "hash": "F2A59984768CBE0F9E3B0B841BFEE0B68A4F9436B3613E607C201B3EBFF79B46"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-booking-policy.spec.ts",
+    "hash": "097DD5FBCD74DE2F871AABFADA36EBC0A0E3C3067BA5D914B55BC98F44921B20"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-booking-policy.ts",
+    "hash": "1FBD21CEA812A009B315C477E092DCAF7D3B204D1DFB222AF4D6EB1D862F0F59"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-cancellation-policy.spec.ts",
+    "hash": "20914191C2A94A8253391DC7783A56E22FF5C9CEEB4B37271113A09C411925B2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-cancellation-policy.ts",
+    "hash": "F2A814F847A7900655BF2E5F8DCACE97F0BB9BC2B754B982A2C6F5CA992124FC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\customer-change-request.spec.ts",
+    "hash": "1432A0BDB99733BA97DBCD1DE9EE19A89639A29CF5AF78ED00BB09CB3DEC3324"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\late-cancellation-approval.spec.ts",
+    "hash": "80DCDF7D95902767F7DBD8FC1713FD66556D9585C115161930E1263D6600B3EF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\mobile-owner-finance-guard.spec.ts",
+    "hash": "E2618E6D25851478A8537848EBF6CC2CED19FA3331F54B031CAFEB53247F07F2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\mobile-owner-finance-guard.ts",
+    "hash": "644587C0626C8F233B5A507EB023705AA819220C8324D29E984AF2115DB87C0A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\no-show-policy.spec.ts",
+    "hash": "9EBA67C1E936CB315D72726B0C71B687105D4CED06302C8B169820CDF44FA415"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\pending-bookings.cron.ts",
+    "hash": "33827C187A685D84F8B1160E817A3E6722D18B757F6C169E2523E5C349F78684"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\pending-execution-expiry.spec.ts",
+    "hash": "5BB65F98B83A2EC801E36D99B4A477E664B33D28F5721753046C15554AE0A35D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\postgres-hardening.integration.spec.ts",
+    "hash": "3070C88FC813FBDEAAA9CCA040A4DD49D21106F18B448EB81C858CD92BD6D327"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\staff-booking-view.ts",
+    "hash": "9A42DFD95556E2C9041AEE9B4071E93098C98B51B371329069E6B7B37813851C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\staff-work-items.service.spec.ts",
+    "hash": "61531AADA985AA302418336A0A15FA2E6C81F722BF83288FCFA8ED97A6BBB664"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\staff-work-items.service.ts",
+    "hash": "6639EFD2C80AEB7F57134783DD31914E37BDE4E71D0E4C1E1C992EB7B06CDA1F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\vouchers.service.ts",
+    "hash": "2282679CB7D661DDDD21113033E79AF40A8F3B4DFCF404912CB8D3DE0B7AE5DF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\dto\\actual-time-correction.dto.ts",
+    "hash": "9ECCB140EDB656D27D3047B16692583F97D98E5DCB6A2EE035A6F16624A9B516"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\dto\\booking-action.dto.ts",
+    "hash": "6E3C75D780E29BF0F7A61BE1C9C08A44708563F6E77D252B47CF50289DAB89EF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\dto\\bookings.dto.spec.ts",
+    "hash": "1F79953D5A922A6C02D223806EAFE0354C2A72351C6133FED15353AFA2302F10"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\bookings\\dto\\bookings.dto.ts",
+    "hash": "A892D59842146DA3D88F7F33E8228EB1C2AE238733173F40B5A5871D41602015"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branch-state.service.spec.ts",
+    "hash": "05AE575058CBF9E1089B119C08E1679FA8EA295AE30CC4838616E8F1539D2314"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branch-state.service.ts",
+    "hash": "282F19D68B58CE6A9AA01FB217C70F98A0A061CBF39E784D25C5BB034C8B17C2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches-mobile-scope.spec.ts",
+    "hash": "E864D2B5771BCFD35B6EB154DCC4CD603812AE32E567D694A4BC45B820BAA118"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches-onboarding.spec.ts",
+    "hash": "E5CB5179477ECB2EFFF570D797DE19BB7F214EAC2BA8750ADE4EDF3BF4264AE6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches-preview.spec.ts",
+    "hash": "98ADE794E7C74E8B33D3A2D86EB79B8A6E1B6D8A62423D05D8DBA00AAB28B1DF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches-transition.controller.spec.ts",
+    "hash": "3DAE411A755FDC39C0E81C302F8339D4A8059924E100E044645C92BB98EC5314"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches.controller.ts",
+    "hash": "2711AE2A7B74F009F11180F3AB0978AF8C76AD2DC042A4D09275E8D50F9887C3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches.module.ts",
+    "hash": "F91688F59C98D2E05072230EF66B8DAEB58CB5CFA077057D8944CBF95E398ED7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches.service.spec.ts",
+    "hash": "2C262DEEC12C7B9ADC701BB691D7D170073B903ED6461EDCC25E52327B81607D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\branches.service.ts",
+    "hash": "3BD0FCACC3D055907408D6FA1FC310B9122D08B19B4C9461B24342C85072E62F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\branches\\dto\\branch.dto.ts",
+    "hash": "D9CD0D74B8944B7A7749CD57FE9AE96D1DF8C61855473BBE87EF9290D4770E3A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business-mobile-context.spec.ts",
+    "hash": "4028DBAC3BC0C3057B45ABF56125B601E46F1DAC7FD17B6432636A4DB5C5CA7E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business-mobile-context.ts",
+    "hash": "26A75824C52F897A8AAD0001E4059E29A12FB7474B3A74BED1509E1DC863CC2D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business-onboarding.service.spec.ts",
+    "hash": "DC2CA705462BBE11704031D4CDA0958CBF08ABDFFB3D85B56790CBF6A9F71D23"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business-onboarding.service.ts",
+    "hash": "EF7B6AC76FA112F7BBFEEECE6AA9DBBC375FCDE43320764A313B3C968B7DCEC5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business.controller.ts",
+    "hash": "1DC2ECFE908AC8D5251FC8BA77ACE08EA6E6124F9695B3370C6247163318D238"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\business.module.ts",
+    "hash": "5AC3C440A5514D35419FB60221E7C4BB0240DAE694A279D128C31CA12D5C2068"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\cancellation-policies.service.spec.ts",
+    "hash": "D92DBAA2493F00314CBE21B9A44279D671A8FECD6227239852B8F561760AD9F4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\cancellation-policies.service.ts",
+    "hash": "3528C535BE9D7005A0C9A73739C84EEF2D28214E30F86CDE0E0BE64C62663590"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\salon-members.service.spec.ts",
+    "hash": "6FA4D7949E399B80D9D9A95E16B005CC5DFDAF689F35FBBD905F2940A53E2E08"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\salon-members.service.ts",
+    "hash": "9F80DD54C7B487B723D8101CEEB096129E6F533C7349AB6321EAD160800C5ECA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\business\\dto\\cancellation-policy.dto.ts",
+    "hash": "35125BF98CDE29DEA4042D71F2BEDE66D36AF122F62530B9B63AECDDADB994E7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\combos\\combos.controller.ts",
+    "hash": "A5AC3D543A77E9C50A1FB1A64A101C0CED41BAC2652CED43F46C5834B2FF92CC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\combos\\combos.module.ts",
+    "hash": "465A41F8DF8D6E497BA4F57EA8ECF0F9723BA0F007333C4F5231F283F7C320EC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\combos\\combos.service.spec.ts",
+    "hash": "003A128406BF3455882BD9CBFB9FB3A3661AB03B308D8CC459B01B6B0F2AEBCF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\combos\\combos.service.ts",
+    "hash": "79FEE9019BBFC634BDEB95A7AC642196DFA6341F2D67B4A7E8EC98CC5E3D58D1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\combos\\dto\\combos.dto.ts",
+    "hash": "E0A4989654EAF16A7FFAC526DF7B4B22BE57173FD9B4FD3EA38B7F78207783F3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\roles.ts",
+    "hash": "51862FFF263AD86D64768DCBD665F88750F8D0D4823D6B8FC7EA901973563B64"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\audit.decorator.ts",
+    "hash": "0F103708773DEDB9878B3B375E7CB764CE81BB99AAAC24A7AE9CE1811ED5ECA4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\current-user.decorator.ts",
+    "hash": "E61928F8690C0D80C025DB07D7ADE9752649A18BB13BEA88EE71745F6673AFFD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\permission.decorator.ts",
+    "hash": "C4EA0F5C669BCB07C9CB73F98DCAAB753C1D3C0273628372B2C6CFB8B86BE2A7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\public.decorator.ts",
+    "hash": "C8461874A96615068CC6FE45445FE60B8A40C0BFE769034BB94F26873482A2C1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\roles.decorator.ts",
+    "hash": "2F3971E584466947174874CDD8EBDEDB20BA9101E0731265918F560AE7C0AD15"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\decorators\\scope.decorator.ts",
+    "hash": "AFBD800233111FCC9FCCFC4AB607F1CD58594D83EB7CA210438D122DC09E4E2F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\filters\\prisma-exception.filter.spec.ts",
+    "hash": "12498714D0BB471C0F8FA7DA6F68FAF824EC13C2DC851E47E23F0EDACA38610D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\filters\\prisma-exception.filter.ts",
+    "hash": "51F60EA341F6A8F8F55B71D437303B9F5BA836F01A80A10529856EAFBAA6512B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\guards.spec.ts",
+    "hash": "FC9F087E33BC1407DFEB29F46460CB6DEA1D603F89F2739326279152398C50C8"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\jwt-auth.guard.ts",
+    "hash": "4C52490310A900B3F6D7CB70BB9DB25FDA2D3D837FA3667E6D9FE948F99CA6EE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\policy.guard.ts",
+    "hash": "08524BE55F6020E52A9BC04B93F83F4B05C22AD4A0ADB9C1FB8DC4E9BB1AFE3F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\roles.guard.ts",
+    "hash": "03EC7899DC0B15923DF9E9AE28C745C9678360D143BDD23856ADB672F3DDE54B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\scope.guard.ts",
+    "hash": "261281BBF84B14ACA080F178A9272B629B8635A5762F91743C54B9F2000E6B32"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\user-aware-throttler.guard.spec.ts",
+    "hash": "988B272F7FF1ADE1B5A4C32F0F640CB315C05F49B153158B798B499DB962B618"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\guards\\user-aware-throttler.guard.ts",
+    "hash": "3F9437EE9AB204FCC76BFEE4805591A7D3E60CCA8250FD16BC0E363263573AC1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\interceptors\\audit.interceptor.ts",
+    "hash": "48CFEA27A5398B87F9AF9676517F1B2EF05512BB9EE269DBFE03F7F197B25C9B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\interceptors\\idempotency.interceptor.spec.ts",
+    "hash": "82E2CF7885054F64111A1D73378E9DA685B5063EA886A1130E5E7973C3A1AFC6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\interceptors\\idempotency.interceptor.ts",
+    "hash": "D2462A704F10BBA306EFE97880221BE474A625A2CDE4C3FEEDCB2A10A778D6CC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\actual-time-correction-permission.ts",
+    "hash": "192C08E8517C21A24F59221DB28F3091C51529E564F97AD4DA1D2D63553BEFD0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\administrative-role-scope.spec.ts",
+    "hash": "4344E34AA3F326800611AF78F08F292B9AACCF4E4880C8296911A8B22073D2C3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\controller-metadata.spec.ts",
+    "hash": "16AD87F811DF85FE51C7693B1456AA61F3A06A9013A690717059D0BD265739DF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\management-role-scope.spec.ts",
+    "hash": "D4D7C0EAC7D8EC35D04E682127C3253561CEDBFC4DD8A8089E55FC1DEA7DF462"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\manager-migration.spec.ts",
+    "hash": "9D63EC812981992DC56E14670971F1D3AB9EDE8A2A2379D9AE87A49B2ED0F52F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\openapi-contract.spec.ts",
+    "hash": "E171EA9246273BA28C0D5C91928B953BE6662983096B53E2DEB68AEB1E53B290"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\permission-catalog.spec.ts",
+    "hash": "3C27D9F7C1D78408A4141C1C29B8F57F315EE4DFB263E00ED230C28107ABDCE0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\permission-catalog.ts",
+    "hash": "46828A971E549AC193CF845C78F5EB34EC5D2076CC4F1601652FAB307C829622"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\permissions\\resource-bound-permissions.spec.ts",
+    "hash": "DCF87C2DC404CD5841FB0942BC488DC56A4A468715098AD9EB40642241F8E6FF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\security\\serialization-contract.spec.ts",
+    "hash": "ACAFE285C7FB1382291B222BC80C18972B7C2C698E491D13A2B381A24F72E8BF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\audit.ts",
+    "hash": "FADFC85C77CFAC060576489E9CD6799760D580C9C61DDCEB7D5A8709BB54C9AA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\booking-datetime.spec.ts",
+    "hash": "272D040AA8254FEDFFF359E5D9447E5E26E8879FEFB9A9E5F85C4D95657C7F64"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\booking-datetime.ts",
+    "hash": "4B9716951A0BF382F2768AB22C70E98CE058AB0E3E67F58691E510B5911EB6AC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\multi-tenancy.spec.ts",
+    "hash": "226EDFD5C6A4D020C747F3EA37598D539FFF6D56AE1EFB33C2FBB9450E756E6F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\multi-tenancy.ts",
+    "hash": "F8CBB943AE496AE89F8A55BF85B5E4B0319C1FAB87EECA6CF398A13C57FBFA50"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\notify.spec.ts",
+    "hash": "668F6B8ACA45988756C55B65228C5397A6E998A5919C19ECA1C5B279F74F847F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\notify.ts",
+    "hash": "06B30017CECA06E18BEFD560128C10D0064BAA5405A1CD857B8195852A61EF66"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\ownership.ts",
+    "hash": "7F8E8C67ED3B41D543F2D811C1D8EB2897E1A3DDB78B6874BD90554BA4FF9C03"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\policy.spec.ts",
+    "hash": "26E09F0163540F61D460F473930C0F2C8E1BB43E6407F6A558B7A57E5FA7BA11"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\policy.ts",
+    "hash": "5A2C8013B580FFB74329271A6FD356DE3C5AE8437FFA1B2B043C87E96EDEA3DF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\scope-helpers.ts",
+    "hash": "B1A11BA1A64D73B1EC8652753E93CAC189A524AB8B85ECDDE578092C438BC194"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\serializable-transaction.spec.ts",
+    "hash": "CD3AC1D00A9F5B730BACF72BCEA8F9DE386C6701B4DA054075517B89078C1139"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\serializable-transaction.ts",
+    "hash": "12C8003A2B7F32DBB9DE2C50DF7EB1E3F988883402163073F26EED4875E8C398"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\common\\utils\\voucher.ts",
+    "hash": "BAD8A8DDF80B5F7A0676CD30032876FC00D4817DC3849EEC3DD631E48F7DC2E1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\mail\\mail.module.ts",
+    "hash": "9DBB9D324C15169E43DBB553064EFD488DECEDE620F68C6A75206FA7D0DB2C0E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\mail\\mail.service.spec.ts",
+    "hash": "89FBADF8875FF0C1FF0BFA8AAFF040E5624C37BAD554852C1A43E98EE5E2BE81"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\mail\\mail.service.ts",
+    "hash": "FD3F8643F6798BD8949A5C2809E9FD1026F9852D26ADDD5D90B385F6C87D006E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media-access.spec.ts",
+    "hash": "F8278F01EF42C7B36F15098EDD2EDE45A9F2FDB710105B766F2DCEC2B9069338"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media-access.ts",
+    "hash": "A26A9D2CCA3FE366B456F3A5D74722D06865C5C8E782B0AEF3BB3D98A0775A5F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media.controller.ts",
+    "hash": "190E2B4C00891CF6EAC9396B4E1C89E6D3663A9E218EA60296120D4B3499C66E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media.module.ts",
+    "hash": "42BFABAB6AF7B0CB8FA500D4FAA9B72B98AC20E54712FCBD7A5BD1D2F0D42651"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media.service.spec.ts",
+    "hash": "2B1DAA67F4504DB0169D7720FD958E244FBD33DE987385D6050AA24E2429073E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\media.service.ts",
+    "hash": "01187E50960A3E5864753A1E3F0136D718567E7E510D9A46879E9CCF87F38A83"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\media\\dto\\media.dto.ts",
+    "hash": "329EC31CB7558C4B333A9CCCE55E13516D8B3F718FB5B585275050311274E0E3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notification-outbox-retry.spec.ts",
+    "hash": "DBD227E43A270517D256C0A79B8437B555C27BD4327DB11B10BB78759F9FBE1E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notification-outbox.worker.spec.ts",
+    "hash": "1D082F286515B14ADC34277C852D94A8130D1942B695204F38C5E762C618E8F6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notification-outbox.worker.ts",
+    "hash": "6A1A08364BB7C8EED80BE8584E4A79C13AD25203D7FC5FBA2E099DE91E9BD6B1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notifications.controller.ts",
+    "hash": "AC1A2CF499E0CCCCC1F81F718BD6A2109FE585CF67B2180D5F4D4E1DBE973AE0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notifications.module.ts",
+    "hash": "189FD4DB9EFB2E8F8230E6769BD7973AA77B424E91E26B15D53206E0524E070A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\notifications\\notifications.service.ts",
+    "hash": "8A4238988A173A3CACED820641047646BAAC2F84DBFB18EAF41069533E93AA0F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact-deadline.worker.spec.ts",
+    "hash": "3C2F4152B6FFF3DA96B949C8CA1499DA6A0CC454AB49C210E60E3CD926A56BBD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact-deadline.worker.ts",
+    "hash": "6D1120AB82ADF8A4BCDAF2FEC12D2FC2180E6F79E8BEEBDDE9053B6C85C62EEC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact.controller.spec.ts",
+    "hash": "55EABA24B8E6E268739E955CD7FD64B69D94AE6D3AF0831BC8C3E36455F541DF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact.controller.ts",
+    "hash": "86A8C541C60FE8EC2F37133636CA518674C90C55A1B09BCF26F62E09EDCA296C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact.service.spec.ts",
+    "hash": "E221898DC29D1017EE63A50A862000E8CB09D3CAC33421FC3526B58A70F00FDE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\impact.service.ts",
+    "hash": "BF37D7E92421A3755CAABAA4807153FA8591FD8794E18855C0E3552C2A1BBCF3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\operations\\operations.module.ts",
+    "hash": "2257A0E683DB0B267AE33DD8D12D593A6F1C541373985B00D7FE6BC3AC635929"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\ownership\\ownership-execution.worker.ts",
+    "hash": "D907E0FD6C286ACB54BF81BA4D5EDC19622AFB5807567C231809650FE3964B1A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\ownership\\ownership.controller.ts",
+    "hash": "0550DDF83AFE374CB67509371C2296F1DCF10E1E7D065471C74C744DCE535F00"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\ownership\\ownership.module.ts",
+    "hash": "297AA8D1BD785BEB9FF7D79BD49DABB2451491DB76A158CB3A4261696DDAF194"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\ownership\\ownership.service.spec.ts",
+    "hash": "C46FE69AA78ED9C7568E784438FE701CEB786585400501190B86EB7051C3E376"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\ownership\\ownership.service.ts",
+    "hash": "98B4BAAE49B1C8F4A1C6D6E2130651F527DF9CBF02ACC29EDDDA89F280ED21D6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\financial-metrics.service.spec.ts",
+    "hash": "7357439BFA78AE8345D102A3C845D0350092ED3C4F062CB9EC655F7C51394CA9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\financial-metrics.service.ts",
+    "hash": "7174B1B05A20527DAB26DDDE37231AEA81A54A29423B7D5EECC31291028DF485"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\payments.controller.ts",
+    "hash": "70B411B22056A73EF3A2B0B00AFE0328669D9AFF214DF809402A9F3DD8E4E8E3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\payments.module.ts",
+    "hash": "C3F7287FE15253422C169A3F36BCB20B23468E5EF892B01753C5B7FE7655D10B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\payments.service.spec.ts",
+    "hash": "3490F548C4C9D2482407D7EEA0C5C34707E655193E60D0AB5778CE36EF2A3CC6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\payments.service.ts",
+    "hash": "C938BECD167FBBC6DE8AB5FD0A21E32512BB2BC43C7F7E4AAD146550BBED9B06"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\dto\\payments.dto.ts",
+    "hash": "8F3CDA359AFDEC223E4DAD4ACF9F4F35D8E1BD8B7A6768A529ABB18BC3A12F58"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\providers\\cash.adapter.ts",
+    "hash": "1272E0A62F37AE569D7D277FA5E5F2D4A8E07E1073022AC10D67D7B38237CC88"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\providers\\manual-bank.adapter.ts",
+    "hash": "455C98185D9936F77A6AAC6C76C17619E7E23BAFFB0D783BDAEB9082A198B1C2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\providers\\payment-provider.port.ts",
+    "hash": "C205600B84F94D089FB66F6D6B2E51BD35DDCD7CBEBF2DDDB363907FCC8E58A4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\payments\\providers\\payment-provider.registry.ts",
+    "hash": "BA780997FF6A7EF24E2A269C62C13DF107FD7F5F8BE9DE7C31EAAF755A1393D5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\platform-settings\\platform-settings.controller.ts",
+    "hash": "61086E36CD92E8116C68E19C224ABF5D22953FAD31CC4D9FD82FCC4F79A20C4B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\platform-settings\\platform-settings.module.ts",
+    "hash": "F6A943EF9791317AEBEFD6469716ABEB21D80579923088B464DB75641CC5DE8B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\platform-settings\\platform-settings.service.spec.ts",
+    "hash": "392D094F1A67C8E075DE3C96319EDE76CC47FF118F509DF71995C00974928462"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\platform-settings\\platform-settings.service.ts",
+    "hash": "A92235B0E4231276EA8B1E440D823280BDED990EF2758CB725C5ACEF78DB0136"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\account-separation.integration.spec.ts",
+    "hash": "8D1AEA4EE65BDD51BA5DC1533F2308404E35060AA281987210137134FEE9F605"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\audit-integrity.integration.spec.ts",
+    "hash": "57968054F649E89AFAA67E9EEE8A2EC2FC7E0348DCBE767BB28B03A129C31E4B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\health-archive.integration.spec.ts",
+    "hash": "9EF4BDB4EAA68E2FA6D5BB39EC2F6969ED226205163190299E2D58DE8575C6B5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\manager-retirement.integration.spec.ts",
+    "hash": "8F2AA71AC80D52FA873ED0325850BCB81A8FAC53397F6A53C541A41A9359A15F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\prisma.module.ts",
+    "hash": "E036A16B9B20086499ACAE030EFB939E9A34BEF964BFEFE76345CE82BB34F349"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\prisma.service.ts",
+    "hash": "A72544E052EF0DD916A05900DBDADA692AFCEEAA66A3F61D73DF3CAD92894F57"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\prisma\\schema-alignment.integration.spec.ts",
+    "hash": "01AF2C5E0B67E86B729DA1805CC1AF280B57DD82626815CCB289C382EBFB8F92"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\privacy-center.service.spec.ts",
+    "hash": "2AAABF10C05223143B659F440799806383D2DB6DD6AA4677FB93FB32C08CBCC0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\privacy-center.service.ts",
+    "hash": "D0465434B7B5F4A7294705131E1BA09B20953999C6DA761FD7F6377698687A8B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\privacy.controller.ts",
+    "hash": "C7BA8927B385CBDD22557F2C4EEDC0BDFF1C6939F57358ADF0DB4ECB698B1FCD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\privacy.module.ts",
+    "hash": "D5EF3CF177D62FB28DF64E06631E39C664409531B036D9474C456F23D4A48879"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\sensitive-data-cipher.service.spec.ts",
+    "hash": "AEF5EAF9F7C35D4A6DDBAB8CABB898CA26E6B144F327731FB0ECD42A728A63D1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\sensitive-data-cipher.service.ts",
+    "hash": "6A1FF087BDD745B4D7999EC74A05E3973444F16D577A6E6B37CBFBCCD7B0C833"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\privacy\\dto\\privacy.dto.ts",
+    "hash": "FF37D14501A2861955DEB102BDDC6BFE1A134743865698EE15E98A51F814DCC1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\campaign-ownership.spec.ts",
+    "hash": "FD96940B3AA9F6F2B90CB84021E6F935F32A1A4D7E60D7AA500031427806076A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\pricing-engine.service.spec.ts",
+    "hash": "2FC5DF1706E52BCBA5806DE07CAD6EB255DE344222E22F80799CB66BB0D354A4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\pricing-engine.service.ts",
+    "hash": "EF4452F23FB1037EA91D504BB0A73AA03FFC7E325E79EA0E7EE53B08301391D1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\promotion-quota.spec.ts",
+    "hash": "6AD5CD60E79E242248ADB4A3D86366F6DD8BAF457A067D69CBCBFDCD849F56FC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\promotions.controller.ts",
+    "hash": "37AF1C93ABB4101BE4AC99E75B1B77478516504FF4228758EF55D77BB0880FA1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\promotions.module.ts",
+    "hash": "1AF33EEC68C391B6CBD5F95291BB916B35CF61B3FD801900262B89E336E3248F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\promotions.service.ts",
+    "hash": "1C4BAF9A44BB97042EDE4B94BF1D5B5A98633DEA44904667CF945271CF623AE7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\vouchers-admin.service.ts",
+    "hash": "5F20264BFA2BEB1FCBD4C6D39BABFA7195A70FD887A1D04D3099F0B7B99DD6B3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\vouchers.controller.ts",
+    "hash": "76711644ECFF382892029EB7A33E00AE5A4213C2E26B626799C273F0C9E2E20D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\promotions\\dto\\campaign.dto.ts",
+    "hash": "5FA9456DDCC3F3773C67B0BE5CD5B0D2C20A9BD2D7C98602B9932E80A0075D12"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring-creation-fence.spec.ts",
+    "hash": "4CC9A6024D3B1943E2FB4CD22BF0B8CA2C6C61F3F0F66C5931469D690956690F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring-creation-fence.ts",
+    "hash": "D98C4A9BF361F545B4ADFE0DAC1EACA2ABCA6B2F100BFF58964246075BF6A0DD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring-plan-recovery.worker.spec.ts",
+    "hash": "48AFC2F94F3599AC66CC5374456E38BC759609D16C9D5838EAB8BCE3D1A844AD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring-plan-recovery.worker.ts",
+    "hash": "D62EDF1D5BB7DEED8B7D55B88DE2952751C33C1876B6A434EA51F2AFE59DF9A7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring.controller.ts",
+    "hash": "E2BA09EE2F4D85D467717E4C26EB5B7BD14BF1A196F134E1564745AF0E0553B4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring.module.ts",
+    "hash": "EB02A0621F1818B3E78295A92A6020CE700EC5FA40F0EA8C143D143726CBB608"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring.service.spec.ts",
+    "hash": "1500AB5E685E73521167FFDE2A0DEF0C304174246FCE026E4C21501006CBE6EE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\recurring.service.ts",
+    "hash": "B628B57C1237692A58E594428F183ACC703A4499B4B1D71C624F9C9AB949E04A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\recurring\\dto\\recurring.dto.ts",
+    "hash": "3CC808FD01943C433753529A362105E81EEF844FCAB481DE1949F155C14E0147"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reports\\owner-dashboard.service.spec.ts",
+    "hash": "AE244DF4D678F2D709C2A78621DE4DEF6F8B7CA6C2CC5EDB7FBFC449982013D2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reports\\reports.controller.ts",
+    "hash": "152E6AC30F04C7C418BDEDD89025BC128FB159F3BC5E64652318777593E8D0DD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reports\\reports.module.ts",
+    "hash": "9D4D00D3096D1D377AB98636E3CB94F932CD2A19D2B767D6470F001E3DD946C8"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reports\\reports.service.ts",
+    "hash": "88BFCCF8597BD57F5B86F865FA519AC9978BD195B5ADDCCF76ABFC368FB49BF4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\review-moderation.spec.ts",
+    "hash": "23C356F9BB1F8E50B00C8635EC4CC24E3F6778E564F0F48962C0B70FABAA52A5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews-public-identity.spec.ts",
+    "hash": "B4A227217BACC768E2C3B1F4DE758FDDC25C508557FC830C292B8290928555E5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews-public-summary.spec.ts",
+    "hash": "BA58F5D3EA6D99958D091300B04DA853F1F8888A292828CAA6CAB9F206F2B7DB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews.controller.ts",
+    "hash": "018AEA8991D57FC428BC5D38077115DBE0EADBBA48D42344536089C71C3DB87E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews.module.ts",
+    "hash": "92BF5F329C81D7ABA909468ED28D39CAE4E90C0C043E442DF824871295FFC5B7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews.service.spec.ts",
+    "hash": "249B4F8FD61904D3392FA8F507356F81B0D8E2B536624C471C00ADEB15C66194"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\reviews\\reviews.service.ts",
+    "hash": "9E8D1A980E166F85B0768D40D96263AA04848D06EA849C5A96E7AF1DDCF90CDA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\saved-services\\saved-services.controller.ts",
+    "hash": "71AA60C4C0E5DFA87F9403D53FB17147E5B60620227E006F149DDAEB472A30BB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\saved-services\\saved-services.module.ts",
+    "hash": "F065104C30C2FD97D9855333B9DF03BA9EA106731622B71A5B021E533255F0CB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\saved-services\\saved-services.service.spec.ts",
+    "hash": "03E20650D3AD6576F926BE2A4A3493D52CAC10A5E750F563C28C236FBB38DFDA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\saved-services\\saved-services.service.ts",
+    "hash": "06C0D5EC8455D16EEB8A1F24548A1881D6FE88B601D0212C33343AA96F6F3C28"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\policy-notification.cron.ts",
+    "hash": "0C02DE98F6B96B97B676CF8C032B4FD26E3B1A9B0812FDAE21F1B4503F7AE575"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\scheduler-reauthorization.spec.ts",
+    "hash": "28C63D890E016235624F8BAEAA1A5F774968D8DDD377AA660FE9171977C723DE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\scheduler-socket-transport.spec.ts",
+    "hash": "6FF5E9A3813A7FBD2388E384AF3313BB707E38D4A3C17A4133D7A9A83B413B38"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\scheduler.gateway.spec.ts",
+    "hash": "9758FABCF6776348000FD92E2846BD0F5E1665A0EE8B790D68F89032CF6F8466"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\scheduler.gateway.ts",
+    "hash": "9F3CAA65D5837525940692ACFE77D145A608AA79BD9743479688A41960D99D95"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\scheduler.module.ts",
+    "hash": "06471443B1A9F104552254EB33669F694AC418D35D18DF9F8296B9A028447990"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\trust-snapshot.cron.spec.ts",
+    "hash": "C3E8C05FA1BB39078BCE28F9BA227C834B7FE8EE13FD162D0E93BFF3A638B093"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\scheduler\\trust-snapshot.cron.ts",
+    "hash": "0572A83FDCD4C56FE9C7A1F13387586AED6E09A4BD116A331D2D1AA4820574E1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\service-price-rules.spec.ts",
+    "hash": "86556C274672924A92C3CC7E6184810381D7DD668A32C468B6B5FD82D9432377"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\service-price-rules.ts",
+    "hash": "9956991C448E71004BA91709F6F9573F259756AA1D374DF2D3E65A21C0C158E7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\services.controller.ts",
+    "hash": "91802B63BECF5D3A54FB8F15D1D11441B14555BC0238FBE5EAA5922416A9244E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\services.module.ts",
+    "hash": "3E0DC41C0723D2803B2FF5A18B3F9EF408FA220A5969C2E1CCF5CBE2E1BC5C5A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\services.service.spec.ts",
+    "hash": "BDB85A8FBE10D5CEA11F0CD1F9D4C1EE340F08C879760C0E22F3CD78AFA2729F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\services.service.ts",
+    "hash": "E14F06F5561F7CAB010E457FD3A5759A95DEB28BF33DB71A6963643F40491742"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\services\\dto\\service.dto.ts",
+    "hash": "E493A54194E404EEBA9815A8585F8C90E23221716C203A83FF100E26054FE3C2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\bookable-staff.spec.ts",
+    "hash": "D23EF9E778DB665996BC2AA4039029F71125776DE204431F4EAF73A6B5DE71FC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\bookable-staff.ts",
+    "hash": "EF3BC7B257295933867FCC7471312D4F5BE36A40119831C983E229970B124736"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff-invitations.service.spec.ts",
+    "hash": "0DFC55E526CD54F1369422E5E42B6E7F41631D2E6BD0AF857A1E2B6DEE6D3400"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff-invitations.service.ts",
+    "hash": "F71A8970D6A6BF72463F11C8EFD9B1162F802AA3188B5229990107AB7169E868"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff-mobile-profile.spec.ts",
+    "hash": "1C63D255A99D91DB084DAF1D3AF870C503C9E328FB348ECDB7FD016D3E9F7068"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff.controller.ts",
+    "hash": "4EC6D872BCE5342A4AFD60B13E3A913A8BE5F540F427690CE8BA8AEC004864FF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff.module.ts",
+    "hash": "625807489A39A423ED26A4870BD2C9C2D4980D162811C8881C32C0FCE44FA82A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff.service.spec.ts",
+    "hash": "573E07655B539864C3A639915A86F0899C0CA897DD59CDF330F1C388ED2D77EB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\staff.service.ts",
+    "hash": "4877C114EF9918967CB349E5F6B5733B26E218F05BDC861E3CBD6F6BDFDB5C6B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\staff\\dto\\staff-invitation.dto.ts",
+    "hash": "C2820F43DF349025083661E5254BEC5468643044C07203542B9BF1E64E7E0ED1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\users.controller.ts",
+    "hash": "937B979C93166FAFAC7504F50C4F28D9EB74C00BFB372C5AA9C0381FE2D2C5CB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\users.module.ts",
+    "hash": "573383D292EBDBC2C76433FE2581C877B169E2ECAFF5913887027C1843F5A185"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\users.service.spec.ts",
+    "hash": "3F3FBFD98C8BDCFD4AE67831D307EC293F4794AAA199FE1CAE31D75B6A681C0C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\users.service.ts",
+    "hash": "D078717EE6367CC87310352FFA874FEE0ED19EB1081E89CF98DC9300B3414AAD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\dto\\update-self.dto.spec.ts",
+    "hash": "6E93EB322243CB843B6903518CD75022A72A88EDBA5FD83EA63FACF16CF143D1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-api-main\\src\\users\\dto\\update-self.dto.ts",
+    "hash": "0AC1DD4019D91D206F980D0932B0D39FD00E5D5CF85A9F051E0672456D39396D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\App.css",
+    "hash": "6E25A776D3E8102DA5BACB3CB99F4A5FC662A2E01E6143140671A556D28C3D5C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\App.jsx",
+    "hash": "B7AEC2AE19A026B2C77A241A1BE43B7D39145E7BACB676A649E5078250B11E07"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\index.css",
+    "hash": "F715F88112F352A5791D7EABD1628733901C515D27EAB209C36ACC0D3E110369"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\main.jsx",
+    "hash": "9D6C35FCC235EBDFAAFBE1C63BD11B6688FE303C5888E639CF68FB86E173661B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\api\\apiClient.js",
+    "hash": "342A46F23FBA246F8B8E64EC99759445EAB98558EC604C71FE379B364F39A158"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\CategoryFilterChips.jsx",
+    "hash": "EB8CAD21385E2BBAAA54CF2AE8F94507EBDC7635DA6538334C21F62214348363"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\ActualTimeCorrection.jsx",
+    "hash": "9FA884BBDA08D3491A1EF1735AFDE2ABDB70D2EDFD8E94C402105FADA5D780A2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\ActualTimeCorrection.test.js",
+    "hash": "8A13DDD33ADDC0756D56529139BC24BA07032FE594DC5096AC0BA6E94383CF43"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\ActualTimeCorrectionHistory.jsx",
+    "hash": "AB08C69429AF553B939BDD6CFD0B140C4B243C107229E9D7D87D2219069C7A46"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\ActualTimeCorrectionHistory.test.js",
+    "hash": "755AEB05F81A106228F0FE3B13438FFE1EFF7EE5985DFB2DBF29196920B74532"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\BookingBar.jsx",
+    "hash": "B43BBD643F75D9563B4FF2D4AE7F387EC48E07FC528555AFEA9DF7EFDF379223"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\BookingDetailDrawer.jsx",
+    "hash": "DA10C3AAB0C4ED4896DE10D9748A7E12B623A9122A58CCE2B8C297CBA720A614"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\BookingEventCard.jsx",
+    "hash": "270DD1EF7B269B7CD0671E74CC77861A6C99020B8BF5D0F02C999E5D9AFAF3D0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\CalendarStates.jsx",
+    "hash": "E6B577EAE41B308B1F56A9D008BF879C6F0D6F05D20BF40461DC8D7638460355"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\DayBookingsDrawer.jsx",
+    "hash": "10D7FDD4EE1E0CD3CB82F68B29AA571D14B05DF0318D726A0934B997147D81CA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\index.js",
+    "hash": "E4EDF61D6BAE405866DDA40B49427D2D06AD33B5D6FF286EE1E2C02EC06A9FE0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\OperationalTiming.jsx",
+    "hash": "B4F13EA955318EC1AC3F89E586B0341B1474CF3769339632AEA8EF77ABB3B4F9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerDayView.jsx",
+    "hash": "741B3104A1930310D7B34AEBCDD2B13EC75B3F92782D329AEA85C044A4BCFB42"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerListView.jsx",
+    "hash": "BD6C712722CAECDAA40C1D9CB4B64EC2043AB3BE5214F55874A7343302EBA9F2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerMonthView.jsx",
+    "hash": "B075BAEE32F379FF073E380C2EA58A02988E4CF67DAC78645213C0C58F23F0CA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerSidebar.jsx",
+    "hash": "C27D9C49B0CA16AA2EC82E097922DA90D80314E0CFF36875C49C378280577466"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerStats.jsx",
+    "hash": "28D17372E77DE9DAEFE4FDBF61EECD32E3FD6C6C6DDCB3074F0ACE8533C96BC0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerTimeline.jsx",
+    "hash": "9C1E661A293FBA6E23CCED4EE6F1155D1B21388EBAB04404847B54AFF9B2A3D1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerView.jsx",
+    "hash": "A57535201DEE5814E196ECC8A5977D9C444D51633B4D861709BB8BB023A935B3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\admin\\scheduler\\SchedulerWeekView.jsx",
+    "hash": "D5F0D672158D469AE000BE92476DE23F60510F5B49494FFEE2E6B0E72FBB820B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\appointments\\AppointmentQueues.jsx",
+    "hash": "DDF058FE4B0EE3A7D662FCA5D0A5FA9B6E1EC77CF494742F16D5274B12E2913D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\CategoryBookingBarChart.jsx",
+    "hash": "EF028D26A2CE948890FE4E27A72CF517E3959520BD51E5B252220383C9899BAE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\CategoryPieChart.jsx",
+    "hash": "F6521CB5AA1E9217CB0B7942145EF7842DC06AC4777B7FDFF2BDBC2B39199BF9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\index.js",
+    "hash": "D55771AE445655D518844AFC6D499D484D76542ABFE280FA9D5DAA7B08490451"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\RevenueBarChart.jsx",
+    "hash": "2CDB8A1143395D95EEF1F4A6E7D5E7D4E74DC4A4759D2AF6D7548E26B03A2ACA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\RevenueLineChart.jsx",
+    "hash": "6F56C19319521951F310CD5ABDC2EB1A28FB29ECEC36E54696F969CC22FCC236"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\ServiceBookingPieChartLabeled.jsx",
+    "hash": "742AD24D26D8AD7584BDE38C6CD4D01BE03015BC754D6389D6475E00BE9E54C8"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\StylistPerformanceBars.jsx",
+    "hash": "D5BA1548893146278CFAA807A4A6EF581C2990F849020242810A50962ED52349"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\TopSalonsBarChart.jsx",
+    "hash": "834D778D55DF9A91B78F3FCE5ED7F4534F70E781BB61074AD38D4042B0857DAF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\TopSalonsBookingBarChart.jsx",
+    "hash": "01406028FA0B9081E8BF5A1CCCCA023C8BE66E80A0430E6301ECE8064632C066"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\charts\\UserGrowthLineChart.jsx",
+    "hash": "DC0307529A02F4B2BA30B4C1A2CB1E0CB39D83759F11044169E9319D5E25852F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\common\\CancellationPolicyCard.jsx",
+    "hash": "8CB7551375965D7AA65679CC7A1EDD293263E3BC1356EB830CCA19F993423AC6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\customer\\BookingLayout.jsx",
+    "hash": "747778651C3C955B609F2794B4384FAB2D6BE8763DB2E45CDE97EA3BB5BF69A1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\customer\\BookingPolicyNotice.jsx",
+    "hash": "8484DDD5CA25684A8A763F33DFB80BF1C7965D5A7C59CDF2527FAEFB6BD453D3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\customer\\RescheduleModal.jsx",
+    "hash": "4B5BB3B406BFC01DE6FB12ED8043FEDD0618633467260D22FC83AAD04A835918"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\customer\\ReviewModal.jsx",
+    "hash": "93E9064459445044EA71DEA24FE812E34367AAA688E12F77CE87C4CF3D17E431"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\AppErrorBoundary.jsx",
+    "hash": "0B92E88A58B3634DCEF36AF0D773AFC75FFB3EE9EB6B9A4490E85FE550A9A67E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\AppShell.jsx",
+    "hash": "7038A57290AA618DA507FBD279BEACC4A70042DA06DC1BC1862883D4785EA210"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\CustomerShell.jsx",
+    "hash": "B8FB7AFF58D43753199F6FDCF029FB4CCB92037896CEF3AA7736C727E1D70BD1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\PlatformShell.jsx",
+    "hash": "E7B38EC34741093CF7F99F37DCE294CF6B0E4784852BE218CC7ECED41CE90839"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\PublicShell.jsx",
+    "hash": "0ED96392FC30C37054A7301CC049B12D56CF8F2E3A91FC949DF7C40A89F896CE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\layout\\SalonShell.jsx",
+    "hash": "87464591B0A9973FDD7B81DC7E06E1E38E73BB9E949F77913F4C7A699912EF03"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\media\\FileUpload.jsx",
+    "hash": "B86BEB9050DC4196BB223686D035CA88C65F7612D831C7B9EBAA210DBC0F8BE4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\notifications\\NotificationCenter.jsx",
+    "hash": "4F1186E340F178C5A94BCBF6C10788AB181B55FD0247F3B292A00EC86B98B580"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\public\\AuthShell.jsx",
+    "hash": "ABB089FF0470A9F5EEE590834803E9F0B20A545D131F87EC1AFEA4C691B55F02"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\public\\HomeMedia.jsx",
+    "hash": "C46BCC723EA761BF3F58C03F08B023456C68B6354F68B755A3DF92CB51463FD9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\public\\MarketplaceRail.jsx",
+    "hash": "681362B1727A2DB6C1E71B77EA06DF66E6CF130A3594C39C65EE23F12D9E53D6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\public\\PublicChrome.jsx",
+    "hash": "0C7A8AFD04C3A4B791FBE981421D22842B825EE7A11F0B240F17E239C0669904"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\salon\\ChangeRequestCard.jsx",
+    "hash": "B69A9ED4245739E243E283A0BA080DA3CEC9BEB6AE31DF79E7796B3C05A695BE"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\components\\ui\\index.jsx",
+    "hash": "2D5A8108E4BDC24CC0239856AF26AA22AD849617647A370E395A6BD476A477E5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\config\\entityMedia.generated.js",
+    "hash": "58407F4B51BF999561EBC32C949845E11E40E71680D2FFC3168F81372727AB88"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\config\\homeMedia.js",
+    "hash": "4B8B3FB2DC9E1C69389490E4FF6CEE163EC677D9B0456DB063CC3D291D62F1B2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\constants\\status.js",
+    "hash": "992768219233D2C7F63F8252D5E725B716AFBD6C3063936539BE49BCD9647B4E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\hooks\\useAsyncResource.js",
+    "hash": "7319C157789E8F1BE613299BABC28B6EBDF1099F4F1D2DB41D26252C26A5CD87"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\hooks\\useOperationalRefresh.js",
+    "hash": "B65D86B21FBB6D9B616CA80986CE396B1A057206C5BA8FB71582C580664D35CD"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\hooks\\useOperationalRefresh.test.js",
+    "hash": "B3BB48EA148D2332BD1FC0345857C5D191192CC6713284768C3DD977AC8D4813"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\hooks\\useUnreadNotifications.js",
+    "hash": "06F105FBF77DF0E52F71D63696EEAC38BB75C8C310FF096FAB940A40801C5FBB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\hooks\\useUnreadNotifications.test.js",
+    "hash": "CC86B3A83FBDAF1BA40F7046CF5239C8D57CD805FCD53698BF8D3B0F72E87994"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\ProfileSettings.jsx",
+    "hash": "AB86A2CFAD0A29F4568EB0B369ECF622A48A99A21055221198668DFC25C42979"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\SecuritySettings.jsx",
+    "hash": "EF943B22794B32FCBA7EF364AB74FBAF89CB42EDC3F09E9C6818928550C1745B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminAppointmentsView.jsx",
+    "hash": "F69D68557753DB5CD4EC84B7424120F3CA0E2F94476A9B36E413F3ED226651ED"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminAudit.jsx",
+    "hash": "53966C0C857D55DBCBCD983C34DE67431FC6F23E6DD8FBD6428F5A389AD00C1E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminCompliance.jsx",
+    "hash": "95CCC892BA1D0135F334F3EED8EC005BF39009FDF4BF63826FD22CFEE22173DA"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminEntityDetails.jsx",
+    "hash": "AEBF99C8315C01641BA519A213E2C64DDE1D470BB25B4FA81292712E0871C613"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminNotifications.jsx",
+    "hash": "4FCF34F1763AA1F44B99DF95EA62935A6DAE4A396D1639F7B48AAB44B7747077"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminOverview.jsx",
+    "hash": "98494763CB693DC7244326C53B97094A7FF9964562307350876FABAF1C5E396B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminOwnership.jsx",
+    "hash": "CC8BAAE5E102E276BE6A131AD22B92EFF8D8091E63F06249C834111F8AB39B6B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminReports.jsx",
+    "hash": "2B5DA201593322BA9851E86CF63324C8972C9609B9A2337DF8C794E11530118C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminReviewsModeration.jsx",
+    "hash": "8C8957A524D34DFBA0B63D28A1D780634F1716E01187E690E0F9242B341E9FD2"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminSalons.jsx",
+    "hash": "4070785267E7B53E3FB39AE20A3032A72034062A18C4B5517A064D687CD27158"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminServiceTaxonomy.jsx",
+    "hash": "1DC6FB500E627D88066A66FC30922A9BCDBBBD2F140E09BE7824473A3B732417"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminSettings.jsx",
+    "hash": "9A0345322C020EDFDBB3781C9ED658CC0DF61AD3654EC386D5E83B47C09D5574"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminUsers.jsx",
+    "hash": "1E407E39BBBA20A3DDD5E4C044CDEDB2F11ABB300A512A3BF303ED2539D72A2E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Admin\\AdminViolations.jsx",
+    "hash": "06272B8836A207F234FCB0F9E16F736A9CF7C676D291CA4E2C0946E66AD01CDC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingConfirm.jsx",
+    "hash": "E67532336D8D0263F1AF990516635E8F6218D7FD70C0A01928D52F32D8591F92"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingStep1.jsx",
+    "hash": "2E28205343665D3751A132B480497A338E68A98C536EE115696B0A14D6AD437C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingStep2.jsx",
+    "hash": "C6704D22CDACCE026E3713E500DFECDBEA5B4DA3898F346F724C3CC008C28E9B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingStep3.jsx",
+    "hash": "D31B231BCD17C630941B6A71E72E50F0619210EDAC75829174D6F04A55A1A11F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingStep4.jsx",
+    "hash": "D6989C20A2D133381D37995F945061AC829B41F8FBF2343F4E0E2F1A02A91DF6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\BookingSuccess.jsx",
+    "hash": "9F2FB23E7D575C747B792FCD3FF396588CEF522A6EFFA20E973336CC9707DD42"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerAppointmentDetail.jsx",
+    "hash": "B6EDF725F29537655457B43BA10AD66B209743E6D0200AC485FD4BB6370F3142"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerAppointments.jsx",
+    "hash": "5F461AC02C17907077B3948C10509DFBA1AABF464CBB3845124972152A4C34D6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerBenefits.jsx",
+    "hash": "3220C6B0AB14581E54298D64DE1BD071D428B76F129EC063EEAC9331FA5803D0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerNotifications.jsx",
+    "hash": "E10CF18DDDB762EAF42F168C261D81B9E64DBF920E06507F6744BAC5A12D9CE1"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerReviews.jsx",
+    "hash": "FE6A50C51285421CB7853D123D2899A4CBBF48319D8B60313D940D867926895A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\CustomerVouchers.jsx",
+    "hash": "E2CC13048BE3C12E29149F5957DB0E50DFA7E53E140A85C07535159B636F5B97"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Customer\\PrivacySettings.jsx",
+    "hash": "768145A53C01D349250E598D191BCEEF0A5046AC8CA9122E53028831664D5FB5"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Login\\AuthActionPages.jsx",
+    "hash": "251671AF9E0730131A8F27EB74D646EAE9FB0BAD711DB5AD8AB2BD5A12331326"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Login\\LoginScreen.jsx",
+    "hash": "4E5E99AAC704B900FA13771D770ECF4BA3549144740777315EB9DD62A58F50C0"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Login\\RegisterScreen.jsx",
+    "hash": "A0BAD2F0981E968A23DF2B8E5C166D90E9F39E4CAFF8601F07C9476CAFF17B09"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Public\\BusinessLanding.jsx",
+    "hash": "FED9937E670350D0448DC65D320DB3ECEED10EA6591A9B23F1789419132C7D7A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Public\\PublicDetails.jsx",
+    "hash": "81FED68EF2702C440808D323B95B01CE991BEAC79D7E70FC1DE752788D8E0A39"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Public\\PublicHome.jsx",
+    "hash": "BB1D00DF022F43621D005FF6E8D7847B7E0A18F5B1FF3F52426E2B8CF3B5365A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Public\\PublicNotFound.jsx",
+    "hash": "8E1B04DFE0AD233BD1AF67CA3FA47F9193C1D069649335AC1A698B80F8347D48"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\BranchOnboardingWizard.jsx",
+    "hash": "6853C3AA328CB74278C07A9F968B57071841F82F7C63354EBC4DCAE3DE4E4ED3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\BusinessOnboarding.jsx",
+    "hash": "7C730B57C4CFE6C7221B11DB8D6A6475C5E0FD546C66DFC92737C41615E5CBBB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\IncomingOwnership.jsx",
+    "hash": "C5A3526464301D610A379D05CFB8BD2471878F331A23E24FD8152EB6FF9383A9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\PaymentCorePanels.jsx",
+    "hash": "AEAB34E72483B0DFF82B8B2F45198F04BD6F62466CC9C5CF01BC1D2D8D5F6235"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\PaymentsWorkspace.jsx",
+    "hash": "4170A62815511E41A050413363A5B0E5BCF14D38F677A23BEDB43EF95774B83C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonAppointments.jsx",
+    "hash": "302CC5839558C9791038DE06DE3EB76742DE39D0B7A18632070A99E37B7CCBF3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonAppointments.test.js",
+    "hash": "B64AF1F7DEC5A6A6117EE37D0F3EF35ECCD30DF3C9A7752F42768CC858128A04"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonCombos.jsx",
+    "hash": "937D141508EB7F8F308F465EE2C5AF88BFA15FF2A07106AE7FB4DE1DCDB48029"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonNotifications.jsx",
+    "hash": "AF79528AF6357CDF0CECC0AD704F92A80B8099370D1AB444B9503C8BAD1C823B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonOperations.jsx",
+    "hash": "C4FB0FDCBC8BC8EC08E0A5651C7E8C960320B0345464D173F3492C4E7E88482A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonOverview.jsx",
+    "hash": "A80C600E82A2FCEE54E9CFD907A38DA403D86FE3862DEA95266586F3E900611C"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonProfile.jsx",
+    "hash": "67F34D82C18D169FD08FD754FC2D4F182A332BEDD30BD62658FB4849D3133B80"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonPromotions.jsx",
+    "hash": "29F206B7194BF9701AD026777D0ECC7AF4C5D15641418412F8340A82FE033C30"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonReviews.jsx",
+    "hash": "D10E5501AE34A74E0ACD11E21835728C9A3E643958C5998FD3BF936C0C943AC4"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonServices.jsx",
+    "hash": "D6BBF1540A1BCADB204F219735980C9F933CEC3D4D5341D2C6444A006FE1FB65"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonStaffManagement.jsx",
+    "hash": "564FE2E6886D4FE87C4A6DA60C2B84A48C377C21DF079EFFE06439A22B7DC6ED"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\SalonStats.jsx",
+    "hash": "AF1FA5A871D1908794E32EE2147C62B4232D8F7A65CEC5A60A75793DDD70D343"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\pages\\Salon\\StaffDetail.jsx",
+    "hash": "B5876CE1ACFB576130A25934C5916DAD5B252B6DFEED63B468F574495A3BE7B9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\store\\authStore.js",
+    "hash": "94C4830C6B043A7AE15E998615FE8D5D01B53669477268A9D3DF66FF9F7F9AD9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\store\\bookingStore.js",
+    "hash": "AB06C7717ECA6AD379D10EBD0CF9322F46F43F2352F7774C97FD913C35477B05"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\store\\bookingStore.test.js",
+    "hash": "72A9750B2CDCC2DB3A79D586B45AC794D194F7EA4CDDB392C91C2EF2F591CDBF"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\branch-operations.css",
+    "hash": "8A8E91469BC2523630F7887E7F23BD0C303B77CB04B4B8017F622E08E66C5654"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\business-landing.css",
+    "hash": "D9F74258D01FA3AD752DEAAA7611A40B21D992D78FE00F98A46AD8849D756C4E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\mobile-booking.css",
+    "hash": "725CBEAF46470D6134AD61C655357220B4EE397FEDF6A8ED1890D82948677E5B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\mobile-public.css",
+    "hash": "FA34D1476749EF567B771B90BC7B8DBEBB782DB2A5852728533235486FBEFBB9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\polish.css",
+    "hash": "E9182C73641D75780520B80731B97F0C357C9243FEEBCCD408E59B38809B8CD9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\privacy-center.css",
+    "hash": "90C352AEAF19307BA22EFB5E6F586CDB7BB11B87E51988B9F39A1C8A9B3CA5AC"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\public-home.css",
+    "hash": "0AC149F332D9961036AFB82E3E03891BD7241CC11A14D9500112150604C9BC03"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\styles\\theme.css",
+    "hash": "7C87ACFF527A2E50DB966D556648B4ABF2D77FD31705286D406A34E0D1829CB6"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\actualTimeCorrection.js",
+    "hash": "7031D279FE0D2A98D4F7C58F2EC7CBE577CD681FA0A98A6488A549AD542544A8"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\actualTimeCorrection.test.js",
+    "hash": "2C64FF6C78D4CA81C52A356543036DB74D187E62F18A2A8762DF9DE4DCBE3B97"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\authScope.js",
+    "hash": "E6B52A6896D40FC48F745BFCFE24655B95C66BD99FB4C0A7C3C386BCC7BA57F9"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\authScope.test.js",
+    "hash": "078CC5E31BE8CF73480361018F3991C20EE049284623719C9EE5A52760FEF748"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingActualTime.js",
+    "hash": "4B33146F44D44CEB6E1AD7A35E73975033CAD5A3869D186613B1763B60B7A3D7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingActualTime.test.js",
+    "hash": "F3956D8A7908432A084F54B4903B72A7112ABD0237512A3BD4854B71B8227112"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingAffordances.js",
+    "hash": "9A0CD1DE30CC19F77D923A7519FE8D674259400504143E501A562C7D3E1D848A"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingCalendar.adapter.js",
+    "hash": "A446C76A6F99C3ACE1B84BD2772996576609A76A75918C5BE32C7CCB9C6B020E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingCalendar.utils.js",
+    "hash": "2544667A08E833A9EAFDB0A9F8DE09DAF8FFB41A236D51C008F5306AFED214B7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingSubmission.js",
+    "hash": "B8A5DD1D6159905B48BF0D61623EDE3283CBDAD30CFE324B52E4D4A69F629CD3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingSubmission.test.js",
+    "hash": "5BD017D04E36367767C1FC3CF091454A1BC33563C5F4B6E6F798F8B1F3F40E5B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingWallTime.js",
+    "hash": "27ED8F6D16CC2E2A219145063AC85A90E44F66E86BC82BB24EBF14515514ED26"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\bookingWallTime.test.js",
+    "hash": "96E02E27F3CC6DD5A1B26FBA6735F33F92070A26C631E9231D65F7E1C52817A7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\branchSlotTime.js",
+    "hash": "E27307373214D4194EA7CEFECBCAEE34C7D59D7B19F75398DE4B78A0C20CDB37"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\businessCompletionRules.js",
+    "hash": "EE3FAAD2C87821876C063B81EC14F229E080E6CF4821E5218AF6B3ECFDBA5A5D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\businessCompletionRules.test.js",
+    "hash": "AD766AED6C6EFC7DED9F1ECC88F1341814390C6A64554BB3FA81B5D40C51D256"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\businessOnboardingValidation.js",
+    "hash": "BB493FFD7638BE4DF996D804C58925A470C34D0B503A1653EE53FABF7D24DC43"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\businessOnboardingValidation.test.js",
+    "hash": "428BF3193D775223F2F3326D4D04255CBC321162310B101DC9A3DBE7CED8D857"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\customerCancellation.js",
+    "hash": "054CCAB5A7648D8BC8617FA4A272DB5AA0F35946B4FD9592AC79C94E59669D44"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\customerCancellation.test.js",
+    "hash": "D8CC8771386730DD466CA1604678F6DABB646FEE008EB3ACFACCE49197DBAA66"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\displayLabels.js",
+    "hash": "7D1D31622D96E4D58372EC3FD1086CB8BF495F0A8132CB2EF9946F727C4EEC35"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\helpers.js",
+    "hash": "829E91E7B572FD3D46BD01461B3FB583B9E7D80331449921835CF8B4E37BE9D3"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\latestRequest.js",
+    "hash": "C3BA6A68BD61BDEBF4B734F26493366497E5764F9AF67ACCCAFBE286EAF76C55"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\latestRequest.test.js",
+    "hash": "8AA4FABBFC56D81C3DBEA0BC3AF65693B005C21E3D7F4F9534A93BEFC04E812B"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\mediaValidation.js",
+    "hash": "D146D7E251EA3105C5EBE267C6A599C744C5974A6809D7619AE15861084A3027"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\mediaValidation.test.js",
+    "hash": "A2FEA139A4DF78867A5AF591E4AA9F6BFC05C7E4F78B2853644F4A35A6047B74"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationalListRows.js",
+    "hash": "8C306838316FF22468DF1BA49AF1C333C7E3B901123081E20C21B6CFE9FF145D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationalListRows.test.js",
+    "hash": "F1C7E4EDBE0BF8E6F62F1A78575D17910238E23F6AA940EBEF53E729146EF287"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationalTiming.js",
+    "hash": "F8638717DD8801D2AAC7E2FB68CB150E2A278CB2D267661C1F3C9BF0E38D3A41"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationalTiming.test.js",
+    "hash": "0FF2DFD66CEBEFB0216FBFA45D52ADE599AF430CDE182B85B0DC8A59798AC801"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationsScope.js",
+    "hash": "23FA0A6B3F68CDDBFEA8DC1879A8D5491785E27DFC3F890AEF37D09FBACB684D"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\operationsScope.test.js",
+    "hash": "93B57C5CA373DDF08BC1191FDC8A9EFA299C280F8D472CF20424D8EE8C5B989F"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\requestError.js",
+    "hash": "AB0EB27469CDC19DEDE1C3A2B2D69A29C7663D84407F5248785786DA63A165F7"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\schedulerSocketEvents.js",
+    "hash": "CD902169F2047C1B06A47249F5B437C8AF7A40FBD4EFDBECCFCC8C217E833362"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\schedulerSocketEvents.test.js",
+    "hash": "1882E46848A1A387ECD937CCDB3FFD8F7B2C31E3812A11AD93522B6296FB6F1E"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\schedulerUtils.js",
+    "hash": "D0FAA2CDE83A16ACD3611843C6FD08C818547909545B39E2DD4B1320FCF6C1FB"
+  },
+  {
+    "path": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src\\utils\\seo.js",
+    "hash": "38D022CB86C33736528B76E2C12110C30B9A871FEF58B5D06A5DFD1E6D08859D"
+  }
+]

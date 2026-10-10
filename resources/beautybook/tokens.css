@@ -1,0 +1,172 @@
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 */
+/* Hallmark · macrostructure preserved: Ecosystem Index + Workbench
+ * theme: custom tuned · vibe: "bright beauty marketplace, composed operations"
+ * display: Fraunces (public accent only) · body: Be Vietnam Pro · data: IBM Plex Mono
+ * studied: no · context: existing BeautyBook product and locked design.md · v0.8.0
+ * contrast: pass (40–41) · nav: N5/workbench · footer: Ft5 · slop: pass (42–45)
+ * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · icons: pass (30)
+ * mobile: pass (34, 49, 50–57)
+ */
+:root {
+  /* Complete warm-neutral scale */
+  --color-neutral-0: oklch(99% 0.004 28);
+  --color-neutral-25: oklch(98% 0.006 28);
+  --color-neutral-50: oklch(96.5% 0.008 28);
+  --color-neutral-100: oklch(94% 0.010 28);
+  --color-neutral-200: oklch(88% 0.012 28);
+  --color-neutral-400: oklch(64% 0.014 350);
+  --color-neutral-600: oklch(43% 0.016 350);
+  --color-neutral-800: oklch(27% 0.014 350);
+  --color-neutral-950: oklch(16% 0.012 350);
+
+  /* BeautyBook berry scale */
+  --color-berry-50: oklch(96% 0.025 356);
+  --color-berry-100: oklch(92% 0.050 356);
+  --color-berry-200: oklch(85% 0.090 356);
+  --color-berry-400: oklch(67% 0.175 356);
+  --color-berry-500: oklch(56% 0.190 356);
+  --color-berry-600: oklch(49% 0.175 356);
+  --color-berry-700: oklch(42% 0.145 356);
+  --color-berry-900: oklch(27% 0.075 356);
+
+  /* Supporting marketplace tints */
+  --color-lavender-50: oklch(97% 0.018 305);
+  --color-lavender-100: oklch(94% 0.035 305);
+  --color-lavender-200: oklch(89% 0.060 305);
+  --color-lavender-300: oklch(82% 0.085 305);
+  --color-lavender-500: oklch(62% 0.125 305);
+  --color-blue-50: oklch(97% 0.017 238);
+  --color-blue-100: oklch(93% 0.038 238);
+  --color-blue-200: oklch(87% 0.068 238);
+  --color-blue-400: oklch(68% 0.125 238);
+  --color-peach-50: oklch(97% 0.019 58);
+  --color-peach-100: oklch(93% 0.045 58);
+  --color-peach-200: oklch(86% 0.075 58);
+  --color-peach-400: oklch(69% 0.125 58);
+
+  /* Semantic colours always pair colour with text/icon in components. */
+  --color-success-soft: oklch(95% 0.035 158);
+  --color-success: oklch(48% 0.13 158);
+  --color-success-strong: oklch(37% 0.105 158);
+  --color-warning-soft: oklch(96% 0.040 78);
+  --color-warning: oklch(52% 0.13 68);
+  --color-warning-strong: oklch(38% 0.095 68);
+  --color-danger-soft: oklch(96% 0.035 25);
+  --color-danger: oklch(48% 0.18 25);
+  --color-danger-strong: oklch(38% 0.145 25);
+  --color-info-soft: oklch(96% 0.030 255);
+  --color-info: oklch(47% 0.15 255);
+  --color-info-strong: oklch(37% 0.120 255);
+
+  /* Semantic surface ladder */
+  --color-surface-0: var(--color-neutral-50);
+  --color-surface-1: var(--color-neutral-25);
+  --color-surface-2: var(--color-neutral-0);
+  --color-surface-3: oklch(99.4% 0.006 28);
+  --color-surface-4: oklch(99.7% 0.004 28);
+  --color-border-soft: var(--color-neutral-100);
+  --color-border-base: var(--color-neutral-200);
+  --color-border-strong: oklch(76% 0.016 28);
+  --color-border-focus: var(--color-info);
+
+  /* Stable compatibility aliases */
+  --color-paper: var(--color-surface-0);
+  --color-paper-2: var(--color-surface-1);
+  --color-paper-3: var(--color-neutral-100);
+  --color-surface: var(--color-surface-2);
+  --color-ink: var(--color-neutral-950);
+  --color-ink-2: var(--color-neutral-600);
+  --color-muted: var(--color-neutral-600);
+  --color-neutral: var(--color-neutral-600);
+  --color-rule: var(--color-border-strong);
+  --color-rule-2: var(--color-border-base);
+  --color-accent: var(--color-berry-500);
+  --color-accent-strong: var(--color-berry-700);
+  --color-accent-soft: var(--color-berry-50);
+  --color-accent-ink: var(--color-neutral-0);
+  --color-focus: var(--color-info);
+  --color-overlay: oklch(16% 0.012 350 / 0.46);
+  --color-on-dark-line: oklch(98% 0.008 28 / 0.18);
+  --color-on-dark-line-strong: oklch(98% 0.008 28 / 0.27);
+  --color-on-dark-faint: oklch(98% 0.008 28 / 0.07);
+  --color-on-dark-muted: oklch(98% 0.008 28 / 0.72);
+
+  /* Selected, asymmetric public gradients. Operational pages remain calm. */
+  --gradient-public-hero:
+    radial-gradient(circle at 8% 14%, var(--color-lavender-200), transparent 42%),
+    radial-gradient(circle at 92% 5%, var(--color-peach-100), transparent 36%),
+    linear-gradient(135deg, var(--color-neutral-25), var(--color-blue-50));
+  --gradient-public-section:
+    radial-gradient(circle at 84% 8%, var(--color-blue-100), transparent 34%),
+    linear-gradient(145deg, var(--color-lavender-50), var(--color-neutral-25));
+  --gradient-customer-empty:
+    radial-gradient(circle at 18% 22%, var(--color-peach-100), transparent 38%),
+    linear-gradient(135deg, var(--color-lavender-50), var(--color-neutral-0));
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Be Vietnam Pro', 'Noto Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Major-third type rhythm; display remains public-only. */
+  --text-display: clamp(2.75rem, 4vw + 0.75rem, 5.25rem);
+  --text-h1: clamp(2rem, 2.6vw + 0.5rem, 3.4rem);
+  --text-h2: clamp(1.65rem, 1.8vw + 0.4rem, 2.6rem);
+  --text-h3: clamp(1.25rem, 1vw + 0.45rem, 1.75rem);
+  --text-h4: 1.125rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-label: 0.8125rem;
+  --text-caption: 0.75rem;
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.35rem;
+  --text-xl: 1.7rem;
+
+  --space-page: clamp(1rem, 2.5vw, 2rem);
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-xs: 0 1px 2px oklch(20% 0.012 350 / 0.055);
+  --shadow-sm: 0 5px 16px oklch(20% 0.012 350 / 0.075);
+  --shadow-md: 0 14px 34px oklch(20% 0.012 350 / 0.105);
+  --shadow-lg: 0 24px 64px oklch(20% 0.012 350 / 0.145);
+  --shadow-float: var(--shadow-lg);
+  --shadow-search: var(--shadow-md);
+
+  --dur-micro: 120ms;
+  --dur-fast: 160ms;
+  --dur-short: 220ms;
+  --dur-base: 240ms;
+  --dur-long: 420ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --maxw-page: 82rem;
+  --control-height: 2.75rem;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 30;
+  --z-sticky: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+}

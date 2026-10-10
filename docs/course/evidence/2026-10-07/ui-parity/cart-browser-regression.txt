@@ -1,0 +1,1 @@
+PASS: eligible URL preset; ordered two-service cart/reordering; AUTO default/slot payload; pending quote gating; stale response rejection; confirmation price refresh; invalid quote blocked; no browser errors. Initial quote/slots: actual demo API. Price-race responses intercepted; no booking written.

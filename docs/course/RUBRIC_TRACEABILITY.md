@@ -1,71 +1,46 @@
-# BeautyBook — Bảng Đối Chiếu Tiêu Chí Chấm Điểm (Rubric Traceability Matrix)
-**Môn học:** Lập trình Mã nguồn mở (Open Source Programming)  
-**Dự án:** BeautyBook — Open Source Programming Edition (Laravel 11 Full-Stack)
+# Đối chiếu tiêu chí môn học với BeautyBook Laravel
 
-Bảng đối chiếu dưới đây cung cấp bằng chứng trực tiếp (file path, line number, tính năng) nhằm phục vụ giảng viên kiểm tra nhanh và đánh giá toàn diện project theo barem chấm điểm môn học.
+Cập nhật 07/10/2026. Đối chiếu mã Laravel tại thư mục gốc cho đồ án phụ môn Lập trình mã nguồn mở. Các tỷ trọng 40/25/15/10/10 lấy từ tiêu chí người dùng cung cấp; tỷ trọng điểm không phải phần trăm chuyển đổi. BeautyBook nguồn dùng để giữ hành vi nghiệp vụ.
 
----
+Các mục dưới đây đối chiếu implementation Laravel với tiêu chí môn học. Kết quả nghiệm thu và giới hạn được ghi tại [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md); kết quả bộ kiểm thử cuối nằm trong [FINAL_VALIDATION.md](evidence/2026-10-07/FINAL_VALIDATION.md).
 
-## 1. Bảng Tổng Hợp Tiêu Chí Chấm Điểm (Grading Criteria Matrix)
+| Tiêu chí | Tỷ trọng | Chức năng và công nghệ hiện có | Kiểm thử / trình diễn |
+| --- | ---: | --- | --- |
+| Hoàn thiện chức năng chính | 40% | Auth/session; workspace và Business/Branch scope; onboarding; CRUD catalog/offering/variant/staff/capability; search/pagination; upload; quote/availability/booking lifecycle; cancellation/reschedule/no-show; review/favorite; payment/refund | `AuthSecurityTest`, `IdentityScopeTest`, `ServiceCrudTest`, `MarketplaceTest`, `UploadTest`, nhóm `Booking*Test`, `EngagementTest`, `FinanceTest`. Demo khám phá → đặt lịch → phục vụ → thu tiền → review. |
+| Áp dụng công nghệ Laravel | 25% | Eloquent và relations; migration MySQL với FK/unique/composite scope; Blade; Form Request; middleware; Gate/Policy; transaction/row locks; scheduler `beautybook:maintain` | `app/Models`, `app/Http/Requests`, `app/Http/Middleware`, `resources/views`, `database/migrations`, `routes/console.php`; foundation, lifecycle, capability, maintenance và concurrency tests. |
+| Thiết kế và trải nghiệm | 15% | React BeautyBook nguồn nạp qua Blade; wizard quote/slot, scheduler, Owner/Admin workspace, notification, responsive CSS và ảnh nguồn | `resources/beautybook`, `resources/views/beautybook.blade.php`; 108 test FE, browser 60 trang thực tế và 35 tổ hợp responsive, gồm kiểm tra tải ảnh/font và lỗi API/JavaScript. |
+| Báo cáo và thuyết trình | 10% | ERD theo migration; use case và kịch bản năm vai trò; setup; traceability; prompt port và trạng thái thật | [ERD_USE_CASE.md](ERD_USE_CASE.md), [PORT_IMPLEMENTATION_PROMPT.md](PORT_IMPLEMENTATION_PROMPT.md), [README.md](../../README.md), trạng thái và nghiệm thu ở trên; ảnh chụp từ ứng dụng chạy thực tế. |
+| Sáng tạo và mở rộng | 10% | AJAX favorite/availability; promotion/voucher/quota; combo/recurring; waitlist/loyalty; package/installment/invoice/settlement; privacy export; ownership; impact; governance/trust/report | `PromotionTest`, `SchedulingTest`, `OperationsTest`, `AdvancedFinanceTest`, `PrivacyTest`, `OwnershipTest`, `ImpactTest`, `GovernanceTest`. Demo một luồng mở rộng và một nhánh từ chối. |
 
-| STT | Tiêu chí đánh giá môn học | Mức độ hoàn thành | Vị trí minh chứng mã nguồn |
-| :---: | :--- | :---: | :--- |
-| **1** | **Cơ sở dữ liệu & Migration**<br>- Thiết kế lược đồ CSDL chuẩn 3NF<br>- Migration tự động, Foreign Keys, Indexes<br>- Dữ liệu mẫu (Seeders) chân thực | **100% (Xuất sắc)** | - `database/migrations/` (10 migration files, 19 tables)<br>- `database/seeders/BeautyBookSeeder.php`<br>- `database/seeders/LocationSeeder.php` |
-| **2** | **Xác thực & Phân quyền (Auth & RBAC)**<br>- Đăng ký, đăng nhập an toàn, mã hóa mật khẩu<br>- Phân chia vai trò (Customer vs Business Owner)<br>- Route Middleware & Eloquent Policies | **100% (Xuất sắc)** | - `app/Http/Controllers/Auth/RegisteredUserController.php`<br>- `app/Http/Middleware/EnsureUserIsCustomer.php`<br>- `app/Http/Middleware/EnsureUserIsOwner.php`<br>- `app/Policies/` (6 Policy files: Business, Branch, Service, Staff, Booking, Review) |
-| **3** | **Quản lý Dữ liệu (CRUD Operations)**<br>- Đầy đủ Thêm/Xem/Sửa/Xóa cho >= 5 thực thể<br>- Soft Deletes an toàn<br>- Xử lý giao dịch nhiều bảng | **100% (Xuất sắc)** | - `app/Http/Controllers/Owner/BranchController.php`<br>- `app/Http/Controllers/Owner/ServiceController.php`<br>- `app/Http/Controllers/Owner/StaffController.php`<br>- `app/Http/Controllers/Owner/ServiceCategoryController.php`<br>- `app/Http/Controllers/Customer/BookingController.php` |
-| **4** | **Xác thực Dữ liệu Phía Máy Chủ (Validation)**<br>- Sử dụng Form Request chuyên biệt<br>- Kiểm tra kiểu dữ liệu, bắt buộc, định dạng ảnh | **100% (Xuất sắc)** | - `app/Http/Requests/BookingCreateRequest.php`<br>- `app/Http/Requests/ReviewCreateRequest.php`<br>- `app/Http/Requests/BranchRequest.php`<br>- `app/Http/Requests/ServiceRequest.php`<br>- `app/Http/Requests/StaffRequest.php` |
-| **5** | **Tìm Kiếm, Lọc & Phân Trang (Search & Pagination)**<br>- Lọc đa tiêu chí (keyword, category, price, province)<br>- Phân trang chuẩn Eloquent `paginate()`<br>- Tìm kiếm tự động qua AJAX không reload | **100% (Xuất sắc)** | - `app/Http/Controllers/ExploreController.php` (hàm `index` & `search`)<br>- `resources/views/explore/index.blade.php`<br>- Route `/search/ajax` |
-| **6** | **Tải Lên Tệp & Đa Phương Tiện (File Uploads)**<br>- Upload Logo, Banner, Ảnh Dịch Vụ, Avatar<br>- Lưu trữ `storage/app/public` & symlink chuẩn | **100% (Xuất sắc)** | - `app/Http/Controllers/Owner/BusinessController.php` (update)<br>- `app/Http/Controllers/Owner/ServiceController.php` (store/update)<br>- `app/Http/Controllers/Owner/StaffController.php` (store/update) |
-| **7** | **Giao Diện & Trải Nghiệm (Modern UI/UX)**<br>- Responsive 100% (Desktop, Tablet, Mobile)<br>- Thư viện bản đồ nguồn mở OpenStreetMap / Leaflet<br>- Hiệu ứng vi tương tác, Drawer điều hướng | **100% (Xuất sắc)** | - `resources/views/layouts/` (public, customer, owner)<br>- `resources/views/branches/show.blade.php` (Leaflet map)<br>- `resources/css/app.css` (Tailwind CSS 61.18 kB) |
-| **8** | **Kiểm Thử Tự Động (Automated Testing)**<br>- Bộ test kiểm thử tích hợp (Feature & Auth tests)<br>- Tỷ lệ vượt qua 100% | **100% (Xuất sắc)** | - `tests/Feature/BeautyBookFlowTest.php` (16 test cases nghiệp vụ)<br>- `tests/Feature/Auth/` (Toàn bộ 6 test cases xác thực)<br>- **Tổng: 42/42 tests pass, 116 assertions** |
+## Mapping theo module thực tế
 
----
+Migration nằm trong `database/migrations`; bảng ghi suffix tên file. Nhóm nền tảng mang ngày 23/09/2026, nhóm mở rộng mang ngày 07/10/2026.
 
-## 2. Chi Tiết Bằng Chứng Kỹ Thuật (Detailed Technical Evidence)
+| Module | Controller / routes | Migration và dữ liệu chính | Test tương ứng |
+| --- | --- | --- | --- |
+| Identity/auth/workspace | `Auth/*`, `WorkspaceController`, `SecurityController`; `web.php` | `080000_create_identity_scope_foundation`; users, roles, permissions, role_assignments, sessions | `AuthSecurityTest`, `IdentityScopeTest`, `ZConcurrentRoleGrantTest` |
+| Business/branch | `OwnerBusinessController`, `OwnerBranchController`, `AdminReviewController` | `120000_create_marketplace_onboarding_foundation`; business profiles, branches, hours, review/state events | `OnboardingTest`, `BranchLifecycleTest` |
+| Catalog/staff/media | `OwnerCatalogController`, `OwnerStaffController`, `OwnerMediaController`, `MediaController` | `160000_create_catalog_staff_media_foundation`; canonical services, variants, price rules, dependencies, capabilities, media | `ServiceCrudTest`, `ServiceHierarchyTest`, `StaffCapabilityTest`, `UploadTest`, `VariantPricingTest` |
+| Booking/policy | `BookingController`; `web.php` | `180000_create_booking_foundation`, `190000_create_booking_lifecycle_foundation`; items/contact/pricing snapshots, history, change requests, violations, outbox | Nhóm `Booking*Test`, `ZZConcurrentBookingRaceTest`, `ZZConcurrentBookingLifecycleRaceTest` |
+| Review/favorite | `EngagementController`; `engagement.php` | `200000_create_engagement_tables`; reviews, reports, appeals, moderation events, saved_services | `EngagementTest` |
+| Promotion/voucher | `PromotionController`; `promotions.php` | `210000_create_promotion_tables`; promotions, vouchers, customer entitlements/segments, redemptions | `PromotionTest` |
+| Combo/recurring | `SchedulingController`; `scheduling.php` | `220000_create_combo_recurring_tables`, `221000_create_combo_booking_usages_table` | `SchedulingTest` |
+| Settings/inbox/audit | `PlatformController`, `NotificationController`; `platform.php`, `web.php`, `console.php` | `230000_create_platform_tables`; settings/audit; inbox/outbox từ lifecycle migration | `PlatformMaintenanceTest`, `BookingNotificationTest` |
+| Finance | `PaymentController`, `AdvancedFinanceController`; `finance.php` | `240000_create_finance_tables`, `241000_create_advanced_finance_tables`, `242000_complete_invoice_lifecycle_columns`; payment/refund/ledger, policies, packages/installments/entitlements, fees/statements/invoices | `FinanceTest`, `AdvancedFinanceTest` |
+| Waitlist/loyalty | `OperationsController`; `operations.php` | `250000_create_waitlist_loyalty_tables`; offers, rules, accounts, transactions/reversals | `OperationsTest` |
+| Privacy | `PrivacyController`; `privacy.php` | `260000_create_privacy_tables`; preferences, requests, encrypted export packages | `PrivacyTest` |
+| Ownership | `OwnershipController`; `ownership.php` | `270000_create_ownership_tables`; encrypted identity versions, transfers, history | `OwnershipTest` |
+| Impact | `ImpactController`; `impact.php` | `280000_create_impact_tables`; cases/items và replacement references | `ImpactTest` |
+| Governance/trust | `GovernanceController`; `governance.php` | `290000_create_governance_tables`, `291000_add_business_trust_restrictions`; user active status, snapshots/actions, business restrictions | `GovernanceTest` |
 
-### 2.1. Phân Quyền Đa Tầng (Multi-tier Authorization)
-- **Tầng 1: HTTP Middleware**
-  - Khách hàng không thể truy cập bất kỳ route nào thuộc tiền tố `/owner/*`. Nếu cố tình, hệ thống sẽ trả mã lỗi `403 Forbidden` (`app/Http/Middleware/EnsureUserIsOwner.php`).
-  - Chủ cơ sở không thể can thiệp route cá nhân `/customer/*` (`app/Http/Middleware/EnsureUserIsCustomer.php`).
-- **Tầng 2: Eloquent Policies**
-  - `app/Policies/BranchPolicy.php`: Khi gọi `update` hoặc `delete`, phương thức kiểm tra `$branch->business->owner_id === $user->id`. Chủ salon B cố sửa chi nhánh của salon A sẽ bị chặn ngay lập tức.
-  - `app/Policies/BookingPolicy.php`: Cho phép Customer hủy đơn nếu `customer_id === $user->id` và đơn đang ở trạng thái `pending`. Cho phép Owner đổi trạng thái đơn nếu chi nhánh thuộc sở hữu của họ.
+## Cách ghi nhận nghiệm thu
 
-### 2.2. Kiểm Tra Dữ Liệu Đầu Vào (Form Request Validation)
-- Tất cả các thao tác ghi dữ liệu nhạy cảm đều được tách thành các lớp Form Request riêng biệt:
-  - `BookingCreateRequest`: Bắt buộc chọn chi nhánh hợp lệ (`exists:branches,id`), ngày đặt từ hôm nay trở đi (`after_or_equal:today`), khung giờ mở cửa, và mảng dịch vụ (`service_ids.*`).
-  - `ServiceRequest`: Bắt buộc nhập tên, giá niêm yết (số dương), thời lượng thực hiện, danh mục thuộc quyền sở hữu của salon.
-  - `StaffRequest`: Ràng buộc định dạng email, số điện thoại, ảnh đại diện (`image|mimes:jpeg,png,jpg,webp|max:2048`).
+- Chạy feature/concurrency tests trên MySQL test riêng theo `phpunit.xml`; kết quả SQLite không thay cho kiểm tra khóa/FK MySQL.
+- Ghi ngày, lệnh, pass/fail và lỗi còn lại vào báo cáo trạng thái sau lần chạy cuối. Không suy ra phần trăm hoàn thành từ số file hoặc số test.
+- Chụp trang và thao tác của từng vai trò; kiểm tra validation, scope bị từ chối, loading/error states và viewport.
+- Doanh thu phải dựa trên giao dịch đã xác minh/refund; giá trị booking là chỉ số riêng. Inbox/outbox database không chứng minh đã gửi email/SMS/push.
+- Privacy export và tiếp nhận request đã có mã; tiếp nhận yêu cầu xóa/chỉnh sửa không tự chứng minh hoàn tất xử lý dữ liệu. Giữ các giới hạn/khác biệt nguồn trong báo cáo cuối.
 
-### 2.3. Máy Trạng Thái & Lịch Sử Kiểm Toán (Audit Trail)
-- Tại `Customer\BookingController.php` và `Owner\BookingController.php`:
-  Mỗi khi trạng thái của đơn chuyển đổi (ví dụ: `pending` -> `confirmed` hoặc `pending` -> `cancelled`), hệ thống tự động chèn 1 bản ghi vào bảng `booking_status_histories`:
-  ```php
-  BookingStatusHistory::create([
-      'booking_id'  => $booking->id,
-      'user_id'     => Auth::id(),
-      'from_status' => $oldStatus,
-      'to_status'   => $newStatus,
-      'notes'       => $notes,
-  ]);
-  ```
-  Trang chi tiết lịch hẹn (`customer/bookings/show` & `owner/bookings/show`) render trực quan dòng thời gian (Timeline) của từng lần thay đổi trạng thái này.
+## Lịch sử
 
-### 2.4. Bản Đồ Nguồn Mở Tích Hợp (Leaflet / OpenStreetMap)
-- Xem file: `resources/views/branches/show.blade.php`.
-- Không sử dụng API tính phí hoặc có bản quyền khép kín như Google Maps API.
-- Tận dụng `Leaflet 1.9.4` và nguồn tiles `tile.openstreetmap.org`, render marker theo kinh độ/vĩ độ của chi nhánh, kèm popup thông tin chi tiết.
-
-### 2.5. Kiểm Thử Đạt Chuẩn (Automated Test Suite)
-- Lệnh thực thi: `php vendor/bin/phpunit --no-coverage`
-- Kết quả thực tế:
-  ```
-  Tests: 42 passed (116 assertions)
-  Duration: 2.31 seconds
-  ```
-  Bao phủ toàn bộ các kịch bản:
-  - Khách vãng lai xem trang chủ, lọc tìm kiếm, xem salon/chi nhánh/dịch vụ.
-  - Khách đăng nhập, tạo đơn đặt lịch hẹn, xem lịch sử, hủy đơn hẹn.
-  - Khách yêu thích dịch vụ, đánh giá đơn hẹn sau khi hoàn tất.
-  - Chủ đăng nhập, quản lý thông tin salon, CRUD chi nhánh, CRUD danh mục, CRUD dịch vụ, CRUD nhân viên, chuyển đổi trạng thái đơn hẹn, phản hồi đánh giá.
-  - Kiểm tra phân quyền: Guest/Customer bị cấm vào portal Owner; Owner bị cấm vào portal Customer.
+Bản ngày 23/09/2026 là kế hoạch port: IMPLEMENTATION/TEST/DEMO khi đó đều **PLANNED**. Số 57/57 frontend và 99/99 backend nguồn trong tài liệu cũ chỉ là kiểm tra BeautyBook nguồn, không phải nghiệm thu Laravel. Bảng hiện tại thay mapping dự kiến bằng đường dẫn mã đã có; lịch sử không được dùng để tuyên bố hoàn thành hiện tại.

@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('title', 'Voucher của tôi · BeautyBook')
+@section('content')
+<section class="page-shell management-shell module-workspace"><div class="page-heading"><div><p class="eyebrow">Ưu đãi BeautyBook</p><h1>Voucher của tôi</h1><p>Nhập mã voucher khi tính giá đặt lịch. Giá và số lượt được kiểm tra lại khi xác nhận.</p></div></div> <div class="card-grid">@forelse($vouchers as $voucher)<article class="panel"><h2>{{ $voucher->name }}</h2><p><strong>{{ $voucher->code }}</strong> · {{ $voucher->discount_value }} {{ $voucher->discount_type === 'PERCENTAGE' ? '%' : 'VND' }}</p><p>{{ $voucher->description }}</p><p>Đơn tối thiểu {{ number_format((float)$voucher->min_order_value) }} VND · Hạn {{ $voucher->end_date->format('d/m/Y') }}</p><p>@include('finance.status', ['value' => $voucher->status]) · {{ $voucher->max_usage_per_customer }} lượt/khách</p></article>@empty<div class="empty-state panel"><h2>Chưa có dữ liệu</h2><p>Bạn chưa sở hữu voucher.</p></div>@endforelse</div>{{ $vouchers->links() }}</section>
+@endsection

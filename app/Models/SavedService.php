@@ -6,18 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SavedService extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'service_id',
-    ];
+    protected $guarded = ['id'];
 
-    public function user()
+    public function offering()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function service()
-    {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(BranchServiceOffering::class, 'branch_service_offering_id')->withTrashed();
     }
 }

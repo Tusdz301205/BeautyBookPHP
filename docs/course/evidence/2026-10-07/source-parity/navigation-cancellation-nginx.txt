@@ -1,0 +1,6 @@
+
+web-1  | 172.21.0.1 - - [07/Oct/2026:11:32:56 +0000] "GET /api/v1/bookings/my-appointments?tab=upcoming HTTP/1.1" 499 0 "http://localhost:8000/beautybook/customer/appointments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+web-1  | 172.21.0.1 - - [07/Oct/2026:11:32:56 +0000] "GET /api/v1/notifications/unread-count HTTP/1.1" 499 0 "http://localhost:8000/beautybook/customer/appointments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+web-1  | 172.21.0.1 - - [07/Oct/2026:11:32:56 +0000] "GET /api/v1/branches?sort=popular&limit=3 HTTP/1.1" 499 0 "http://localhost:8000/beautybook/customer/appointments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+web-1  | 172.21.0.1 - - [07/Oct/2026:11:32:56 +0000] "GET /api/v1/recurring/mine HTTP/1.1" 499 0 "http://localhost:8000/beautybook/customer/appointments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+

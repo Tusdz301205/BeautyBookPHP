@@ -1,0 +1,36 @@
+name: Laravel MySQL
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Start isolated MySQL services
+        run: docker compose -f docker-compose.laravel.yml up -d --wait mysql mysql_test
+      - name: Install locked PHP dependencies
+        run: docker compose -f docker-compose.laravel.yml run --build --rm --no-deps app composer install --no-interaction --prefer-dist
+      - name: Build Blade assets
+        run: npm ci && npm run build
+      - name: Migrate and seed demo database
+        run: docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan migrate --seed --force
+      - name: Start Laravel after dependencies are installed
+        run: docker compose -f docker-compose.laravel.yml up -d app
+      - name: Run MySQL feature and concurrent process tests
+        run: docker compose -f docker-compose.laravel.yml exec -T app php artisan test
+      - name: Compile Blade templates
+        run: docker compose -f docker-compose.laravel.yml exec -T app php artisan view:cache
+      - name: Check PHP and compiled Blade syntax
+        run: |
+          docker compose -f docker-compose.laravel.yml exec -T app php scripts/lint-port.php
+          docker compose -f docker-compose.laravel.yml exec -T app php scripts/lint-port.php --views
+      - name: Logs
+        if: failure()
+        run: docker compose -f docker-compose.laravel.yml logs --tail 100

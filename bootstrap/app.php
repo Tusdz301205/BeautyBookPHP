@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\EnsureAccountKind;
+use App\Http\Middleware\EnsureActiveAccount;
+use App\Http\Middleware\EnsureWorkspace;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,12 +15,19 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [EnsureActiveAccount::class]);
         $middleware->alias([
-            'customer' => \App\Http\Middleware\EnsureUserIsCustomer::class,
-            'owner'    => \App\Http\Middleware\EnsureUserIsOwner::class,
+            'account' => EnsureAccountKind::class,
+            'workspace' => EnsureWorkspace::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (\App\Exceptions\BookingConflictException $exception, Request $request) {
+            if ($request->is('api/v1/*')) return response()->json(['message' => $exception->getMessage()], 409);
+        });
+        $exceptions->render(function (\DomainException $exception, Request $request) {
+            if ($request->is('api/v1/*')) return response()->json(['message' => $exception->getMessage()], 422);
+        });
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );

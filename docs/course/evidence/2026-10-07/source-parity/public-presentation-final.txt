@@ -1,0 +1,10 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookPublicPresentationTest[39m
+  [32;1m✓[39;22m[90m [39m[90mexplore exposes next page and listing retains services without pub[39m[90m…[39m [90m39.48s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdetail prices use real variant ranges and consultation labels[39m[90m       [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mservice detail returns only linked current tenant promotions[39m[90m        [39m [90m0.49s[39m  
+  [32;1m✓[39;22m[90m [39m[90mservice reviews are offering scoped and do not expose anonymous cus[39m[90m…[39m [90m0.50s[39m  
+
+  [90mTests:[39m    [32;1m4 passed[39;22m[90m (29 assertions)[39m
+  [90mDuration:[39m [39m49.97s[39m
+

@@ -2,168 +2,69 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
 
 class Booking extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $fillable = [
-        'booking_code',
-        'customer_id',
-        'branch_id',
-        'appointment_date',
-        'total_duration_minutes',
-        'total_price',
-        'status',
-        'cancelled_by',
-        'cancel_reason',
-        'notes',
+        'business_id', 'branch_id', 'customer_profile_id', 'created_by_user_id', 'booking_code',
+        'appointment_start_at', 'appointment_end_at', 'status', 'source', 'pending_expires_at',
+        'currency', 'total_amount', 'note',
     ];
 
     protected function casts(): array
     {
         return [
-            'appointment_date' => 'datetime',
-            'total_price' => 'integer',
-            'total_duration_minutes' => 'integer',
+            'appointment_start_at' => \App\Casts\UtcDateTime::class,
+            'appointment_end_at' => \App\Casts\UtcDateTime::class,
+            'pending_expires_at' => 'datetime',
+            'total_amount' => 'decimal:2',
         ];
     }
 
-    /**
-     * Booking status machine — cho phép chuyển trạng thái.
-     * Lấy từ BeautyBook gốc (bookings.validation.ts) và đơn giản hóa.
-     */
-    public const STATUS_TRANSITIONS = [
-        'pending'     => ['confirmed', 'cancelled'],
-        'confirmed'   => ['in_progress', 'cancelled', 'no_show'],
-        'in_progress' => ['completed', 'cancelled'],
-        'completed'   => [],
-        'cancelled'   => [],
-        'no_show'     => [],
-    ];
-
-    public const STATUS_LABELS = [
-        'pending'     => 'Chờ xác nhận',
-        'confirmed'   => 'Đã xác nhận',
-        'in_progress' => 'Đang thực hiện',
-        'completed'   => 'Hoàn thành',
-        'cancelled'   => 'Đã hủy',
-        'no_show'     => 'Không đến',
-    ];
-
-    public const STATUS_COLORS = [
-        'pending'     => 'yellow',
-        'confirmed'   => 'blue',
-        'in_progress' => 'indigo',
-        'completed'   => 'green',
-        'cancelled'   => 'red',
-        'no_show'     => 'gray',
-    ];
-
-    protected static function booted(): void
-    {
-        static::creating(function (Booking $booking) {
-            if (empty($booking->booking_code)) {
-                $booking->booking_code = 'BB-' . strtoupper(Str::random(8));
-            }
-        });
-    }
-
-    /**
-     * Kiểm tra có thể chuyển sang trạng thái mới không.
-     */
-    public function canTransitionTo(string $newStatus): bool
-    {
-        $allowed = self::STATUS_TRANSITIONS[$this->status] ?? [];
-        return in_array($newStatus, $allowed);
-    }
-
-    /**
-     * Chuyển trạng thái + ghi history.
-     */
-    public function transitionTo(string $newStatus, ?int $changedBy = null, ?string $note = null): bool
-    {
-        if (!$this->canTransitionTo($newStatus)) {
-            return false;
-        }
-
-        $oldStatus = $this->status;
-        $this->status = $newStatus;
-        $this->save();
-
-        $this->statusHistories()->create([
-            'from_status' => $oldStatus,
-            'to_status'   => $newStatus,
-            'changed_by'  => $changedBy,
-            'note'        => $note,
-        ]);
-
-        return true;
-    }
-
-    /* ========== Relations ========== */
-
-    public function customer()
-    {
-        return $this->belongsTo(User::class, 'customer_id');
-    }
-
-    public function branch()
+    public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
     }
 
-    public function bookingServices()
+    public function customerProfile(): BelongsTo
+    {
+        return $this->belongsTo(CustomerProfile::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_user_id');
+    }
+
+    public function services(): HasMany
     {
         return $this->hasMany(BookingService::class);
     }
 
-    public function statusHistories()
+    public function contact(): HasOne
     {
-        return $this->hasMany(BookingStatusHistory::class)->orderByDesc('created_at');
+        return $this->hasOne(BookingContact::class);
     }
 
-    public function review()
+    public function pricingSnapshot(): HasOne
     {
-        return $this->hasOne(Review::class);
+        return $this->hasOne(BookingPricingSnapshot::class);
     }
 
-    /* ========== Scopes ========== */
-
-    public function scopeUpcoming($query)
+    public function statusHistory(): HasMany
     {
-        return $query->where('appointment_date', '>=', now())
-                     ->whereIn('status', ['pending', 'confirmed']);
+        return $this->hasMany(BookingStatusHistory::class)->orderBy('created_at');
     }
 
-    public function scopeForCustomer($query, int $customerId)
+    public function changeRequests(): HasMany
     {
-        return $query->where('customer_id', $customerId);
-    }
-
-    /* ========== Accessors ========== */
-
-    public function getStatusLabelAttribute(): string
-    {
-        return self::STATUS_LABELS[$this->status] ?? $this->status;
-    }
-
-    public function getStatusColorAttribute(): string
-    {
-        return self::STATUS_COLORS[$this->status] ?? 'gray';
-    }
-
-    public function getFormattedPriceAttribute(): string
-    {
-        return number_format($this->total_price, 0, ',', '.') . '₫';
-    }
-
-    public function getIsTerminalAttribute(): bool
-    {
-        return in_array($this->status, ['completed', 'cancelled', 'no_show']);
+        return $this->hasMany(AppointmentChangeRequest::class)->latest('created_at');
     }
 }

@@ -1,0 +1,55 @@
+{
+    "booking": {
+        "id": 3,
+        "booking_code": "BB-20261007-612MPHDCUDJQ",
+        "customer_profile_id": null,
+        "source": "PHONE",
+        "status": "PENDING",
+        "total_amount": "180000.00",
+        "currency": "VND"
+    },
+    "contact": {
+        "full_name": "Browser acceptance customer",
+        "phone": "0901234567",
+        "email": null
+    },
+    "service": {
+        "id": 3,
+        "service_name_snapshot": "Cắt & tạo kiểu",
+        "variant_name_snapshot": null,
+        "price_at_booking": "180000.00",
+        "duration_minutes": 60,
+        "staff_profile_id": 2,
+        "revision": 1,
+        "item_start_at": "2026-10-08T04:00:00.000000Z",
+        "item_end_at": "2026-10-08T05:00:00.000000Z"
+    },
+    "pricing_snapshot": {
+        "subtotal_amount": "180000.00",
+        "discount_amount": "0.00",
+        "final_amount": "180000.00",
+        "source_snapshot": {
+            "loyalty": null,
+            "unit_price": "180000.00",
+            "service_name": "Cắt & tạo kiểu",
+            "variant_name": null,
+            "discount_rules": [],
+            "variant_version": null,
+            "duration_minutes": 60,
+            "staff_profile_id": 2,
+            "service_variant_id": null,
+            "business_service_id": 7,
+            "buffer_after_minutes": 0,
+            "canonical_service_id": 8,
+            "buffer_before_minutes": 0,
+            "branch_service_offering_id": 25
+        }
+    },
+    "history": [
+        {
+            "from_status": null,
+            "to_status": "PENDING",
+            "reason": "BOOKING_CREATED"
+        }
+    ]
+}

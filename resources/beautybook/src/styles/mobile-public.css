@@ -1,0 +1,16 @@
+/* Public detail typography keeps long Vietnamese names readable on phones. */
+@media (max-width: 47.99rem) {
+  .bb-public-shell:has(.bb-business) .bb-public-header { margin-bottom: 0; }
+  .bb-business-hero { padding-top: 2rem; }
+  .bb-business-hero__copy h1 { font-size: clamp(2.1rem, 8vw, 2.75rem); line-height: 1.08; letter-spacing: -.035em; }
+  .bb-detail-hero__copy { padding: 1.4rem; }
+  .bb-detail-hero h1 {
+    max-width: none;
+    font-size: clamp(2rem, 8.5vw, 2.65rem);
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .bb-detail-hero__description { margin-top: 1rem; }
+}

@@ -1,0 +1,142 @@
+
+> build
+> npm run build:laravel && npm run build:beautybook
+
+
+> build:laravel
+> node node_modules/vite/bin/vite.js build
+
+vite v8.3.0 building client environment for production...
+[plugin laravel:fonts] Optimized font fallbacks require the optional "fontaine" package. Install it, or set "optimizedFallbacks: false" on your fonts to disable the feature.
+transforming...
+✓ 5 modules transformed.
+rendering chunks...
+computing gzip size...
+public/build/manifest.json                                      3.23 kB │ gzip:  0.55 kB
+public/build/assets/ibm-plex-mono-400-normal-CvHOgSBP.woff     13.14 kB
+public/build/assets/ibm-plex-mono-500-normal-CB9ihrfo.woff     13.15 kB
+public/build/assets/ibm-plex-mono-400-normal-DMJ8VG8y.woff2    14.70 kB
+public/build/fonts-manifest.json                               14.84 kB │ gzip:  1.13 kB
+public/build/assets/ibm-plex-mono-500-normal-DSY6xOcd.woff2    14.88 kB
+public/build/assets/be-vietnam-pro-400-normal-bXgqVju9.woff    16.43 kB
+public/build/assets/be-vietnam-pro-700-normal-C2EtzaOi.woff    16.90 kB
+public/build/assets/be-vietnam-pro-500-normal-BJkVuMHw.woff    16.99 kB
+public/build/assets/be-vietnam-pro-600-normal-5IO4e7bK.woff    17.01 kB
+public/build/assets/fraunces-600-normal-BFCDtZfi.woff2         18.09 kB
+public/build/assets/fraunces-700-normal-CEOla-zY.woff2         18.21 kB
+public/build/assets/be-vietnam-pro-400-normal-PpnXBOrz.woff2   21.16 kB
+public/build/assets/be-vietnam-pro-500-normal-B6LVzGNe.woff2   21.89 kB
+public/build/assets/be-vietnam-pro-600-normal-BZDkUTrt.woff2   22.03 kB
+public/build/assets/be-vietnam-pro-700-normal-DlW1Zbsh.woff2   22.15 kB
+public/build/assets/fraunces-600-normal-DL5QCzvS.woff          22.51 kB
+public/build/assets/fraunces-700-normal-DTjk5d1Q.woff          22.51 kB
+public/build/assets/fonts-BcEWDGlP.css                          6.16 kB │ gzip:  0.59 kB
+public/build/assets/app-DW3E6XY3.css                          136.99 kB │ gzip: 26.06 kB
+public/build/assets/shell-jeE2lP8h.js                           1.19 kB │ gzip:  0.50 kB
+public/build/assets/app-CRgwmKSw.js                            19.84 kB │ gzip:  6.52 kB
+
+✓ built in 4.37s
+[PLUGIN_TIMINGS] Plugin hooks ran for 4.3s of this 4.4s build (99%).
+The slowest hooks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - @tailwindcss/vite:generate:build transform (96%, 4.2s, 1 call)
+Additional hook time came from hooks under 1s.
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+
+
+> build:beautybook
+> node node_modules/vite-beautybook/bin/vite.js build --config vite.beautybook.config.js
+
+vite v5.4.21 building for production...
+transforming...
+node_modules/react-hot-toast/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/react-hot-toast/dist/index.mjs" was ignored.
+
+/images/beautybook/fonts/be-vietnam-pro-400-normal-PpnXBOrz.woff2 referenced in /images/beautybook/fonts/be-vietnam-pro-400-normal-PpnXBOrz.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/be-vietnam-pro-500-normal-B6LVzGNe.woff2 referenced in /images/beautybook/fonts/be-vietnam-pro-500-normal-B6LVzGNe.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/be-vietnam-pro-600-normal-BZDkUTrt.woff2 referenced in /images/beautybook/fonts/be-vietnam-pro-600-normal-BZDkUTrt.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/be-vietnam-pro-700-normal-DlW1Zbsh.woff2 referenced in /images/beautybook/fonts/be-vietnam-pro-700-normal-DlW1Zbsh.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/fraunces-600-normal-BFCDtZfi.woff2 referenced in /images/beautybook/fonts/fraunces-600-normal-BFCDtZfi.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/fraunces-700-normal-CEOla-zY.woff2 referenced in /images/beautybook/fonts/fraunces-700-normal-CEOla-zY.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/ibm-plex-mono-400-normal-DMJ8VG8y.woff2 referenced in /images/beautybook/fonts/ibm-plex-mono-400-normal-DMJ8VG8y.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/images/beautybook/fonts/ibm-plex-mono-500-normal-DSY6xOcd.woff2 referenced in /images/beautybook/fonts/ibm-plex-mono-500-normal-DSY6xOcd.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 3299 modules transformed.
+rendering chunks...
+computing gzip size...
+public/beautybook-build/manifest.json                                  28.80 kB │ gzip:   2.65 kB
+public/beautybook-build/assets/BranchOnboardingWizard-aZu1vUkf.css      1.36 kB │ gzip:   0.55 kB
+public/beautybook-build/assets/PrivacySettings-D1WDCoev.css            12.68 kB │ gzip:   2.47 kB
+public/beautybook-build/assets/main-ErdAVfRF.css                      157.45 kB │ gzip:  27.35 kB
+public/beautybook-build/assets/SalonNotifications-BXiS9jLP.js           0.23 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/AdminNotifications-Z3qEl8l7.js           0.24 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/CustomerNotifications-DB4aNbOT.js        0.25 kB │ gzip:   0.19 kB
+public/beautybook-build/assets/useAsyncResource-B4x0TYo7.js             0.84 kB │ gzip:   0.41 kB
+public/beautybook-build/assets/PublicNotFound-scNSd08g.js               1.00 kB │ gzip:   0.57 kB
+public/beautybook-build/assets/PublicShell-D4eCJEyl.js                  1.43 kB │ gzip:   0.94 kB
+public/beautybook-build/assets/BookingPolicyNotice-DDC90o-v.js          1.51 kB │ gzip:   0.97 kB
+public/beautybook-build/assets/HomeMedia-e20zlE_b.js                    1.52 kB │ gzip:   0.84 kB
+public/beautybook-build/assets/bookingSubmission-6GpzPlyn.js            1.91 kB │ gzip:   0.97 kB
+public/beautybook-build/assets/LoginScreen-cB5ocOd-.js                  2.37 kB │ gzip:   1.30 kB
+public/beautybook-build/assets/IncomingOwnership-BScJRcLt.js            2.54 kB │ gzip:   1.31 kB
+public/beautybook-build/assets/BookingStep2-DcEfOimF.js                 2.59 kB │ gzip:   1.48 kB
+public/beautybook-build/assets/BookingSuccess-BaOXb6rO.js               2.98 kB │ gzip:   1.37 kB
+public/beautybook-build/assets/CustomerBenefits-D3fBPmJJ.js             3.01 kB │ gzip:   1.45 kB
+public/beautybook-build/assets/BookingStep4-Bk2F-vc1.js                 3.27 kB │ gzip:   1.76 kB
+public/beautybook-build/assets/FileUpload-DHcfSUMS.js                   3.33 kB │ gzip:   1.74 kB
+public/beautybook-build/assets/AuthShell-BIqDc-dy.js                    3.40 kB │ gzip:   1.61 kB
+public/beautybook-build/assets/BookingLayout-CBN05SpT.js                3.56 kB │ gzip:   1.42 kB
+public/beautybook-build/assets/ReviewModal-DtJWYJ0h.js                  3.60 kB │ gzip:   1.80 kB
+public/beautybook-build/assets/CustomerVouchers-4o7pT2L1.js             4.05 kB │ gzip:   1.99 kB
+public/beautybook-build/assets/CustomerReviews-DYXzDf1p.js              4.20 kB │ gzip:   2.13 kB
+public/beautybook-build/assets/customerCancellation-DSekXvbs.js         4.26 kB │ gzip:   2.08 kB
+public/beautybook-build/assets/SalonStats-DDcv6Vv5.js                   5.04 kB │ gzip:   2.03 kB
+public/beautybook-build/assets/ProfileSettings-Bj_biSJK.js              5.28 kB │ gzip:   2.12 kB
+public/beautybook-build/assets/BusinessLanding-BU75io6_.js              5.43 kB │ gzip:   2.19 kB
+public/beautybook-build/assets/BookingStep3-BDBbpPys.js                 5.67 kB │ gzip:   2.49 kB
+public/beautybook-build/assets/BookingStep1-CL_ii2UL.js                 6.50 kB │ gzip:   2.76 kB
+public/beautybook-build/assets/AdminOwnership-DKEMhPpL.js               6.52 kB │ gzip:   2.60 kB
+public/beautybook-build/assets/AdminOverview-XGRQ8_H4.js                6.72 kB │ gzip:   3.06 kB
+public/beautybook-build/assets/AuthActionPages-Z87SFnP6.js              6.84 kB │ gzip:   2.64 kB
+public/beautybook-build/assets/AdminReports-CIFzOrhR.js                 6.91 kB │ gzip:   2.78 kB
+public/beautybook-build/assets/AdminSettings-ZgyN7bZ8.js                6.93 kB │ gzip:   3.24 kB
+public/beautybook-build/assets/vi-CQKqJgsw.js                           7.03 kB │ gzip:   2.51 kB
+public/beautybook-build/assets/bookingCalendar.adapter-CNI_i-8O.js      7.26 kB │ gzip:   2.42 kB
+public/beautybook-build/assets/AdminAudit-CTFBvmL7.js                   7.57 kB │ gzip:   2.65 kB
+public/beautybook-build/assets/RegisterScreen--dsqpxbg.js               8.08 kB │ gzip:   3.42 kB
+public/beautybook-build/assets/SecuritySettings-CSo-m2aC.js             8.13 kB │ gzip:   3.04 kB
+public/beautybook-build/assets/AdminReviewsModeration-CA9uXS6Q.js       8.42 kB │ gzip:   3.35 kB
+public/beautybook-build/assets/StaffDetail-C8PuaGVZ.js                  8.44 kB │ gzip:   3.18 kB
+public/beautybook-build/assets/NotificationCenter-CanoTH2C.js           8.99 kB │ gzip:   3.87 kB
+public/beautybook-build/assets/SalonReviews-CmzgKW-t.js                 9.16 kB │ gzip:   3.58 kB
+public/beautybook-build/assets/SalonAppointments-BU3j76oe.js            9.88 kB │ gzip:   3.89 kB
+public/beautybook-build/assets/CustomerAppointmentDetail-CrnvhNwi.js   10.35 kB │ gzip:   4.04 kB
+public/beautybook-build/assets/PrivacySettings-BT1SKIa3.js             10.85 kB │ gzip:   4.30 kB
+public/beautybook-build/assets/BookingConfirm-BkxBTLKX.js              11.27 kB │ gzip:   4.10 kB
+public/beautybook-build/assets/SalonOperations-zIu9z-7X.js             11.89 kB │ gzip:   4.38 kB
+public/beautybook-build/assets/SalonProfile-DKJK9toa.js                12.33 kB │ gzip:   4.47 kB
+public/beautybook-build/assets/AdminUsers-B6mf_Ngs.js                  13.52 kB │ gzip:   4.66 kB
+public/beautybook-build/assets/CustomerAppointments-DS38ixl9.js        15.57 kB │ gzip:   5.85 kB
+public/beautybook-build/assets/SalonCombos-CjrCPtPI.js                 16.82 kB │ gzip:   5.53 kB
+public/beautybook-build/assets/AdminEntityDetails-DlQd3aNa.js          17.57 kB │ gzip:   5.51 kB
+public/beautybook-build/assets/SalonStaffManagement-VyRKJj-n.js        17.65 kB │ gzip:   5.82 kB
+public/beautybook-build/assets/SalonOverview-Bu_pzQY0.js               18.01 kB │ gzip:   6.13 kB
+public/beautybook-build/assets/SalonPromotions-CX3DZUwe.js             20.35 kB │ gzip:   6.18 kB
+public/beautybook-build/assets/PublicDetails-AQGKZWwF.js               20.52 kB │ gzip:   6.68 kB
+public/beautybook-build/assets/PaymentsWorkspace-C5KV6rSi.js           22.23 kB │ gzip:   6.81 kB
+public/beautybook-build/assets/PublicHome-y2TNU10A.js                  23.61 kB │ gzip:   7.56 kB
+public/beautybook-build/assets/BusinessOnboarding-Cdf2ytoS.js          25.18 kB │ gzip:   8.95 kB
+public/beautybook-build/assets/date-vendor-L55P0-KY.js                 25.45 kB │ gzip:   7.33 kB
+public/beautybook-build/assets/SalonServices-DpJIqeEe.js               27.59 kB │ gzip:   8.12 kB
+public/beautybook-build/assets/BranchOnboardingWizard-g8oFDMyS.js      32.85 kB │ gzip:  10.14 kB
+public/beautybook-build/assets/AdminSalons-Tgavw0eo.js                 35.46 kB │ gzip:   9.23 kB
+public/beautybook-build/assets/icons-C6IDre8-.js                       43.04 kB │ gzip:   7.92 kB
+public/beautybook-build/assets/AdminAppointmentsView-maqrKj9d.js      131.61 kB │ gzip:  39.83 kB
+public/beautybook-build/assets/react-vendor-D4YY06rQ.js               168.22 kB │ gzip:  54.98 kB
+public/beautybook-build/assets/main-CPEzGD48.js                       196.40 kB │ gzip:  45.28 kB
+public/beautybook-build/assets/charts-CMwvYlGQ.js                     422.47 kB │ gzip: 112.75 kB
+✓ built in 12.11s

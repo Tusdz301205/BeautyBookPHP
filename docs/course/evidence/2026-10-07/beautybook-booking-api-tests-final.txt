@@ -1,0 +1,16 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\BeautybookBookingApiTest[39m
+  [32;1m✓[39;22m[90m [39m[90mmultiservice contract real prices slots create replay and customer[39m[90m…[39m [90m68.76s[39m  
+  [32;1m✓[39;22m[90m [39m[90mservice price rules use local date and quote snapshot[39m[90m               [39m [90m0.54s[39m  
+  [32;1m✓[39;22m[90m [39m[90mauthoritative holiday blocks advertising and booking[39m[90m                [39m [90m1.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mowner scheduler resize reprice and payment persist exact amounts[39m[90m    [39m [90m0.74s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrecurring multiservice creates real atomic occurrences[39m[90m              [39m [90m0.68s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontact consent validation and booking scope are authoritative[39m[90m      [39m [90m0.55s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontrolled overbooking stays unassigned and never bypasses named st[39m[90m…[39m [90m1.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90msource item completion records actual time without completing appoi[39m[90m…[39m [90m0.51s[39m  
+  [32;1m✓[39;22m[90m [39m[90mscheduler cannot resize an internal item or remove the last active[39m[90m… [39m [90m0.53s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcombo auto preview create and actual time history permissions[39m[90m       [39m [90m0.60s[39m  
+
+  [90mTests:[39m    [32;1m10 passed[39;22m[90m (103 assertions)[39m
+  [90mDuration:[39m [39m88.27s[39m
+

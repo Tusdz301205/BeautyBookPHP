@@ -2,88 +2,50 @@
 
 namespace App\Models;
 
+use App\Enums\AccountKind;
+use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+#[Fillable(['name', 'email', 'password', 'account_kind'])]
+#[Hidden(['password', 'remember_token'])]
+class User extends Authenticatable implements MustVerifyEmailContract
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, MustVerifyEmail, Notifiable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'password',
-        'role',
-        'avatar',
-        'gender',
-        'date_of_birth',
-        'address',
-        'is_active',
-        'last_login_at',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [
+            'account_kind' => AccountKind::class,
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'date_of_birth' => 'date',
-            'last_login_at' => 'datetime',
-            'is_active' => 'boolean',
         ];
     }
 
-    /* ========== Role Helpers ========== */
-
-    public function isCustomer(): bool
+    public function roleAssignments(): HasMany
     {
-        return $this->role === 'customer';
+        return $this->hasMany(RoleAssignment::class);
     }
 
-    public function isBusinessOwner(): bool
+    public function businessOwnerProfile(): HasOne
     {
-        return $this->role === 'business_owner';
+        return $this->hasOne(BusinessOwnerProfile::class);
     }
 
-    /* ========== Relations ========== */
-
-    public function business()
+    public function customerProfile(): HasOne
     {
-        return $this->hasOne(Business::class, 'owner_id');
-    }
-
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class, 'customer_id');
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'customer_id');
-    }
-
-    public function savedServices()
-    {
-        return $this->belongsToMany(Service::class, 'saved_services')
-                    ->withTimestamps();
-    }
-
-    /* ========== Accessors ========== */
-
-    public function getAvatarUrlAttribute(): string
-    {
-        if ($this->avatar) {
-            return asset('storage/' . $this->avatar);
-        }
-
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=ec4899&color=fff';
+        return $this->hasOne(CustomerProfile::class);
     }
 }

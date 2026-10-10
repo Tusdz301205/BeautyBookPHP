@@ -1,0 +1,1 @@
+{"steps":["branch-and-service","automatic-staff","real-available-slot","contact-and-consent","verified-success"],"idempotencyReplay":true,"persistedContact":true,"reloadStableId":"5","cleanup":{"status":200,"bookingId":"5"}}

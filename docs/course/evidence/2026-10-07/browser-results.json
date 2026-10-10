@@ -1,0 +1,325 @@
+{
+  "results": [
+    {
+      "role": "guest",
+      "url": "/explore",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/login",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/notifications",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/security",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/favorites",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/reviews",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/vouchers",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/recurring",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/privacy",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/waitlist",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/loyalty",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/payments",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/finance",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/treatment-packages",
+      "status": 200
+    },
+    {
+      "role": "customer",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/login",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/notifications",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/security",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/owner/businesses",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/reviews",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/payments",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/finance",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/ownership",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/impacts",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/dashboard",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/reports/bookings",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/audit-logs",
+      "status": 200
+    },
+    {
+      "role": "owner",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/login",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/notifications",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/security",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/payments",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "url": "/booking/11",
+      "status": 200
+    },
+    {
+      "role": "receptionist",
+      "operationalBooking": {
+        "booking_id": 3,
+        "booking_code": "BB-20261007-612MPHDCUDJQ",
+        "status": "PENDING",
+        "replayed": false,
+        "message": "Đặt lịch thành công. Lịch đang ở trạng thái chờ xác nhận."
+      }
+    },
+    {
+      "role": "staff",
+      "url": "/login",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "url": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "url": "/notifications",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "url": "/security",
+      "status": 200
+    },
+    {
+      "role": "staff",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/login",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/workspace",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/bookings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/notifications",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/security",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/users",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/trust",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/dashboard",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/settings",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/business-directory",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/reviews",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/admin/promotions",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/payments",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/finance",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/ownership",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/impacts",
+      "status": 200
+    },
+    {
+      "role": "admin",
+      "url": "/bookings",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,920 @@
+{
+  "results": [
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/salon/staff/2",
+      "heading": "Nhân viên Demo",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK BUSINESS\n\nTổng quan doanh nghiệp\nLịch hẹn\nDịch vụ toàn doanh nghiệp\nCombo dịch vụ\nNhân sự toàn doanh nghiệp\nNhật ký thao tác\nThanh toán\nKhuyến mãi\nĐánh giá\nBáo cáo doanh nghiệp\nThông báo\nHồ sơ cơ sở\nTài khoản\nLời mời chuyển chủ\nBảo mật\nĐăng xuất\n\nKhông gian doanh nghiệp\n\nChủ doanh nghiệp\n\nBD\nChủ BeautyBook Demo\nowner@beautybook.local\n\nCHI TIẾT NHÂN SỰ\n\nNhân viên Demo\n\nChuyên viên dịch vụ · BeautyBook Tân Tạo\n\nDanh sách\nTổng quan\nTài khoản\nVai trò & chi nhánh\nDịch vụ\nTài liệu\nNhật ký\n\nHỌ TÊN\n\nNhân viên Demo\n\nVỊ TRÍ\n\nChuyên viên dịch vụ\n\nNHẬN LỊCH\n\nCó\n\nHIỂN THỊ CÔNG KHAI\n\nCó\n\nGIỚI THIỆU\n\nHồ sơ demo dùng để kiểm thử capability theo offering và chi nhánh.",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/16",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/users/16",
+      "heading": "Phạm Minh Hoàng",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nTÀI KHOẢN & PHÂN QUYỀN\n\nPhạm Minh Hoàng\n\nThông tin tài khoản, vai trò được cấp, phiên đăng nhập và lịch hẹn liên quan.\n\nEMAIL\n\nminhhoang.owner@glowbook.vn\n\nSỐ ĐIỆN THOẠI\n\nChưa cập nhật\n\nTRẠNG THÁI\n\nĐang hoạt động\n\nXÁC MINH EMAIL\n\nĐã xác minh\n\nNGÀY TẠO\n\n18:56 7/10/26\n\nĐĂNG NHẬP GẦN NHẤT\n\n—\n\nVai trò và phạm vi\n\nChủ doanh nghiệp\n\nMinh Hoàng Hair Studio\n\nĐang hiệu lực\nPhiên đăng nhập\n\nKhông có phiên đăng nhập.\n\nLịch hẹn liên quan\nChưa có lịch hẹn liên quan\nNhật ký hoạt động\n\nChưa có lịch sử.",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/19",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/users/19",
+      "heading": "Lê Thanh Hương",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nTÀI KHOẢN & PHÂN QUYỀN\n\nLê Thanh Hương\n\nThông tin tài khoản, vai trò được cấp, phiên đăng nhập và lịch hẹn liên quan.\n\nEMAIL\n\nthanhhuong.owner@glowbook.vn\n\nSỐ ĐIỆN THOẠI\n\nChưa cập nhật\n\nTRẠNG THÁI\n\nĐang hoạt động\n\nXÁC MINH EMAIL\n\nĐã xác minh\n\nNGÀY TẠO\n\n18:56 7/10/26\n\nĐĂNG NHẬP GẦN NHẤT\n\n—\n\nVai trò và phạm vi\n\nChủ doanh nghiệp\n\nThanh Hương Spa & Clinic\n\nĐang hiệu lực\nPhiên đăng nhập\n\nKhông có phiên đăng nhập.\n\nLịch hẹn liên quan\nChưa có lịch hẹn liên quan\nNhật ký hoạt động\n\nChưa có lịch sử.",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/3",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/businesses/3",
+      "heading": "BeautyBook Demo",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nHỒ SƠ DOANH NGHIỆP\n\nBeautyBook Demo\n\nThông tin chủ sở hữu, chi nhánh, dịch vụ, hồ sơ đăng ký và lịch sử xử lý.\n\nTổng quan\nChi nhánh\nDịch vụ\nHồ sơ đăng ký\nLịch sử\nẢnh doanh nghiệp\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nCHỦ SỞ HỮU\n\nChủ BeautyBook Demo\n\nEMAIL LIÊN HỆ\n\nhello@beautybook.local\n\nSỐ ĐIỆN THOẠI\n\n0901234567\n\nTRẠNG THÁI\n\nĐang hoạt động\n\nNGÀY THAM GIA\n\n23/9/26\n\nĐIỂM ĐÁNH GIÁ\n\nChưa có đánh giá\n\nCHI NHÁNH\n\n4/5 đang hoạt động\n\nDỊCH VỤ\n\n3\n\nLỊCH HẸN\n\n5\n\nNHÂN SỰ\n\n3",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/4",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/businesses/4",
+      "heading": "Glow Studio",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nHỒ SƠ DOANH NGHIỆP\n\nGlow Studio\n\nThông tin chủ sở hữu, chi nhánh, dịch vụ, hồ sơ đăng ký và lịch sử xử lý.\n\nTổng quan\nChi nhánh\nDịch vụ\nHồ sơ đăng ký\nLịch sử\nẢnh doanh nghiệp\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nCHỦ SỞ HỮU\n\nChủ Glow Studio\n\nEMAIL LIÊN HỆ\n\nhello@glow.local\n\nSỐ ĐIỆN THOẠI\n\n0901234568\n\nTRẠNG THÁI\n\nĐang hoạt động\n\nNGÀY THAM GIA\n\n23/9/26\n\nĐIỂM ĐÁNH GIÁ\n\nChưa có đánh giá\n\nCHI NHÁNH\n\n4/5 đang hoạt động\n\nDỊCH VỤ\n\n3\n\nLỊCH HẸN\n\n0\n\nNHÂN SỰ\n\n1",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/12",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/branches/12",
+      "heading": "BeautyBook Bình Trị Đông",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nHỒ SƠ CHI NHÁNH\n\nBeautyBook Bình Trị Đông\n\nThông tin địa điểm, điều kiện vận hành, dịch vụ, đội ngũ và lịch sử xét duyệt.\n\nẢnh chi nhánh\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nDOANH NGHIỆP\n\nBeautyBook Demo\n\nTRẠNG THÁI HỒ SƠ\n\nĐã duyệt\n\nTRẠNG THÁI VẬN HÀNH\n\nĐang hoạt động\n\nĐỊA CHỈ\n\nBình Trị Đông, Bình Tân, TP.HCM\n\nDỊCH VỤ ĐANG MỞ\n\n0\n\nNHÂN VIÊN NHẬN LỊCH\n\n0\n\nXem doanh nghiệp chủ quản\nĐiều kiện nhận đặt lịch\n\nĐỦ ĐIỀU KIỆN NHẬN LỊCH\n\nChưa đạt\n\nĐIỀU KIỆN VẬN HÀNH\n\nChưa đạt\n\nĐIỀU KIỆN VẬN HÀNH\n\n5\n\nĐIỀU KIỆN VẬN HÀNH\n\n8\n\nĐIỀU KIỆN VẬN HÀNH\n\n63\n\nĐIỀU KIỆN VẬN HÀNH\n\nAPPROVED\n\nĐIỀU KIỆN VẬN HÀNH\n\nACTIVE\n\nGiờ hoạt động\n\nCHỦ NHẬT\n\nĐóng cửa\n\nTHỨ HAI\n\n09:00 – 20:00\n\nTHỨ BA\n\n09:00 – 20:00\n\nTHỨ TƯ\n\n09:00 – 20:00\n\nTHỨ NĂM\n\n09:00 – 20:00\n\nTHỨ SÁU\n\n09:00 – 20:00\n\nTHỨ BẢY\n\n09:00 – 20:00\n\nDịch vụ\nẢnh dịch vụ\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nCắt & tạo kiểu\n\n180.000 ₫ · 60 phút\n\nẢnh dịch vụ\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nNail gel\n\n260.000 ₫ · 75 phút\n\nẢnh dịch vụ\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nChăm sóc da cơ bản\n\n390.000 ₫ · 90 phút\n\nĐội ngũ đang phân công\nChưa có nhân viên được phân công\nLịch sử xét duyệt\n\nChưa có lịch sử.",
+      "images": []
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/19",
+      "status": 200,
+      "url": "http://127.0.0.1:8000/beautybook/admin/branches/19",
+      "heading": "BeautyBook Coming Soon",
+      "text": "Bỏ qua điều hướng\n\nBeautyBook\n\nBEAUTYBOOK PLATFORM\n\nTổng quan\nDoanh nghiệp & chi nhánh\nNgười dùng\nLịch hẹn\nTài chính & hoàn tiền\nBáo cáo\nKiểm duyệt đánh giá\nChuyển quyền sở hữu\nThông báo\nĐăng xuất\n\nTrung tâm vận hành nền tảng\n\nQuản trị hệ thống\n\nTD\nQuản trị Demo\nadmin@beautybook.local\nQuay lại danh sách\n\nHỒ SƠ CHI NHÁNH\n\nBeautyBook Coming Soon\n\nThông tin địa điểm, điều kiện vận hành, dịch vụ, đội ngũ và lịch sử xét duyệt.\n\nẢnh chi nhánh\nHÌNH ẢNH SẼ ĐƯỢC CẬP NHẬT\n\nDOANH NGHIỆP\n\nBeautyBook Demo\n\nTRẠNG THÁI HỒ SƠ\n\nBản nháp\n\nTRẠNG THÁI VẬN HÀNH\n\nTạm ngưng\n\nĐỊA CHỈ\n\nBình Tân, TP.HCM\n\nDỊCH VỤ ĐANG MỞ\n\n0\n\nNHÂN VIÊN NHẬN LỊCH\n\n0\n\nXem doanh nghiệp chủ quản\nĐiều kiện nhận đặt lịch\n\nĐỦ ĐIỀU KIỆN NHẬN LỊCH\n\nChưa đạt\n\nĐIỀU KIỆN VẬN HÀNH\n\nChưa đạt\n\nĐIỀU KIỆN VẬN HÀNH\n\n3\n\nĐIỀU KIỆN VẬN HÀNH\n\n8\n\nĐIỀU KIỆN VẬN HÀNH\n\n38\n\nĐIỀU KIỆN VẬN HÀNH\n\nDRAFT\n\nĐIỀU KIỆN VẬN HÀNH\n\nINACTIVE\n\nGiờ hoạt động\n\nCHỦ NHẬT\n\nĐóng cửa\n\nTHỨ HAI\n\n09:00 – 20:00\n\nTHỨ BA\n\n09:00 – 20:00\n\nTHỨ TƯ\n\n09:00 – 20:00\n\nTHỨ NĂM\n\n09:00 – 20:00\n\nTHỨ SÁU\n\n09:00 – 20:00\n\nTHỨ BẢY\n\n09:00 – 20:00\n\nDịch vụ\nChưa có dịch vụ\nĐội ngũ đang phân công\nChưa có nhân viên được phân công\nLịch sử xét duyệt\n\nChưa có lịch sử.",
+      "images": []
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 1,
+      "startedAt": 1791380387674,
+      "finishedAt": 1791380390394,
+      "timing": {
+        "startTime": 1791380387673.2139,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.242,
+        "responseStart": 2653.063,
+        "responseEnd": 2683.339
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/auth/login",
+      "documentEpoch": 1,
+      "startedAt": 1791380390601,
+      "finishedAt": 1791380393612,
+      "timing": {
+        "startTime": 1791380390598.948,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.162,
+        "responseStart": 3011.371,
+        "responseEnd": 3012.105
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/business/onboarding/mine",
+      "documentEpoch": 1,
+      "startedAt": 1791380393651,
+      "finishedAt": 1791380395529,
+      "timing": {
+        "startTime": 1791380393649.22,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.191,
+        "responseStart": 1878.505,
+        "responseEnd": 1879.737
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 1,
+      "startedAt": 1791380393651,
+      "finishedAt": 1791380395186,
+      "timing": {
+        "startTime": 1791380393649.626,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.121,
+        "responseStart": 1535.98,
+        "responseEnd": 1536.84
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/business/onboarding/mine",
+      "documentEpoch": 1,
+      "startedAt": 1791380393651,
+      "finishedAt": 1791380396012,
+      "timing": {
+        "startTime": 1791380393649.888,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1878.584,
+        "responseStart": 2361.084,
+        "responseEnd": 2362.051
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/branches/accessible",
+      "documentEpoch": 1,
+      "startedAt": 1791380395591,
+      "finishedAt": 1791380396850,
+      "timing": {
+        "startTime": 1791380395588.382,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.168,
+        "responseStart": 1261.119,
+        "responseEnd": 1261.808
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/bookings?dateFrom=2026-10-01&dateTo=2026-10-31&limit=100",
+      "documentEpoch": 1,
+      "startedAt": 1791380395591,
+      "finishedAt": 1791380396662,
+      "timing": {
+        "startTime": 1791380395588.741,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.232,
+        "responseStart": 1073.357,
+        "responseEnd": 1073.994
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/services/manage",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380396119,
+      "timing": {
+        "startTime": 1791380395589.158,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.667,
+        "responseStart": 529.014,
+        "responseEnd": 530.18
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/staff",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380398393,
+      "timing": {
+        "startTime": 1791380395589.257,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.655,
+        "responseStart": 2803.693,
+        "responseEnd": 2804.782
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/payments",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380396278,
+      "timing": {
+        "startTime": 1791380395589.386,
+        "domainLookupStart": 0.064,
+        "domainLookupEnd": 0.072,
+        "connectStart": 0.072,
+        "secureConnectionStart": -1,
+        "connectEnd": 0.612,
+        "requestStart": 0.643,
+        "responseStart": 687.719,
+        "responseEnd": 688.655
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reports/overview",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380398578,
+      "timing": {
+        "startTime": 1791380395590.1702,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 421.369,
+        "responseStart": 2986.743,
+        "responseEnd": 2988.357
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reports/owner-dashboard?from=2026-10-01&to=2026-10-31",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380398231,
+      "timing": {
+        "startTime": 1791380395590.41,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 528.551,
+        "responseStart": 2624.411,
+        "responseEnd": 2641.912
+      }
+    },
+    {
+      "role": "owner",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reviews/manage?status=PENDING&page=1&limit=20",
+      "documentEpoch": 1,
+      "startedAt": 1791380395592,
+      "finishedAt": 1791380398476,
+      "timing": {
+        "startTime": 1791380395590.614,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 686.997,
+        "responseStart": 2885.281,
+        "responseEnd": 2886.809
+      }
+    },
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 2,
+      "startedAt": 1791380406421,
+      "finishedAt": 1791380409408,
+      "timing": {
+        "startTime": 1791380406421.15,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.18,
+        "responseStart": 2986.496,
+        "responseEnd": 2987.13
+      }
+    },
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "url": "http://127.0.0.1:8000/api/v1/business/onboarding/mine",
+      "documentEpoch": 2,
+      "startedAt": 1791380409412,
+      "finishedAt": 1791380411613,
+      "timing": {
+        "startTime": 1791380409412.6301,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.163,
+        "responseStart": 2190.522,
+        "responseEnd": 2200.689
+      }
+    },
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 2,
+      "startedAt": 1791380409412,
+      "finishedAt": 1791380411704,
+      "timing": {
+        "startTime": 1791380409412.976,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.093,
+        "responseStart": 2290.767,
+        "responseEnd": 2291.593
+      }
+    },
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "url": "http://127.0.0.1:8000/api/v1/business/onboarding/mine",
+      "documentEpoch": 2,
+      "startedAt": 1791380409413,
+      "finishedAt": 1791380412109,
+      "timing": {
+        "startTime": 1791380409413.172,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 2190.376,
+        "responseStart": 2694.871,
+        "responseEnd": 2695.866
+      }
+    },
+    {
+      "role": "owner",
+      "path": "/salon/staff/2",
+      "url": "http://127.0.0.1:8000/api/v1/staff/2",
+      "documentEpoch": 2,
+      "startedAt": 1791380411626,
+      "finishedAt": 1791380412233,
+      "timing": {
+        "startTime": 1791380411626.046,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.204,
+        "responseStart": 606.505,
+        "responseEnd": 607.304
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 1,
+      "startedAt": 1791380416302,
+      "finishedAt": 1791380418869,
+      "timing": {
+        "startTime": 1791380416301.593,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.111,
+        "responseStart": 2496.775,
+        "responseEnd": 2522.377
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/auth/login",
+      "documentEpoch": 1,
+      "startedAt": 1791380419218,
+      "finishedAt": 1791380424680,
+      "timing": {
+        "startTime": 1791380419216.513,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.176,
+        "responseStart": 5462.846,
+        "responseEnd": 5463.593
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/branches/manage?",
+      "documentEpoch": 1,
+      "startedAt": 1791380424764,
+      "finishedAt": 1791380427742,
+      "timing": {
+        "startTime": 1791380424761.9102,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.242,
+        "responseStart": 2933.531,
+        "responseEnd": 2978.917
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reports/overview",
+      "documentEpoch": 1,
+      "startedAt": 1791380424764,
+      "finishedAt": 1791380430761,
+      "timing": {
+        "startTime": 1791380424762.331,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.241,
+        "responseStart": 5998.15,
+        "responseEnd": 5999.072
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reports/categories",
+      "documentEpoch": 1,
+      "startedAt": 1791380424764,
+      "finishedAt": 1791380427961,
+      "timing": {
+        "startTime": 1791380424762.501,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.167,
+        "responseStart": 3198.078,
+        "responseEnd": 3199.06
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/reports/top-salons?limit=10",
+      "documentEpoch": 1,
+      "startedAt": 1791380424764,
+      "finishedAt": 1791380426689,
+      "timing": {
+        "startTime": 1791380424762.972,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.996,
+        "responseStart": 1925.995,
+        "responseEnd": 1927.255
+      }
+    },
+    {
+      "role": "admin",
+      "path": "login",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 1,
+      "startedAt": 1791380424764,
+      "finishedAt": 1791380427864,
+      "timing": {
+        "startTime": 1791380424763.236,
+        "domainLookupStart": 0.095,
+        "domainLookupEnd": 0.106,
+        "connectStart": 0.106,
+        "secureConnectionStart": -1,
+        "connectEnd": 0.913,
+        "requestStart": 0.966,
+        "responseStart": 3100.326,
+        "responseEnd": 3101.541
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/16",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 2,
+      "startedAt": 1791380442968,
+      "finishedAt": 1791380443656,
+      "timing": {
+        "startTime": 1791380442967.967,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.16,
+        "responseStart": 687.164,
+        "responseEnd": 687.753
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/16",
+      "url": "http://127.0.0.1:8000/api/v1/users/16",
+      "documentEpoch": 2,
+      "startedAt": 1791380443670,
+      "finishedAt": 1791380445374,
+      "timing": {
+        "startTime": 1791380443670.627,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.163,
+        "responseStart": 1702.411,
+        "responseEnd": 1703.073
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/16",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 2,
+      "startedAt": 1791380443671,
+      "finishedAt": 1791380445464,
+      "timing": {
+        "startTime": 1791380443670.9622,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.097,
+        "responseStart": 1792.001,
+        "responseEnd": 1792.89
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/19",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 3,
+      "startedAt": 1791380449503,
+      "finishedAt": 1791380452458,
+      "timing": {
+        "startTime": 1791380449503.591,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.189,
+        "responseStart": 2952.76,
+        "responseEnd": 2953.435
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/19",
+      "url": "http://127.0.0.1:8000/api/v1/users/19",
+      "documentEpoch": 3,
+      "startedAt": 1791380452463,
+      "finishedAt": 1791380455547,
+      "timing": {
+        "startTime": 1791380452463.4712,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.188,
+        "responseStart": 3082.39,
+        "responseEnd": 3083.006
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/users/19",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 3,
+      "startedAt": 1791380452463,
+      "finishedAt": 1791380457956,
+      "timing": {
+        "startTime": 1791380452463.8528,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.108,
+        "responseStart": 5491.247,
+        "responseEnd": 5492.131
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/3",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 4,
+      "startedAt": 1791380461579,
+      "finishedAt": 1791380462282,
+      "timing": {
+        "startTime": 1791380461577.708,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.122,
+        "responseStart": 702.55,
+        "responseEnd": 703.182
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/3",
+      "url": "http://127.0.0.1:8000/api/v1/business/3/detail",
+      "documentEpoch": 4,
+      "startedAt": 1791380462288,
+      "finishedAt": 1791380464054,
+      "timing": {
+        "startTime": 1791380462287.859,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.169,
+        "responseStart": 1758.693,
+        "responseEnd": 1766.631
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/3",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 4,
+      "startedAt": 1791380462288,
+      "finishedAt": 1791380464169,
+      "timing": {
+        "startTime": 1791380462288.2039,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.099,
+        "responseStart": 1880.532,
+        "responseEnd": 1881.397
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/4",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 5,
+      "startedAt": 1791380473164,
+      "finishedAt": 1791380476328,
+      "timing": {
+        "startTime": 1791380473160.747,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.225,
+        "responseStart": 3166.146,
+        "responseEnd": 3166.805
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/4",
+      "url": "http://127.0.0.1:8000/api/v1/business/4/detail",
+      "documentEpoch": 5,
+      "startedAt": 1791380476334,
+      "finishedAt": 1791380478428,
+      "timing": {
+        "startTime": 1791380476334.1,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.25,
+        "responseStart": 2093.138,
+        "responseEnd": 2093.869
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/businesses/4",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 5,
+      "startedAt": 1791380476334,
+      "finishedAt": 1791380478167,
+      "timing": {
+        "startTime": 1791380476334.646,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.114,
+        "responseStart": 1831.929,
+        "responseEnd": 1833.04
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/12",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 6,
+      "startedAt": 1791380486570,
+      "finishedAt": 1791380489785,
+      "timing": {
+        "startTime": 1791380486569.889,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.184,
+        "responseStart": 3212.935,
+        "responseEnd": 3213.821
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/12",
+      "url": "http://127.0.0.1:8000/api/v1/branches/accessible/12",
+      "documentEpoch": 6,
+      "startedAt": 1791380489790,
+      "finishedAt": 1791380491699,
+      "timing": {
+        "startTime": 1791380489790.563,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.172,
+        "responseStart": 1904.311,
+        "responseEnd": 1908.566
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/12",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 6,
+      "startedAt": 1791380489790,
+      "finishedAt": 1791380491491,
+      "timing": {
+        "startTime": 1791380489790.906,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.215,
+        "responseStart": 1698.721,
+        "responseEnd": 1699.765
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/19",
+      "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+      "documentEpoch": 7,
+      "startedAt": 1791380495698,
+      "finishedAt": 1791380496359,
+      "timing": {
+        "startTime": 1791380495698.6182,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.25,
+        "responseStart": 659.434,
+        "responseEnd": 660.109
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/19",
+      "url": "http://127.0.0.1:8000/api/v1/branches/accessible/19",
+      "documentEpoch": 7,
+      "startedAt": 1791380496365,
+      "finishedAt": 1791380498134,
+      "timing": {
+        "startTime": 1791380496365.156,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.164,
+        "responseStart": 1757.275,
+        "responseEnd": 1769.609
+      }
+    },
+    {
+      "role": "admin",
+      "path": "/admin/branches/19",
+      "url": "http://127.0.0.1:8000/api/v1/notifications/unread-count",
+      "documentEpoch": 7,
+      "startedAt": 1791380496365,
+      "finishedAt": 1791380498209,
+      "timing": {
+        "startTime": 1791380496365.557,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.117,
+        "responseStart": 1843.022,
+        "responseEnd": 1844.048
+      }
+    }
+  ],
+  "navigationCancellations": [],
+  "semanticChecks": [
+    {
+      "path": "/admin/businesses/3",
+      "ownerName": "Chủ BeautyBook Demo",
+      "summary": {
+        "branchCount": 5,
+        "activeBranchCount": 4,
+        "serviceCount": 3,
+        "bookingCount": 5,
+        "averageRating": null,
+        "reviewCount": 0
+      },
+      "members": 3,
+      "catalog": 3,
+      "ownerRendered": true
+    },
+    {
+      "path": "/admin/businesses/4",
+      "ownerName": "Chủ Glow Studio",
+      "summary": {
+        "branchCount": 5,
+        "activeBranchCount": 4,
+        "serviceCount": 3,
+        "bookingCount": 0,
+        "averageRating": null,
+        "reviewCount": 0
+      },
+      "members": 1,
+      "catalog": 3,
+      "ownerRendered": true
+    }
+  ]
+}
