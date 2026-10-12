@@ -88,10 +88,12 @@ class UploadTest extends TestCase
 
         $url = app(ManagementPresenter::class)->media($media)['url'];
         $this->assertSame('/media/'.$media->id, $url);
-        $this->get($url)
+        $response = $this->get($url)
             ->assertOk()
             ->assertHeader('Content-Type', 'image/png')
-            ->assertHeader('Cache-Control', 'public, max-age=3600');
+            ->assertHeader('Cache-Control');
+        // HTTP directive order has no meaning; Symfony may normalize it.
+        $this->assertEqualsCanonicalizing(['public', 'max-age=3600'], array_map('trim', explode(',', $response->headers->get('Cache-Control'))));
     }
 
     public function test_private_media_access_expires_with_business_owner_assignment(): void
@@ -110,8 +112,9 @@ class UploadTest extends TestCase
 
         $this->assertNull(app(ManagementPresenter::class)->media($media)['url']);
         $this->get(route('media.show', $media))->assertForbidden();
-        $this->actingAs($owner)->get(route('media.show', $media))
-            ->assertOk()->assertHeader('Cache-Control', 'private, no-store');
+        $response = $this->actingAs($owner)->get(route('media.show', $media))
+            ->assertOk()->assertHeader('Cache-Control');
+        $this->assertEqualsCanonicalizing(['private', 'no-store'], array_map('trim', explode(',', $response->headers->get('Cache-Control'))));
 
         $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')
             ->where('business_id', $business->id)->update(['expires_at' => now('UTC')->subMinute()]);

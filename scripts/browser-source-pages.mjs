@@ -16,6 +16,10 @@ const screens={
  staff:['/salon/appointments','/salon/account','/salon/security'],
  admin:['/admin','/admin/salons','/admin/users','/admin/appointments','/admin/payments','/admin/reports','/admin/reviews','/admin/ownership','/admin/audit','/admin/notifications','/admin/settings','/admin/security','/admin/profile'],
 };
+const retiredRoutes = {
+ owner: { '/salon/stats': '/salon', '/salon/audit': '/salon', '/salon/incoming-ownership': '/salon' },
+ admin: { '/admin/ownership': '/admin' },
+};
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const results=[],errors=[],requests=[],navigationCancellations=[],semanticChecks=[];
 const snapshot=()=>({results,errors,requests,navigationCancellations,semanticChecks});
@@ -85,8 +89,12 @@ try{
     if(!check.ownerRendered||!data.summary||!Array.isArray(data.members)||!Array.isArray(data.serviceCatalog))errors.push({role,path:route,kind:'source-contract',message:'Missing source business owner/summary/members/serviceCatalog contract',...check});
    }
    const actualPath=new URL(page.url()).pathname.replace(/\/$/,'');
-   const expectedPath=(prefix+route).replace(/\/$/,'');
+   const expectedPath=(prefix+(retiredRoutes[role]?.[route] || route)).replace(/\/$/,'');
    if(actualPath!==expectedPath)errors.push({role,path:route,kind:'redirect',actual:actualPath,expected:expectedPath});
+   if (role === 'owner') for (const name of ['Nhật ký thao tác', 'Báo cáo doanh nghiệp', 'Lời mời chuyển chủ']) {
+    if (await page.getByRole('link', { name, exact: true }).count()) errors.push({role,path:route,kind:'retired-navigation',name});
+   }
+   if (role === 'admin' && await page.getByRole('link', {name: 'Chuyển quyền sở hữu',exact: true}).count()) errors.push({role,path:route,kind:'retired-navigation',name:'Chuyển quyền sở hữu'});
    await page.locator('img').evaluateAll(images=>images.forEach(image=>{image.loading='eager';}));
    await page.waitForFunction(()=>[...document.images].every(image=>image.complete),{},{timeout:15000}).catch(()=>{});
    const images=await page.locator('img').evaluateAll(rows=>rows.map(image=>({src:image.currentSrc||image.src,alt:image.alt,complete:image.complete,width:image.naturalWidth,height:image.naturalHeight})).filter(image=>image.src));

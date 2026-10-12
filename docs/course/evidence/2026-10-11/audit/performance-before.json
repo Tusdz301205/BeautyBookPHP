@@ -1,0 +1,92 @@
+[
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 7597
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 1460
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 994
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 5910
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 5320
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 3170
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 2336
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 8213
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 3616
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 7855
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 3305
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 2978
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 3655
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 2708
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 3888
+  }
+]

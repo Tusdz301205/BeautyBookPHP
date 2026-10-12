@@ -1,0 +1,2769 @@
+{
+  "createdAt": "2026-10-11T14:52:36.212Z",
+  "sourceRoot": "C:\\Users\\Admin\\Downloads\\beauty-booking-api-main\\beauty-booking-web-main\\beauty-booking-web-main\\src",
+  "portRoot": "C:\\Users\\Admin\\Downloads\\BeautyBookPHP\\resources\\beautybook\\src",
+  "summary": {
+    "sourceFiles": 190,
+    "portFiles": 185,
+    "phpFiles": 398,
+    "identical": 147,
+    "line-endings-only": 4,
+    "changed": 31,
+    "port-only": 3,
+    "source-only": 8
+  },
+  "comparisons": [
+    {
+      "file": "App.css",
+      "status": "identical",
+      "sourceSha256": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c",
+      "portSha256": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c"
+    },
+    {
+      "file": "App.jsx",
+      "status": "changed",
+      "sourceSha256": "e4cba18ad52fcdd8787ba63c18cf279f5011a42881df53c065cb24cff71eb7d0",
+      "portSha256": "9895fe6b8fb193db47474a6b5f898055937736219d3a01a6cc4a835b3d2246a2"
+    },
+    {
+      "file": "api/apiClient.js",
+      "status": "changed",
+      "sourceSha256": "d6a9c25dc057b569c39ab622fa16368dc09bad6de3b374591ba3051c59161ca8",
+      "portSha256": "a581f85a357c58356f669bd9547faa4b24dda6155b0aed9cb2c08ed41d43ac9f"
+    },
+    {
+      "file": "assets/hero.png",
+      "status": "identical",
+      "sourceSha256": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+      "portSha256": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c"
+    },
+    {
+      "file": "assets/react.svg",
+      "status": "identical",
+      "sourceSha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "portSha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5"
+    },
+    {
+      "file": "assets/vite.svg",
+      "status": "identical",
+      "sourceSha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+      "portSha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f"
+    },
+    {
+      "file": "components/UnavailableFeature.jsx",
+      "status": "identical",
+      "sourceSha256": "7e11229fcbef828a20c7b54c2df06aa43bf0fd3df1d4c35f4a0e6dc4087d08f2",
+      "portSha256": "7e11229fcbef828a20c7b54c2df06aa43bf0fd3df1d4c35f4a0e6dc4087d08f2"
+    },
+    {
+      "file": "components/admin/AccountStatusControl.jsx",
+      "status": "identical",
+      "sourceSha256": "768db6e77197ec667755b9b5e6489f43b3bea5dc05e50e7261b05ceb64f9e95d",
+      "portSha256": "768db6e77197ec667755b9b5e6489f43b3bea5dc05e50e7261b05ceb64f9e95d"
+    },
+    {
+      "file": "components/admin/CategoryFilterChips.jsx",
+      "status": "identical",
+      "sourceSha256": "eb8cad21385e2bbaaa54cf2ae8f94507ebdc7635da6538334c21f62214348363",
+      "portSha256": "eb8cad21385e2bbaaa54cf2ae8f94507ebdc7635da6538334c21f62214348363"
+    },
+    {
+      "file": "components/admin/LegalDocuments.jsx",
+      "status": "changed",
+      "sourceSha256": "461b6e96db4b0fe016cea14e8dec2f1bf287685b057bb8ac73820634b4e60044",
+      "portSha256": "03e80e195f0ddb4269f6092f512d165d5d9bb20114c4bc5d73433621df469026"
+    },
+    {
+      "file": "components/admin/PdfPreview.jsx",
+      "status": "source-only",
+      "sourceSha256": "0300b32df2e473f078ce3e176db15ee8190f5b113f5679a27c90db12dba6a805",
+      "portSha256": null
+    },
+    {
+      "file": "components/admin/scheduler/ActualTimeCorrection.jsx",
+      "status": "identical",
+      "sourceSha256": "9fa884bbda08d3491a1ef1735afde2abdb70d2edfd8e94c402105fada5d780a2",
+      "portSha256": "9fa884bbda08d3491a1ef1735afde2abdb70d2edfd8e94c402105fada5d780a2"
+    },
+    {
+      "file": "components/admin/scheduler/ActualTimeCorrection.test.js",
+      "status": "identical",
+      "sourceSha256": "8a13ddd33addc0756d56529139bc24ba07032fe594dc5096ac0ba6e94383cf43",
+      "portSha256": "8a13ddd33addc0756d56529139bc24ba07032fe594dc5096ac0ba6e94383cf43"
+    },
+    {
+      "file": "components/admin/scheduler/ActualTimeCorrectionHistory.jsx",
+      "status": "identical",
+      "sourceSha256": "ab08c69429af553b939bdd6cfd0b140c4b243c107229e9d7d87d2219069c7a46",
+      "portSha256": "ab08c69429af553b939bdd6cfd0b140c4b243c107229e9d7d87d2219069c7a46"
+    },
+    {
+      "file": "components/admin/scheduler/ActualTimeCorrectionHistory.test.js",
+      "status": "identical",
+      "sourceSha256": "755aeb05f81a106228f0fe3b13438ffe1eff7ee5985dfb2dbf29196920b74532",
+      "portSha256": "755aeb05f81a106228f0fe3b13438ffe1eff7ee5985dfb2dbf29196920b74532"
+    },
+    {
+      "file": "components/admin/scheduler/BookingBar.jsx",
+      "status": "identical",
+      "sourceSha256": "b43bbd643f75d9563b4ff2d4ae7f387ec48e07fc528555afea9df7efdf379223",
+      "portSha256": "b43bbd643f75d9563b4ff2d4ae7f387ec48e07fc528555afea9df7efdf379223"
+    },
+    {
+      "file": "components/admin/scheduler/BookingDetailDrawer.jsx",
+      "status": "line-endings-only",
+      "sourceSha256": "45a72654fc82ede094e934c96daed8c47269097a2632f4ec314d8ac983ad9f71",
+      "portSha256": "424920a862a1b461534b7bb1c5d7638ce1c1fd8a46d5d3ee2ba0d20d75f5473d"
+    },
+    {
+      "file": "components/admin/scheduler/BookingEventCard.jsx",
+      "status": "identical",
+      "sourceSha256": "270dd1ef7b269b7cd0671e74cc77861a6c99020b8bf5d0f02c999e5d9afaf3d0",
+      "portSha256": "270dd1ef7b269b7cd0671e74cc77861a6c99020b8bf5d0f02c999e5d9afaf3d0"
+    },
+    {
+      "file": "components/admin/scheduler/CalendarStates.jsx",
+      "status": "identical",
+      "sourceSha256": "e6b577eae41b308b1f56a9d008bf879c6f0d6f05d20bf40461dc8d7638460355",
+      "portSha256": "e6b577eae41b308b1f56a9d008bf879c6f0d6f05d20bf40461dc8d7638460355"
+    },
+    {
+      "file": "components/admin/scheduler/DayBookingsDrawer.jsx",
+      "status": "identical",
+      "sourceSha256": "10d7fdd4ee1e0cd3cb82f68b29aa571d14b05df0318d726a0934b997147d81ca",
+      "portSha256": "10d7fdd4ee1e0cd3cb82f68b29aa571d14b05df0318d726a0934b997147d81ca"
+    },
+    {
+      "file": "components/admin/scheduler/OperationalTiming.jsx",
+      "status": "identical",
+      "sourceSha256": "b4f13ea955318ec1ac3f89e586b0341b1474cf3769339632aea8ef77abb3b4f9",
+      "portSha256": "b4f13ea955318ec1ac3f89e586b0341b1474cf3769339632aea8ef77abb3b4f9"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerDayView.jsx",
+      "status": "identical",
+      "sourceSha256": "741b3104a1930310d7b34aebcdd2b13ec75b3f92782d329aea85c044a4bcfb42",
+      "portSha256": "741b3104a1930310d7b34aebcdd2b13ec75b3f92782d329aea85c044a4bcfb42"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerListView.jsx",
+      "status": "changed",
+      "sourceSha256": "3e8c786431e645248a9cd67d0566606f20de748168329c729558463ab21c3489",
+      "portSha256": "ad423ee48c0ca5d9a4959952491a1b8f4e66834cd06e65b2dab3b8e8fe373b67"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerMonthView.jsx",
+      "status": "identical",
+      "sourceSha256": "b075baee32f379ff073e380c2ea58a02988e4cf67dac78645213c0c58f23f0ca",
+      "portSha256": "b075baee32f379ff073e380c2ea58a02988e4cf67dac78645213c0c58f23f0ca"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerSidebar.jsx",
+      "status": "identical",
+      "sourceSha256": "c27d9c49b0ca16aa2ec82e097922da90d80314e0cff36875c49c378280577466",
+      "portSha256": "c27d9c49b0ca16aa2ec82e097922da90d80314e0cff36875c49c378280577466"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerStats.jsx",
+      "status": "identical",
+      "sourceSha256": "28d17372e77de9daefe4fdbf61eecd32e3fd6c6c6ddcb3074f0ace8533c96bc0",
+      "portSha256": "28d17372e77de9daefe4fdbf61eecd32e3fd6c6c6ddcb3074f0ace8533c96bc0"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerTimeline.jsx",
+      "status": "identical",
+      "sourceSha256": "9c1e661a293fba6e23cced4ee6f1155d1b21388ebab04404847b54aff9b2a3d1",
+      "portSha256": "9c1e661a293fba6e23cced4ee6f1155d1b21388ebab04404847b54aff9b2a3d1"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerView.jsx",
+      "status": "changed",
+      "sourceSha256": "4be3ad49d69de8c07da5744cb79d9e8512e7aa021055e833836a894af1709273",
+      "portSha256": "357e331dff07dc78cb19e6eceea9f5c9a78470171e871d87d5a01422a49fddca"
+    },
+    {
+      "file": "components/admin/scheduler/SchedulerWeekView.jsx",
+      "status": "identical",
+      "sourceSha256": "d5f0d672158d469ae000be92476de23f60510f5b49494ffee2e6b0e72fbb820b",
+      "portSha256": "d5f0d672158d469ae000be92476de23f60510f5b49494ffee2e6b0e72fbb820b"
+    },
+    {
+      "file": "components/admin/scheduler/index.js",
+      "status": "identical",
+      "sourceSha256": "e4edf61d6bae405866dda40b49427d2d06ad33b5d6ff286ee1e2c02ec06a9fe0",
+      "portSha256": "e4edf61d6bae405866dda40b49427d2d06ad33b5d6ff286ee1e2c02ec06a9fe0"
+    },
+    {
+      "file": "components/appointments/AppointmentQueues.jsx",
+      "status": "identical",
+      "sourceSha256": "ddf058fe4b0ee3a7d662fca5d0a5fa9b6e1ec77cf494742f16d5274b12e2913d",
+      "portSha256": "ddf058fe4b0ee3a7d662fca5d0a5fa9b6e1ec77cf494742f16d5274b12e2913d"
+    },
+    {
+      "file": "components/charts/CategoryBookingBarChart.jsx",
+      "status": "identical",
+      "sourceSha256": "ef028d26a2ce948890fe4e27a72cf517e3959520bd51e5b252220383c9899bae",
+      "portSha256": "ef028d26a2ce948890fe4e27a72cf517e3959520bd51e5b252220383c9899bae"
+    },
+    {
+      "file": "components/charts/CategoryPieChart.jsx",
+      "status": "identical",
+      "sourceSha256": "f6521cb5aa1e9217cb0b7942145ef7842dc06ac4777b7fdff2bdbc2b39199bf9",
+      "portSha256": "f6521cb5aa1e9217cb0b7942145ef7842dc06ac4777b7fdff2bdbc2b39199bf9"
+    },
+    {
+      "file": "components/charts/RevenueBarChart.jsx",
+      "status": "identical",
+      "sourceSha256": "2cdb8a1143395d95eef1f4a6e7d5e7d4e74dc4a4759d2af6d7548e26b03a2aca",
+      "portSha256": "2cdb8a1143395d95eef1f4a6e7d5e7d4e74dc4a4759d2af6d7548e26b03a2aca"
+    },
+    {
+      "file": "components/charts/RevenueLineChart.jsx",
+      "status": "identical",
+      "sourceSha256": "6f56c19319521951f310cd5abdc2eb1a28fb29ecec36e54696f969cc22fcc236",
+      "portSha256": "6f56c19319521951f310cd5abdc2eb1a28fb29ecec36e54696f969cc22fcc236"
+    },
+    {
+      "file": "components/charts/ServiceBookingPieChartLabeled.jsx",
+      "status": "identical",
+      "sourceSha256": "742ad24d26d8ad7584bde38c6cd4d01be03015bc754d6389d6475e00be9e54c8",
+      "portSha256": "742ad24d26d8ad7584bde38c6cd4d01be03015bc754d6389d6475e00be9e54c8"
+    },
+    {
+      "file": "components/charts/StylistPerformanceBars.jsx",
+      "status": "identical",
+      "sourceSha256": "d5ba1548893146278cfaa807a4a6ef581c2990f849020242810a50962ed52349",
+      "portSha256": "d5ba1548893146278cfaa807a4a6ef581c2990f849020242810a50962ed52349"
+    },
+    {
+      "file": "components/charts/TopSalonsBarChart.jsx",
+      "status": "identical",
+      "sourceSha256": "834d778d55df9a91b78f3fce5ed7f4534f70e781bb61074ad38d4042b0857daf",
+      "portSha256": "834d778d55df9a91b78f3fce5ed7f4534f70e781bb61074ad38d4042b0857daf"
+    },
+    {
+      "file": "components/charts/TopSalonsBookingBarChart.jsx",
+      "status": "identical",
+      "sourceSha256": "01406028fa0b9081e8bf5a1cccca023c8be66e80a0430e6301ece8064632c066",
+      "portSha256": "01406028fa0b9081e8bf5a1cccca023c8be66e80a0430e6301ece8064632c066"
+    },
+    {
+      "file": "components/charts/UserGrowthLineChart.jsx",
+      "status": "identical",
+      "sourceSha256": "dc0307529a02f4b2ba30b4c1a2cb1e0cb39d83759f11044169e9319d5e25852f",
+      "portSha256": "dc0307529a02f4b2ba30b4c1a2cb1e0cb39d83759f11044169e9319d5e25852f"
+    },
+    {
+      "file": "components/charts/index.js",
+      "status": "identical",
+      "sourceSha256": "d55771ae445655d518844afc6d499d484d76542abfe280fa9d5daa7b08490451",
+      "portSha256": "d55771ae445655d518844afc6d499d484d76542abfe280fa9d5daa7b08490451"
+    },
+    {
+      "file": "components/common/CancellationPolicyCard.jsx",
+      "status": "identical",
+      "sourceSha256": "8cb7551375965d7aa65679cc7a1edd293263e3bc1356eb830cca19f993423ac6",
+      "portSha256": "8cb7551375965d7aa65679cc7a1edd293263e3bc1356eb830cca19f993423ac6"
+    },
+    {
+      "file": "components/customer/BookingLayout.jsx",
+      "status": "identical",
+      "sourceSha256": "747778651c3c955b609f2794b4384fab2d6be8763db2e45cde97ea3bb5bf69a1",
+      "portSha256": "747778651c3c955b609f2794b4384fab2d6be8763db2e45cde97ea3bb5bf69a1"
+    },
+    {
+      "file": "components/customer/BookingPolicyNotice.jsx",
+      "status": "identical",
+      "sourceSha256": "8484ddd5ca25684a8a763f33dfb80bf1c7965d5a7c59cdf2527faefb6bd453d3",
+      "portSha256": "8484ddd5ca25684a8a763f33dfb80bf1c7965d5a7c59cdf2527faefb6bd453d3"
+    },
+    {
+      "file": "components/customer/RescheduleModal.jsx",
+      "status": "identical",
+      "sourceSha256": "4b5bb3b406bfc01de6fb12ed8043fedd0618633467260d22fc83aad04a835918",
+      "portSha256": "4b5bb3b406bfc01de6fb12ed8043fedd0618633467260d22fc83aad04a835918"
+    },
+    {
+      "file": "components/customer/ReviewModal.jsx",
+      "status": "identical",
+      "sourceSha256": "93e9064459445044ea71dea24fe812e34367aaa688e12f77ce87c4cf3d17e431",
+      "portSha256": "93e9064459445044ea71dea24fe812e34367aaa688e12f77ce87c4cf3d17e431"
+    },
+    {
+      "file": "components/layout/AppErrorBoundary.jsx",
+      "status": "identical",
+      "sourceSha256": "0b92e88a58b3634dcef36af0d773afc75ffb3ee9eb6b9a4490e85fe550a9a67e",
+      "portSha256": "0b92e88a58b3634dcef36af0d773afc75ffb3ee9eb6b9a4490e85fe550a9a67e"
+    },
+    {
+      "file": "components/layout/AppShell.jsx",
+      "status": "changed",
+      "sourceSha256": "c8c49daa5d6ceb583e306c97c39e6f1d927d2bc1ecea8a23b4d582d6923e023c",
+      "portSha256": "a53dec2b4292fd02527517153bd4431e9dd9013b5f13c5eb0e93bf361e34342c"
+    },
+    {
+      "file": "components/layout/CustomerShell.jsx",
+      "status": "identical",
+      "sourceSha256": "f2dc822e3bd4eb51bbe180fbb55777103589cd6ea126e439e85103c48ea9f6e9",
+      "portSha256": "f2dc822e3bd4eb51bbe180fbb55777103589cd6ea126e439e85103c48ea9f6e9"
+    },
+    {
+      "file": "components/layout/PlatformShell.jsx",
+      "status": "identical",
+      "sourceSha256": "e7b38ec34741093cf7f99f37dce294cf6b0e4784852be218cc7eced41ce90839",
+      "portSha256": "e7b38ec34741093cf7f99f37dce294cf6b0e4784852be218cc7eced41ce90839"
+    },
+    {
+      "file": "components/layout/PublicShell.jsx",
+      "status": "changed",
+      "sourceSha256": "0ed96392fc30c37054a7301cc049b12d56cf8f2e3a91fc949df7c40a89f896ce",
+      "portSha256": "048ad98948e361d22377a175b9e06b58be3f11ae0afad53e6ed3dc54e4408a2b"
+    },
+    {
+      "file": "components/layout/SalonShell.jsx",
+      "status": "identical",
+      "sourceSha256": "87464591b0a9973fdd7b81dc7e06e1e38e73bb9e949f77913f4c7a699912ef03",
+      "portSha256": "87464591b0a9973fdd7b81dc7e06e1e38e73bb9e949f77913f4c7a699912ef03"
+    },
+    {
+      "file": "components/media/FileUpload.jsx",
+      "status": "changed",
+      "sourceSha256": "fa7da58a137446ce5450014b0d5e63917be6d2c2298a4a85d204f63309c44caf",
+      "portSha256": "a5a1fb1322d39290c4aaf855702a90f2a157fc2935c783404e616f9829fb1ec6"
+    },
+    {
+      "file": "components/notifications/NotificationCenter.jsx",
+      "status": "changed",
+      "sourceSha256": "4dc78ff3cb090c4be079faed04c9c3f02a44abd8765ed397554cf94c1321368b",
+      "portSha256": "180e2b135085f1abf6a808036527ce4db14d0017fcbd5efcc145a2cad7a35d3f"
+    },
+    {
+      "file": "components/notifications/notificationCenter.browser.cjs",
+      "status": "source-only",
+      "sourceSha256": "31b7a0d735233caea36bac158791710cff2eeb34ca1c3890348c6fd0ca5d035b",
+      "portSha256": null
+    },
+    {
+      "file": "components/notifications/notificationCenter.test.js",
+      "status": "source-only",
+      "sourceSha256": "c53b78b6f7ae5bde84f51111fbd578d1dbdbc6940f4ac402af32c0c0431384ef",
+      "portSha256": null
+    },
+    {
+      "file": "components/notifications/notificationCenterState.js",
+      "status": "source-only",
+      "sourceSha256": "623be86e76158b05dbe73a8da08157222a71a58955312800cf3089210994b71a",
+      "portSha256": null
+    },
+    {
+      "file": "components/public/AuthShell.jsx",
+      "status": "identical",
+      "sourceSha256": "abb089ff0470a9f5eee590834803e9f0b20a545d131f87ec1afea4c691b55f02",
+      "portSha256": "abb089ff0470a9f5eee590834803e9f0b20a545d131f87ec1afea4c691b55f02"
+    },
+    {
+      "file": "components/public/HomeMedia.jsx",
+      "status": "line-endings-only",
+      "sourceSha256": "d3b3c73eef703759c59a9a8f4cbae34eb330b4de17f17cca398c97ecfec957d6",
+      "portSha256": "1b3e9a64f61052fb24c181ec34f481a46c52f0c74a34aa311116a9d33f6b16ef"
+    },
+    {
+      "file": "components/public/MarketplaceRail.jsx",
+      "status": "identical",
+      "sourceSha256": "681362b1727a2db6c1e71b77ea06df66e6cf130a3594c39c65ee23f12d9e53d6",
+      "portSha256": "681362b1727a2db6c1e71b77ea06df66e6cf130a3594c39c65ee23f12d9e53d6"
+    },
+    {
+      "file": "components/public/PublicChrome.jsx",
+      "status": "identical",
+      "sourceSha256": "0c7a8afd04c3a4b791fbe981421d22842b825ee7a11f0b240f17e239c0669904",
+      "portSha256": "0c7a8afd04c3a4b791fbe981421d22842b825ee7a11f0b240f17e239c0669904"
+    },
+    {
+      "file": "components/salon/ChangeRequestCard.jsx",
+      "status": "identical",
+      "sourceSha256": "b69a9ed4245739e243e283a0ba080da3cec9beb6ae31df79e7796b3c05a695be",
+      "portSha256": "b69a9ed4245739e243e283a0ba080da3cec9beb6ae31df79e7796b3c05a695be"
+    },
+    {
+      "file": "components/ui/index.jsx",
+      "status": "identical",
+      "sourceSha256": "f125d62d19b100d9a1e0248b3a124a030571b238e67e19b6b22c0db1344e3506",
+      "portSha256": "f125d62d19b100d9a1e0248b3a124a030571b238e67e19b6b22c0db1344e3506"
+    },
+    {
+      "file": "config/entityMedia.generated.js",
+      "status": "identical",
+      "sourceSha256": "58407f4b51bf999561ebc32c949845e11e40e71680d2ffc3168f81372727ab88",
+      "portSha256": "58407f4b51bf999561ebc32c949845e11e40e71680d2ffc3168f81372727ab88"
+    },
+    {
+      "file": "config/featureAvailability.js",
+      "status": "identical",
+      "sourceSha256": "e99ee639c7e9f9c9a9553c9b7615dd0b44edc59e0f88f3be8a58af6ed2446972",
+      "portSha256": "e99ee639c7e9f9c9a9553c9b7615dd0b44edc59e0f88f3be8a58af6ed2446972"
+    },
+    {
+      "file": "config/homeMedia.js",
+      "status": "identical",
+      "sourceSha256": "4b8b3fb2dc9e1c69389490e4ff6cee163ec677d9b0456db063cc3d291d62f1b2",
+      "portSha256": "4b8b3fb2dc9e1c69389490e4ff6cee163ec677d9b0456db063cc3d291d62f1b2"
+    },
+    {
+      "file": "constants/status.js",
+      "status": "identical",
+      "sourceSha256": "992768219233d2c7f63f8252d5e725b716afbd6c3063936539be49bcd9647b4e",
+      "portSha256": "992768219233d2c7f63f8252d5e725b716afbd6c3063936539be49bcd9647b4e"
+    },
+    {
+      "file": "hooks/useAsyncResource.js",
+      "status": "identical",
+      "sourceSha256": "7319c157789e8f1be613299babc28b6ebdf1099f4f1d2db41d26252c26a5cd87",
+      "portSha256": "7319c157789e8f1be613299babc28b6ebdf1099f4f1d2db41d26252c26a5cd87"
+    },
+    {
+      "file": "hooks/useCustomerBookingRefresh.js",
+      "status": "source-only",
+      "sourceSha256": "00e5ed01c81b51ca87c5175095285509ad04fa2ed9b0d5e5fb8d3e423fbe114e",
+      "portSha256": null
+    },
+    {
+      "file": "hooks/useCustomerBookingRefresh.test.js",
+      "status": "source-only",
+      "sourceSha256": "bbedc65492cdb89caa2a21585c13bb12e018922843748bcd21510652bf5f3f2e",
+      "portSha256": null
+    },
+    {
+      "file": "hooks/useOperationalRefresh.js",
+      "status": "identical",
+      "sourceSha256": "b65d86b21fbb6d9b616ca80986ce396b1a057206c5ba8fb71582c580664d35cd",
+      "portSha256": "b65d86b21fbb6d9b616ca80986ce396b1a057206c5ba8fb71582c580664d35cd"
+    },
+    {
+      "file": "hooks/useOperationalRefresh.test.js",
+      "status": "identical",
+      "sourceSha256": "b3bb48ea148d2332bd1fc0345857c5d191192cc6713284768c3dd977ac8d4813",
+      "portSha256": "b3bb48ea148d2332bd1fc0345857c5d191192cc6713284768c3dd977ac8d4813"
+    },
+    {
+      "file": "hooks/useUnreadNotifications.js",
+      "status": "identical",
+      "sourceSha256": "06f105fbf77df0e52f71d63696eeac38bb75c8c310ff096fab940a40801c5fbb",
+      "portSha256": "06f105fbf77df0e52f71d63696eeac38bb75c8c310ff096fab940a40801c5fbb"
+    },
+    {
+      "file": "hooks/useUnreadNotifications.test.js",
+      "status": "identical",
+      "sourceSha256": "cc86b3a83fbdaf1ba40f7046cf5239c8d57cd805fcd53698bf8d3b0f72e87994",
+      "portSha256": "cc86b3a83fbdaf1ba40f7046cf5239c8d57cd805fcd53698bf8d3b0f72e87994"
+    },
+    {
+      "file": "index.css",
+      "status": "identical",
+      "sourceSha256": "f715f88112f352a5791d7eabd1628733901c515d27eab209c36acc0d3e110369",
+      "portSha256": "f715f88112f352a5791d7eabd1628733901c515d27eab209c36acc0d3e110369"
+    },
+    {
+      "file": "main.jsx",
+      "status": "identical",
+      "sourceSha256": "9d6c35fcc235ebdfaafbe1c63bd11b6688fe303c5888e639cf68fb86e173661b",
+      "portSha256": "9d6c35fcc235ebdfaafbe1c63bd11b6688fe303c5888e639cf68fb86e173661b"
+    },
+    {
+      "file": "pages/Admin/AdminAppointmentsView.jsx",
+      "status": "identical",
+      "sourceSha256": "f69d68557753db5cd4ec84b7424120f3ca0e2f94476a9b36e413f3ed226651ed",
+      "portSha256": "f69d68557753db5cd4ec84b7424120f3ca0e2f94476a9b36e413f3ed226651ed"
+    },
+    {
+      "file": "pages/Admin/AdminAudit.jsx",
+      "status": "identical",
+      "sourceSha256": "7956ec4744dad62d5f2997304c5e122884bbcd7c84ce533eddc74589780fe3e6",
+      "portSha256": "7956ec4744dad62d5f2997304c5e122884bbcd7c84ce533eddc74589780fe3e6"
+    },
+    {
+      "file": "pages/Admin/AdminCompliance.jsx",
+      "status": "identical",
+      "sourceSha256": "95ccc892ba1d0135f334f3eed8ec005bf39009fdf4bf63826fd22cfee22173da",
+      "portSha256": "95ccc892ba1d0135f334f3eed8ec005bf39009fdf4bf63826fd22cfee22173da"
+    },
+    {
+      "file": "pages/Admin/AdminEntityDetails.jsx",
+      "status": "changed",
+      "sourceSha256": "a014c599b9345036a30bee57f81aeb4085d71b179fb7a287d7dcb23c82696200",
+      "portSha256": "423b9f80ff6981886bb558ee3e73212c1771c711131da23a30f69c91b4394196"
+    },
+    {
+      "file": "pages/Admin/AdminNotifications.jsx",
+      "status": "identical",
+      "sourceSha256": "4fcf34f1763aa1f44b99df95ea62935a6dae4a396d1639f7b48aab44b7747077",
+      "portSha256": "4fcf34f1763aa1f44b99df95ea62935a6dae4a396d1639f7b48aab44b7747077"
+    },
+    {
+      "file": "pages/Admin/AdminOverview.jsx",
+      "status": "changed",
+      "sourceSha256": "55f763f533b2a95bdce507265d1f9b0e21112887fd64272ebfbccd7b2a8438b9",
+      "portSha256": "a959fd613b72cb248c47943c05a88a42a55458c902a6bf7dda04f6ed39b61978"
+    },
+    {
+      "file": "pages/Admin/AdminOwnership.jsx",
+      "status": "identical",
+      "sourceSha256": "cc8baae5e102e276be6a131ad22b92eff8d8091e63f06249c834111f8ab39b6b",
+      "portSha256": "cc8baae5e102e276be6a131ad22b92eff8d8091e63f06249c834111f8ab39b6b"
+    },
+    {
+      "file": "pages/Admin/AdminReports.jsx",
+      "status": "identical",
+      "sourceSha256": "2b5da201593322ba9851e86cf63324c8972c9609b9a2337df8c794e11530118c",
+      "portSha256": "2b5da201593322ba9851e86cf63324c8972c9609b9a2337df8c794e11530118c"
+    },
+    {
+      "file": "pages/Admin/AdminReviewsModeration.jsx",
+      "status": "identical",
+      "sourceSha256": "8c8957a524d34dfba0b63d28a1d780634f1716e01187e690e0f9242b341e9fd2",
+      "portSha256": "8c8957a524d34dfba0b63d28a1d780634f1716e01187e690e0f9242b341e9fd2"
+    },
+    {
+      "file": "pages/Admin/AdminSalons.jsx",
+      "status": "identical",
+      "sourceSha256": "4070785267e7b53e3fb39ae20a3032a72034062a18c4b5517a064d687cd27158",
+      "portSha256": "4070785267e7b53e3fb39ae20a3032a72034062a18c4b5517a064d687cd27158"
+    },
+    {
+      "file": "pages/Admin/AdminServiceTaxonomy.jsx",
+      "status": "identical",
+      "sourceSha256": "1dc6fb500e627d88066a66fc30922a9bcdbbbd2f140e09be7824473a3b732417",
+      "portSha256": "1dc6fb500e627d88066a66fc30922a9bcdbbbd2f140e09be7824473a3b732417"
+    },
+    {
+      "file": "pages/Admin/AdminSettings.jsx",
+      "status": "identical",
+      "sourceSha256": "9a0345322c020edfdbb3781c9ed658cc0df61ad3654ec386d5e83b47c09d5574",
+      "portSha256": "9a0345322c020edfdbb3781c9ed658cc0df61ad3654ec386d5e83b47c09d5574"
+    },
+    {
+      "file": "pages/Admin/AdminUsers.jsx",
+      "status": "line-endings-only",
+      "sourceSha256": "498edf0d7f5bd824537790ea122816419cdacfc2116af5eaa52ed97478003bdf",
+      "portSha256": "37939bf2eeb34165e49c7806e2ffaf48a7b3ed957b02b4fc6f2c918bb14e48c2"
+    },
+    {
+      "file": "pages/Admin/AdminViolations.jsx",
+      "status": "identical",
+      "sourceSha256": "06272b8836a207f234fcb0f9e16f736a9cf7c676d291ca4e2c0946e66ad01cdc",
+      "portSha256": "06272b8836a207f234fcb0f9e16f736a9cf7c676d291ca4e2c0946e66ad01cdc"
+    },
+    {
+      "file": "pages/Customer/BookingConfirm.jsx",
+      "status": "changed",
+      "sourceSha256": "e67532336d8d0263f1af990516635e8f6218d7fd70c0a01928d52f32d8591f92",
+      "portSha256": "42d0bb7ca39c321b9a4839b5a71d2cb3fdc0bfffad9de63d9353b76c75bbd4cb"
+    },
+    {
+      "file": "pages/Customer/BookingStep1.jsx",
+      "status": "line-endings-only",
+      "sourceSha256": "ce19f293335aa85bf41f3008f2e581f6ba8b5c8b3ff690d442d731fe492df8ad",
+      "portSha256": "7b465dce0464fe5690c09835d742820124bb8ca0d62d059f8b69e0a78a9e7644"
+    },
+    {
+      "file": "pages/Customer/BookingStep2.jsx",
+      "status": "changed",
+      "sourceSha256": "c6704d22cdacce026e3713e500dfecdbea5b4da3898f346f724c3cc008c28e9b",
+      "portSha256": "e63eeba12113247e8ed5f813dc641b56c8eee70369733c9be61790906ee1bf8f"
+    },
+    {
+      "file": "pages/Customer/BookingStep3.jsx",
+      "status": "identical",
+      "sourceSha256": "d31b231bcd17c630941b6a71e72e50f0619210edac75829174d6f04a55a1a11f",
+      "portSha256": "d31b231bcd17c630941b6a71e72e50f0619210edac75829174d6f04a55a1a11f"
+    },
+    {
+      "file": "pages/Customer/BookingStep4.jsx",
+      "status": "identical",
+      "sourceSha256": "d6989c20a2d133381d37995f945061ac829b41f8fbf2343f4e0e2f1a02a91df6",
+      "portSha256": "d6989c20a2d133381d37995f945061ac829b41f8fbf2343f4e0e2f1a02a91df6"
+    },
+    {
+      "file": "pages/Customer/BookingSuccess.jsx",
+      "status": "identical",
+      "sourceSha256": "9f2fb23e7d575c747b792fcd3ff396588cef522a6effa20e973336cc9707dd42",
+      "portSha256": "9f2fb23e7d575c747b792fcd3ff396588cef522a6effa20e973336cc9707dd42"
+    },
+    {
+      "file": "pages/Customer/CustomerAppointmentDetail.jsx",
+      "status": "changed",
+      "sourceSha256": "fbc41b7b14f943555e21fcc8a45b2b445cb3e9ed273ef95850cd380472f386ea",
+      "portSha256": "b6edf725f29537655457b43ba10ad66b209743e6d0200ac485fd4bb6370f3142"
+    },
+    {
+      "file": "pages/Customer/CustomerAppointments.jsx",
+      "status": "changed",
+      "sourceSha256": "9382fc181058fe37622077acfdccf2fbd3505455241a14eafe02481f9e5f13f7",
+      "portSha256": "5f461ac02c17907077b3948c10509dfba1aabf464cbb3845124972152a4c34d6"
+    },
+    {
+      "file": "pages/Customer/CustomerBenefits.jsx",
+      "status": "identical",
+      "sourceSha256": "3220c6b0ab14581e54298d64de1bd071d428b76f129ec063eeac9331fa5803d0",
+      "portSha256": "3220c6b0ab14581e54298d64de1bd071d428b76f129ec063eeac9331fa5803d0"
+    },
+    {
+      "file": "pages/Customer/CustomerNotifications.jsx",
+      "status": "identical",
+      "sourceSha256": "e10cf18dddb762eaf42f168c261d81b9e64dbf920e06507f6744bac5a12d9ce1",
+      "portSha256": "e10cf18dddb762eaf42f168c261d81b9e64dbf920e06507f6744bac5a12d9ce1"
+    },
+    {
+      "file": "pages/Customer/CustomerReviews.jsx",
+      "status": "identical",
+      "sourceSha256": "fe6a50c51285421cb7853d123d2899a4cbbf48319d8b60313d940d867926895a",
+      "portSha256": "fe6a50c51285421cb7853d123d2899a4cbbf48319d8b60313d940d867926895a"
+    },
+    {
+      "file": "pages/Customer/CustomerVouchers.jsx",
+      "status": "identical",
+      "sourceSha256": "e2cc13048be3c12e29149f5957db0e50dfa7e53e140a85c07535159b636f5b97",
+      "portSha256": "e2cc13048be3c12e29149f5957db0e50dfa7e53e140a85c07535159b636f5b97"
+    },
+    {
+      "file": "pages/Login/AuthActionPages.jsx",
+      "status": "identical",
+      "sourceSha256": "251671af9e0730131a8f27eb74d646eae9fb0bad711db5ad8ab2bd5a12331326",
+      "portSha256": "251671af9e0730131a8f27eb74d646eae9fb0bad711db5ad8ab2bd5a12331326"
+    },
+    {
+      "file": "pages/Login/LoginScreen.jsx",
+      "status": "identical",
+      "sourceSha256": "e9e055ac211b60a947566ec87785c5e93f83ab1a6fb7a89255373148e0e82131",
+      "portSha256": "e9e055ac211b60a947566ec87785c5e93f83ab1a6fb7a89255373148e0e82131"
+    },
+    {
+      "file": "pages/Login/RegisterScreen.jsx",
+      "status": "identical",
+      "sourceSha256": "f1cd6e6ec97ebc59f499e2b2d1e2028f1a4218c1d9d42feaf3f63203e85a6bbf",
+      "portSha256": "f1cd6e6ec97ebc59f499e2b2d1e2028f1a4218c1d9d42feaf3f63203e85a6bbf"
+    },
+    {
+      "file": "pages/ProfileSettings.jsx",
+      "status": "identical",
+      "sourceSha256": "78f399c67d1571d296a73cee8d9acb6d01504d6bdec15b2d79adb56cb6b8e4dc",
+      "portSha256": "78f399c67d1571d296a73cee8d9acb6d01504d6bdec15b2d79adb56cb6b8e4dc"
+    },
+    {
+      "file": "pages/Public/BusinessLanding.jsx",
+      "status": "changed",
+      "sourceSha256": "614e8827dfca58f23d7c61725429e398ed9bb8e7954443b5c9af35cc8dbf5ebd",
+      "portSha256": "6fcc7ea355fcae26fe390fc19281408bf3284d3268ca3448f54601e42c6e5d13"
+    },
+    {
+      "file": "pages/Public/PublicDetails.jsx",
+      "status": "changed",
+      "sourceSha256": "4c6a710b49854d6f4a51f09c1501934f4fea3a869da6bed3c99c68889ebe253f",
+      "portSha256": "ccce081d76522efc9812c6f036755935c3740be928d195c176ede1f5bdb3a3f8"
+    },
+    {
+      "file": "pages/Public/PublicHome.jsx",
+      "status": "identical",
+      "sourceSha256": "bb1d00df022f43621d005ff6e8d7847b7e0a18f5b1ff3f52426e2b8cf3b5365a",
+      "portSha256": "bb1d00df022f43621d005ff6e8d7847b7e0a18f5b1ff3f52426e2b8cf3b5365a"
+    },
+    {
+      "file": "pages/Public/PublicNotFound.jsx",
+      "status": "identical",
+      "sourceSha256": "8e1b04dfe0ad233bd1af67ca3fa47f9193c1d069649335ac1a698b80f8347d48",
+      "portSha256": "8e1b04dfe0ad233bd1af67ca3fa47f9193c1d069649335ac1a698b80f8347d48"
+    },
+    {
+      "file": "pages/Salon/BranchOnboardingWizard.jsx",
+      "status": "identical",
+      "sourceSha256": "6853c3aa328cb74278c07a9f968b57071841f82f7c63354ebc4dcae3de4e4ed3",
+      "portSha256": "6853c3aa328cb74278c07a9f968b57071841f82f7c63354ebc4dcae3de4e4ed3"
+    },
+    {
+      "file": "pages/Salon/BusinessOnboarding.jsx",
+      "status": "changed",
+      "sourceSha256": "af977ca92c728518b199865068f53772d2f4845b1258e19d99f99c8eb3c8af0b",
+      "portSha256": "1b49adf6064d474a3a21251c3417184eddf588e09f64e542baac746f8642dbc8"
+    },
+    {
+      "file": "pages/Salon/IncomingOwnership.jsx",
+      "status": "identical",
+      "sourceSha256": "c5a3526464301d610a379d05cfb8bd2471878f331a23e24fd8152eb6ff9383a9",
+      "portSha256": "c5a3526464301d610a379d05cfb8bd2471878f331a23e24fd8152eb6ff9383a9"
+    },
+    {
+      "file": "pages/Salon/PaymentCorePanels.jsx",
+      "status": "identical",
+      "sourceSha256": "aeab34e72483b0dff82b8b2f45198f04bd6f62466cc9c5cf01bc1d2d8d5f6235",
+      "portSha256": "aeab34e72483b0dff82b8b2f45198f04bd6f62466cc9c5cf01bc1d2d8d5f6235"
+    },
+    {
+      "file": "pages/Salon/PaymentsWorkspace.jsx",
+      "status": "changed",
+      "sourceSha256": "4170a62815511e41a050413363a5b0e5bcf14d38f677a23bedb43ef95774b83c",
+      "portSha256": "49eda460ee260f80ee3cbc55b06a153a923dd107cc3c3ead4a1c9919fec2662f"
+    },
+    {
+      "file": "pages/Salon/SalonAppointments.jsx",
+      "status": "identical",
+      "sourceSha256": "302cc5839558c9791038de06de3eb76742de39d0b7a18632070a99e37b7ccbf3",
+      "portSha256": "302cc5839558c9791038de06de3eb76742de39d0b7a18632070a99e37b7ccbf3"
+    },
+    {
+      "file": "pages/Salon/SalonAppointments.test.js",
+      "status": "identical",
+      "sourceSha256": "b64af1f7dec5a6a6117ee37d0f3ef35eccd30df3c9a7752f42768cc858128a04",
+      "portSha256": "b64af1f7dec5a6a6117ee37d0f3ef35eccd30df3c9a7752f42768cc858128a04"
+    },
+    {
+      "file": "pages/Salon/SalonCombos.jsx",
+      "status": "identical",
+      "sourceSha256": "937d141508eb7f8f308f465ee2c5af88bfa15ff2a07106ae7fb4de1dcdb48029",
+      "portSha256": "937d141508eb7f8f308f465ee2c5af88bfa15ff2a07106ae7fb4de1dcdb48029"
+    },
+    {
+      "file": "pages/Salon/SalonNotifications.jsx",
+      "status": "identical",
+      "sourceSha256": "af79528af6357cdf0cecc0ad704f92a80b8099370d1ab444b9503c8bad1c823b",
+      "portSha256": "af79528af6357cdf0cecc0ad704f92a80b8099370d1ab444b9503c8bad1c823b"
+    },
+    {
+      "file": "pages/Salon/SalonOperations.jsx",
+      "status": "identical",
+      "sourceSha256": "c4fb0fdcbc8bc8ec08e0a5651c7e8c960320b0345464d173f3492c4e7e88482a",
+      "portSha256": "c4fb0fdcbc8bc8ec08e0a5651c7e8c960320b0345464d173f3492c4e7e88482a"
+    },
+    {
+      "file": "pages/Salon/SalonOverview.jsx",
+      "status": "changed",
+      "sourceSha256": "5e2758d6a908087f8ea1bfc1d78549a1714b7b5c1f4df265c8f721a9725f0835",
+      "portSha256": "916a30b0413315e369fe183b2033483c8207a9360a3953826698826988cdfdeb"
+    },
+    {
+      "file": "pages/Salon/SalonProfile.jsx",
+      "status": "identical",
+      "sourceSha256": "67f34d82c18d169fd08fd754fc2d4f182a332bedd30bd62658fb4849d3133b80",
+      "portSha256": "67f34d82c18d169fd08fd754fc2d4f182a332bedd30bd62658fb4849d3133b80"
+    },
+    {
+      "file": "pages/Salon/SalonPromotions.jsx",
+      "status": "identical",
+      "sourceSha256": "29f206b7194bf9701ad026777d0ecc7af4c5d15641418412f8340a82fe033c30",
+      "portSha256": "29f206b7194bf9701ad026777d0ecc7af4c5d15641418412f8340a82fe033c30"
+    },
+    {
+      "file": "pages/Salon/SalonReviews.jsx",
+      "status": "identical",
+      "sourceSha256": "d10e5501ae34a74e0acd11e21835728c9a3e643958c5998fd3bf936c0c943ac4",
+      "portSha256": "d10e5501ae34a74e0acd11e21835728c9a3e643958c5998fd3bf936c0c943ac4"
+    },
+    {
+      "file": "pages/Salon/SalonServices.jsx",
+      "status": "changed",
+      "sourceSha256": "6e2593aa9dbd26c78f4e6538982fb5b5a7e206291735ee892a1f28cc4bd4edf6",
+      "portSha256": "6da47461bd5c4a3699af19068716ce839232cdd1b9aca78c8e9d7940a91aff0d"
+    },
+    {
+      "file": "pages/Salon/SalonStaffManagement.jsx",
+      "status": "identical",
+      "sourceSha256": "1cdf66f1be26ac016308f1298b309cba44539e1228b33abe9d9b44eedeae9b6e",
+      "portSha256": "1cdf66f1be26ac016308f1298b309cba44539e1228b33abe9d9b44eedeae9b6e"
+    },
+    {
+      "file": "pages/Salon/SalonStats.jsx",
+      "status": "identical",
+      "sourceSha256": "af1fa5a871d1908794e32ee2147c62b4232d8f7a65cec5a60a75793ddd70d343",
+      "portSha256": "af1fa5a871d1908794e32ee2147c62b4232d8f7a65cec5a60a75793ddd70d343"
+    },
+    {
+      "file": "pages/Salon/StaffDetail.jsx",
+      "status": "identical",
+      "sourceSha256": "b5876ce1acfb576130a25934c5916dad5b252b6dfeed63b468f574495a3be7b9",
+      "portSha256": "b5876ce1acfb576130a25934c5916dad5b252b6dfeed63b468f574495a3be7b9"
+    },
+    {
+      "file": "pages/SecuritySettings.jsx",
+      "status": "identical",
+      "sourceSha256": "ef943b22794b32fcba7ef364ab74fbaf89cb42edc3f09e9c6818928550c1745b",
+      "portSha256": "ef943b22794b32fcba7ef364ab74fbaf89cb42edc3f09e9c6818928550c1745b"
+    },
+    {
+      "file": "store/authStore.js",
+      "status": "changed",
+      "sourceSha256": "0b39b7f548f2cd8f022502835e4b1cf17dfb39e2c66b2dec29081cd90ddd1f56",
+      "portSha256": "94c4830c6b043a7ae15e998615fe8d5d01b53669477268a9d3df66ff9f7f9ad9"
+    },
+    {
+      "file": "store/bookingStore.js",
+      "status": "identical",
+      "sourceSha256": "ab06c7717eca6ad379d10ebd0cf9322f46f43f2352f7774c97fd913c35477b05",
+      "portSha256": "ab06c7717eca6ad379d10ebd0cf9322f46f43f2352f7774c97fd913c35477b05"
+    },
+    {
+      "file": "store/bookingStore.test.js",
+      "status": "identical",
+      "sourceSha256": "72a9750b2cdcc2db3a79d586b45ac794d194f7ea4cddb392c91c2ef2f591cdbf",
+      "portSha256": "72a9750b2cdcc2db3a79d586b45ac794d194f7ea4cddb392c91c2ef2f591cdbf"
+    },
+    {
+      "file": "styles/branch-operations.css",
+      "status": "identical",
+      "sourceSha256": "8a8e91469bc2523630f7887e7f23bd0c303b77cb04b4b8017f622e08e66c5654",
+      "portSha256": "8a8e91469bc2523630f7887e7f23bd0c303b77cb04b4b8017f622e08e66c5654"
+    },
+    {
+      "file": "styles/business-landing.css",
+      "status": "identical",
+      "sourceSha256": "d9f74258d01fa3ad752deaaa7611a40b21d992d78fe00f98a46ad8849d756c4e",
+      "portSha256": "d9f74258d01fa3ad752deaaa7611a40b21d992d78fe00f98a46ad8849d756c4e"
+    },
+    {
+      "file": "styles/fonts.css",
+      "status": "port-only",
+      "sourceSha256": null,
+      "portSha256": "77978af1913489c9219dc5cb4b3eb526cfe388e6752eb50dd5e015cf8837222d"
+    },
+    {
+      "file": "styles/mobile-booking.css",
+      "status": "identical",
+      "sourceSha256": "725cbeaf46470d6134ad61c655357220b4ee397fedf6a8ed1890d82948677e5b",
+      "portSha256": "725cbeaf46470d6134ad61c655357220b4ee397fedf6a8ed1890d82948677e5b"
+    },
+    {
+      "file": "styles/mobile-public.css",
+      "status": "identical",
+      "sourceSha256": "fa34d1476749ef567b771b90bc7b8dbebb782db2a5852728533235486fbefbb9",
+      "portSha256": "fa34d1476749ef567b771b90bc7b8dbebb782db2a5852728533235486fbefbb9"
+    },
+    {
+      "file": "styles/polish.css",
+      "status": "identical",
+      "sourceSha256": "e9182c73641d75780520b80731b97f0c357c9243feebccd408e59b38809b8cd9",
+      "portSha256": "e9182c73641d75780520b80731b97f0c357c9243feebccd408e59b38809b8cd9"
+    },
+    {
+      "file": "styles/public-home.css",
+      "status": "changed",
+      "sourceSha256": "a92f7a56ea3fcf5550a6d5760f3558e87e004b11614ec69ce9d7cc4b702b0ff5",
+      "portSha256": "0ac149f332d9961036afb82e3e03891bd7241cc11a14d9500112150604c9bc03"
+    },
+    {
+      "file": "styles/theme.css",
+      "status": "changed",
+      "sourceSha256": "7c87acff527a2e50db966d556648b4abf2d77fd31705286d406a34e0d1829cb6",
+      "portSha256": "1ba7a0a75c8fd965e20a87e92e05b80d7a8d1638cdb8c5904f816b335ee21eec"
+    },
+    {
+      "file": "utils/actualTimeCorrection.js",
+      "status": "identical",
+      "sourceSha256": "7031d279fe0d2a98d4f7c58f2ec7cbe577cd681fa0a98a6488a549ad542544a8",
+      "portSha256": "7031d279fe0d2a98d4f7c58f2ec7cbe577cd681fa0a98a6488a549ad542544a8"
+    },
+    {
+      "file": "utils/actualTimeCorrection.test.js",
+      "status": "identical",
+      "sourceSha256": "2c64ff6c78d4ca81c52a356543036db74d187e62f18a2a8762df9de4dcbe3b97",
+      "portSha256": "2c64ff6c78d4ca81c52a356543036db74d187e62f18a2a8762df9de4dcbe3b97"
+    },
+    {
+      "file": "utils/authScope.js",
+      "status": "identical",
+      "sourceSha256": "e6b52a6896d40fc48f745bfcfe24655b95c66bd99fb4c0a7c3c386bcc7ba57f9",
+      "portSha256": "e6b52a6896d40fc48f745bfcfe24655b95c66bd99fb4c0a7c3c386bcc7ba57f9"
+    },
+    {
+      "file": "utils/authScope.test.js",
+      "status": "identical",
+      "sourceSha256": "078cc5e31be8cf73480361018f3991c20ee049284623719c9ee5a52760fef748",
+      "portSha256": "078cc5e31be8cf73480361018f3991c20ee049284623719c9ee5a52760fef748"
+    },
+    {
+      "file": "utils/bookingActualTime.js",
+      "status": "identical",
+      "sourceSha256": "4b33146f44d44ceb6e1ad7a35e73975033cad5a3869d186613b1763b60b7a3d7",
+      "portSha256": "4b33146f44d44ceb6e1ad7a35e73975033cad5a3869d186613b1763b60b7a3d7"
+    },
+    {
+      "file": "utils/bookingActualTime.test.js",
+      "status": "identical",
+      "sourceSha256": "f3956d8a7908432a084f54b4903b72a7112abd0237512a3bd4854b71b8227112",
+      "portSha256": "f3956d8a7908432a084f54b4903b72a7112abd0237512a3bd4854b71b8227112"
+    },
+    {
+      "file": "utils/bookingAffordances.js",
+      "status": "identical",
+      "sourceSha256": "9a0cd1de30cc19f77d923a7519fe8d674259400504143e501a562c7d3e1d848a",
+      "portSha256": "9a0cd1de30cc19f77d923a7519fe8d674259400504143e501a562c7d3e1d848a"
+    },
+    {
+      "file": "utils/bookingCalendar.adapter.js",
+      "status": "identical",
+      "sourceSha256": "a446c76a6f99c3ace1b84bd2772996576609a76a75918c5be32c7ccb9c6b020e",
+      "portSha256": "a446c76a6f99c3ace1b84bd2772996576609a76a75918c5be32c7ccb9c6b020e"
+    },
+    {
+      "file": "utils/bookingCalendar.utils.js",
+      "status": "identical",
+      "sourceSha256": "2544667a08e833a9eafdb0a9f8de09daf8ffb41a236d51c008f5306afed214b7",
+      "portSha256": "2544667a08e833a9eafdb0a9f8de09daf8ffb41a236d51c008f5306afed214b7"
+    },
+    {
+      "file": "utils/bookingSubmission.js",
+      "status": "changed",
+      "sourceSha256": "b8a5dd1d6159905b48bf0d61623ede3283cbdad30cfe324b52e4d4a69f629cd3",
+      "portSha256": "afed11e8525a745a5e98b5f74a2236f09a59bce770737916c90106a62f2cfaa6"
+    },
+    {
+      "file": "utils/bookingSubmission.test.js",
+      "status": "identical",
+      "sourceSha256": "5bd017d04e36367767c1fc3cf091454a1bc33563c5f4b6e6f798f8b1f3f40e5b",
+      "portSha256": "5bd017d04e36367767c1fc3cf091454a1bc33563c5f4b6e6f798f8b1f3f40e5b"
+    },
+    {
+      "file": "utils/bookingWallTime.js",
+      "status": "identical",
+      "sourceSha256": "27ed8f6d16cc2e2a219145063ac85a90e44f66e86bc82bb24ebf14515514ed26",
+      "portSha256": "27ed8f6d16cc2e2a219145063ac85a90e44f66e86bc82bb24ebf14515514ed26"
+    },
+    {
+      "file": "utils/bookingWallTime.test.js",
+      "status": "identical",
+      "sourceSha256": "96e02e27f3cc6dd5a1b26fba6735f33f92070a26c631e9231d65f7e1c52817a7",
+      "portSha256": "96e02e27f3cc6dd5a1b26fba6735f33f92070a26c631e9231d65f7e1c52817a7"
+    },
+    {
+      "file": "utils/branchSlotTime.js",
+      "status": "identical",
+      "sourceSha256": "e27307373214d4194ea7cefecbcaee34c7d59d7b19f75398de4b78a0c20cdb37",
+      "portSha256": "e27307373214d4194ea7cefecbcaee34c7d59d7b19f75398de4b78a0c20cdb37"
+    },
+    {
+      "file": "utils/businessCompletionRules.js",
+      "status": "identical",
+      "sourceSha256": "ee3faad2c87821876c063b81ec14f229e080e6cf4821e5218af6b3ecfdba5a5d",
+      "portSha256": "ee3faad2c87821876c063b81ec14f229e080e6cf4821e5218af6b3ecfdba5a5d"
+    },
+    {
+      "file": "utils/businessCompletionRules.test.js",
+      "status": "identical",
+      "sourceSha256": "ad766aed6c6efc7ded9f1ecc88f1341814390c6a64554bb3fa81b5d40c51d256",
+      "portSha256": "ad766aed6c6efc7ded9f1ecc88f1341814390c6a64554bb3fa81b5d40c51d256"
+    },
+    {
+      "file": "utils/businessOnboardingValidation.js",
+      "status": "changed",
+      "sourceSha256": "3ae14d67e7bfd9ad0066c4f110a2d608657d10557dee9e0e93befaffd1132611",
+      "portSha256": "bb493ffd7638be4df996d804c58925a470c34d0b503a1653ee53fabf7d24dc43"
+    },
+    {
+      "file": "utils/businessOnboardingValidation.test.js",
+      "status": "changed",
+      "sourceSha256": "5ab0add6ba313bca3c47c00fd797ea9bd756f24152ed007787b5a1bb18fefba9",
+      "portSha256": "428bf3193d775223f2f3326d4d04255cbc321162310b101dc9a3dbe7ced8d857"
+    },
+    {
+      "file": "utils/coalescedRefresh.js",
+      "status": "identical",
+      "sourceSha256": "976e20dbd3b01cd2ad5e2ed41ddf0d5a06dc32550a1d51dc4ebdfe842cdfb1e7",
+      "portSha256": "976e20dbd3b01cd2ad5e2ed41ddf0d5a06dc32550a1d51dc4ebdfe842cdfb1e7"
+    },
+    {
+      "file": "utils/coalescedRefresh.test.js",
+      "status": "identical",
+      "sourceSha256": "f2f7915193555075ea32fdf1f231af4cac747a8e0290ab763eb1301a73ebf11e",
+      "portSha256": "f2f7915193555075ea32fdf1f231af4cac747a8e0290ab763eb1301a73ebf11e"
+    },
+    {
+      "file": "utils/customerCancellation.js",
+      "status": "identical",
+      "sourceSha256": "054ccab5a7648d8bc8617fa4a272db5aa0f35946b4fd9592ac79c94e59669d44",
+      "portSha256": "054ccab5a7648d8bc8617fa4a272db5aa0f35946b4fd9592ac79c94e59669d44"
+    },
+    {
+      "file": "utils/customerCancellation.test.js",
+      "status": "identical",
+      "sourceSha256": "d8cc8771386730dd466ca1604678f6dabb646fee008eb3acfacce49197dbaa66",
+      "portSha256": "d8cc8771386730dd466ca1604678f6dabb646fee008eb3acfacce49197dbaa66"
+    },
+    {
+      "file": "utils/displayLabels.js",
+      "status": "changed",
+      "sourceSha256": "80955ada2742a2f469722c0c80440d2399e5de9a2a527fdaccdb2183c087f61a",
+      "portSha256": "7d1d31622d96e4d58372ec3fd1086cb8bf495f0a8132cb2ef9946f727c4eec35"
+    },
+    {
+      "file": "utils/helpers.js",
+      "status": "identical",
+      "sourceSha256": "829e91e7b572fd3d46bd01461b3fb583b9e7d80331449921835cf8b4e37be9d3",
+      "portSha256": "829e91e7b572fd3d46bd01461b3fb583b9e7d80331449921835cf8b4e37be9d3"
+    },
+    {
+      "file": "utils/idempotencyKey.js",
+      "status": "port-only",
+      "sourceSha256": null,
+      "portSha256": "75e38e4359f817351ab7150a1edc905ce2def4effc40bcf11fba9aa88742858f"
+    },
+    {
+      "file": "utils/idempotencyKey.test.js",
+      "status": "port-only",
+      "sourceSha256": null,
+      "portSha256": "1565e1add4c660dd518b8ce46e82f577ba4e425f59d8179ea6aa2def78c7ea6c"
+    },
+    {
+      "file": "utils/latestRequest.js",
+      "status": "identical",
+      "sourceSha256": "c3ba6a68bd61bdebf4b734f26493366497e5764f9af67acccafbe286eaf76c55",
+      "portSha256": "c3ba6a68bd61bdebf4b734f26493366497e5764f9af67acccafbe286eaf76c55"
+    },
+    {
+      "file": "utils/latestRequest.test.js",
+      "status": "identical",
+      "sourceSha256": "8aa4fabbfc56d81c3dbea0bc3af65693b005c21e3d7f4f9534a93befc04e812b",
+      "portSha256": "8aa4fabbfc56d81c3dbea0bc3af65693b005c21e3d7f4f9534a93befc04e812b"
+    },
+    {
+      "file": "utils/mediaUrl.js",
+      "status": "changed",
+      "sourceSha256": "b66e48582baae8ebfc40a1a38ffe47bdc9bdc1d0bec7956602607860adfb25ba",
+      "portSha256": "a7fa908b60a29da09c55f456f932c6ddbdda861c35aeb03eacd629a65e5db1ad"
+    },
+    {
+      "file": "utils/mediaUrl.test.js",
+      "status": "changed",
+      "sourceSha256": "367c6ec84294cce6aee5c962fad0d7037e222476522db98ebc4cfe36b82077b6",
+      "portSha256": "4b3c99c4b99d38e065b685f0941c566c14026406007636ed881ffb6ebf81f487"
+    },
+    {
+      "file": "utils/mediaValidation.js",
+      "status": "identical",
+      "sourceSha256": "d146d7e251ea3105c5ebe267c6a599c744c5974a6809d7619ae15861084a3027",
+      "portSha256": "d146d7e251ea3105c5ebe267c6a599c744c5974a6809d7619ae15861084a3027"
+    },
+    {
+      "file": "utils/mediaValidation.test.js",
+      "status": "identical",
+      "sourceSha256": "a2fea139a4df78867a5af591e4aa9f6bfc05c7e4f78b2853644f4a35a6047b74",
+      "portSha256": "a2fea139a4df78867a5af591e4aa9f6bfc05c7e4f78b2853644f4a35a6047b74"
+    },
+    {
+      "file": "utils/nameSearch.js",
+      "status": "identical",
+      "sourceSha256": "16ee44d6f333962038ff666a562d0deeead4c335fb78316cf041e8d2a7c1f6ff",
+      "portSha256": "16ee44d6f333962038ff666a562d0deeead4c335fb78316cf041e8d2a7c1f6ff"
+    },
+    {
+      "file": "utils/nameSearch.test.js",
+      "status": "identical",
+      "sourceSha256": "85b22b8722b305a524859f982b929348a1aa789c3c1c68a8c013e8d85c37a503",
+      "portSha256": "85b22b8722b305a524859f982b929348a1aa789c3c1c68a8c013e8d85c37a503"
+    },
+    {
+      "file": "utils/operationalListRows.js",
+      "status": "identical",
+      "sourceSha256": "8c306838316ff22468df1ba49af1c333c7e3b901123081e20c21b6cfe9ff145d",
+      "portSha256": "8c306838316ff22468df1ba49af1c333c7e3b901123081e20c21b6cfe9ff145d"
+    },
+    {
+      "file": "utils/operationalListRows.test.js",
+      "status": "identical",
+      "sourceSha256": "f1c7e4edbe0bf8e6f62f1a78575d17910238e23f6aa940ebef53e729146ef287",
+      "portSha256": "f1c7e4edbe0bf8e6f62f1a78575d17910238e23f6aa940ebef53e729146ef287"
+    },
+    {
+      "file": "utils/operationalTiming.js",
+      "status": "identical",
+      "sourceSha256": "f8638717dd8801d2aac7e2fb68cb150e2a278cb2d267661c1f3c9bf0e38d3a41",
+      "portSha256": "f8638717dd8801d2aac7e2fb68cb150e2a278cb2d267661c1f3c9bf0e38d3a41"
+    },
+    {
+      "file": "utils/operationalTiming.test.js",
+      "status": "identical",
+      "sourceSha256": "0ff2dfd66cebefb0216fbfa45d52ade599af430cde182b85b0dc8a59798ac801",
+      "portSha256": "0ff2dfd66cebefb0216fbfa45d52ade599af430cde182b85b0dc8a59798ac801"
+    },
+    {
+      "file": "utils/operationsScope.js",
+      "status": "identical",
+      "sourceSha256": "23fa0a6b3f68cddbfea8dc1879a8d5491785e27dfc3f890aef37d09fbacb684d",
+      "portSha256": "23fa0a6b3f68cddbfea8dc1879a8d5491785e27dfc3f890aef37d09fbacb684d"
+    },
+    {
+      "file": "utils/operationsScope.test.js",
+      "status": "identical",
+      "sourceSha256": "93b57c5ca373ddf08bc1191fdc8a9efa299c280f8d472cf20424d8ee8c5b989f",
+      "portSha256": "93b57c5ca373ddf08bc1191fdc8a9efa299c280f8d472cf20424d8ee8c5b989f"
+    },
+    {
+      "file": "utils/profileBirthDate.js",
+      "status": "identical",
+      "sourceSha256": "8e7a5e5d50ca837ef31f1d1bc3f919d35e9d83d3ad23d0d07eebf54d1cdb4ac1",
+      "portSha256": "8e7a5e5d50ca837ef31f1d1bc3f919d35e9d83d3ad23d0d07eebf54d1cdb4ac1"
+    },
+    {
+      "file": "utils/profileBirthDate.test.js",
+      "status": "identical",
+      "sourceSha256": "87e769dc504373958554be2e049cec9f3ddab7614aae2c1b616ae10d6ff1d36b",
+      "portSha256": "87e769dc504373958554be2e049cec9f3ddab7614aae2c1b616ae10d6ff1d36b"
+    },
+    {
+      "file": "utils/registrationIntent.js",
+      "status": "identical",
+      "sourceSha256": "f2eb52fb6d9f7fdb6ad9c315c194cb5eff3042e786f341df5aae207a0fdb3f72",
+      "portSha256": "f2eb52fb6d9f7fdb6ad9c315c194cb5eff3042e786f341df5aae207a0fdb3f72"
+    },
+    {
+      "file": "utils/registrationIntent.test.js",
+      "status": "identical",
+      "sourceSha256": "7b9c1e6c696406fc6a5b35debd1a0c79b5dd0edc4d40bb0d67404ffc0b45f4b3",
+      "portSha256": "7b9c1e6c696406fc6a5b35debd1a0c79b5dd0edc4d40bb0d67404ffc0b45f4b3"
+    },
+    {
+      "file": "utils/requestError.js",
+      "status": "identical",
+      "sourceSha256": "ab0eb27469cdc19dede1c3a2b2d69a29c7663d84407f5248785786da63a165f7",
+      "portSha256": "ab0eb27469cdc19dede1c3a2b2d69a29c7663d84407f5248785786da63a165f7"
+    },
+    {
+      "file": "utils/schedulerSocketEvents.js",
+      "status": "identical",
+      "sourceSha256": "ebbd6a29634238d8b3310f6fe52a7453b0be1335af5d8ae419fd145c518d88cb",
+      "portSha256": "ebbd6a29634238d8b3310f6fe52a7453b0be1335af5d8ae419fd145c518d88cb"
+    },
+    {
+      "file": "utils/schedulerSocketEvents.test.js",
+      "status": "identical",
+      "sourceSha256": "1882e46848a1a387ecd937ccdb3ffd8f7b2c31e3812a11ad93522b6296fb6f1e",
+      "portSha256": "1882e46848a1a387ecd937ccdb3ffd8f7b2c31e3812a11ad93522b6296fb6f1e"
+    },
+    {
+      "file": "utils/schedulerUtils.js",
+      "status": "identical",
+      "sourceSha256": "d0faa2cde83a16acd3611843c6fd08c818547909545b39e2dd4b1320fcf6c1fb",
+      "portSha256": "d0faa2cde83a16acd3611843c6fd08c818547909545b39e2dd4b1320fcf6c1fb"
+    },
+    {
+      "file": "utils/seo.js",
+      "status": "identical",
+      "sourceSha256": "38d022cb86c33736528b76e2c12110c30b9a871fef58b5d06a5dfd1e6d08859d",
+      "portSha256": "38d022cb86c33736528b76e2c12110c30b9a871fef58b5d06a5dfd1e6d08859d"
+    },
+    {
+      "file": "utils/sessionGeneration.js",
+      "status": "source-only",
+      "sourceSha256": "19192d6e03bfb3a7218cba04ec5f1051040f297d954acbe09e5dd4e6769b699a",
+      "portSha256": null
+    },
+    {
+      "file": "utils/sessionGeneration.test.js",
+      "status": "source-only",
+      "sourceSha256": "42172ed9ee3dff56312b4c405d86c7c36f3be624d6713031ecdf521d5f04091f",
+      "portSha256": null
+    },
+    {
+      "file": "utils/socketEndpoint.js",
+      "status": "changed",
+      "sourceSha256": "62005dd97dbfe83639b75b679bddf609ad021d3cac7fc27a3a8a25804227cec4",
+      "portSha256": "cdbbcc7f475961ecf090b7888e7d905b26a5eeb857185ad3fa6ca56af2699918"
+    },
+    {
+      "file": "utils/socketEndpoint.test.js",
+      "status": "identical",
+      "sourceSha256": "5b7b0a9d8b3712626e2e5d953814aeaf0a2a6cd4dd97d66951a35e0210c04b11",
+      "portSha256": "5b7b0a9d8b3712626e2e5d953814aeaf0a2a6cd4dd97d66951a35e0210c04b11"
+    }
+  ],
+  "phpFiles": [
+    {
+      "file": "app/Casts/UtcDateTime.php",
+      "sha256": "52ea70a33f7a4525bb0704f8c8cb4a22e183a432e785e71dc34d17f725d4c6b8"
+    },
+    {
+      "file": "app/Enums/AccountKind.php",
+      "sha256": "405e2d24613632845faa732ecfffe5bc67b65c03f78bc72cd123262096f5d1db"
+    },
+    {
+      "file": "app/Enums/BranchOperationalStatus.php",
+      "sha256": "1466e1e473724249e30ef72efe84b37e34f6cacf1bc38707322a78b2e2b1f16a"
+    },
+    {
+      "file": "app/Enums/BranchReviewStatus.php",
+      "sha256": "d7745eef4a316f7e368daa281ec38fe14db1c4cbef785401ccf5e3ed9ac37cf4"
+    },
+    {
+      "file": "app/Enums/BranchStatus.php",
+      "sha256": "9b36324b7a51542af4ec6c4b2919c374d720084eeb788149de13e7bc1244923b"
+    },
+    {
+      "file": "app/Enums/BusinessStatus.php",
+      "sha256": "f68e99a9b5ce189141fb39a35823da482fc63a6184d0cedc0c7d57c4a0bd0659"
+    },
+    {
+      "file": "app/Enums/RoleName.php",
+      "sha256": "6a5b909cf21cc231b3507ec4d4576879597a821ed28e6a87c03786a472f671a7"
+    },
+    {
+      "file": "app/Exceptions/BookingConflictException.php",
+      "sha256": "7d500db57f8942e6a6b2c7932caa24c168c7ea6ec4d6902207f108e981ea1522"
+    },
+    {
+      "file": "app/Http/Controllers/AdminReviewController.php",
+      "sha256": "b25d99065ee8113d70232d1c9e8153856b99c0dae98da6e673cae4c2a22df1de"
+    },
+    {
+      "file": "app/Http/Controllers/AdvancedFinanceController.php",
+      "sha256": "3d9deb65d15780937534db5098709397e0d2d6680c78e4ecab62796869f6f262"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/AuthenticatedSessionController.php",
+      "sha256": "c9d602e7f52526c5fadc0f4285e1098c068f3465ab920e987aeb94c32e0fbf5e"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/EmailVerificationNotificationController.php",
+      "sha256": "d7bdd732e35b7384ef026e0df1aed8db4000974beb627b34066fae73ebdf8c22"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/EmailVerificationPromptController.php",
+      "sha256": "feea382f370ca0e1fafba166e129f268be95036b6977e62514aa78c6ecbfd5ac"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/NewPasswordController.php",
+      "sha256": "1dcac829b661a6fa35d9c6755ef2124b136c01d3c9eaf0e986582ff8004f1bf5"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/PasswordResetLinkController.php",
+      "sha256": "d91e2b5c3c7ea4f506edada7b75ddb67f19909c2a0c19e62aec46444fc4e0265"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/RegisteredUserController.php",
+      "sha256": "d4218b3768da5a54486e5deef413151592fba59308b7eacc27216b0728218b8b"
+    },
+    {
+      "file": "app/Http/Controllers/Auth/VerifyEmailController.php",
+      "sha256": "d909b3e6cd9cbe066429e7c54d2611715aae138451a9c5652dfd5e2b43629a27"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/AuthController.php",
+      "sha256": "278f0a87c2cc4d8e877d38e254c0b3bcfcd6409f040835d8cb45d3f8132644d5"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/BookingController.php",
+      "sha256": "0065dacc89700e9d6a8dccce074ac64d70ecb83240aae475c0b9fce57bb0d9ee"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/EngagementController.php",
+      "sha256": "91ac6a7c4b2921847a9c83d47864be8645df231c57f2181ec1e921813f482651"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/FinanceController.php",
+      "sha256": "3752a020d380b3ca16be65b83f3d152e0354dd521612117661f7ba1f14035986"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/GovernanceController.php",
+      "sha256": "61cad15400dd0a005a318eaf859c8da44d81af33509df7be9969ca48795fdb79"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ManagementCatalogController.php",
+      "sha256": "4cc3a985e684009b9f95f0d38d43abf213a9ef253c9808653d34799df0b53637"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ManagementController.php",
+      "sha256": "50e9cfabb75311d318c8cdfd3c9f50cba8f3807ebea26e25c3f8b529a3141d50"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ManagementMediaController.php",
+      "sha256": "a1e9fc84603b0b9c70228b866496142f57f86ce8dcad689a70aa07bc4e072214"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ManagementOffersController.php",
+      "sha256": "632abef02f94a5ab17dd0f3fa277c50924230310ae1993974b42ede90231c4bb"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ManagementStaffController.php",
+      "sha256": "b566c25511d1be2f5463755711f3f6ffba778992c2dc4ce71490e4a9faace63c"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/PublicController.php",
+      "sha256": "669e3798ed746cb218073a814a8547751cbc20fe36c4f5542e93145b075dd073"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/RealtimeController.php",
+      "sha256": "2194ee9f1caf7f25a29ae83db4d18822a9da0f31a4888f28fb4a08ee5a7a8fbd"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/ReportsController.php",
+      "sha256": "9ddc09168f6e4a909d4819909a8fda17e1008eb93a3c4715281b054eddd70347"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/UsersController.php",
+      "sha256": "61ccd02ba40e9f4b4ad95cd327bcddfc1622e04146ba7e45ad051171a5fcb2be"
+    },
+    {
+      "file": "app/Http/Controllers/Beautybook/VouchersController.php",
+      "sha256": "f7330905730a003f7e51f9c597733a88dd22fec852c2ab3b6817ca2d626beebb"
+    },
+    {
+      "file": "app/Http/Controllers/BookingCalendarController.php",
+      "sha256": "b97562ac26c12597968e7cb14c8e5abd077c6709275b5cacc6b408d94f23296a"
+    },
+    {
+      "file": "app/Http/Controllers/BookingController.php",
+      "sha256": "6a602945349a87b192312a5c65bd93460cf13a690ce35085c18e37c3eb749bc4"
+    },
+    {
+      "file": "app/Http/Controllers/CartBookingController.php",
+      "sha256": "28280c4d94001235addb322bf1073bf7447fa9597ee2095dee331b191ec33e8a"
+    },
+    {
+      "file": "app/Http/Controllers/Controller.php",
+      "sha256": "25d1c1ef8e6cc8a376553faacfba2b07d9dfaee9bdbb84f14f77517580e9deb1"
+    },
+    {
+      "file": "app/Http/Controllers/CustomerProfileController.php",
+      "sha256": "f143152addd47b7e649a3c2b8971ffe887d6c829c64403e0c0bca7b74f0e0236"
+    },
+    {
+      "file": "app/Http/Controllers/EngagementController.php",
+      "sha256": "d75939c1d2762d26425ad5637e8fa68ae99221956674ebcecec1014a138dc9d3"
+    },
+    {
+      "file": "app/Http/Controllers/GovernanceController.php",
+      "sha256": "a75422adb1ba47ea2ea9573abb14f7cc4e8f46cb51e729b62423ea12775e9fb9"
+    },
+    {
+      "file": "app/Http/Controllers/HomeController.php",
+      "sha256": "a84f2aa5e744055a1fde864e37b13af6f73303e0c10350bb47a4e63e2eedfc82"
+    },
+    {
+      "file": "app/Http/Controllers/ImpactController.php",
+      "sha256": "2867ba505504748776d9d3c7e2efcdf222771c2ecf1540104d3ae67d94e83622"
+    },
+    {
+      "file": "app/Http/Controllers/MarketplaceController.php",
+      "sha256": "b916994dc49a511d21648b04926a10fa32e236558eebc94063a9d2ca8548f54a"
+    },
+    {
+      "file": "app/Http/Controllers/MediaController.php",
+      "sha256": "d8a57a658bee90372bc0b9a71bd828e0f1cb204797d40c00f1cc8af06d16c9ea"
+    },
+    {
+      "file": "app/Http/Controllers/NotificationController.php",
+      "sha256": "b68af706e9b84c8370e9478536a57a2a6dffd8279f34b259a10d0a73b31c9eb4"
+    },
+    {
+      "file": "app/Http/Controllers/OperationsController.php",
+      "sha256": "6ee3a371e16ce839a0ca02c0b7bae29da93458887d40417f0897ce4e75a7f67c"
+    },
+    {
+      "file": "app/Http/Controllers/OwnerBranchController.php",
+      "sha256": "6562921b05d188fa645db3b2050f96a51bf8fe5bc80f1879b7ca54d781ad6ab6"
+    },
+    {
+      "file": "app/Http/Controllers/OwnerBusinessController.php",
+      "sha256": "4c6a4e4ef88e27e211cb8406d30d51824d1c6b1b60da569107c296b482c915dd"
+    },
+    {
+      "file": "app/Http/Controllers/OwnerCatalogController.php",
+      "sha256": "e4e184de38262549e2f693c72d7e087ce3d6787e131c98fa8c39b86e6ca804fb"
+    },
+    {
+      "file": "app/Http/Controllers/OwnerMediaController.php",
+      "sha256": "79e1f18d67b0d3d8928a74d90f9031adf787892637526b6ce5891954dc20756f"
+    },
+    {
+      "file": "app/Http/Controllers/OwnershipController.php",
+      "sha256": "eac6de71edadb0d1fb9c33c96eff97e13d7f8ace18f0f80f17e8e781c95cfca9"
+    },
+    {
+      "file": "app/Http/Controllers/OwnerStaffController.php",
+      "sha256": "837859d2e0e2aa1d9ed770f0ef752dc059471dacacb96e302a80cf5f66c1136d"
+    },
+    {
+      "file": "app/Http/Controllers/PaymentController.php",
+      "sha256": "f2d059cf5ccaad69fa02b67ec8743c7d2d7c65e0110a49297831c93e189532c4"
+    },
+    {
+      "file": "app/Http/Controllers/PlatformController.php",
+      "sha256": "27f831bed4816b0b73c331e0e660d4477a5c0f51e57a74ffa9671bbb8a9538e7"
+    },
+    {
+      "file": "app/Http/Controllers/PrivacyController.php",
+      "sha256": "87d9b289f2b1c1b40db30db15b653d9bf43aa52f19ae23ef4475063187bf2f53"
+    },
+    {
+      "file": "app/Http/Controllers/PromotionController.php",
+      "sha256": "cb87168184322bcee33bc1600e13fccbc48e09c247faa3d4c0a73b921170e574"
+    },
+    {
+      "file": "app/Http/Controllers/SchedulingController.php",
+      "sha256": "6d8403f78af7da5e71e0507cd85e1aa8bf3eed644249160cf63aa651c0053ad5"
+    },
+    {
+      "file": "app/Http/Controllers/SecurityController.php",
+      "sha256": "b54a92ca8b835a4be619a5c8d64b952b8fa028d5761a6f3d5c699677d3548806"
+    },
+    {
+      "file": "app/Http/Controllers/WorkspaceController.php",
+      "sha256": "dcbb6072a9fab042cac2e28af915392420a32da56725f8702e5304eeba67d81d"
+    },
+    {
+      "file": "app/Http/Controllers/WorkspaceHomeController.php",
+      "sha256": "4fdb3e1773055e26f92f56bc5b29331fb044f8a9fd209e87bee3a147483ea07b"
+    },
+    {
+      "file": "app/Http/Middleware/BeautybookSession.php",
+      "sha256": "0af8e68d42b77180b803c8e1c35796c1cc0354cd2925b5420ba55ba09e7a0130"
+    },
+    {
+      "file": "app/Http/Middleware/EnsureAccountKind.php",
+      "sha256": "78916136dac453040b54b73ee4ae41455348d11edc75cbdd9f2e4b2127476363"
+    },
+    {
+      "file": "app/Http/Middleware/EnsureActiveAccount.php",
+      "sha256": "ab120bfc9e4661b61ee41a9be0ade63272ef2ef4f3454b262ccc6d5e2d8e9a57"
+    },
+    {
+      "file": "app/Http/Middleware/EnsureWorkspace.php",
+      "sha256": "a4fc8c0983a718f1981f3513079b7f578a3b95cf940339786c0e765055137bfd"
+    },
+    {
+      "file": "app/Http/Requests/Auth/LoginRequest.php",
+      "sha256": "ba5948333c1d7a9e62c95793111e304f259e22e42b055dcafd1cd306d267c068"
+    },
+    {
+      "file": "app/Http/Requests/Auth/RegisterRequest.php",
+      "sha256": "a37201a3cdeed08b4c2010f788cf3ba860a4c23b2552be585a215611af697108"
+    },
+    {
+      "file": "app/Http/Requests/BookingAvailabilityRequest.php",
+      "sha256": "fc7e5743df3e4d8c40c7030a9aa5f5dd0967d83746c53f9aadd12dbee2184b99"
+    },
+    {
+      "file": "app/Http/Requests/BookingCreateRequest.php",
+      "sha256": "5d19d73c09d0dd512585bee9946dc8ffab726b478e6ad5a6ffb0fcb7c044d8e6"
+    },
+    {
+      "file": "app/Http/Requests/BookingQuoteRequest.php",
+      "sha256": "c8171f5353308d0e34bf75b5dcefabebaebd33e39f79567dfd43e9429c729b6d"
+    },
+    {
+      "file": "app/Http/Requests/BranchDraftRequest.php",
+      "sha256": "6783202dd6a9f164dbbf2a4ce8f66c233d987d419034bf3736531855622c4e82"
+    },
+    {
+      "file": "app/Http/Requests/BranchHoursRequest.php",
+      "sha256": "3e234248ac94a86f04083174b049678e4eeeb3049c18ce59bfdbb3cb8e24a003"
+    },
+    {
+      "file": "app/Http/Requests/BusinessDraftRequest.php",
+      "sha256": "ee5a48b7805521b0e7649ef1ac2261ecd4b4222dfdf35d2d677ae6d1795628f7"
+    },
+    {
+      "file": "app/Http/Requests/CatalogServiceRequest.php",
+      "sha256": "8a5593b105d8e5a21de299a5cf371dd9c857f660223e9c9d53babfa50c800af8"
+    },
+    {
+      "file": "app/Http/Requests/MediaUploadRequest.php",
+      "sha256": "6af293d4ecad5d74405afe8b1524ba4c6918778a7a55301428a722483e96613d"
+    },
+    {
+      "file": "app/Http/Requests/OfferingRequest.php",
+      "sha256": "4b97f7a0709e94d3d65854ab0f08e2a9c946bbf304a5178dbfea089773c5a2ed"
+    },
+    {
+      "file": "app/Http/Requests/ReviewDecisionRequest.php",
+      "sha256": "a1826e7942352413751c979e9d94b3ca84d7c432cfed19876ca5f7bcbd297443"
+    },
+    {
+      "file": "app/Http/Requests/ServiceVariantRequest.php",
+      "sha256": "6f4d670ffa91613813886e1bbfd42878b0012d596f6b775a5294e4f82bba5bf6"
+    },
+    {
+      "file": "app/Http/Requests/StaffCapabilityRequest.php",
+      "sha256": "24719abba37d8068d20a57a3d820e913111fe17335f3963f0eef075ca3cfa380"
+    },
+    {
+      "file": "app/Http/Requests/StaffInvitationRequest.php",
+      "sha256": "feb54c8c115492c4e332c80924c5b3ccbab154def07b7120323500d29727a7ee"
+    },
+    {
+      "file": "app/Http/Requests/StaffProfileRequest.php",
+      "sha256": "efa8f538c67db8753ff06eb1603d979e38ca4639d65e95be768078ba82bf4836"
+    },
+    {
+      "file": "app/Models/AppointmentChangeRequest.php",
+      "sha256": "3e0f5229aed6043527e7c7660529a02644c30da2527ef10d487c946e3eec0c0b"
+    },
+    {
+      "file": "app/Models/Booking.php",
+      "sha256": "b55104f87cd1b3e1fc5d86ea31d0ab8570a76cf7417c51deabf3e1db306311f5"
+    },
+    {
+      "file": "app/Models/BookingContact.php",
+      "sha256": "0bbaa48a62b32f8910e18d83f069a84a8001c233dc57b3d8ab873360f7b8d1d3"
+    },
+    {
+      "file": "app/Models/BookingPricingSnapshot.php",
+      "sha256": "27158160f5854f483569511526f3899187527e8c3d7f3247e2ffa66d69067984"
+    },
+    {
+      "file": "app/Models/BookingService.php",
+      "sha256": "cb1ab882d29164b6a55f2bbf3b5f69a75931229dfdeb6856a29f84542e13ab5e"
+    },
+    {
+      "file": "app/Models/BookingStatusHistory.php",
+      "sha256": "0bb359aceaf7076ba1291f172984d0b82cc7b70c604f3c89e3cba88695501da8"
+    },
+    {
+      "file": "app/Models/BookingViolationEvent.php",
+      "sha256": "62a1f7dc953f693f63712cf92b1b312f05ca4b3df090c5188b731badbe951ba8"
+    },
+    {
+      "file": "app/Models/Branch.php",
+      "sha256": "93aa6ea110a68249baf234e993607a61ecb235373b11dd73175b93c9f43c8d43"
+    },
+    {
+      "file": "app/Models/BranchServiceOffering.php",
+      "sha256": "4eecebee44768bf16821d554878fe1f4c2d127d3bd215c82366ec13308634979"
+    },
+    {
+      "file": "app/Models/BranchStateTransition.php",
+      "sha256": "2e283a3ea1285277af56989c4943b807b193c6a6ae5d8ec21b9e0c2eca8a123d"
+    },
+    {
+      "file": "app/Models/BranchWorkingHour.php",
+      "sha256": "0a4238531b19127e76be8180194f17a64b6b3c9955419feb4a5f0d1d6334596a"
+    },
+    {
+      "file": "app/Models/Business.php",
+      "sha256": "1bd39a7e398bc6fdcde056c60a5e4baa477ed1f8f8fc89b2e8d72ac658cbbdba"
+    },
+    {
+      "file": "app/Models/BusinessOwnerProfile.php",
+      "sha256": "6fbf2f70896784c339faceff6343be8267b6e6cf091da65bb134a085e92ee3f7"
+    },
+    {
+      "file": "app/Models/BusinessReviewEvent.php",
+      "sha256": "fa344bdaf577a2174a51a94fff80f0e6543ebd4cdca79270dc2e56f81c0aa560"
+    },
+    {
+      "file": "app/Models/BusinessService.php",
+      "sha256": "be987a021f5fbccea4564be4c05a33f679aab4822cce120c174fcac41f725d87"
+    },
+    {
+      "file": "app/Models/CanonicalService.php",
+      "sha256": "8d65552bcfaaace9956ba0d2c4288c1cae02f60f0eb9fa74c1eaa4e46f73de42"
+    },
+    {
+      "file": "app/Models/Combo.php",
+      "sha256": "94fb61ee6daa5ea9075dc243eae564936a8c725a4d8b6962929fd4dbf3572322"
+    },
+    {
+      "file": "app/Models/ComboItem.php",
+      "sha256": "a3ad398830aed9bed89945383214e2196fa08271e0af20eeade7eca03a86b051"
+    },
+    {
+      "file": "app/Models/CustomerBookingPolicy.php",
+      "sha256": "08f65c5f0e2e71b7c19693e802ba9289f7dcc65160934a98853e10bf5caa4249"
+    },
+    {
+      "file": "app/Models/CustomerProfile.php",
+      "sha256": "820881d6223e2f73620704f763825979c6b0313381a4c116b05f6eee2577a7ff"
+    },
+    {
+      "file": "app/Models/IdempotencyRecord.php",
+      "sha256": "d9e1f09031fe4faaed1b88e7ad88a048850ba2913c61d60f7346b45da3d801ea"
+    },
+    {
+      "file": "app/Models/LoyaltyAccount.php",
+      "sha256": "3e1b036a110f4948b06832fdca10ed9545760fb7566c61d7f524aaf748c8aab4"
+    },
+    {
+      "file": "app/Models/LoyaltyTransaction.php",
+      "sha256": "57e89e8dded9bd578f30caec7c80b246aad4d2167f09d9d2c847e9a905aa6705"
+    },
+    {
+      "file": "app/Models/MediaFile.php",
+      "sha256": "66cdf4097e4522e4007de7bfc652e3103ef8b96046947b7369f7d6b121f9fbc6"
+    },
+    {
+      "file": "app/Models/OperationalImpactCase.php",
+      "sha256": "db2224ca26a3dcba7a2a0bcad52c2fdb8dd1bc0add4c9451f2ac89c50064348c"
+    },
+    {
+      "file": "app/Models/OperationalImpactItem.php",
+      "sha256": "191c8bd2810f80ade60ef3e3b1853b7e716d4a9bb03e606ce9030727d6c0ac0b"
+    },
+    {
+      "file": "app/Models/PaymentLedgerEntry.php",
+      "sha256": "d9695dcc2a137c0cbcf241faffec844673d86900a4b5c2186baf81f577a38d98"
+    },
+    {
+      "file": "app/Models/PaymentTransaction.php",
+      "sha256": "8886b144b378ebf460d0a0a8474610364aa508267517643b21dd5cd64a1b6090"
+    },
+    {
+      "file": "app/Models/Permission.php",
+      "sha256": "5e5862f094e324b843890483e8e332bcaf17dd627fdeec825643e9573022877d"
+    },
+    {
+      "file": "app/Models/Promotion.php",
+      "sha256": "33dca3b189afa06f8f26caa7ae0579ae1cdef916909c6585c11a0d72c1d5ed2a"
+    },
+    {
+      "file": "app/Models/RecurringBookingOccurrence.php",
+      "sha256": "f9797141f45838b563f078f8dcd08e3d0c38f7a3410ebb11209e6465f0cb42de"
+    },
+    {
+      "file": "app/Models/RecurringBookingSeries.php",
+      "sha256": "2f066d3753a7efdefedadbad401e92c543c957b3bab9b67e2d7c99b245bda28b"
+    },
+    {
+      "file": "app/Models/RefundRequest.php",
+      "sha256": "9b816cd54c8adb1c202d1aff4e7deff4381d6708f8cae188635f1cb5a845184a"
+    },
+    {
+      "file": "app/Models/Review.php",
+      "sha256": "fc19909e114467be61e98f2d36c3268a05c14d7583644292f1f91e7111476db5"
+    },
+    {
+      "file": "app/Models/Role.php",
+      "sha256": "c63534fe00d5321cdde2b6f7172733d7f8d7d195da23d8f09d29db23330498fa"
+    },
+    {
+      "file": "app/Models/RoleAssignment.php",
+      "sha256": "5657895112e94f49c91ecefbe8364eba6618f154f891e18fd34700b86275d052"
+    },
+    {
+      "file": "app/Models/SavedService.php",
+      "sha256": "c33d899965dd4cc3c85caeada95fea3c01700f5ee32717fbd0666dc954ebdcf6"
+    },
+    {
+      "file": "app/Models/ServiceCategory.php",
+      "sha256": "992573d5df218506bc78e3f249d44d94f97573b5c40908c34c44a2bacc501f12"
+    },
+    {
+      "file": "app/Models/ServiceDependency.php",
+      "sha256": "49ba66deeab12181eed797313d0a34f365d297028855c9a3e82804f7be34547e"
+    },
+    {
+      "file": "app/Models/ServicePriceRule.php",
+      "sha256": "aeef64506b8170805c1ef81cfd73b2e744ccf9fd03f4c6356c4d98459a23d925"
+    },
+    {
+      "file": "app/Models/ServiceVariant.php",
+      "sha256": "5faa886401147b6cda357aa1d18e681f99db615ac9d5fa2d01f6ee1c4c8c1221"
+    },
+    {
+      "file": "app/Models/StaffBranchAssignment.php",
+      "sha256": "2bfee025c9bd7d102636b1a26b9043fde1402a343609e3a5f99849c45165b7a1"
+    },
+    {
+      "file": "app/Models/StaffInvitation.php",
+      "sha256": "310be377241fbf82161117bdcf57dd18ce4997fce417ef2bd862e383a2a34a4e"
+    },
+    {
+      "file": "app/Models/StaffProfile.php",
+      "sha256": "cf90ebc85fa00c6fa99ddb70caf6863112e23a29865b5b3f68e42d034625d0a4"
+    },
+    {
+      "file": "app/Models/User.php",
+      "sha256": "1f88a36bd0ed86993d51b3c13e87cb05a8ef1589871465fb0c1b1e3ea05edf1a"
+    },
+    {
+      "file": "app/Models/Voucher.php",
+      "sha256": "e31f326a9890b1af4671fe008897fd4e05934bcb59c386786d3126c93e537df7"
+    },
+    {
+      "file": "app/Models/VoucherRedemption.php",
+      "sha256": "d07b0e80ef92eb2aa4e2c7698e9200fc448b551c202801e528ee37045169a61b"
+    },
+    {
+      "file": "app/Models/WaitlistEntry.php",
+      "sha256": "9947afd4073dec68e0c8178523ccacf5de0d75fbe1e03ed4d15ec63e29340c19"
+    },
+    {
+      "file": "app/Policies/BranchPolicy.php",
+      "sha256": "2c94ba88596426ce292a11229da7fed80dbd836c53879ec6ede0be17a3178ca2"
+    },
+    {
+      "file": "app/Policies/BusinessPolicy.php",
+      "sha256": "bf1383e757bd9c16fdf0a0f81e94c0ef5dfd4dd8f1aacf3c365960560b4c30c3"
+    },
+    {
+      "file": "app/Providers/AppServiceProvider.php",
+      "sha256": "4155b506cc008b79e72bca5bc3d5debfeed8bd98aa303203b842caf4438c5a86"
+    },
+    {
+      "file": "app/Queries/MarketplaceQuery.php",
+      "sha256": "a263677bbb9224b32ebdac9e93978f1e79b4d735cc2708cb9e51ea5ef2978e2a"
+    },
+    {
+      "file": "app/Services/Beautybook/ApiScope.php",
+      "sha256": "b40e1dda9c449f39942f4c948217fc84daa3f13b95abca3ece45f63d0a211b90"
+    },
+    {
+      "file": "app/Services/Beautybook/AuditLogDisclosure.php",
+      "sha256": "dea7c243552333912018bcd9adbdac21f54b35733971cfe64716f4a5a078452c"
+    },
+    {
+      "file": "app/Services/Beautybook/BookingCommands.php",
+      "sha256": "26cf9f59e32fddb981c24db972840a211deed2e6121480181f964241f6ebc16a"
+    },
+    {
+      "file": "app/Services/Beautybook/BookingItemLifecycle.php",
+      "sha256": "fef3bb06237d3fa8359ab3140ed1cf80155d379033ff4102de3861128ce8c856"
+    },
+    {
+      "file": "app/Services/Beautybook/BookingPresenter.php",
+      "sha256": "8833fbbee9a62a0fc1fe1c667ea9b07546f4ec2f76672edd070bdf022c5ac655"
+    },
+    {
+      "file": "app/Services/Beautybook/GovernancePresenter.php",
+      "sha256": "3190580771b4cfe90ba7b0ea0951a39ecfd1115f387d77a32fb998db9b69b373"
+    },
+    {
+      "file": "app/Services/Beautybook/IdentityPresenter.php",
+      "sha256": "297fbe226f1ddd37ae29e65f343c453f2c5f7976bfc75a55424ec1e35c682909"
+    },
+    {
+      "file": "app/Services/Beautybook/LoginContext.php",
+      "sha256": "49a934eda7920f068fb80b9cccba674e112b7d5fc26624714f1aa14234208633"
+    },
+    {
+      "file": "app/Services/Beautybook/ManagementPresenter.php",
+      "sha256": "c9652050a77deeb7489e31fa0dddeb52289c129fc5f45e33cf5c2392b6647939"
+    },
+    {
+      "file": "app/Services/Beautybook/PublicPresenter.php",
+      "sha256": "60ff2555d9b61b955dce2b6ff8025aa14b9b761ce7caec87bdf99d6f655903ac"
+    },
+    {
+      "file": "app/Services/Beautybook/ReportService.php",
+      "sha256": "48c7d0c9b8587ae58839cde3c0c1080952bad72de0839816a9618a31d44aeaf1"
+    },
+    {
+      "file": "app/Services/Beautybook/SourceDistrictCatalog.php",
+      "sha256": "18a3c6376ca08487216b35f15d7ff0c6a5b6a693fb02705c4e2b5837f95a19fe"
+    },
+    {
+      "file": "app/Services/Beautybook/SourceReferenceMedia.php",
+      "sha256": "3bc4497e4baa3e12d9d3a674620e08d9ed2203ee4ea4e84a5132196a3d4134c0"
+    },
+    {
+      "file": "app/Services/Beautybook/SourceVoucherService.php",
+      "sha256": "1c3e1a087448d3071d159d272907d61a01dabe3da89458edea2c346391a197c0"
+    },
+    {
+      "file": "app/Services/Booking/AppointmentChangeRequestService.php",
+      "sha256": "e0bcfcfa7f23e667e2b05fda29c1ae472e0b64f98bbd98c4ce88810a184a7aa0"
+    },
+    {
+      "file": "app/Services/Booking/AvailabilityService.php",
+      "sha256": "bf614bfe41914a0ab74724267ce025a64da938e7922f2746373b01541df0cdaf"
+    },
+    {
+      "file": "app/Services/Booking/BookingAccessService.php",
+      "sha256": "36f8462ea47fac348924369020b816eb0b520e590e1aba0e0344f93bedaa4357"
+    },
+    {
+      "file": "app/Services/Booking/BookingItemService.php",
+      "sha256": "1c24dd956b6987cb2faa7df0767327e149acdcff6688a5bf4aca7aedca684542"
+    },
+    {
+      "file": "app/Services/Booking/BookingLifecycleAccessService.php",
+      "sha256": "d6e8ae07b44006a7090027aed071a8f9199ffdce40ad852aad56e1b1c598b2b8"
+    },
+    {
+      "file": "app/Services/Booking/BookingLifecycleService.php",
+      "sha256": "8ea082cd08859f8812e3ef358951494867f1191f51d5b70a7f887bb75fa32a8e"
+    },
+    {
+      "file": "app/Services/Booking/BookingMaintenanceService.php",
+      "sha256": "59ff98d6908fa3111c8dc7684361d376c9c33b6d4d9404be43c398ed613cdb33"
+    },
+    {
+      "file": "app/Services/Booking/BookingNotificationService.php",
+      "sha256": "65885607b9b498141c3b6620abe1f4a85dca0b55a77330d22d8ace63df17a453"
+    },
+    {
+      "file": "app/Services/Booking/BookingPolicyService.php",
+      "sha256": "bb6dceb75fec57108a3334307ef72f2722c018d9e1a62821ccc71ddbbb8b910a"
+    },
+    {
+      "file": "app/Services/Booking/CartBookingService.php",
+      "sha256": "d1ca10495ac4ff7a2fa4b7c284b8300ec857ab11eb76a7d166c7f2e078dcca11"
+    },
+    {
+      "file": "app/Services/Booking/CreateBookingService.php",
+      "sha256": "424e407d28bdfc3af71c4c831c28e9809ee8bc47272eb3d9a15f35a8b71992b1"
+    },
+    {
+      "file": "app/Services/Branches/BranchLifecycleService.php",
+      "sha256": "a7e5a82d25e1b490b92b125d609c3fafdef169c7f618c59b248697981d55dc11"
+    },
+    {
+      "file": "app/Services/Catalog/CatalogManagementService.php",
+      "sha256": "aa59cd1630f66e81af768e12e72f612cc001fad9acb8039d7294656545af6721"
+    },
+    {
+      "file": "app/Services/Engagement/EngagementService.php",
+      "sha256": "c1b75c07b29425ac23800af635269d5994f8060c7205aed5ba912b4c91914771"
+    },
+    {
+      "file": "app/Services/Finance/CounterCustomerLookupService.php",
+      "sha256": "5ce1da0e02b56ba257e990251aaed39bb73893d6ef7e41b8132d8afaa2dbc6fd"
+    },
+    {
+      "file": "app/Services/Finance/FinanceScope.php",
+      "sha256": "0993f0c503d2f73abca9adfe57f1a860ccfc588fc350ea33e5031e2f36d3cac2"
+    },
+    {
+      "file": "app/Services/Finance/FinancialPolicyService.php",
+      "sha256": "a60804050257bbdbfb0c2233366565c6f6b793ae47c68f2f70dfdebcefb60b14"
+    },
+    {
+      "file": "app/Services/Finance/InvoiceService.php",
+      "sha256": "9dcc71043da747ae7bdb13121aff7d2701f58ed16f22e565ed821749ccc23b5b"
+    },
+    {
+      "file": "app/Services/Finance/Money.php",
+      "sha256": "f8b569b6e5faf7fa73726825647723a577d48c97520bf4374acb32373c33bd9a"
+    },
+    {
+      "file": "app/Services/Finance/PackageService.php",
+      "sha256": "d2a867c2b0312fbe7a69ec1e9ebd3dee9c0c48b5b71d8ff9214965170741cbfb"
+    },
+    {
+      "file": "app/Services/Finance/PaymentService.php",
+      "sha256": "28e589012b52161c7476e9e819b0271fc96e8d0e7c0238120241de6d57415f9d"
+    },
+    {
+      "file": "app/Services/Finance/SettlementService.php",
+      "sha256": "3ac4248b504d3f972e2d167b7c955ce463003a5a5a071a3b33a0e5d0765c2b70"
+    },
+    {
+      "file": "app/Services/Identity/RoleAssignmentService.php",
+      "sha256": "2bad7db0f26479b337287de164365143bc71d989564544c711f258374fbae032"
+    },
+    {
+      "file": "app/Services/Identity/SessionContext.php",
+      "sha256": "c3d4f8abf96187a4ee95ff3bb02966ea9bc32edc2e3967f45c1a1cd2be905370"
+    },
+    {
+      "file": "app/Services/Media/MediaManagementService.php",
+      "sha256": "42080042ffb281fac85c2d3aeed70ae2de6e8a08b1a09a94eb821b5b1cd2415b"
+    },
+    {
+      "file": "app/Services/Onboarding/BusinessOnboardingService.php",
+      "sha256": "b3b0a699e980e6a912211c151c968553a2f224bda48d26cbd628179293262345"
+    },
+    {
+      "file": "app/Services/Operations/ImpactService.php",
+      "sha256": "05770547c104d120ea2b172777ee168132c1b4edf8414ce353342a0ff2b70ee3"
+    },
+    {
+      "file": "app/Services/Operations/LoyaltyService.php",
+      "sha256": "6f998fd6ac326bb21cddd826af2a908a7d40f68ef08abfc9c2a477f5089a9ac6"
+    },
+    {
+      "file": "app/Services/Operations/WaitlistService.php",
+      "sha256": "efbb73e76e8288362c53c955c582d890391c0ab6e1a45ddc911cf0a9e938c90a"
+    },
+    {
+      "file": "app/Services/Ownership/OwnershipService.php",
+      "sha256": "f942c8fd42a762087cbbdbe141e3b47af328e34e3ffd8da3f9bd30a626b28b64"
+    },
+    {
+      "file": "app/Services/Platform/GovernanceService.php",
+      "sha256": "fbcaa03cbf8ad1aae3671bec94dc9030bdb7cbac05795704dff395fe201d57f6"
+    },
+    {
+      "file": "app/Services/Platform/PlatformSettingsService.php",
+      "sha256": "747edea3964fd38161c0cb9b3f5b2854a895dc70ad2d4561f1b564a0bba0f0eb"
+    },
+    {
+      "file": "app/Services/Pricing/QuoteService.php",
+      "sha256": "c7e90bb105eceb357f29074a5ded45108d4c46c15d07d9dc18a09e0234d8a398"
+    },
+    {
+      "file": "app/Services/Pricing/ServicePriceRules.php",
+      "sha256": "220be448ff3addccd28d9b52a1ca4665cf0f1363ce4d4c4f325f3eee9511b915"
+    },
+    {
+      "file": "app/Services/Privacy/PrivacyService.php",
+      "sha256": "7c0d41ef7384d9a8867ea11a8b071f735a5dd82fa1cfa4be346d5772b0743c8c"
+    },
+    {
+      "file": "app/Services/Promotions/PromotionManagementService.php",
+      "sha256": "1367f2055d17b18e6991117bf53c3fcf0a6531e2895e59a96202ba4e41bdac46"
+    },
+    {
+      "file": "app/Services/Promotions/PromotionPricingService.php",
+      "sha256": "fb12ac35492ddb30e32cdd4b798f8fe4400af96ed6d1ec8dafe082b9ea975282"
+    },
+    {
+      "file": "app/Services/Scheduling/ComboService.php",
+      "sha256": "8fa2e2302977672792c96935e99758e01eff953eb2d364927828ccf84932ca0b"
+    },
+    {
+      "file": "app/Services/Scheduling/CreateComboBookingService.php",
+      "sha256": "51fd3beaf5884624b0d6ffe817d0159ce0912614bb935e271a5e10aebe7f1b91"
+    },
+    {
+      "file": "app/Services/Scheduling/RecurringService.php",
+      "sha256": "f1c845be50df6a206562340d5d6bd5ee7698450981536ed4f164fb54b55b20f8"
+    },
+    {
+      "file": "app/Services/Staff/StaffManagementService.php",
+      "sha256": "6c7bfb9cc98be25c4a167bec8ec135903116735119105d40003853615625a0b4"
+    },
+    {
+      "file": "app/Services/Ui/Navigation.php",
+      "sha256": "842eb567a393eba591cf55e6fdd10facd1abc72b956789a23c0ad6118445a018"
+    },
+    {
+      "file": "bootstrap/app.php",
+      "sha256": "511e0855c5c49e5abb108cd40466f14d2a444f11445bb3a5917eb6da24051ed0"
+    },
+    {
+      "file": "bootstrap/cache/packages.php",
+      "sha256": "6dd192b1d6216c8700c27e2c1bf4deef349b0b6d67ff0683fbb69c0eb9910f68"
+    },
+    {
+      "file": "bootstrap/cache/services.php",
+      "sha256": "20ff7fb2643fb99c258ecc6318f325a7f61d9a70402108c672ac198716a20983"
+    },
+    {
+      "file": "bootstrap/providers.php",
+      "sha256": "f720e185207a343d4c19fc99dbb317a4187efbcd7d38a303a695bbdd77ffb943"
+    },
+    {
+      "file": "config/app.php",
+      "sha256": "20a0649d5bb277e4af64b3aa66bf8a4101db19f61da53e17f4fe722c10cc796b"
+    },
+    {
+      "file": "config/auth.php",
+      "sha256": "c7e204e9785c9f596d66fb884b493f658f2327f157646bdb4088efd6b3a7773f"
+    },
+    {
+      "file": "config/beautybook.php",
+      "sha256": "d011a214f9511081fea655932e459b9baaf5f16c2d91838bf35483ac7e409854"
+    },
+    {
+      "file": "config/cache.php",
+      "sha256": "ee4ad2bba1edfcff52e9599f37371f2370d0b167cc226ce72d46cdf6edf2dc55"
+    },
+    {
+      "file": "config/database.php",
+      "sha256": "02cd62f589b43d33f9ceac740705dac1dec9740eb2bb9e6e202d4b66a15244cf"
+    },
+    {
+      "file": "config/filesystems.php",
+      "sha256": "ba7060d7a23e490c3ce830656f6d24ad3ccf5b868e3293f2a12e411959dc5635"
+    },
+    {
+      "file": "config/logging.php",
+      "sha256": "beb1ffd0db910f6f0b4f75214c3d5aa385d692733ece8a450f4c169d2c99ce38"
+    },
+    {
+      "file": "config/mail.php",
+      "sha256": "c43ff49a31c5f32ce21eb7159f2a4b3cd2f4074eaed5838d265646dbfedd3474"
+    },
+    {
+      "file": "config/queue.php",
+      "sha256": "6101774da7c8b79af46d0028f2b8b31a484c3f7eda10b76e5b27b6093ad364a4"
+    },
+    {
+      "file": "config/services.php",
+      "sha256": "b7ee786ea1adbc92db9f229f479431c94503527c47051da3862eb0e4d7db70aa"
+    },
+    {
+      "file": "config/session.php",
+      "sha256": "64272cfbef6f47c65bf857f1c5b1e853700c0d0278de46b86663fd83ef4aeed8"
+    },
+    {
+      "file": "database/factories/UserFactory.php",
+      "sha256": "50bdc543f1b09d1a57260be55ad0e1a68aee4b34f63e1109dc94d9bcd3080526"
+    },
+    {
+      "file": "database/migrations/0001_01_01_000000_create_users_table.php",
+      "sha256": "10d79883bc08ce46510f9ad8b1830b4d06d586dc56ae2c8bac3b3e491f69a90f"
+    },
+    {
+      "file": "database/migrations/0001_01_01_000001_create_cache_table.php",
+      "sha256": "fbb4665e5a977e71df4e74ec75b3c06ca4f17ad0de7138fe9786639189978e77"
+    },
+    {
+      "file": "database/migrations/0001_01_01_000002_create_jobs_table.php",
+      "sha256": "df4910687180313a14a3f96a8bddd808ae145ed1b107cd772caf865c0dc2b746"
+    },
+    {
+      "file": "database/migrations/2026_09_23_080000_create_identity_scope_foundation.php",
+      "sha256": "18dea55c71ecb7140eab49396e3bebde938ced3c95ab7ecb9325474821c734ad"
+    },
+    {
+      "file": "database/migrations/2026_09_23_120000_create_marketplace_onboarding_foundation.php",
+      "sha256": "06110fcb560197559715c608b2c1afe17ee47d45f501630fbb4a6d0e10f0630a"
+    },
+    {
+      "file": "database/migrations/2026_09_23_160000_create_catalog_staff_media_foundation.php",
+      "sha256": "a2647713696ca2171a50f188adaee1dcb388b917bb452257faf73cb607dbb290"
+    },
+    {
+      "file": "database/migrations/2026_09_23_180000_create_booking_foundation.php",
+      "sha256": "d72632ed8084ff05e68855eacd5f228b395c9e0a02f47487ff4dbbfb039b28f4"
+    },
+    {
+      "file": "database/migrations/2026_09_23_190000_create_booking_lifecycle_foundation.php",
+      "sha256": "fae539ba94a025b23582ae62e677489c38213890579dc157ee3f556ddff68947"
+    },
+    {
+      "file": "database/migrations/2026_10_07_200000_create_engagement_tables.php",
+      "sha256": "0b51576a02c50d6bab65075ae7f44205d59b77ecaec7cdf0c5e49d06c762b3e8"
+    },
+    {
+      "file": "database/migrations/2026_10_07_210000_create_promotion_tables.php",
+      "sha256": "9425d27a87d480f3b59fd07239b97304001c9d6d716f9f9568f8b12ad55bfcd2"
+    },
+    {
+      "file": "database/migrations/2026_10_07_220000_create_combo_recurring_tables.php",
+      "sha256": "ef2aff1a687c36ec6e47eb01cccfba5b9a371670e40be9fa957f05a45ab668aa"
+    },
+    {
+      "file": "database/migrations/2026_10_07_220100_add_beautybook_booking_timing.php",
+      "sha256": "f04a5a2ef092c0877f163bbbc71537430ef488db6b5f241459380110a626d515"
+    },
+    {
+      "file": "database/migrations/2026_10_07_220101_allow_skipped_booking_service_status.php",
+      "sha256": "86900fef747a073799afd5f38e9ca180f44e2e878a546c95f316916867bbb243"
+    },
+    {
+      "file": "database/migrations/2026_10_07_221000_create_combo_booking_usages_table.php",
+      "sha256": "8cbb9d777a759b37a869b7494be10d2ea239acc1bd7e577ca9390a8004ff2d55"
+    },
+    {
+      "file": "database/migrations/2026_10_07_230000_create_platform_tables.php",
+      "sha256": "bf58977f63aa37752dd56e7f502e6a00c093c79391ece1103046c81e33620595"
+    },
+    {
+      "file": "database/migrations/2026_10_07_240000_create_finance_tables.php",
+      "sha256": "6236c945f785389ab80a523e3adf88a2b64ccee7f0e83ef5ec918efe2bf4826c"
+    },
+    {
+      "file": "database/migrations/2026_10_07_241000_create_advanced_finance_tables.php",
+      "sha256": "07c6e133dc8fea695c43b54c678e445f7e97bef0d047efdaffe9ac0f79e9593a"
+    },
+    {
+      "file": "database/migrations/2026_10_07_242000_complete_invoice_lifecycle_columns.php",
+      "sha256": "0e3293305b22cb95e0b5ea56f2b816d3f6b5107759f6a82e47820be338eadf79"
+    },
+    {
+      "file": "database/migrations/2026_10_07_250000_create_waitlist_loyalty_tables.php",
+      "sha256": "14e4f37de007458f0edd05430dd37bb96f2c25cd8b1ba4e9cad2d7281c8f5829"
+    },
+    {
+      "file": "database/migrations/2026_10_07_260000_create_privacy_tables.php",
+      "sha256": "db72d1a11fb8267a9a5748cebd4f9b0058ae96ac4a41bb0972f6eda08dbb39c9"
+    },
+    {
+      "file": "database/migrations/2026_10_07_270000_create_ownership_tables.php",
+      "sha256": "9d8b73dce02ed74ec2a56761446b418b6a994eae841ad88d1a2acba61d6838fe"
+    },
+    {
+      "file": "database/migrations/2026_10_07_280000_create_impact_tables.php",
+      "sha256": "6495c74772499d27450b3bbefb1a09aa10bc85e4a56f80d41ddf20ecf38bf4db"
+    },
+    {
+      "file": "database/migrations/2026_10_07_290000_create_governance_tables.php",
+      "sha256": "2671d7dcd4ca8919fe9b384084c5b5baf496b0cff8e3544ab7a409e02f6d5f74"
+    },
+    {
+      "file": "database/migrations/2026_10_07_291000_add_business_trust_restrictions.php",
+      "sha256": "43f88ff187b50cb9aa2a934bf2d7a22a761a7b588e1dba1cc9d4d95eed6b6466"
+    },
+    {
+      "file": "database/migrations/2026_10_07_300000_add_customer_profile_contacts_avatar.php",
+      "sha256": "3d85b9450e804b7872b3e305077aa8d5394ac6489b69d0e9151d66c18fe21671"
+    },
+    {
+      "file": "database/migrations/2026_10_07_410000_create_beautybook_auth_tokens.php",
+      "sha256": "2c1d290b3943069234b7013dc3b06baa6cc2c0ee7914f24719ae35dfb3474745"
+    },
+    {
+      "file": "database/migrations/2026_10_07_420000_create_beautybook_profile_devices.php",
+      "sha256": "56a09c6760777daf5f8562ab2951858a4535393966017b6f30248dfa0ec01652"
+    },
+    {
+      "file": "database/migrations/2026_10_07_420000_create_beautybook_realtime_journal.php",
+      "sha256": "b2181fdb1e46b0417d94235f21e74c23de061a84f459eec93dfdb2a060b9cd4e"
+    },
+    {
+      "file": "database/migrations/2026_10_08_010000_create_beautybook_management_extensions.php",
+      "sha256": "783e7691a5655a09049452a59ac31bda712a4984ec01896cb87051b5550d1aec"
+    },
+    {
+      "file": "database/migrations/2026_10_08_011900_add_role_assignment_expiry.php",
+      "sha256": "8739c55a304d94b9a200818741fc5f24ded92d7dabaf3542f0618e9505b13fa6"
+    },
+    {
+      "file": "database/migrations/2026_10_08_012000_create_beautybook_source_entities.php",
+      "sha256": "4e5856c9c76938e7bb1b2024aebe28f3423ed19869f97b9035156ed078501439"
+    },
+    {
+      "file": "database/migrations/2026_10_08_013000_ensure_staff_impact_subject.php",
+      "sha256": "46510524c11c8cf510efeb1b199f7e03a646db4f9ee8d85bd065d73676fa2346"
+    },
+    {
+      "file": "database/migrations/2026_10_08_014000_create_beautybook_business_categories.php",
+      "sha256": "3261a8ee0cd73b749cd045f560619d8fa5858ee688c49cd1bb4ddc89301a3769"
+    },
+    {
+      "file": "database/migrations/2026_10_08_015000_add_source_voucher_identity_fields.php",
+      "sha256": "08684ed254db59893e95a8285578c50a93dcf5d90eaa3a089eab44ec77bd4f2d"
+    },
+    {
+      "file": "database/seeders/BeautybookSourceReferenceSeeder.php",
+      "sha256": "ae5bc32f31392dd9cd9591f644bb90798b50a72f657c83fdad289cba2b5b6567"
+    },
+    {
+      "file": "database/seeders/DatabaseSeeder.php",
+      "sha256": "4726227fc0cb02431e21fbc8fcf5ef84844e9a014f51762c2256d8ca2697add9"
+    },
+    {
+      "file": "database/seeders/DemoBranchStaffSeeder.php",
+      "sha256": "e49285f64be7f79c3e122871405aeeffb6344b181586f73b8a1458a5dec3fc34"
+    },
+    {
+      "file": "database/seeders/IdentityDemoSeeder.php",
+      "sha256": "f7014bb838fb05af363360467ce76a267c1c7c5c0a10857fdce82dc8f74dfe7c"
+    },
+    {
+      "file": "routes/beautybook-booking.php",
+      "sha256": "29fecd7b23ff38756140fd3ecd57e271b2b8f76cf08af8142fc9bc763984d48e"
+    },
+    {
+      "file": "routes/beautybook-engagement.php",
+      "sha256": "9241a58c5a5b8830938d301e7857fe6f74e2f35e4ebb42bd92d4973b19a6772a"
+    },
+    {
+      "file": "routes/beautybook-finance.php",
+      "sha256": "dd3abe88cfc9770944d66df83196c89ee20f2d7fd2644f40dab6c4b85cdce078"
+    },
+    {
+      "file": "routes/beautybook-governance-public.php",
+      "sha256": "dd6097b06d1817e1752f5e843a7ce10b363077e030d969f309caa7f9b25898a2"
+    },
+    {
+      "file": "routes/beautybook-governance.php",
+      "sha256": "ed16c435b4b00fdbd60508b13b0bd067adba9c71e07177e89a2ae0250d683132"
+    },
+    {
+      "file": "routes/beautybook-management-public.php",
+      "sha256": "75b83418608d58107c03e74a42d2ff3d1ea242a193951de817a8fbc6514fe159"
+    },
+    {
+      "file": "routes/beautybook-management.php",
+      "sha256": "db3b95a2655109999499bd44ad7831e45c1bfa4cad37038129f3c59bef089cae"
+    },
+    {
+      "file": "routes/beautybook-public.php",
+      "sha256": "9008a0b2229c32242f92a655d21401129228e6e8aa6400c68b98e4d944d6375d"
+    },
+    {
+      "file": "routes/beautybook-realtime.php",
+      "sha256": "5b5971296789602f4848dcf141d5401609236533d8f6d1d3782157afa99d1c10"
+    },
+    {
+      "file": "routes/beautybook-users.php",
+      "sha256": "599c1d06b249a062fc88f9bdb18e67249abe5155867080a4e9c9d8501091c50a"
+    },
+    {
+      "file": "routes/beautybook-vouchers.php",
+      "sha256": "e63f4f1d2e355adb98242f31d5464f59b956aefb107ed180b3b16e8d53612d1f"
+    },
+    {
+      "file": "routes/beautybook.php",
+      "sha256": "9c9e8041aebb9d3082f6ec769f298fc62088917c124430133544f793315c5e10"
+    },
+    {
+      "file": "routes/booking-cart.php",
+      "sha256": "92aca356e8b410bb54eef7bc7fb632586438a13583fcebf260d2b8f676e69e04"
+    },
+    {
+      "file": "routes/console.php",
+      "sha256": "ef819c556518a207ab9c7ddcfbc4df0b6e8df2878fa4a6ede132b3405f706b40"
+    },
+    {
+      "file": "routes/engagement.php",
+      "sha256": "f13e2009139aa907cc2408216ca133396d8e396b3989d2088d03f5431c4efcfc"
+    },
+    {
+      "file": "routes/finance.php",
+      "sha256": "9043a4fe6eaff06aba89ea014ba18699f162880884e60fdebca6815bd462986d"
+    },
+    {
+      "file": "routes/governance.php",
+      "sha256": "bd59753511f883d9f069e2912c9b8520e1a05f38c86995d6fa4cf36651390fb6"
+    },
+    {
+      "file": "routes/impact.php",
+      "sha256": "47b766a897b7c4535210f3a0dd887c514a2bcb5e10ec8d029441eeb2e2adb868"
+    },
+    {
+      "file": "routes/legacy.php",
+      "sha256": "f5e03f37d17cb166c8eddbbc2dce54335da7563dd87b420dc790b1a614ab453d"
+    },
+    {
+      "file": "routes/operations.php",
+      "sha256": "8be79fc8684d1b16942445a38802647a80b594a20695d3e4d553fc1142916e6d"
+    },
+    {
+      "file": "routes/ownership.php",
+      "sha256": "6db967d4e334c151c2840e5c61724a1cc75a3776f192595ca0b70096c2b0a5bc"
+    },
+    {
+      "file": "routes/platform.php",
+      "sha256": "08039093b8b9447cac373d074bf4a71a5dfe2ac4319ad25290b26cf1156cb9cf"
+    },
+    {
+      "file": "routes/privacy.php",
+      "sha256": "6ba80756eeca3e55ac512f11d83d1dccd320f6988ad3f8791a299aba6e9a6b18"
+    },
+    {
+      "file": "routes/profile.php",
+      "sha256": "4cd67b7d3db1962bb5d132cc6edaa1f122441ed20d205763b1f21374a5bb71b3"
+    },
+    {
+      "file": "routes/promotions.php",
+      "sha256": "0ef70be72f0d85ba839eacc9238dd109685540e466b877096371b82df033cabe"
+    },
+    {
+      "file": "routes/scheduling.php",
+      "sha256": "ccf1ab8c8c440a0d88c9f4bab6c817e75eab2c22a8c294c225df6f8a1e1ad4ec"
+    },
+    {
+      "file": "routes/web.php",
+      "sha256": "595377586baceeeec0dc8c564f038fcd10fa2bd678800ada428d1c74bd287ec9"
+    },
+    {
+      "file": "resources/views/admin/reviews/branch.blade.php",
+      "sha256": "c9ab2e950f29160c5dae1cc59992d6534b97a0bdb15fe67756f6a9e3e86b5cb1"
+    },
+    {
+      "file": "resources/views/admin/reviews/business.blade.php",
+      "sha256": "3150a030b7ea19e941a1d2e171be5e7fb06c4b888e4edab8d8568e04689f90d7"
+    },
+    {
+      "file": "resources/views/admin/reviews/index.blade.php",
+      "sha256": "b3a61cea317b43eea2c47f85d9219b9387122d521a9e5ccc229ce4abf4466a0c"
+    },
+    {
+      "file": "resources/views/app.blade.php",
+      "sha256": "a51681cb2f7526663dd3d9f0a274832ae7739009cf32889cf09a87cba8231410"
+    },
+    {
+      "file": "resources/views/auth/forgot-password.blade.php",
+      "sha256": "481f92e8f6554690b906da30d8b9ddfbacf5f33f148f23ba9fa0bfa436761150"
+    },
+    {
+      "file": "resources/views/auth/login.blade.php",
+      "sha256": "51e01dede7d7ac13c0d676bcd47256de79eccfd5e3e610c35812daf282facec9"
+    },
+    {
+      "file": "resources/views/auth/register.blade.php",
+      "sha256": "31e4f5d795e1fcc44be04aaf4038032a4d60d1b3c615013806c0275269dac862"
+    },
+    {
+      "file": "resources/views/auth/reset-password.blade.php",
+      "sha256": "727317bc1f5554fe00d431f839a10ebadfcd168b719c88a9371cf91c64cc5d97"
+    },
+    {
+      "file": "resources/views/auth/verify-email.blade.php",
+      "sha256": "05c2c9f7f6cb22e405b5657459e1ca89a57ecd1aae1c9d3aa84b7635879d32cf"
+    },
+    {
+      "file": "resources/views/beautybook.blade.php",
+      "sha256": "c0fb5983a0d6ac2e012540167bc00ee18f3a51063cf4314a6757bb6452d6d782"
+    },
+    {
+      "file": "resources/views/booking/calendar.blade.php",
+      "sha256": "280d9f675b236aebeebb84cebb0fb9b29a495a4b4ad7845cf5877f62a43e390c"
+    },
+    {
+      "file": "resources/views/booking/create.blade.php",
+      "sha256": "a1344031f31bc07a94605f0d6b521bc1cca36115c6d58c43ff22bcfd577ba8c5"
+    },
+    {
+      "file": "resources/views/booking/index.blade.php",
+      "sha256": "67ce0eb31a01dab1154d4e79da1f4db7d011a6bf1c79f01be3097fb1a2874002"
+    },
+    {
+      "file": "resources/views/booking/partials/change-requests.blade.php",
+      "sha256": "94139d96ff0d8809b21bcb0f076219ab3866db27ed5c2963a72e4125ff8e1528"
+    },
+    {
+      "file": "resources/views/booking/partials/lifecycle-actions.blade.php",
+      "sha256": "4f15906bcf3c875b0b9e74c99205d28f503b71f21b44d711ab05ba9db5c9c020"
+    },
+    {
+      "file": "resources/views/booking/partials/service-items.blade.php",
+      "sha256": "6e2f8b9e7bcb8f18f3f24438331fce6ffc73fef2b95a0cd2ac82f24c2d636bbc"
+    },
+    {
+      "file": "resources/views/components/branch-card.blade.php",
+      "sha256": "6d7605db9b4a7c64f1598743303f4a20bdae2749f4656e984cc99581128aaca9"
+    },
+    {
+      "file": "resources/views/components/icon.blade.php",
+      "sha256": "2882be5d3edafedb12e68ec07e570bf223b840a9d0d6d2a11d64f1de77fea477"
+    },
+    {
+      "file": "resources/views/engagement/favorites.blade.php",
+      "sha256": "482040170fcd2faa2ed36dbcd8bfb35be45ca7e16176c948d709fa77861e1926"
+    },
+    {
+      "file": "resources/views/engagement/reviews.blade.php",
+      "sha256": "013c518f88dfe7a92f69cfcfc2f0f2350d52a258b3795f132bb828046d2c7abf"
+    },
+    {
+      "file": "resources/views/finance/advanced.blade.php",
+      "sha256": "0abba0a094e4307507dbedf8061ea0763ad21efcd05c8bfea7c7c4a04a00b193"
+    },
+    {
+      "file": "resources/views/finance/index.blade.php",
+      "sha256": "207e197f1a948da99d0c8077874c53a4a819f0cfd4bcb74f86d300bc99b5ea57"
+    },
+    {
+      "file": "resources/views/finance/invoice.blade.php",
+      "sha256": "5b11a36faf9c4c180035587ecd540004ddc9f92867b8584c0db4ffa8615b40d4"
+    },
+    {
+      "file": "resources/views/finance/packages.blade.php",
+      "sha256": "c567ee9f7037448496a072df336906a40d3a37e5077b505efcac6df8b55c206f"
+    },
+    {
+      "file": "resources/views/finance/show.blade.php",
+      "sha256": "51863db80afb0f5171c799e6a47d4d517ee56d90dcef6ceadfd33ff5da3ee9a4"
+    },
+    {
+      "file": "resources/views/finance/status.blade.php",
+      "sha256": "2382719982443c08425c2b5944fbaa652c82fffce3ab4c0fee636ed66a6a9904"
+    },
+    {
+      "file": "resources/views/governance/dashboard.blade.php",
+      "sha256": "695c017166757da0f63593ecd2957dcc5488295de08e828fdd9312eac9755e27"
+    },
+    {
+      "file": "resources/views/governance/trust.blade.php",
+      "sha256": "743100b3ad81c351fedd40531210b9402c6507aa5282672c2622db74ba85cde2"
+    },
+    {
+      "file": "resources/views/governance/user.blade.php",
+      "sha256": "1d1986343a0ecf46039cf828b89703e8b92b286dca78777c90d79b668e45404a"
+    },
+    {
+      "file": "resources/views/governance/users.blade.php",
+      "sha256": "8b33fc1feccf24ef43876665c1680615054acf55955847e85c014c6208b4d26e"
+    },
+    {
+      "file": "resources/views/home.blade.php",
+      "sha256": "d85b2e25b8c6dcd249814f056a5d4995ff2a6b23348afec5f4e1f6a6ce04d6b4"
+    },
+    {
+      "file": "resources/views/impact/index.blade.php",
+      "sha256": "eb872c2eed15b0bfec5dfe858331afcb87583ccc6e8e0486a2835cce9faabad6"
+    },
+    {
+      "file": "resources/views/impact/show.blade.php",
+      "sha256": "46611e3ff09694ac523321b12cc44b44ffbfedea4d572de1f3190bb4190cbb05"
+    },
+    {
+      "file": "resources/views/layouts/app.blade.php",
+      "sha256": "19514e37c49457d907a964f061144e011e16195629d65c5d43cd598a68c84dbe"
+    },
+    {
+      "file": "resources/views/layouts/chrome.blade.php",
+      "sha256": "b12c2c06f969ae62e5c03cc39a6167faa6a301ced3a16e3725544d23943e9ba4"
+    },
+    {
+      "file": "resources/views/marketplace/index.blade.php",
+      "sha256": "037c1edc16b8297e17c325580496ddb99168ecef9518d091fea9c66206de985d"
+    },
+    {
+      "file": "resources/views/marketplace/show.blade.php",
+      "sha256": "f7369060952478a035637d81f00c5ede8412102098975435e4c1cee683efdc9e"
+    },
+    {
+      "file": "resources/views/notifications/index.blade.php",
+      "sha256": "7dd14c4f007c73d3b97036d1acc13f2bc10ac4a82782c8617ad7637b357ded55"
+    },
+    {
+      "file": "resources/views/operations/loyalty.blade.php",
+      "sha256": "6f9f8ff554c3d26f79f1a551822b3012ee230a40a127ce3c7081d717be8f2ef4"
+    },
+    {
+      "file": "resources/views/operations/waitlist.blade.php",
+      "sha256": "fb29b965c29cef91cce4bef543e2d73b901d8bed9e251002f7e3430360ddcff8"
+    },
+    {
+      "file": "resources/views/owner/branches/form.blade.php",
+      "sha256": "86204bdd2cc65000c13a2d217a0baebaf587cd6ab79f6bb5947cc4d6e5696195"
+    },
+    {
+      "file": "resources/views/owner/businesses/form.blade.php",
+      "sha256": "0639ba1b3cd8ae99a16e1cb5f26aaa39ea6a9cb3a8a03e21674f424aa7bab670"
+    },
+    {
+      "file": "resources/views/owner/businesses/index.blade.php",
+      "sha256": "2f8e51d306f8cf8d1b72d50322df3a1312c9b4c8cf261fd4c43c4fe8325d321b"
+    },
+    {
+      "file": "resources/views/owner/catalog/index.blade.php",
+      "sha256": "82497eeec11a88bf99c7c8af9bab1084b35ef89d601a1ff6926fb05157d7978f"
+    },
+    {
+      "file": "resources/views/owner/staff/index.blade.php",
+      "sha256": "aa8b53f30b37de90c1c05ee5ab71c74018156b082f11cbc56300c2fa267d7d91"
+    },
+    {
+      "file": "resources/views/ownership/index.blade.php",
+      "sha256": "e3c4a25932801173c5f1684417aa4ae2b21c891c3ca61e46d5ab72c28adc5050"
+    },
+    {
+      "file": "resources/views/platform/audit.blade.php",
+      "sha256": "c685fc6fc5b63cdc8f97d389d2f4263c3f63ddd2d07089a453d5541d0a8ec66c"
+    },
+    {
+      "file": "resources/views/platform/directory.blade.php",
+      "sha256": "acc23b3aa254ebb87e93b3f4ec072d020fc23920769642f68915d03508327847"
+    },
+    {
+      "file": "resources/views/platform/report.blade.php",
+      "sha256": "d4dd9610a73d059b6030e4534e5451718747288d29a854fd3a769600ab814ff2"
+    },
+    {
+      "file": "resources/views/platform/settings.blade.php",
+      "sha256": "ce95d57d1a66bc46d065c9e8d1d2b90f251d6c2402a0985e051b425b9c328ea3"
+    },
+    {
+      "file": "resources/views/privacy/export.blade.php",
+      "sha256": "2aa12f91c305d4bb3f63975bcc1345317b481d5e60a310028ae4456aa584a433"
+    },
+    {
+      "file": "resources/views/privacy/index.blade.php",
+      "sha256": "68329b17a8a01039d81b33ef0ddb1f1e26238ed0cb99ad87b1a2bfb1fcce2a42"
+    },
+    {
+      "file": "resources/views/profile/index.blade.php",
+      "sha256": "6b4356f66c4531ff8c42e39a3d6527212fa8618cd547102bc1cb81583e50b91a"
+    },
+    {
+      "file": "resources/views/promotions/index.blade.php",
+      "sha256": "15a91f398ca1ea37968fc03a9276471aca0d617aa809088ea1a47974f8b279f3"
+    },
+    {
+      "file": "resources/views/promotions/mine.blade.php",
+      "sha256": "a79c5ff431b46c6da43303d91b34ab4ffde446ba951dfd49a4023745fb6dad99"
+    },
+    {
+      "file": "resources/views/scheduling/combo-booking.blade.php",
+      "sha256": "e41c22a6c2d19ef765b98cde5e11719be6f55efb8a542e3ea682d11d9577abe2"
+    },
+    {
+      "file": "resources/views/scheduling/combo-fields.blade.php",
+      "sha256": "db16d2d557386222c44592c890997dbe618b187a597268260a00cd147d2b1bb0"
+    },
+    {
+      "file": "resources/views/scheduling/combos-public.blade.php",
+      "sha256": "9f54e3e4b8ee396a57236553dc96411a97ed1f58e1adf5393f13c8cca36c0d66"
+    },
+    {
+      "file": "resources/views/scheduling/combos.blade.php",
+      "sha256": "261d797f08cfc554cc2a1fc721a28e092cebb272cee2e8453c4b8aad1baa78f6"
+    },
+    {
+      "file": "resources/views/scheduling/recurring-create.blade.php",
+      "sha256": "35a4db2ab95d41a8134b008a55e0dbb7554bdeea48bf4c0f4a177511036c4ed5"
+    },
+    {
+      "file": "resources/views/scheduling/recurring-index.blade.php",
+      "sha256": "20ce584da2f8ead832a2c54cf7a10c7bc4989833e1a13b83fc90e1427c4a8070"
+    },
+    {
+      "file": "resources/views/scheduling/recurring-preview.blade.php",
+      "sha256": "eee82dc7076c50cf0536e8e0bcfd494a34cbf5dd12d3ce9afac0c17af2b31116"
+    },
+    {
+      "file": "resources/views/security/index.blade.php",
+      "sha256": "ca8fa0c20265a81ec0d933e080e48f05310765cae6de127b2a3fec7b84694ef2"
+    },
+    {
+      "file": "resources/views/welcome.blade.php",
+      "sha256": "bdb9bb7d2eecceb3581e429545b6ec96014ccab6d0ae83d4c52930e9a15f7d65"
+    },
+    {
+      "file": "resources/views/workspace/index.blade.php",
+      "sha256": "3c27ea7f56b36c94f5b8d9a65d1e7e623f0decdf644f6fe08674ec7f35ce40d2"
+    },
+    {
+      "file": "tests/Feature/AdminDetailContractTest.php",
+      "sha256": "84a83ba63253ee24a22ed976e07f1be6c95758f7a4952c811be2225cdffd46d7"
+    },
+    {
+      "file": "tests/Feature/AdvancedFinanceTest.php",
+      "sha256": "51b9b6b0bf85be5fa140ea5dc05879db296420ebbda24a792552dd07849f7353"
+    },
+    {
+      "file": "tests/Feature/AuthSecurityTest.php",
+      "sha256": "fb9cbc901a7dbfeebc14151893cb8613d21b20bb8c2a94a5f3a3e3fccbadd17a"
+    },
+    {
+      "file": "tests/Feature/BeautybookBookingApiTest.php",
+      "sha256": "0ea02c213abd7e812fec73f586f6e89bd0d7ccf8fc7ecc93b08a5bb6b2b32d54"
+    },
+    {
+      "file": "tests/Feature/BeautybookGovernanceApiTest.php",
+      "sha256": "f0248b19bf4c0eeae379e47c6f33f091ff7d2b301b0f832840864adf2aac3fdb"
+    },
+    {
+      "file": "tests/Feature/BeautybookIdentityEngagementApiTest.php",
+      "sha256": "cc6d493d8a071b02d8aa94d2a0b3d8def75986c949ba17c148d0d00589704e28"
+    },
+    {
+      "file": "tests/Feature/BeautybookLoginContextTest.php",
+      "sha256": "226f7f425404b12f25be646b66977dfa952c4b91b52a676f28cb1bcc19bf21fc"
+    },
+    {
+      "file": "tests/Feature/BeautybookManagementApiTest.php",
+      "sha256": "058015b0c490fbba5b5013d5d986be5ab66264da02e597969aba6f2a76611771"
+    },
+    {
+      "file": "tests/Feature/BeautybookMultiRoleTest.php",
+      "sha256": "85c30a191bf0b11a7a7d4babadec3ca7da592cb0ae7f7bec02819a833c7b8fce"
+    },
+    {
+      "file": "tests/Feature/BeautybookPrivacyContractTest.php",
+      "sha256": "05e0908a9a97c99bdbee89b4fb6627771d8f9673525d94df5ab6975bc38580fe"
+    },
+    {
+      "file": "tests/Feature/BeautybookPrivacyExportRateLimitTest.php",
+      "sha256": "f1392d68601a720aff1d8fd04cf8647595ab1d01ef4172c0a11cc26a4b648f9a"
+    },
+    {
+      "file": "tests/Feature/BeautybookPublicApiTest.php",
+      "sha256": "9884414efc4d15814232e498c0fedf3b97add4bbd1fc22356f82bcf5b639155b"
+    },
+    {
+      "file": "tests/Feature/BeautybookPublicPresentationTest.php",
+      "sha256": "b60b6a8416b89dad94b404d839c8ca645b05b6603c11aca6859650e2eff1f389"
+    },
+    {
+      "file": "tests/Feature/BeautybookRealtimeTest.php",
+      "sha256": "57e42474a1320c8b47d3de8433a2a26c2fdc74d1884268004f1a8afb42411fcc"
+    },
+    {
+      "file": "tests/Feature/BeautybookSourceReferenceTest.php",
+      "sha256": "85ce04fd53541b2575d95bb2f3d09f45e09f2570e0d434f3b2c1277a7bdd2430"
+    },
+    {
+      "file": "tests/Feature/BeautybookVoucherApiTest.php",
+      "sha256": "1e2dc6ca6686887195e1d9a0277284be23c3053d839ce059ca416366dde2eb55"
+    },
+    {
+      "file": "tests/Feature/BookingBoardTest.php",
+      "sha256": "1dcd7b7808873eeaa2f124226e2014364a487595ac0e654f3c5d75ba65b5e218"
+    },
+    {
+      "file": "tests/Feature/BookingCalendarTest.php",
+      "sha256": "dcc1d740cee933a0f9c3f532ac677eb0a40e7cc7e04980ae74bcd09d465ff936"
+    },
+    {
+      "file": "tests/Feature/BookingChangeRequestTest.php",
+      "sha256": "7e71dff18b018181d922def67268abdc183ddac72cba9a51f3d6f6134e4b6552"
+    },
+    {
+      "file": "tests/Feature/BookingCreationTest.php",
+      "sha256": "cb6875df2e8e4cbd2eb99465ea307b6da276d58f6b4f371e5f1fcb0f18681bd2"
+    },
+    {
+      "file": "tests/Feature/BookingLifecycleTest.php",
+      "sha256": "6c22a1bb3d7cf219fcf18b8aab48fb19bad36fb995d31f59237bdfcc38521dc2"
+    },
+    {
+      "file": "tests/Feature/BookingNotificationTest.php",
+      "sha256": "462ab327f9b4af459af21399d823445a6139a9e94b75b2e996048a9a9171dcd9"
+    },
+    {
+      "file": "tests/Feature/BookingPolicyTest.php",
+      "sha256": "908a54992b3137b053066ee6c7c0160f71c27e8e11b8dddccb51da4e1850909e"
+    },
+    {
+      "file": "tests/Feature/BookingPolicyUiTest.php",
+      "sha256": "508e059dfe219c2416098ac469e04c13dc20f040a857e279e9bc2fecea157652"
+    },
+    {
+      "file": "tests/Feature/BranchClosureTest.php",
+      "sha256": "726e70ae7dafe27ed30f80879fbaeb6e0c07f32a00018f1aad6663b5107c0a51"
+    },
+    {
+      "file": "tests/Feature/BranchLifecycleTest.php",
+      "sha256": "c4ff06906dd408af35ba439889d0d383b21625703e743e60f639ef956a78f07d"
+    },
+    {
+      "file": "tests/Feature/CartBookingTest.php",
+      "sha256": "79db33d3a17d2304211443c7011024635628ecfae7b16b3c8f817e4b0b235189"
+    },
+    {
+      "file": "tests/Feature/CustomerProfileTest.php",
+      "sha256": "8724f8c86e41c11464021fd71b6a0122f7170c595b36fdef8cdf63e866051ff4"
+    },
+    {
+      "file": "tests/Feature/DemoBranchStaffTest.php",
+      "sha256": "2bf7165e8166a6094e4e089adc91861e88dae40075e23305a177db78d1f04c37"
+    },
+    {
+      "file": "tests/Feature/EngagementTest.php",
+      "sha256": "eab78019d92c6bfe6dc8e81e03e0aa31a45470202d6ba51bd613908b4093940c"
+    },
+    {
+      "file": "tests/Feature/ExampleTest.php",
+      "sha256": "aaa4a192fb4aa96d4e81eda06a29968da3d9a73b71026b87a67297e66dd985b8"
+    },
+    {
+      "file": "tests/Feature/FinanceTest.php",
+      "sha256": "072269134649ffb65e20c49668b77dbb5fdd3ea7aa4439effa7b35b96cf0ca57"
+    },
+    {
+      "file": "tests/Feature/FoundationReadinessTest.php",
+      "sha256": "3d284578a4dbc340ddeb32ffc4a3e0b1ae05b19ae524a4dd39e6d9ac06bd321c"
+    },
+    {
+      "file": "tests/Feature/GovernanceRoleExpiryTest.php",
+      "sha256": "5a2de3c84eae26eebe2132da1a5ebe2a8bee8ef6a95a08f227ed76f59422ac57"
+    },
+    {
+      "file": "tests/Feature/GovernanceTest.php",
+      "sha256": "bbd0c65a441851e9406de57fe1f3a1ec80a650653d39e6036044493034effeb5"
+    },
+    {
+      "file": "tests/Feature/IdentityScopeTest.php",
+      "sha256": "c414d78c9acab1942a494821ea53f3679c8e68fe6f8a97150162eb76f4bac0bb"
+    },
+    {
+      "file": "tests/Feature/ImpactTest.php",
+      "sha256": "3adb1b27c4e46da3fa6566b3c5ad1f19001ffe7fdaa6794263601f874d8cdbbf"
+    },
+    {
+      "file": "tests/Feature/InvoiceArithmeticTest.php",
+      "sha256": "255e34fdea6091f7c25a0feaa80712b3bbe9c6661a058957cd5c35d6d8c099d8"
+    },
+    {
+      "file": "tests/Feature/ManagementMultiRoleTest.php",
+      "sha256": "4c3bd88092b4e657ca929c63bb549aff6a57db3a571710c8b71337a2ece37146"
+    },
+    {
+      "file": "tests/Feature/MarketplaceTest.php",
+      "sha256": "24066c2b5eee4e1a1ae847053215f372f853952b7514df80f0dc57559df863cb"
+    },
+    {
+      "file": "tests/Feature/OnboardingTest.php",
+      "sha256": "1476ea6e40e1d2b50a79049b0b74d4038c95f81c8b5372f4e5048eec4ef8e522"
+    },
+    {
+      "file": "tests/Feature/OperationsTest.php",
+      "sha256": "c513b090727512e7fe0bfd696535be25b26e4ba0b579ab1561e6559607de4141"
+    },
+    {
+      "file": "tests/Feature/OwnershipTest.php",
+      "sha256": "0314d58ae7dad86a048b7bdeb4f12afb9bde5705a4b4863b6c6165e4e28fb64e"
+    },
+    {
+      "file": "tests/Feature/PlatformMaintenanceTest.php",
+      "sha256": "a7c6b91facc6f1eda905091d8637b546e719c191bb3ffcbafcdb9167e8fc8c6a"
+    },
+    {
+      "file": "tests/Feature/PrivacyTest.php",
+      "sha256": "a29533ebc3a98afc7a70b7d2c1ebccbe2a174a8b733c29b8bf69ab766b2bf2ed"
+    },
+    {
+      "file": "tests/Feature/PromotionTest.php",
+      "sha256": "7b933a6e1f0932b0f01969f25c71a7cd5193d5853c68c84708edc8074719230e"
+    },
+    {
+      "file": "tests/Feature/SchedulingTest.php",
+      "sha256": "ca6472a81427076a7f413beb02fc0b2d8b41b6ea609527fd08582d33da8cfddf"
+    },
+    {
+      "file": "tests/Feature/ServiceCrudTest.php",
+      "sha256": "0e9ff2b9787bbc9acf5cf0172b5e4a9e0ba33c3cc9f223f111cb2f99bb761eb3"
+    },
+    {
+      "file": "tests/Feature/ServiceHierarchyTest.php",
+      "sha256": "d4453bd21ebd59cd9a2da1fb5f93ab50281a7262a59cf6a526ea8c9718ecb899"
+    },
+    {
+      "file": "tests/Feature/SourceSurfaceTest.php",
+      "sha256": "2f4253be8effd5546462ae9e3ac813f62d528c7a22dd74843bc981c4ef0b86ae"
+    },
+    {
+      "file": "tests/Feature/StaffCapabilityTest.php",
+      "sha256": "1d2d0c34d4b0e7206432f86fc1fc3a7f9f3e84baa90c33a0cd36d8cf88672328"
+    },
+    {
+      "file": "tests/Feature/UploadTest.php",
+      "sha256": "1a6d023aeb3b0cf5474349ea205abfe72ea27610c84a62a05cd3e3a33a10dccd"
+    },
+    {
+      "file": "tests/Feature/VariantPricingTest.php",
+      "sha256": "4e4320b329432dab706d5e1d66904504105241586865901d11b0b3e4e1617770"
+    },
+    {
+      "file": "tests/Feature/WorkspaceUiTest.php",
+      "sha256": "78e07ccea134a6642aee6938af218591a1350de65a9a1b954c8e6e8d9965bb0d"
+    },
+    {
+      "file": "tests/Feature/ZConcurrentRoleGrantTest.php",
+      "sha256": "d3dd7a2959cdb8078fb608191c649a08027ce96e639949de6b9dab72c54423ad"
+    },
+    {
+      "file": "tests/Feature/ZZConcurrentBookingLifecycleRaceTest.php",
+      "sha256": "8559e77cba5b6475dc1b25be001a4a60c9a25bb70591d41815c17a036adb06a2"
+    },
+    {
+      "file": "tests/Feature/ZZConcurrentBookingRaceTest.php",
+      "sha256": "a129cf31aa7574003921d68dade3758bad0db3e5648b49b2ba6f240d1380929c"
+    },
+    {
+      "file": "tests/TestCase.php",
+      "sha256": "c7c209f5579c42647c1f7b2a79ac828e8b54ac62a98442045a6e94fa2c0d0ebc"
+    },
+    {
+      "file": "tests/Unit/BeautybookAuditLogDisclosureTest.php",
+      "sha256": "d1ea42b6cdbf3c79f677c82d9542291d2ee1a7c8652fb820f08e2c83ecde7641"
+    },
+    {
+      "file": "tests/Unit/BeautybookSourceMemoizationTest.php",
+      "sha256": "2a5295192d68c897d8805a63b4f571bdb71e895f39725ad2d45fd5f567012385"
+    },
+    {
+      "file": "tests/Unit/BeautybookTimestampTest.php",
+      "sha256": "0eeca74caf7b61d5e3682e1d495e6de6d60698934ce797bf691c20f7277eef9e"
+    },
+    {
+      "file": "tests/Unit/ExampleTest.php",
+      "sha256": "ffacae5c1a2a44c809420af5b3b404910da1b12167d58764dac6d10b8ba8cfaf"
+    },
+    {
+      "file": "tests/Unit/FinanceMoneyTest.php",
+      "sha256": "4e4644efb7fff09b6668c3638fbc7ea2aad05d0a18e3d9e2a4f849125e54edd3"
+    },
+    {
+      "file": "tests/Unit/MediaContentValidationTest.php",
+      "sha256": "400a9db9964ffc4f51dd9f808e17250759e727070b18c727b8580fc9f8c611d5"
+    },
+    {
+      "file": "public/index.php",
+      "sha256": "eba77cba39695b6bd091fe5211d481f7ebb2ce2d8d26230b5a609465d0a4aff9"
+    }
+  ]
+}

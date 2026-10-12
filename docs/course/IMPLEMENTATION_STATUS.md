@@ -1,5 +1,7 @@
 # Trạng thái triển khai BeautyBookPHP
 
+> Trạng thái hiện tại sau khi cắt luồng phụ và tối ưu local ngày 11/10/2026 được ghi tại [PARITY_PERFORMANCE_AUDIT_2026-10-11.md](PARITY_PERFORMANCE_AUDIT_2026-10-11.md). Báo cáo dưới đây là mốc lịch sử 07/10.
+
 Cập nhật trong phiên 07/10/2026. Backend Laravel tại root (`artisan`, `app`, `routes`, `database`). Frontend chính là React nguồn trong `resources/beautybook`, nạp bằng Blade tại `/beautybook`; `/` chuyển tới giao diện này.
 
 ## Những phần đã triển khai

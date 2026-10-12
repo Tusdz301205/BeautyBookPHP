@@ -8,7 +8,7 @@ Runtime được kiểm tra qua Docker: PHP 8.4, MySQL 8.4, Laravel theo `compos
 
 ```bash
 docker compose -f docker-compose.laravel.yml up -d --wait mysql mysql_test
-docker compose -f docker-compose.laravel.yml run --build --rm --no-deps app composer install
+docker compose -f docker-compose.laravel.yml build app
 npm ci
 npm run build
 docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan migrate --seed
@@ -17,6 +17,8 @@ docker compose -f docker-compose.laravel.yml up -d --wait app realtime web sched
 ```
 
 Trong Visual Studio Code, chọn **File → Open Folder → BeautyBookPHP**, mở **Terminal → New Terminal** rồi chạy các lệnh trên. Cần Docker Desktop đang chạy và Node.js 22. `npm run build` build cả giao diện Blade và React nguồn.
+
+Thư viện PHP được cài trong image và volume Linux `beautybook_vendor`, tránh đọc hàng nghìn file `vendor` qua ổ Windows mỗi request. Code ứng dụng vẫn cập nhật qua bind mount. Khi `composer.lock` thay đổi, entrypoint cài lại dependency đúng lockfile; không reset database. Composer chạy trong container quản lý volume này, không phải thư mục `vendor` trên Windows. Nếu đã chạy dự án trước đây, dùng `docker compose -f docker-compose.laravel.yml up -d --build --wait app realtime web scheduler` để áp dụng runtime mới.
 
 Mở [BeautyBook](http://localhost:8000/beautybook). Địa chỉ `http://localhost:8000` tự chuyển tới giao diện này; nginx chỉ redirect trang `/`, các route Laravel hiện có được giữ. Nginx phục vụ asset và WebSocket cùng origin; port 8001 dùng chẩn đoán app, không thay cho port 8000 khi demo realtime. Readiness ở `/ready`. Compose dùng MySQL demo `beautybook_php` ở port 3307 và MySQL test `beautybook_test` ở port 3308, tách database BeautyBook nguồn. Không chạy test hoặc migration vào database nguồn. Cấu hình demo chỉ dành cho local; xem `.env.example` và Compose để cấu hình máy riêng.
 
@@ -44,7 +46,7 @@ docker compose -f docker-compose.laravel.yml logs --tail=20 scheduler
 
 `beautybook:maintain` xử lý giữ chỗ/yêu cầu thay đổi hết hạn, database inbox outbox, dọn gói privacy export, offer waitlist hết hạn, chuyển chủ đến hạn và hồ sơ ảnh hưởng quá hạn. Container `scheduler` tự chạy lịch mỗi phút; log cho biết các lần thực thi. Outbox `SENT` ở đây là thông báo trong hộp thư database.
 
-Các màn hình Laravel gồm marketplace/booking, workspace theo 5 vai trò, catalog/staff/media, voucher/combo/lịch định kỳ, review/favorite, payment/refund/package/invoice/statement, waitlist/loyalty, impact/ownership/privacy, profile/avatar và admin/settings/trust/report/audit. Xem [rubric](docs/course/RUBRIC_TRACEABILITY.md) và [ERD/use case/demo](docs/course/ERD_USE_CASE.md).
+Giao diện mặc định là React BeautyBook ở `/beautybook`. Bộ màn hình Blade cũ và các route mutation phụ đã tắt mặc định bằng `BEAUTYBOOK_LEGACY_UI=false`; chỉ bật `true` khi cần kiểm tra bản Blade tương thích. Media, xác minh email, API React và readiness vẫn hoạt động độc lập. Test Blade hiện có bật cờ này trong `phpunit.xml`; `SourceSurfaceTest` kiểm tra riêng trạng thái mặc định đã tắt. Không xóa dữ liệu lịch sử hay các service dùng chung. Xem [đợt đối chiếu và đo hiệu năng 11/10/2026](docs/course/PARITY_PERFORMANCE_AUDIT_2026-10-11.md), [rubric](docs/course/RUBRIC_TRACEABILITY.md) và [ERD/use case/demo](docs/course/ERD_USE_CASE.md).
 
 Phạm vi chuyển đổi, chứng cứ và các giới hạn còn lại được ghi tại [IMPLEMENTATION_STATUS](docs/course/IMPLEMENTATION_STATUS.md) và [đối chiếu giao diện/luồng với nguồn](docs/course/UI_SOURCE_PARITY.md). Xem [prompt triển khai đã áp dụng](docs/course/PORT_IMPLEMENTATION_PROMPT.md) và [phạm vi](docs/course/COURSE_SCOPE.md). Chưa tuyên bố parity toàn bộ BeautyBook hay phát hành công khai.
 

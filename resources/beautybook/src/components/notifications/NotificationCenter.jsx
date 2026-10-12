@@ -17,6 +17,7 @@ import {
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { notificationsApi } from '../../api/apiClient';
+import { useAuthStore } from '../../store/authStore';
 import { FINANCE_WORKSPACE_ENABLED } from '../../config/featureAvailability';
 import {
   Badge,
@@ -55,6 +56,77 @@ const SEVERITIES = {
   CRITICAL: ['Khẩn cấp', 'danger'],
 };
 
+const notificationRoutes = {
+  salon: [
+    [/^\/salon$/, []],
+    [/^\/salon\/services$/, ['business_service:update:tenant', 'branch_service_offering:status:tenant']],
+    [/^\/salon\/combos$/, ['combo:manage:tenant']],
+    [/^\/salon\/appointments$/, ['booking:read:tenant', 'booking:read:branch']],
+    [/^\/salon\/staff$/, ['user:read:tenant', 'user:read:branch']],
+    [/^\/salon\/staff\/schedule$/, ['booking:read:tenant', 'booking:read:branch']],
+    [/^\/salon\/staff\/[^/]+$/, ['user:read:tenant', 'user:read:branch', 'user:read:self']],
+    [/^\/salon\/branches\/new$/, ['branch:create:tenant']],
+    [/^\/salon\/branches\/[^/]+\/setup$/, ['branch:update:tenant', 'branch:create:tenant']],
+    [/^\/salon\/branches\/[^/]+\/preview$/, ['branch:read:tenant']],
+    [/^\/salon\/profile$/, ['branch:update:tenant']],
+    [/^\/salon\/promotions$/, ['promotion:manage:tenant']],
+    [/^\/salon\/reviews$/, ['review:moderate:tenant']],
+    [/^\/salon\/stats$/, ['report:revenue:tenant', 'report:revenue:branch']],
+    [/^\/salon\/(security|account|incoming-ownership)$/, []],
+    [/^\/salon\/notifications$/, ['notification:read:self']],
+    [/^\/salon\/onboarding$/, ['business:create:self', 'business:update:tenant']],
+    [/^\/salon\/payments$/, ['payment:read:tenant', 'payment:read:branch']],
+    [/^\/salon\/operations$/, ['booking:read:tenant', 'booking:read:branch', 'payment:read:tenant', 'payment:read:branch']],
+    [/^\/salon\/audit$/, ['audit:read:tenant']],
+  ],
+  platform: [
+    [/^\/admin$/, []],
+    [/^\/admin\/(salons|branches\/[^/]+|businesses\/[^/]+|violations|compliance)$/, ['branch:read:platform']],
+    [/^\/admin\/users(?:\/[^/]+)?$/, ['user:read:platform']],
+    [/^\/admin\/appointments$/, ['booking:read:platform']],
+    [/^\/admin\/reports$/, ['report:overview:platform', 'report:revenue:platform', 'report:user_growth:platform']],
+    [/^\/admin\/reviews$/, ['review:moderate:platform']],
+    [/^\/admin\/ownership$/, ['business:review:platform']],
+    [/^\/admin\/(security|profile)$/, []],
+    [/^\/admin\/notifications$/, ['notification:read:self']],
+    [/^\/admin\/payments$/, ['payment:read:platform']],
+    [/^\/admin\/audit$/, ['audit:read:platform']],
+    [/^\/admin\/settings$/, ['platform_setting:manage:platform']],
+  ],
+  customer: [
+    // App.jsx protects this zone by customer session; these routes add no
+    // PermissionGate. Do not invent action permissions for viewing a page.
+    [/^\/customer\/appointments(?:\/[^/]+)?$/, []],
+    [/^\/customer\/(profile|security|vouchers|reviews|benefits|notifications)$/, []],
+    [/^\/book(?:\/(staff|time|info|confirm|success))?$/, []],
+    [/^\/explore(?:\/(branches|services|staff)\/[^/]+)?$/, []],
+  ],
+};
+
+function allowedNotificationUrl(url, zone, can, item = {}, financeEnabled = false, isOwner = false) {
+  if (typeof url !== 'string' || !url.startsWith('/') || url.startsWith('//') || /[\\\s]/.test(url)) return '';
+  let pathname;
+  try {
+    pathname = decodeURIComponent(url.split(/[?#]/)[0]);
+    if (new URL(url, 'https://notification.invalid').pathname !== url.split(/[?#]/)[0]
+      || pathname.split('/').some(part => part === '.' || part === '..') || /[\\%]/.test(pathname)) return '';
+  } catch { return ''; }
+  if (!financeEnabled && /\/(payments)(\/|$)/.test(pathname)) return '';
+  // These destinations remain retired even if a producer retains an old URL.
+  if (/\/(privacy|data-requests)(\/|$)/.test(pathname)) return '';
+  if ((isOwner && /^\/salon\/(audit|stats|incoming-ownership)(\/|$)/.test(pathname))
+    || /^\/admin\/ownership(\/|$)/.test(pathname)) return '';
+  const route = notificationRoutes[zone]?.find(([pattern]) => pattern.test(pathname));
+  if (!route) return '';
+  const booking = item.relatedBooking;
+  const ctx = {
+    tenantId: booking?.businessId || booking?.branch?.businessId || item.businessId || item.tenantId,
+    branchId: booking?.branchId || item.branchId,
+    ownerUserId: booking?.customerId || item.ownerUserId,
+  };
+  return route[1].length === 0 || route[1].some(code => can(code, ctx)) ? url : '';
+}
+
 const timeAgo = (value) => {
   if (!value) return '—';
   const seconds = Math.floor((Date.now() - new Date(value).getTime()) / 1000);
@@ -67,6 +139,9 @@ const timeAgo = (value) => {
 
 export function NotificationCenter({ platform = false, zone = platform ? 'platform' : 'salon' }) {
   const navigate = useNavigate();
+  const can = useAuthStore(store => store.can);
+  const user = useAuthStore(store => store.user);
+  const isOwner = [...(user?.roles || []), ...(user?.scopes || []).map(scope => scope.code)].includes('BUSINESS_OWNER');
   const [items, setItems] = useState([]);
   const [unread, setUnread] = useState(0);
   const [state, setState] = useState('all');
@@ -116,7 +191,7 @@ export function NotificationCenter({ platform = false, zone = platform ? 'platfo
     }
   };
 
-  const contextUrl = (item) => {
+  const candidateUrl = (item) => {
     const prefixes = {
       customer: ['/customer/', '/book', '/explore'],
       salon: ['/salon/'],
@@ -183,6 +258,7 @@ export function NotificationCenter({ platform = false, zone = platform ? 'platfo
     setPage(1);
     setSearch(searchDraft.trim());
   };
+  const contextUrl = item => allowedNotificationUrl(candidateUrl(item), zone, can, item, FINANCE_WORKSPACE_ENABLED, isOwner);
   const relatedUrl = selected ? contextUrl(selected) : '';
   const contextName = zone === 'customer' ? 'Tài khoản của tôi' : zone === 'platform' ? 'Nền tảng' : 'Cơ sở';
 
@@ -261,7 +337,7 @@ export function NotificationCenter({ platform = false, zone = platform ? 'platfo
         onClose={() => setSelected(null)}
         title={selected?.title || 'Chi tiết thông báo'}
         description={selected?.createdAt ? new Date(selected.createdAt).toLocaleString('vi-VN') : ''}
-        footer={<><Button variant="secondary" onClick={() => setSelected(null)}>Đóng</Button>{relatedUrl && <Button onClick={() => { setSelected(null); navigate(relatedUrl); }}>Xem nội dung liên quan</Button>}</>}
+        footer={<><Button variant="secondary" onClick={() => setSelected(null)}>Đóng</Button>{relatedUrl && <Button onClick={() => { setSelected(null); const url = contextUrl(selected); if (url) navigate(url); }}>Xem nội dung liên quan</Button>}</>}
       >
         <div className="flex flex-wrap gap-2">
           {selected && <Badge tone={(TYPES[selected.type] || TYPES.SYSTEM)[2]}>{(TYPES[selected.type] || TYPES.SYSTEM)[0]}</Badge>}

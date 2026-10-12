@@ -50,7 +50,6 @@ const AdminBusinessDetail = lazyNamed(() => import('./pages/Admin/AdminEntityDet
 const AdminAppointmentsView = lazyNamed(() => import('./pages/Admin/AdminAppointmentsView'), 'AdminAppointmentsView');
 const AdminReports = lazyNamed(() => import('./pages/Admin/AdminReports'), 'AdminReports');
 const AdminReviewsModeration = React.lazy(() => import('./pages/Admin/AdminReviewsModeration'));
-const AdminOwnership = React.lazy(() => import('./pages/Admin/AdminOwnership'));
 const AdminNotifications = React.lazy(() => import('./pages/Admin/AdminNotifications'));
 const AdminSettings = React.lazy(() => import('./pages/Admin/AdminSettings'));
 const AdminAudit = React.lazy(() => import('./pages/Admin/AdminAudit'));
@@ -190,8 +189,12 @@ function ProtectedRoute({ children, roles, can: canCode, scope }) {
   if (!isAuthenticated()) {
     return <Navigate to="/login" replace state={{ from: `${location.pathname}${location.search}` }} />;
   }
+  const isOwner = [...(user?.roles || []), ...(user?.scopes || []).map((item) => item.code)].includes('BUSINESS_OWNER');
+  if (isOwner && ['/salon/audit', '/salon/stats', '/salon/incoming-ownership'].some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`))) {
+    return <Navigate to="/salon" replace />;
+  }
   if (location.pathname === '/customer/benefits' && new URLSearchParams(location.search).get('tab') === 'ownership') {
-    return <Navigate to="/salon/incoming-ownership" replace />;
+    return <Navigate to={isOwner ? '/salon' : '/salon/incoming-ownership'} replace />;
   }
   if (roles?.includes('customer') && !isCustomerAccount(user)) {
     return <main className="mx-auto max-w-2xl p-8"><h1 className="text-2xl font-bold">Cần tài khoản khách hàng riêng</h1><p className="my-4">{CUSTOMER_ACCOUNT_REQUIRED}</p><a className="underline" href="/explore">Tiếp tục xem nội dung công khai</a></main>;
@@ -380,7 +383,7 @@ export default function App() {
                   <Route path="payments" element={<PermissionGate fallback="/admin" anyOf={['payment:read:platform']}>{FINANCE_WORKSPACE_ENABLED ? <PaymentsWorkspace /> : <UnavailableFeature finance home="/admin" />}</PermissionGate>} />
                   <Route path="reports" element={<PermissionGate fallback="/admin" anyOf={['report:overview:platform', 'report:revenue:platform', 'report:user_growth:platform']}><AdminReports /></PermissionGate>} />
                   <Route path="reviews" element={<PermissionGate fallback="/admin" anyOf={['review:moderate:platform']}><AdminReviewsModeration /></PermissionGate>} />
-                  <Route path="ownership" element={<PermissionGate fallback="/admin" anyOf={['business:review:platform']}><AdminOwnership /></PermissionGate>} />
+                  <Route path="ownership" element={<Navigate to="/admin" replace />} />
                   <Route path="violations" element={<Navigate to="/admin/salons" replace />} />
                   <Route path="audit" element={<PermissionGate fallback="/admin" anyOf={['audit:read:platform']}><AdminAudit /></PermissionGate>} />
                   <Route path="notifications" element={<PermissionGate fallback="/admin" anyOf={['notification:read:self']}><AdminNotifications /></PermissionGate>} />

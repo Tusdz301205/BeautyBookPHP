@@ -21,7 +21,9 @@ class GovernanceRoleExpiryTest extends TestCase
         $expired = app(RoleAssignmentService::class)->grant($peer, RoleName::PlatformAdmin);
         $expired->forceFill(['expires_at' => now('UTC')->subMinute()])->save();
         $this->actingAs($admin)->withSession(['workspace_assignment_id' => $role->id, 'beautybook_access_hash' => hash('sha256', 'expiry-test'), 'beautybook_access_expires' => time() + 900])->withHeader('Authorization', 'Bearer expiry-test');
-        $this->putJson(route('governance.users.status', $admin), ['is_active' => false, 'reason' => 'Kiểm thử quản trị viên cuối'])->assertUnprocessable();
+        // Source users.service.ts forbids self-suspension before its last-admin guard.
+        $this->putJson(route('governance.users.status', $admin), ['is_active' => false, 'reason' => 'Kiểm thử quản trị viên cuối'])
+            ->assertForbidden()->assertJsonPath('message', 'Không thể tự khóa tài khoản quản trị đang dùng.');
         $this->assertTrue((bool) $admin->fresh()->is_active);
         $this->deleteJson(route('governance.users.roles.revoke', [$admin, $role]))->assertUnprocessable();
         $this->assertDatabaseHas('role_assignments', ['id' => $role->id]);

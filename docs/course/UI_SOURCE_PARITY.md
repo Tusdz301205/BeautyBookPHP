@@ -1,5 +1,7 @@
 # Đối chiếu giao diện và luồng với BeautyBook gốc
 
+> Có đợt đối chiếu mới ngày 11/10/2026 tại [PARITY_PERFORMANCE_AUDIT_2026-10-11.md](PARITY_PERFORMANCE_AUDIT_2026-10-11.md). Các số liệu bên dưới giữ làm chứng cứ phiên 07/10, không đại diện cho trạng thái hiện tại.
+
 Cập nhật trong phiên 07/10/2026. BeautyBookPHP là đồ án phụ cho môn Lập trình mã nguồn mở: backend Laravel/Eloquent/MySQL, Blade nạp frontend React BeautyBook.
 
 ## Frontend hiện tại

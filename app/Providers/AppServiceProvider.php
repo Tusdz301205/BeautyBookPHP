@@ -11,7 +11,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->scoped(\App\Services\Beautybook\SourceDistrictCatalog::class);
+        $this->app->scoped(\App\Services\Beautybook\SourceReferenceMedia::class);
     }
 
     /**

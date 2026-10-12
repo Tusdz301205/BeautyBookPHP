@@ -1,0 +1,14 @@
+.git
+.agents
+.codex
+.env
+.env.*
+node_modules
+vendor
+public
+storage
+tmp
+docs
+resources
+tests
+beauty-booking-api-main

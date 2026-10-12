@@ -195,7 +195,7 @@ export function SalonOverview() {
               </ResponsiveContainer>
             </ChartCard>}
 
-            {chartData.branchComparison?.length > 0 && <ChartCard title="So sánh chi nhánh" to="/salon/stats">
+            {chartData.branchComparison?.length > 0 && <ChartCard title="So sánh chi nhánh">
               <ResponsiveContainer width="100%" height={Math.max(280, chartData.branchComparison.length * 54)}>
                 <BarChart data={chartData.branchComparison} layout="vertical" margin={{ left: 16 }}>
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} />

@@ -8,6 +8,7 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
+      - beautybook_vendor:/var/www/html/vendor
     environment: &laravel_environment
       APP_NAME: BeautyBook
       APP_ENV: local
@@ -34,16 +35,25 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8000/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
 
   scheduler:
     image: beautybook-php-app
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
+      - beautybook_vendor:/var/www/html/vendor
     environment: *laravel_environment
     command: ["php", "artisan", "schedule:work"]
     depends_on:
       mysql:
+        condition: service_healthy
+      app:
         condition: service_healthy
 
   realtime:
@@ -74,7 +84,7 @@ services:
       realtime:
         condition: service_healthy
       app:
-        condition: service_started
+        condition: service_healthy
 
   mysql:
     image: mysql:8.4
@@ -113,5 +123,6 @@ services:
       - beautybook_mysql_test_data:/var/lib/mysql
 
 volumes:
+  beautybook_vendor:
   beautybook_mysql_data:
   beautybook_mysql_test_data:

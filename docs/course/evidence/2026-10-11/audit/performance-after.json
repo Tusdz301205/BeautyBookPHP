@@ -1,0 +1,92 @@
+[
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 637
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 410
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 295
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 940
+  },
+  {
+    "Round": 1,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 573
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 190
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 500
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 168
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 301
+  },
+  {
+    "Round": 2,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 518
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/beautybook",
+    "Status": 200,
+    "Ms": 208
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/platform-settings/public",
+    "Status": 200,
+    "Ms": 258
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/services/categories",
+    "Status": 200,
+    "Ms": 210
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/branches?sort=rating&limit=4",
+    "Status": 200,
+    "Ms": 360
+  },
+  {
+    "Round": 3,
+    "URL": "http://localhost:8000/api/v1/services/search?limit=10",
+    "Status": 200,
+    "Ms": 322
+  }
+]

@@ -1,7 +1,7 @@
 {
-  "reachableFiles": 125,
-  "operations": 242,
-  "activeOperations": 197,
+  "reachableFiles": 132,
+  "operations": 245,
+  "activeOperations": 190,
   "missingActive": [],
   "missingInactive": [
     {
@@ -11,10 +11,36 @@
       "endpoints": [
         "/bookings/guest"
       ],
-      "line": 238,
+      "line": 239,
       "active": false,
       "missing": [
         "/bookings/guest"
+      ]
+    },
+    {
+      "group": "privacyApi",
+      "operation": "createDataRequest",
+      "method": "POST",
+      "endpoints": [
+        "/privacy/data-requests"
+      ],
+      "line": 883,
+      "active": false,
+      "missing": [
+        "/privacy/data-requests"
+      ]
+    },
+    {
+      "group": "privacyApi",
+      "operation": "createExport",
+      "method": "POST",
+      "endpoints": [
+        "/privacy/exports"
+      ],
+      "line": 893,
+      "active": false,
+      "missing": [
+        "/privacy/exports"
       ]
     }
   ],
@@ -26,7 +52,7 @@
       "endpoints": [
         "/auth/login"
       ],
-      "line": 155,
+      "line": 156,
       "active": true,
       "missing": []
     },
@@ -37,7 +63,7 @@
       "endpoints": [
         "/auth/register"
       ],
-      "line": 161,
+      "line": 162,
       "active": true,
       "missing": []
     },
@@ -48,7 +74,7 @@
       "endpoints": [
         "/auth/verify-email"
       ],
-      "line": 167,
+      "line": 168,
       "active": true,
       "missing": []
     },
@@ -59,7 +85,7 @@
       "endpoints": [
         "/auth/forgot-password"
       ],
-      "line": 168,
+      "line": 169,
       "active": true,
       "missing": []
     },
@@ -70,7 +96,7 @@
       "endpoints": [
         "/auth/reset-password"
       ],
-      "line": 169,
+      "line": 170,
       "active": true,
       "missing": []
     },
@@ -81,7 +107,7 @@
       "endpoints": [
         "/auth/change-password"
       ],
-      "line": 170,
+      "line": 171,
       "active": true,
       "missing": []
     },
@@ -92,7 +118,7 @@
       "endpoints": [
         "/auth/logout"
       ],
-      "line": 171,
+      "line": 172,
       "active": true,
       "missing": []
     },
@@ -103,7 +129,7 @@
       "endpoints": [
         "/auth/sessions"
       ],
-      "line": 172,
+      "line": 173,
       "active": true,
       "missing": []
     },
@@ -114,7 +140,7 @@
       "endpoints": [
         "/auth/sessions/1"
       ],
-      "line": 173,
+      "line": 174,
       "active": true,
       "missing": []
     },
@@ -125,7 +151,7 @@
       "endpoints": [
         "/auth/sessions"
       ],
-      "line": 174,
+      "line": 175,
       "active": true,
       "missing": []
     },
@@ -136,7 +162,7 @@
       "endpoints": [
         "/auth/security-history"
       ],
-      "line": 175,
+      "line": 176,
       "active": true,
       "missing": []
     },
@@ -147,7 +173,7 @@
       "endpoints": [
         "/bookings/self-booking-policy"
       ],
-      "line": 191,
+      "line": 192,
       "active": true,
       "missing": []
     },
@@ -158,7 +184,7 @@
       "endpoints": [
         "/bookings"
       ],
-      "line": 199,
+      "line": 200,
       "active": true,
       "missing": []
     },
@@ -169,7 +195,7 @@
       "endpoints": [
         "/bookings/1"
       ],
-      "line": 202,
+      "line": 203,
       "active": true,
       "missing": []
     },
@@ -180,7 +206,7 @@
       "endpoints": [
         "/bookings/1/force-cancel-preview"
       ],
-      "line": 204,
+      "line": 205,
       "active": true,
       "missing": []
     },
@@ -191,7 +217,7 @@
       "endpoints": [
         "/bookings/1/status"
       ],
-      "line": 206,
+      "line": 207,
       "active": true,
       "missing": []
     },
@@ -202,7 +228,7 @@
       "endpoints": [
         "/bookings/stats"
       ],
-      "line": 211,
+      "line": 212,
       "active": true,
       "missing": []
     },
@@ -213,7 +239,7 @@
       "endpoints": [
         "/bookings/by-category"
       ],
-      "line": 214,
+      "line": 215,
       "active": false,
       "missing": []
     },
@@ -224,7 +250,7 @@
       "endpoints": [
         "/bookings/by-branch/1"
       ],
-      "line": 216,
+      "line": 217,
       "active": true,
       "missing": []
     },
@@ -235,7 +261,7 @@
       "endpoints": [
         "/bookings/by-customer/1"
       ],
-      "line": 218,
+      "line": 219,
       "active": false,
       "missing": []
     },
@@ -246,7 +272,7 @@
       "endpoints": [
         "/bookings/1/status"
       ],
-      "line": 223,
+      "line": 224,
       "active": true,
       "missing": []
     },
@@ -257,7 +283,7 @@
       "endpoints": [
         "/bookings"
       ],
-      "line": 230,
+      "line": 231,
       "active": true,
       "missing": []
     },
@@ -268,7 +294,7 @@
       "endpoints": [
         "/bookings/guest"
       ],
-      "line": 238,
+      "line": 239,
       "active": false,
       "missing": [
         "/bookings/guest"
@@ -281,7 +307,7 @@
       "endpoints": [
         "/bookings/available-slots"
       ],
-      "line": 252,
+      "line": 253,
       "active": true,
       "missing": []
     },
@@ -292,7 +318,7 @@
       "endpoints": [
         "/bookings/counter-slots"
       ],
-      "line": 264,
+      "line": 265,
       "active": true,
       "missing": []
     },
@@ -303,7 +329,18 @@
       "endpoints": [
         "/bookings/scheduler"
       ],
-      "line": 268,
+      "line": 269,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "bookingsApi",
+      "operation": "getSchedulerBatch",
+      "method": "GET",
+      "endpoints": [
+        "/bookings/scheduler/batch"
+      ],
+      "line": 279,
       "active": true,
       "missing": []
     },
@@ -314,7 +351,7 @@
       "endpoints": [
         "/bookings/1/move"
       ],
-      "line": 273,
+      "line": 285,
       "active": true,
       "missing": []
     },
@@ -325,7 +362,7 @@
       "endpoints": [
         "/bookings/1/resize"
       ],
-      "line": 279,
+      "line": 291,
       "active": true,
       "missing": []
     },
@@ -336,7 +373,7 @@
       "endpoints": [
         "/bookings/1/checkin"
       ],
-      "line": 284,
+      "line": 296,
       "active": true,
       "missing": []
     },
@@ -347,7 +384,7 @@
       "endpoints": [
         "/bookings/1/assign"
       ],
-      "line": 287,
+      "line": 299,
       "active": false,
       "missing": []
     },
@@ -358,7 +395,7 @@
       "endpoints": [
         "/bookings/1/items"
       ],
-      "line": 291,
+      "line": 303,
       "active": true,
       "missing": []
     },
@@ -369,7 +406,7 @@
       "endpoints": [
         "/bookings/1/items/1"
       ],
-      "line": 292,
+      "line": 304,
       "active": true,
       "missing": []
     },
@@ -380,7 +417,7 @@
       "endpoints": [
         "/bookings/1/items/1/actual-time"
       ],
-      "line": 293,
+      "line": 305,
       "active": true,
       "missing": []
     },
@@ -391,7 +428,7 @@
       "endpoints": [
         "/bookings/1/items/1/actual-time"
       ],
-      "line": 294,
+      "line": 306,
       "active": true,
       "missing": []
     },
@@ -402,7 +439,7 @@
       "endpoints": [
         "/bookings/my-appointments"
       ],
-      "line": 298,
+      "line": 310,
       "active": true,
       "missing": []
     },
@@ -413,7 +450,7 @@
       "endpoints": [
         "/bookings/salon-queue"
       ],
-      "line": 300,
+      "line": 312,
       "active": true,
       "missing": []
     },
@@ -424,7 +461,7 @@
       "endpoints": [
         "/bookings/salon-violations"
       ],
-      "line": 302,
+      "line": 314,
       "active": false,
       "missing": []
     },
@@ -435,7 +472,7 @@
       "endpoints": [
         "/bookings/preview-price"
       ],
-      "line": 305,
+      "line": 317,
       "active": true,
       "missing": []
     },
@@ -446,7 +483,7 @@
       "endpoints": [
         "/bookings/1/change-requests"
       ],
-      "line": 311,
+      "line": 323,
       "active": true,
       "missing": []
     },
@@ -457,7 +494,7 @@
       "endpoints": [
         "/bookings/change-requests/1/approve"
       ],
-      "line": 317,
+      "line": 329,
       "active": true,
       "missing": []
     },
@@ -468,7 +505,7 @@
       "endpoints": [
         "/bookings/change-requests/1/reject"
       ],
-      "line": 323,
+      "line": 335,
       "active": true,
       "missing": []
     },
@@ -479,7 +516,7 @@
       "endpoints": [
         "/bookings/change-requests/pending"
       ],
-      "line": 328,
+      "line": 340,
       "active": true,
       "missing": []
     },
@@ -490,7 +527,7 @@
       "endpoints": [
         "/reports/overview"
       ],
-      "line": 333,
+      "line": 345,
       "active": true,
       "missing": []
     },
@@ -501,7 +538,7 @@
       "endpoints": [
         "/reports/overview"
       ],
-      "line": 334,
+      "line": 346,
       "active": true,
       "missing": []
     },
@@ -512,7 +549,7 @@
       "endpoints": [
         "/reports/revenue"
       ],
-      "line": 336,
+      "line": 348,
       "active": true,
       "missing": []
     },
@@ -523,7 +560,7 @@
       "endpoints": [
         "/reports/categories"
       ],
-      "line": 337,
+      "line": 349,
       "active": true,
       "missing": []
     },
@@ -534,7 +571,7 @@
       "endpoints": [
         "/reports/services"
       ],
-      "line": 338,
+      "line": 350,
       "active": true,
       "missing": []
     },
@@ -545,7 +582,7 @@
       "endpoints": [
         "/reports/top-salons"
       ],
-      "line": 339,
+      "line": 351,
       "active": true,
       "missing": []
     },
@@ -556,7 +593,7 @@
       "endpoints": [
         "/reports/user-growth"
       ],
-      "line": 341,
+      "line": 353,
       "active": true,
       "missing": []
     },
@@ -567,7 +604,7 @@
       "endpoints": [
         "/reports/staff-performance"
       ],
-      "line": 343,
+      "line": 355,
       "active": true,
       "missing": []
     },
@@ -578,7 +615,7 @@
       "endpoints": [
         "/reports/owner-dashboard"
       ],
-      "line": 349,
+      "line": 361,
       "active": true,
       "missing": []
     },
@@ -589,7 +626,7 @@
       "endpoints": [
         "/reports/financial-summary"
       ],
-      "line": 354,
+      "line": 366,
       "active": true,
       "missing": []
     },
@@ -600,7 +637,7 @@
       "endpoints": [
         "/users"
       ],
-      "line": 367,
+      "line": 379,
       "active": true,
       "missing": []
     },
@@ -611,7 +648,7 @@
       "endpoints": [
         "/users/1"
       ],
-      "line": 370,
+      "line": 382,
       "active": true,
       "missing": []
     },
@@ -622,7 +659,7 @@
       "endpoints": [
         "/users/me/profile"
       ],
-      "line": 371,
+      "line": 383,
       "active": true,
       "missing": []
     },
@@ -633,7 +670,18 @@
       "endpoints": [
         "/users/me/profile"
       ],
-      "line": 372,
+      "line": 384,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "usersApi",
+      "operation": "suspensionImpact",
+      "method": "GET",
+      "endpoints": [
+        "/users/1/suspension-impact"
+      ],
+      "line": 385,
       "active": true,
       "missing": []
     },
@@ -644,7 +692,7 @@
       "endpoints": [
         "/users/1/suspend"
       ],
-      "line": 373,
+      "line": 386,
       "active": true,
       "missing": []
     },
@@ -655,7 +703,7 @@
       "endpoints": [
         "/users/1/roles"
       ],
-      "line": 374,
+      "line": 387,
       "active": false,
       "missing": []
     },
@@ -666,7 +714,7 @@
       "endpoints": [
         "/users/1/roles/1"
       ],
-      "line": 379,
+      "line": 392,
       "active": false,
       "missing": []
     },
@@ -677,7 +725,7 @@
       "endpoints": [
         "/branches"
       ],
-      "line": 392,
+      "line": 405,
       "active": true,
       "missing": []
     },
@@ -688,7 +736,7 @@
       "endpoints": [
         "/branches/manage"
       ],
-      "line": 400,
+      "line": 413,
       "active": true,
       "missing": []
     },
@@ -699,7 +747,7 @@
       "endpoints": [
         "/branches/accessible"
       ],
-      "line": 403,
+      "line": 416,
       "active": true,
       "missing": []
     },
@@ -710,7 +758,7 @@
       "endpoints": [
         "/branches/accessible/1"
       ],
-      "line": 404,
+      "line": 417,
       "active": true,
       "missing": []
     },
@@ -721,7 +769,7 @@
       "endpoints": [
         "/branches/1/preview"
       ],
-      "line": 405,
+      "line": 418,
       "active": true,
       "missing": []
     },
@@ -732,7 +780,7 @@
       "endpoints": [
         "/branches/locations/districts"
       ],
-      "line": 406,
+      "line": 419,
       "active": true,
       "missing": []
     },
@@ -743,7 +791,7 @@
       "endpoints": [
         "/branches"
       ],
-      "line": 407,
+      "line": 420,
       "active": true,
       "missing": []
     },
@@ -754,7 +802,7 @@
       "endpoints": [
         "/branches/1/onboarding"
       ],
-      "line": 411,
+      "line": 424,
       "active": true,
       "missing": []
     },
@@ -765,7 +813,7 @@
       "endpoints": [
         "/branches/1/copy-services"
       ],
-      "line": 415,
+      "line": 428,
       "active": true,
       "missing": []
     },
@@ -776,7 +824,7 @@
       "endpoints": [
         "/branches/1/documents"
       ],
-      "line": 419,
+      "line": 432,
       "active": true,
       "missing": []
     },
@@ -787,7 +835,7 @@
       "endpoints": [
         "/branches/1/documents/1"
       ],
-      "line": 423,
+      "line": 436,
       "active": true,
       "missing": []
     },
@@ -798,7 +846,7 @@
       "endpoints": [
         "/branches/1/submit"
       ],
-      "line": 426,
+      "line": 439,
       "active": true,
       "missing": []
     },
@@ -809,7 +857,7 @@
       "endpoints": [
         "/branches/1/publish"
       ],
-      "line": 427,
+      "line": 440,
       "active": true,
       "missing": []
     },
@@ -820,7 +868,7 @@
       "endpoints": [
         "/branches/1"
       ],
-      "line": 429,
+      "line": 442,
       "active": true,
       "missing": []
     },
@@ -831,7 +879,7 @@
       "endpoints": [
         "/branches/1"
       ],
-      "line": 434,
+      "line": 447,
       "active": true,
       "missing": []
     },
@@ -842,7 +890,7 @@
       "endpoints": [
         "/branches/accessible/1"
       ],
-      "line": 435,
+      "line": 448,
       "active": true,
       "missing": []
     },
@@ -853,7 +901,7 @@
       "endpoints": [
         "/branches/1/status"
       ],
-      "line": 438,
+      "line": 451,
       "active": true,
       "missing": []
     },
@@ -864,7 +912,7 @@
       "endpoints": [
         "/services/search"
       ],
-      "line": 451,
+      "line": 464,
       "active": true,
       "missing": []
     },
@@ -875,7 +923,7 @@
       "endpoints": [
         "/services"
       ],
-      "line": 458,
+      "line": 471,
       "active": true,
       "missing": []
     },
@@ -886,7 +934,18 @@
       "endpoints": [
         "/services/manage"
       ],
-      "line": 462,
+      "line": 475,
+      "active": true,
+      "missing": []
+    },
+    {
+      "group": "servicesApi",
+      "operation": "getManageOffering",
+      "method": "GET",
+      "endpoints": [
+        "/services/offerings/1"
+      ],
+      "line": 477,
       "active": true,
       "missing": []
     },
@@ -897,7 +956,7 @@
       "endpoints": [
         "/services/workspace/manage"
       ],
-      "line": 465,
+      "line": 480,
       "active": true,
       "missing": []
     },
@@ -908,7 +967,7 @@
       "endpoints": [
         "/services/categories"
       ],
-      "line": 467,
+      "line": 482,
       "active": true,
       "missing": []
     },
@@ -919,7 +978,7 @@
       "endpoints": [
         "/services/categories/manage"
       ],
-      "line": 468,
+      "line": 483,
       "active": false,
       "missing": []
     },
@@ -930,7 +989,7 @@
       "endpoints": [
         "/services/categories"
       ],
-      "line": 469,
+      "line": 484,
       "active": false,
       "missing": []
     },
@@ -941,7 +1000,7 @@
       "endpoints": [
         "/services/canonical"
       ],
-      "line": 472,
+      "line": 487,
       "active": true,
       "missing": []
     },
@@ -952,7 +1011,7 @@
       "endpoints": [
         "/services/canonical/manage"
       ],
-      "line": 473,
+      "line": 488,
       "active": true,
       "missing": []
     },
@@ -963,7 +1022,7 @@
       "endpoints": [
         "/services/canonical"
       ],
-      "line": 474,
+      "line": 489,
       "active": true,
       "missing": []
     },
@@ -974,7 +1033,7 @@
       "endpoints": [
         "/services/canonical/1"
       ],
-      "line": 477,
+      "line": 492,
       "active": true,
       "missing": []
     },
@@ -985,7 +1044,7 @@
       "endpoints": [
         "/services/1"
       ],
-      "line": 481,
+      "line": 496,
       "active": true,
       "missing": []
     },
@@ -996,7 +1055,7 @@
       "endpoints": [
         "/services/1/variants"
       ],
-      "line": 482,
+      "line": 497,
       "active": true,
       "missing": []
     },
@@ -1007,7 +1066,7 @@
       "endpoints": [
         "/services/1/variants"
       ],
-      "line": 483,
+      "line": 498,
       "active": true,
       "missing": []
     },
@@ -1018,7 +1077,7 @@
       "endpoints": [
         "/services/variants/1"
       ],
-      "line": 484,
+      "line": 499,
       "active": true,
       "missing": []
     },
@@ -1029,7 +1088,7 @@
       "endpoints": [
         "/services/1/dependencies"
       ],
-      "line": 485,
+      "line": 500,
       "active": true,
       "missing": []
     },
@@ -1040,7 +1099,7 @@
       "endpoints": [
         "/services/1/price-rules"
       ],
-      "line": 486,
+      "line": 501,
       "active": true,
       "missing": []
     },
@@ -1051,7 +1110,7 @@
       "endpoints": [
         "/services"
       ],
-      "line": 489,
+      "line": 504,
       "active": false,
       "missing": []
     },
@@ -1062,7 +1121,7 @@
       "endpoints": [
         "/services/catalog"
       ],
-      "line": 494,
+      "line": 509,
       "active": true,
       "missing": []
     },
@@ -1073,7 +1132,7 @@
       "endpoints": [
         "/services/catalog/1"
       ],
-      "line": 498,
+      "line": 513,
       "active": true,
       "missing": []
     },
@@ -1084,7 +1143,7 @@
       "endpoints": [
         "/services/catalog/1"
       ],
-      "line": 502,
+      "line": 517,
       "active": true,
       "missing": []
     },
@@ -1095,7 +1154,7 @@
       "endpoints": [
         "/services/catalog/1/branches/1/1"
       ],
-      "line": 505,
+      "line": 520,
       "active": true,
       "missing": []
     },
@@ -1106,7 +1165,7 @@
       "endpoints": [
         "/services/offerings/1/status"
       ],
-      "line": 507,
+      "line": 522,
       "active": false,
       "missing": []
     },
@@ -1117,7 +1176,7 @@
       "endpoints": [
         "/services/offerings/1/pricing"
       ],
-      "line": 511,
+      "line": 526,
       "active": false,
       "missing": []
     },
@@ -1128,7 +1187,7 @@
       "endpoints": [
         "/services/1"
       ],
-      "line": 516,
+      "line": 531,
       "active": false,
       "missing": []
     },
@@ -1139,7 +1198,7 @@
       "endpoints": [
         "/services/1"
       ],
-      "line": 522,
+      "line": 537,
       "active": false,
       "missing": []
     },
@@ -1150,7 +1209,7 @@
       "endpoints": [
         "/staff/public"
       ],
-      "line": 530,
+      "line": 545,
       "active": true,
       "missing": []
     },
@@ -1161,7 +1220,7 @@
       "endpoints": [
         "/staff/public/1"
       ],
-      "line": 532,
+      "line": 547,
       "active": true,
       "missing": []
     },
@@ -1172,7 +1231,7 @@
       "endpoints": [
         "/staff"
       ],
-      "line": 535,
+      "line": 550,
       "active": true,
       "missing": []
     },
@@ -1183,7 +1242,7 @@
       "endpoints": [
         "/staff/1"
       ],
-      "line": 537,
+      "line": 552,
       "active": true,
       "missing": []
     },
@@ -1194,7 +1253,7 @@
       "endpoints": [
         "/staff/me"
       ],
-      "line": 538,
+      "line": 553,
       "active": false,
       "missing": []
     },
@@ -1205,7 +1264,7 @@
       "endpoints": [
         "/staff"
       ],
-      "line": 541,
+      "line": 556,
       "active": true,
       "missing": []
     },
@@ -1216,7 +1275,7 @@
       "endpoints": [
         "/staff/1"
       ],
-      "line": 547,
+      "line": 562,
       "active": true,
       "missing": []
     },
@@ -1227,7 +1286,7 @@
       "endpoints": [
         "/staff/1/offboarding-impact"
       ],
-      "line": 552,
+      "line": 567,
       "active": true,
       "missing": []
     },
@@ -1238,7 +1297,7 @@
       "endpoints": [
         "/staff/1"
       ],
-      "line": 554,
+      "line": 569,
       "active": true,
       "missing": []
     },
@@ -1249,7 +1308,7 @@
       "endpoints": [
         "/staff/1/services"
       ],
-      "line": 556,
+      "line": 571,
       "active": false,
       "missing": []
     },
@@ -1260,7 +1319,7 @@
       "endpoints": [
         "/staff/1/services"
       ],
-      "line": 559,
+      "line": 574,
       "active": true,
       "missing": []
     },
@@ -1271,7 +1330,7 @@
       "endpoints": [
         "/staff/1/commission"
       ],
-      "line": 568,
+      "line": 583,
       "active": false,
       "missing": []
     },
@@ -1282,7 +1341,7 @@
       "endpoints": [
         "/staff/invitations"
       ],
-      "line": 570,
+      "line": 585,
       "active": true,
       "missing": []
     },
@@ -1293,7 +1352,7 @@
       "endpoints": [
         "/staff/invitations"
       ],
-      "line": 574,
+      "line": 589,
       "active": false,
       "missing": []
     },
@@ -1304,7 +1363,7 @@
       "endpoints": [
         "/staff/invitations/context"
       ],
-      "line": 576,
+      "line": 591,
       "active": true,
       "missing": []
     },
@@ -1315,7 +1374,7 @@
       "endpoints": [
         "/staff/invitations/accept-existing"
       ],
-      "line": 577,
+      "line": 592,
       "active": true,
       "missing": []
     },
@@ -1326,7 +1385,7 @@
       "endpoints": [
         "/staff/invitations/1/resend"
       ],
-      "line": 578,
+      "line": 593,
       "active": true,
       "missing": []
     },
@@ -1337,7 +1396,7 @@
       "endpoints": [
         "/staff/invitations/1/email"
       ],
-      "line": 579,
+      "line": 594,
       "active": true,
       "missing": []
     },
@@ -1348,7 +1407,7 @@
       "endpoints": [
         "/staff/invitations/1"
       ],
-      "line": 580,
+      "line": 595,
       "active": true,
       "missing": []
     },
@@ -1359,7 +1418,7 @@
       "endpoints": [
         "/staff/invitations/accept"
       ],
-      "line": 581,
+      "line": 596,
       "active": true,
       "missing": []
     },
@@ -1370,7 +1429,7 @@
       "endpoints": [
         "/staff/branches/1/holidays"
       ],
-      "line": 582,
+      "line": 597,
       "active": false,
       "missing": []
     },
@@ -1381,7 +1440,7 @@
       "endpoints": [
         "/staff/branches/1/special-days"
       ],
-      "line": 583,
+      "line": 598,
       "active": false,
       "missing": []
     },
@@ -1392,7 +1451,7 @@
       "endpoints": [
         "/staff/1/branch-assignments"
       ],
-      "line": 584,
+      "line": 599,
       "active": true,
       "missing": []
     },
@@ -1403,7 +1462,7 @@
       "endpoints": [
         "/promotions"
       ],
-      "line": 599,
+      "line": 614,
       "active": true,
       "missing": []
     },
@@ -1414,7 +1473,7 @@
       "endpoints": [
         "/promotions/service/1"
       ],
-      "line": 603,
+      "line": 618,
       "active": false,
       "missing": []
     },
@@ -1425,7 +1484,7 @@
       "endpoints": [
         "/promotions"
       ],
-      "line": 606,
+      "line": 621,
       "active": true,
       "missing": []
     },
@@ -1436,7 +1495,7 @@
       "endpoints": [
         "/promotions/1"
       ],
-      "line": 612,
+      "line": 627,
       "active": true,
       "missing": []
     },
@@ -1447,7 +1506,7 @@
       "endpoints": [
         "/promotions/1"
       ],
-      "line": 618,
+      "line": 633,
       "active": true,
       "missing": []
     },
@@ -1458,7 +1517,7 @@
       "endpoints": [
         "/combos/public"
       ],
-      "line": 623,
+      "line": 638,
       "active": true,
       "missing": []
     },
@@ -1469,7 +1528,7 @@
       "endpoints": [
         "/combos"
       ],
-      "line": 627,
+      "line": 642,
       "active": true,
       "missing": []
     },
@@ -1480,7 +1539,7 @@
       "endpoints": [
         "/combos/1"
       ],
-      "line": 629,
+      "line": 644,
       "active": false,
       "missing": []
     },
@@ -1491,7 +1550,7 @@
       "endpoints": [
         "/combos"
       ],
-      "line": 630,
+      "line": 645,
       "active": true,
       "missing": []
     },
@@ -1502,7 +1561,7 @@
       "endpoints": [
         "/combos/1"
       ],
-      "line": 631,
+      "line": 646,
       "active": true,
       "missing": []
     },
@@ -1513,7 +1572,7 @@
       "endpoints": [
         "/combos/1"
       ],
-      "line": 632,
+      "line": 647,
       "active": true,
       "missing": []
     },
@@ -1524,7 +1583,7 @@
       "endpoints": [
         "/recurring/preview"
       ],
-      "line": 637,
+      "line": 652,
       "active": true,
       "missing": []
     },
@@ -1535,7 +1594,7 @@
       "endpoints": [
         "/recurring"
       ],
-      "line": 638,
+      "line": 653,
       "active": true,
       "missing": []
     },
@@ -1546,7 +1605,7 @@
       "endpoints": [
         "/recurring/mine"
       ],
-      "line": 642,
+      "line": 657,
       "active": true,
       "missing": []
     },
@@ -1557,7 +1616,7 @@
       "endpoints": [
         "/recurring/1/status"
       ],
-      "line": 643,
+      "line": 658,
       "active": true,
       "missing": []
     },
@@ -1568,7 +1627,7 @@
       "endpoints": [
         "/recurring/1/occurrences/1"
       ],
-      "line": 644,
+      "line": 659,
       "active": false,
       "missing": []
     },
@@ -1579,7 +1638,7 @@
       "endpoints": [
         "/recurring/1"
       ],
-      "line": 645,
+      "line": 660,
       "active": true,
       "missing": []
     },
@@ -1590,7 +1649,7 @@
       "endpoints": [
         "/media/upload"
       ],
-      "line": 654,
+      "line": 669,
       "active": true,
       "missing": []
     },
@@ -1601,7 +1660,7 @@
       "endpoints": [
         "/media/1"
       ],
-      "line": 656,
+      "line": 671,
       "active": true,
       "missing": []
     },
@@ -1612,7 +1671,7 @@
       "endpoints": [
         "/media/1/content"
       ],
-      "line": 657,
+      "line": 672,
       "active": true,
       "missing": []
     },
@@ -1623,7 +1682,7 @@
       "endpoints": [
         "/vouchers/mine"
       ],
-      "line": 662,
+      "line": 677,
       "active": true,
       "missing": []
     },
@@ -1634,7 +1693,7 @@
       "endpoints": [
         "/vouchers"
       ],
-      "line": 665,
+      "line": 680,
       "active": true,
       "missing": []
     },
@@ -1645,7 +1704,7 @@
       "endpoints": [
         "/vouchers"
       ],
-      "line": 668,
+      "line": 683,
       "active": true,
       "missing": []
     },
@@ -1656,7 +1715,7 @@
       "endpoints": [
         "/vouchers/1"
       ],
-      "line": 674,
+      "line": 689,
       "active": true,
       "missing": []
     },
@@ -1667,7 +1726,7 @@
       "endpoints": [
         "/vouchers/1/grant"
       ],
-      "line": 680,
+      "line": 695,
       "active": true,
       "missing": []
     },
@@ -1678,7 +1737,7 @@
       "endpoints": [
         "/vouchers/1"
       ],
-      "line": 686,
+      "line": 701,
       "active": true,
       "missing": []
     },
@@ -1689,7 +1748,7 @@
       "endpoints": [
         "/notifications"
       ],
-      "line": 700,
+      "line": 715,
       "active": true,
       "missing": []
     },
@@ -1700,7 +1759,7 @@
       "endpoints": [
         "/notifications/unread-count"
       ],
-      "line": 703,
+      "line": 718,
       "active": true,
       "missing": []
     },
@@ -1711,7 +1770,7 @@
       "endpoints": [
         "/notifications/1/read"
       ],
-      "line": 706,
+      "line": 721,
       "active": true,
       "missing": []
     },
@@ -1722,7 +1781,7 @@
       "endpoints": [
         "/notifications/read-all"
       ],
-      "line": 709,
+      "line": 724,
       "active": true,
       "missing": []
     },
@@ -1733,7 +1792,7 @@
       "endpoints": [
         "/notifications/device-token"
       ],
-      "line": 712,
+      "line": 727,
       "active": false,
       "missing": []
     },
@@ -1744,7 +1803,7 @@
       "endpoints": [
         "/reviews/business/1"
       ],
-      "line": 721,
+      "line": 736,
       "active": false,
       "missing": []
     },
@@ -1755,7 +1814,7 @@
       "endpoints": [
         "/reviews/manage"
       ],
-      "line": 730,
+      "line": 745,
       "active": true,
       "missing": []
     },
@@ -1766,7 +1825,7 @@
       "endpoints": [
         "/reviews/staff/1"
       ],
-      "line": 733,
+      "line": 748,
       "active": false,
       "missing": []
     },
@@ -1777,7 +1836,7 @@
       "endpoints": [
         "/reviews/public/staff/1"
       ],
-      "line": 734,
+      "line": 749,
       "active": true,
       "missing": []
     },
@@ -1788,7 +1847,7 @@
       "endpoints": [
         "/reviews/service/1"
       ],
-      "line": 735,
+      "line": 750,
       "active": true,
       "missing": []
     },
@@ -1799,7 +1858,7 @@
       "endpoints": [
         "/reviews"
       ],
-      "line": 738,
+      "line": 753,
       "active": true,
       "missing": []
     },
@@ -1810,7 +1869,7 @@
       "endpoints": [
         "/reviews/1/reply"
       ],
-      "line": 744,
+      "line": 759,
       "active": true,
       "missing": []
     },
@@ -1821,7 +1880,7 @@
       "endpoints": [
         "/reviews/1/moderate"
       ],
-      "line": 750,
+      "line": 765,
       "active": true,
       "missing": []
     },
@@ -1832,7 +1891,7 @@
       "endpoints": [
         "/reviews/1/report"
       ],
-      "line": 754,
+      "line": 769,
       "active": true,
       "missing": []
     },
@@ -1843,7 +1902,7 @@
       "endpoints": [
         "/reviews/1/appeals"
       ],
-      "line": 755,
+      "line": 770,
       "active": true,
       "missing": []
     },
@@ -1854,7 +1913,7 @@
       "endpoints": [
         "/reviews/appeals/1"
       ],
-      "line": 756,
+      "line": 771,
       "active": true,
       "missing": []
     },
@@ -1865,7 +1924,7 @@
       "endpoints": [
         "/admin/settings"
       ],
-      "line": 761,
+      "line": 776,
       "active": true,
       "missing": []
     },
@@ -1876,7 +1935,7 @@
       "endpoints": [
         "/admin/settings"
       ],
-      "line": 762,
+      "line": 777,
       "active": true,
       "missing": []
     },
@@ -1887,7 +1946,7 @@
       "endpoints": [
         "/admin/settings/reset"
       ],
-      "line": 763,
+      "line": 778,
       "active": true,
       "missing": []
     },
@@ -1898,7 +1957,7 @@
       "endpoints": [
         "/admin/trust-snapshots"
       ],
-      "line": 764,
+      "line": 779,
       "active": false,
       "missing": []
     },
@@ -1909,7 +1968,7 @@
       "endpoints": [
         "/admin/trust-snapshots/rebuild"
       ],
-      "line": 765,
+      "line": 780,
       "active": false,
       "missing": []
     },
@@ -1920,7 +1979,7 @@
       "endpoints": [
         "/admin/trust-actions"
       ],
-      "line": 766,
+      "line": 781,
       "active": false,
       "missing": []
     },
@@ -1931,7 +1990,7 @@
       "endpoints": [
         "/admin/trust-actions"
       ],
-      "line": 767,
+      "line": 782,
       "active": false,
       "missing": []
     },
@@ -1942,7 +2001,7 @@
       "endpoints": [
         "/admin/audit-logs"
       ],
-      "line": 768,
+      "line": 783,
       "active": true,
       "missing": []
     },
@@ -1953,7 +2012,7 @@
       "endpoints": [
         "/admin/business-directory"
       ],
-      "line": 772,
+      "line": 787,
       "active": true,
       "missing": []
     },
@@ -1964,7 +2023,7 @@
       "endpoints": [
         "/admin/branch-directory"
       ],
-      "line": 777,
+      "line": 792,
       "active": true,
       "missing": []
     },
@@ -1975,7 +2034,7 @@
       "endpoints": [
         "/admin/compliance-queue"
       ],
-      "line": 779,
+      "line": 794,
       "active": true,
       "missing": []
     },
@@ -1986,7 +2045,7 @@
       "endpoints": [
         "/admin/finance-overview"
       ],
-      "line": 780,
+      "line": 795,
       "active": false,
       "missing": []
     },
@@ -1997,7 +2056,7 @@
       "endpoints": [
         "/admin/marketing-overview"
       ],
-      "line": 781,
+      "line": 796,
       "active": false,
       "missing": []
     },
@@ -2008,7 +2067,7 @@
       "endpoints": [
         "/platform-settings/public"
       ],
-      "line": 785,
+      "line": 800,
       "active": true,
       "missing": []
     },
@@ -2019,7 +2078,7 @@
       "endpoints": [
         "/business/1/detail"
       ],
-      "line": 790,
+      "line": 805,
       "active": true,
       "missing": []
     },
@@ -2030,7 +2089,7 @@
       "endpoints": [
         "/business/1/members"
       ],
-      "line": 791,
+      "line": 806,
       "active": false,
       "missing": []
     },
@@ -2041,7 +2100,7 @@
       "endpoints": [
         "/business/1/cancellation-policy"
       ],
-      "line": 792,
+      "line": 807,
       "active": false,
       "missing": []
     },
@@ -2052,7 +2111,7 @@
       "endpoints": [
         "/business/1/cancellation-policy"
       ],
-      "line": 793,
+      "line": 808,
       "active": false,
       "missing": []
     },
@@ -2063,7 +2122,7 @@
       "endpoints": [
         "/business/onboarding/draft"
       ],
-      "line": 797,
+      "line": 812,
       "active": true,
       "missing": []
     },
@@ -2074,7 +2133,7 @@
       "endpoints": [
         "/business/onboarding/config"
       ],
-      "line": 798,
+      "line": 813,
       "active": true,
       "missing": []
     },
@@ -2085,7 +2144,7 @@
       "endpoints": [
         "/business/onboarding/mine"
       ],
-      "line": 799,
+      "line": 814,
       "active": true,
       "missing": []
     },
@@ -2096,7 +2155,7 @@
       "endpoints": [
         "/business/1/onboarding"
       ],
-      "line": 800,
+      "line": 815,
       "active": true,
       "missing": []
     },
@@ -2107,7 +2166,7 @@
       "endpoints": [
         "/business/1/submit"
       ],
-      "line": 801,
+      "line": 816,
       "active": true,
       "missing": []
     },
@@ -2118,7 +2177,7 @@
       "endpoints": [
         "/business/1/review"
       ],
-      "line": 802,
+      "line": 817,
       "active": true,
       "missing": []
     },
@@ -2129,7 +2188,7 @@
       "endpoints": [
         "/payments"
       ],
-      "line": 807,
+      "line": 822,
       "active": true,
       "missing": []
     },
@@ -2140,7 +2199,7 @@
       "endpoints": [
         "/payments/collect"
       ],
-      "line": 808,
+      "line": 823,
       "active": true,
       "missing": []
     },
@@ -2151,7 +2210,7 @@
       "endpoints": [
         "/payments/providers"
       ],
-      "line": 812,
+      "line": 827,
       "active": false,
       "missing": []
     },
@@ -2162,7 +2221,7 @@
       "endpoints": [
         "/payments/checkout/1"
       ],
-      "line": 813,
+      "line": 828,
       "active": false,
       "missing": []
     },
@@ -2173,7 +2232,7 @@
       "endpoints": [
         "/payments/transactions/1/verify"
       ],
-      "line": 815,
+      "line": 830,
       "active": true,
       "missing": []
     },
@@ -2184,7 +2243,7 @@
       "endpoints": [
         "/payments/transactions/1/reverse"
       ],
-      "line": 820,
+      "line": 835,
       "active": false,
       "missing": []
     },
@@ -2195,7 +2254,7 @@
       "endpoints": [
         "/payments/policies"
       ],
-      "line": 824,
+      "line": 839,
       "active": true,
       "missing": []
     },
@@ -2206,7 +2265,7 @@
       "endpoints": [
         "/payments/policies"
       ],
-      "line": 825,
+      "line": 840,
       "active": true,
       "missing": []
     },
@@ -2217,7 +2276,7 @@
       "endpoints": [
         "/payments/ledger"
       ],
-      "line": 831,
+      "line": 846,
       "active": true,
       "missing": []
     },
@@ -2228,7 +2287,7 @@
       "endpoints": [
         "/payments/platform-statements"
       ],
-      "line": 833,
+      "line": 848,
       "active": true,
       "missing": []
     },
@@ -2239,7 +2298,7 @@
       "endpoints": [
         "/payments/platform-statements/generate"
       ],
-      "line": 834,
+      "line": 849,
       "active": true,
       "missing": []
     },
@@ -2250,7 +2309,7 @@
       "endpoints": [
         "/payments/platform-statements/1/status"
       ],
-      "line": 835,
+      "line": 850,
       "active": true,
       "missing": []
     },
@@ -2261,7 +2320,7 @@
       "endpoints": [
         "/payments/packages"
       ],
-      "line": 841,
+      "line": 856,
       "active": true,
       "missing": []
     },
@@ -2272,7 +2331,7 @@
       "endpoints": [
         "/payments/packages"
       ],
-      "line": 843,
+      "line": 858,
       "active": true,
       "missing": []
     },
@@ -2283,7 +2342,7 @@
       "endpoints": [
         "/payments/packages/1/purchases"
       ],
-      "line": 844,
+      "line": 859,
       "active": false,
       "missing": []
     },
@@ -2294,7 +2353,7 @@
       "endpoints": [
         "/payments/package-purchases"
       ],
-      "line": 845,
+      "line": 860,
       "active": false,
       "missing": []
     },
@@ -2305,7 +2364,7 @@
       "endpoints": [
         "/payments/package-installments/1/pay"
       ],
-      "line": 846,
+      "line": 861,
       "active": false,
       "missing": []
     },
@@ -2316,7 +2375,7 @@
       "endpoints": [
         "/payments/package-purchases/1/sessions/reserve"
       ],
-      "line": 847,
+      "line": 862,
       "active": false,
       "missing": []
     },
@@ -2327,7 +2386,7 @@
       "endpoints": [
         "/payments/1/refund-requests"
       ],
-      "line": 849,
+      "line": 864,
       "active": true,
       "missing": []
     },
@@ -2338,7 +2397,7 @@
       "endpoints": [
         "/payments/refunds/1/review"
       ],
-      "line": 854,
+      "line": 869,
       "active": true,
       "missing": []
     },
@@ -2349,7 +2408,7 @@
       "endpoints": [
         "/payments/refunds/1/process"
       ],
-      "line": 859,
+      "line": 874,
       "active": true,
       "missing": []
     },
@@ -2360,8 +2419,8 @@
       "endpoints": [
         "/privacy/center"
       ],
-      "line": 867,
-      "active": true,
+      "line": 882,
+      "active": false,
       "missing": []
     },
     {
@@ -2371,9 +2430,11 @@
       "endpoints": [
         "/privacy/data-requests"
       ],
-      "line": 868,
-      "active": true,
-      "missing": []
+      "line": 883,
+      "active": false,
+      "missing": [
+        "/privacy/data-requests"
+      ]
     },
     {
       "group": "privacyApi",
@@ -2382,7 +2443,7 @@
       "endpoints": [
         "/privacy/data-requests"
       ],
-      "line": 872,
+      "line": 887,
       "active": false,
       "missing": []
     },
@@ -2393,7 +2454,7 @@
       "endpoints": [
         "/privacy/marketing-preferences"
       ],
-      "line": 873,
+      "line": 888,
       "active": false,
       "missing": []
     },
@@ -2404,8 +2465,8 @@
       "endpoints": [
         "/privacy/marketing-preferences"
       ],
-      "line": 874,
-      "active": true,
+      "line": 889,
+      "active": false,
       "missing": []
     },
     {
@@ -2415,9 +2476,11 @@
       "endpoints": [
         "/privacy/exports"
       ],
-      "line": 878,
-      "active": true,
-      "missing": []
+      "line": 893,
+      "active": false,
+      "missing": [
+        "/privacy/exports"
+      ]
     },
     {
       "group": "privacyApi",
@@ -2426,8 +2489,8 @@
       "endpoints": [
         "/privacy/exports/1/download"
       ],
-      "line": 882,
-      "active": true,
+      "line": 897,
+      "active": false,
       "missing": []
     },
     {
@@ -2437,7 +2500,7 @@
       "endpoints": [
         "/customer/saved-services"
       ],
-      "line": 890,
+      "line": 905,
       "active": true,
       "missing": []
     },
@@ -2448,7 +2511,7 @@
       "endpoints": [
         "/customer/saved-services/1"
       ],
-      "line": 891,
+      "line": 906,
       "active": true,
       "missing": []
     },
@@ -2459,7 +2522,7 @@
       "endpoints": [
         "/customer/saved-services/1"
       ],
-      "line": 892,
+      "line": 907,
       "active": true,
       "missing": []
     },
@@ -2470,7 +2533,7 @@
       "endpoints": [
         "/operational-impacts"
       ],
-      "line": 896,
+      "line": 911,
       "active": true,
       "missing": []
     },
@@ -2481,7 +2544,7 @@
       "endpoints": [
         "/operational-impacts/1"
       ],
-      "line": 897,
+      "line": 912,
       "active": true,
       "missing": []
     },
@@ -2492,7 +2555,7 @@
       "endpoints": [
         "/operational-impacts/1/items/1"
       ],
-      "line": 898,
+      "line": 913,
       "active": true,
       "missing": []
     },
@@ -2503,7 +2566,7 @@
       "endpoints": [
         "/operational-impacts/1/items"
       ],
-      "line": 899,
+      "line": 914,
       "active": true,
       "missing": []
     },
@@ -2514,7 +2577,7 @@
       "endpoints": [
         "/operational-impacts/1/complete"
       ],
-      "line": 900,
+      "line": 915,
       "active": true,
       "missing": []
     },
@@ -2525,7 +2588,7 @@
       "endpoints": [
         "/ownership-transfers"
       ],
-      "line": 904,
+      "line": 919,
       "active": true,
       "missing": []
     },
@@ -2536,8 +2599,8 @@
       "endpoints": [
         "/ownership-transfers/platform/pending"
       ],
-      "line": 905,
-      "active": true,
+      "line": 920,
+      "active": false,
       "missing": []
     },
     {
@@ -2547,7 +2610,7 @@
       "endpoints": [
         "/ownership-transfers/pending-for-me"
       ],
-      "line": 906,
+      "line": 921,
       "active": true,
       "missing": []
     },
@@ -2558,7 +2621,7 @@
       "endpoints": [
         "/ownership-transfers"
       ],
-      "line": 907,
+      "line": 922,
       "active": true,
       "missing": []
     },
@@ -2569,7 +2632,7 @@
       "endpoints": [
         "/ownership-transfers/1/accept"
       ],
-      "line": 908,
+      "line": 923,
       "active": true,
       "missing": []
     },
@@ -2580,7 +2643,7 @@
       "endpoints": [
         "/ownership-transfers/1/submit-more-info"
       ],
-      "line": 909,
+      "line": 924,
       "active": true,
       "missing": []
     },
@@ -2591,7 +2654,7 @@
       "endpoints": [
         "/ownership-transfers/1/cancel"
       ],
-      "line": 910,
+      "line": 925,
       "active": false,
       "missing": []
     },
@@ -2602,8 +2665,8 @@
       "endpoints": [
         "/ownership-transfers/1/review"
       ],
-      "line": 911,
-      "active": true,
+      "line": 926,
+      "active": false,
       "missing": []
     },
     {
@@ -2613,8 +2676,8 @@
       "endpoints": [
         "/ownership-transfers/1/execute"
       ],
-      "line": 912,
-      "active": true,
+      "line": 927,
+      "active": false,
       "missing": []
     },
     {
@@ -2624,7 +2687,7 @@
       "endpoints": [
         "/ownership-transfers/business/1/versions"
       ],
-      "line": 913,
+      "line": 928,
       "active": true,
       "missing": []
     },
@@ -2635,7 +2698,7 @@
       "endpoints": [
         "/ownership-transfers/business/1/legal-entity"
       ],
-      "line": 914,
+      "line": 929,
       "active": true,
       "missing": []
     },
@@ -2646,7 +2709,7 @@
       "endpoints": [
         "/ownership-transfers/business/1/payout-account"
       ],
-      "line": 915,
+      "line": 930,
       "active": true,
       "missing": []
     },
@@ -2657,8 +2720,8 @@
       "endpoints": [
         "/ownership-transfers/platform/legal-entity/1/verify"
       ],
-      "line": 916,
-      "active": true,
+      "line": 931,
+      "active": false,
       "missing": []
     },
     {
@@ -2668,8 +2731,8 @@
       "endpoints": [
         "/ownership-transfers/platform/payout-account/1/verify"
       ],
-      "line": 917,
-      "active": true,
+      "line": 932,
+      "active": false,
       "missing": []
     },
     {

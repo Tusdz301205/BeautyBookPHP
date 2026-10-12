@@ -45,7 +45,6 @@ const navigation = {
     ['payments', 'Tài chính & hoàn tiền', CreditCard, ['payment:read:platform']],
     ['reports', 'Báo cáo', BarChart3, ['report:overview:platform', 'report:revenue:platform', 'report:user_growth:platform']],
     ['reviews', 'Kiểm duyệt đánh giá', Star, ['review:moderate:platform']],
-    ['ownership', 'Chuyển quyền sở hữu', Building2, ['business:review:platform']],
     ['notifications', 'Thông báo', Bell, ['notification:read:self']],
   ],
 };
@@ -56,6 +55,8 @@ const roleNavigation = {
   STAFF: new Set(['appointments', 'notifications', 'account', 'security', 'incoming-ownership']),
   RECEPTIONIST: new Set(['appointments', 'operations', 'staff', 'payments', 'notifications', 'account', 'security', 'incoming-ownership']),
 };
+
+const ownerHiddenNavigation = new Set(['audit', 'stats', 'incoming-ownership']);
 
 const roleSpaceTitles = {
   BUSINESS_OWNER: 'Không gian doanh nghiệp',
@@ -112,6 +113,7 @@ export function AppShell({ zone, children }) {
   }, [mainRole, zone]);
 
   const items = useMemo(() => navigation[zone].filter(([path, , , permissions]) => {
+    if (zone === 'salon' && mainRole === 'BUSINESS_OWNER' && ownerHiddenNavigation.has(path)) return false;
     if (path === 'payments' && !FINANCE_WORKSPACE_ENABLED) return false;
     if (ownerRestricted && !['onboarding', 'notifications', 'account', 'security', 'incoming-ownership'].includes(path)) return false;
     if (businessApproved && path === 'onboarding') return false;

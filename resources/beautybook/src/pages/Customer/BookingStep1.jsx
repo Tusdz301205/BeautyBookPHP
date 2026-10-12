@@ -6,6 +6,7 @@ import { useBookingStore } from '../../store/bookingStore';
 import { EmptyState, ErrorState, Input, Select, Skeleton } from '../../components/ui';
 import { BookingActions, BookingLayout, SelectionCard } from '../../components/customer/BookingLayout';
 import { useAsyncResource } from '../../hooks/useAsyncResource';
+import { normalizeNameSearch } from '../../utils/nameSearch';
 
 const variantMeta = (variant) => {
   const duration = variant.maxDurationMinutes
@@ -66,8 +67,8 @@ export default function BookingStep1() {
   }, [linkKey, branches, branchId, catalog.data, requestedBranch, requestedService, requestedStaff, services, serviceIds, setBranch, toggleService, setStaff]);
 
   const chosen = useMemo(() => services.filter((service) => serviceIds.includes(service.id)), [services, serviceIds]);
-  const visibleBranches = useMemo(() => branches.filter((branch) => `${branch.branch_name || branch.name} ${branch.address || ''} ${branch.district || ''}`.toLocaleLowerCase('vi-VN').includes(branchQuery.trim().toLocaleLowerCase('vi-VN'))), [branches, branchQuery]);
-  const visibleServices = useMemo(() => services.filter((service) => service.name.toLocaleLowerCase('vi-VN').includes(serviceQuery.trim().toLocaleLowerCase('vi-VN'))), [services, serviceQuery]);
+  const visibleBranches = useMemo(() => branches.filter((branch) => normalizeNameSearch(`${branch.branch_name || branch.name} ${branch.address || ''} ${branch.district || ''}`).includes(normalizeNameSearch(branchQuery))), [branches, branchQuery]);
+  const visibleServices = useMemo(() => services.filter((service) => normalizeNameSearch(service.name).includes(normalizeNameSearch(serviceQuery))), [services, serviceQuery]);
   useEffect(() => {
     if (!catalog.data) return;
     if (comboId && !combos.some((combo) => combo.id === comboId)) { setCombo(null); return; }

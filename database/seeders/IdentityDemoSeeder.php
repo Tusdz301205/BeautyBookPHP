@@ -153,6 +153,8 @@ class IdentityDemoSeeder extends Seeder
                 ->all(),
         );
 
+        $this->call(DemoBranchStaffSeeder::class);
+
         $foundation = User::query()->where('email', 'foundation@beautybook.local')->first();
 
         if ($foundation) {

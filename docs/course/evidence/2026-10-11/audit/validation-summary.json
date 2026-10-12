@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-11",
+  "sourceCommit": "6a2b43822b6444d9f041bf08f007ae2a75b7a46f",
+  "php": {
+    "passed": 291,
+    "assertions": 3041,
+    "durationSeconds": 257.75,
+    "lintedFiles": 316
+  },
+  "frontendPolicyTests": 5,
+  "frontendBuild": "passed",
+  "dependencyRefreshChecks": [
+    "stale provider cache recovery",
+    "failed hook leaves old marker and retries"
+  ],
+  "browser": {
+    "pages": 67,
+    "roles": [
+      "guest",
+      "customer",
+      "owner",
+      "receptionist",
+      "staff",
+      "admin"
+    ],
+    "statuses": [
+      200
+    ],
+    "observedErrors": [
+      {
+        "role": "customer",
+        "path": "login",
+        "kind": "api",
+        "status": 429,
+        "url": "http://127.0.0.1:8000/api/v1/auth/login",
+        "recovered": true
+      }
+    ],
+    "semanticChecks": [
+      {
+        "path": "/admin/businesses/3",
+        "ownerName": "Chủ BeautyBook Demo",
+        "summary": {
+          "branchCount": 5,
+          "activeBranchCount": 4,
+          "serviceCount": 3,
+          "bookingCount": 5,
+          "averageRating": null,
+          "reviewCount": 0
+        },
+        "members": 3,
+        "catalog": 3,
+        "ownerRendered": true
+      },
+      {
+        "path": "/admin/businesses/4",
+        "ownerName": "Chủ Glow Studio",
+        "summary": {
+          "branchCount": 5,
+          "activeBranchCount": 4,
+          "serviceCount": 3,
+          "bookingCount": 0,
+          "averageRating": null,
+          "reviewCount": 0
+        },
+        "members": 1,
+        "catalog": 3,
+        "ownerRendered": true
+      }
+    ]
+  },
+  "runtime": "Docker services running after image refresh"
+}
