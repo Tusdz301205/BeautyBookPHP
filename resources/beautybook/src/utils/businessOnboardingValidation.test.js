@@ -24,6 +24,15 @@ const validIdentity = {
   description: '',
 };
 
+test('legal registration requires a supported entity and a registration number while legacy inputs remain compatible', () => {
+  assert.deepEqual(validateBusinessIdentity(validIdentity), {});
+  assert.deepEqual(validateBusinessIdentity({ ...validIdentity, legalEntityType: null, registrationNumber: '' }), {});
+  assert.deepEqual(validateBusinessIdentity({ ...validIdentity, legalEntityType: '', registrationNumber: '' }), {});
+  assert.deepEqual(validateBusinessIdentity({ ...validIdentity, legalEntityType: 'HOUSEHOLD_BUSINESS', registrationNumber: 'DK-123' }), {});
+  assert.ok(validateBusinessIdentity({ ...validIdentity, legalEntityType: 'ENTERPRISE', registrationNumber: '' }).registrationNumber);
+  assert.ok(validateBusinessIdentity({ ...validIdentity, legalEntityType: 'UNKNOWN', registrationNumber: 'DK-123' }).legalEntityType);
+});
+
 test('rejects the generated draft name instead of treating it as the public brand', () => {
   assert.equal(isInternalBusinessDraftName(' Hồ sơ cơ sở của chủ tài khoản '), true);
   assert.equal(isInternalBusinessDraftName('Tiệm Hoa'), false);

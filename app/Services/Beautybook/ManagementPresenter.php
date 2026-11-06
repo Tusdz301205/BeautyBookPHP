@@ -46,6 +46,7 @@ class ManagementPresenter
             'auditTrail' => DB::table('audit_logs')->where('business_id',$business->id)->latest()->limit(100)->get()->map(fn ($row)=>['id'=>(string)$row->id,'action'=>$row->action,'createdAt'=>$row->created_at])->all(),
             'images' => $this->images('business_images','business_id',$business->id),
             'generatedMedia' => app(SourceReferenceMedia::class)->for('BUSINESS',$business->id),
+            'legalEntityType' => $business->legal_entity_type, 'legalName' => $business->legal_name, 'registrationNumber' => $business->registration_number, 'registeredAddress' => $business->registered_address,
             'companyName' => $business->ownerProfile?->company_name, 'taxCode' => $business->ownerProfile?->tax_code,
             'documents' => $this->documents($business->id), 'legalDocuments' => array_map(fn ($doc) => $doc + ['mediaId' => $doc['versions'][0]['media']['id'] ?? null, 'media' => $doc['versions'][0]['media'] ?? null, 'documentUrl' => '/api/v1/media/'.($doc['versions'][0]['media']['id'] ?? '').'/content'], $this->documents($business->id)),
             'branches' => $business->branches->map(fn ($branch) => $this->branch($branch))->all(),
@@ -71,6 +72,7 @@ class ManagementPresenter
         if (empty($policy['confirmedAt'])) $missing[] = 'Chưa xác nhận chính sách đặt lịch';
         if ($branch->business->booking_restricted_at) $missing[] = $branch->business->booking_restriction_reason ?: 'Đang bị hạn chế nhận booking';
         return array_merge($this->camel($branch->load('workingHours')->toArray()), $metadata, [
+            'registrationType' => $branch->registration_type, 'addressLine' => $branch->address_line,
             'address' => $branch->address_line, 'openingHours' => $branch->workingHours->map(fn ($hour) => ['dayOfWeek' => $hour->day_of_week, 'isClosed' => $hour->is_closed, 'openTime' => substr($hour->open_time ?? '',0,5), 'closeTime' => substr($hour->close_time ?? '',0,5)])->all(),
             'workingHours' => $branch->workingHours->map(fn ($hour) => ['dayOfWeek' => $hour->day_of_week, 'isClosed' => (bool)$hour->is_closed, 'openTime' => '1970-01-01T'.($hour->open_time ?? '00:00:00').'.000Z', 'closeTime' => '1970-01-01T'.($hour->close_time ?? '00:00:00').'.000Z'])->all(),
             'onboarding' => $onboarding, 'onboardingProgress' => $onboarding, 'onboardingState' => $onboarding, 'bookingPolicy' => json_decode($settings?->booking_policy ?? '{}',true),

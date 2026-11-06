@@ -12,6 +12,7 @@ import {
 import toast from 'react-hot-toast';
 import { branchesApi, businessApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
+import BranchChangesPanel from '../../components/branches/BranchChangesPanel';
 import { FileUpload } from '../../components/media/FileUpload';
 import {
   Badge,
@@ -100,7 +101,7 @@ function BranchCard({ branch, canPublish, onSelect, onPublish, publishing }) {
       {!readiness.ready && readiness.reasons?.[0] && <p className="mt-3 text-xs text-[var(--bb-muted)]">{readiness.reasons[0]}{readiness.reasons.length > 1 ? ` và ${readiness.reasons.length - 1} mục khác` : ''}</p>}
       <div className="mt-auto flex flex-wrap gap-2 pt-5">
         {['DRAFT', 'NEED_MORE_INFO'].includes(branch.reviewStatus) && <Link to={`/salon/branches/${branch.id}/setup`}><Button size="sm">Tiếp tục thiết lập</Button></Link>}
-        <Button size="sm" variant="secondary" onClick={() => onSelect(branch.id)}>Xem hồ sơ</Button>
+        <Button size="sm" variant="secondary" onClick={() => onSelect(branch)}>Xem hồ sơ</Button>
         {canPublish && branch.reviewStatus === 'APPROVED' && readiness.ready && branch.operationalStatus !== 'ACTIVE' && (
           <Button size="sm" loading={publishing} onClick={() => onPublish(branch.id)}>Bật nhận đặt lịch</Button>
         )}
@@ -287,7 +288,7 @@ export function SalonProfile() {
                   <Field label="Tên công khai"><Input disabled={!edit} value={form.publicName} onChange={update('publicName')} /></Field>
                   <Field label="Điện thoại"><Input disabled={!edit} value={form.phone} onChange={update('phone')} /></Field>
                   <Field label="Email"><Input disabled={!edit} type="email" value={form.email} onChange={update('email')} /></Field>
-                  <Field label="Địa chỉ" className="sm:col-span-2"><Input disabled={!edit} value={form.addressLine} onChange={update('addressLine')} /></Field>
+                  <Field label="Địa chỉ" className="sm:col-span-2"><Input disabled={!edit || detail.reviewStatus === 'APPROVED'} value={form.addressLine} onChange={update('addressLine')} /></Field>
                   <Field label="Mô tả công khai" className="sm:col-span-2"><Textarea disabled={!edit} value={form.description} onChange={update('description')} /></Field>
                   <Field label="Xác nhận lịch hẹn"><Select disabled={!edit} value={form.bookingConfirmationMode} onChange={update('bookingConfirmationMode')}><option value="MANUAL_CONFIRMATION">Duyệt thủ công</option><option value="AUTO_CONFIRMATION">Tự động xác nhận</option></Select></Field>
                   <Field label="Phân công nhân viên"><Select disabled={!edit} value={form.staffAssignmentMode} onChange={update('staffAssignmentMode')}><option value="AUTO_ASSIGN_IF_ANY_STAFF">Hệ thống chọn</option><option value="CUSTOMER_SELECTS_STAFF">Khách chọn</option><option value="MANUAL_ASSIGN_BY_RECEPTIONIST">Quầy phân công</option></Select></Field>
@@ -298,6 +299,7 @@ export function SalonProfile() {
                   </div>
                   <div className="sm:col-span-2 flex items-center gap-2 text-sm text-[var(--bb-muted)]"><MapPin size={15} />{detail.district?.province?.name} · {detail.district?.name}</div>
                 </form>
+                {owner && detail.reviewStatus === 'APPROVED' && <div className="p-5"><BranchChangesPanel key={detail.id} branch={detail} onChanged={() => load(detail.id)} /></div>}
               </Card>
             </section>
           )}

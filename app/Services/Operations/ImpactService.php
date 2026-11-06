@@ -16,6 +16,7 @@ use App\Models\RoleAssignment;
 use App\Services\Booking\AvailabilityService;
 use App\Services\Booking\BookingLifecycleService;
 use App\Services\Booking\BookingNotificationService;
+use App\Services\Branches\BranchLocation;
 use App\Services\Finance\Money;
 use App\Services\Finance\PaymentService;
 use App\Services\Identity\SessionContext;
@@ -79,6 +80,7 @@ class ImpactService
     private function bookingSnapshot(Booking $booking): array
     {
         return ['booking_id' => $booking->id, 'business_id' => $booking->business_id, 'branch_id' => $booking->branch_id,
+            'branch_location_snapshot' => $booking->branch_location_snapshot,
             'status' => $booking->status, 'start_at' => $booking->getRawOriginal('appointment_start_at'), 'end_at' => $booking->getRawOriginal('appointment_end_at'),
             'services' => BookingService::where('booking_id', $booking->id)->orderBy('id')->get()->map(fn ($item) => [
                 'id' => $item->id, 'offering_id' => $item->branch_service_offering_id, 'staff_id' => $item->staff_profile_id,
@@ -89,6 +91,8 @@ class ImpactService
 
     private function hash(array $snapshot): string
     {
+        // Location provenance is historical context; retain hashes from existing impact cases.
+        unset($snapshot['branch_location_snapshot']);
         return hash('sha256', json_encode($snapshot, JSON_THROW_ON_ERROR));
     }
 
@@ -237,7 +241,10 @@ class ImpactService
             }
             // MySQL composite scope keys are immediate; retain item IDs and immutable fields when moving scope.
             BookingService::where('booking_id', $booking->id)->delete();
-            $booking->update(['branch_id' => $target->id]);
+            $booking->forceFill(['branch_id' => $target->id,
+                'branch_location_snapshot' => BranchLocation::snapshot($target)
+                    + ['basis' => 'AT_BRANCH_TRANSFER', 'capturedAt' => now('UTC')->toIso8601String()],
+            ])->save();
             DB::table('booking_services')->insert($plans);
         } else {
             foreach ($plans as $plan) BookingService::whereKey($plan['id'])->update(collect($plan)->only(['staff_profile_id', 'revision', 'updated_at', 'item_start_at', 'item_end_at', 'occupied_start_at', 'occupied_end_at'])->all());

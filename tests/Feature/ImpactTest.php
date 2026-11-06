@@ -64,6 +64,15 @@ class ImpactTest extends TestCase
         $this->assertSame(2, $case->items()->count());
     }
 
+    public function test_location_capture_metadata_does_not_invalidate_an_operational_resolution(): void
+    {
+        $booking = $this->booking(); $case = $this->impact($booking); $this->actor('owner');
+        $this->resolve($case, ['resolution' => 'APPROVED_EXCEPTION', 'reason' => 'Khách xác nhận giữ lịch'])->assertOk();
+        $booking->forceFill(['branch_location_snapshot' => array_replace($booking->branch_location_snapshot,
+            ['capturedAt' => now('UTC')->subMinute()->toIso8601String()])])->save();
+        $this->postJson(route('impacts.complete', $case))->assertOk()->assertJsonPath('status', 'COMPLETED');
+    }
+
     public function test_cancel_refund_reserves_verified_amount_and_never_marks_money_refunded(): void
     {
         $booking = $this->booking(); $case = $this->impact($booking); $this->actor('owner');
@@ -87,6 +96,7 @@ class ImpactTest extends TestCase
         $this->resolve($case, ['resolution' => 'RESCHEDULE', 'proposed_start_at' => $date.'T14:00', 'reason' => 'Khách đã đồng ý giờ mới'])->assertOk();
         $this->assertSame('14:00', $booking->fresh()->appointment_start_at->setTimezone('Asia/Ho_Chi_Minh')->format('H:i'));
         $this->assertSame($snapshot, $booking->pricingSnapshot()->first()->source_snapshot);
+        $this->assertSame('AT_BOOKING', $booking->fresh()->branch_location_snapshot['basis']);
         $this->assertSame(2, $booking->services()->first()->revision);
     }
 
@@ -104,8 +114,13 @@ class ImpactTest extends TestCase
     {
         $booking = $this->booking(); $case = $this->impact($booking); [$target, $staff] = $this->target($booking); $this->actor('owner');
         $originalItem = $booking->services()->first(); $snapshot = $booking->pricingSnapshot->source_snapshot;
+        $originalLocation = $booking->branch_location_snapshot;
         $this->resolve($case, ['resolution' => 'TRANSFER_BRANCH', 'replacement_branch_id' => $target->id, 'replacement_staff_id' => $staff->id, 'reason' => 'Khách đồng ý sang chi nhánh gần nhất'])->assertOk();
         $this->assertSame($target->id, $booking->fresh()->branch_id);
+        $location = $booking->fresh()->branch_location_snapshot;
+        $this->assertSame($target->address_line, $location['addressLine']);
+        $this->assertSame('AT_BRANCH_TRANSFER', $location['basis']);
+        $this->assertSame($originalLocation, $case->items()->firstOrFail()->booking_snapshot['branch_location_snapshot']);
         $item = BookingService::findOrFail($originalItem->id);
         $this->assertSame($booking->id, $item->booking_id);
         $this->assertSame($target->id, $item->branch_id);

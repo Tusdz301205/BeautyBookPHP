@@ -14,6 +14,11 @@ Route::post('business/{id}/submit',[Business::class,'businessSubmit']);
 Route::patch('business/{id}/review',[Business::class,'businessReview']);
 
 Route::get('branches/manage',[Business::class,'branchList']);
+Route::get('branches/{branchId}/change-requests', [\App\Http\Controllers\Beautybook\BranchChangeController::class, 'index'])->whereNumber('branchId');
+Route::post('branches/{branchId}/change-requests', [\App\Http\Controllers\Beautybook\BranchChangeController::class, 'store'])->whereNumber('branchId');
+Route::post('branches/{branchId}/change-requests/{requestId}/withdraw', [\App\Http\Controllers\Beautybook\BranchChangeController::class, 'withdraw'])->whereNumber(['branchId', 'requestId']);
+Route::get('admin/branch-change-requests', [\App\Http\Controllers\Beautybook\BranchChangeController::class, 'queue']);
+Route::post('admin/branch-change-requests/{id}/review', [\App\Http\Controllers\Beautybook\BranchChangeController::class, 'review'])->whereNumber('id');
 Route::get('branches/accessible',[Business::class,'branchList']);
 Route::get('branches/accessible/{id}',[Business::class,'branchDetail']);
 Route::get('branches/{id}/preview',[Business::class,'branchDetail']);

@@ -394,6 +394,14 @@ export const usersApi = {
 };
 
 // ======================== BRANCHES ========================
+export const branchChangesApi = {
+  list: (id, page = 1) => request(`/branches/${id}/change-requests?page=${page}`),
+  create: (id, data) => request(`/branches/${id}/change-requests`, { method: 'POST', body: JSON.stringify(data) }),
+  withdraw: (id, requestId, expectedVersion) => request(`/branches/${id}/change-requests/${requestId}/withdraw`, { method: 'POST', body: JSON.stringify({ expectedVersion }) }),
+  queue: ({ status = 'PENDING', page = 1 } = {}) => request(`/admin/branch-change-requests?status=${status}&page=${page}`),
+  review: (id, data) => request(`/admin/branch-change-requests/${id}/review`, { method: 'POST', body: JSON.stringify(data) }),
+};
+
 export const branchesApi = {
   getAll: (params = {}) => {
     const query = new URLSearchParams();

@@ -1,13 +1,14 @@
 export const BUSINESS_FIELD_LIMITS = Object.freeze({
-  name: 150,
+  registrationNumber: 80,
+  name: 120,
   slug: 70,
   description: 2000,
   contactEmail: 254,
   contactPhone: 30,
-  addressLine: 500,
+  addressLine: 255,
   legalRepresentative: 150,
-  companyName: 255,
-  taxCode: 100,
+  companyName: 160,
+  taxCode: 32,
   identityCardNumber: 100,
 });
 
@@ -22,13 +23,18 @@ export function normalizeBusinessPhone(value) {
 
 export function validateBusinessIdentity(identity) {
   const errors = {};
+  if (identity.legalEntityType) {
+    if (!['ENTERPRISE', 'HOUSEHOLD_BUSINESS'].includes(identity.legalEntityType)) errors.legalEntityType = 'Chọn loại pháp nhân hợp lệ.';
+    const registration = String(identity.registrationNumber || '').trim();
+    if (registration.length < 2 || registration.length > 80) errors.registrationNumber = 'Số đăng ký kinh doanh cần từ 2 đến 80 ký tự.';
+  }
   const value = Object.fromEntries(Object.entries(identity).map(([key, item]) => [
     key,
     typeof item === 'string' ? item.trim() : '',
   ]));
 
   if (isInternalBusinessDraftName(value.name) || value.name.length < 2) errors.name = 'Nhập tên thương hiệu có ít nhất 2 ký tự.';
-  else if (value.name.length > BUSINESS_FIELD_LIMITS.name) errors.name = 'Tên thương hiệu không được vượt quá 150 ký tự.';
+  else if (value.name.length > BUSINESS_FIELD_LIMITS.name) errors.name = 'Tên thương hiệu không được vượt quá 120 ký tự.';
 
   if (!value.slug) errors.slug = 'Nhập đường dẫn BeautyBook.';
   else if (value.slug.length > BUSINESS_FIELD_LIMITS.slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/i.test(value.slug)) {
@@ -36,9 +42,9 @@ export function validateBusinessIdentity(identity) {
   }
 
   if (value.companyName.length < 2) errors.companyName = 'Nhập tên pháp nhân có ít nhất 2 ký tự.';
-  else if (value.companyName.length > BUSINESS_FIELD_LIMITS.companyName) errors.companyName = 'Tên pháp nhân không được vượt quá 255 ký tự.';
+  else if (value.companyName.length > BUSINESS_FIELD_LIMITS.companyName) errors.companyName = 'Tên pháp nhân không được vượt quá 160 ký tự.';
   if (!value.taxCode) errors.taxCode = 'Nhập mã số thuế.';
-  else if (value.taxCode.length > BUSINESS_FIELD_LIMITS.taxCode) errors.taxCode = 'Mã số thuế không được vượt quá 100 ký tự.';
+  else if (value.taxCode.length > BUSINESS_FIELD_LIMITS.taxCode) errors.taxCode = 'Mã số thuế không được vượt quá 32 ký tự.';
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.contactEmail) || value.contactEmail.length > BUSINESS_FIELD_LIMITS.contactEmail) {
     errors.contactEmail = 'Nhập email liên hệ hợp lệ (tối đa 254 ký tự).';
@@ -46,7 +52,7 @@ export function validateBusinessIdentity(identity) {
   const normalizedPhone = normalizeBusinessPhone(value.contactPhone);
   if (!/^\+84\d{9}$/.test(normalizedPhone)) errors.contactPhone = 'Dùng số Việt Nam gồm 10 chữ số, bắt đầu bằng 0 hoặc +84.';
   if (value.addressLine.length < 1) errors.addressLine = 'Nhập địa chỉ đăng ký.';
-  else if (value.addressLine.length > BUSINESS_FIELD_LIMITS.addressLine) errors.addressLine = 'Địa chỉ không được vượt quá 500 ký tự.';
+  else if (value.addressLine.length > BUSINESS_FIELD_LIMITS.addressLine) errors.addressLine = 'Địa chỉ không được vượt quá 255 ký tự.';
   if (value.legalRepresentative.length < 2) errors.legalRepresentative = 'Nhập họ tên người đại diện.';
   else if (value.legalRepresentative.length > BUSINESS_FIELD_LIMITS.legalRepresentative) errors.legalRepresentative = 'Tên người đại diện không được vượt quá 150 ký tự.';
   if (value.description.length > BUSINESS_FIELD_LIMITS.description) errors.description = 'Phần giới thiệu không được vượt quá 2.000 ký tự.';

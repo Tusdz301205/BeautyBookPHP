@@ -45,9 +45,9 @@ class ManagementController extends Controller
     {
         $business=$id ? $this->scope->owner($request,$id):null;
         if(!$business){abort_unless($request->user()->account_kind->value==='OPERATIONAL',403);abort_if($request->user()->roleAssignments()->whereIn('role_name',['PLATFORM_ADMIN','STAFF','RECEPTIONIST'])->exists(),403);}
-        $data=$request->validate(['name'=>'nullable|string|max:120','slug'=>['nullable','string','max:120','regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',Rule::unique('businesses','slug')->ignore($id)],'description'=>'nullable|string|max:2000','contactEmail'=>'nullable|email|max:255','contactPhone'=>'nullable|string|max:32','addressLine'=>'nullable|string|max:255','companyName'=>'nullable|string|max:160','taxCode'=>'nullable|string|max:32','identityCardNumber'=>'nullable|string|max:100','legalRepresentative'=>'nullable|string|max:150','onboardingStep'=>'sometimes|integer|min:1|max:4','onboardingData'=>'sometimes|array','legalDocuments'=>'sometimes|array','legalDocuments.*.mediaId'=>'nullable|integer|exists:media_files,id']);
+        $data=$request->validate(['name'=>'nullable|string|max:120','slug'=>['nullable','string','max:120','regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',Rule::unique('businesses','slug')->ignore($id)],'description'=>'nullable|string|max:2000','contactEmail'=>'nullable|email|max:255','contactPhone'=>'nullable|string|max:32','addressLine'=>'nullable|string|max:255','companyName'=>'nullable|string|max:160','taxCode'=>'nullable|string|max:32','identityCardNumber'=>'nullable|string|max:100','legalRepresentative'=>'nullable|string|max:150','onboardingStep'=>'sometimes|integer|min:1|max:4','onboardingData'=>'sometimes|array','legalEntityType'=>'nullable|in:ENTERPRISE,HOUSEHOLD_BUSINESS','legalName'=>'nullable|string|min:2|max:200','registrationNumber'=>'nullable|string|min:2|max:80','registeredAddress'=>'nullable|string|min:3|max:500','legalDocuments'=>'sometimes|array','legalDocuments.*.documentType'=>'required_with:legalDocuments|string|in:BUSINESS_LICENSE,OWNER_ID_CARD,TAX_DOCUMENT,OTHER','legalDocuments.*.documentName'=>'required_with:legalDocuments|string|max:255','legalDocuments.*.documentNumber'=>'nullable|string|max:255','legalDocuments.*.expiresAt'=>'nullable|date','legalDocuments.*.mediaId'=>'nullable|integer|exists:media_files,id']);
         return DB::transaction(function () use ($request,$business,$data) {
-            $snake=[];foreach(['name','slug','description','contactEmail','contactPhone','addressLine','companyName','taxCode'] as $key)$snake[Str::snake($key)]=$data[$key] ?? ($business?->{Str::snake($key)});
+            $snake=[];foreach(['name','slug','description','contactEmail','contactPhone','addressLine','companyName','taxCode','legalEntityType','legalName','registrationNumber','registeredAddress'] as $key)$snake[Str::snake($key)]=$data[$key] ?? (in_array($key,['companyName','taxCode']) ? $business?->ownerProfile?->{Str::snake($key)} : $business?->{Str::snake($key)});
             $snake['name']=$snake['name'] ?: 'Hồ sơ cơ sở của '.$request->user()->name;
             $snake['slug']=$snake['slug'] ?: 'business-'.Str::lower(Str::random(10));
             $business=$business ? $this->businesses->updateDraft($business,$snake):$this->businesses->create($request->user(),$snake);
@@ -101,7 +101,7 @@ class ManagementController extends Controller
 
     public function branchCreate(Request $request): array
     {
-        $data=$request->validate(['businessId'=>'required|integer|exists:businesses,id','sameLegalEntity'=>'sometimes|boolean','name'=>'nullable|string|max:120','serviceMode'=>'sometimes|in:AT_LOCATION,MOBILE,BOTH']);
+        $data=$request->validate(['businessId'=>'required|integer|exists:businesses,id','sameLegalEntity'=>'sometimes|boolean','name'=>'nullable|string|max:120','serviceMode'=>'sometimes|in:AT_LOCATION,MOBILE,BOTH','registrationType'=>['nullable',Rule::in(\App\Services\Branches\BranchChangeService::TYPES)]]);
         $business=$this->scope->owner($request,$data['businessId']);
         if(isset($data['sameLegalEntity'])&&!$data['sameLegalEntity'])return ['requiresNewBusiness'=>true,'redirectTo'=>'/register/business'];
         return DB::transaction(function ()use($business,$data){
@@ -109,7 +109,7 @@ class ManagementController extends Controller
             abort_unless(in_array($business->status->value,['APPROVED','ACTIVE'],true)&&!$business->booking_restricted_at,403,'Doanh nghiệp phải được duyệt và không bị hạn chế trước khi tạo chi nhánh.');
             $limit=app(PlatformSettingsService::class)->value('maxBranchesPerBusiness');abort_if($business->branches()->count()>=$limit,409,'Đã đạt giới hạn chi nhánh.');
             $name=$data['name'] ?? 'Chi nhánh mới của '.$business->name;
-            $branch=$this->branches->create($business->id,['name'=>$name,'slug'=>Str::slug($name).'-'.Str::lower(Str::random(8))]);
+            $branch=$this->branches->create($business->id,['name'=>$name,'slug'=>Str::slug($name).'-'.Str::lower(Str::random(8)),'registration_type'=>$data['registrationType'] ?? null]);
             $this->settings('beautybook_branch_settings','branch_id',$branch->id,'metadata',['serviceMode'=>$data['serviceMode'] ?? 'AT_LOCATION','sameLegalEntity'=>true]);
             return ['created'=>true,'requiresNewBusiness'=>false,'branch'=>$this->presenter->branch($branch)];
         },3);
@@ -119,10 +119,14 @@ class ManagementController extends Controller
     {
         $branch=$this->scope->branch($request,$id);$this->scope->owner($request,$branch->business_id);
         $payload=$request->is('*/onboarding') ? $request->input('branch',[]):$request->all();
-        $data=Validator::make($payload,['name'=>'sometimes|string|max:120','publicName'=>'sometimes|string|max:160','phone'=>'nullable|string|max:32','email'=>'nullable|email|max:255','description'=>'nullable|string|max:2000','addressLine'=>'nullable|string|max:255','timezone'=>'sometimes|in:Asia/Ho_Chi_Minh','managerName'=>'nullable|string|max:160','scheduledOpeningDate'=>'nullable|date','districtId'=>'nullable|string|max:80','ward'=>'nullable|string|max:160','floor'=>'nullable|string|max:80','directions'=>'nullable|string|max:2000','serviceMode'=>'sometimes|in:AT_LOCATION,MOBILE,BOTH','serviceAreas'=>'sometimes|array','excludedServiceAreas'=>'sometimes|array','serviceRadiusKm'=>'nullable|numeric|min:0|max:1000','travelFee'=>'sometimes|numeric|min:0','bookingStartDate'=>'nullable|date','bookingConfirmationMode'=>'sometimes|in:MANUAL_CONFIRMATION,AUTO_CONFIRMATION','staffAssignmentMode'=>'sometimes|in:CUSTOMER_SELECTS_STAFF,AUTO_ASSIGN_IF_ANY_STAFF,MANUAL_ASSIGN_BY_RECEPTIONIST','pendingHoldMinutes'=>'sometimes|integer|min:5|max:1440'])->validate();
+        $data=Validator::make($payload,['registrationType'=>['sometimes','nullable',Rule::in(\App\Services\Branches\BranchChangeService::TYPES)],'name'=>'sometimes|string|max:120','publicName'=>'sometimes|string|max:160','phone'=>'nullable|string|max:32','email'=>'nullable|email|max:255','description'=>'nullable|string|max:2000','addressLine'=>'nullable|string|max:255','timezone'=>'sometimes|in:Asia/Ho_Chi_Minh','managerName'=>'nullable|string|max:160','scheduledOpeningDate'=>'nullable|date','districtId'=>'nullable|string|max:80','ward'=>'nullable|string|max:160','floor'=>'nullable|string|max:80','directions'=>'nullable|string|max:2000','serviceMode'=>'sometimes|in:AT_LOCATION,MOBILE,BOTH','serviceAreas'=>'sometimes|array','excludedServiceAreas'=>'sometimes|array','serviceRadiusKm'=>'nullable|numeric|min:0|max:1000','travelFee'=>'sometimes|numeric|min:0','bookingStartDate'=>'nullable|date','bookingConfirmationMode'=>'sometimes|in:MANUAL_CONFIRMATION,AUTO_CONFIRMATION','staffAssignmentMode'=>'sometimes|in:CUSTOMER_SELECTS_STAFF,AUTO_ASSIGN_IF_ANY_STAFF,MANUAL_ASSIGN_BY_RECEPTIONIST','pendingHoldMinutes'=>'sometimes|integer|min:5|max:1440'])->validate();
         return DB::transaction(function () use ($request,$branch,$data) {
             $branch=Branch::whereKey($branch->id)->lockForUpdate()->firstOrFail();
-            $snake=[];foreach(['name','publicName','phone','email','description','addressLine','timezone'] as $key)$snake[Str::snake($key)]=$data[$key] ?? $branch->{Str::snake($key)};
+            if($branch->review_status->value==='APPROVED'){
+                $location=\App\Services\Branches\BranchLocation::snapshot($branch);
+                foreach($location as $key=>$value)if(array_key_exists($key,$data) && $data[$key]!==$value)abort(409,'Thay đổi địa chỉ hoặc đăng ký cần gửi yêu cầu xét duyệt.');
+            }
+            $snake=[];foreach(['name','publicName','phone','email','description','addressLine','timezone','registrationType'] as $key)$snake[Str::snake($key)]=$data[$key] ?? $branch->{Str::snake($key)};
             $snake['slug']=$branch->slug;$snake['public_name']=$snake['public_name'] ?: $snake['name'];
             if($branch->review_status->value==='APPROVED')$branch->fill($snake)->save();
             else $this->branches->updateDraft($branch,$snake);
@@ -155,6 +159,9 @@ class ManagementController extends Controller
             $presentation=$this->presenter->branch($branch);
             if($action==='publish')abort_unless($presentation['readiness']['ready'],409,implode(', ',$presentation['readiness']['reasons']));
             if($action==='submit')abort_if(($presentation['serviceMode'] ?? 'AT_LOCATION')!=='MOBILE' && (empty($presentation['addressLine'])||empty($presentation['districtId'])),422,'Cần hoàn tất địa chỉ và quận/huyện.');
+            if($action==='submit' && $branch->registration_type){
+                abort_unless(\App\Services\Branches\RegistrationEvidence::hasPdf($branch->business_id,$branch->id),422,'Cần giấy đăng ký chi nhánh PDF riêng tư.');
+            }
             $branch=$this->branches->$action($branch,$request->user());
         }
         return $this->presenter->branch($branch);

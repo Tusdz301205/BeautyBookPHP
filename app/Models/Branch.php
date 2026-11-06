@@ -19,6 +19,7 @@ class Branch extends Model
         'public_name',
         'description',
         'address_line',
+        'registration_type',
         'phone',
         'email',
         'timezone',

@@ -23,6 +23,7 @@ class BranchLifecycleService
             'public_name' => $data['public_name'] ?? $data['name'],
             'description' => $data['description'] ?? null,
             'address_line' => $data['address_line'] ?? null,
+            'registration_type' => $data['registration_type'] ?? null,
             'phone' => $data['phone'] ?? null,
             'email' => $data['email'] ?? null,
             'timezone' => $data['timezone'] ?? 'Asia/Ho_Chi_Minh',
@@ -48,6 +49,7 @@ class BranchLifecycleService
             'email' => $data['email'] ?? null,
             'timezone' => $data['timezone'],
             'review_note' => null,
+            'registration_type' => $data['registration_type'] ?? $branch->registration_type,
         ])->save();
 
         return $branch;
@@ -237,6 +239,14 @@ class BranchLifecycleService
 
     private function assertComplete(Branch $branch): void
     {
+        if ($branch->registration_type !== null) {
+            if ($branch->registration_type === 'ENTERPRISE_BRANCH' && $branch->business->legal_entity_type === 'HOUSEHOLD_BUSINESS') {
+                throw new DomainException('Hộ kinh doanh không dùng loại chi nhánh doanh nghiệp.');
+            }
+            if (! RegistrationEvidence::hasPdf($branch->business_id, $branch->id)) {
+                throw new DomainException('Cần giấy đăng ký chi nhánh PDF riêng tư.');
+            }
+        }
         $missing = collect([
             'public_name' => $branch->public_name,
             'address_line' => $branch->address_line,

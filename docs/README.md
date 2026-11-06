@@ -12,5 +12,6 @@ Tài liệu hiện hành cho môn Lập trình mã nguồn mở, dùng bản Lar
 | [Prompt đã sử dụng](course/PORT_IMPLEMENTATION_PROMPT.md) | Ghi lại cách áp dụng prompts.chat vào đồ án |
 | [Nghiệm thu](course/evidence/2026-10-07/FINAL_VALIDATION.md) | Kết quả kiểm thử, build và trình duyệt |
 | [Hướng dẫn chạy](../README.md) | Cài đặt Docker, tài khoản demo và lệnh kiểm thử |
+| [Đợt chuyển tính năng đăng ký 03/11/2026](migration/2026-11-03-registration/IMPLEMENTATION.md) | Pháp nhân, đăng ký chi nhánh, yêu cầu đổi địa chỉ có duyệt và kiểm thử |
 
 Thư mục `course/evidence/2026-10-07` chứa ảnh giao diện, kết quả kiểm thử và bằng chứng booking thật phục vụ báo cáo. Các tài liệu audit/planning của bản NestJS/React, hồ sơ thực tập/CV và báo cáo cũ đã được loại bỏ.

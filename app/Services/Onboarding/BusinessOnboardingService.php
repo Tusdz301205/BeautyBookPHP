@@ -39,6 +39,10 @@ class BusinessOnboardingService
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
                 'address_line' => $data['address_line'] ?? null,
+                'legal_entity_type' => $data['legal_entity_type'] ?? null,
+                'legal_name' => $data['legal_name'] ?? null,
+                'registration_number' => $data['registration_number'] ?? null,
+                'registered_address' => $data['registered_address'] ?? null,
                 'status' => BusinessStatus::Draft,
             ]);
 
@@ -69,6 +73,10 @@ class BusinessOnboardingService
                 'contact_phone' => $data['contact_phone'],
                 'address_line' => $data['address_line'],
                 'review_note' => null,
+                'legal_entity_type' => $data['legal_entity_type'] ?? $locked->legal_entity_type,
+                'legal_name' => $data['legal_name'] ?? $locked->legal_name,
+                'registration_number' => $data['registration_number'] ?? $locked->registration_number,
+                'registered_address' => $data['registered_address'] ?? $locked->registered_address,
             ])->save();
 
             $locked->ownerProfile()->update([
@@ -103,6 +111,15 @@ class BusinessOnboardingService
             }
 
             $from = $locked->status;
+            // Legacy profiles remain readable/submittable. New legal profiles must
+            // carry a complete registration and private PDF before review.
+            if ($locked->legal_entity_type !== null) {
+                foreach (['legal_name', 'registration_number', 'registered_address'] as $field) {
+                    if (blank($locked->$field)) throw new DomainException('Cần hoàn tất thông tin đăng ký pháp nhân.');
+                }
+                $license = \App\Services\Branches\RegistrationEvidence::hasPdf($locked->id, null);
+                if (! $license) throw new DomainException('Cần giấy đăng ký kinh doanh PDF riêng tư trước khi gửi duyệt.');
+            }
             $locked->forceFill([
                 'status' => BusinessStatus::PendingReview,
                 'submitted_at' => now(),

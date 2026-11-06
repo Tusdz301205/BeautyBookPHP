@@ -52,6 +52,7 @@ import {
   Textarea,
 } from '../../components/ui';
 import '../../styles/branch-operations.css';
+import { registrationTypes } from '../../components/branches/BranchChangesPanel';
 
 const steps = [
   ['Mô hình cơ sở', Building2],
@@ -83,6 +84,7 @@ const defaultHours = dayLabels.map((_, dayOfWeek) => ({
 }));
 
 const defaults = {
+  registrationType: 'BUSINESS_LOCATION',
   sameLegalEntity: true,
   serviceMode: 'AT_LOCATION',
   name: '',
@@ -183,6 +185,7 @@ export default function BranchOnboardingWizard() {
       ...draft,
       sameLegalEntity: value.sameLegalEntity ?? true,
       serviceMode: value.serviceMode || current.serviceMode,
+      registrationType: value.registrationType || '',
       name: value.name || '',
       publicName: value.publicName || '',
       phone: value.phone || '',
@@ -330,6 +333,7 @@ export default function BranchOnboardingWizard() {
   };
 
   const branchPatch = () => ({
+    registrationType: form.registrationType || null,
     name: form.name.trim() || undefined,
     publicName: form.publicName.trim() || undefined,
     phone: form.phone.trim() || undefined,
@@ -365,6 +369,7 @@ export default function BranchOnboardingWizard() {
       if (!id) {
         const result = await branchesApi.createDraft({
           businessId: business.id,
+          registrationType: form.registrationType || null,
           sameLegalEntity: form.sameLegalEntity,
           serviceMode: form.serviceMode,
           name: form.name.trim() || undefined,
@@ -635,6 +640,7 @@ export default function BranchOnboardingWizard() {
                     ))}
                   </div>
                 </fieldset>
+                <Field label="Loại đăng ký chi nhánh" required={!branch || Boolean(branch.registrationType)}><Select value={form.registrationType} onChange={set('registrationType')}>{branch && !branch.registrationType && <option value="">Chưa khai loại đăng ký</option>}{registrationTypes.map(([value,label]) => <option key={value} value={value}>{label}</option>)}</Select></Field>
                 <Field label="Mô hình phục vụ">
                   <Select value={form.serviceMode} onChange={set('serviceMode')}>
                     <option value="AT_LOCATION">Địa điểm cố định</option>

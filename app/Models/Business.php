@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Business extends Model
 {
+    // Explicit management presenters expose these only in authorized responses.
+    protected $hidden = ['legal_entity_type', 'legal_name', 'registration_number', 'registered_address'];
+
     protected $fillable = [
         'owner_profile_id',
         'name',
@@ -18,6 +21,10 @@ class Business extends Model
         'contact_email',
         'contact_phone',
         'address_line',
+        'legal_entity_type',
+        'legal_name',
+        'registration_number',
+        'registered_address',
         'status',
         'review_note',
         'submitted_at',

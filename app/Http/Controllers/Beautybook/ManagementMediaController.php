@@ -39,6 +39,7 @@ class ManagementMediaController extends Controller
         $media=MediaFile::findOrFail($id);
         if(in_array($media->entity_type,['USER_AVATAR','CUSTOMER_AVATAR'])){abort_unless($media->uploaded_by===$request->user()->id && $media->entity_id===$request->user()->id,403);}
         else $this->scope->owner($request,$media->business_id);
+        abort_if(DB::table('branch_change_requests')->where('media_id', $media->id)->exists(),409,'Tài liệu đang được lưu trong lịch sử thay đổi chi nhánh.');
         abort_if(DB::table('beautybook_document_versions')->where('media_id',$id)->exists(),409,'Tài liệu đã có lịch sử phiên bản. Hãy lưu trữ hồ sơ tài liệu.');
         DB::transaction(function () use($media){foreach(['business_images','branch_images','service_images','staff_images'] as $table)DB::table($table)->where('media_file_id',$media->id)->delete();$media->delete();});Storage::disk($media->disk)->delete($media->path);return response()->noContent();
     }
@@ -46,7 +47,7 @@ class ManagementMediaController extends Controller
     {
         $media=MediaFile::findOrFail($id);
         if($media->entity_type==='USER_AVATAR')abort_unless($media->uploaded_by===$request->user()->id && $media->entity_id===$request->user()->id,403);
-        elseif($media->visibility!=='PUBLIC')$this->scope->owner($request,$media->business_id);
+        elseif($media->visibility!=='PUBLIC' && $this->scope->current($request)->role_name !== 'PLATFORM_ADMIN')$this->scope->owner($request,$media->business_id);
         abort_unless(Storage::disk($media->disk)->exists($media->path),404);
         return Storage::disk($media->disk)->response($media->path,$media->original_name,['Content-Type'=>$media->mime_type,'Cache-Control'=>$media->visibility==='PRIVATE'?'private, no-store':'public, max-age=3600']);
     }

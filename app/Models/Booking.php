@@ -12,6 +12,16 @@ class Booking extends Model
 {
     use SoftDeletes;
 
+    protected static function booted(): void
+    {
+        static::creating(function (Booking $booking) {
+            if ($booking->branch_location_snapshot === null && ($branch = Branch::find($booking->branch_id))) {
+                $booking->branch_location_snapshot = \App\Services\Branches\BranchLocation::snapshot($branch)
+                    + ['basis' => 'AT_BOOKING', 'capturedAt' => now('UTC')->toIso8601String()];
+            }
+        });
+    }
+
     protected $fillable = [
         'business_id', 'branch_id', 'customer_profile_id', 'created_by_user_id', 'booking_code',
         'appointment_start_at', 'appointment_end_at', 'status', 'source', 'pending_expires_at',
@@ -21,6 +31,7 @@ class Booking extends Model
     protected function casts(): array
     {
         return [
+            'branch_location_snapshot' => 'array',
             'appointment_start_at' => \App\Casts\UtcDateTime::class,
             'appointment_end_at' => \App\Casts\UtcDateTime::class,
             'pending_expires_at' => 'datetime',

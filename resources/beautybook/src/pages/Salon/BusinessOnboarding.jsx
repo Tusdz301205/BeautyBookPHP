@@ -51,6 +51,8 @@ const steps = [
 const identityDefaults = {
   name: '',
   slug: '',
+  legalEntityType: 'ENTERPRISE',
+  registrationNumber: '',
   companyName: '',
   taxCode: '',
   identityCardNumber: '',
@@ -197,6 +199,7 @@ export default function BusinessOnboarding() {
     }
     const recoveredName = isInternalBusinessDraftName(value.name) ? '' : value.name || '';
     setIdentity(Object.fromEntries(Object.keys(identityDefaults).map((key) => {
+      if (key === 'legalEntityType') return [key, value.legalEntityType || ''];
       if (key === 'name') return [key, recoveredName];
       if (key === 'slug') return [key, recoveredName ? (value.slug || '') : ''];
       const fallback = key === 'contactEmail' ? account?.email
@@ -269,6 +272,8 @@ export default function BusinessOnboarding() {
     }));
 
   const payload = (nextStep, nextDraft) => ({
+    legalName: identity.companyName.trim(),
+    registeredAddress: identity.addressLine.trim(),
     ...Object.fromEntries(Object.entries(identity).map(([key, value]) => {
       if (typeof value !== 'string') return [key, value];
       const trimmed = value.trim();
@@ -643,18 +648,20 @@ export default function BusinessOnboarding() {
 
             {step === 2 && (
               <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Loại pháp nhân" required={!business || Boolean(business.legalEntityType)} error={validationErrors.legalEntityType} className="sm:col-span-2"><Select value={identity.legalEntityType} onChange={updateIdentity('legalEntityType')} disabled={busy === 'submit'}>{business && !business.legalEntityType && <option value="">Chưa khai loại pháp nhân</option>}<option value="ENTERPRISE">Doanh nghiệp</option><option value="HOUSEHOLD_BUSINESS">Hộ kinh doanh</option></Select></Field>
                 {[
                   ['name', 'Tên thương hiệu'],
                   ['slug', 'Đường dẫn BeautyBook'],
                   ['companyName', 'Tên pháp nhân'],
                   ['taxCode', 'Mã số thuế'],
+                  ['registrationNumber', 'Số đăng ký kinh doanh'],
                   ['identityCardNumber', 'Số CCCD người đại diện'],
                   ['contactEmail', 'Email liên hệ'],
                   ['contactPhone', 'Điện thoại'],
                   ['addressLine', 'Địa chỉ đăng ký'],
                   ['legalRepresentative', 'Người đại diện'],
                 ].map(([key, label]) => (
-                  <Field key={key} label={label} required={key !== 'identityCardNumber'} error={validationErrors[key] || (key === 'contactPhone' ? validationErrors.phoneVerification : undefined)}>
+                  <Field key={key} label={label} required={key !== 'identityCardNumber' && (key !== 'registrationNumber' || Boolean(identity.legalEntityType))} error={validationErrors[key] || (key === 'contactPhone' ? validationErrors.phoneVerification : undefined)}>
                     <Input
                       id={`onboarding-${key}`}
                       type={key === 'contactEmail' ? 'email' : 'text'}
