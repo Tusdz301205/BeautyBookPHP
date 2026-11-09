@@ -559,6 +559,15 @@ export const staffApi = {
 
   getById: (id) => request(`/staff/${id}`),
   getMine: () => request('/staff/me'),
+  getWorkingHours: (id, scope) => request('/staff/' + id + '/working-hours/manage', scope),
+  saveWorkingHours: (id, days, scope) => request('/staff/' + id + '/working-hours', {
+    ...scope, method: 'PUT', body: JSON.stringify({ days }),
+  }),
+  getTimeOff: (id, query, scope) => request('/staff/' + id + '/time-off/manage?' + new URLSearchParams(query), scope),
+  saveTimeOff: (id, offId, data, scope) => request('/staff/' + id + '/time-off' + (offId ? '/' + offId : ''), {
+    ...scope, method: offId ? 'PUT' : 'POST', body: JSON.stringify(data),
+  }),
+  removeTimeOff: (id, offId, scope) => request('/staff/' + id + '/time-off/' + offId, { ...scope, method: 'DELETE' }),
 
   create: (data) =>
     request('/staff', {

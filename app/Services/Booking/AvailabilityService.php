@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\BranchServiceOffering;
 use App\Models\BranchWorkingHour;
 use App\Models\StaffProfile;
+use App\Services\Staff\StaffCalendarService;
 use App\Services\Platform\PlatformSettingsService;
 use Carbon\CarbonImmutable;
 use DomainException;
@@ -16,6 +17,42 @@ use Illuminate\Support\Facades\Schema;
 class AvailabilityService
 {
     private const BLOCKING_STATUSES = ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS'];
+
+    public function __construct(private StaffCalendarService $staffCalendar) {}
+
+    /** Booking writers take the branch lock before reading the current calendar. */
+    public function assertCalendarWindow(
+        Branch $branch,
+        ?int $staffId,
+        CarbonImmutable $itemStart,
+        CarbonImmutable $occupiedStart,
+        CarbonImmutable $occupiedEnd,
+        bool $lock,
+    ): void {
+        $timezone = $branch->timezone ?: 'Asia/Ho_Chi_Minh';
+        $localDay = $itemStart->setTimezone($timezone);
+        $date = $localDay->toDateString();
+        $hours = BranchWorkingHour::query()->where('branch_id', $branch->id)
+            ->where('day_of_week', $localDay->dayOfWeek)
+            ->when($lock, fn ($query) => $query->lockForUpdate())->first();
+        if (Schema::hasTable('beautybook_branch_calendar')) {
+            $hours = DB::table('beautybook_branch_calendar')->where('branch_id', $branch->id)->where('date', $date)
+                ->when($lock, fn ($query) => $query->lockForUpdate())->first() ?? $hours;
+        }
+
+        if (! $hours || $hours->is_closed || ! $hours->open_time || ! $hours->close_time) {
+            throw new DomainException('Chi nhánh đóng cửa vào ngày đã chọn.');
+        }
+        $open = CarbonImmutable::parse($date.' '.$hours->open_time, $timezone);
+        $close = CarbonImmutable::parse($date.' '.$hours->close_time, $timezone);
+        if ($occupiedStart->lessThan($open) || $occupiedEnd->greaterThan($close)) {
+            throw new DomainException('Khung giờ nằm ngoài giờ phục vụ của chi nhánh.');
+        }
+
+        if ($staffId !== null) {
+            $this->staffCalendar->assertAvailable($staffId, $occupiedStart->setTimezone($timezone), $occupiedEnd->setTimezone($timezone), $lock);
+        }
+    }
 
     public function resolveStaff(
         Branch $branch,
@@ -103,36 +140,7 @@ class AvailabilityService
         $occupiedStartLocal = $itemStartLocal->subMinutes((int) $quote['buffer_before_minutes']);
         $occupiedEndLocal = $itemEndLocal->addMinutes((int) $quote['buffer_after_minutes']);
 
-        $hoursQuery = BranchWorkingHour::query()
-            ->where('branch_id', $branch->id)
-            ->where('day_of_week', $itemStartLocal->dayOfWeek);
-
-        if ($lock) {
-            $hoursQuery->lockForUpdate();
-        }
-
-        $hours = $hoursQuery->first();
-        if (Schema::hasTable('beautybook_branch_calendar')) {
-            $exceptionQuery = DB::table('beautybook_branch_calendar')->where('branch_id', $branch->id)->where('date', $itemStartLocal->toDateString());
-            if ($lock) {
-                $exceptionQuery->lockForUpdate();
-            }
-            $exception = $exceptionQuery->first();
-            if ($exception) {
-                $hours = $exception;
-            }
-        }
-
-        if (! $hours || $hours->is_closed || ! $hours->open_time || ! $hours->close_time) {
-            throw new DomainException('Chi nhánh đóng cửa vào ngày đã chọn.');
-        }
-
-        $open = CarbonImmutable::parse($itemStartLocal->toDateString().' '.$hours->open_time, $timezone);
-        $close = CarbonImmutable::parse($itemStartLocal->toDateString().' '.$hours->close_time, $timezone);
-
-        if ($occupiedStartLocal->lessThan($open) || $occupiedEndLocal->greaterThan($close)) {
-            throw new DomainException('Khung giờ nằm ngoài giờ phục vụ của chi nhánh.');
-        }
+        $this->assertCalendarWindow($branch, $staff?->id, $itemStartLocal, $occupiedStartLocal, $occupiedEndLocal, $lock);
 
         $itemStartUtc = $itemStartLocal->utc();
         $itemEndUtc = $itemEndLocal->utc();

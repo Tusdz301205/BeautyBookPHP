@@ -4,6 +4,7 @@ namespace App\Services\Beautybook;
 
 use App\Models\Booking;
 use App\Models\BookingService;
+use App\Models\Branch;
 use App\Models\StaffProfile;
 use App\Services\Booking\AvailabilityService;
 use App\Services\Booking\BookingLifecycleAccessService;
@@ -35,12 +36,23 @@ class BookingCommands
         DB::table('beautybook_booking_edits')->insert(['booking_id' => $b->id, 'booking_service_id' => $item, 'actor_user_id' => $r->user()->id, 'action' => $action, 'reason' => $reason, 'before' => json_encode($before, JSON_THROW_ON_ERROR), 'after' => json_encode($after, JSON_THROW_ON_ERROR), 'created_at' => now(), 'updated_at' => now()]);
     }
 
+    private function lockSchedule(Request $request, Booking $booking): array
+    {
+        $branch = Branch::whereKey($booking->branch_id)->lockForUpdate()->firstOrFail();
+        $branch->business()->lockForUpdate()->firstOrFail();
+        [$current, $context] = $this->lock($request, $booking);
+        abort_unless($current->branch_id === $branch->id, 409, 'Chi nhánh của lịch hẹn đã thay đổi. Vui lòng tải lại.');
+        $current->setRelation('branch', $branch);
+
+        return [$current, $context];
+    }
+
     public function move(Request $r, Booking $booking, string $start, ?string $end, ?int $staffId): Booking
     {
         return DB::transaction(function () use ($r, $booking, $start, $end, $staffId) {
-            [$b,$c] = $this->lock($r, $booking);
+            [$b,$c] = $this->lockSchedule($r, $booking);
             abort_unless(in_array($b->status, ['PENDING', 'CONFIRMED'], true), 409, 'Chỉ được di chuyển lịch chưa check-in.');
-            $branch = $b->branch()->lockForUpdate()->firstOrFail();
+            $branch = $b->branch;
             $items = $b->services()->orderBy('sort_order')->lockForUpdate()->get();
             $new = CarbonImmutable::parse($start)->utc();
             $shift = (int) $b->appointment_start_at->diffInMinutes($new, false);
@@ -67,7 +79,7 @@ class BookingCommands
     public function resize(Request $r, Booking $booking, string $end): Booking
     {
         return DB::transaction(function () use ($r, $booking, $end) {
-            [$b,$c] = $this->lock($r, $booking);
+            [$b,$c] = $this->lockSchedule($r, $booking);
             abort_unless(in_array($b->status, ['PENDING', 'CONFIRMED'], true), 409);
             $i = $b->services()->orderByDesc('sort_order')->lockForUpdate()->firstOrFail();
             $new = CarbonImmutable::parse($end)->utc();
@@ -143,7 +155,7 @@ class BookingCommands
     public function add(Request $r, Booking $booking, array $data): Booking
     {
         return DB::transaction(function () use ($r, $booking, $data) {
-            [$b,$c] = $this->lock($r, $booking);
+            [$b,$c] = $this->lockSchedule($r, $booking);
             abort_unless(in_array($b->status, ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS'], true), 409);
             if (isset($data['price']) || isset($data['durationMinutes'])) {
                 abort_unless($c['kind'] === 'OWNER', 403);
@@ -168,7 +180,9 @@ class BookingCommands
     public function item(Request $r, Booking $booking, int $itemId, array $data): Booking
     {
         return DB::transaction(function () use ($r, $booking, $itemId, $data) {
-            [$b,$c] = $this->lock($r, $booking);
+            [$b,$c] = in_array($data['action'], ['REASSIGN', 'RESIZE'], true)
+                ? $this->lockSchedule($r, $booking)
+                : $this->lock($r, $booking);
             $i = $b->services()->whereKey($itemId)->lockForUpdate()->firstOrFail();
             abort_unless($i->revision === $data['expectedRevision'], 409);
             $before = $i->getAttributes();

@@ -115,7 +115,14 @@ class ImpactTest extends TestCase
         $booking = $this->booking(); $case = $this->impact($booking); [$target, $staff] = $this->target($booking); $this->actor('owner');
         $originalItem = $booking->services()->first(); $snapshot = $booking->pricingSnapshot->source_snapshot;
         $originalLocation = $booking->branch_location_snapshot;
-        $this->resolve($case, ['resolution' => 'TRANSFER_BRANCH', 'replacement_branch_id' => $target->id, 'replacement_staff_id' => $staff->id, 'reason' => 'Khách đồng ý sang chi nhánh gần nhất'])->assertOk();
+        $transfer = ['resolution' => 'TRANSFER_BRANCH', 'replacement_branch_id' => $target->id,
+            'replacement_staff_id' => $staff->id, 'reason' => 'Khách đồng ý sang chi nhánh gần nhất'];
+        $absence = DB::table('staff_time_offs')->insertGetId(['staff_profile_id' => $staff->id,
+            'starts_at' => $originalItem->getRawOriginal('item_start_at'), 'ends_at' => $originalItem->getRawOriginal('item_end_at')]);
+        $this->resolve($case, $transfer)->assertUnprocessable();
+        $this->assertSame($booking->branch_id, $booking->fresh()->branch_id);
+        DB::table('staff_time_offs')->where('id', $absence)->delete();
+        $this->resolve($case, $transfer)->assertOk();
         $this->assertSame($target->id, $booking->fresh()->branch_id);
         $location = $booking->fresh()->branch_location_snapshot;
         $this->assertSame($target->address_line, $location['addressLine']);

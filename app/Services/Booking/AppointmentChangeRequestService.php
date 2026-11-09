@@ -7,10 +7,12 @@ use App\Models\AppointmentChangeRequest;
 use App\Models\Booking;
 use App\Models\BookingService;
 use App\Models\BookingStatusHistory;
+use App\Models\Branch;
 use App\Models\CustomerProfile;
 use App\Models\RoleAssignment;
 use App\Models\StaffProfile;
 use Carbon\CarbonImmutable;
+use DomainException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +22,7 @@ class AppointmentChangeRequestService
         private BookingLifecycleAccessService $access,
         private BookingPolicyService $policy,
         private BookingNotificationService $notifications,
+        private AvailabilityService $availability,
     ) {
     }
 
@@ -62,8 +65,8 @@ class AppointmentChangeRequestService
                 'requested_by_user_id' => $context['actor_user_id'],
                 'requested_by_type' => $context['kind'] === 'CUSTOMER' ? 'CUSTOMER' : ($context['kind'] === 'ADMIN' ? 'ADMIN' : 'SALON'),
                 'request_type' => $type,
-                'proposed_start_at' => $data['proposed_start_at'] ?? null,
-                'proposed_end_at' => $data['proposed_end_at'] ?? null,
+                'proposed_start_at' => isset($data['proposed_start_at']) ? CarbonImmutable::parse($data['proposed_start_at'])->utc() : null,
+                'proposed_end_at' => isset($data['proposed_end_at']) ? CarbonImmutable::parse($data['proposed_end_at'])->utc() : null,
                 'proposed_staff_profile_id' => $data['proposed_staff_profile_id'] ?? null,
                 'reason' => $data['reason'] ?? null,
                 'status' => 'PENDING',
@@ -96,7 +99,12 @@ class AppointmentChangeRequestService
         $now = $at ?? CarbonImmutable::now('UTC');
 
         $result = DB::transaction(function () use ($booking, $changeRequest, $context, $reviewNote, $now) {
+            $branch = Branch::whereKey($booking->branch_id)->lockForUpdate()->firstOrFail();
+            $branch->business()->lockForUpdate()->firstOrFail();
             $lockedBooking = Booking::query()->whereKey($booking->id)->lockForUpdate()->firstOrFail();
+            if ($lockedBooking->branch_id !== $branch->id) {
+                throw new BookingConflictException('Chi nhánh của lịch hẹn đã thay đổi. Vui lòng tải lại.');
+            }
             $this->access->assertCurrent($lockedBooking, $context);
             $lockedRequest = AppointmentChangeRequest::query()->whereKey($changeRequest->id)->lockForUpdate()->firstOrFail();
             abort_unless((int) $lockedRequest->booking_id === (int) $lockedBooking->id, 404);
@@ -110,9 +118,9 @@ class AppointmentChangeRequestService
             if ($lockedRequest->request_type === 'CANCEL') {
                 $this->applyCancellation($lockedBooking, $context['actor_user_id'], $lockedRequest->reason);
             } elseif ($lockedRequest->request_type === 'RESCHEDULE') {
-                $this->applyReschedule($lockedBooking, $lockedRequest);
+                $this->applyReschedule($branch, $lockedBooking, $lockedRequest);
             } elseif ($lockedRequest->request_type === 'STAFF_CHANGE') {
-                $this->applyStaffChange($lockedBooking, $lockedRequest);
+                $this->applyStaffChange($branch, $lockedBooking, $lockedRequest);
             }
 
             $lockedRequest->status = 'APPROVED';
@@ -250,7 +258,7 @@ class AppointmentChangeRequestService
         ]);
     }
 
-    private function applyReschedule(Booking $booking, AppointmentChangeRequest $request): void
+    private function applyReschedule(Branch $branch, Booking $booking, AppointmentChangeRequest $request): void
     {
         $newStart = CarbonImmutable::parse($request->getRawOriginal('proposed_start_at'), 'UTC');
         $newEnd = CarbonImmutable::parse($request->getRawOriginal('proposed_end_at'), 'UTC');
@@ -275,6 +283,8 @@ class AppointmentChangeRequestService
         foreach ($items as $item) {
             $occupiedStart = CarbonImmutable::parse($item->getRawOriginal('occupied_start_at'), 'UTC')->addSeconds($delta);
             $occupiedEnd = CarbonImmutable::parse($item->getRawOriginal('occupied_end_at'), 'UTC')->addSeconds($delta);
+            $itemStart = CarbonImmutable::parse($item->getRawOriginal('item_start_at'), 'UTC')->addSeconds($delta);
+            $this->assertReviewCalendar($branch, $item->staff_profile_id, $itemStart, $occupiedStart, $occupiedEnd);
             if ($item->staff_profile_id !== null) {
                 $staffConflict = BookingService::query()
                     ->where('staff_profile_id', $item->staff_profile_id)
@@ -303,7 +313,7 @@ class AppointmentChangeRequestService
         $booking->save();
     }
 
-    private function applyStaffChange(Booking $booking, AppointmentChangeRequest $request): void
+    private function applyStaffChange(Branch $branch, Booking $booking, AppointmentChangeRequest $request): void
     {
         $staff = StaffProfile::query()
             ->whereKey($request->proposed_staff_profile_id)
@@ -328,6 +338,8 @@ class AppointmentChangeRequestService
             if (! $qualified) {
                 throw new BookingConflictException('Nhân viên đề xuất không đủ điều kiện thực hiện dịch vụ này.');
             }
+            $this->assertReviewCalendar($branch, $staff->id, $item->item_start_at->toImmutable(),
+                $item->occupied_start_at->toImmutable(), $item->occupied_end_at->toImmutable());
 
             $conflict = BookingService::query()
                 ->where('staff_profile_id', $staff->id)
@@ -346,6 +358,20 @@ class AppointmentChangeRequestService
             $item->staff_profile_id = $staff->id;
             $item->revision = ((int) $item->revision) + 1;
             $item->save();
+        }
+    }
+
+    private function assertReviewCalendar(
+        Branch $branch,
+        ?int $staffId,
+        CarbonImmutable $itemStart,
+        CarbonImmutable $occupiedStart,
+        CarbonImmutable $occupiedEnd,
+    ): void {
+        try {
+            $this->availability->assertCalendarWindow($branch, $staffId, $itemStart, $occupiedStart, $occupiedEnd, true);
+        } catch (DomainException $exception) {
+            throw new BookingConflictException($exception->getMessage());
         }
     }
 

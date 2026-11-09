@@ -4,7 +4,9 @@ import { ArrowLeft, Mail, Send, ShieldX } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { staffApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
+import { StaffHoursPanel, StaffTimeOffPanel } from '../../components/staff/StaffCalendarPanels';
 import { Badge, Button, Card, Dialog, EmptyState, ErrorState, Field, Input, Page, PageHeader, Select, Skeleton } from '../../components/ui';
+import { activeContextFor, roleAt } from '../../utils/authScope';
 
 const tabs = [
   ['profile', 'Tổng quan'], ['account', 'Tài khoản'], ['assignments', 'Vai trò & chi nhánh'],
@@ -59,13 +61,43 @@ function AccountPanel({ staff, onChanged }) {
 
 export default function StaffDetail() {
   const { staffId } = useParams();
+  const user = useAuthStore((state) => state.user);
+  const context = activeContextFor(user);
+  const key = JSON.stringify([staffId, user?.id, user?.sessionId, context.tenantId, context.branchId, user?.scopes]);
+  return <StaffDetailContent key={key} staffId={staffId} user={user} tenantId={context.tenantId} />;
+}
+
+function StaffDetailContent({ staffId, user, tenantId }) {
   const [params, setParams] = useSearchParams();
-  const active = tabs.some(([key]) => key === params.get('tab')) ? params.get('tab') : 'profile';
   const [staff, setStaff] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [calendarBusy, setCalendarBusy] = useState(false);
   const load = async () => { setLoading(true); setError(''); try { setStaff(await staffApi.getById(staffId)); } catch (requestError) { setError(requestError.message || 'Không thể tải hồ sơ nhân sự.'); } finally { setLoading(false); } };
   useEffect(() => { load(); }, [staffId]);
+
+  const businessId = staff?.branch?.businessId ?? staff?.businessId;
+  const branchId = staff?.branch?.id ?? staff?.branchId;
+  const scope = useMemo(() => ({ businessId, branchId }), [businessId, branchId]);
+  const canEditCalendar = Boolean(businessId && branchId && tenantId === businessId && roleAt(user, 'BUSINESS_OWNER', businessId));
+  const canReadCalendar = canEditCalendar || Boolean(businessId && branchId && tenantId === businessId && roleAt(user, 'RECEPTIONIST', businessId, branchId));
+  const availableTabs = canReadCalendar ? [...tabs.slice(0, 4), ['hours', 'Giờ làm'], ['time-off', 'Lịch nghỉ'], ...tabs.slice(4)] : tabs;
+  const active = availableTabs.some(([key]) => key === params.get('tab')) ? params.get('tab') : 'profile';
+  const timezone = staff?.branch?.timezone || 'Asia/Ho_Chi_Minh';
+  const selectTab = (key) => {
+    if (!calendarBusy) setParams({ tab: key });
+  };
+  const tabKeys = (event, index) => {
+    const steps = { ArrowLeft: -1, ArrowRight: 1 };
+    if (calendarBusy || !(event.key in steps || event.key === 'Home' || event.key === 'End')) return;
+    event.preventDefault();
+    const last = availableTabs.length - 1;
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? last
+      : (index + steps[event.key] + availableTabs.length) % availableTabs.length;
+    const [key] = availableTabs[next];
+    selectTab(key);
+    event.currentTarget.parentElement.querySelector('#staff-tab-' + key)?.focus();
+  };
 
   const content = useMemo(() => {
     if (!staff) return null;
@@ -73,11 +105,31 @@ export default function StaffDetail() {
     if (active === 'account') return <AccountPanel staff={staff} onChanged={load} />;
     if (active === 'assignments') return <Rows rows={staff.branchAssignments} empty="Chưa có phân công chi nhánh." render={(item) => <div key={item.id} className="grid gap-2 p-4 text-sm sm:grid-cols-4"><strong>{item.branch?.name}</strong><span>{item.jobTitle || '—'}</span><span>{date(item.startDate)} → {date(item.endDate)}</span><Badge tone={item.status === 'ACTIVE' ? 'success' : 'neutral'}>{item.status}</Badge></div>} />;
     if (active === 'services') return <Rows rows={staff.staffServices} empty="Chưa được gán dịch vụ." render={(item) => <div key={item.id} className="flex items-center justify-between p-4 text-sm"><strong>{item.service?.name}</strong><span>{Number(item.service?.price || 0).toLocaleString('vi-VN')} ₫ · {item.service?.durationMinutes || 0} phút</span></div>} />;
+    if (active === 'hours') return <StaffHoursPanel staffId={staffId} scope={scope} timezone={timezone}
+      canEdit={canEditCalendar} onBusyChange={setCalendarBusy} />;
+    if (active === 'time-off') return <StaffTimeOffPanel staffId={staffId} scope={scope} timezone={timezone}
+      canEdit={canEditCalendar} onBusyChange={setCalendarBusy} />;
     if (active === 'documents') return <EmptyState title="Chưa có tài liệu nhân sự" description="Hệ thống hiện chưa hỗ trợ lưu tài liệu riêng cho từng nhân viên." />;
     return <Rows rows={staff.auditTrail} empty="Chưa có sự kiện audit cho hồ sơ này." render={(item) => <div key={item.id} className="grid gap-2 p-4 text-sm sm:grid-cols-[150px_1fr_180px]"><Badge>{item.action}</Badge><span>{item.reason || item.entityType}</span><time>{dateTime(item.createdAt)}</time></div>} />;
-  }, [active, staff]);
+  }, [active, staff, staffId, scope, timezone, canEditCalendar]);
 
   if (loading) return <Page><Skeleton rows={9} /></Page>;
   if (error) return <Page><ErrorState message={error} onRetry={load} /></Page>;
-  return <Page><PageHeader eyebrow="Chi tiết nhân sự" title={staff?.fullName || 'Nhân sự'} description={`${staff?.position || 'Nhân viên'} · ${staff?.branch?.name || 'Chưa có chi nhánh'}`} actions={<Link to="/salon/staff"><Button variant="ghost"><ArrowLeft size={16} />Danh sách</Button></Link>} /><div className="flex gap-1 overflow-x-auto border-b border-[var(--bb-border)]" role="tablist">{tabs.map(([key, label]) => <button key={key} role="tab" aria-selected={active === key} onClick={() => setParams({ tab: key })} className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold ${active === key ? 'border-[var(--bb-brand)] text-[var(--bb-brand-strong)]' : 'border-transparent text-[var(--bb-muted)]'}`}>{label}</button>)}</div>{content}</Page>;
+  return <Page>
+    <PageHeader eyebrow="Chi tiết nhân sự" title={staff?.fullName || 'Nhân sự'}
+      description={(staff?.position || 'Nhân viên') + ' · ' + (staff?.branch?.name || 'Chưa có chi nhánh')}
+      actions={<Link to="/salon/staff" onClick={(event) => { if (calendarBusy) event.preventDefault(); }}>
+        <Button variant="ghost" disabled={calendarBusy}><ArrowLeft size={16} />Danh sách</Button>
+      </Link>} />
+    <div className="flex min-w-0 flex-wrap gap-1 border-b border-[var(--bb-border)]" role="tablist" aria-label="Chi tiết nhân sự">
+      {availableTabs.map(([key, label], index) => <button key={key} id={'staff-tab-' + key} type="button"
+        role="tab" aria-selected={active === key} aria-controls="staff-detail-panel" tabIndex={active === key ? 0 : -1}
+        disabled={calendarBusy} onClick={() => selectTab(key)} onKeyDown={(event) => tabKeys(event, index)}
+        className={'min-h-11 shrink-0 border-b-2 px-3 py-3 text-sm font-semibold sm:px-4 ' + (active === key
+          ? 'border-[var(--bb-brand)] text-[var(--bb-brand-strong)]' : 'border-transparent text-[var(--bb-muted)]')}>
+        {label}
+      </button>)}
+    </div>
+    <section id="staff-detail-panel" role="tabpanel" aria-labelledby={'staff-tab-' + active}>{content}</section>
+  </Page>;
 }

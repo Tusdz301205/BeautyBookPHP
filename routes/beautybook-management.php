@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Beautybook\StaffCalendarController;
 use App\Http\Controllers\Beautybook\{ManagementController as Business,ManagementCatalogController as Catalog,ManagementStaffController as Staff,ManagementOffersController as Offers,ManagementMediaController as Media};
 
 Route::get('business/onboarding/config',[Business::class,'businessConfig']);
@@ -63,6 +64,12 @@ Route::patch('staff/branches/{branchId}/holidays',[Staff::class,'calendar']);
 Route::post('staff/branches/{branchId}/special-days',[Staff::class,'calendar']);
 Route::get('staff',[Staff::class,'index']);
 Route::get('staff/me',[Staff::class,'detail'])->defaults('id','me');
+Route::get('staff/{id}/working-hours/manage', [StaffCalendarController::class, 'hours'])->whereNumber('id');
+Route::put('staff/{id}/working-hours', [StaffCalendarController::class, 'replaceHours'])->whereNumber('id');
+Route::get('staff/{id}/time-off/manage', [StaffCalendarController::class, 'timeOff'])->whereNumber('id');
+Route::post('staff/{id}/time-off', [StaffCalendarController::class, 'saveTimeOff'])->whereNumber('id');
+Route::put('staff/{id}/time-off/{offId}', [StaffCalendarController::class, 'saveTimeOff'])->whereNumber(['id', 'offId']);
+Route::delete('staff/{id}/time-off/{offId}', [StaffCalendarController::class, 'removeTimeOff'])->whereNumber(['id', 'offId']);
 Route::get('staff/{id}',[Staff::class,'detail']);
 Route::post('staff',[Staff::class,'save']);
 Route::patch('staff/{id}',[Staff::class,'save']);
