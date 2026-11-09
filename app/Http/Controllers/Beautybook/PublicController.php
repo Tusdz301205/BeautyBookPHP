@@ -121,11 +121,11 @@ class PublicController extends Controller
         $offering = $this->offerings()->findOrFail($id);
         $itemIds = \App\Models\BookingService::where('branch_service_offering_id', $offering->id)->pluck('id')->map(fn ($value) => (int) $value)->all();
         $ratings = collect();
-        Review::where('status', 'APPROVED')->whereHas('booking.services', fn ($q) => $q->where('branch_service_offering_id', $offering->id))->with('customerProfile.user')->latest()->get()->each(function ($review) use ($itemIds, &$ratings) {
+        Review::publiclyVisible()->whereHas('booking.services', fn ($q) => $q->where('branch_service_offering_id', $offering->id))->with('customerProfile.user', 'photos')->latest()->get()->each(function ($review) use ($itemIds, &$ratings) {
             foreach ($review->service_ratings ?? [] as $row) {
                 if (! in_array((int) ($row['booking_service_id'] ?? 0), $itemIds, true)) continue;
                 $staff = isset($row['staff_profile_id']) ? StaffProfile::publicBookable()->find($row['staff_profile_id']) : null;
-                $ratings->push(['rating' => $row['rating'], 'comment' => $row['comment'] ?? null, 'createdAt' => $review->created_at?->toIso8601String(), 'staff' => $staff ? ['id' => (string) $staff->id, 'fullName' => $staff->full_name] : null, 'customerName' => $review->is_anonymous ? 'Ẩn danh' : ($review->customerProfile?->user?->name ?? 'Ẩn danh')]);
+                $ratings->push(['rating' => $row['rating'], 'comment' => $row['comment'] ?? null, 'createdAt' => $review->created_at?->toIso8601String(), 'staff' => $staff ? ['id' => (string) $staff->id, 'fullName' => $staff->full_name] : null, 'customerName' => $review->is_anonymous ? 'Ẩn danh' : ($review->customerProfile?->user?->name ?? 'Ẩn danh'), 'photos' => $review->photoData(public: true)]);
             }
         });
         return ['averageRating' => round($ratings->avg('rating') ?? 0, 1), 'totalRatings' => $ratings->count(), 'ratings' => $ratings->take(50)->values()->all()];

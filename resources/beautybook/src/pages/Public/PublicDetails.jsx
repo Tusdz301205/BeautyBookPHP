@@ -1,3 +1,4 @@
+import { ReviewPhotoGallery } from '../../components/customer/ReviewPhotoGallery';
 import { useEffect, useState } from 'react';
 import { uploadedMediaUrl } from '../../utils/mediaUrl';
 import { ArrowLeft, ArrowRight, CalendarCheck, Clock3, Heart, Image as ImageIcon, MapPin, Scissors, Star, UserRound } from 'lucide-react';
@@ -210,7 +211,7 @@ function ReviewList({ data }) {
   return (
     <div>
       <div className="bb-detail-rating"><Star size={22} className="fill-current" /><strong>{Number(average || 0).toFixed(1)}</strong><span>{total} lượt đánh giá</span></div>
-      <div className="bb-detail-review-list">{rows.slice(0, 8).map((row, index) => <article key={row.id || index}><div><strong>{row.customerName || 'Khách hàng ẩn danh'}</strong><span>{row.overallRating || row.rating}/5</span></div><p>{row.comment || 'Khách hàng không để lại nhận xét.'}</p></article>)}</div>
+      <div className="bb-detail-review-list">{rows.slice(0, 8).map((row, index) => <article key={row.id || index}><div><strong>{row.customerName || 'Khách hàng ẩn danh'}</strong><span>{row.overallRating || row.rating}/5</span></div><p>{row.comment || 'Khách hàng không để lại nhận xét.'}</p><ReviewPhotoGallery photos={row.photos} isPublic /></article>)}</div>
     </div>
   );
 }

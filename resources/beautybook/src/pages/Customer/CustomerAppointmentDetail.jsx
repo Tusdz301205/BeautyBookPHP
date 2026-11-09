@@ -1,3 +1,4 @@
+import { ReviewPhotoGallery } from '../../components/customer/ReviewPhotoGallery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { differenceInMinutes, format } from 'date-fns';
 import {
@@ -99,7 +100,7 @@ export function CustomerAppointmentDetail() {
       </div>
 
       <aside className="space-y-5">
-        <Card className="p-5"><h2 className="font-bold">Thao tác</h2><div className="mt-4 grid gap-2">{canChange && policy.allowRescheduleRequests && <Button variant="secondary" className="w-full" onClick={() => setRescheduleOpen(true)}><ArrowRightLeft size={16} />Yêu cầu đổi lịch</Button>}{['direct', 'request'].includes(cancellationMode) && <Button variant="secondary" className="w-full text-[var(--bb-danger)]" onClick={() => { setCancelReason(''); setCancelOpen(true); }}><XCircle size={16} />{cancellationMode === 'request' ? 'Yêu cầu hủy sát giờ' : 'Hủy lịch'}</Button>}{booking.status === 'COMPLETED' && !booking.review && <Button className="w-full" onClick={() => setReviewOpen(true)}><Star size={16} />Viết đánh giá</Button>}{services.length > 0 && <Button variant="secondary" className="w-full" onClick={rebook}><CalendarPlus size={16} />Đặt lại dịch vụ này</Button>}</div></Card>
+        {booking.review?.photos?.length > 0 && <Card className="p-5"><h2 className="font-bold">Ảnh trong đánh giá của bạn</h2><ReviewPhotoGallery photos={booking.review.photos} /></Card>}<Card className="p-5"><h2 className="font-bold">Thao tác</h2><div className="mt-4 grid gap-2">{canChange && policy.allowRescheduleRequests && <Button variant="secondary" className="w-full" onClick={() => setRescheduleOpen(true)}><ArrowRightLeft size={16} />Yêu cầu đổi lịch</Button>}{['direct', 'request'].includes(cancellationMode) && <Button variant="secondary" className="w-full text-[var(--bb-danger)]" onClick={() => { setCancelReason(''); setCancelOpen(true); }}><XCircle size={16} />{cancellationMode === 'request' ? 'Yêu cầu hủy sát giờ' : 'Hủy lịch'}</Button>}{booking.status === 'COMPLETED' && !booking.review && <Button className="w-full" onClick={() => setReviewOpen(true)}><Star size={16} />Viết đánh giá</Button>}{services.length > 0 && <Button variant="secondary" className="w-full" onClick={rebook}><CalendarPlus size={16} />Đặt lại dịch vụ này</Button>}</div></Card>
         {cancellationMode === 'pending' && <InlineNotice tone="info">Đã gửi yêu cầu thay đổi, đang chờ cơ sở xử lý. Lịch hẹn hiện tại chưa thay đổi.</InlineNotice>}
         <BookingPolicyNotice policy={booking.violationSummary} salon />
         {booking.note && <InlineNotice tone="info"><b>Ghi chú của bạn:</b> {booking.note}</InlineNotice>}

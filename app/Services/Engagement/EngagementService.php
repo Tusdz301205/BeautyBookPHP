@@ -6,15 +6,22 @@ use App\Enums\AccountKind;
 use App\Models\Booking;
 use App\Models\BranchServiceOffering;
 use App\Models\CustomerProfile;
+use App\Models\MediaFile;
 use App\Models\Review;
+use App\Models\ReviewPhoto;
 use App\Models\RoleAssignment;
 use App\Models\SavedService;
 use App\Services\Booking\BookingNotificationService;
 use App\Services\Identity\SessionContext;
+use App\Services\Media\MediaManagementService;
 use App\Services\Platform\PlatformSettingsService;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class EngagementService
 {
@@ -49,10 +56,7 @@ class EngagementService
         if (($data['is_anonymous'] ?? false) && ! $policy['allowAnonymousReview']) $this->invalid('Nền tảng hiện không cho phép đánh giá ẩn danh.');
         $data['comment'] = $comment;
         return DB::transaction(function () use ($customer, $booking, $data) {
-            $booking = Booking::whereKey($booking->id)->lockForUpdate()->firstOrFail();
-            abort_unless((int) $booking->customer_profile_id === (int) $customer->id, 403);
-            if ($booking->status !== 'COMPLETED') $this->invalid('Chỉ đánh giá lịch đã hoàn thành.');
-            if (Review::withTrashed()->where('booking_id', $booking->id)->exists()) $this->invalid('Lịch này đã có đánh giá.');
+            $booking = $this->reviewableBooking($booking, $customer, lock: true);
             $ratings = [];
             foreach ($data['service_ratings'] ?? [] as $rating) {
                 $item = $booking->services()->find($rating['booking_service_id']);
@@ -60,12 +64,82 @@ class EngagementService
                 if (isset($rating['staff_profile_id']) && (int) $rating['staff_profile_id'] !== (int) $item->staff_profile_id) $this->invalid('Nhân viên không khớp lịch.');
                 $ratings[$item->id] = [...$rating, 'staff_profile_id' => $item->staff_profile_id, 'business_service_id' => $item->business_service_id, 'service_name' => $item->service_name_snapshot];
             }
-            return Review::create([
+            $photoIds = $data['photo_ids'] ?? [];
+            $photos = $photoIds ? $this->pendingPhotos($booking, $customer, $photoIds) : collect();
+            $review = Review::create([
                 'booking_id' => $booking->id, 'customer_profile_id' => $customer->id,
                 'overall_rating' => $data['overall_rating'], 'comment' => trim($data['comment']),
                 'is_anonymous' => $data['is_anonymous'] ?? false, 'service_ratings' => array_values($ratings), 'status' => 'APPROVED',
             ]);
-        });
+            foreach ($photoIds as $position => $id) {
+                $photos[$id]->update(['review_id' => $review->id, 'sort_order' => $position]);
+            }
+
+            return $review->load('photos');
+        }, 3);
+    }
+
+    public function uploadReviewPhoto(Request $request, Booking $booking, UploadedFile $file, MediaManagementService $media): ReviewPhoto
+    {
+        $customer = $this->customer($request);
+        $this->reviewableBooking($booking, $customer);
+        [$mime, $extension, $size] = $media->validateReviewPhoto($file);
+        $disk = Storage::disk('local');
+        $path = 'review-photos/'.Str::uuid().'.'.$extension;
+        abort_unless($disk->putFileAs(dirname($path), $file, basename($path)), 500, 'Không thể lưu ảnh đánh giá.');
+
+        try {
+            return DB::transaction(function () use ($booking, $customer, $path, $mime, $size) {
+                $booking = $this->reviewableBooking($booking, $customer, lock: true);
+                if (ReviewPhoto::where('booking_id', $booking->id)->whereNull('review_id')->count() >= ReviewPhoto::MAX_PENDING) {
+                    throw ValidationException::withMessages(['file' => 'Lịch hẹn đã đạt giới hạn ảnh tải lên chưa gắn.']);
+                }
+
+                $record = MediaFile::create([
+                    'disk' => 'local', 'path' => $path, 'mime_type' => $mime, 'file_size' => $size,
+                    'uploaded_by' => $customer->user_id, 'business_id' => $booking->business_id, 'branch_id' => $booking->branch_id,
+                    'entity_type' => ReviewPhoto::TYPE, 'entity_id' => $booking->id, 'visibility' => 'PRIVATE',
+                ]);
+
+                return ReviewPhoto::create(['booking_id' => $booking->id, 'media_file_id' => $record->id]);
+            }, 3);
+        } catch (Throwable $error) {
+            // Check the database before deleting bytes if the commit outcome is uncertain.
+            $stored = ReviewPhoto::whereHas('media', fn ($query) => $query->where('path', $path))->first();
+            if ($stored) {
+                return $stored;
+            }
+            $disk->delete($path);
+            throw $error;
+        }
+    }
+
+    private function reviewableBooking(Booking $booking, CustomerProfile $customer, bool $lock = false): Booking
+    {
+        if ($lock) {
+            $booking = Booking::whereKey($booking->id)->lockForUpdate()->firstOrFail();
+        }
+        abort_unless((int) $booking->customer_profile_id === (int) $customer->id, 403);
+        if ($booking->status !== 'COMPLETED') $this->invalid('Chỉ đánh giá lịch đã hoàn thành.');
+        if (Review::withTrashed()->where('booking_id', $booking->id)->exists()) $this->invalid('Lịch này đã có đánh giá.');
+
+        return $booking;
+    }
+
+    private function pendingPhotos(Booking $booking, CustomerProfile $customer, array $ids)
+    {
+        $photos = ReviewPhoto::whereIn('id', $ids)->where('booking_id', $booking->id)->whereNull('review_id')
+            ->withWhereHas('media', fn ($query) => $query->where('entity_type', ReviewPhoto::TYPE)
+                ->where('entity_id', $booking->id)->where('uploaded_by', $customer->user_id)
+                ->where('business_id', $booking->business_id)->where('branch_id', $booking->branch_id)
+                ->where('disk', 'local')->where('visibility', 'PRIVATE')->whereIn('mime_type', ReviewPhoto::MIME_TYPES)
+                ->whereBetween('file_size', [1, ReviewPhoto::MAX_BYTES]))
+            ->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+        if ($photos->count() !== count($ids) || $photos->contains(fn ($photo) => ! Storage::disk('local')->exists($photo->media->path))) {
+            throw ValidationException::withMessages(['photoIds' => 'Ảnh phải còn khả dụng và thuộc lịch hẹn của bạn.']);
+        }
+
+        return $photos;
     }
 
     public function mutate(Request $request, Review $review, string $action, array $data): void

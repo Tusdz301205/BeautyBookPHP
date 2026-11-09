@@ -1,3 +1,4 @@
+import { ReviewPhotoGallery } from '../../components/customer/ReviewPhotoGallery';
 import { useEffect, useMemo, useState } from 'react';
 import { Eye, EyeOff, Flag, Search, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -23,7 +24,7 @@ function ReviewRow({ review, onAction, onAppeal }) {
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-pink-50 font-bold text-pink-700">{review.customer?.user?.fullName?.slice(0, 1).toUpperCase() || '?'}</span>
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2"><strong>{review.customer?.user?.fullName || 'Khách hàng'}</strong><Stars value={review.overallRating} /><Badge tone={tone}>{label}</Badge><span className="text-xs text-[var(--bb-muted)]">{review.createdAt ? new Date(review.createdAt).toLocaleDateString('vi-VN') : '—'}</span></div>
-        <p className="mt-2 text-sm leading-6 text-[var(--bb-ink-soft)]">{review.comment || <span className="italic text-[var(--bb-muted)]">Không có bình luận</span>}</p>
+        <p className="mt-2 text-sm leading-6 text-[var(--bb-ink-soft)]">{review.comment || <span className="italic text-[var(--bb-muted)]">Không có bình luận</span>}</p><ReviewPhotoGallery photos={review.photos} />
         {review.booking?.branch?.name && <p className="mt-2 text-xs text-[var(--bb-muted)]">{review.booking.branch.name} · {review.booking.bookingCode || ''}</p>}
         {latestReport && <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950"><strong>Lý do báo cáo: </strong>{latestReport.reason}<span className="ml-2 text-xs text-amber-700">({review.reports.length} báo cáo)</span></div>}
         {pendingAppeal && <div className="mt-3 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-950"><strong>Khiếu nại đang chờ: </strong>{pendingAppeal.reason}</div>}

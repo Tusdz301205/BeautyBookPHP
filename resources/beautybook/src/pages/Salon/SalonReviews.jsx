@@ -1,3 +1,4 @@
+import { ReviewPhotoGallery } from '../../components/customer/ReviewPhotoGallery';
 import { useEffect, useMemo, useState } from 'react';
 import { Flag, MessageSquareReply, Search, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -22,7 +23,7 @@ function ReviewCard({ review, canReply, canReport, onReply, onReport }) {
   const name = review.customer?.user?.fullName || 'Khách hàng';
   return <Card className="p-5">
     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"><div className="flex min-w-0 items-start gap-3"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-pink-50 font-bold text-pink-700">{name.slice(0, 1).toUpperCase()}</span><div><h2 className="font-bold text-[var(--bb-ink)]">{name}</h2><div className="mt-1 flex flex-wrap items-center gap-2"><Stars value={review.overallRating} /><span className="text-xs text-[var(--bb-muted)]">{formatDate(review.createdAt)}</span></div></div></div><Badge tone={tone}>{label}</Badge></div>
-    <p className="mt-4 text-sm leading-6 text-[var(--bb-ink-soft)]">{review.comment || <span className="italic text-[var(--bb-muted)]">Không có bình luận</span>}</p>
+    <p className="mt-4 text-sm leading-6 text-[var(--bb-ink-soft)]">{review.comment || <span className="italic text-[var(--bb-muted)]">Không có bình luận</span>}</p><ReviewPhotoGallery photos={review.photos} />
     {review.serviceRatings?.length > 0 && <div className="mt-4 flex flex-wrap gap-2">{review.serviceRatings.map((rating, index) => <span key={rating.id || index} className="inline-flex items-center gap-2 rounded-lg bg-[var(--bb-surface-subtle)] px-3 py-2 text-xs"><span>{rating.bookingService?.service?.name || 'Dịch vụ'}</span><Stars value={rating.rating} size={11} />{rating.staff?.fullName && <span className="text-[var(--bb-muted)]">· {rating.staff.fullName}</span>}</span>)}</div>}
     {review.booking && <p className="mt-3 text-xs text-[var(--bb-muted)]">{review.booking.branch?.name || 'Chi nhánh'} · Lịch hẹn {formatDate(review.booking.appointmentDate)}</p>}
     {review.businessReply?.content ? <div className="mt-4 rounded-lg border-l-4 border-pink-400 bg-pink-50 p-4"><p className="text-xs font-bold text-pink-800">Phản hồi từ cơ sở</p><p className="mt-1 text-sm leading-6 text-pink-950">{review.businessReply.content}</p></div> : canReply && <Button className="mt-4" size="sm" variant="secondary" onClick={() => onReply(review)}><MessageSquareReply size={15} />Trả lời</Button>}

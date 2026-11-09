@@ -49,6 +49,11 @@ class Booking extends Model
         return $this->belongsTo(CustomerProfile::class);
     }
 
+    public function review(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Review::class);
+    }
+
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_user_id');

@@ -1253,7 +1253,7 @@
 .bb-detail-rating strong { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.85; }
 .bb-detail-rating span { color: var(--color-muted); font-size: var(--text-sm); }
 .bb-detail-review-list article { padding-block: var(--space-lg); border-bottom: 1px solid var(--color-rule-2); }
-.bb-detail-review-list article > div { display: flex; justify-content: space-between; gap: var(--space-md); }
+.bb-detail-review-list article > div:first-child { display: flex; justify-content: space-between; gap: var(--space-md); }
 .bb-detail-review-list article span { color: var(--color-accent-strong); font-size: var(--text-sm); font-weight: 750; }
 .bb-detail-review-list article p { margin: var(--space-sm) 0 0; color: var(--color-muted); font-size: var(--text-sm); line-height: 1.7; }
 

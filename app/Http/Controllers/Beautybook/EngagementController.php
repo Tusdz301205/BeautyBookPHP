@@ -69,7 +69,7 @@ class EngagementController extends Controller
     {
         $request = $this->scope->requestForRoles($request, ['PLATFORM_ADMIN', 'BUSINESS_OWNER']);
         $assignment = $this->service->management($request);
-        $query = Review::with('booking.branch', 'customerProfile.user');
+        $query = Review::with('booking.branch', 'customerProfile.user', 'photos');
         if ($assignment->role_name !== 'PLATFORM_ADMIN') $query->whereHas('booking', fn ($q) => $q->where('business_id', $assignment->business_id));
         if ($request->filled('status')) $query->where('status', $request->input('status'));
         if ($request->filled('search')) $query->where('comment', 'like', '%'.$request->string('search').'%');
@@ -78,9 +78,31 @@ class EngagementController extends Controller
     }
     public function createReview(Request $request)
     {
-        $data = $request->validate(['bookingId' => 'required|integer', 'overallRating' => 'required|integer|between:1,5', 'comment' => 'nullable|string|max:5000', 'isAnonymous' => 'sometimes|boolean', 'serviceRatings' => 'sometimes|array|max:50', 'serviceRatings.*.bookingServiceId' => 'required|integer|distinct', 'serviceRatings.*.staffId' => 'nullable|integer', 'serviceRatings.*.rating' => 'required|integer|between:1,5', 'serviceRatings.*.comment' => 'nullable|string|max:2000']);
-        $review = $this->service->create($request, Booking::findOrFail($data['bookingId']), ['overall_rating' => $data['overallRating'], 'comment' => $data['comment'] ?? '', 'is_anonymous' => $data['isAnonymous'] ?? false, 'service_ratings' => array_map(fn ($r) => ['booking_service_id' => $r['bookingServiceId'], 'staff_profile_id' => $r['staffId'] ?? null, 'rating' => $r['rating'], 'comment' => $r['comment'] ?? null], $data['serviceRatings'] ?? [])]);
+        $data = $request->validate([
+            'bookingId' => 'required|integer', 'overallRating' => 'required|integer|between:1,5',
+            'comment' => 'nullable|string|max:5000', 'isAnonymous' => 'sometimes|boolean',
+            'serviceRatings' => 'sometimes|array|max:50', 'serviceRatings.*.bookingServiceId' => 'required|integer|distinct',
+            'serviceRatings.*.staffId' => 'nullable|integer', 'serviceRatings.*.rating' => 'required|integer|between:1,5',
+            'serviceRatings.*.comment' => 'nullable|string|max:2000',
+            'photoIds' => 'sometimes|array|list|max:'.\App\Models\ReviewPhoto::MAX_PHOTOS,
+            'photoIds.*' => 'required|integer|min:1|distinct',
+        ]);
+        $review = $this->service->create($request, Booking::findOrFail($data['bookingId']), [
+            'overall_rating' => $data['overallRating'], 'comment' => $data['comment'] ?? '',
+            'is_anonymous' => $data['isAnonymous'] ?? false, 'photo_ids' => $data['photoIds'] ?? [],
+            'service_ratings' => array_map(fn ($r) => ['booking_service_id' => $r['bookingServiceId'],
+                'staff_profile_id' => $r['staffId'] ?? null, 'rating' => $r['rating'], 'comment' => $r['comment'] ?? null],
+                $data['serviceRatings'] ?? []),
+        ]);
         return response()->json($this->presenter->review($review), 201);
+    }
+
+    public function uploadReviewPhoto(Request $request, Booking $booking, \App\Services\Media\MediaManagementService $media)
+    {
+        $request->validate(['file' => 'required|file']);
+        $photo = $this->service->uploadReviewPhoto($request, $booking, $request->file('file'), $media);
+
+        return response()->json($photo->data(), 201);
     }
     public function staffReviews(Request $request, string $id): array
     {

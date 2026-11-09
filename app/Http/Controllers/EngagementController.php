@@ -23,8 +23,8 @@ class EngagementController extends Controller
     {
         $this->publicStaffCache=[];
         abort_unless($business->publicReady()->whereKey($business->id)->exists(), 404);
-        $query = Review::where('status', 'APPROVED')->whereHas('booking', fn ($q) => $q->where('business_id', $business->id));
-        $reviews=(clone $query)->with('booking.branch','customerProfile.user')->latest()->paginate(20);
+        $query = Review::publiclyVisible()->whereHas('booking', fn ($q) => $q->where('business_id', $business->id));
+        $reviews=(clone $query)->with('booking.branch','customerProfile.user','photos')->latest()->paginate(20);
         foreach($reviews as $review) {
             $review->public_service_ratings=$this->publicRatings($review);
             $review->public_avatar_url=$this->publicAvatar($review);
@@ -36,6 +36,7 @@ class EngagementController extends Controller
                 'customerName'=>$review->is_anonymous?'Ẩn danh':($review->customerProfile?->user?->name??'Ẩn danh'),'customerAvatar'=>$review->public_avatar_url,
                 'branchName'=>$review->booking?->branch?->name,'appointmentDate'=>$review->booking?->appointment_start_at?->toDateString(),
                 'serviceRatings'=>$review->public_service_ratings,'businessReply'=>$review->business_reply?['content'=>$review->business_reply,'updatedAt'=>$review->replied_at]:null,
+                'photos'=>$review->photoData(public: true),
             ]),
             'pagination'=>['page'=>$reviews->currentPage(),'limit'=>$reviews->perPage(),'total'=>$total,'totalPages'=>$reviews->lastPage()],
             'summary'=>['averageRating'=>(float)$average,'totalReviews'=>$total],
@@ -59,7 +60,7 @@ class EngagementController extends Controller
     private function ratingSummary(string $key, int $id, ?int $limit = null)
     {
         $ratings = collect();
-        Review::where('status', 'APPROVED')->with('customerProfile.user')->latest()->chunk(200, function ($reviews) use (&$ratings, $key, $id) {
+        Review::publiclyVisible()->with('customerProfile.user', 'photos')->latest()->chunk(200, function ($reviews) use (&$ratings, $key, $id) {
             foreach ($reviews as $review) {
                 foreach ($review->service_ratings ?? [] as $rating) {
                     if ((int) ($rating[$key] ?? 0) === $id) $ratings->push([
@@ -67,6 +68,7 @@ class EngagementController extends Controller
                         'serviceName' => $rating['service_name'], 'createdAt' => $review->created_at,
                         'customerName' => $review->is_anonymous ? 'Ẩn danh' : ($review->customerProfile?->user?->name ?? 'Ẩn danh'),
                         'customerAvatar'=>null,'staff'=>$this->publicStaff((int)($rating['staff_profile_id']??0)),
+                        'photos'=>$review->photoData(public: true),
                     ]);
                 }
             }

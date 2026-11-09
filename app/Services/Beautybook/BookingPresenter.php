@@ -44,6 +44,8 @@ class BookingPresenter
             $services = $services->where('staff_profile_id', $profile);
         }
         $canCorrect = $atBranch->contains('role_name', 'BUSINESS_OWNER');
+        $review = $user && $user->id === $request->user()?->id && $booking->relationLoaded('review')
+            ? $booking->review : null;
 
         return ['id' => (string) $booking->id, 'bookingCode' => $booking->booking_code, 'branchId' => (string) $booking->branch_id,
             'customerId' => $booking->customer_profile_id ? (string) $booking->customer_profile_id : null, 'status' => $booking->status,
@@ -52,6 +54,10 @@ class BookingPresenter
             'customerName' => $booking->contact?->full_name ?? $user?->name, 'customerPhone' => $staffOnly ? null : ($booking->contact?->phone ?? $booking->customerProfile?->phone), 'overbookingOverride' => ($booking->pricingSnapshot?->source_snapshot['controlled_overbooking'] ?? false) ? ['reason' => $booking->pricingSnapshot->source_snapshot['overbooking_reason'] ?? null] : null,
             'guestName' => $booking->contact?->full_name, 'guestPhone' => $staffOnly ? null : $booking->contact?->phone, 'createdAt' => $booking->created_at?->toIso8601String(),
             'branchLocationSnapshot' => $booking->branch_location_snapshot,
+            'review' => $review && $review->customer_profile_id === $booking->customer_profile_id ? [
+                'id' => (string) $review->id, 'status' => $review->status, 'overallRating' => $review->overall_rating,
+                'comment' => $review->comment, 'isAnonymous' => $review->is_anonymous, 'photos' => $review->photoData(),
+            ] : null,
             'branch' => ['id' => (string) $booking->branch_id, 'name' => $booking->branch?->name, 'address' => $booking->branch_location_snapshot['addressLine'] ?? $booking->branch?->address_line, 'timezone' => $booking->branch?->timezone ?: 'Asia/Ho_Chi_Minh',
                 'businessId' => (string) $booking->business_id, 'business' => ['id' => (string) $booking->business_id, 'name' => $booking->branch?->business?->name]],
             'customer' => $user ? ['id' => (string) $booking->customer_profile_id, 'user' => ['id' => (string) $user->id, 'fullName' => $booking->contact?->full_name ?? $user->name, 'email' => $staffOnly ? null : $user->email, 'phone' => $staffOnly ? null : ($booking->contact?->phone ?? $booking->customerProfile?->phone)]] : null,

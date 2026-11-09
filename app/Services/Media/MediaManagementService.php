@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\BranchServiceOffering;
 use App\Models\Business;
 use App\Models\MediaFile;
+use App\Models\ReviewPhoto;
 use App\Models\StaffProfile;
 use App\Models\User;
 use DomainException;
@@ -13,6 +14,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class MediaManagementService
 {
@@ -79,6 +81,11 @@ class MediaManagementService
 
     public function canRead(?User $user, MediaFile $media): bool
     {
+        if ($media->entity_type === ReviewPhoto::TYPE) {
+            return ReviewPhoto::where('media_file_id', $media->id)
+                ->whereHas('review', fn ($query) => $query->publiclyVisible())->exists();
+        }
+
         if ($media->visibility === 'PUBLIC') {
             return true;
         }
@@ -178,5 +185,54 @@ class MediaManagementService
         }
 
         return [$mime, self::MIME_EXTENSIONS[$mime][0], $size];
+    }
+
+    public function validateReviewPhoto(UploadedFile $file): array
+    {
+        if ($file->getSize() > ReviewPhoto::MAX_BYTES) {
+            throw ValidationException::withMessages(['file' => 'Ảnh đánh giá không được vượt quá 8 MB.']);
+        }
+
+        try {
+            [$mime, $extension, $size] = $this->validateContent($file);
+        } catch (DomainException) {
+            throw ValidationException::withMessages(['file' => 'Hãy chọn ảnh JPG, PNG hoặc WebP có nội dung hợp lệ.']);
+        }
+
+        [$width, $height] = getimagesize($file->getRealPath());
+        if (! in_array($mime, ReviewPhoto::MIME_TYPES, true) || ! $width || ! $height
+            || $width > 12000 || $height > 12000 || $width * $height > 24000000) {
+            throw ValidationException::withMessages(['file' => 'Hãy chọn ảnh JPG, PNG hoặc WebP có kích thước hợp lệ.']);
+        }
+
+        $bytes = file_get_contents($file->getRealPath());
+        $complete = is_string($bytes) && match ($mime) {
+            'image/jpeg' => str_contains($bytes, "\xFF\xDA") && str_ends_with($bytes, "\xFF\xD9"),
+            'image/png' => str_contains($bytes, 'IDAT') && str_ends_with($bytes, "\x00\x00\x00\x00IEND\xAE\x42\x60\x82"),
+            'image/webp' => $size >= 20 && unpack('Vlength', substr($bytes, 4, 4))['length'] + 8 === $size,
+        };
+        if (! $complete) {
+            throw ValidationException::withMessages(['file' => 'Tệp ảnh bị thiếu dữ liệu hoặc có nội dung không hợp lệ.']);
+        }
+
+        return [$mime, $extension, $size];
+    }
+
+    public function reviewPhotoContent(MediaFile $media, callable $authorize)
+    {
+        $authorize();
+        abort_unless($media->disk === 'local' && $media->visibility === 'PRIVATE'
+            && in_array($media->mime_type, ReviewPhoto::MIME_TYPES, true)
+            && $media->file_size >= 1 && $media->file_size <= ReviewPhoto::MAX_BYTES, 404);
+        $bytes = Storage::disk('local')->get($media->path);
+        abort_unless(is_string($bytes) && strlen($bytes) === (int) $media->file_size, 404);
+        $authorize();
+
+        return response($bytes, 200, [
+            'Content-Type' => $media->mime_type,
+            'Content-Disposition' => 'inline',
+            'X-Content-Type-Options' => 'nosniff',
+            'Cache-Control' => 'private, no-store',
+        ]);
     }
 }

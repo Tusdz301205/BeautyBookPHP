@@ -14,5 +14,6 @@ Route::delete('customer/saved-services/{id}', [C::class, 'unsave']);
 Route::get('reviews/manage', [C::class, 'reviews']);
 Route::get('reviews/staff/{id}', [C::class, 'staffReviews']);
 Route::post('reviews', [C::class, 'createReview']);
+Route::post('reviews/booking/{booking}/photos', [C::class, 'uploadReviewPhoto'])->whereNumber('booking')->middleware('throttle:30,1');
 foreach (['reply' => 'post', 'report' => 'post', 'moderate' => 'patch', 'appeal' => 'post'] as $action => $method) Route::$method('reviews/{id}/'.($action === 'appeal' ? 'appeals' : $action), fn (\Illuminate\Http\Request $r, string $id) => app(C::class)->reviewAction($r, $id, $action));
 Route::patch('reviews/appeals/{id}', [C::class, 'resolveAppeal']);

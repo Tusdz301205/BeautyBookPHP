@@ -20,7 +20,7 @@ class PublicPresenter
     public function branch(Branch $branch, bool $detail = false): array
     {
         $offerings = $branch->offerings()->where('is_active', true)->where('bookable', true)->whereHas('service', fn ($q) => $q->where('is_active', true)->where('status', 'ACTIVE'))->with('service.category', 'variants')->get();
-        $reviews = Review::where('status', 'APPROVED')->whereHas('booking', fn ($q) => $q->where('branch_id', $branch->id));
+        $reviews = Review::publiclyVisible()->whereHas('booking', fn ($q) => $q->where('branch_id', $branch->id));
         $rating = round((float) (clone $reviews)->avg('overall_rating'), 1);
         $categories = $offerings->map(fn ($o) => $o->service?->category)->filter()->unique('id')->map(fn ($c) => ['id' => (string) $c->id, 'name' => $c->name])->values()->all();
         $images = $this->images('BRANCH', $branch->id);
@@ -42,7 +42,7 @@ class PublicPresenter
         if ($detail) {
             $data['staff'] = $branch->staffProfiles()->publicBookable()->get()->map(fn ($s) => $this->staff($s))->all();
             $data['stats'] = ['averageRating' => $rating, 'totalReviews' => (clone $reviews)->count(), 'totalBookings' => $branch->bookings()->count()];
-            $data['recentReviews'] = (clone $reviews)->with('customerProfile.user', 'booking.branch')->latest()->limit(10)->get()->map(fn ($r) => $this->review($r))->all();
+            $data['recentReviews'] = (clone $reviews)->with('customerProfile.user', 'booking.branch', 'photos')->latest()->limit(10)->get()->map(fn ($r) => $this->review($r, public: true))->all();
         }
         return $data;
     }
@@ -137,10 +137,11 @@ class PublicPresenter
         return $data;
     }
 
-    public function review(Review $review, bool $management = false): array
+    public function review(Review $review, bool $management = false, bool $public = false): array
     {
         $data = ['id' => (string) $review->id, 'bookingId' => (string) $review->booking_id, 'overallRating' => $review->overall_rating, 'comment' => $review->comment, 'status' => $review->status, 'isAnonymous' => (bool) $review->is_anonymous, 'createdAt' => $review->created_at?->toIso8601String(), 'customerName' => $review->is_anonymous ? 'Ẩn danh' : ($review->customerProfile?->user?->name ?? 'Ẩn danh'), 'branchName' => $review->booking?->branch?->name, 'businessReply' => $review->business_reply ? ['content' => $review->business_reply, 'updatedAt' => $review->replied_at] : null,
             'serviceRatings' => array_map(fn ($rating) => ['serviceName' => $rating['service_name'] ?? null, 'rating' => $rating['rating'], 'comment' => $rating['comment'] ?? null], $review->service_ratings ?? [])];
+        $data['photos'] = $review->photoData($public);
         if ($management) {
             $data['customer'] = ['user' => ['fullName' => $data['customerName']]];
             $data['booking'] = ['id' => (string) $review->booking_id, 'bookingCode' => $review->booking->booking_code, 'appointmentDate' => $review->booking->appointment_start_at?->toIso8601String(), 'branch' => ['id' => (string) $review->booking->branch_id, 'name' => $review->booking->branch->name, 'businessId' => (string) $review->booking->business_id]];

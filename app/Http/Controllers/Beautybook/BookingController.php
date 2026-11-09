@@ -44,6 +44,7 @@ class BookingController extends Controller
         $q = Booking::query();
         if ($r->user()->account_kind === AccountKind::Customer) {
             $q->where('customer_profile_id', CustomerProfile::where('user_id', $r->user()->id)->value('id'));
+            $q->with('review.photos');
         } else {
             $a = app(ApiScope::class)->current($r);
             abort_unless($a, 403);

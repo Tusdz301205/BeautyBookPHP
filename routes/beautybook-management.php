@@ -90,4 +90,4 @@ Route::patch('combos/{id}',[Offers::class,'saveCombo']);
 Route::delete('combos/{id}',[Offers::class,'removeCombo']);
 Route::post('media/upload',[Media::class,'upload']);
 Route::delete('media/{id}',[Media::class,'remove']);
-Route::get('media/{id}/content',[Media::class,'content']);
+Route::get('media/{id}/content',[Media::class,'content'])->name('beautybook.media.content');

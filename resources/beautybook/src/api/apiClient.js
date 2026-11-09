@@ -749,6 +749,12 @@ export const notificationsApi = {
 
 // ======================== REVIEWS ========================
 export const reviewsApi = {
+  uploadPhoto: (bookingId, file) => {
+    const body = new FormData();
+    body.append('file', file);
+    return request(`/reviews/booking/${bookingId}/photos`, { method: 'POST', body });
+  },
+
   getByBusiness: (businessId, page = 1, limit = 20) =>
     request(`/reviews/business/${businessId}?page=${page}&limit=${limit}`),
 
