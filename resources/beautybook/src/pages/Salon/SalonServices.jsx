@@ -5,6 +5,7 @@ import { branchesApi, mediaApi, servicesApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
 import { Badge, Button, Card, Dialog, Drawer, EmptyState, ErrorState, Field, Input, MetricCard, Page, PageHeader, Select, Skeleton, Textarea } from '../../components/ui';
 import { FileUpload } from '../../components/media/FileUpload';
+import { ResultPhotoPanel } from '../../components/media/ResultPhotoPanel';
 import { HomeMedia } from '../../components/public/HomeMedia';
 import { getServiceFallbackMedia } from '../../config/homeMedia';
 import { uploadedMediaUrl } from '../../utils/mediaUrl';
@@ -85,7 +86,10 @@ function ServiceMediaDialog({ service, onClose, onChanged }) {
   const [error, setError] = useState('');
   const [removing, setRemoving] = useState('');
   const [refresh, setRefresh] = useState(0);
-  useEffect(() => { setBranchId(''); }, [service?.id]);
+  const [resultMode, setResultMode] = useState(false);
+  const [resultBusy, setResultBusy] = useState(false);
+  const owner = useAuthStore((state) => service && state.hasRoleAt('BUSINESS_OWNER', service.businessId));
+  useEffect(() => { setBranchId(''); setResultMode(false); }, [service?.id]);
   useEffect(() => {
     let active = true;
     setImages([]); setError('');
@@ -105,9 +109,15 @@ function ServiceMediaDialog({ service, onClose, onChanged }) {
     catch (requestError) { toast.error(requestError.message); }
     finally { setRemoving(''); }
   };
-  return <Dialog open={Boolean(service)} onClose={onClose} title="Ảnh dịch vụ" description={service?.name || ''}>
-    {offerings.length > 0 && <Field label="Chi nhánh áp dụng ảnh"><Select value={branchService?.branchId || ''} onChange={(event) => setBranchId(event.target.value)}>{offerings.map((item) => <option key={item.branchId} value={item.branchId}>{item.branchName}</option>)}</Select></Field>}
-    {branchService ? loading ? <Skeleton rows={3} /> : error ? <ErrorState message={error} onRetry={() => setRefresh((value) => value + 1)} /> : <div className="space-y-4">
+  return <Dialog open={Boolean(service)} onClose={() => { if (!resultBusy) onClose(); }} title="Ảnh dịch vụ" description={service?.name || ''}>
+    {offerings.length > 0 && <Field label="Chi nhánh áp dụng ảnh"><Select disabled={resultBusy} value={branchService?.branchId || ''} onChange={(event) => setBranchId(event.target.value)}>{offerings.map((item) => <option key={item.branchId} value={item.branchId}>{item.branchName}</option>)}</Select></Field>}
+    {branchService && owner && <div className="my-3 flex flex-wrap gap-2" role="group" aria-label="Loại ảnh dịch vụ">
+      <Button type="button" variant={resultMode ? 'secondary' : 'primary'} aria-pressed={!resultMode} disabled={resultBusy} onClick={() => setResultMode(false)}>Ảnh giới thiệu</Button>
+      <Button type="button" variant={resultMode ? 'primary' : 'secondary'} aria-pressed={resultMode} disabled={resultBusy} onClick={() => setResultMode(true)}>Ảnh kết quả</Button>
+    </div>}
+    {branchService && owner && resultMode ? <ResultPhotoPanel key={branchService.branchServiceId} serviceId={branchService.branchServiceId} businessId={service.businessId}
+      branchId={branchService.branchId} onBusyChange={setResultBusy} />
+      : branchService ? loading ? <Skeleton rows={3} /> : error ? <ErrorState message={error} onRetry={() => setRefresh((value) => value + 1)} /> : <div className="space-y-4">
       <p className="text-sm text-[var(--bb-muted)]">Ảnh thuộc dịch vụ tại chi nhánh đã chọn. Thêm ảnh sẽ giữ lại các ảnh hiện có; ảnh đầu tiên được dùng làm đại diện.</p>
       <div className="grid grid-cols-2 gap-3">{images.map((image, index) => <figure key={image.id} className="min-w-0 rounded-xl border border-[var(--bb-border)] p-2"><img src={uploadedMediaUrl(image.media?.url)} alt={'Ảnh dịch vụ ' + (service?.name || '')} width="240" height="180" className="aspect-[4/3] w-full rounded-lg object-cover" /><figcaption className="mt-2 break-words text-xs">{index === 0 ? 'Ảnh đại diện' : 'Ảnh trong bộ sưu tập'}</figcaption><Button variant="ghost" size="sm" disabled={Boolean(removing)} onClick={() => remove(image.media.id)}>Gỡ ảnh</Button></figure>)}</div>
       <FileUpload key={branchService.branchServiceId} entityType="SERVICE_IMAGE" entityId={branchService.branchServiceId} businessId={service.businessId} branchId={branchService.branchId} append label="Thêm ảnh dịch vụ" onUploaded={changed} disabled={Boolean(removing)} />

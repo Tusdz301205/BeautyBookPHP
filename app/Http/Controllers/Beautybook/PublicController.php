@@ -21,7 +21,7 @@ class PublicController extends Controller
 
     private function offerings(bool $requiresStaff = false)
     {
-        $query = BranchServiceOffering::where('is_active', true)->where('bookable', true)->whereHas('branch', fn ($q) => $q->publicReady())->whereHas('service', fn ($q) => $q->where('is_active', true)->where('status', 'ACTIVE'));
+        $query = BranchServiceOffering::publiclyVisible();
         if ($requiresStaff) $query->whereHas('staff', fn ($q) => $q->publicBookable());
         return $query;
     }

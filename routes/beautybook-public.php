@@ -19,3 +19,4 @@ Route::get('staff/{id}/time-off', [StaffCalendarController::class, 'publicTimeOf
 Route::get('reviews/business/{id}', [PublicController::class, 'businessReviews']);
 Route::get('reviews/public/staff/{id}', [PublicController::class, 'staffReviews']);
 Route::get('reviews/service/{id}', [PublicController::class, 'serviceReviews']);
+Route::get('media/result-photos/public/{offering}', [\App\Http\Controllers\Beautybook\ResultPhotoController::class, 'publicList'])->whereNumber('offering');

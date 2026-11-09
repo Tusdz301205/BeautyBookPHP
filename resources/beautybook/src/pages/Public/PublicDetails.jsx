@@ -4,7 +4,8 @@ import { uploadedMediaUrl } from '../../utils/mediaUrl';
 import { ArrowLeft, ArrowRight, CalendarCheck, Clock3, Heart, Image as ImageIcon, MapPin, Scissors, Star, UserRound } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { branchesApi, reviewsApi, savedServicesApi, servicesApi, staffApi } from '../../api/apiClient';
+import { branchesApi, resultPhotosApi, reviewsApi, savedServicesApi, servicesApi, staffApi } from '../../api/apiClient';
+import { useAsyncResource } from '../../hooks/useAsyncResource';
 import { useAuthStore } from '../../store/authStore';
 import { PublicShell } from '../../components/layout/PublicShell';
 import { HomeMedia } from '../../components/public/HomeMedia';
@@ -203,6 +204,22 @@ function Gallery({ images = [], label, fallbackMedia = null, fallbackAlt = '' })
   return <div className="bb-detail-gallery">{urls.slice(0, 6).map((url, index) => <img key={`${url}-${index}`} src={uploadedMediaUrl(url)} alt={`${label} ${index + 1}`} loading="lazy" decoding="async" />)}</div>;
 }
 
+function PublicResultGallery({ serviceId, name }) {
+  const [page, setPage] = useState(1);
+  const { data, loading, error, reload } = useAsyncResource(serviceId + ':' + page, () => resultPhotosApi.publicList(serviceId, page));
+  if (loading) return <p role="status" className="text-sm">Đang tải ảnh kết quả…</p>;
+  if (error) return <div role="alert" className="space-y-2"><p>Chưa thể tải ảnh kết quả.</p>
+    <button type="button" className="bb-home-button bb-home-button--secondary" onClick={reload}>Tải lại ảnh kết quả</button></div>;
+
+  return <>
+    <Gallery images={data?.data} label={'Ảnh kết quả ' + name} />
+    {data?.pagination?.totalPages > 1 && <div className="mt-3 flex flex-wrap gap-2">
+      <button type="button" className="bb-home-button bb-home-button--secondary" disabled={page <= 1} onClick={() => setPage(page - 1)}>Trang ảnh trước</button>
+      <button type="button" className="bb-home-button bb-home-button--secondary" disabled={page >= data.pagination.totalPages} onClick={() => setPage(page + 1)}>Trang ảnh sau</button>
+    </div>}
+  </>;
+}
+
 function ReviewList({ data }) {
   const rows = data?.data || data?.ratings || [];
   const average = data?.summary?.averageRating ?? data?.averageRating;
@@ -331,6 +348,7 @@ export function PublicServiceDetail() {
     <Section index={service.variants?.length ? 3 : 2} eyebrow="Hình ảnh" title="Hình ảnh dịch vụ"><Gallery images={service.images} label={`Hình ảnh ${service.name}`} fallbackMedia={getServiceFallbackMedia(service)} fallbackAlt={`Ảnh minh họa cho dịch vụ ${service.name}`} /></Section>
     {service.promotionLinks?.length ? <Section index={3} eyebrow="Ưu đãi" title="Khuyến mãi đang áp dụng"><div className="bb-detail-offers">{service.promotionLinks.map(({ promotion }) => <article key={promotion.id}><span>Ưu đãi hiện hành</span><h3>{promotion.name}</h3><p>{promotion.description || 'Chi tiết ưu đãi hiển thị khi xác nhận lịch.'}</p></article>)}</div></Section> : null}
     <Section index={service.promotionLinks?.length ? 4 : 3} eyebrow="Trải nghiệm thật" title="Đánh giá dịch vụ"><ReviewList data={reviews} /></Section>
+    <Section index={service.promotionLinks?.length ? 5 : 4} eyebrow="Kết quả làm đẹp" title="Ảnh kết quả dịch vụ"><PublicResultGallery key={service.id} serviceId={service.id} name={service.name} /></Section>
   </article> : null}</DetailState></PublicShell>;
 }
 

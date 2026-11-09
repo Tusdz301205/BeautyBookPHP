@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Beautybook;
 
 use App\Http\Controllers\Controller;
-use App\Models\{MediaFile,Combo,ReviewPhoto};
+use App\Models\{MediaFile,Combo,ReviewPhoto,ResultPhoto};
 use App\Services\Beautybook\{ApiScope,ManagementPresenter};
 use App\Services\Engagement\EngagementService;
 use App\Services\Media\MediaManagementService;
+use App\Services\Media\ResultPhotoService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB,Storage};
 use Illuminate\Support\Str;
@@ -38,7 +39,7 @@ class ManagementMediaController extends Controller
     public function remove(Request $request,string $id)
     {
         $media=MediaFile::findOrFail($id);
-        abort_if($media->entity_type === ReviewPhoto::TYPE, 404);
+        abort_if(in_array($media->entity_type, [ReviewPhoto::TYPE, ResultPhoto::MEDIA_TYPE, ResultPhoto::PROOF_TYPE], true), 404);
         if(in_array($media->entity_type,['USER_AVATAR','CUSTOMER_AVATAR'])){abort_unless($media->uploaded_by===$request->user()->id && $media->entity_id===$request->user()->id,403);}
         else $this->scope->owner($request,$media->business_id);
         abort_if(DB::table('branch_change_requests')->where('media_id', $media->id)->exists(),409,'Tài liệu đang được lưu trong lịch sử thay đổi chi nhánh.');
@@ -48,8 +49,19 @@ class ManagementMediaController extends Controller
     public function content(Request $request,string $id, MediaManagementService $service)
     {
         $media=MediaFile::findOrFail($id);
+        if (in_array($media->entity_type, [ResultPhoto::MEDIA_TYPE, ResultPhoto::PROOF_TYPE], true)) {
+            $authorize = fn () => app(ResultPhotoService::class)->authorizeAsset($request, $media);
+            if ($media->entity_type === ResultPhoto::PROOF_TYPE && $media->mime_type === 'application/pdf') {
+                $authorize();
+                abort_unless(Storage::disk('local')->exists($media->path), 404);
+                return Storage::disk('local')->download($media->path, 'consent-proof.pdf', [
+                    'Content-Type' => 'application/pdf', 'Cache-Control' => 'private, no-store', 'X-Content-Type-Options' => 'nosniff',
+                ]);
+            }
+            return $service->privateImageContent($media, $authorize, attachment: $media->entity_type === ResultPhoto::PROOF_TYPE);
+        }
         if ($media->entity_type === ReviewPhoto::TYPE) {
-            return $service->reviewPhotoContent($media, function () use ($request, $media) {
+            return $service->privateImageContent($media, function () use ($request, $media) {
                 $photo = ReviewPhoto::where('media_file_id', $media->id)->firstOrFail();
                 if ((int) $media->uploaded_by === (int) $request->user()->id) {
                     return;

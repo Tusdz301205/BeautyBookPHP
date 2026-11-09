@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Beautybook\StaffCalendarController;
+use App\Http\Controllers\Beautybook\ResultPhotoController;
 use App\Http\Controllers\Beautybook\{ManagementController as Business,ManagementCatalogController as Catalog,ManagementStaffController as Staff,ManagementOffersController as Offers,ManagementMediaController as Media};
 
 Route::get('business/onboarding/config',[Business::class,'businessConfig']);
@@ -91,3 +92,12 @@ Route::delete('combos/{id}',[Offers::class,'removeCombo']);
 Route::post('media/upload',[Media::class,'upload']);
 Route::delete('media/{id}',[Media::class,'remove']);
 Route::get('media/{id}/content',[Media::class,'content'])->name('beautybook.media.content');
+Route::prefix('media/result-photos')->controller(ResultPhotoController::class)->group(function () {
+    Route::post('upload', 'upload')->middleware('throttle:30,1');
+    Route::post('/', 'create');
+    Route::get('manage/{offering}', 'list')->whereNumber('offering');
+    Route::get('file/{file}/uses', 'uses')->whereNumber('file');
+    Route::patch('{photo}/consent', 'capture')->whereNumber('photo');
+    Route::post('publish', 'publish');
+    Route::post('{photo}/withdraw', 'withdraw')->whereNumber('photo');
+});

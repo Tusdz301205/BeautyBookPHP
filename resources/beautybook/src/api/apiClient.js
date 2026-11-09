@@ -689,6 +689,26 @@ export const mediaApi = {
     download: (id) => request(`/media/${id}/content`, { responseType: 'blob' }),
   };
 
+const resultPhotosPath = '/media/result-photos';
+
+export const resultPhotosApi = {
+  upload(file, purpose, scope, businessWide = false) {
+    const body = new FormData();
+    body.append('file', file);
+    body.append('purpose', purpose);
+    body.append('businessId', scope.businessId);
+    if (!businessWide) body.append('branchId', scope.branchId);
+    return request(resultPhotosPath + '/upload', { ...scope, method: 'POST', body });
+  },
+  list: (serviceId, page, scope) => request(resultPhotosPath + '/manage/' + serviceId + '?page=' + page, scope),
+  uses: (mediaId, scope) => request(resultPhotosPath + '/file/' + mediaId + '/uses', scope),
+  create: (data, scope) => request(resultPhotosPath, { ...scope, method: 'POST', body: JSON.stringify(data) }),
+  capture: (id, data, scope) => request(resultPhotosPath + '/' + id + '/consent', { ...scope, method: 'PATCH', body: JSON.stringify(data) }),
+  publish: (data, scope) => request(resultPhotosPath + '/publish', { ...scope, method: 'POST', body: JSON.stringify(data) }),
+  withdraw: (id, expectedVersion, scope) => request(resultPhotosPath + '/' + id + '/withdraw', { ...scope, method: 'POST', body: JSON.stringify({ expectedVersion }) }),
+  publicList: (serviceId, page) => request(resultPhotosPath + '/public/' + serviceId + '?limit=6&page=' + page),
+};
+
 // ======================== VOUCHERS ========================
 export const vouchersApi = {
   getMine: () => request('/vouchers/mine'),

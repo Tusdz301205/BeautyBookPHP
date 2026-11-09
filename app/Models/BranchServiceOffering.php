@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,13 @@ class BranchServiceOffering extends Model
             'bookable' => 'boolean',
             'is_active' => 'boolean',
         ];
+    }
+
+    public function scopePubliclyVisible(Builder $query): Builder
+    {
+        return $query->where('is_active', true)->where('bookable', true)
+            ->whereHas('branch', fn ($branch) => $branch->publicReady())
+            ->whereHas('service', fn ($service) => $service->where('is_active', true)->where('status', 'ACTIVE'));
     }
 
     public function branch(): BelongsTo

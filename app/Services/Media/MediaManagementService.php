@@ -7,6 +7,7 @@ use App\Models\BranchServiceOffering;
 use App\Models\Business;
 use App\Models\MediaFile;
 use App\Models\ReviewPhoto;
+use App\Models\ResultPhoto;
 use App\Models\StaffProfile;
 use App\Models\User;
 use DomainException;
@@ -81,6 +82,13 @@ class MediaManagementService
 
     public function canRead(?User $user, MediaFile $media): bool
     {
+        if ($media->entity_type === ResultPhoto::MEDIA_TYPE) {
+            return ResultPhoto::publicMedia(MediaFile::query())->whereKey($media->id)->exists();
+        }
+        if ($media->entity_type === ResultPhoto::PROOF_TYPE) {
+            return false;
+        }
+
         if ($media->entity_type === ReviewPhoto::TYPE) {
             return ReviewPhoto::where('media_file_id', $media->id)
                 ->whereHas('review', fn ($query) => $query->publiclyVisible())->exists();
@@ -189,8 +197,13 @@ class MediaManagementService
 
     public function validateReviewPhoto(UploadedFile $file): array
     {
+        return $this->validatePrivateImage($file, 'Ảnh đánh giá');
+    }
+
+    public function validatePrivateImage(UploadedFile $file, string $label = 'Ảnh'): array
+    {
         if ($file->getSize() > ReviewPhoto::MAX_BYTES) {
-            throw ValidationException::withMessages(['file' => 'Ảnh đánh giá không được vượt quá 8 MB.']);
+            throw ValidationException::withMessages(['file' => $label.' không được vượt quá 8 MB.']);
         }
 
         try {
@@ -218,7 +231,7 @@ class MediaManagementService
         return [$mime, $extension, $size];
     }
 
-    public function reviewPhotoContent(MediaFile $media, callable $authorize)
+    public function privateImageContent(MediaFile $media, callable $authorize, bool $attachment = false)
     {
         $authorize();
         abort_unless($media->disk === 'local' && $media->visibility === 'PRIVATE'
@@ -230,7 +243,7 @@ class MediaManagementService
 
         return response($bytes, 200, [
             'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline',
+            'Content-Disposition' => $attachment ? 'attachment' : 'inline',
             'X-Content-Type-Options' => 'nosniff',
             'Cache-Control' => 'private, no-store',
         ]);
