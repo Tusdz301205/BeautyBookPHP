@@ -1,0 +1,120 @@
+# Acceptance preview: its own project, network, MySQL database and private storage. Never shares data with the demo stack.
+#   docker compose -p beautybook-zip-core-preview -f docker-compose.preview.yml up -d --wait
+#   docker compose -p beautybook-zip-core-preview -f docker-compose.preview.yml exec preview_app sh docker/preview/bootstrap.sh
+# Open http://127.0.0.1:8016/beautybook/ . Every secret below is a throwaway value for this local preview only.
+# The finance workspace needs a build with VITE_FINANCE_WORKSPACE=true (see docs/migration/2026-11-10-zip-core-flows/IMPLEMENTATION.md).
+name: beautybook-zip-core-preview
+
+x-preview-env: &preview_env
+  APP_NAME: BeautyBook Preview
+  APP_ENV: local
+  APP_DEBUG: "false"
+  APP_KEY: base64:cHJldmlldy1vbmx5LWtleS0wMTIzNDU2Nzg5YWJjZGU=
+  APP_URL: http://127.0.0.1:8016
+  APP_TIMEZONE: Asia/Ho_Chi_Minh
+  APP_LOCALE: vi
+  APP_FALLBACK_LOCALE: vi
+  PHP_CLI_SERVER_WORKERS: 4
+  DB_CONNECTION: mysql
+  DB_HOST: preview_mysql
+  DB_PORT: 3306
+  DB_DATABASE: beautybook_preview
+  DB_USERNAME: beautybook_preview
+  DB_PASSWORD: beautybook_preview_local_only
+  SESSION_DRIVER: database
+  SESSION_ENCRYPT: "true"
+  CACHE_STORE: database
+  QUEUE_CONNECTION: database
+  MAIL_MAILER: log
+  MEDIA_PRIVATE_DISK: local
+  SEPAY_WEBHOOK_ENABLED: "true"
+  SEPAY_ENVIRONMENT: test
+  SEPAY_WEBHOOK_SECRET: preview-only-secret-0123456789abcdef0123456789abcdef
+  SEPAY_WEBHOOK_BANK_GATEWAY: ACB
+  SEPAY_WEBHOOK_ACCOUNT_NUMBER: "0000000001"
+  # Private wallet lab: the demo customer (user 2) may top up and the demo business (id 1) may receive deposits. The lab has its own secret.
+  # Wallet and direct deposits are exclusive. Run `PREVIEW_PAYMENT_MODE= docker compose ... up -d` (empty) to preview direct deposits.
+  BEAUTYBOOK_PAYMENT_MODE: ${PREVIEW_PAYMENT_MODE-INTERNAL_WALLET}
+  DIRECT_DEPOSIT_ENABLED: "true"
+  # Throwaway local-only key for the preview database; never reuse it elsewhere.
+  SEPAY_CONNECTION_ENCRYPTION_KEY: 0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0
+  WALLET_LIVE_LAB_ISOLATED: "true"
+  WALLET_LIVE_LAB_ENABLED: "true"
+  WALLET_LIVE_LAB_USER_IDS: "2"
+  WALLET_LIVE_LAB_BUSINESS_IDS: "1"
+  WALLET_LIVE_LAB_WEBHOOK_SECRET: preview-lab-secret-0123456789abcdef0123456789abcdef
+  WALLET_LIVE_LAB_BANK_CODE: ACB
+  WALLET_LIVE_LAB_ACCOUNT_NUMBER: "0000000001"
+  WALLET_LIVE_LAB_ACCOUNT_NAME: CONG TY THU NGHIEM
+  WALLET_LIVE_LAB_MIN_TOPUP_VND: "1000"
+  WALLET_LIVE_LAB_MAX_TOPUP_VND: "200000"
+  WALLET_LIVE_LAB_MAX_TOTAL_VND: "1000000"
+  PUSH_ENABLED: "true"
+  PUSH_TRIAL_SINK: "true"
+  FCM_PROJECT_ID: beautybook-preview
+  FCM_SERVICE_ACCOUNT_FILE: /var/preview/fcm-trial-service-account.json
+  FCM_TOKEN_URL: http://127.0.0.1:8000/api/v1/push-trial/oauth/token
+  FCM_SEND_URL: http://127.0.0.1:8000/api/v1/push-trial/projects/%s/messages:send
+
+services:
+  preview_app:
+    image: beautybook-zip-core-test-app
+    working_dir: /var/www/html
+    command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+    volumes:
+      - .:/var/www/html
+      - beautybook_vendor:/var/www/html/vendor:ro
+      - preview_private_storage:/var/www/html/storage/app/private
+      - preview_runtime:/var/preview
+    environment: *preview_env
+    ports:
+      - "127.0.0.1:8016:8000"
+    depends_on:
+      preview_mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8000/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  # Runs beautybook:maintain every minute: push delivery, SePay recovery and withdrawal recovery.
+  preview_scheduler:
+    image: beautybook-zip-core-test-app
+    working_dir: /var/www/html
+    command: ["php", "artisan", "schedule:work"]
+    volumes:
+      - .:/var/www/html
+      - beautybook_vendor:/var/www/html/vendor:ro
+      - preview_private_storage:/var/www/html/storage/app/private
+      - preview_runtime:/var/preview
+    environment: *preview_env
+    depends_on:
+      preview_app:
+        condition: service_healthy
+
+  preview_mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: beautybook_preview
+      MYSQL_USER: beautybook_preview
+      MYSQL_PASSWORD: beautybook_preview_local_only
+      MYSQL_ROOT_PASSWORD: beautybook_preview_root_local_only
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--log-bin-trust-function-creators=1"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pbeautybook_preview_root_local_only"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - preview_mysql_data:/var/lib/mysql
+
+volumes:
+  # Reuses the Composer vendor volume of the isolated test project (read-only here).
+  beautybook_vendor:
+    external: true
+    name: beautybook-zip-core-test_beautybook_vendor
+  preview_mysql_data:
+  preview_private_storage:
+  preview_runtime:

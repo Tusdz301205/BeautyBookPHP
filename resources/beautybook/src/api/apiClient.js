@@ -166,6 +166,10 @@ export const authApi = {
 
   refresh: () => refreshSession(),
   verifyEmail: (token) => request('/auth/verify-email', { method: 'POST', body: JSON.stringify({ token }) }),
+  googleConfig: () => request('/auth/google/config'),
+  google: (credential, accountType) => request('/auth/google', { method: 'POST', body: JSON.stringify({ credential, accountType }) }),
+  requestRecoveryCode: (email) => request('/auth/forgot-password/code', { method: 'POST', body: JSON.stringify({ email }) }),
+  resetWithCode: (requestId, code, newPassword) => request('/auth/reset-password/code', { method: 'POST', body: JSON.stringify({ requestId, code, newPassword }) }),
   forgotPassword: (email) => request('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) }),
   resetPassword: (token, newPassword) => request('/auth/reset-password', { method: 'POST', body: JSON.stringify({ token, newPassword }) }),
   changePassword: (currentPassword, newPassword) => request('/auth/change-password', { method: 'POST', body: JSON.stringify({ currentPassword, newPassword }) }),
@@ -760,11 +764,22 @@ export const notificationsApi = {
   markAllAsRead: () =>
     request('/notifications/read-all', { method: 'PATCH' }).then(result => { window.dispatchEvent(new Event('beautybook:notifications-changed')); return result; }),
 
-  registerDeviceToken: (token, platform) =>
+  registerDeviceToken: (token, platform, installationId) =>
     request('/notifications/device-token', {
       method: 'POST',
-      body: JSON.stringify({ token, platform }),
+      body: JSON.stringify({ token, platform, installationId }),
     }),
+
+  removeDeviceToken: (token, installationId) =>
+    request('/notifications/device-token', {
+      method: 'DELETE',
+      body: JSON.stringify({ token, installationId }),
+    }),
+
+  pushConfig: () => request('/notifications/push-config'),
+
+  // Trial/preview only: what the trial FCM stand-in received for this browser's own device.
+  trialMessages: (token) => request(`/notifications/push-trial/messages?token=${encodeURIComponent(token)}`),
 };
 
 // ======================== REVIEWS ========================
@@ -861,6 +876,47 @@ export const businessApi = {
 };
 
 // ======================== PAYMENTS / REFUNDS ========================
+// Customer <-> branch chat. Scope is "customer" (own conversations) or "branch" (owners and receptionists).
+export const chatApi = {
+  list: (scope, params = {}) => request(`/chat/${scope}/conversations?${new URLSearchParams(params)}`),
+  open: (scope, bookingId) => request(`/chat/${scope}/conversations`, { method: 'POST', body: JSON.stringify({ bookingId: Number(bookingId) }) }),
+  messages: (scope, id, query = '') => request(`/chat/${scope}/conversations/${id}/messages${query}`),
+  send: (scope, id, body) => request(`/chat/${scope}/conversations/${id}/messages`, { method: 'POST', body: JSON.stringify(body) }),
+  read: (scope, id, sequence) => request(`/chat/${scope}/conversations/${id}/read`, { method: 'POST', body: JSON.stringify({ sequence }) }),
+  upload: (scope, id, file) => { const body = new FormData(); body.append('file', file); return request(`/chat/${scope}/conversations/${id}/images`, { method: 'POST', body }); },
+  // Images are private: they are fetched with the session credentials and shown from a blob URL, never from a public link.
+  image: async (scope, id, imageId) => {
+    const { accessToken } = useAuthStore.getState();
+    const response = await fetch(`${API_BASE}/chat/${scope}/conversations/${id}/images/${imageId}`, { credentials: 'include', headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {} });
+    if (!response.ok) throw Object.assign(new Error('Không tải được ảnh'), { status: response.status });
+    return response.blob();
+  },
+};
+
+// Customer wallet, Live-lab top-ups, business bank accounts and MOCK payouts (wallet.controller.ts).
+// Money commands take a caller-supplied Idempotency-Key so a retry after a lost response cannot repeat them.
+const idem = (key) => ({ headers: { 'Idempotency-Key': key } });
+const scopeQuery = (scope) => (scope ? `scope=${encodeURIComponent(scope)}` : '');
+export const walletApi = {
+  mine: ({ scope, page = 1 } = {}) => request(`/wallet?page=${page}${scope ? `&${scopeQuery(scope)}` : ''}`),
+  depositTerms: (branchId, total) => request(`/wallet/deposit-terms?branchId=${encodeURIComponent(branchId)}&total=${encodeURIComponent(total)}`),
+  createTopUp: (amountVnd, key) => request('/wallet/topups', { method: 'POST', body: JSON.stringify({ amountVnd: String(amountVnd), provider: 'SEPAY_LIVE' }), ...idem(key) }),
+  topUpStatus: (id) => request(`/wallet/topups/${id}`),
+  business: (businessId, scope) => request(`/wallet/businesses/${businessId}${scope ? `?${scopeQuery(scope)}` : ''}`),
+  addAccount: (businessId, data) => request(`/wallet/businesses/${businessId}/accounts`, { method: 'POST', body: JSON.stringify(data) }),
+  replaceAccount: (businessId, id, data) => request(`/wallet/businesses/${businessId}/accounts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+  withdrawals: (businessId, scope) => request(`/wallet/businesses/${businessId}/withdrawals${scope ? `?${scopeQuery(scope)}` : ''}`),
+  requestWithdrawal: (businessId, data, key) => request(`/wallet/businesses/${businessId}/withdrawals`, { method: 'POST', body: JSON.stringify(data), ...idem(key) }),
+  cancelWithdrawal: (businessId, id, data) => request(`/wallet/businesses/${businessId}/withdrawals/${id}/cancel`, { method: 'POST', body: JSON.stringify(data) }),
+  admin: (page = 1) => request(`/wallet/admin?page=${page}`),
+  adminWithdrawals: (status) => request(`/wallet/admin/withdrawals${status ? `?status=${encodeURIComponent(status)}` : ''}`),
+  verifyAccount: (businessId, id, version) => request(`/wallet/admin/businesses/${businessId}/accounts/${id}/verify`, { method: 'POST', body: JSON.stringify({ version }) }),
+  decide: (id, action, data) => request(`/wallet/admin/withdrawals/${id}/${action}`, { method: 'POST', body: JSON.stringify(data) }),
+  reconcile: (id) => request(`/wallet/admin/receipts/${id}/reconcile`, { method: 'POST', body: JSON.stringify({}) }),
+  createSettlement: (data, key) => request('/wallet/admin/settlements', { method: 'POST', body: JSON.stringify(data), ...idem(key) }),
+  completeSettlement: (id) => request(`/wallet/admin/settlements/${id}/complete`, { method: 'POST', body: JSON.stringify({}) }),
+};
+
 export const paymentsApi = {
   getAll: () => request('/payments'),
   collect: (bookingId, method, options = {}) => request('/payments/collect', {
@@ -868,6 +924,16 @@ export const paymentsApi = {
     body: JSON.stringify({ bookingId, method, ...options }),
   }),
   getProviders: () => request('/payments/providers'),
+  // Direct deposits: the owner's receiving accounts and a booking's deposit (direct-deposit.controller.ts).
+  connections: (businessId) => request(`/payments/businesses/${businessId}/connections`),
+  createConnection: (businessId, data) => request(`/payments/businesses/${businessId}/connections`, { method: 'POST', body: JSON.stringify(data) }),
+  enableConnection: (businessId, id, data) => request(`/payments/businesses/${businessId}/connections/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+  deposit: (bookingId) => request(`/payments/bookings/${bookingId}/deposit`),
+  // Platform admin: refunds owed back and transfers nobody could apply (paged), and the review note of a transfer.
+  adminDepositRefunds: (query = {}) => request(`/payments/admin/deposits/refunds?${new URLSearchParams(Object.entries(query).filter(([, value]) => value !== '' && value != null))}`),
+  adminDepositReceipts: (query = {}) => request(`/payments/admin/deposits/receipts?${new URLSearchParams(Object.entries(query).filter(([, value]) => value !== '' && value != null))}`),
+  reviewDepositReceipt: (id, note) => request(`/payments/admin/deposits/receipts/${id}/review`, { method: 'POST', body: JSON.stringify({ note }) }),
+  depositAction: (bookingId, action, data) => request(`/payments/bookings/${bookingId}/deposit/${action}`, { method: 'POST', body: JSON.stringify(data) }),
   getCheckout: (bookingId) => request(`/payments/checkout/${bookingId}`),
   verifyTransaction: (transactionId, settlementReference, evidence) =>
     request(`/payments/transactions/${transactionId}/verify`, {

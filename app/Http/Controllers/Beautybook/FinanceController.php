@@ -119,14 +119,16 @@ class FinanceController extends Controller
         $this->payments->access($this->operating($r, $b), $b);
         $bal = $this->payments->balance($b);
 
-        return ['bookingId' => (string) $b->id, 'booking' => app(BookingPresenter::class)->detail($b), 'totalAmount' => Money::decimal($bal['total_cents']), 'paidAmount' => Money::decimal($bal['net_cents']), 'remainingAmount' => Money::decimal($bal['due_cents']), 'pendingAmount' => Money::decimal($bal['pending_cents']), 'transactions' => PaymentTransaction::where('booking_id', $b->id)->get()->map(fn ($t) => $this->dto($t))];
+        return ['bookingId' => (string) $b->id, 'booking' => app(BookingPresenter::class)->detail($b), 'totalAmount' => Money::decimal($bal['total_cents']), 'paidAmount' => Money::decimal($bal['net_cents']), 'depositAmount' => Money::decimal($bal['deposit_cents']), 'remainingAmount' => Money::decimal($bal['due_cents']), 'pendingAmount' => Money::decimal($bal['pending_cents']), 'transactions' => PaymentTransaction::where('booking_id', $b->id)->get()->map(fn ($t) => $this->dto($t))];
     }
 
     public function collect(Request $r)
     {
         $r->validate(['bookingId' => 'required|string|max:100', 'method' => 'required|in:CASH,BANK_TRANSFER', 'amount' => 'nullable|numeric|min:0.01', 'idempotencyKey' => 'required|string|max:200', 'evidence' => 'nullable|array']);
         $b = $this->booking($r, (string) $r->bookingId);
-        $data = ['method' => $r->method, 'amount' => $r->filled('amount') ? (string) $r->amount : Money::decimal($this->payments->balance($b)['collectable_cents']), 'idempotency_key' => $r->idempotencyKey, 'evidence' => $r->evidence];
+        // The same request sent again without an amount means the amount it was first sent with, not whatever is left to collect now.
+        $first = $r->filled('amount') ? null : PaymentTransaction::where('idempotency_key', $r->idempotencyKey)->where('booking_id', $b->id)->whereNull('reversal_of_id')->value('amount_cents');
+        $data = ['method' => $r->method, 'amount' => $r->filled('amount') ? (string) $r->amount : Money::decimal($first ?? $this->payments->balance($b)['collectable_cents']), 'idempotency_key' => $r->idempotencyKey, 'evidence' => $r->evidence];
 
         return $this->dto($this->payments->collect($this->operating($r, $b, ['BUSINESS_OWNER', 'RECEPTIONIST']), $b, $data));
     }
@@ -161,7 +163,7 @@ class FinanceController extends Controller
             DB::table('businesses')->where('id', $booking->business_id)->lockForUpdate()->first();
             $booking = Booking::whereKey($booking->id)->lockForUpdate()->firstOrFail();
             $balance = $this->payments->balance($booking);
-            abort_unless($balance['collected_cents'] >= $balance['total_cents'] && $balance['net_cents'] > 0, 409, 'Chỉ lịch đã thanh toán mới được yêu cầu hoàn tiền.');
+            abort_unless($balance['collected_cents'] + $balance['deposit_cents'] >= $balance['total_cents'] && $balance['collected_cents'] > 0, 409, 'Chỉ lịch đã thanh toán mới được yêu cầu hoàn tiền.');
             $remaining = Money::cents((string) $r->amount);
             $requests = [];
             foreach (PaymentTransaction::where('booking_id', $booking->id)->where('status', 'VERIFIED')->orderBy('id')->lockForUpdate()->get() as $transaction) {

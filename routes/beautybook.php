@@ -11,11 +11,15 @@ Route::prefix('api/v1')->group(function () {
     Route::post('auth/refresh', [AuthController::class, 'refresh'])->middleware('throttle:60,1')->block(10, 10);
     Route::post('auth/forgot-password', [AuthController::class, 'forgotPassword'])->middleware('throttle:5,1');
     Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->middleware('throttle:10,1');
+    Route::get('auth/google/config', [AuthController::class, 'googleConfig'])->middleware('throttle:60,1');
+    Route::post('auth/google', [AuthController::class, 'google'])->middleware('throttle:10,1')->block(10, 10);
+    Route::post('auth/forgot-password/code', [AuthController::class, 'forgotCode'])->middleware('throttle:5,1');
+    Route::post('auth/reset-password/code', [AuthController::class, 'resetCode'])->middleware('throttle:10,1');
     Route::post('auth/verify-email', [AuthController::class, 'verifyEmail'])->middleware('throttle:10,1');
     // Image elements authenticate through the HttpOnly session cookie; this route serves only its owner.
     Route::get('users/me/avatar', [\App\Http\Controllers\Beautybook\UsersController::class, 'avatar'])->middleware('auth');
     if (file_exists(__DIR__.'/beautybook-public.php')) require __DIR__.'/beautybook-public.php';
-    foreach (['management', 'governance', 'finance'] as $domain) {
+    foreach (['management', 'governance', 'finance', 'push-trial'] as $domain) {
         if (file_exists(__DIR__.'/beautybook-'.$domain.'-public.php')) require __DIR__.'/beautybook-'.$domain.'-public.php';
     }
     Route::middleware(BeautybookSession::class)->group(function () {
@@ -25,7 +29,7 @@ Route::prefix('api/v1')->group(function () {
         Route::delete('auth/sessions/{id}', [AuthController::class, 'revokeSession']);
         Route::delete('auth/sessions', [AuthController::class, 'revokeOthers']);
         Route::get('auth/security-history', [AuthController::class, 'history']);
-        foreach (['booking', 'finance', 'management', 'governance', 'engagement', 'vouchers', 'users', 'realtime'] as $domain) {
+        foreach (['booking', 'finance', 'chat', 'management', 'governance', 'engagement', 'vouchers', 'users', 'realtime'] as $domain) {
             if (file_exists(__DIR__.'/beautybook-'.$domain.'.php')) require __DIR__.'/beautybook-'.$domain.'.php';
         }
     });

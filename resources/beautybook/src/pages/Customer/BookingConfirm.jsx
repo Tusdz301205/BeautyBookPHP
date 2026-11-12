@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import { TicketPercent } from 'lucide-react';
-import { bookingsApi, recurringApi, servicesApi } from '../../api/apiClient';
+import { bookingsApi, recurringApi, servicesApi, walletApi } from '../../api/apiClient';
+import WalletDepositNotice from '../../components/customer/WalletDepositNotice';
+import { depositReadiness, seriesTerms } from '../../utils/walletDeposit';
 import { useBookingStore } from '../../store/bookingStore';
 import { useAuthStore } from '../../store/authStore';
 import { Button, Card, InlineNotice, Skeleton } from '../../components/ui';
@@ -75,7 +77,19 @@ export default function BookingConfirm() {
   const recurringPreview = recurringResource.data;
   const previewingRecurring = recurringResource.loading;
   const recurringReady = !state.recurring.enabled || (recurringPreview?.availableCount > 0 && (state.recurring.skipConflicts || !recurringPreview.conflictCount));
-  const canConfirm = Boolean(user && preview && !loading && !priceResource.loading && !previewingRecurring && recurringReady
+  // Wallet mode: the booking holds a 30% deposit from the customer's wallet. The quote returned here is echoed back with the booking.
+  const depositTotal = preview ? Math.round(Number(preview.finalAmount)) : null;
+  const termsResource = useAsyncResource(user && state.branchId && depositTotal != null ? JSON.stringify([user.id, state.branchId, depositTotal]) : null, () => walletApi.depositTerms(state.branchId, depositTotal));
+  // A recurring series holds one deposit per bookable occurrence (all-or-nothing); a single booking holds one.
+  const series = state.recurring.enabled ? seriesTerms(recurringPreview) : null;
+  const walletMode = state.recurring.enabled ? Boolean(recurringPreview?.walletMode) : Boolean(termsResource.data?.walletMode);
+  const directMode = state.recurring.enabled ? recurringPreview?.depositMode === 'DIRECT' : termsResource.data?.depositMode === 'DIRECT';
+  const terms = state.recurring.enabled ? (recurringPreview ? series : null) : (termsResource.error ? null : termsResource.data?.terms);
+  const walletResource = useAsyncResource(user && walletMode && terms?.depositVnd > 0 ? JSON.stringify([user.id, 'wallet', terms.depositVnd, terms.quote ?? terms.quotes?.join()]) : null, () => walletApi.mine({ scope: 'LIVE_LAB' }));
+  const depositLoading = (state.recurring.enabled ? previewingRecurring : termsResource.loading) || walletResource.loading;
+  const readiness = depositReadiness({ walletMode, directMode, terms, wallet: walletResource.data?.wallet, labAvailable: Boolean(walletResource.data?.liveLabAvailable) });
+  const depositOk = state.recurring.enabled ? (!recurringResource.error && !depositLoading && readiness.ok) : (!termsResource.error && !depositLoading && (termsResource.data ? readiness.ok : false));
+  const canConfirm = Boolean(user && preview && !loading && !priceResource.loading && !previewingRecurring && recurringReady && depositOk
     && policy && !policyResource.loading && !policyResource.error && policy.selfBookingAllowed
     && (!policy.acknowledgmentRequired || acknowledged));
 
@@ -87,7 +101,8 @@ export default function BookingConfirm() {
     try {
       const current = replay ? attempt : beginBookingSubmission(user.id, state.recurring.enabled ? 'recurring' : 'single', state.recurring.enabled
         ? { ...recurringPayload, skipConflicts: state.recurring.skipConflicts, note: state.customerInfo.note, violationAcknowledged: acknowledged,
-          customerName: state.customerInfo.fullName, customerPhone: state.customerInfo.phone, contactConsent: state.customerInfo.consent }
+          customerName: state.customerInfo.fullName, customerPhone: state.customerInfo.phone, contactConsent: state.customerInfo.consent,
+          ...(readiness.required && series?.quotes?.length ? { walletDepositQuotes: series.quotes } : {}) }
         : {
           branchId: state.branchId,
           serviceIds: state.serviceIds,
@@ -102,6 +117,7 @@ export default function BookingConfirm() {
           voucherCode: state.voucherCode || undefined,
           source: 'ONLINE_WEB',
           violationAcknowledged: acknowledged,
+          ...(readiness.required && termsResource.data?.terms?.quote ? { walletDepositQuote: termsResource.data.terms.quote } : {}),
         });
       setAttempt(current); setSubmissionError('');
       const result = await submitBookingSubmission(current, (payload, key) => current.kind === 'recurring'
@@ -120,6 +136,10 @@ export default function BookingConfirm() {
         setAcknowledged(false);
         policyResource.reload();
         toast.error(error.message);
+      } else if (error.status === 402 || /wallet deposit|wallet balance/i.test(error.message || '')) {
+        // The balance or the deposit terms changed after the page loaded: refresh both before the customer tries again.
+        toast.error(error.status === 402 ? 'Số dư ví không đủ để giữ cọc.' : 'Điều khoản cọc đã thay đổi. Vui lòng xem lại trước khi đặt.');
+        termsResource.reload(); walletResource.reload(); if (state.recurring.enabled) recurringResource.reload();
       } else if (/nhân viên (này không còn khả dụng|phù hợp trong khung giờ)|không còn nhân viên phù hợp trong khung giờ/i.test(error.message || '')) {
         toast.error('Một hoặc nhiều khung giờ vừa có người đặt. Vui lòng kiểm tra lại.');
         navigate('/book/time');
@@ -137,6 +157,8 @@ export default function BookingConfirm() {
     {policyResource.loading && <p role="status">Đang kiểm tra chính sách đặt lịch…</p>}
     {policyResource.error && <InlineNotice tone="danger">Không thể kiểm tra chính sách đặt lịch. <Button variant="secondary" onClick={policyResource.reload}>Thử lại</Button></InlineNotice>}
     <BookingPolicyNotice policy={policy} acknowledged={acknowledged} onAcknowledge={setAcknowledged} />
+    {termsResource.error && <InlineNotice tone="danger">Không kiểm tra được cọc đặt lịch. <Button variant="secondary" onClick={termsResource.reload}>Thử lại</Button></InlineNotice>}
+    <WalletDepositNotice readiness={readiness} terms={terms} wallet={walletResource.data?.wallet} loading={depositLoading && (state.recurring.enabled || depositTotal != null)} onRetry={state.recurring.enabled ? recurringResource.reload : termsResource.reload} />
     {loading ? <Skeleton rows={6} /> : <div className="space-y-6"><section><h2 className="text-sm font-bold">{state.combo ? `Combo ${state.combo.name}` : 'Dịch vụ đã chọn'}</h2><div className="mt-3 divide-y divide-[var(--bb-border)] rounded-xl border border-[var(--bb-border)]">{services.map((service) => { const variant = variantByService.get(service.id); const duration = variant?.durationMinutes ?? service.durationMinutes; return <div key={service.id} className="bb-booking-service-row flex items-start justify-between gap-4 p-4"><div><p className="font-semibold">{service.name}</p>{variant && <p className="mt-1 text-xs font-semibold text-[var(--bb-brand-strong)]">{variant.name}</p>}<p className="mt-1 text-xs text-[var(--bb-muted)]">{duration > 0 ? `${duration} phút` : 'Thời lượng đang cập nhật'}</p></div>{!state.combo && <p className="font-bold">{variant?.priceDisplay || (variant?.price != null || service.price != null ? money(variant?.price ?? service.price) : 'Giá đang cập nhật')}</p>}</div>; })}</div></section>
       <section><h2 className="text-sm font-bold">Chi tiết lịch hẹn</h2><dl className="mt-3 divide-y divide-[var(--bb-border)] rounded-xl border border-[var(--bb-border)] text-sm">
         <div className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-3 p-3 sm:grid-cols-[7rem_minmax(0,1fr)]"><dt className="text-[var(--bb-muted)]">Thời gian</dt><dd className="font-bold">{state.slot && format(new Date(state.slot.start), 'dd/MM/yyyy · HH:mm')}</dd></div>

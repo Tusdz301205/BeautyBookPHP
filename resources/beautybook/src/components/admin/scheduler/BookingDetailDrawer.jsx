@@ -1,3 +1,4 @@
+import DirectDepositPanel from '../../payments/DirectDepositPanel';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CalendarDays, Clock3, History, MapPin, Phone, Scissors, Tag, UserRound } from 'lucide-react';
 import { format } from 'date-fns';
@@ -265,6 +266,7 @@ function BookingDetailContent({ booking, onClose, onUpdated }) {
       <div className="space-y-6">
         <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${status.color}`}>{status.label}</span>
         <OperationalTiming booking={activeBooking} />
+        {!platform && <DirectDepositPanel bookingId={activeBooking.id} />}
         <p className="text-xs text-zinc-600">{activeBooking.raw?.statusHistory?.some((entry) => entry.status === 'CHECKED_IN') || activeBooking.status === 'CHECKED_IN' ? 'Đã ghi nhận check-in' : 'Chưa có ghi nhận check-in'}</p>
         {detailLoading && <p role="status" className="text-xs font-medium text-zinc-500">Đang tải dữ liệu chi tiết và lịch sử...</p>}
         <section className="grid gap-3 rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:grid-cols-2">

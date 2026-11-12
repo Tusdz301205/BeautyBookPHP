@@ -5,6 +5,7 @@ import { paymentsApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
 import { createIdempotencyKey } from '../../utils/idempotencyKey';
 import PaymentCorePanels from './PaymentCorePanels';
+import WalletPanels from './WalletPanels';
 import { Badge, Button, Card, Dialog, EmptyState, ErrorState, Field, Input, Page, PageHeader, Select, Skeleton, Textarea } from '../../components/ui';
 
 const paymentTone = (status) => status === 'PAID' ? 'success' : status === 'FAILED' ? 'danger' : status?.includes('REFUND') ? 'warning' : 'info';
@@ -16,6 +17,7 @@ export default function PaymentsWorkspace() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [bookingId, setBookingId] = useState('');
+  const [checkout, setCheckout] = useState(null);
   const [method, setMethod] = useState('CASH');
   const [collectAmount, setCollectAmount] = useState('');
   const [busy, setBusy] = useState('');
@@ -62,6 +64,13 @@ export default function PaymentsWorkspace() {
   const totalPages = Math.max(1, Math.ceil(filteredPayments.length / pageSize));
   const visiblePayments = filteredPayments.slice((page - 1) * pageSize, page * pageSize);
 
+  // What is still owed at the store for this booking: the wallet deposit already counts as paid.
+  const lookupCheckout = async () => {
+    const code = bookingId.trim(); setCheckout(null);
+    if (!code) return;
+    try { setCheckout(await paymentsApi.getCheckout(code)); } catch { setCheckout(null); }
+  };
+  const vnd = (value) => `${Math.round(Number(value || 0)).toLocaleString('vi-VN')}₫`;
   const collect = async (event) => {
     event.preventDefault(); setBusy('collect');
     try {
@@ -118,10 +127,12 @@ export default function PaymentsWorkspace() {
   return <Page>
     <PageHeader {...pageMeta} />
     <PaymentCorePanels />
+    <WalletPanels />
     {canCollect && <Card className="p-5"><form onSubmit={collect} className="grid gap-4 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_220px_200px_auto]">
-      <Field label="Mã lịch hẹn" required hint="Nhập mã nghiệp vụ hiển thị trên lịch, ví dụ BB-2026-01115."><Input required value={bookingId} onChange={(event) => setBookingId(event.target.value)} placeholder="BB-2026-01115" /></Field>
+      <Field label="Mã lịch hẹn" required hint="Nhập mã nghiệp vụ hiển thị trên lịch, ví dụ BB-2026-01115."><Input required value={bookingId} onChange={(event) => { setBookingId(event.target.value); setCheckout(null); }} onBlur={lookupCheckout} placeholder="BB-2026-01115" />
+        {checkout && <p role="status" className="mt-2 text-xs text-[var(--bb-muted)]">Tổng {vnd(checkout.totalAmount)}{Number(checkout.depositAmount) > 0 && <> · đã cọc từ ví {vnd(checkout.depositAmount)}</>} · còn thu tại cơ sở <strong>{vnd(checkout.remainingAmount)}</strong></p>}</Field>
       <Field label="Phương thức" required><Select value={method} onChange={(event) => setMethod(event.target.value)}><option value="CASH">Tiền mặt</option><option value="BANK_TRANSFER">Chuyển khoản chờ xác minh</option></Select></Field>
-      <Field label="Số tiền" hint="Để trống để thu toàn bộ số dư; nhập số tiền để split payment."><Input type="number" min="1" step="1" value={collectAmount} onChange={(event) => setCollectAmount(event.target.value)} placeholder="Toàn bộ số dư" /></Field>
+      <Field label="Số tiền" hint="Để trống để thu phần còn lại (đã trừ cọc từ ví nếu có); nhập số tiền để thu một phần."><Input type="number" min="1" step="1" value={collectAmount} onChange={(event) => setCollectAmount(event.target.value)} placeholder="Phần còn lại" /></Field>
       <div className="flex items-end"><Button type="submit" loading={busy === 'collect'} className="w-full"><CircleDollarSign size={16} />Ghi nhận</Button></div>
     </form></Card>}
     <Card className="grid gap-3 p-4 md:grid-cols-[minmax(14rem,1fr)_14rem_14rem]"><Field label="Tìm giao dịch"><Input value={filters.search} onChange={(event) => setFilters({ ...filters, search: event.target.value })} placeholder="Mã lịch, ID giao dịch hoặc khách hàng" /></Field><Field label="Trạng thái"><Select value={filters.status} onChange={(event) => setFilters({ ...filters, status: event.target.value })}><option value="ALL">Tất cả trạng thái</option>{[...new Set(payments.map((item) => item.status).filter(Boolean))].sort().map((status) => <option key={status} value={status}>{status}</option>)}</Select></Field><Field label="Phương thức"><Select value={filters.method} onChange={(event) => setFilters({ ...filters, method: event.target.value })}><option value="ALL">Tất cả phương thức</option>{[...new Set(payments.map((item) => item.method).filter(Boolean))].sort().map((paymentMethod) => <option key={paymentMethod} value={paymentMethod}>{paymentMethod}</option>)}</Select></Field></Card>

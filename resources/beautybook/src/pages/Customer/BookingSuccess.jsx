@@ -5,6 +5,7 @@ import { PublicShell } from '../../components/layout/PublicShell';
 import { useBookingStore } from '../../store/bookingStore';
 import { validBookingResult } from '../../utils/bookingSubmission';
 import { combineDateTime } from '../../utils/bookingCalendar.adapter';
+import DirectDepositPanel from '../../components/payments/DirectDepositPanel';
 import { format } from 'date-fns';
 
 export default function BookingSuccess() {
@@ -31,6 +32,8 @@ export default function BookingSuccess() {
   return <PublicShell><Card className="mx-auto my-12 max-w-xl p-6">
     <SuccessState title={title} message={message} action={<div className="flex flex-wrap justify-center gap-2"><Link to="/customer/appointments" className="inline-flex min-h-11 items-center rounded-lg bg-[var(--bb-brand)] px-4 text-sm font-semibold text-white">Xem lịch hẹn</Link><Link to="/book" className="inline-flex min-h-11 items-center rounded-lg border border-[var(--bb-border)] px-4 text-sm font-semibold">Đặt lịch khác</Link></div>} />
     {pending && <InlineNotice tone="warning"><span>Khung giờ đang được giữ tạm{holdMinutes ? ` trong khoảng ${holdMinutes} phút` : ''}. Nếu hết hạn trước khi cơ sở xác nhận, khung giờ sẽ được mở lại.</span></InlineNotice>}
+    {booking?.id && !locationState?.plan && <div className="mt-4"><DirectDepositPanel bookingId={booking.id} /></div>}
+    {locationState?.plan && <p className="mt-4 text-sm text-[var(--bb-muted)]">Nếu cơ sở nhận cọc chuyển khoản, mỗi lịch trong chuỗi có mã chuyển khoản riêng: mở từng lịch trong “Lịch hẹn của tôi” để xem thông tin thanh toán.</p>}
     {booking?.bookingCode && <p className="mt-4 text-center text-sm text-[var(--bb-muted)]">Mã lịch <strong className="bb-mono text-[var(--bb-ink)]">{booking.bookingCode}</strong></p>}
     <dl className="mt-5 space-y-3 border-t border-[var(--bb-border)] pt-5 text-sm">
       {booking.branch?.name && <div><dt className="text-[var(--bb-muted)]">Cơ sở</dt><dd className="font-semibold">{booking.branch.name}</dd></div>}

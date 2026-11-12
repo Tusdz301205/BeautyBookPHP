@@ -19,6 +19,8 @@ const lazyNamed = (loader, name) => React.lazy(() =>
 
 // Route-level chunks keep scheduler, charts and admin workspaces out of the
 // initial public/login bundle while preserving the existing guards and UI.
+const ChatInbox = React.lazy(() => import('./components/chat/ChatInbox'));
+const CustomerWallet = React.lazy(() => import('./pages/Customer/CustomerWallet'));
 const LoginScreen = lazyNamed(() => import('./pages/Login/LoginScreen'), 'LoginScreen');
 const RegisterScreen = lazyNamed(() => import('./pages/Login/RegisterScreen'), 'RegisterScreen');
 const AcceptInvitation = lazyNamed(() => import('./pages/Login/AuthActionPages'), 'AcceptInvitation');
@@ -307,6 +309,8 @@ export default function App() {
                   <Route path="appointments" element={<CustomerAppointments />} />
                   <Route path="appointments/:id" element={<CustomerAppointmentDetail />} />
                   <Route path="notifications" element={<CustomerNotifications />} />
+                  <Route path="messages" element={<ChatInbox scope="customer" />} />
+                  <Route path="wallet" element={FINANCE_WORKSPACE_ENABLED ? <CustomerWallet /> : <UnavailableFeature finance home="/customer/profile" />} />
                   <Route path="vouchers" element={<CustomerVouchers />} />
                   <Route path="reviews" element={<CustomerReviews />} />
                   <Route path="benefits" element={<CustomerBenefits />} />
@@ -345,6 +349,7 @@ export default function App() {
                     <Route path="services" element={<PermissionGate fallback="/salon" anyOf={['business_service:update:tenant', 'branch_service_offering:status:tenant']}><SalonServices /></PermissionGate>} />
                     <Route path="combos" element={<PermissionGate fallback="/salon" anyOf={['combo:manage:tenant']}><SalonCombos /></PermissionGate>} />
                     <Route path="appointments" element={<PermissionGate fallback="/salon" anyOf={['booking:read:tenant', 'booking:read:branch']}><SalonAppointments /></PermissionGate>} />
+                    <Route path="messages" element={<PermissionGate fallback="/salon" anyOf={['booking:read:tenant', 'booking:read:branch']}><ChatInbox scope="branch" /></PermissionGate>} />
                     <Route path="staff" element={<PermissionGate fallback="/salon" anyOf={['user:read:tenant', 'user:read:branch']}><SalonStaffManagement /></PermissionGate>} />
                     {/* Prevent the retired schedule route from being parsed as staffId="schedule". */}
                     <Route path="staff/schedule" element={<Navigate to="/salon/appointments" replace />} />

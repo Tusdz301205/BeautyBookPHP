@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [EnsureActiveAccount::class]);
+        // Server-to-server bank webhook: authenticated by its HMAC signature, not by a browser session.
+        // push-trial/* are the trial FCM/OAuth stand-ins (server-to-server, bearer-authenticated); those routes exist only in local/testing.
+        $middleware->validateCsrfTokens(except: ['api/v1/payments/sepay/webhook', 'api/v1/payments/sepay/wallet-live-lab/webhook', 'api/v1/payments/sepay/connections/*/webhook', 'api/v1/push-trial/*']);
         $middleware->alias([
             'account' => EnsureAccountKind::class,
             'workspace' => EnsureWorkspace::class,
