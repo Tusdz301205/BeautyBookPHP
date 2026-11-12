@@ -75,7 +75,7 @@ class DirectDepositService
                 ->map(fn ($e) => ['id' => (string) $e->id, 'providerTransactionId' => (string) $e->provider_transaction_id, 'environment' => $e->environment, 'transactionAt' => $this->iso($e->transaction_at), 'amountVnd' => (string) $e->amount_vnd,
                     'content' => $e->content, 'processing' => $e->processing, 'bookingId' => $e->booking_id ? (string) $e->booking_id : null])->all();
 
-            return ['enabled' => DirectDeposit::enabled(), 'receipts' => $receipts, 'banks' => DirectDeposit::BANKS,
+            return ['enabled' => DirectDeposit::enabled(), 'allowTest' => DirectDeposit::allowTest(), 'receipts' => $receipts, 'banks' => DirectDeposit::BANKS,
                 'connections' => DB::table('payment_connections')->where('business_id', $businessId)->orderByDesc('id')->limit(30)->get()->map(fn ($c) => $this->presentConnection($c))->all()];
         }, 3);
     }
@@ -89,6 +89,9 @@ class DirectDepositService
         $name = mb_strtoupper(DirectDeposit::text($raw['accountName'] ?? null, 120, '/^[A-Za-z0-9 ._-]+$/'));
         $environment = $raw['environment'] ?? null;
         if (! in_array($bank, DirectDeposit::BANKS, true) || ! in_array($environment, ['test', 'live'], true)) abort(400, 'Unsupported bank or environment');
+        abort_if($environment === 'test' && ! DirectDeposit::allowTest(), 422, 'SePay Test mode is not available on a production server');
+        // SePay delivers webhooks only to https addresses: a live connection on a server that cannot be reached that way would never verify.
+        abort_if($environment === 'live' && DirectDeposit::production() && ! str_starts_with(strtolower((string) config('app.url')), 'https://'), 503, 'APP_URL must be an https address before a live connection can receive webhooks');
         $this->scope->owner($r, $businessId);
 
         return DB::transaction(function () use ($r, $businessId, $bank, $number, $name, $environment) {
@@ -100,7 +103,7 @@ class DirectDepositService
             DB::table('payment_connections')->where('id', $id)->update(['encrypted_secret' => DirectDeposit::seal($secret, $id)]);
             $this->audit($r, $businessId, null, 'PAYMENT_CONNECTION_CREATE', 'PaymentConnection', $id, ['environment' => $environment, 'bankCode' => $bank]);
 
-            return $this->presentConnection(DB::table('payment_connections')->find($id)) + ['secret' => $secret, 'webhookPath' => '/api/v1/payments/sepay/connections/'.$id.'/webhook'];
+            return $this->presentConnection(DB::table('payment_connections')->find($id)) + ['secret' => $secret, 'webhookPath' => '/api/v1/payments/sepay/connections/'.$id.'/webhook', 'webhookUrl' => DirectDeposit::webhookUrl($id)];
         }, 3);
     }
 
@@ -119,6 +122,7 @@ class DirectDepositService
             abort_unless($row, 404, 'Connection not found');
             abort_unless((int) $row->version === $version, 409, 'Connection changed; reload');
             abort_if($enabled && $row->status !== 'READY', 409, 'Receive a signed verification transfer before enabling');
+            abort_if($enabled && $row->environment === 'test' && ! DirectDeposit::allowTest(), 409, 'SePay Test mode is not available on a production server');
             // Only one connection takes new deposits: enabling this one switches the previous one off for new bookings.
             if ($enabled) DB::table('payment_connections')->where('business_id', $businessId)->where('enabled', 1)->where('id', '!=', $id)->update(['enabled' => 0, 'version' => DB::raw('version + 1'), 'updated_at' => now()]);
             DB::table('payment_connections')->where('id', $id)->update(['enabled' => $enabled ? 1 : 0, 'version' => DB::raw('version + 1'), 'updated_at' => now()]);
@@ -246,7 +250,8 @@ class DirectDepositService
 
     private function codes(string $content, ?string $code): array
     {
-        preg_match_all('/\bG[MS][A-F0-9]{24}\b/', strtoupper($content), $m);
+        // The code is fixed length and random (96 bits): read it wherever it sits, because banks glue their own wording to it. Two different codes stay ambiguous.
+        preg_match_all('/G[MS][A-F0-9]{24}/', strtoupper($content), $m);
         $tokens = $m[0];
         if ($code !== null && preg_match('/^G[MS][A-F0-9]{24}$/', strtoupper($code))) $tokens[] = strtoupper($code);
 

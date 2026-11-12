@@ -19,7 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // Server-to-server bank webhook: authenticated by its HMAC signature, not by a browser session.
         // push-trial/* are the trial FCM/OAuth stand-ins (server-to-server, bearer-authenticated); those routes exist only in local/testing.
         $middleware->validateCsrfTokens(except: ['api/v1/payments/sepay/webhook', 'api/v1/payments/sepay/wallet-live-lab/webhook', 'api/v1/payments/sepay/connections/*/webhook', 'api/v1/push-trial/*']);
+        // Behind a reverse proxy the client address (and https) come from its headers: opt in with TRUSTED_PROXIES (a list of proxy IPs, or *).
+        $proxies = trim((string) env('TRUSTED_PROXIES', ''));
+        if ($proxies !== '') $middleware->trustProxies(at: $proxies === '*' ? '*' : array_map('trim', explode(',', $proxies)));
         $middleware->alias([
+            'sepay.ip' => \App\Http\Middleware\SepayIpAllowlist::class,
             'account' => EnsureAccountKind::class,
             'workspace' => EnsureWorkspace::class,
         ]);

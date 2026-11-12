@@ -35,6 +35,8 @@ return [
         'secret' => env('SEPAY_WEBHOOK_SECRET', ''),
         'gateway' => env('SEPAY_WEBHOOK_BANK_GATEWAY', ''),
         'account_number' => env('SEPAY_WEBHOOK_ACCOUNT_NUMBER', ''),
+        // Optional allowlist of SePay's published source addresses for every webhook route (comma separated IPs or CIDR). Empty = no filter.
+        'allowed_ips' => env('SEPAY_ALLOWED_IPS', ''),
     ],
 
     // Google Identity Services (ID-token flow): only the public client id is needed, no client secret.

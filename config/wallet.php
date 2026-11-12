@@ -10,6 +10,10 @@ return [
     'direct' => [
         'enabled' => filter_var(env('DIRECT_DEPOSIT_ENABLED', false), FILTER_VALIDATE_BOOL),
         'encryption_key' => env('SEPAY_CONNECTION_ENCRYPTION_KEY', ''),
+        // Production takes real money: SePay's Test mode connections are refused unless DIRECT_DEPOSIT_ALLOW_TEST=true, and a live connection
+        // needs an https APP_URL (SePay rejects http webhook addresses).
+        'production' => env('APP_ENV') === 'production',
+        'allow_test' => env('DIRECT_DEPOSIT_ALLOW_TEST') === null ? env('APP_ENV') !== 'production' : filter_var(env('DIRECT_DEPOSIT_ALLOW_TEST'), FILTER_VALIDATE_BOOL),
     ],
     'live_lab' => [
         'isolated' => filter_var(env('WALLET_LIVE_LAB_ISOLATED', false), FILTER_VALIDATE_BOOL),

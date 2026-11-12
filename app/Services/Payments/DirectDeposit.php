@@ -21,6 +21,24 @@ class DirectDeposit
         return (bool) config('wallet.direct.enabled');
     }
 
+    /** True when the server takes real money (APP_ENV=production). */
+    public static function production(): bool
+    {
+        return (bool) config('wallet.direct.production');
+    }
+
+    /** SePay Test mode connections: always outside production, inside it only by explicit setting. */
+    public static function allowTest(): bool
+    {
+        return ! self::production() || (bool) config('wallet.direct.allow_test');
+    }
+
+    /** The exact address to paste into SePay for a connection. */
+    public static function webhookUrl(int $connectionId): string
+    {
+        return rtrim((string) config('app.url'), '/').'/api/v1/payments/sepay/connections/'.$connectionId.'/webhook';
+    }
+
     /** Validated free text of the payment forms (paymentText): trimmed, NFC, no control characters. */
     public static function text(mixed $value, int $max, ?string $pattern = null): string
     {

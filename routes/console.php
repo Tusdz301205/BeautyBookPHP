@@ -31,6 +31,18 @@ Artisan::command('beautybook:payment-inconsistencies', function () {
     $this->info('Bookings whose recorded money and deposit disagree: '.count($found));
 })->purpose('List bookings with money recorded while the deposit awaits, expired or was voided (read only; nothing is changed)');
 
+Artisan::command('beautybook:payments-check', function () {
+    $failed = false;
+    foreach (\App\Services\Payments\GoLiveCheck::run() as [$level, $message]) {
+        $this->line($level.' '.$message);
+        $failed = $failed || $level === 'FAIL';
+    }
+    $this->newLine();
+    $failed ? $this->error('Direct deposits are not ready for real money.') : $this->info('Direct deposits can take real money with the settings above.');
+
+    return $failed ? 1 : 0;
+})->purpose('Check the settings direct deposits need before they take real money (prints no secret)');
+
 Artisan::command('beautybook:push-retry {notification?}', function (?string $notification = null) {
     $this->info('Requeued failed push deliveries: '.app(\App\Services\Push\PushService::class)->requeueFailed($notification ? (int) $notification : null));
 })->purpose('Send failed device pushes again');

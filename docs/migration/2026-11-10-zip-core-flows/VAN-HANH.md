@@ -71,3 +71,29 @@ Test PHP chỉ được chạy trên MySQL test cô lập `mysql_test:3306/beaut
 2. Quay mã: `git checkout <commit trước nhánh>`; dữ liệu mới (giao dịch, cọc, hoàn cọc) vẫn nằm trong DB.
 3. Quay migration (chỉ khi chắc chắn, mất dữ liệu của các bảng đó): `php artisan migrate:rollback --step=7` đảo đúng bảy migration ở mục 2 theo thứ tự ngược. Migration `widen_late_cancellation_window` từ chối đảo nếu đã có bản ghi vi phạm ngoài cửa sổ cũ: xử lý hoặc xóa các bản ghi đó trước, có chủ đích.
 4. Không có bước dữ liệu nào tự xóa giao dịch; mọi khoản tiền ghi nhận sai được đảo bằng thao tác "đảo giao dịch" của màn thanh toán (có dấu vết người thao tác và thời điểm).
+
+## 7. Đưa cọc trực tiếp lên tiền thật (SePay Live)
+
+Cọc trực tiếp chuyển thẳng vào tài khoản ngân hàng của từng doanh nghiệp; nền tảng không giữ tiền. Mỗi doanh nghiệp tự nối tài khoản của mình với SePay.
+
+**Chữ ký webhook đã đúng chuẩn SePay** (đối chiếu tài liệu [developer.sepay.vn](https://developer.sepay.vn/en/sepay-webhooks/xac-thuc)): header `X-SePay-Signature: sha256=<hex>` và `X-SePay-Timestamp`, ký chuỗi `{timestamp}.{raw body}` bằng HMAC-SHA256 với Secret Key; lệch quá 5 phút bị từ chối; phản hồi `200 {"success": true}`; trùng `id` chỉ xử lý một lần.
+
+Việc phải làm trên máy chủ production (một lần):
+
+1. Bật cấu hình: `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://<tên miền thật>` (SePay chỉ gửi webhook đến địa chỉ https hợp lệ, không chấp nhận chứng chỉ tự ký), `DIRECT_DEPOSIT_ENABLED=true`, `SEPAY_CONNECTION_ENCRYPTION_KEY` (64 hex, giữ ngoài Git, không đổi khi đã có kết nối), `BEAUTYBOOK_PAYMENT_MODE` để trống (ví thử tắt).
+2. Sau reverse proxy: đặt `TRUSTED_PROXIES` để lấy đúng IP khách và https.
+3. (Khuyến nghị) giới hạn nguồn: `SEPAY_ALLOWED_IPS` = danh sách địa chỉ SePay công bố tại [dia-chi-ip](https://developer.sepay.vn/en/dia-chi-ip) (bảy IPv4 và hai IPv6 tại thời điểm viết; SePay nói danh sách có thể đổi, phải cho phép **tất cả** và kiểm tra định kỳ).
+4. Chạy `php artisan beautybook:payments-check`: mọi dòng `FAIL` phải hết (lệnh trả mã lỗi khác 0 khi còn `FAIL`; không in secret).
+
+Việc của từng doanh nghiệp (trong tab "Nhận cọc trực tiếp", chọn môi trường **Live**):
+
+1. Tạo kết nối: lưu secret (chỉ hiện một lần) và sao chép **URL webhook** đầy đủ (do máy chủ tạo từ `APP_URL`).
+2. Trong SePay: thêm webhook (đúng tài khoản ngân hàng đã khai), URL đó, xác thực **HMAC-SHA256** với secret vừa lưu, kiểu dữ liệu **JSON**, sự kiện **tiền vào**.
+3. Chuyển một khoản nhỏ vào tài khoản với nội dung chứa mã xác minh `GS…`; khi webhook hợp lệ về, kết nối thành "Đã xác minh". Sau đó mới bật "Đang nhận cọc".
+4. Thử một lịch thật với khoản cọc nhỏ trước khi mở cho khách: đặt lịch, chuyển khoản đúng số tiền và nội dung `GM…` (mã nằm lẫn trong lời của ngân hàng vẫn được nhận ra), lịch chuyển sang "Đã nhận cọc".
+
+SePay có **Test mode** riêng (giao dịch mô phỏng, không qua ngân hàng): kết nối môi trường Test chỉ dùng ngoài production (hoặc khi đặt rõ `DIRECT_DEPOSIT_ALLOW_TEST=true`).
+
+Hoàn cọc là thủ công theo thiết kế (khách khai báo tài khoản, chủ cơ sở chuyển và báo mã, khách xác nhận); hệ thống không chuyển tiền thay chủ cơ sở.
+
+**Chưa nghiệm thu bằng tiền thật**: cần tài khoản SePay và tài khoản ngân hàng thật của bạn. Phần mã, chữ ký, QR VietQR (`vietqr.app/img`), allowlist IP, đọc mã cọc và kiểm tra go-live đã có test; bước chuyển một khoản thật và xem webhook về là bước nghiệm thu cuối do bạn thực hiện.

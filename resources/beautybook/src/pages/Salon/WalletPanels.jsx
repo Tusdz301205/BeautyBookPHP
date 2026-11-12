@@ -334,7 +334,7 @@ function OwnerDirectDeposits({ businessId }) {
   if (!data) return <Skeleton rows={3} />;
   const create = async (event) => {
     event.preventDefault(); setBusy('create');
-    try { setSecret(await paymentsApi.createConnection(businessId, form)); setForm(emptyConnection); toast.success('Đã tạo kết nối. Hãy sao chép secret ngay, secret không hiện lại.'); await load(); }
+    try { setSecret(await paymentsApi.createConnection(businessId, data.allowTest === false ? { ...form, environment: 'live' } : form)); setForm(emptyConnection); toast.success('Đã tạo kết nối. Hãy sao chép secret ngay, secret không hiện lại.'); await load(); }
     catch (requestError) { toast.error(requestError.message); } finally { setBusy(''); }
   };
   const toggle = async (connection) => {
@@ -347,16 +347,17 @@ function OwnerDirectDeposits({ businessId }) {
     {!data.enabled && <Card className="p-4 text-sm text-[var(--bb-muted)]">Nhận cọc trực tiếp đang tắt trên máy chủ. Bạn vẫn xem được kết nối và biên nhận cũ; chưa tạo hoặc bật kết nối mới được.</Card>}
     {secret && <Card className="space-y-2 border-amber-300 bg-amber-50 p-5 text-sm"><h3 className="font-bold">Kết nối mới: lưu secret ngay</h3>
       <p>Secret chỉ hiện một lần. Dán vào phần HMAC-SHA256 của webhook SePay tiền vào (JSON, không dùng JWT hay API key).</p>
-      <p>URL webhook: <code className="break-all">{window.location.origin}{secret.webhookPath}</code> <button type="button" className="font-semibold underline" onClick={() => copy(`${window.location.origin}${secret.webhookPath}`)}>Sao chép</button></p>
+      <p>URL webhook: <code className="break-all">{secret.webhookUrl || `${window.location.origin}${secret.webhookPath}`}</code> <button type="button" className="font-semibold underline" onClick={() => copy(secret.webhookUrl || `${window.location.origin}${secret.webhookPath}`)}>Sao chép</button></p>
       <p>Secret: <code className="break-all">{secret.secret}</code> <button type="button" className="font-semibold underline" onClick={() => copy(secret.secret)}>Sao chép</button></p>
       <p>Mã xác minh: <code>{secret.verificationCode}</code>. Chuyển một khoản vào tài khoản này với nội dung chứa mã trên; khi nhận được webhook hợp lệ, kết nối chuyển sang “Đã xác minh”.</p>
+      {secret.environment === 'live' && <p className="rounded-md border border-amber-400 bg-white p-2 text-xs">Kết nối <b>Live</b> nhận tiền thật. Trong SePay: Webhooks → thêm webhook, URL ở trên (bắt buộc https), kiểu xác thực <b>HMAC-SHA256</b> với secret này, kiểu dữ liệu <b>JSON</b>, sự kiện <b>tiền vào</b>, đúng tài khoản ngân hàng đã khai ở đây. Chỉ bật nhận cọc sau khi kết nối chuyển sang “Đã xác minh”.</p>}
       <Button size="sm" variant="secondary" onClick={() => setSecret(null)}>Tôi đã lưu secret</Button></Card>}
     <Card className="p-5"><h3 className="mb-3 font-bold">Thêm tài khoản nhận cọc</h3>
       <form onSubmit={create} className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         <Field label="Ngân hàng" required><Select value={form.bankCode} onChange={(event) => setForm({ ...form, bankCode: event.target.value })}>{data.banks.map((bank) => <option key={bank} value={bank}>{bank}</option>)}</Select></Field>
         <Field label="Số tài khoản" required><Input required value={form.accountNumber} onChange={(event) => setForm({ ...form, accountNumber: event.target.value })} /></Field>
         <Field label="Tên chủ tài khoản (không dấu)" required><Input required value={form.accountName} onChange={(event) => setForm({ ...form, accountName: event.target.value })} /></Field>
-        <Field label="Môi trường" required><Select value={form.environment} onChange={(event) => setForm({ ...form, environment: event.target.value })}><option value="test">Test (không chuyển tiền thật)</option><option value="live">Live (tiền thật)</option></Select></Field>
+        <Field label="Môi trường" required><Select value={data.allowTest === false ? 'live' : form.environment} onChange={(event) => setForm({ ...form, environment: event.target.value })}>{data.allowTest !== false && <option value="test">Test (không chuyển tiền thật)</option>}<option value="live">Live (tiền thật)</option></Select></Field>
         <div className="flex items-end"><Button type="submit" loading={busy === 'create'} disabled={!data.enabled}>Tạo kết nối</Button></div></form></Card>
     {!data.connections.length ? <Card><EmptyState title="Chưa có tài khoản nhận cọc" description="Tạo kết nối, xác minh bằng một khoản chuyển có chữ ký rồi bật để khách chuyển cọc thẳng vào tài khoản của bạn." /></Card> :
       data.connections.map((connection) => <Card key={connection.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center"><div className="min-w-0 flex-1"><p className="font-bold">{connection.bankCode} · {connection.accountNumber} · {connection.accountName}</p>
