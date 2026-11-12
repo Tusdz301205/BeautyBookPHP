@@ -172,7 +172,7 @@ class BookingController extends Controller
             $r->validate(['appointmentDate' => 'required|date', 'note' => 'nullable|string|max:2000', 'guestName' => 'nullable|string|max:160', 'guestPhone' => 'nullable|string|max:32', 'violationAcknowledged' => 'nullable|boolean']);
             $b = Branch::findOrFail($r->branchId);
             $data += ['start_at' => CarbonImmutable::parse($r->appointmentDate)->setTimezone($b->timezone ?: 'Asia/Ho_Chi_Minh')->format('Y-m-d\TH:i'), 'note' => $r->note, 'contact' => ['full_name' => $r->guestName, 'phone' => $r->guestPhone, 'email' => $r->input('guestEmail')],
-                'source' => in_array($r->source, ['WALK_IN', 'PHONE']) ? $r->source : 'PHONE', 'violation_acknowledged' => $r->boolean('violationAcknowledged'), 'idempotency_key' => $r->header('Idempotency-Key') ?: ($r->user()->account_kind === AccountKind::Operational ? (string) Str::uuid() : null)];
+                'source' => in_array($r->source, ['WALK_IN', 'PHONE']) ? $r->source : 'PHONE', 'violation_acknowledged' => $r->boolean('violationAcknowledged'), 'wallet_deposit_quote' => is_string($r->walletDepositQuote) ? $r->walletDepositQuote : null, 'idempotency_key' => $r->header('Idempotency-Key') ?: ($r->user()->account_kind === AccountKind::Operational ? (string) Str::uuid() : null)];
             abort_unless(is_string($data['idempotency_key']) && strlen($data['idempotency_key']) >= 8 && strlen($data['idempotency_key']) <= 100, 422);
         }
 
@@ -466,7 +466,7 @@ class BookingController extends Controller
         abort_unless($c['kind'] === 'ADMIN', 403);
         $refund = app(PaymentService::class)->balance($b);
 
-        return ['bookingId' => (string) $b->id, 'status' => $b->status, 'canCancel' => in_array($b->status, ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS'], true), 'paidAmount' => Money::decimal($refund['net_cents']), 'refundRequired' => $refund['net_cents'] > 0, 'affectedServices' => $b->services()->count()];
+        return ['bookingId' => (string) $b->id, 'status' => $b->status, 'canCancel' => in_array($b->status, ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS'], true), 'paidAmount' => Money::decimal($refund['net_cents']), 'refundRequired' => $refund['net_cents'] - $refund['deposit_cents'] > 0, 'affectedServices' => $b->services()->count()];
     }
 
     public function violations(Request $r)
@@ -478,13 +478,13 @@ class BookingController extends Controller
 
     private function recurringData(Request $r): array
     {
-        $r->validate(['branchId' => 'required|integer', 'serviceIds' => 'required_without:comboId|array|min:1|max:20', 'serviceIds.*' => 'integer|min:1', 'comboId' => 'nullable|integer', 'staffId' => 'nullable|integer', 'staffMode' => 'required|in:SAME_STAFF,ANY_AVAILABLE', 'frequency' => 'required|in:WEEKLY,BIWEEKLY,MONTHLY', 'startDate' => 'required|date', 'endDate' => 'nullable|date|after_or_equal:startDate', 'preferredTime' => 'required|date_format:H:i', 'occurrenceCount' => 'required|integer|between:2,52', 'skipConflicts' => 'nullable|boolean', 'violationAcknowledged' => 'nullable|boolean', 'note' => 'nullable|string|max:2000']);
+        $r->validate(['branchId' => 'required|integer', 'serviceIds' => 'required_without:comboId|array|min:1|max:20', 'serviceIds.*' => 'integer|min:1', 'comboId' => 'nullable|integer', 'staffId' => 'nullable|integer', 'staffMode' => 'required|in:SAME_STAFF,ANY_AVAILABLE', 'frequency' => 'required|in:WEEKLY,BIWEEKLY,MONTHLY', 'startDate' => 'required|date', 'endDate' => 'nullable|date|after_or_equal:startDate', 'preferredTime' => 'required|date_format:H:i', 'occurrenceCount' => 'required|integer|between:2,52', 'skipConflicts' => 'nullable|boolean', 'violationAcknowledged' => 'nullable|boolean', 'note' => 'nullable|string|max:2000', 'walletDepositQuotes' => 'nullable|array|max:52', 'walletDepositQuotes.*' => 'nullable|string|max:64']);
         if ($r->staffMode === 'SAME_STAFF') {
             abort_unless($r->staffId, 422);
         }
 
         return ['items' => $r->comboId ? null : array_map(fn ($id) => ['branch_service_offering_id' => (int) $id, 'service_variant_id' => null], $r->serviceIds),
-            'combo_id' => $r->comboId ? (int) $r->comboId : null, 'staff_mode' => $r->staffMode, 'staff_profile_id' => $r->staffId ? (int) $r->staffId : null, 'frequency' => $r->frequency, 'start_date' => CarbonImmutable::parse($r->startDate)->toDateString(), 'end_date' => $r->endDate ? CarbonImmutable::parse($r->endDate)->toDateString() : null, 'preferred_time' => $r->preferredTime, 'occurrence_count' => (int) $r->occurrenceCount, 'skip_conflicts' => $r->boolean('skipConflicts'), 'violation_acknowledged' => $r->boolean('violationAcknowledged'), 'note' => $r->note];
+            'combo_id' => $r->comboId ? (int) $r->comboId : null, 'staff_mode' => $r->staffMode, 'staff_profile_id' => $r->staffId ? (int) $r->staffId : null, 'frequency' => $r->frequency, 'start_date' => CarbonImmutable::parse($r->startDate)->toDateString(), 'end_date' => $r->endDate ? CarbonImmutable::parse($r->endDate)->toDateString() : null, 'preferred_time' => $r->preferredTime, 'occurrence_count' => (int) $r->occurrenceCount, 'skip_conflicts' => $r->boolean('skipConflicts'), 'wallet_deposit_quotes' => array_values($r->input('walletDepositQuotes', [])), 'violation_acknowledged' => $r->boolean('violationAcknowledged'), 'note' => $r->note];
     }
 
     private function series(RecurringBookingSeries $s): array
@@ -500,7 +500,7 @@ class BookingController extends Controller
         $branch = Branch::findOrFail($r->branchId);
         $p = $s->preview($branch, $s->context($r, $branch), $data);
 
-        return ['availableCount' => $p['available_count'], 'conflictCount' => $p['conflict_count'], 'occurrences' => array_map(fn ($o) => ['index' => $o['sequence'], 'appointmentDate' => CarbonImmutable::parse($o['start_at'], $branch->timezone ?: 'Asia/Ho_Chi_Minh')->toIso8601String(), 'available' => $o['available'], 'staffId' => isset($o['staff_profile_id']) ? (string) $o['staff_profile_id'] : null, 'reason' => $o['reason'] ?? null], $p['occurrences'])];
+        return ['availableCount' => $p['available_count'], 'conflictCount' => $p['conflict_count'], 'walletMode' => $p['wallet_mode'], 'depositMode' => $p['deposit_mode'] ?? null, 'walletDepositTotalVnd' => $p['wallet_deposit_total_vnd'], 'occurrences' => array_map(fn ($o) => ['walletDeposit' => $o['wallet_deposit'] ?? null, 'index' => $o['sequence'], 'appointmentDate' => CarbonImmutable::parse($o['start_at'], $branch->timezone ?: 'Asia/Ho_Chi_Minh')->toIso8601String(), 'available' => $o['available'], 'staffId' => isset($o['staff_profile_id']) ? (string) $o['staff_profile_id'] : null, 'reason' => $o['reason'] ?? null], $p['occurrences'])];
     }
 
     public function recurringStore(Request $r, RecurringService $s)

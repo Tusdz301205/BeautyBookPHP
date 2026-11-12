@@ -98,7 +98,7 @@ class CreateComboBookingService
                 'business_id' => $branch->business_id, 'branch_id' => $branch->id, 'customer_profile_id' => $customerId,
                 'created_by_user_id' => $context['actor_user_id'], 'booking_code' => 'BB-'.now()->format('Ymd').'-'.Str::upper(Str::random(12)),
                 'appointment_start_at' => $items[0]['window']['item_start_at'], 'appointment_end_at' => $items[array_key_last($items)]['window']['item_end_at'],
-                'status' => 'PENDING', 'source' => $source, 'pending_expires_at' => now()->addMinutes((int) app(\App\Services\Platform\PlatformSettingsService::class)->value('pendingHoldMinutes')),
+                'status' => 'PENDING', 'source' => $source, 'pending_expires_at' => now()->addMinutes(\App\Services\Booking\BranchBookingRules::for((int) $branch->id)['pendingHoldMinutes']),
                 'currency' => 'VND', 'total_amount' => $pricing['final_amount'], 'note' => $data['note'] ?? null,
             ]);
             $this->promotions->reserve($booking, $pricing);
@@ -145,6 +145,8 @@ class CreateComboBookingService
             }
             DB::table('combo_booking_usages')->insert(['combo_id' => $combo->id, 'booking_id' => $booking->id, 'status' => 'RESERVED', 'created_at' => now(), 'updated_at' => now()]);
             $combo->increment('used_count');
+            // Same customer-booking rules as every other create path: deposit hold, hold tied to the deposit, AUTO confirmation.
+            \App\Services\Booking\CustomerBookingFinalizer::finalize($booking, $context, $branch, $pricing['final_amount'], $items[0]['window']['item_start_at'], $data['wallet_deposit_quote'] ?? null);
             $idempotency->update(['status' => 'COMPLETED', 'booking_id' => $booking->id, 'http_status' => 201]);
             return ['booking' => $booking->load(['services', 'contact', 'pricingSnapshot']), 'replayed' => false];
         }, 3);

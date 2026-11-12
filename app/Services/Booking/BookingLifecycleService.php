@@ -78,6 +78,8 @@ class BookingLifecycleService
             $this->assertTransitionAllowed($locked, $context, $target);
             $this->assertTimeRules($locked, $context, $target, $confirmedNoShow, $now);
 
+            // A held wallet deposit follows the booking outcome (released, forfeited or refunded); a conflict aborts the change.
+            \App\Services\Wallet\WalletCore::transition($locked->id, $target, ['customerCancelled' => $context['kind'] === 'CUSTOMER' && $target === 'CANCELLED', 'now' => $now, 'actorId' => $context['actor_user_id']]);
             $fromStatus = $locked->status;
             $locked->status = $target;
             $locked->save();
@@ -146,13 +148,15 @@ class BookingLifecycleService
             if ($now->greaterThanOrEqualTo($start)) {
                 throw new BookingConflictException('Lịch hẹn đã bắt đầu. Vui lòng liên hệ cơ sở để được hỗ trợ.');
             }
-            if ($now->greaterThan($start->subHours(4))) {
-                throw new BookingConflictException('Đã qua mốc hủy trực tiếp 4 giờ. Vui lòng gửi yêu cầu hủy muộn.');
+            $cutoff = BranchBookingRules::cancellationHours((int) $booking->branch_id);
+            if ($now->greaterThan($start->subHours($cutoff))) {
+                throw new BookingConflictException('Đã qua mốc hủy trực tiếp '.$cutoff.' giờ. Vui lòng gửi yêu cầu hủy muộn.');
             }
         }
 
-        if ($target === 'CHECKED_IN' && $now->lessThan($start->subMinutes(30))) {
-            throw new BookingConflictException('Chỉ được check-in từ 30 phút trước giờ hẹn.');
+        $rules = BranchBookingRules::for((int) $booking->branch_id);
+        if ($target === 'CHECKED_IN' && $now->lessThan($start->subMinutes($rules['earlyCheckInMinutes']))) {
+            throw new BookingConflictException('Chỉ được check-in từ '.$rules['earlyCheckInMinutes'].' phút trước giờ hẹn.');
         }
 
         if ($target === 'IN_PROGRESS' && $now->lessThan($start)) {
@@ -168,8 +172,8 @@ class BookingLifecycleService
             if (! $confirmedNoShow) {
                 throw new BookingConflictException('Cần xác nhận rõ trước khi đánh dấu khách vắng mặt.');
             }
-            if (! $now->greaterThan($start->addMinutes(15))) {
-                throw new BookingConflictException('Chỉ được đánh dấu vắng mặt sau hơn 15 phút kể từ giờ hẹn.');
+            if (! $now->greaterThan($start->addMinutes($rules['gracePeriodMinutes']))) {
+                throw new BookingConflictException('Chỉ được đánh dấu vắng mặt sau hơn '.$rules['gracePeriodMinutes'].' phút kể từ giờ hẹn.');
             }
 
             $hasCancellationEvidence = AppointmentChangeRequest::query()

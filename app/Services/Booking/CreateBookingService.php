@@ -130,7 +130,7 @@ class CreateBookingService
                 'appointment_end_at' => $window['item_end_at'],
                 'status' => 'PENDING',
                 'source' => $source,
-                'pending_expires_at' => now()->addMinutes((int) app(PlatformSettingsService::class)->value('pendingHoldMinutes')),
+                'pending_expires_at' => now()->addMinutes(BranchBookingRules::for((int) $lockedBranch->id)['pendingHoldMinutes']),
                 'currency' => $quote['currency'],
                 'total_amount' => $quote['final_amount'],
                 'note' => $data['note'] ?? null,
@@ -199,6 +199,10 @@ class CreateBookingService
                 'to_status' => 'PENDING',
                 'reason' => 'BOOKING_CREATED',
             ]);
+
+            // Customer bookings: the wallet deposit is held, the hold is tied to the deposit and AUTO branches confirm,
+            // all in this very transaction so any later failure rolls everything back with the booking.
+            CustomerBookingFinalizer::finalize($booking, $context, $lockedBranch, $quote['final_amount'], $window['item_start_at'], $data['wallet_deposit_quote'] ?? null);
 
             if ($contact !== null) {
                 BookingContact::query()->create([

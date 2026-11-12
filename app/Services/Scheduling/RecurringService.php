@@ -80,7 +80,66 @@ class RecurringService
             }
         }
 
-        return ['occurrences' => $occurrences, 'available_count' => count(array_filter($occurrences, fn ($o) => $o['available'])), 'conflict_count' => count(array_filter($occurrences, fn ($o) => ! $o['available']))];
+        $available = count(array_filter($occurrences, fn ($o) => $o['available']));
+        // One quote per occurrence, each from the price that occurrence will really have; the series deposit is their sum.
+        $mode = $this->depositMode();
+        $depositTotal = 0;
+        $anyTerms = false;
+        foreach ($occurrences as &$occurrence) {
+            $terms = $mode && $occurrence['available'] ? $this->occurrenceDeposit($branch, $context, $data, $quote, $occurrence, $mode) : null;
+            $occurrence['wallet_deposit'] = $terms;
+            if ($terms) {
+                $anyTerms = true;
+                $depositTotal += $terms['depositVnd'];
+            }
+        }
+        unset($occurrence);
+
+        return ['occurrences' => $occurrences, 'available_count' => $available, 'conflict_count' => count($occurrences) - $available,
+            'wallet_mode' => \App\Services\Wallet\LiveWalletPolicy::walletMode(), 'deposit_mode' => $mode && $anyTerms ? $mode : null, 'wallet_deposit_total_vnd' => $depositTotal];
+    }
+
+    /** 'WALLET', 'DIRECT' or null when no deposit applies (wallet mode wins when both are configured). */
+    private function depositMode(): ?string
+    {
+        if (\App\Services\Wallet\LiveWalletPolicy::walletMode()) return 'WALLET';
+
+        return \App\Services\Payments\DirectDeposit::enabled() ? 'DIRECT' : null;
+    }
+
+    /**
+     * What booking this one occurrence would hold: its price comes from the very pricing the booking itself will run (its own
+     * start time, the staff member it is given, the same cart or combo), so the quote returned here is the quote the create
+     * path will accept. Null when the branch takes no deposit for it.
+     */
+    private function occurrenceDeposit(Branch $branch, array $context, array $data, ?array $quote, array $occurrence, string $mode): ?array
+    {
+        $total = $this->occurrenceTotal($branch, $context, $data, $quote, $occurrence['start_at'], $occurrence['staff_profile_id'] ?? null);
+        $hours = \App\Services\Booking\BranchBookingRules::cancellationHours((int) $branch->id);
+        if ($mode === 'DIRECT') {
+            $terms = \App\Services\Payments\DirectDeposit::terms((int) $branch->business_id, (int) $branch->id, $total, $hours);
+            if ($terms) unset($terms['connectionId']);
+
+            return $terms;
+        }
+
+        return \App\Services\Wallet\WalletCore::terms((int) $branch->id, $total, $hours);
+    }
+
+    /** The final price of one occurrence: the combo's, the cart's at that date and staff member, or the single service's. */
+    private function occurrenceTotal(Branch $branch, array $context, array $data, ?array $quote, string $start, ?int $staffId): string
+    {
+        if (! empty($data['combo_id'])) {
+            $combo = $this->combos->resolveForBooking($branch, (int) $data['combo_id']);
+
+            return $this->comboBookings->previewPrice($branch, $combo, $context, ['start_at' => $start, 'staff_profile_id' => $staffId,
+                'staff_assignments' => $combo->items->mapWithKeys(fn ($item) => [$item->branch_service_offering_id => $staffId])->all()])['final_amount'];
+        }
+        if (! empty($data['items'])) {
+            return app(\App\Services\Booking\CartBookingService::class)->quote($branch, $context, ['items' => $data['items'], 'staff_profile_id' => $staffId, 'start_at' => $start, 'source_timeline' => true])['final_amount'];
+        }
+
+        return $quote['final_amount'];
     }
 
     public function create(Branch $branch, array $context, array $data): array
@@ -125,13 +184,15 @@ class RecurringService
                             'staff_assignments' => $combo->items->mapWithKeys(fn ($item) => [$item->branch_service_offering_id => $staffId])->all(),
                             'note' => $data['note'] ?? null, 'violation_acknowledged' => $data['violation_acknowledged'] ?? false,
                             'contact'=>$data['contact']??null,'contact_consent'=>$data['contact_consent']??false,
+                            'wallet_deposit_quote' => $data['wallet_deposit_quotes'][$index] ?? null,
                         ])['booking'];
                     } elseif(!empty($data['items'])) {
                         $booking=app(\App\Services\Booking\CartBookingService::class)->create($branch,$context,[
                             'items'=>$data['items'],'staff_profile_id'=>$data['staff_mode']==='SAME_STAFF'?$data['staff_profile_id']:null,
                             'start_at'=>$start,'source_timeline'=>true,'idempotency_key'=>'recurring:'.$series->id.':'.$index,
                             'note'=>$data['note']??null,'violation_acknowledged'=>$data['violation_acknowledged']??false,
-                            'contact'=>$data['contact']??null,'contact_consent'=>$data['contact_consent']??false])['booking'];
+                            'contact'=>$data['contact']??null,'contact_consent'=>$data['contact_consent']??false,
+                            'wallet_deposit_quote'=>$data['wallet_deposit_quotes'][$index]??null])['booking'];
                     } else {
                         $quote = $this->quotes->quote($branch, (int) $data['branch_service_offering_id'], $data['service_variant_id'] ?? null, true, $context['customer_profile_id']);
                         $staffId = $this->findStaff($branch, $context, $data, $quote, $start, true);
@@ -141,6 +202,7 @@ class RecurringService
                         'service_variant_id' => $data['service_variant_id'] ?? null,
                         'staff_profile_id' => $staffId, 'start_at' => $start,
                         'note' => $data['note'] ?? null, 'violation_acknowledged' => $data['violation_acknowledged'] ?? false,
+                        'wallet_deposit_quote' => $data['wallet_deposit_quotes'][$index] ?? null,
                         ])['booking'];
                     }
                     $series->occurrences()->create(['booking_id' => $booking->id, 'sequence' => $index, 'scheduled_start_at' => $date->utc(), 'status' => 'BOOKED']);

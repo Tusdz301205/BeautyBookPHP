@@ -75,7 +75,7 @@ class AppointmentChangeRequestService
 
             if ($context['kind'] === 'CUSTOMER' && $type === 'CANCEL') {
                 $start = $this->bookingStart($locked);
-                if ($now->greaterThan($start->subHours(4)) && $now->lessThan($start)) {
+                if ($now->greaterThan($start->subHours(BranchBookingRules::cancellationHours((int) $locked->branch_id))) && $now->lessThan($start)) {
                     $occurredAt = CarbonImmutable::parse($row->getRawOriginal('created_at'), 'UTC');
                     $this->policy->recordViolation($locked, 'LATE_CANCELLATION', $context['actor_user_id'], $row->id, $occurredAt);
                 }
@@ -116,8 +116,12 @@ class AppointmentChangeRequestService
             $this->assertPendingReviewable($lockedBooking, $lockedRequest);
 
             if ($lockedRequest->request_type === 'CANCEL') {
+                // The customer asked to cancel at request time; a slow review must not turn a timely request into a late one.
+                \App\Services\Wallet\WalletCore::transition($lockedBooking->id, 'CANCELLED', ['customerCancelled' => $lockedRequest->requested_by_type === 'CUSTOMER', 'requestedAt' => CarbonImmutable::parse($lockedRequest->getRawOriginal('created_at'), 'UTC'), 'actorId' => $context['actor_user_id']]);
                 $this->applyCancellation($lockedBooking, $context['actor_user_id'], $lockedRequest->reason);
             } elseif ($lockedRequest->request_type === 'RESCHEDULE') {
+                // As in the source, the cutoff holds again at the moment of the move, not only when the customer asked.
+                $this->assertRescheduleCutoff($lockedBooking, $this->bookingStart($lockedBooking), $now);
                 $this->applyReschedule($branch, $lockedBooking, $lockedRequest);
             } elseif ($lockedRequest->request_type === 'STAFF_CHANGE') {
                 $this->applyStaffChange($branch, $lockedBooking, $lockedRequest);
@@ -181,6 +185,15 @@ class AppointmentChangeRequestService
         return $result;
     }
 
+    /** The branch's `rescheduleHours`: a booking can no longer be moved once less than that many hours remain before it starts (0 = no cutoff). */
+    private function assertRescheduleCutoff(Booking $booking, CarbonImmutable $start, CarbonImmutable $now): void
+    {
+        $hours = BranchBookingRules::for((int) $booking->branch_id)['rescheduleHours'];
+        if ($hours > 0 && $now->greaterThan($start->subHours($hours))) {
+            throw new BookingConflictException('Đã qua mốc đổi lịch '.$hours.' giờ trước giờ hẹn.');
+        }
+    }
+
     private function assertCreatePayload(Booking $booking, string $type, array $data, array $context, CarbonImmutable $now): void
     {
         if ($context['kind'] === 'CUSTOMER' && $type === 'CANCEL' && ! $now->lessThan($this->bookingStart($booking))) {
@@ -202,6 +215,7 @@ class AppointmentChangeRequestService
                 throw new BookingConflictException('Khung giờ đề xuất không hợp lệ.');
             }
             $oldStart = $this->bookingStart($booking);
+            if ($context['kind'] === 'CUSTOMER') $this->assertRescheduleCutoff($booking, $oldStart, $now);
             $oldEnd = CarbonImmutable::parse($booking->getRawOriginal('appointment_end_at'), 'UTC');
             if ($oldStart->diffInSeconds($oldEnd) !== $start->diffInSeconds($end)) {
                 throw new BookingConflictException('Đổi lịch phải giữ nguyên tổng thời lượng dịch vụ.');

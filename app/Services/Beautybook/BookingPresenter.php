@@ -64,7 +64,18 @@ class BookingPresenter
             'bookingServices' => $services->map(fn ($i) => $this->item($i) + ['canCorrectActualTime' => $canCorrect && $i->staffProfile?->user_id !== $request->user()?->id && in_array($i->status, ['SCHEDULED', 'COMPLETED', 'IN_PROGRESS'], true) && in_array($booking->status, ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS', 'COMPLETED'], true)])->values(),
             'statusHistory' => $booking->statusHistory->map(fn ($h) => ['id' => (string) $h->id, 'fromStatus' => $h->from_status, 'toStatus' => $h->to_status, 'note' => $h->reason, 'createdAt' => $h->created_at?->toIso8601String()]),
             'changeRequests' => $booking->changeRequests->map(fn ($c) => ['id' => (string) $c->id, 'bookingId' => (string) $c->booking_id, 'requestType' => $c->request_type, 'status' => $c->status, 'reason' => $c->reason, 'reviewNote' => $c->review_note, 'createdAt' => $c->created_at?->toIso8601String(), 'expiresAt' => $c->expires_at]),
-            'readyToComplete' => $booking->services->every(fn ($i) => in_array($i->status, ['COMPLETED', 'SKIPPED', 'CANCELLED'], true)), 'transitionAvailability' => $this->transitions($booking)];
+            'readyToComplete' => $booking->services->every(fn ($i) => in_array($i->status, ['COMPLETED', 'SKIPPED', 'CANCELLED'], true)), 'transitionAvailability' => $this->transitions($booking), 'policy' => $this->policy($booking)];
+    }
+
+    /** The branch rules that decide what may still be done to this booking, with the instants they turn into (ISO, UTC). */
+    private function policy(Booking $booking): array
+    {
+        $rules = \App\Services\Booking\BranchBookingRules::for((int) $booking->branch_id);
+        $start = CarbonImmutable::parse($booking->appointment_start_at);
+
+        return ['cancellationHours' => $rules['cancellationHours'], 'rescheduleHours' => $rules['rescheduleHours'], 'earlyCheckInMinutes' => $rules['earlyCheckInMinutes'], 'gracePeriodMinutes' => $rules['gracePeriodMinutes'],
+            'cancelUntil' => $start->subHours($rules['cancellationHours'])->toIso8601String(), 'rescheduleUntil' => $rules['rescheduleHours'] > 0 ? $start->subHours($rules['rescheduleHours'])->toIso8601String() : null,
+            'checkInFrom' => $start->subMinutes($rules['earlyCheckInMinutes'])->toIso8601String(), 'noShowAfter' => $start->addMinutes($rules['gracePeriodMinutes'])->toIso8601String()];
     }
 
     private function transitions(Booking $booking): array
@@ -73,9 +84,17 @@ class BookingPresenter
         if (! $target) {
             return [];
         }
-        $allowed = CarbonImmutable::now('UTC')->greaterThanOrEqualTo($target === 'COMPLETED' ? $booking->appointment_end_at : $booking->appointment_start_at);
+        $rules = \App\Services\Booking\BranchBookingRules::for((int) $booking->branch_id);
+        $now = CarbonImmutable::now('UTC');
+        // The same instants the lifecycle service enforces, so the screen never offers what the server will refuse (or hides what it allows).
+        $opens = match ($target) {
+            'CHECKED_IN' => CarbonImmutable::parse($booking->appointment_start_at)->subMinutes($rules['earlyCheckInMinutes']),
+            'COMPLETED' => CarbonImmutable::parse($booking->appointment_end_at),
+            default => CarbonImmutable::parse($booking->appointment_start_at),
+        };
+        $allowed = $now->greaterThanOrEqualTo($opens);
 
-        return [$target => ['allowed' => $allowed, 'reason' => $allowed ? null : 'Chưa đến thời gian thực hiện thao tác.']];
+        return [$target => ['allowed' => $allowed, 'reason' => $allowed ? null : ($target === 'CHECKED_IN' ? 'Chỉ được check-in từ '.$rules['earlyCheckInMinutes'].' phút trước giờ hẹn.' : 'Chưa đến thời gian thực hiện thao tác.')]];
     }
 
     public function row(Booking $booking): array

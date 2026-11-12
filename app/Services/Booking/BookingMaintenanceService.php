@@ -21,6 +21,7 @@ class BookingMaintenanceService
                 if (! $booking || $booking->status !== 'PENDING' || ! $booking->pending_expires_at?->isPast()) {
                     return 0;
                 }
+                \App\Services\Wallet\WalletCore::transition((int) $id, 'EXPIRED', ['now' => now('UTC')]);
                 $booking->update(['status' => 'EXPIRED', 'pending_expires_at' => null]);
                 BookingService::query()->where('booking_id', $id)->whereIn('status', ['SCHEDULED', 'IN_PROGRESS'])
                     ->update(['status' => 'CANCELLED', 'updated_at' => now()]);

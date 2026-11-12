@@ -57,5 +57,8 @@ class BookingNotificationService
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // Device push reuses the same record; it is queued, never sent inline, so a slow FCM cannot block a booking.
+        app(\App\Services\Push\PushService::class)->queue((int) $notification->id, $userId, $type);
     }
 }

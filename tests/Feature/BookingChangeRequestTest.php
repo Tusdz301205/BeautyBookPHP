@@ -372,6 +372,55 @@ class BookingChangeRequestTest extends TestCase
         return $staff;
     }
 
+    private function branchPolicy(array $policy): void
+    {
+        $id = Branch::where('slug', 'tan-tao')->value('id');
+        \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->insertOrIgnore(['branch_id' => $id, 'created_at' => now(), 'updated_at' => now()]);
+        $row = \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->where('branch_id', $id)->first();
+        \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->where('branch_id', $id)->update(['booking_policy' => json_encode(array_replace(json_decode($row->booking_policy ?? '{}', true) ?: [], $policy))]);
+    }
+
+    public function test_the_branch_reschedule_cutoff_applies_when_the_customer_asks_and_again_when_the_request_is_approved(): void
+    {
+        $this->branchPolicy(['rescheduleHours' => 24]);
+        $booking = $this->createCustomerBooking('policy-reschedule-cutoff');
+        $booking->update(['status' => 'CONFIRMED']);
+        $customer = User::where('email', 'customer@beautybook.local')->firstOrFail();
+        $owner = User::where('email', 'owner@beautybook.local')->firstOrFail();
+        $assignment = $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        $end = CarbonImmutable::parse($booking->getRawOriginal('appointment_end_at'), 'UTC');
+        $ask = fn () => $this->postJsonWithCsrf(route('bookings.change-requests.store', $booking), ['request_type' => 'RESCHEDULE', 'proposed_start_at' => $start->addDays(2)->toIso8601String(), 'proposed_end_at' => $end->addDays(2)->toIso8601String()]);
+
+        // Inside the 24-hour window the customer can no longer ask; nothing is created.
+        CarbonImmutable::setTestNow($start->subHours(23));
+        $this->actingAs($customer);
+        $ask()->assertConflict()->assertJsonFragment(['message' => 'Đã qua mốc đổi lịch 24 giờ trước giờ hẹn.']);
+        $this->assertSame(0, AppointmentChangeRequest::query()->where('booking_id', $booking->id)->count());
+
+        // Exactly 24 hours before is still allowed; once the review happens inside the window the move is refused and stays pending.
+        CarbonImmutable::setTestNow($start->subHours(24));
+        $created = $ask()->assertCreated();
+        $change = AppointmentChangeRequest::findOrFail($created->json('request_id'));
+        CarbonImmutable::setTestNow($start->subHours(20));
+        $this->actingAs($owner)->withSession(['workspace_assignment_id' => $assignment->id]);
+        $this->postJsonWithCsrf(route('bookings.change-requests.approve', [$booking, $change]), [])->assertConflict();
+        $this->assertSame('PENDING', $change->fresh()->status);
+        $this->assertTrue(CarbonImmutable::parse($booking->fresh()->getRawOriginal('appointment_start_at'), 'UTC')->equalTo($start));
+    }
+
+    public function test_a_cancellation_or_staff_request_is_not_held_to_the_reschedule_cutoff(): void
+    {
+        $this->branchPolicy(['rescheduleHours' => 24]);
+        $booking = $this->createCustomerBooking('policy-reschedule-other-types');
+        $booking->update(['status' => 'CONFIRMED']);
+        $customer = User::where('email', 'customer@beautybook.local')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        CarbonImmutable::setTestNow($start->subHours(3));
+        $this->actingAs($customer);
+        $this->postJsonWithCsrf(route('bookings.change-requests.store', $booking), ['request_type' => 'CANCEL'])->assertCreated();
+    }
+
     private function postJsonWithCsrf(string $uri, array $data, ?string $idempotencyKey = null): TestResponse
     {
         $token = 'beautybook-change-request-test-csrf';

@@ -243,7 +243,7 @@ class CartBookingService
             };
             $booking = Booking::create(['business_id' => $branch->business_id, 'branch_id' => $branch->id, 'customer_profile_id' => $customerId, 'created_by_user_id' => $context['actor_user_id'],
                 'booking_code' => 'BB-'.now()->format('Ymd').'-'.Str::upper(Str::random(12)), 'appointment_start_at' => $items[0]['window']['item_start_at'], 'appointment_end_at' => $items[array_key_last($items)]['window']['item_end_at'],
-                'status' => 'PENDING', 'source' => $source, 'pending_expires_at' => now()->addMinutes((int) app(PlatformSettingsService::class)->value('pendingHoldMinutes')), 'currency' => 'VND', 'total_amount' => $pricing['final_amount'], 'note' => $data['note'] ?? null]);
+                'status' => 'PENDING', 'source' => $source, 'pending_expires_at' => now()->addMinutes(BranchBookingRules::for((int) $branch->id)['pendingHoldMinutes']), 'currency' => 'VND', 'total_amount' => $pricing['final_amount'], 'note' => $data['note'] ?? null]);
             $this->promotions->reserve($booking, $pricing);
             $this->loyalty->redeem($booking, $pricing);
             $snapshots = [];
@@ -273,7 +273,9 @@ class CartBookingService
                 }
                 BookingContact::create(['booking_id' => $booking->id, 'full_name' => trim($contact['full_name']), 'phone' => $contact['phone'] ?? null, 'email' => $contact['email'] ?? null]);
             }
-            app(BookingNotificationService::class)->record($context['actor_user_id'], 'BOOKING_CREATED', 'Đặt lịch thành công', 'Lịch hẹn '.$booking->booking_code.' đang chờ xác nhận.', $booking->id, 'cart-created:'.$booking->id);
+            // Customer bookings: deposit hold, hold-to-deposit sync and AUTO confirmation share this transaction.
+            $confirmed = CustomerBookingFinalizer::finalize($booking, $context, $branch, $pricing['final_amount'], $items[0]['window']['item_start_at'], $data['wallet_deposit_quote'] ?? null);
+            app(BookingNotificationService::class)->record($context['actor_user_id'], 'BOOKING_CREATED', 'Đặt lịch thành công', 'Lịch hẹn '.$booking->booking_code.($confirmed ? ' đã được xác nhận.' : ' đang chờ xác nhận.'), $booking->id, 'cart-created:'.$booking->id);
             $record->update(['status' => 'COMPLETED', 'booking_id' => $booking->id, 'http_status' => 201]);
 
             return ['booking' => $booking->load(['services', 'contact', 'pricingSnapshot']), 'replayed' => false];

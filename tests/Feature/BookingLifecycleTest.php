@@ -290,6 +290,88 @@ class BookingLifecycleTest extends TestCase
         $this->assertSame(0, BookingViolationEvent::query()->whereIn('booking_id', [$arrivalBooking->id, $progressBooking->id])->count());
     }
 
+    /** Stores the branch's own rules where the owner UI writes them (beautybook_branch_settings.booking_policy). */
+    private function branchPolicy(array $policy): void
+    {
+        $id = Branch::where('slug', 'tan-tao')->value('id');
+        \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->insertOrIgnore(['branch_id' => $id, 'created_at' => now(), 'updated_at' => now()]);
+        $row = \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->where('branch_id', $id)->first();
+        \Illuminate\Support\Facades\DB::table('beautybook_branch_settings')->where('branch_id', $id)->update(['booking_policy' => json_encode(array_replace(json_decode($row->booking_policy ?? '{}', true) ?: [], $policy))]);
+    }
+
+    public function test_the_branch_early_check_in_window_replaces_the_fixed_thirty_minutes(): void
+    {
+        $this->branchPolicy(['earlyCheckInMinutes' => 90]);
+        $booking = $this->createCustomerBooking('policy-early-wide');
+        $booking->update(['status' => 'CONFIRMED']);
+        $receptionist = User::where('email', 'receptionist@beautybook.local')->firstOrFail();
+        $assignment = $receptionist->roleAssignments()->where('role_name', 'RECEPTIONIST')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        $this->actingAs($receptionist)->withSession(['workspace_assignment_id' => $assignment->id]);
+
+        CarbonImmutable::setTestNow($start->subMinutes(91));
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'CHECKED_IN'])->assertConflict()->assertJsonFragment(['message' => 'Chỉ được check-in từ 90 phút trước giờ hẹn.']);
+        CarbonImmutable::setTestNow($start->subMinutes(90));
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'CHECKED_IN'])->assertOk()->assertJsonPath('status', 'CHECKED_IN');
+    }
+
+    public function test_a_branch_that_allows_no_early_check_in_accepts_it_only_from_the_start(): void
+    {
+        $this->branchPolicy(['earlyCheckInMinutes' => 0]);
+        $booking = $this->createCustomerBooking('policy-early-zero');
+        $booking->update(['status' => 'CONFIRMED']);
+        $owner = User::where('email', 'owner@beautybook.local')->firstOrFail();
+        $assignment = $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        $this->actingAs($owner)->withSession(['workspace_assignment_id' => $assignment->id]);
+
+        CarbonImmutable::setTestNow($start->subMinute());
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'CHECKED_IN'])->assertConflict();
+        CarbonImmutable::setTestNow($start);
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'CHECKED_IN'])->assertOk();
+    }
+
+    public function test_the_branch_no_show_grace_replaces_the_fixed_fifteen_minutes(): void
+    {
+        $this->branchPolicy(['gracePeriodMinutes' => 40]);
+        $booking = $this->createCustomerBooking('policy-grace-long');
+        $booking->update(['status' => 'CONFIRMED']);
+        $owner = User::where('email', 'owner@beautybook.local')->firstOrFail();
+        $assignment = $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        $this->actingAs($owner)->withSession(['workspace_assignment_id' => $assignment->id]);
+
+        CarbonImmutable::setTestNow($start->addMinutes(16));
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'NO_SHOW', 'confirmed_no_show' => true])->assertConflict()->assertJsonFragment(['message' => 'Chỉ được đánh dấu vắng mặt sau hơn 40 phút kể từ giờ hẹn.']);
+        CarbonImmutable::setTestNow($start->addMinutes(40));
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'NO_SHOW', 'confirmed_no_show' => true])->assertConflict();
+        CarbonImmutable::setTestNow($start->addMinutes(40)->addSecond());
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'NO_SHOW', 'confirmed_no_show' => true])->assertOk()->assertJsonPath('status', 'NO_SHOW');
+    }
+
+    public function test_a_short_branch_grace_lets_the_no_show_be_marked_sooner(): void
+    {
+        $this->branchPolicy(['gracePeriodMinutes' => 5]);
+        $booking = $this->createCustomerBooking('policy-grace-short');
+        $booking->update(['status' => 'CONFIRMED']);
+        $owner = User::where('email', 'owner@beautybook.local')->firstOrFail();
+        $assignment = $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')->firstOrFail();
+        $start = CarbonImmutable::parse($booking->getRawOriginal('appointment_start_at'), 'UTC');
+        $this->actingAs($owner)->withSession(['workspace_assignment_id' => $assignment->id]);
+
+        CarbonImmutable::setTestNow($start->addMinutes(6));
+        $this->postJsonWithCsrf(route('bookings.transition', $booking), ['status' => 'NO_SHOW', 'confirmed_no_show' => true])->assertOk();
+    }
+
+    public function test_an_unconfigured_branch_keeps_the_thirty_minute_check_in_and_fifteen_minute_grace(): void
+    {
+        $rules = \App\Services\Booking\BranchBookingRules::for((int) Branch::where('slug', 'tan-tao')->value('id'));
+        $this->assertSame([30, 15, 0], [$rules['earlyCheckInMinutes'], $rules['gracePeriodMinutes'], $rules['rescheduleHours']]);
+        $this->branchPolicy(['earlyCheckInMinutes' => 'abc', 'gracePeriodMinutes' => -3, 'rescheduleHours' => 99999]);
+        $rules = \App\Services\Booking\BranchBookingRules::for((int) Branch::where('slug', 'tan-tao')->value('id'));
+        $this->assertSame([30, 15, 0], [$rules['earlyCheckInMinutes'], $rules['gracePeriodMinutes'], $rules['rescheduleHours']], 'a value outside its bounds falls back to the default');
+    }
+
     private function createCustomerBooking(string $idempotencyKey, int $hour = 10): Booking
     {
         $branch = Branch::where('slug', 'tan-tao')->firstOrFail();
