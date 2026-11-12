@@ -30,9 +30,9 @@ class ManagementMediaController extends Controller
             $file=$request->file('file');$mime=$file->getMimeType();
             if($private && $mime==='application/pdf')$extension='pdf';
             else {try{[$mime,$extension]=$media->validateContent($file);}catch(\DomainException $error){abort(422,$error->getMessage());}}
-            $disk=$private?'local':'public';$path=$file->storeAs('media/'.$business->id,Str::uuid().'.'.$extension,$disk);abort_unless($path,500);
-            try{$record=MediaFile::create(['disk'=>$disk,'path'=>$path,'original_name'=>$file->getClientOriginalName(),'mime_type'=>$mime,'file_size'=>$file->getSize(),'uploaded_by'=>$request->user()->id,'business_id'=>$business->id,'branch_id'=>$branchId,'entity_type'=>$type,'entity_id'=>$entityId,'visibility'=>$private?'PRIVATE':'PUBLIC']);}
-            catch(\Throwable $error){Storage::disk($disk)->delete($path);throw $error;}
+            $path='media/'.$business->id.'/'.Str::uuid().'.'.$extension;$disk=$private?\App\Services\Media\PrivateMediaDisk::put($file,$path):'public';if(!$private)abort_unless($file->storeAs('media/'.$business->id,basename($path),$disk),500);
+            try{$record=MediaFile::create(['disk'=>$disk,'path'=>$path,'original_name'=>$file->getClientOriginalName(),'mime_type'=>$mime,'file_size'=>$file->getSize(),'sha256'=>$private?\App\Services\Media\PrivateMediaDisk::digest($file):null,'uploaded_by'=>$request->user()->id,'business_id'=>$business->id,'branch_id'=>$branchId,'entity_type'=>$type,'entity_id'=>$entityId,'visibility'=>$private?'PRIVATE':'PUBLIC']);}
+            catch(\Throwable $error){\App\Services\Media\PrivateMediaDisk::delete($disk,$path);throw $error;}
         }else$record=$media->upload($request->user(),$business,$request->file('file'),$base,$entityId,'PUBLIC');
         return $this->presenter->media($record);
     }
@@ -53,9 +53,12 @@ class ManagementMediaController extends Controller
             $authorize = fn () => app(ResultPhotoService::class)->authorizeAsset($request, $media);
             if ($media->entity_type === ResultPhoto::PROOF_TYPE && $media->mime_type === 'application/pdf') {
                 $authorize();
-                abort_unless(Storage::disk('local')->exists($media->path), 404);
-                return Storage::disk('local')->download($media->path, 'consent-proof.pdf', [
-                    'Content-Type' => 'application/pdf', 'Cache-Control' => 'private, no-store', 'X-Content-Type-Options' => 'nosniff',
+                abort_unless(\App\Services\Media\PrivateMediaDisk::is($media->disk), 404);
+                $bytes = \App\Services\Media\PrivateMediaDisk::readRecorded($media);
+                abort_unless(is_string($bytes), 404);
+                $authorize();
+                return response($bytes, 200, [
+                    'Content-Type' => 'application/pdf', 'Content-Disposition' => 'attachment; filename="consent-proof.pdf"', 'Cache-Control' => 'private, no-store', 'X-Content-Type-Options' => 'nosniff',
                 ]);
             }
             return $service->privateImageContent($media, $authorize, attachment: $media->entity_type === ResultPhoto::PROOF_TYPE);

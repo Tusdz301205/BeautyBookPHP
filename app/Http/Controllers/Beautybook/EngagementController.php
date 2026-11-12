@@ -43,13 +43,17 @@ class EngagementController extends Controller
     }
     public function device(Request $request)
     {
-        $data = $request->validate(['token' => 'required|string|max:4096', 'platform' => 'required|in:WEB,ANDROID,IOS,web,android,ios']);
-        $hash = hash('sha256', $data['token']);
-        DB::transaction(function () use ($request, $data, $hash) {
-            $existing = DB::table('beautybook_device_tokens')->where('token_hash', $hash)->lockForUpdate()->first();
-            abort_if($existing && (string) $existing->user_id !== (string) $request->user()->id, 409, 'Thiết bị đang được liên kết với tài khoản khác.');
-            DB::table('beautybook_device_tokens')->updateOrInsert(['token_hash' => $hash], ['user_id' => $request->user()->id, 'token' => Crypt::encryptString($data['token']), 'platform' => strtoupper($data['platform']), 'created_at' => $existing?->created_at ?? now(), 'updated_at' => now()]);
-        }, 3);
+        // RegisterPushDevice (push.dto.ts): installation uuid, platform, token of 32..4096 URL-safe characters.
+        $data = $request->validate(['installationId' => 'required|uuid', 'token' => ['required', 'string', 'min:32', 'max:4096', 'regex:/^[A-Za-z0-9_:.-]+$/'], 'platform' => 'required|in:WEB,ANDROID,IOS,web,android,ios']);
+        app(\App\Services\Push\PushService::class)->registerDevice((int) $request->user()->id, $data['token'], $data['platform'], strtolower($data['installationId']), $request->session()->getId());
+        return ['success' => true];
+    }
+
+    public function removeDevice(Request $request)
+    {
+        $data = $request->validate(['installationId' => 'required_without:token|nullable|uuid', 'token' => 'required_without:installationId|nullable|string|max:4096']);
+        app(\App\Services\Push\PushService::class)->removeDevice((int) $request->user()->id, $request->session()->getId(), $data['token'] ?? null, isset($data['installationId']) ? strtolower($data['installationId']) : null);
+
         return ['success' => true];
     }
 

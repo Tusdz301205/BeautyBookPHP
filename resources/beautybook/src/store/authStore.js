@@ -95,6 +95,14 @@ export const useAuthStore = create(
         return state.user;
       },
 
+      googleLogin: async (credential, accountType) => {
+        const res = await authApi.google(credential, accountType);
+        const state = sessionState(res);
+        set(state);
+        if (!state.user) throw new Error('Tài khoản không còn quyền truy cập không gian này.');
+        return state.user;
+      },
+
       register: async (data) => {
         const res = await authApi.register(data);
         const state = sessionState(res);
@@ -110,6 +118,11 @@ export const useAuthStore = create(
 
       logout: async () => {
         try {
+          // This browser stops receiving the account's push as soon as it signs out.
+          const signedInUser = get().user?.id;
+          if (signedInUser && get().accessToken) {
+            try { const { browserPush } = await import('../components/notifications/BrowserPush'); await browserPush.disable(signedInUser); } catch { /* best effort */ }
+          }
           if (get().accessToken) await authApi.logout();
         } finally {
           // Do not carry contact details, notes or selections into the next

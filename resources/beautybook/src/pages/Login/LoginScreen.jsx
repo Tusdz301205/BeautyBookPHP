@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuthStore } from '../../store/authStore';
 import { AuthField, AuthInput, AuthShell, PasswordControl } from '../../components/public/AuthShell';
+import GoogleSignIn from '../../components/public/GoogleSignIn';
 
 import { registrationReturnPath } from '../../utils/registrationIntent';
 
@@ -61,6 +62,7 @@ export function LoginScreen() {
           <span>{loading ? 'Đang đăng nhập…' : 'Đăng nhập'}</span><ArrowRight size={17} aria-hidden="true" />
         </button>
       </form>
+      <GoogleSignIn accountType="CUSTOMER" disabled={loading} />
       <div className="bb-auth-alternate">
         <p>Chưa có tài khoản BeautyBook?</p>
         <Link to={requestedPath === "/register/business" ? requestedPath : requestedPath ? `/register?from=${encodeURIComponent(requestedPath)}` : "/register"} state={requestedPath ? { from: requestedPath } : undefined}>Tạo tài khoản</Link>

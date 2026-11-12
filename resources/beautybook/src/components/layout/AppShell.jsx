@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BarChart3, Bell, Building2, CalendarCheck, ChevronRight, ClipboardCheck, CreditCard, FileClock, Gift, LayoutDashboard, LogOut, Menu, ShieldCheck, Sparkles, Star, Store, Tag, UserCog, Users, X } from 'lucide-react';
+import { BarChart3, Bell, Building2, CalendarCheck, ChevronRight, ClipboardCheck, CreditCard, FileClock, Gift, LayoutDashboard, LogOut, Menu, MessageCircle, ShieldCheck, Sparkles, Star, Store, Tag, UserCog, Users, X } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { FINANCE_WORKSPACE_ENABLED } from '../../config/featureAvailability';
 import { businessApi } from '../../api/apiClient';
 import { IconButton, cx } from '../ui';
 import { useUnreadNotifications } from '../../hooks/useUnreadNotifications';
+import { useBrowserPushReceiver } from '../notifications/BrowserPush';
 
 const zoneMeta = {
   platform: { base: '/admin', eyebrow: 'BeautyBook Platform', title: 'Trung tâm vận hành' },
@@ -16,12 +17,14 @@ const zoneMeta = {
 const navigation = {
   customer: [
     ['appointments', 'Lịch hẹn của tôi', CalendarCheck],
+    ['messages', 'Tin nhắn', MessageCircle],
     ['profile', 'Hồ sơ cá nhân', UserCog],
     ['security', 'Bảo mật', ShieldCheck],
   ],
   salon: [
     ['', 'Tổng quan', LayoutDashboard, ['report:overview:tenant']],
     ['appointments', 'Lịch hẹn', CalendarCheck, ['booking:read:tenant', 'booking:read:branch']],
+    ['messages', 'Tin nhắn', MessageCircle, ['booking:read:tenant', 'booking:read:branch']],
     ['services', 'Dịch vụ', Sparkles, ['business_service:update:tenant', 'branch_service_offering:status:tenant']],
     ['combos', 'Combo dịch vụ', Gift, ['combo:manage:tenant']],
     ['staff', 'Đội ngũ', UserCog, ['user:read:tenant', 'user:read:branch']],
@@ -53,7 +56,7 @@ const roleLabels = { PLATFORM_ADMIN: 'Quản trị hệ thống', BUSINESS_OWNER
 
 const roleNavigation = {
   STAFF: new Set(['appointments', 'notifications', 'account', 'security', 'incoming-ownership']),
-  RECEPTIONIST: new Set(['appointments', 'operations', 'staff', 'payments', 'notifications', 'account', 'security', 'incoming-ownership']),
+  RECEPTIONIST: new Set(['appointments', 'messages', 'operations', 'staff', 'payments', 'notifications', 'account', 'security', 'incoming-ownership']),
 };
 
 const ownerHiddenNavigation = new Set(['audit', 'stats', 'incoming-ownership']);
@@ -77,6 +80,7 @@ function resolveMainRole(user, zone) {
 
 export function AppShell({ zone, children }) {
   const unread = useUnreadNotifications();
+  useBrowserPushReceiver();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [ownerRestricted, setOwnerRestricted] = useState(false);
   const [businessApproved, setBusinessApproved] = useState(false);

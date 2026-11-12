@@ -47,6 +47,21 @@ return [
             'report' => false,
         ],
 
+        // Private Cloudflare R2 bucket (S3 API). Credentials come from the server environment, never from the repository.
+        // R2_ENDPOINT is https://<account-id>.r2.cloudflarestorage.com; R2_PATH_STYLE=true is for S3-compatible test servers.
+        'r2' => [
+            'driver' => 's3',
+            'key' => env('R2_ACCESS_KEY_ID'),
+            'secret' => env('R2_SECRET_ACCESS_KEY'),
+            'region' => 'auto',
+            'bucket' => env('R2_BUCKET_NAME'),
+            'endpoint' => env('R2_ENDPOINT'),
+            'root' => env('R2_KEY_PREFIX', ''),
+            'use_path_style_endpoint' => (bool) env('R2_PATH_STYLE', false),
+            'throw' => true,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

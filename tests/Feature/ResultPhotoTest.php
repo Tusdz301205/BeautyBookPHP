@@ -127,7 +127,7 @@ class ResultPhotoTest extends TestCase
         $secondCaptured = $this->capture($second)->assertOk()->json();
         $this->publish($file, [$first, $secondCaptured])->assertConflict();
         $this->publish($file, [$firstCaptured, $secondCaptured])->assertOk()->assertJsonCount(2, 'photos');
-        $this->assertDatabaseHas('media_files', ['id' => $file, 'visibility' => 'PRIVATE', 'disk' => 'local']);
+        $this->assertDatabaseHas('media_files', ['id' => $file, 'visibility' => 'PRIVATE', 'disk' => \App\Services\Media\PrivateMediaDisk::name()]);
 
         $url = '/media/'.$file;
         foreach ([$offering, $other] as $service) {

@@ -1,0 +1,25 @@
+# Test-only S3-compatible server (MinIO) standing in for a private Cloudflare R2 bucket.
+# Use with the isolated test project only:
+#   docker compose -p beautybook-zip-core-test -f docker-compose.laravel.yml -f docker-compose.r2-test.yml up -d --wait minio_test
+# The credentials are throwaway values for this local container; real R2 keys stay in the server environment.
+services:
+  minio_test:
+    image: bitnamilegacy/minio:2025.4.22
+    environment:
+      MINIO_ROOT_USER: r2-test-access-key
+      MINIO_ROOT_PASSWORD: r2-test-secret-key-0123456789
+      MINIO_DEFAULT_BUCKETS: beautybook-private-test
+    networks:
+      default:
+        # S3 servers reject host names containing an underscore, so tests address the bucket as minio-test.
+        aliases: [minio-test]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://127.0.0.1:9000/minio/health/live || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - beautybook_minio_test_data:/bitnami/minio/data
+
+volumes:
+  beautybook_minio_test_data:

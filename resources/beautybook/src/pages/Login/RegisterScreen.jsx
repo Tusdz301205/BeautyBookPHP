@@ -4,6 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthField, AuthInput, AuthShell, PasswordControl } from '../../components/public/AuthShell';
 import { useAuthStore } from '../../store/authStore';
+import GoogleSignIn from '../../components/public/GoogleSignIn';
 
 import { registrationReturnPath, businessRegistrationTarget } from '../../utils/registrationIntent';
 
@@ -202,6 +203,7 @@ export function RegisterScreen({ accountType = 'CUSTOMER' }) {
           <span>{loading ? 'Đang tạo tài khoản…' : 'Tạo tài khoản'}</span><ArrowRight size={17} aria-hidden="true" />
         </button>
       </form>
+      <GoogleSignIn accountType={form.accountType} disabled={loading} />
       <div className="bb-auth-alternate">
         <p>Đã có tài khoản?</p><Link to={businessIntent ? "/login?from=%2Fregister%2Fbusiness" : requestedPath ? `/login?from=${encodeURIComponent(requestedPath)}` : "/login"} state={{ from: businessIntent ? "/register/business" : requestedPath }}>Đăng nhập</Link>
       </div>

@@ -43,14 +43,14 @@ class ResultPhotoService
             [$mime, $extension, $size] = $this->media->validatePrivateImage($file);
         }
 
-        $disk = Storage::disk('local');
         $path = 'result-photos/'.Str::uuid().'.'.$extension;
-        abort_unless($disk->putFileAs(dirname($path), $file, basename($path)), 500, 'Không thể lưu tệp riêng tư.');
+        $disk = PrivateMediaDisk::put($file, $path);
+        $sha256 = PrivateMediaDisk::digest($file);
 
         try {
-            return $this->write($request, $businessId, function (int $actor) use ($businessId, $branchId, $purpose, $path, $mime, $size) {
+            return $this->write($request, $businessId, function (int $actor) use ($businessId, $branchId, $purpose, $path, $mime, $size, $disk, $sha256) {
                 return MediaFile::create([
-                    'disk' => 'local', 'path' => $path, 'mime_type' => $mime, 'file_size' => $size,
+                    'disk' => $disk, 'path' => $path, 'mime_type' => $mime, 'file_size' => $size, 'sha256' => $sha256,
                     'entity_type' => $purpose, 'entity_id' => $businessId, 'visibility' => 'PRIVATE',
                     'uploaded_by' => $actor, 'business_id' => $businessId, 'branch_id' => $branchId,
                 ]);
@@ -61,7 +61,7 @@ class ResultPhotoService
             if ($stored) {
                 return $stored;
             }
-            $disk->delete($path);
+            PrivateMediaDisk::delete($disk, $path);
             throw $error;
         }
     }
@@ -202,7 +202,7 @@ class ResultPhotoService
     public function authorizeAsset(Request $request, MediaFile $file): void
     {
         abort_unless(in_array($file->entity_type, [ResultPhoto::MEDIA_TYPE, ResultPhoto::PROOF_TYPE], true)
-            && $file->business_id && $file->disk === 'local' && $file->visibility === 'PRIVATE', 404);
+            && $file->business_id && PrivateMediaDisk::is($file->disk) && $file->visibility === 'PRIVATE', 404);
         $this->authorizeOwner($request, $file->business_id);
     }
 
@@ -249,9 +249,9 @@ class ResultPhotoService
 
     private function assertFile(?MediaFile $file, string $purpose, BranchServiceOffering $offering): void
     {
-        abort_unless($file && $file->entity_type === $purpose && $file->disk === 'local' && $file->visibility === 'PRIVATE'
+        abort_unless($file && $file->entity_type === $purpose && PrivateMediaDisk::is($file->disk) && $file->visibility === 'PRIVATE'
             && $file->business_id === $offering->business_id && ($file->branch_id === null || $file->branch_id === $offering->branch_id)
-            && Storage::disk('local')->exists($file->path), 422,
+            && PrivateMediaDisk::exists($file), 422,
             $purpose === ResultPhoto::PROOF_TYPE ? 'Bằng chứng riêng tư không hợp lệ hoặc sai phạm vi.' : 'Tệp ảnh kết quả riêng tư không hợp lệ hoặc sai phạm vi.');
     }
 

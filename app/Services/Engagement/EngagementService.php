@@ -14,6 +14,7 @@ use App\Models\SavedService;
 use App\Services\Booking\BookingNotificationService;
 use App\Services\Identity\SessionContext;
 use App\Services\Media\MediaManagementService;
+use App\Services\Media\PrivateMediaDisk;
 use App\Services\Platform\PlatformSettingsService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -84,19 +85,19 @@ class EngagementService
         $customer = $this->customer($request);
         $this->reviewableBooking($booking, $customer);
         [$mime, $extension, $size] = $media->validateReviewPhoto($file);
-        $disk = Storage::disk('local');
         $path = 'review-photos/'.Str::uuid().'.'.$extension;
-        abort_unless($disk->putFileAs(dirname($path), $file, basename($path)), 500, 'Không thể lưu ảnh đánh giá.');
+        $disk = PrivateMediaDisk::put($file, $path);
+        $sha256 = PrivateMediaDisk::digest($file);
 
         try {
-            return DB::transaction(function () use ($booking, $customer, $path, $mime, $size) {
+            return DB::transaction(function () use ($booking, $customer, $path, $mime, $size, $disk, $sha256) {
                 $booking = $this->reviewableBooking($booking, $customer, lock: true);
                 if (ReviewPhoto::where('booking_id', $booking->id)->whereNull('review_id')->count() >= ReviewPhoto::MAX_PENDING) {
                     throw ValidationException::withMessages(['file' => 'Lịch hẹn đã đạt giới hạn ảnh tải lên chưa gắn.']);
                 }
 
                 $record = MediaFile::create([
-                    'disk' => 'local', 'path' => $path, 'mime_type' => $mime, 'file_size' => $size,
+                    'disk' => $disk, 'path' => $path, 'mime_type' => $mime, 'file_size' => $size, 'sha256' => $sha256,
                     'uploaded_by' => $customer->user_id, 'business_id' => $booking->business_id, 'branch_id' => $booking->branch_id,
                     'entity_type' => ReviewPhoto::TYPE, 'entity_id' => $booking->id, 'visibility' => 'PRIVATE',
                 ]);
@@ -109,7 +110,7 @@ class EngagementService
             if ($stored) {
                 return $stored;
             }
-            $disk->delete($path);
+            PrivateMediaDisk::delete($disk, $path);
             throw $error;
         }
     }
@@ -132,10 +133,10 @@ class EngagementService
             ->withWhereHas('media', fn ($query) => $query->where('entity_type', ReviewPhoto::TYPE)
                 ->where('entity_id', $booking->id)->where('uploaded_by', $customer->user_id)
                 ->where('business_id', $booking->business_id)->where('branch_id', $booking->branch_id)
-                ->where('disk', 'local')->where('visibility', 'PRIVATE')->whereIn('mime_type', ReviewPhoto::MIME_TYPES)
+                ->whereIn('disk', PrivateMediaDisk::DISKS)->where('visibility', 'PRIVATE')->whereIn('mime_type', ReviewPhoto::MIME_TYPES)
                 ->whereBetween('file_size', [1, ReviewPhoto::MAX_BYTES]))
             ->orderBy('id')->lockForUpdate()->get()->keyBy('id');
-        if ($photos->count() !== count($ids) || $photos->contains(fn ($photo) => ! Storage::disk('local')->exists($photo->media->path))) {
+        if ($photos->count() !== count($ids) || $photos->contains(fn ($photo) => ! PrivateMediaDisk::exists($photo->media))) {
             throw ValidationException::withMessages(['photoIds' => 'Ảnh phải còn khả dụng và thuộc lịch hẹn của bạn.']);
         }
 

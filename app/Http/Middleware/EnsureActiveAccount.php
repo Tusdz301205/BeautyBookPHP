@@ -14,6 +14,7 @@ class EnsureActiveAccount
     {
         if ($user = $request->user()) {
             if (! DB::table('users')->where('id', $user->id)->value('is_active')) {
+                \App\Services\Push\PushService::revokeUser((int) $user->id);
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();

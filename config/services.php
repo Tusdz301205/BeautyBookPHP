@@ -28,6 +28,21 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // SePay webhook contract from the API package: HMAC-SHA256 over "{timestamp}.{rawBody}". Never defaulted.
+    'sepay' => [
+        'enabled' => env('SEPAY_WEBHOOK_ENABLED', false),
+        'environment' => env('SEPAY_ENVIRONMENT'),
+        'secret' => env('SEPAY_WEBHOOK_SECRET', ''),
+        'gateway' => env('SEPAY_WEBHOOK_BANK_GATEWAY', ''),
+        'account_number' => env('SEPAY_WEBHOOK_ACCOUNT_NUMBER', ''),
+    ],
+
+    // Google Identity Services (ID-token flow): only the public client id is needed, no client secret.
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'jwks_url' => env('GOOGLE_JWKS_URL', 'https://www.googleapis.com/oauth2/v3/certs'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

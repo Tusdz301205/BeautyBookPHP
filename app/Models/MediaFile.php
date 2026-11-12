@@ -14,7 +14,7 @@ class MediaFile extends Model
     }
 
     protected $fillable = [
-        'disk', 'path', 'original_name', 'mime_type', 'file_size', 'uploaded_by', 'business_id', 'branch_id',
+        'disk', 'path', 'original_name', 'mime_type', 'file_size', 'sha256', 'uploaded_by', 'business_id', 'branch_id',
         'entity_type', 'entity_id', 'visibility',
     ];
 

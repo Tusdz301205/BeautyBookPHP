@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { notificationsApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
 import { FINANCE_WORKSPACE_ENABLED } from '../../config/featureAvailability';
+import { BrowserPushPanel } from './BrowserPush';
 import {
   Badge,
   Button,
@@ -270,6 +271,8 @@ export function NotificationCenter({ platform = false, zone = platform ? 'platfo
         description={unread ? `${unread} thông báo chưa đọc. Chọn một mục để xem chi tiết trước khi chuyển đến nội dung liên quan.` : 'Bạn đã đọc tất cả thông báo.'}
         actions={unread > 0 && <Button variant="secondary" size="sm" onClick={markAll}><CheckCheck size={15} />Đọc tất cả</Button>}
       />
+
+      <BrowserPushPanel />
 
       <Card className="grid gap-3 p-3 md:grid-cols-[minmax(12rem,1fr)_11rem_11rem_11rem]">
         <form className="relative" onSubmit={submitSearch} role="search">

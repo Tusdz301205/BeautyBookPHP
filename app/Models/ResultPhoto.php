@@ -33,7 +33,7 @@ class ResultPhoto extends Model
 
     public static function publicMedia(Builder $query): Builder
     {
-        return $query->where('entity_type', self::MEDIA_TYPE)->where('disk', 'local')->where('visibility', 'PRIVATE')
+        return $query->where('entity_type', self::MEDIA_TYPE)->whereIn('disk', \App\Services\Media\PrivateMediaDisk::DISKS)->where('visibility', 'PRIVATE')
             ->whereHas('resultPhotos')
             ->whereDoesntHave('resultPhotos', fn (Builder $uses) => $uses->where(function (Builder $invalid) {
                 $invalid->whereNull('published_at')->orWhere('published_at', '>', now('UTC')->format('Y-m-d H:i:s.v'))
@@ -45,7 +45,7 @@ class ResultPhoto extends Model
                     ->orWhereDoesntHave('offering', fn (Builder $offering) => $offering->publiclyVisible())
                     ->orWhere(fn (Builder $proof) => $proof->whereNotNull('proof_media_id')
                         ->whereDoesntHave('proof', fn (Builder $media) => $media->where('entity_type', self::PROOF_TYPE)
-                            ->where('disk', 'local')->where('visibility', 'PRIVATE')));
+                            ->whereIn('disk', \App\Services\Media\PrivateMediaDisk::DISKS)->where('visibility', 'PRIVATE')));
             }));
     }
 }

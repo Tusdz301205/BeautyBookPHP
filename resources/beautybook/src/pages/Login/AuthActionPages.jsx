@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { authApi, staffApi } from '../../api/apiClient';
 import { AuthField, AuthInput, AuthShell, PasswordControl } from '../../components/public/AuthShell';
+import RecoveryCodeForm from '../../components/public/RecoveryCodeForm';
 import { useAuthStore } from '../../store/authStore';
 
 function ActionResult({ title, message }) {

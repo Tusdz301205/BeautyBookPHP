@@ -76,6 +76,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $this->audit($request, 'LOGOUT');
+        \App\Services\Push\PushService::revokeSessions([$request->session()->getId()]);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -98,9 +99,58 @@ class AuthController extends Controller
             $token = $this->consume($data['token'], 'RESET_PASSWORD');
             User::findOrFail($token->user_id)->forceFill(['password' => Hash::make($data['newPassword']), 'remember_token' => Str::random(60)])->save();
             DB::table('sessions')->where('user_id', $token->user_id)->delete();
+            \App\Services\Push\PushService::revokeUser((int) $token->user_id);
         }, 3);
         if ($request->user()) { Auth::logout(); $request->session()->invalidate(); $request->session()->regenerateToken(); }
         return response()->json(['requiresLogin' => true])->header('X-CSRF-TOKEN', csrf_token());
+    }
+
+    /** Public Google client id plus a nonce bound to this browser session. */
+    public function googleConfig(Request $request, \App\Services\Identity\GoogleIdTokenVerifier $google)
+    {
+        $clientId = $google->clientId();
+        if (! $clientId) return response()->json(['enabled' => false])->header('Cache-Control', 'no-store');
+        $nonce = $request->session()->get('google_nonce');
+        if (! is_string($nonce) || ! preg_match('/^[a-f0-9]{64}$/', $nonce)) $request->session()->put('google_nonce', $nonce = bin2hex(random_bytes(32)));
+
+        return response()->json(['enabled' => true, 'clientId' => $clientId, 'nonce' => $nonce])->header('Cache-Control', 'no-store');
+    }
+
+    public function google(Request $request, \App\Services\Identity\GoogleIdTokenVerifier $google, \App\Services\Identity\GoogleAccountService $accounts)
+    {
+        $data = $request->validate(['credential' => 'required|string|max:4096', 'accountType' => 'nullable|in:CUSTOMER,BUSINESS_OWNER']);
+        $identity = $google->verify($data['credential'], $request->session()->get('google_nonce'));
+        $user = $accounts->resolve($identity, $data['accountType'] ?? 'CUSTOMER');
+        Auth::login($user);
+        try {
+            $resolved = app(\App\Services\Beautybook\LoginContext::class)->resolve($user, $request->only('workspace', 'businessId', 'branchId'));
+        } catch (\Throwable $error) {
+            Auth::logout();
+            throw $error;
+        }
+        $request->session()->regenerate();
+        $request->session()->forget(['google_nonce', 'beautybook_context_branch']);
+        if ($resolved['workspace'] === 'CUSTOMER') $request->session()->forget('workspace_assignment_id');
+        else $this->context->select($request, $resolved['assignment']);
+        if ($resolved['branchId']) $request->session()->put('beautybook_context_branch', $resolved['branchId']);
+        $this->audit($request, 'LOGIN_GOOGLE');
+
+        return $this->sessionResponse($request);
+    }
+
+    public function forgotCode(Request $request, \App\Services\Identity\RecoveryCodeService $recovery)
+    {
+        $data = $request->validate(['email' => 'required|email|max:254']);
+
+        return response()->json($recovery->request($data['email']), 202)->header('Cache-Control', 'no-store');
+    }
+
+    public function resetCode(Request $request, \App\Services\Identity\RecoveryCodeService $recovery)
+    {
+        $data = $request->validate(['requestId' => 'required|uuid', 'code' => ['required', 'regex:/^[0-9]{6}$/'], 'newPassword' => ['required', 'max:128', Password::min(8)->mixedCase()->numbers()]]);
+        $recovery->reset($data['requestId'], $data['code'], $data['newPassword']);
+
+        return response()->json(['success' => true])->header('Cache-Control', 'no-store');
     }
 
     public function verifyEmail(Request $request)
@@ -119,6 +169,7 @@ class AuthController extends Controller
         DB::transaction(function () use ($request, $data) {
             User::whereKey($request->user()->id)->lockForUpdate()->firstOrFail()->forceFill(['password' => Hash::make($data['newPassword']), 'remember_token' => Str::random(60)])->save();
             DB::table('sessions')->where('user_id', $request->user()->id)->delete();
+            \App\Services\Push\PushService::revokeUser((int) $request->user()->id);
             $this->audit($request, 'PASSWORD_CHANGED');
         }, 3);
         Auth::logout(); $request->session()->invalidate(); $request->session()->regenerateToken();
@@ -135,13 +186,16 @@ class AuthController extends Controller
         abort_if(hash_equals($request->session()->getId(), $id), 422, 'Không thể thu hồi thiết bị hiện tại tại đây.');
         $count = DB::table('sessions')->where('user_id', $request->user()->id)->where('id', $id)->delete();
         abort_unless($count, 404);
+        \App\Services\Push\PushService::revokeSessions([$id]);
         $this->audit($request, 'SESSION_REVOKED');
         return response()->json(['revokedCount' => $count]);
     }
 
     public function revokeOthers(Request $request)
     {
-        $count = DB::table('sessions')->where('user_id', $request->user()->id)->where('id', '!=', $request->session()->getId())->delete();
+        $others = DB::table('sessions')->where('user_id', $request->user()->id)->where('id', '!=', $request->session()->getId())->pluck('id')->all();
+        $count = DB::table('sessions')->whereIn('id', $others)->delete();
+        \App\Services\Push\PushService::revokeSessions($others);
         $this->audit($request, 'OTHER_SESSIONS_REVOKED');
         return response()->json(['revokedCount' => $count]);
     }

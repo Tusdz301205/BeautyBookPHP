@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useUnreadNotifications } from '../../hooks/useUnreadNotifications';
+import { useBrowserPushReceiver } from '../notifications/BrowserPush';
 import {
   Bell,
   CalendarCheck,
@@ -14,8 +15,10 @@ import {
   Store,
   TicketPercent,
   UserRound,
+  Wallet,
   X,
 } from 'lucide-react';
+import { FINANCE_WORKSPACE_ENABLED } from '../../config/featureAvailability';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import { PublicFooter } from '../public/PublicChrome';
@@ -31,6 +34,7 @@ const accountGroups = [
     label: 'Tài khoản',
     items: [
       ['/customer/profile', 'Hồ sơ cá nhân', UserRound],
+      ...(FINANCE_WORKSPACE_ENABLED ? [['/customer/wallet', 'Ví của tôi', Wallet]] : []),
       ['/customer/reviews', 'Đánh giá của tôi', Star],
     ],
   },
@@ -80,6 +84,7 @@ function AccountNavigation({ onNavigate }) {
 export function CustomerShell({ children }) {
   const [accountOpen, setAccountOpen] = useState(false);
   const unread = useUnreadNotifications();
+  useBrowserPushReceiver();
   const accountPanelRef = useRef(null);
   const accountTriggerRef = useRef(null);
   const location = useLocation();

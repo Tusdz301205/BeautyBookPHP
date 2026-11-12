@@ -38,7 +38,7 @@ class MediaManagementService
             throw new DomainException('Visibility của media không hợp lệ.');
         }
 
-        $disk = $visibility === 'PUBLIC' ? 'public' : 'local';
+        $disk = $visibility === 'PUBLIC' ? 'public' : PrivateMediaDisk::name();
         $path = 'media/'.$business->id.'/'.Str::uuid().'.'.$extension;
 
         return DB::transaction(function () use ($actor, $business, $file, $entityType, $entityId, $visibility, $branchId, $pivotTable, $pivotKey, $mime, $size, $disk, $path) {
@@ -55,6 +55,7 @@ class MediaManagementService
                     'original_name' => $file->getClientOriginalName(),
                     'mime_type' => $mime,
                     'file_size' => $size,
+                    'sha256' => PrivateMediaDisk::digest($file),
                     'uploaded_by' => $actor->id,
                     'business_id' => $business->id,
                     'branch_id' => $branchId,
@@ -234,11 +235,11 @@ class MediaManagementService
     public function privateImageContent(MediaFile $media, callable $authorize, bool $attachment = false)
     {
         $authorize();
-        abort_unless($media->disk === 'local' && $media->visibility === 'PRIVATE'
+        abort_unless(PrivateMediaDisk::is($media->disk) && $media->visibility === 'PRIVATE'
             && in_array($media->mime_type, ReviewPhoto::MIME_TYPES, true)
             && $media->file_size >= 1 && $media->file_size <= ReviewPhoto::MAX_BYTES, 404);
-        $bytes = Storage::disk('local')->get($media->path);
-        abort_unless(is_string($bytes) && strlen($bytes) === (int) $media->file_size, 404);
+        $bytes = PrivateMediaDisk::readRecorded($media);
+        abort_unless(is_string($bytes), 404);
         $authorize();
 
         return response($bytes, 200, [
