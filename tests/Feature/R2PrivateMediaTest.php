@@ -54,7 +54,7 @@ class R2PrivateMediaTest extends TestCase
     public function test_verified_reads_serve_only_the_recorded_size_and_hash_and_never_read_far_beyond_them(): void
     {
         Storage::fake('local');
-        $bytes = "PNG
+        $bytes = "PNG
 
 ".random_bytes(256);
         PrivateMediaDisk::put(UploadedFile::fake()->createWithContent('v.png', $bytes), 'chat-images/verified.png');
