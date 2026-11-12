@@ -45,6 +45,8 @@ Thumbs.db
 # Local exports, generated reports and temporary QA artifacts.
 /tmp/
 /output/
+/docs/audit/evidence/
+/docs/course/evidence/2026-10-11/audit/local/
 *.zip
 *.7z
 *.rar

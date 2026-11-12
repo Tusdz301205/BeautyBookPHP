@@ -13,5 +13,10 @@ Tài liệu hiện hành cho môn Lập trình mã nguồn mở, dùng bản Lar
 | [Nghiệm thu](course/evidence/2026-10-07/FINAL_VALIDATION.md) | Kết quả kiểm thử, build và trình duyệt |
 | [Hướng dẫn chạy](../README.md) | Cài đặt Docker, tài khoản demo và lệnh kiểm thử |
 | [Đợt chuyển tính năng đăng ký 03/11/2026](migration/2026-11-03-registration/IMPLEMENTATION.md) | Pháp nhân, đăng ký chi nhánh, yêu cầu đổi địa chỉ có duyệt và kiểm thử |
+| [Kiểm thử và đối chiếu GlowMe 12/11/2026](audit/REPORT_2026-11-12.md) | Kết quả test và khác biệt chức năng |
+| [Dọn cấu trúc thư mục](audit/CLEANUP_2026-11-12.md) | Các mục đã chuyển, xóa và lý do giữ legacy |
+| [Phương án nhập toàn bộ dữ liệu GlowMe](migration/2026-11-12-glowme-data-import/PLAN.md) | Phạm vi, ánh xạ, tài khoản, media và đối soát |
+| [Kết quả nhập trực tiếp GlowMe](migration/2026-11-12-glowme-data-import/IMPLEMENTATION.md) | Dữ liệu đã thay trên DB PHP và kết quả đối soát |
+| [Ưu đãi bằng mã](migration/2026-11-12-promotion-codes/IMPLEMENTATION.md) | Luồng áp dụng mã, khôi phục 10 chương trình và kiểm tra |
 
 Thư mục `course/evidence/2026-10-07` chứa ảnh giao diện, kết quả kiểm thử và bằng chứng booking thật phục vụ báo cáo. Các tài liệu audit/planning của bản NestJS/React, hồ sơ thực tập/CV và báo cáo cũ đã được loại bỏ.

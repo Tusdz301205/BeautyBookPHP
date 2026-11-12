@@ -68,7 +68,7 @@ Các response sau tối ưu trong mẫu đo nằm trong 168–940 ms. [Mẫu tr�
 
 Hai assertion cũ được điều chỉnh theo hành vi đã xác minh: tự đình chỉ tài khoản trả 403 giống Nest nguồn; Cache-Control được so sánh đầy đủ directive nhưng không phụ thuộc thứ tự Symfony chuẩn hóa. Các kiểm tra phạm vi tenant/quyền/private media vẫn giữ nguyên.
 
-Log chi tiết và ảnh browser của phiên nằm trong `tmp/final-php-tests.txt`, `tmp/php-lint.txt` và `tmp/beautybook-audit/browser/`. Đây là chứng cứ local được Git ignore. Tổng hợp gọn được lưu trong [validation-summary.json](evidence/2026-10-11/audit/validation-summary.json).
+Log chi tiết và ảnh browser của phiên nằm trong `docs/course/evidence/2026-10-11/audit/local/final-php-tests.txt`, `docs/course/evidence/2026-10-11/audit/local/php-lint.txt` và `docs/course/evidence/2026-10-11/audit/local/beautybook-audit/browser/`. Đây là chứng cứ local đã được gom về thư mục evidence trong đợt dọn dẹp 12/11/2026. Tổng hợp gọn được lưu trong [validation-summary.json](evidence/2026-10-11/audit/validation-summary.json).
 
 ## Các khác biệt còn lại
 

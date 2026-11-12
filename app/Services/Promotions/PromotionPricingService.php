@@ -53,9 +53,26 @@ class PromotionPricingService
             return $result;
         }
         $customer = CustomerProfile::findOrFail($customerId);
+        $code = $code === null ? null : strtoupper(trim($code));
+        $manual = null;
+        if ($code) {
+            $query = Promotion::where('code', $code)
+                ->where(fn ($q) => $q->where('business_id', $branch->business_id)->orWhere(fn ($platform) => $platform->whereNull('business_id')->where('created_by_platform', true)))
+                ->orderByRaw('business_id IS NULL')->orderBy('id');
+            if ($lock) {
+                $query->lockForUpdate();
+            }
+            $manual = $query->first();
+            if ($manual && ($manual->status !== 'ACTIVE' || $manual->start_date->isFuture() || ! $manual->end_date->isFuture()
+                || ! $this->scopeEligible($manual, $branch, $serviceIds, $comboId)
+                || ! $this->audienceEligible($manual->audience, $customer, $branch) || ! $this->quotaEligible($manual, $customerId, false))) {
+                // An unusable promotion must not shadow a pre-existing, entitled native voucher.
+                $manual = null;
+            }
+        }
         $eligible = [];
-        $promotions = Promotion::where('status', 'ACTIVE')->where('auto_apply', true)
-            ->where('start_date', '<=', now())->where('end_date', '>=', now())
+        $promotions = Promotion::where('status', 'ACTIVE')->where(fn ($query) => $query->where('auto_apply', true)->when($manual, fn ($q) => $q->orWhere('id', $manual->id)))
+            ->where('start_date', '<=', now())->where('end_date', '>', now())
             ->where(fn ($q) => $q->where('business_id', $branch->business_id)->orWhere(fn ($q) => $q->whereNull('business_id')->where('created_by_platform', true)))
             ->orderBy('id');
         if ($lock) {
@@ -68,16 +85,16 @@ class PromotionPricingService
             if (! $this->quotaEligible($promotion, $customerId, false)) {
                 continue;
             }
-            $eligibleBase = $this->eligibleSubtotal($promotion, $lineItems, $base);
+            $eligibleBase = $this->eligibleSubtotal($promotion, $lineItems, $base, $comboId);
             $amount = $this->discount($promotion, $eligibleBase);
             if ($amount > 0) {
-                $eligible[] = $this->rule($promotion, $amount, 'PROMOTION', $eligibleBase, $branch, $serviceIds, $comboId);
+                $eligible[] = $this->rule($promotion, $amount, 'PROMOTION', $eligibleBase, $branch, $serviceIds, $comboId, $manual?->id === $promotion->id ? $code : null);
             }
         }
         usort($eligible, fn ($a, $b) => ($b['cents'] <=> $a['cents']) ?: ($a['id'] <=> $b['id']));
         $promotion = $eligible[0] ?? null;
         $voucherRule = null;
-        if ($code) {
+        if ($code && ! $manual) {
             $query = Voucher::where('code', strtoupper(trim($code)))->where('status', 'ACTIVE')->where('start_date', '<=', now())->where('end_date', '>=', now());
             if ($lock) {
                 $query->lockForUpdate();
@@ -108,11 +125,17 @@ class PromotionPricingService
         $rules = array_values(array_filter([$promotion, $voucherRule]));
         $discount = min($base, array_sum(array_column($rules, 'cents')));
 
-        return array_replace($result, ['discount_amount' => self::money($discount), 'final_amount' => self::money($base - $discount), 'discount_rules' => $rules]);
+        return array_replace($result, ['discount_amount' => self::money($discount), 'final_amount' => self::money($base - $discount), 'discount_rules' => $rules, 'promotion_code_valid' => $manual !== null]);
     }
 
-    private function eligibleSubtotal($rule, array $lineItems, int $base): int
+    private function eligibleSubtotal($rule, array $lineItems, int $base, ?int $comboId = null): int
     {
+        if ($rule instanceof Promotion && $rule->target_mode === 'ALL') {
+            return $base;
+        }
+        if ($rule instanceof Promotion && $rule->target_mode === 'SELECTED' && $comboId !== null && in_array($comboId, $rule->combo_ids ?? [])) {
+            return $base;
+        }
         if (! $rule->service_ids || ! $lineItems) {
             return $base;
         }
@@ -120,9 +143,9 @@ class PromotionPricingService
         return array_sum(array_map(fn ($item) => in_array($item['branch_service_offering_id'], $rule->service_ids) ? self::cents($item['allocated_amount']) : 0, $lineItems));
     }
 
-    private function rule($rule, int $amount, string $type, int $base, Branch $branch, array $serviceIds, ?int $comboId = null): array
+    private function rule($rule, int $amount, string $type, int $base, Branch $branch, array $serviceIds, ?int $comboId = null, ?string $requestedCode = null): array
     {
-        return ['id' => $rule->id, 'type' => $type, 'version' => $rule->version, 'name' => $rule->name, 'cents' => $amount, 'amount' => self::money($amount), 'stacking_allowed' => (bool) $rule->stacking_allowed, 'snapshot' => ['discount_type' => $rule->discount_type, 'discount_value' => $rule->discount_value, 'audience' => $rule->audience, 'eligible_subtotal' => self::money($base), 'branch_id' => $branch->id, 'service_ids' => $serviceIds, 'combo_id' => $comboId, 'min_order_value' => $rule->min_order_value, 'max_discount' => $rule->max_discount, 'code' => $rule->code, 'start_date' => $rule->start_date->toISOString(), 'end_date' => $rule->end_date->toISOString()]];
+        return ['id' => $rule->id, 'type' => $type, 'version' => $rule->version, 'name' => $rule->name, 'cents' => $amount, 'amount' => self::money($amount), 'stacking_allowed' => (bool) $rule->stacking_allowed, 'snapshot' => ['discount_type' => $rule->discount_type, 'discount_value' => $rule->discount_value, 'audience' => $rule->audience, 'eligible_subtotal' => self::money($base), 'branch_id' => $branch->id, 'service_ids' => $serviceIds, 'combo_id' => $comboId, 'min_order_value' => $rule->min_order_value, 'max_discount' => $rule->max_discount, 'code' => $rule->code, 'requested_code' => $requestedCode, 'target_mode' => $rule->target_mode, 'start_date' => $rule->start_date->toISOString(), 'end_date' => $rule->end_date->toISOString()]];
     }
 
     private function discount($rule, int $base): int
@@ -135,8 +158,17 @@ class PromotionPricingService
         return min($base, $amount);
     }
 
-    private function scopeEligible($rule, Branch $branch, array $serviceIds, ?int $comboId = null): bool
+    public function scopeEligible($rule, Branch $branch, array $serviceIds, ?int $comboId = null): bool
     {
+        if ($rule instanceof Promotion && in_array($rule->target_mode, ['ALL', 'SELECTED'], true)) {
+            $target = $rule->target_mode === 'ALL'
+                || count(array_intersect($serviceIds, $rule->service_ids ?? [])) > 0
+                || ($comboId !== null && in_array($comboId, $rule->combo_ids ?? []));
+
+            return ($rule->business_id === null ? $rule->created_by_platform : (int) $rule->business_id === (int) $branch->business_id)
+                && (! $rule->branch_ids || in_array($branch->id, $rule->branch_ids)) && $target;
+        }
+
         return ($rule->business_id === null ? $rule->created_by_platform : (int) $rule->business_id === (int) $branch->business_id)
             && (! $rule->branch_ids || in_array($branch->id, $rule->branch_ids))
             && (! $rule->service_ids || count(array_intersect($serviceIds, $rule->service_ids)) > 0)
@@ -173,8 +205,11 @@ class PromotionPricingService
         foreach ($quote['discount_rules'] ?? [] as $rule) {
             $voucher = $rule['type'] === 'VOUCHER';
             $model = ($voucher ? Voucher::query() : Promotion::query())->whereKey($rule['id'])->lockForUpdate()->first();
-            if (! $customer || ! $model || $model->status !== 'ACTIVE' || $model->version !== $rule['version'] || $model->start_date->isFuture() || $model->end_date->isPast() || ! $this->scopeEligible($model, $branch, $rule['snapshot']['service_ids'], $rule['snapshot']['combo_id'] ?? null) || ! $this->audienceEligible($model->audience, $customer, $branch) || ! $this->quotaEligible($model, $booking->customer_profile_id, $voucher)) {
+            if (! $customer || ! $model || $model->status !== 'ACTIVE' || $model->version !== $rule['version'] || $model->start_date->isFuture() || ($voucher ? $model->end_date->isPast() : ! $model->end_date->isFuture()) || ! $this->scopeEligible($model, $branch, $rule['snapshot']['service_ids'], $rule['snapshot']['combo_id'] ?? null) || ! $this->audienceEligible($model->audience, $customer, $branch) || ! $this->quotaEligible($model, $booking->customer_profile_id, $voucher)) {
                 throw new DomainException('Ưu đãi vừa thay đổi hoặc hết lượt; vui lòng tính giá lại.');
+            }
+            if (! $voucher && ! $model->auto_apply && (! $model->code || ($rule['snapshot']['requested_code'] ?? null) !== $model->code)) {
+                throw new DomainException('Ưu đãi yêu cầu mã hợp lệ; vui lòng tính giá lại.');
             }
             if ($voucher && ! DB::table('customer_vouchers')->where('voucher_id', $model->id)->where('customer_profile_id', $customer->id)->whereIn('status', ['ACTIVE', 'USED'])->where(fn ($q) => $q->whereNull('expires_at')->orWhere('expires_at', '>', now()))->lockForUpdate()->first()) {
                 throw new DomainException('Voucher của khách đã hết hạn hoặc bị thu hồi.');

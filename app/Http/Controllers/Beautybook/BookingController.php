@@ -264,15 +264,18 @@ class BookingController extends Controller
         $rules = $q['discount_rules'] ?? [];
         $promo = 0;
         $voucher = 0;
+        $promotionCodeDiscount = 0;
         foreach ($rules as $rule) {
             if (($rule['kind'] ?? $rule['type'] ?? '') === 'VOUCHER') {
                 $voucher += ($rule['cents'] ?? 0);
+            } elseif (! empty($rule['snapshot']['requested_code'])) {
+                $promotionCodeDiscount += ($rule['cents'] ?? 0);
             } else {
                 $promo += ($rule['cents'] ?? 0);
             }
         }
 
-        return ['subtotal' => $q['subtotal_amount'], 'subtotalAmount' => $q['subtotal_amount'], 'discountAmount' => $q['discount_amount'], 'promotionDiscount' => Money::decimal($promo), 'voucherDiscount' => Money::decimal($voucher), 'voucherApplied' => $voucher > 0, 'code' => $r->voucherCode, 'totalAmount' => $q['final_amount'], 'finalAmount' => $q['final_amount'], 'totalDuration' => $q['duration_minutes'], 'durationMinutes' => $q['duration_minutes'], 'currency' => 'VND', 'items' => $q['items'], 'appliedPromotions' => $rules];
+        return ['subtotal' => $q['subtotal_amount'], 'subtotalAmount' => $q['subtotal_amount'], 'discountAmount' => $q['discount_amount'], 'promotionDiscount' => Money::decimal($promo), 'promotionCodeDiscount' => Money::decimal($promotionCodeDiscount), 'promotionCodeApplied' => $promotionCodeDiscount > 0, 'promotionCodeValid' => $q['promotion_code_valid'] ?? false, 'voucherDiscount' => Money::decimal($voucher), 'voucherApplied' => $voucher > 0, 'code' => $r->voucherCode ? strtoupper(trim($r->voucherCode)) : null, 'totalAmount' => $q['final_amount'], 'finalAmount' => $q['final_amount'], 'totalDuration' => $q['duration_minutes'], 'durationMinutes' => $q['duration_minutes'], 'currency' => 'VND', 'items' => $q['items'], 'appliedPromotions' => $rules];
     }
 
     public function slots(Request $r, CartBookingService $cart, BookingAccessService $access)

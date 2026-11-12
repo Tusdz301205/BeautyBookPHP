@@ -32,6 +32,7 @@ class ManagementOffersController extends Controller
         if(!$business)$this->scope->platform($request);
         $r=$id ? 'sometimes':'required';
         $data=$request->validate(['name'=>[$r,'string','max:255'],'description'=>'nullable|string|max:3000','discountType'=>[$r,'in:PERCENTAGE,FIXED_AMOUNT'],'discountValue'=>[$r,'numeric','gt:0','max:9999999999.99'],'startDate'=>[$r,'date'],'endDate'=>[$r,'date'],'status'=>'sometimes|in:ACTIVE,INACTIVE,EXPIRED','audience'=>'sometimes|in:ALL,NEW_CUSTOMER,RETURNING_CUSTOMER,BIRTHDAY,VIP,SELECTED','totalQuantity'=>'nullable|integer|min:1','maxUsagePerCustomer'=>'sometimes|integer|min:1','branchIds'=>'sometimes|array','branchIds.*'=>'integer|distinct','serviceIds'=>'sometimes|array','serviceIds.*'=>'integer|distinct','comboIds'=>'sometimes|array','comboIds.*'=>'integer|distinct','autoApply'=>'sometimes|boolean','stackingAllowed'=>'sometimes|boolean','businessIds'=>'sometimes|array','businessIds.*'=>'integer|distinct']);
+        $data += $request->validate(['code'=>'sometimes|nullable|string|max:32','targetMode'=>'sometimes|in:ALL,SELECTED,LEGACY']);
         if(isset($data['businessIds'])){abort_unless(($business && array_map('intval',$data['businessIds'])===[$business->id])||(!$business&&!$data['businessIds']),403);unset($data['businessIds']);}
         $snake=[];foreach($data as $key=>$value)$snake[Str::snake($key)]=$value;
         return $this->promotionDto($service->save($business,'promotion',$snake,$id ? (int)$id:null));
@@ -45,7 +46,7 @@ class ManagementOffersController extends Controller
     public function publicPromotions(Request $request,string $serviceId): array
     {
         $offering=BranchServiceOffering::whereKey($serviceId)->whereHas('branch',fn($q)=>$q->publicReady())->firstOrFail();
-        return Promotion::where('status','ACTIVE')->where('start_date','<=',now())->where('end_date','>=',now())->where(fn($q)=>$q->where('business_id',$offering->business_id)->orWhere('created_by_platform',true))->get()->filter(fn($rule)=>(!$rule->branch_ids||in_array($offering->branch_id,$rule->branch_ids))&&(!$rule->service_ids||in_array($offering->id,$rule->service_ids)))->map(fn($rule)=>$this->promotionDto($rule))->values()->all();
+        return Promotion::where('status','ACTIVE')->where('auto_apply',true)->where('start_date','<=',now())->where('end_date','>',now())->where(fn($q)=>$q->where('business_id',$offering->business_id)->orWhere(fn($platform)=>$platform->whereNull('business_id')->where('created_by_platform',true)))->get()->filter(fn($rule)=>app(\App\Services\Promotions\PromotionPricingService::class)->scopeEligible($rule,$offering->branch,[$offering->id]))->map(fn($rule)=>$this->promotionDto($rule))->values()->all();
     }
     public function combos(Request $request): array
     {

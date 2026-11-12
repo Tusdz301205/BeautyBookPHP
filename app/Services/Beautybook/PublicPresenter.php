@@ -90,9 +90,9 @@ class PublicPresenter
         if (isset($reference['description'])) $data['description'] = $reference['description'];
         if ($detail) {
             $data['staffServices'] = $staff->map(fn ($s) => ['staff' => $this->staff($s)])->all();
-            $data['promotionLinks'] = \App\Models\Promotion::where('status', 'ACTIVE')->where('start_date', '<=', now())->where('end_date', '>=', now())
+            $data['promotionLinks'] = \App\Models\Promotion::where('status', 'ACTIVE')->where('auto_apply', true)->where('start_date', '<=', now())->where('end_date', '>', now())
                 ->where(fn ($q) => $q->where('business_id', $offering->business_id)->orWhere(fn ($platform) => $platform->whereNull('business_id')->where('created_by_platform', true)))
-                ->get()->filter(fn ($promotion) => in_array((string) $offering->id, array_map('strval', $promotion->service_ids ?? []), true))
+                ->get()->filter(fn ($promotion) => app(\App\Services\Promotions\PromotionPricingService::class)->scopeEligible($promotion, $offering->branch, [$offering->id]))
                 ->map(fn ($promotion) => ['promotion' => ['id' => (string) $promotion->id, 'name' => $promotion->name, 'description' => $promotion->description, 'discountType' => $promotion->discount_type, 'discountValue' => (float) $promotion->discount_value, 'startDate' => $promotion->start_date?->toIso8601String(), 'endDate' => $promotion->end_date?->toIso8601String()]])->values()->all();
         }
         return $data;

@@ -2,6 +2,8 @@
 
 BeautyBookPHP là đồ án PHP/Laravel/MySQL cho môn Lập trình mã nguồn mở. Backend, Eloquent, migration, middleware và Blade entry nằm tại thư mục gốc. Frontend BeautyBook gốc được sao chép vào `resources/beautybook`, giữ React, component, CSS, state và tương tác; API thật do Laravel xử lý. Nguồn người dùng bổ sung tại `../beauty-booking-api-main` chỉ được đọc, không chỉnh sửa.
 
+**Dữ liệu local ngày 12/11/2026:** database `beautybook_php` đã được thay trực tiếp bằng dữ liệu GlowMe hiện tại; các tài khoản demo PHP cũ không còn là thông tin đăng nhập mặc định. Dùng tài khoản/mật khẩu GlowMe của bạn. Mật khẩu nguồn được giữ nguyên và tự nâng cấp hash sau lần đăng nhập bằng mật khẩu thành công. Không chạy lại seeder demo vào database này nếu muốn giữ bộ dữ liệu GlowMe. Xem [kết quả nhập và các giới hạn](docs/migration/2026-11-12-glowme-data-import/IMPLEMENTATION.md).
+
 ## Chạy bản PHP
 
 Runtime được kiểm tra qua Docker: PHP 8.4, MySQL 8.4, Laravel theo `composer.lock`. Lockfile hiện yêu cầu PHP >=8.4.1; PHP 8.3 cục bộ không chạy được bộ dependency này. Dùng Docker Desktop ở Windows, hoặc Docker Compose trên Linux.

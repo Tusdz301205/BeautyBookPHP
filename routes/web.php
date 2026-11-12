@@ -31,7 +31,9 @@ Route::get('/media/{media}', [MediaController::class, 'show'])->name('media.show
 Route::get('/ready', function () {
     try {
         $database = DB::selectOne('select 1 as connected');
-        $seeded = User::where('email', 'foundation@beautybook.local')->exists();
+        $seeded = User::where('email', 'foundation@beautybook.local')->exists()
+            || (\Illuminate\Support\Facades\Schema::hasTable('glowme_import_runs')
+                && DB::table('glowme_import_runs')->where('status', 'COMPLETE')->exists());
         $ready = $database?->connected === 1 && $seeded;
 
         return response()->json(['status' => $ready ? 'ready' : 'not_ready', 'database' => $database?->connected === 1, 'seeded' => $seeded], $ready ? 200 : 503);

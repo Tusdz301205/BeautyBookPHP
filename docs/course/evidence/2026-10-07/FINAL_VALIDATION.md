@@ -3,13 +3,13 @@
 ## Nghiệm thu React nguồn và Laravel API hiện hành
 
 - Bản frontend đang chạy tại `/beautybook`: 169 file nguồn, 164 file giống byte, 5 điểm tích hợp đã khai báo; 432/432 asset giống byte. Source gốc bên ngoài workspace: 445 checksum kiểm tra, 0 thay đổi.
-- 108 kiểm thử FE đạt, gồm component actual-time/history, scheduler, store và utility. Log cuối: [source-utility-results.txt](../../../../realtime/source-utility-results.txt). Build hai pipeline Vite đạt: [full-frontend-build-results.txt](../../../../realtime/full-frontend-build-results.txt).
+- 108 kiểm thử FE đạt, gồm component actual-time/history, scheduler, store và utility. Log cuối: [source-utility-results.txt](realtime/source-utility-results.txt). Build hai pipeline Vite đạt: [full-frontend-build-results.txt](realtime/full-frontend-build-results.txt).
 - [Browser 60 trang](source-parity/browser-pages.json): 54 màn hình sáu vai trò và 6 chi tiết thực tế, không lỗi JavaScript/API/ảnh/redirect; 61 ảnh đã kiểm tra kích thước tải thật.
 - [Chi tiết nội bộ](source-parity/browser-internal-details.json): 7 trang đạt, hai doanh nghiệp hiển thị đúng chủ sở hữu và summary/members/catalog từ database.
 - [Tương tác khám phá](source-parity/explore-interactions.json): phân trang 12→24 dịch vụ, không trùng ID; query/canonical/location lọc đúng kết quả API thật.
 - [Wizard đặt lịch](source-parity/booking-wizard.json): đủ năm bước, quote/slots thật, contact/consent lưu đúng, idempotency cùng ID, reload giữ ID; lịch mới số 6 hủy qua API thường, HTTP200.
 - [Responsive](source-parity/responsive/results.json): 35 tổ hợp sáu vai trò tại 320/375/414/768/1440px, font tải và không tràn ngang/lỗi JavaScript.
-- Socket.IO chạy qua nginx, đăng nhập Laravel thật, resync, lease quyền và token rotation disconnect đã đạt: [laravel-smoke-results.txt](../../../../realtime/laravel-smoke-results.txt). Scheduler container thực thi `beautybook:maintain` mỗi phút.
+- Socket.IO chạy qua nginx, đăng nhập Laravel thật, resync, lease quyền và token rotation disconnect đã đạt: [laravel-smoke-results.txt](realtime/laravel-smoke-results.txt). Scheduler container thực thi `beautybook:maintain` mỗi phút.
 - PHP lint: 308 file đạt; Blade compile và 126 view đã biên dịch đạt lint. Database demo và test vẫn tách biệt.
 - Nhóm hồi quy cuối owner/context, privacy, báo cáo theo ngày, review và DTO quản trị: [22 đạt / 220 assertions](source-parity/owner-context-closure.txt). Barrier cấp quyền giữ đủ 5 worker/1 assignment, [đạt 8 assertions](source-parity/role-barrier-diagnostic.txt).
 - Full suite MySQL: **277 đạt / 2.901 assertions**, 426,39 giây; [log](source-parity/full-suite.txt) và [JUnit](source-parity/full-suite.xml). Hai lần trước có một lỗi startup barrier và một fixture thiếu tham số from/to; không giảm assertion hoặc số worker. Sau suite này chỉ chỉnh nhãn giá hiển thị để giữ phần thập phân như `toLocaleString('vi-VN')` nguồn; [nhóm trình bày công khai](source-parity/public-presentation-final.txt) **4 đạt / 28 assertions**.
