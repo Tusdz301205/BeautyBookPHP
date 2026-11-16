@@ -232,6 +232,7 @@ Repo giữ mã nguồn, lockfile, tài nguyên cần khi chạy và bằng chứ
 - [Ví, tiền cọc và thanh toán](docs/PAYMENT_SETUP.md)
 - [Cài đặt và vận hành AI](docs/ML_SETUP.md)
 - [Kết quả kiểm thử](docs/FULL_TEST_RESULTS_2026-11-14.md)
+- [Kiểm tra trước khi xuất bản 16/11/2026](docs/VALIDATION_2026-11-16.md)
 - [Kết quả nhập dữ liệu GlowMe](docs/migration/2026-11-12-glowme-data-import/IMPLEMENTATION.md)
 
 Các báo cáo có ngày phản ánh trạng thái tại thời điểm ghi nhận; dùng cấu hình, lockfile và kết quả test hiện tại để kiểm tra phiên bản đang chạy.

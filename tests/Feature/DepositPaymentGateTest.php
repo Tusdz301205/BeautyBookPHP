@@ -150,7 +150,9 @@ class DepositPaymentGateTest extends TestCase
 
     public function test_a_booking_without_a_deposit_is_collected_exactly_as_before(): void
     {
-        // No enabled connection: the booking holds no deposit at all.
+        // With direct deposits disabled, the booking holds no deposit at all.
+        // Missing account setup in enabled mode must still block paid online bookings.
+        config(['wallet.direct.enabled' => false]);
         $data = $this->bookingData(9);
         $id = (int) $this->book($data, null, 'gate-no-deposit-0001')->assertCreated()->json('id');
         $this->assertNull(DB::table('booking_deposits')->where('booking_id', $id)->first());

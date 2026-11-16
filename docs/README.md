@@ -18,6 +18,7 @@ Tài liệu hiện hành cho môn Lập trình mã nguồn mở, dùng bản Lar
 | [Phân tích đánh giá bằng AI](ML_SETUP.md) | Git LFS, cài Python/JDK, cấu hình và chạy worker |
 | [Kiểm thử trình duyệt](../tests/Browser/README.md) | Fixture, môi trường QA và các kịch bản Playwright |
 | [Kết quả kiểm thử 14/11/2026](FULL_TEST_RESULTS_2026-11-14.md) | Kết quả nghiệm thu và giới hạn tại thời điểm ghi nhận |
+| [Kiểm tra trước khi xuất bản 16/11/2026](VALIDATION_2026-11-16.md) | Build, kiểm thử, cập nhật fixture cũ và phạm vi dọn Git |
 | [Đợt chuyển tính năng đăng ký 03/11/2026](migration/2026-11-03-registration/IMPLEMENTATION.md) | Pháp nhân, đăng ký chi nhánh, yêu cầu đổi địa chỉ có duyệt và kiểm thử |
 | [Kiểm thử và đối chiếu GlowMe 12/11/2026](audit/REPORT_2026-11-12.md) | Kết quả test và khác biệt chức năng |
 | [Dọn cấu trúc thư mục](audit/CLEANUP_2026-11-12.md) | Các mục đã chuyển, xóa và lý do giữ legacy |

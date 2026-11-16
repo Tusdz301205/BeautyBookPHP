@@ -130,7 +130,7 @@ class PromotionTest extends TestCase
         $assignment = $owner->roleAssignments()->where('role_name', 'BUSINESS_OWNER')->firstOrFail();
         $business = Business::findOrFail($assignment->business_id);
         $this->actingAs($owner)->withSession(['workspace_assignment_id' => $assignment->id]);
-        $this->get(route('owner.promotions.index', $business))->assertOk()->assertSee('Khuyến mãi và voucher');
+        $this->get(route('owner.promotions.index', $business))->assertOk()->assertSee('Khuyến mãi và phiếu ưu đãi');
         $data = ['type' => 'promotion', 'name' => 'Test CRUD', 'discount_type' => 'PERCENTAGE', 'discount_value' => '10.00', 'start_date' => now()->subDay()->toISOString(), 'end_date' => now()->addDay()->toISOString()];
         $this->postJson(route('owner.promotions.store', $business), $data)->assertCreated();
         $rule = Promotion::where('name', 'Test CRUD')->firstOrFail();
