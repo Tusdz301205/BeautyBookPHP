@@ -1,0 +1,52 @@
+html:root { --gm-serif: 'Noto Serif', Georgia, serif; --font-display: var(--gm-serif); }
+html, body { overflow-x: clip; scrollbar-width: auto; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: block; width: 8px; }
+.bb-brand-wordmark { width: auto; font-family: var(--font-body); font-size: 20px; font-weight: 650; line-height: 1.2; letter-spacing: -.8px; }
+#root .gm-site-header .bb-brand-wordmark { width: auto; font-size: 19px; }
+.bb-brand-mark { color: var(--bb-brand); filter: none; }
+.bb-brand--on-dark .bb-brand-mark { color: var(--color-accent-ink); }
+.bb-public-drawer__panel { overflow-y: auto; overscroll-behavior: contain; }
+.bb-public-drawer__panel a { white-space: nowrap; }
+.bb-public-drawer__top button { flex: none; }
+.bb-public-nav > a[aria-current] { color: var(--bb-brand); text-decoration: underline; text-underline-offset: 6px; }
+#root .gm-site-header .bb-public-nav > a, #root .gm-site-header .bb-public-account-link { min-height: 44px; }
+.bb-auth-editorial__points { list-style: none; }
+.bb-public-shell .bb-home-media__illustration { max-width: calc(100% - 1rem); }
+.bb-public-main > .mb-6[role="status"] { margin: 1rem; }
+.gm-home :is(.bb-home-inline-state, .bb-home-empty-results) { width: 100%; }
+
+/* Rose accents across the existing source layouts. */
+#root .bb-public-shell--luxury {
+  --color-accent: var(--color-berry-500);
+  --color-accent-strong: var(--color-berry-700);
+  --color-accent-soft: var(--color-berry-50);
+  --bb-brand: var(--color-berry-500);
+  --bb-brand-strong: var(--color-berry-700);
+  --bb-brand-soft: var(--color-berry-50);
+}
+#root .gm-site-header :is(.bb-public-cta, .bb-customer-cta),
+#root :is(.bb-home-button--primary, .bb-home-search__submit, .bb-card-action--primary, .gm-button:not(.gm-button--light)) {
+  background: var(--gradient-action);
+  border-color: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+#root .gm-site-header :is(.bb-public-cta, .bb-customer-cta):hover,
+#root :is(.bb-home-button--primary, .bb-home-search__submit, .bb-card-action--primary, .gm-button:not(.gm-button--light)):hover {
+  background: var(--gradient-action-hover);
+}
+#root :is(.gm-site-header, .bb-customer-header) { background: var(--gradient-glass); }
+#root :is(.bb-public-footer, .gm-footer) { background: var(--color-brand-deep); }
+#root .gm-home-below .gm-services-band {
+  background: var(--color-berry-50);
+  border-color: var(--color-berry-100);
+}
+#root .gm-home-below .gm-campaign { background: var(--color-brand-deep); }
+#root .gm-home-below .gm-campaign :is(.gm-eyebrow, .gm-campaign__signature, .gm-campaign__copy > p:not(.gm-eyebrow)) { color: var(--color-on-dark-muted); }
+#root .gm-home-below .gm-campaign .gm-button { color: var(--color-berry-700); }
+@media (max-width: 600px) {
+  #root .gm-site-header .bb-brand-wordmark { font-size: 17px; }
+  .bb-brand__text small { font-size: 9px; letter-spacing: .04em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

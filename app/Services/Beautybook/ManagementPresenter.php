@@ -39,6 +39,8 @@ class ManagementPresenter
         $branchIds = $business->branches->modelKeys();
         $reviews = \App\Models\Review::where('status','APPROVED')->whereHas('booking',fn ($q)=>$q->whereIn('branch_id',$branchIds));
         return array_merge($this->camel($business->load(['ownerProfile.user','reviewEvents'])->toArray()), $metadata, [
+            // Imported descriptive metadata must not replace local routing identities.
+            'id' => (string) $business->id,
             'owner' => $owner,
             'summary' => ['branchCount'=>count($branchIds),'activeBranchCount'=>$business->branches->filter(fn ($branch)=>$branch->status->value==='ACTIVE')->count(),'serviceCount'=>$catalog->count(),'bookingCount'=>\App\Models\Booking::whereIn('branch_id',$branchIds)->count(),'averageRating'=>($average=(clone $reviews)->avg('overall_rating'))===null ? null : round((float)$average,1),'reviewCount'=>(clone $reviews)->count()],
             'members' => \App\Models\RoleAssignment::with('user','branch')->where('business_id',$business->id)->where(fn ($q)=>$q->whereNull('expires_at')->orWhere('expires_at','>',now()->utc()))->get()->unique('user_id')->map(fn ($assignment)=>['id'=>(string)$assignment->id,'roleCode'=>$assignment->role_name,'user'=>['id'=>(string)$assignment->user_id,'fullName'=>$assignment->user->name,'email'=>$assignment->user->email,'isActive'=>(bool)$assignment->user->is_active],'branch'=>$assignment->branch ? ['id'=>(string)$assignment->branch_id,'name'=>$assignment->branch->name] : null])->values()->all(),
@@ -72,6 +74,7 @@ class ManagementPresenter
         if (empty($policy['confirmedAt'])) $missing[] = 'Chưa xác nhận chính sách đặt lịch';
         if ($branch->business->booking_restricted_at) $missing[] = $branch->business->booking_restriction_reason ?: 'Đang bị hạn chế nhận booking';
         return array_merge($this->camel($branch->load('workingHours')->toArray()), $metadata, [
+            'id' => (string) $branch->id, 'businessId' => (string) $branch->business_id,
             'registrationType' => $branch->registration_type, 'addressLine' => $branch->address_line,
             'address' => $branch->address_line, 'openingHours' => $branch->workingHours->map(fn ($hour) => ['dayOfWeek' => $hour->day_of_week, 'isClosed' => $hour->is_closed, 'openTime' => substr($hour->open_time ?? '',0,5), 'closeTime' => substr($hour->close_time ?? '',0,5)])->all(),
             'workingHours' => $branch->workingHours->map(fn ($hour) => ['dayOfWeek' => $hour->day_of_week, 'isClosed' => (bool)$hour->is_closed, 'openTime' => '1970-01-01T'.($hour->open_time ?? '00:00:00').'.000Z', 'closeTime' => '1970-01-01T'.($hour->close_time ?? '00:00:00').'.000Z'])->all(),
@@ -176,6 +179,7 @@ class ManagementPresenter
         $data['comboPrice'] = (float)$combo->combo_price;
         $data['items'] = $combo->items->map(fn ($item) => $this->camel($item->toArray()) + ['serviceId'=>(string)$item->branch_service_offering_id, 'service'=>$this->offering($item->offering)])->all();
         $data['services'] = $data['items'];
+        $data['comboServices'] = $data['items'];
         $data['images'] = MediaFile::where('entity_type','COMBO_IMAGE')->where('entity_id',$combo->id)->where('visibility','PUBLIC')->get()->map(fn($media)=>['id'=>(string)$media->id,'media'=>$this->media($media)])->all();
         return $data;
     }

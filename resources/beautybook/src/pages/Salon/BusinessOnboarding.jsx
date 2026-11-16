@@ -521,7 +521,7 @@ export default function BusinessOnboarding() {
       <PageHeader
         eyebrow="Xác minh doanh nghiệp"
         title="Đăng ký BeautyBook Business"
-        description="Luồng này chỉ xác minh doanh nghiệp và pháp nhân lần đầu. Chi nhánh, dịch vụ và nhân sự sẽ được thiết lập riêng sau khi doanh nghiệp được duyệt."
+        description="Hoàn thiện hồ sơ doanh nghiệp để gửi xét duyệt."
         actions={editable ? (
           <Button variant="secondary" loading={busy === 'save'} disabled={Boolean(busy) || uploadsInProgress > 0} onClick={() => persist()}>
             <Save size={16} />Lưu & tiếp tục sau
@@ -531,7 +531,7 @@ export default function BusinessOnboarding() {
 
       <Card className="p-5" aria-label="Giấy tờ cần nộp">
         <h2 className="font-bold">Giấy tờ cần chuẩn bị trước khi gửi hồ sơ</h2>
-        <p className="mt-1 text-sm text-[var(--bb-muted)]">PDF, tối đa 10 MB mỗi tệp. Chọn đúng loại giấy tờ và nhập tên tài liệu. Giấy tờ chỉ được xem bởi người có quyền; mỗi lần thay tệp được lưu thành phiên bản mới.</p>
+        <p className="mt-1 text-sm text-[var(--bb-muted)]">PDF, tối đa 10 MB mỗi tệp. Chọn loại giấy tờ và nhập tên tài liệu.</p>
         {config.requiredDocuments.length ? (
           <ul className="mt-3 space-y-2">
             {documentChecklist(documents, config.requiredDocuments).map(({ type, complete }) => (
@@ -628,7 +628,6 @@ export default function BusinessOnboarding() {
             {step === 1 && (
               <div>
                 <h2 className="font-bold">Doanh nghiệp hoạt động trong lĩnh vực nào?</h2>
-                <p className="mt-1 text-sm text-[var(--bb-muted)]">Thông tin này dùng để phân loại hồ sơ, không tự tạo chi nhánh hoặc dịch vụ.</p>
                 <div className="mt-4">
                   <ChoiceGrid
                     value={draft.businessType}
@@ -683,7 +682,7 @@ export default function BusinessOnboarding() {
             {step === 3 && (
               <div>
                 <h2 className="font-bold">Giấy tờ xác minh pháp nhân</h2>
-                <p className="mt-1 text-sm text-[var(--bb-muted)]">Tệp private, đúng tenant và mỗi lần thay thế sẽ tạo một version mới.</p>
+                <p className="mt-1 text-sm text-[var(--bb-muted)]">Tài liệu được bảo mật; các phiên bản trước vẫn được lưu.</p>
                 <div className="mt-4 space-y-4">
                   {documents.map((document, index) => (
                     <article key={document.id || index} className="grid gap-3 rounded-xl border border-[var(--bb-border)] p-4 sm:grid-cols-2">
@@ -749,7 +748,7 @@ export default function BusinessOnboarding() {
 
             {step === 4 && (
               <div className="space-y-5">
-                <InlineNotice tone="info">Gửi duyệt chỉ xác minh doanh nghiệp. Hệ thống chưa tạo chi nhánh và chưa công khai nhận đặt lịch.</InlineNotice>
+                <InlineNotice tone="info">Sau khi doanh nghiệp được duyệt, bạn có thể thêm chi nhánh.</InlineNotice>
                 <dl className="grid gap-3 rounded-xl bg-[var(--bb-surface-subtle)] p-4 sm:grid-cols-2">
                   <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Loại hình dịch vụ</dt><dd className="mt-1 font-bold">{config.businessTypes.find((item) => item.code === draft.businessType)?.label || 'Chưa chọn'}</dd></div>
                   <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Thương hiệu</dt><dd className="mt-1 font-bold">{identity.name}</dd></div>

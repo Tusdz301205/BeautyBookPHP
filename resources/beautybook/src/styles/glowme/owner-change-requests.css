@@ -1,0 +1,7 @@
+.bb-change-requests{display:grid;gap:16px;min-width:0}
+.bb-change-requests--embedded{padding:20px 24px}
+.bb-change-requests__header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.bb-change-requests__header h2{margin:0;color:var(--bb-ink);font-size:18px;font-weight:700;line-height:1.5}
+.bb-change-requests__header p{margin:4px 0 0;color:var(--bb-muted);font-size:13px;line-height:1.6}
+.bb-change-requests--embedded>.bb-card .bb-field>span[aria-hidden=true]{display:none}
+@media(max-width:640px){.bb-change-requests--embedded{padding:16px}.bb-change-requests__header{align-items:flex-start}}

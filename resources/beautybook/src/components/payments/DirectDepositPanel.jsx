@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Banknote, Copy } from 'lucide-react';
+import { Banknote, Copy, Wallet } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { paymentsApi } from '../../api/apiClient';
 import { Badge, Button, Field, Input, InlineNotice } from '../ui';
@@ -8,6 +8,26 @@ import { DEPOSIT_STATUS, REFUND_REASON, REFUND_STATUS, maskAccount, minutesToPay
 const money = (value) => `${Number(value || 0).toLocaleString('vi-VN')}₫`;
 const when = (value) => (value ? new Date(value).toLocaleString('vi-VN') : '—');
 const POLL_MS = 8000;
+
+const walletStatus = {
+  HELD: { label: 'Đang giữ cọc', tone: 'warning', description: 'Cọc đang được giữ trong ví và sẽ được tính vào giá dịch vụ khi hoàn tất lịch hẹn.' },
+  APPLIED: { label: 'Đã tính vào hóa đơn', tone: 'success', description: 'Cọc đã được tính vào tiền dịch vụ.' },
+  REFUNDED: { label: 'Đã hoàn về ví', tone: 'success', description: 'Cọc đã được hoàn về số dư khả dụng trong ví.' },
+  FORFEITED: { label: 'Mất cọc', tone: 'danger', description: 'Cọc thuộc về cơ sở theo điều khoản hủy sát giờ hoặc vắng mặt.' },
+};
+
+function WalletDepositSummary({ deposit }) {
+  const status = walletStatus[deposit.status] || { label: deposit.status, tone: 'neutral' };
+  return <section className="rounded-xl border border-[var(--bb-border)] bg-[var(--bb-surface)] p-4" aria-label="Cọc đặt lịch từ ví">
+    <div className="flex flex-wrap items-center justify-between gap-2"><h3 className="flex items-center gap-2 text-sm font-bold"><Wallet size={16} aria-hidden="true" />Cọc 30% từ ví</h3><Badge tone={status.tone}>{status.label}</Badge></div>
+    <dl className="mt-3 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-3">
+      <div><dt className="text-xs text-[var(--bb-muted)]">Số tiền cọc</dt><dd className="font-bold tabular-nums">{money(deposit.amountVnd)}</dd></div>
+      <div><dt className="text-xs text-[var(--bb-muted)]">Phần còn lại theo giá dịch vụ</dt><dd className="tabular-nums">{money(deposit.remainingVnd)}</dd></div>
+      <div><dt className="text-xs text-[var(--bb-muted)]">Tổng giá dịch vụ</dt><dd className="tabular-nums">{money(deposit.totalVnd)}</dd></div>
+    </dl>
+    {status.description && <p className="mt-3 text-sm text-[var(--bb-muted)]">{status.description}</p>}
+  </section>;
+}
 
 function CopyField({ label, value }) {
   const copy = async () => { try { await navigator.clipboard.writeText(String(value)); toast.success(`Đã sao chép ${label.toLowerCase()}`); } catch { toast.error('Không sao chép được, hãy chọn và sao chép thủ công'); } };
@@ -43,8 +63,8 @@ function RefundRow({ refund, role, bookingId, onChanged }) {
 }
 
 /**
- * A booking's direct deposit for one viewer: payment instructions with a countdown while unpaid, the status once paid, and the
- * refund steps. Renders nothing for a booking without a direct deposit. Polls while a payment is awaited.
+ * Direct deposits go to the business; historical wallet deposits retain their summary.
+ * Poll only while a direct payment is awaited.
  */
 export default function DirectDepositPanel({ bookingId, onChange }) {
   const [state, setState] = useState({ loading: true, data: null, error: '' });
@@ -58,7 +78,7 @@ export default function DirectDepositPanel({ bookingId, onChange }) {
   }, [bookingId]);
   useEffect(() => { void load(); }, [load]);
   const deposit = state.data?.deposit;
-  const awaiting = deposit?.status === 'AWAITING_PAYMENT';
+  const awaiting = deposit?.fundingSource === 'DIRECT_SEPAY' && deposit.status === 'AWAITING_PAYMENT';
   useEffect(() => {
     if (!awaiting) return undefined;
     const timer = setInterval(() => { tick((value) => value + 1); void load(); }, POLL_MS);
@@ -76,6 +96,7 @@ export default function DirectDepositPanel({ bookingId, onChange }) {
 
   if (state.loading) return null;
   if (state.error) return <InlineNotice tone="warning">{state.error}</InlineNotice>;
+  if (deposit?.fundingSource === 'SIMULATED_WALLET') return <WalletDepositSummary deposit={deposit} />;
   if (!deposit || deposit.fundingSource !== 'DIRECT_SEPAY') return null;
   const role = state.data.role;
   const status = DEPOSIT_STATUS[deposit.status] || { label: deposit.status, tone: 'neutral' };

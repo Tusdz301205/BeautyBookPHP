@@ -1,6 +1,8 @@
+import { statusLabel } from '../../utils/displayLabels';
 import React, { useCallback, useEffect, useState } from 'react';
 import { differenceInHours, differenceInMinutes, format } from 'date-fns';
-import { ArrowRight, ArrowRightLeft, Building2, CalendarCheck, CalendarPlus, CheckCircle2, Clock3, Compass, Eye, MapPin, Pause, Play, Repeat2, Star, XCircle } from 'lucide-react';
+import { vi } from 'date-fns/locale';
+import { ArrowRight, ArrowRightLeft, Building2, CalendarCheck, CalendarPlus, CheckCircle2, Clock3, Compass, Eye, MapPin, Pause, Play, Repeat2, Scissors, Star, UserRound, XCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { bookingsApi, branchesApi, platformPolicyApi, recurringApi } from '../../api/apiClient';
@@ -8,13 +10,13 @@ import { useAuthStore } from '../../store/authStore';
 import { useBookingStore } from '../../store/bookingStore';
 import { RescheduleModal } from '../../components/customer/RescheduleModal';
 import { ReviewModal } from '../../components/customer/ReviewModal';
-import { Badge, Button, Card, Dialog, ErrorState, Field, InlineNotice, Page, PageHeader, Skeleton, Textarea, cx } from '../../components/ui';
+import { Badge, Button, Card, Dialog, ErrorState, Field, InlineNotice, Page, Skeleton, Textarea } from '../../components/ui';
 import { combineDateTime } from '../../utils/bookingCalendar.adapter';
 import { customerCancellationMode, submitCustomerCancellation } from '../../utils/customerCancellation';
 
 const TABS = [['upcoming', 'Sắp tới', CalendarCheck], ['completed', 'Hoàn thành', CheckCircle2], ['cancelled', 'Đã hủy', XCircle]];
 const labels = { PENDING: 'Chờ xác nhận', CONFIRMED: 'Đã xác nhận', CHECKED_IN: 'Đã đến', IN_PROGRESS: 'Đang thực hiện', COMPLETED: 'Hoàn thành', CANCELLED: 'Đã hủy', NO_SHOW: 'Không đến', REJECTED: 'Đã từ chối', EXPIRED: 'Hết hạn giữ chỗ' };
-const tones = { PENDING: 'warning', CONFIRMED: 'info', CHECKED_IN: 'info', IN_PROGRESS: 'brand', COMPLETED: 'success', CANCELLED: 'danger', NO_SHOW: 'neutral', REJECTED: 'danger', EXPIRED: 'neutral' };
+const statusIcons = { PENDING: Clock3, CONFIRMED: CheckCircle2, CHECKED_IN: CalendarCheck, IN_PROGRESS: Play, COMPLETED: CheckCircle2, CANCELLED: XCircle, NO_SHOW: XCircle, REJECTED: XCircle, EXPIRED: Clock3 };
 const requestLabels = { PENDING: 'Đang chờ duyệt', APPROVED: 'Đã chấp nhận', REJECTED: 'Bị từ chối', EXPIRED: 'Đã hết hạn' };
 
 export function CustomerAppointments() {
@@ -85,8 +87,18 @@ export function CustomerAppointments() {
     catch (requestError) { toast.error(requestError.message); }
     finally { setBusy(false); }
   };
-  return <Page className="max-w-6xl">
-    <PageHeader eyebrow="Tài khoản khách hàng" title="Lịch hẹn của tôi" description="Theo dõi trạng thái thật của lịch và các yêu cầu thay đổi đang chờ cơ sở xử lý." />
+  return <Page className="bb-appointments bb-bookings-page max-w-6xl">
+    <header className="bb-bookings-page__hero">
+      <div className="bb-bookings-page__hero-copy">
+        <span className="bb-bookings-page__eyebrow"><span aria-hidden="true" />TÀI KHOẢN KHÁCH HÀNG</span>
+        <h1>Lịch hẹn của tôi<span>.</span></h1>
+        <p>Theo dõi trạng thái thật của lịch và các yêu cầu thay đổi đang chờ cơ sở xử lý.</p>
+      </div>
+      <div className="bb-bookings-page__hero-action">
+        <span className="bb-bookings-page__hero-icon" aria-hidden="true"><CalendarCheck size={42} strokeWidth={1.3} /></span>
+        <Link className="bb-home-button bb-home-button--primary" to="/book"><CalendarPlus size={17} aria-hidden="true" />Đặt lịch mới<ArrowRight size={16} aria-hidden="true" /></Link>
+      </div>
+    </header>
     {plans.length > 0 && <section>
       <div className="mb-3 flex items-center gap-2"><Repeat2 size={18} className="text-[var(--bb-brand-strong)]" /><h2 className="font-bold">Chuỗi lịch lặp</h2></div>
       <div className="grid gap-3 lg:grid-cols-2">{plans.map((plan) => <Card key={plan.id} className="p-4">
@@ -102,9 +114,13 @@ export function CustomerAppointments() {
         {['ACTIVE', 'PAUSED'].includes(plan.status) && <div className="mt-4 flex flex-wrap gap-2 border-t border-[var(--bb-border)] pt-3"><Button size="sm" variant="secondary" disabled={busy} onClick={() => changePlan(plan, plan.status === 'ACTIVE' ? 'PAUSED' : 'ACTIVE')}>{plan.status === 'ACTIVE' ? <Pause size={14} /> : <Play size={14} />}{plan.status === 'ACTIVE' ? 'Tạm dừng' : 'Tiếp tục'}</Button><Button size="sm" variant="ghost" className="text-[var(--bb-danger)]" disabled={busy} onClick={() => setPlanCancel(plan)}><XCircle size={14} />Hủy chuỗi</Button></div>}
       </Card>)}</div>
     </section>}
-    <div role="tablist" aria-label="Nhóm lịch hẹn" className="bb-appointments-tabs flex gap-1 overflow-x-auto border-b border-[var(--bb-border)]">{TABS.map(([id, label, Icon]) => <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)} className={cx('flex min-h-11 shrink-0 items-center gap-2 border-b-2 px-4 text-sm font-semibold', tab === id ? 'border-[var(--bb-brand)] text-[var(--bb-brand-strong)]' : 'border-transparent text-[var(--bb-muted)]')}><Icon size={16} />{label}</button>)}</div>
+    <div className="bb-appointments-toolbar bb-bookings-page__toolbar">
+      <div role="group" aria-label="Nhóm lịch hẹn" className="bb-appointments-tabs">
+        {TABS.map(([id, label, Icon]) => <button key={id} type="button" aria-pressed={tab === id} onClick={() => setTab(id)}><Icon size={16} aria-hidden="true" />{label}</button>)}
+      </div>
+    </div>
     {tab === 'upcoming' && bookings.some((booking) => customerCancellationMode(booking) === 'request') && <InlineNotice tone="warning">Bạn có lịch còn dưới 4 giờ. Hãy gửi yêu cầu hủy sát giờ; lịch chỉ bị hủy khi cơ sở chấp nhận.</InlineNotice>}
-    {loading ? <Skeleton rows={6} /> : error ? <Card><ErrorState message={error} onRetry={load} /></Card> : !bookings.length ? <AppointmentEmpty tab={tab} recommendations={recommendations} recommendationsLoading={recommendationsLoading} recommendationsError={recommendationsError} onBook={() => navigate('/book')} onExplore={() => navigate('/explore')} /> : <div className="grid gap-4 lg:grid-cols-2">{bookings.map((booking) => <BookingCard key={booking.id} booking={booking} tab={tab} policy={policy} onCancel={() => { setCancel(booking); setReason(''); }} onReschedule={() => setReschedule(booking)} onReview={() => setReview(booking)} onRebook={() => { const serviceIds = (booking.bookingServices || []).map((item) => item.service?.id || item.serviceId).filter(Boolean); if (!booking.branchId || !serviceIds.length) return; setBranch(booking.branchId); serviceIds.forEach((serviceId) => toggleService(serviceId)); navigate('/book/staff'); }} />)}</div>}
+    {loading ? <Skeleton rows={6} /> : error ? <Card><ErrorState message={error} onRetry={load} /></Card> : !bookings.length ? <AppointmentEmpty tab={tab} recommendations={recommendations} recommendationsLoading={recommendationsLoading} recommendationsError={recommendationsError} onBook={() => navigate('/book')} onExplore={() => navigate('/explore')} /> : <div className="bb-appointments-grid">{bookings.map((booking) => <BookingCard key={booking.id} booking={booking} tab={tab} policy={policy} onCancel={() => { setCancel(booking); setReason(''); }} onReschedule={() => setReschedule(booking)} onReview={() => setReview(booking)} onRebook={() => { const serviceIds = (booking.bookingServices || []).map((item) => item.service?.id || item.serviceId).filter(Boolean); if (!booking.branchId || !serviceIds.length) return; setBranch(booking.branchId); serviceIds.forEach((serviceId) => toggleService(serviceId)); navigate('/book?serviceId='+encodeURIComponent(serviceIds[0])); }} />)}</div>}
     {reschedule && <RescheduleModal booking={reschedule} onClose={() => setReschedule(null)} onSuccess={() => { setReschedule(null); load(); }} />}
     {review && <ReviewModal booking={review} policy={policy} onClose={() => setReview(null)} onSuccess={() => { setReview(null); load(); }} />}
     <Dialog open={Boolean(cancel)} onClose={() => setCancel(null)} title="Hủy lịch hẹn" description={cancel ? `Mã lịch ${cancel.bookingCode || '—'}.` : ''} footer={<><Button variant="secondary" onClick={() => setCancel(null)}>Giữ lịch</Button><Button variant="danger" loading={busy} disabled={!reason.trim()} onClick={submitCancel}>{customerCancellationMode(cancel) === 'request' ? 'Gửi yêu cầu hủy' : 'Xác nhận hủy'}</Button></>}>
@@ -162,17 +178,36 @@ function BookingCard({ booking, tab, policy, onCancel, onReschedule, onReview, o
   const canCancel = tab === 'upcoming' && ['direct', 'request'].includes(cancellationMode);
   const canReview = tab === 'completed' && booking.status === 'COMPLETED' && !booking.review;
   const duration = start && end ? Math.max(0, differenceInMinutes(end, start)) : services.reduce((sum, item) => sum + Number(item.service?.durationMinutes || 0), 0);
-  return <Card as="article" className="bb-appointment-card flex flex-col overflow-hidden">
-    <div className="flex items-start justify-between gap-3 border-b border-[var(--bb-border)] p-5"><div className="min-w-0"><h2 className="truncate font-bold">{booking.branch?.business?.name || booking.branch?.name || 'Cơ sở làm đẹp'}</h2><p className="mt-1 flex items-start gap-1 text-xs text-[var(--bb-muted)]"><MapPin size={13} className="mt-0.5 shrink-0" />{booking.branch?.addressLine || 'Chưa cập nhật địa chỉ'}</p></div><Badge tone={tones[booking.status] || 'neutral'}>{labels[booking.status] || booking.status || '—'}</Badge></div>
-    <div className="flex-1 p-5"><div className="flex items-start gap-3 rounded-xl bg-[var(--bb-surface-subtle)] p-3"><CalendarCheck size={18} className="mt-0.5 text-[var(--bb-brand-strong)]" /><div><p className="text-sm font-bold">{start ? format(start, 'dd/MM/yyyy · HH:mm') : '—'}</p><p className="mt-1 text-xs text-[var(--bb-muted)]">{end ? `Kết thúc ${format(end, 'HH:mm')}` : 'Chưa có giờ kết thúc'}</p></div></div>
-      <div className="mt-4 divide-y divide-[var(--bb-border)]">{services.map((item) => <div key={item.id} className="flex justify-between gap-3 py-3 text-sm"><span>{item.service?.name || 'Dịch vụ'}{item.staff && <small className="block text-[var(--bb-muted)]">{item.staff.user?.fullName || item.staff.fullName}</small>}</span><strong>{Number(item.priceAtBooking || 0).toLocaleString('vi-VN')}₫</strong></div>)}</div>
+  const StatusIcon = statusIcons[booking.status] || CalendarCheck;
+  return <Card as="article" className="bb-appointment-card" data-status={booking.status}>
+    <header>
+      <div className="bb-appointment-card__venue">
+        <span className="bb-appointment-card__venue-icon" aria-hidden="true"><MapPin size={20} /></span>
+        <div><h2>{booking.branch?.business?.name || booking.branch?.name || 'Cơ sở làm đẹp'}</h2><p>{booking.branch?.addressLine || 'Chưa cập nhật địa chỉ'}</p></div>
+      </div>
+      <span className="bb-customer-booking-status" data-status={booking.status}><StatusIcon size={13} aria-hidden="true" />{labels[booking.status] || statusLabel(booking.status)}</span>
+    </header>
+    <div className="bb-appointment-card__body">
+      <div className="bb-appointment-card__schedule">
+        {start && <div className="bb-appointment-card__date" aria-hidden="true"><span>THÁNG {format(start, 'MM')}</span><strong>{format(start, 'dd')}</strong></div>}
+        <div className="bb-appointment-card__time">
+          <p>{start ? format(start, 'EEEE · dd/MM/yyyy', { locale: vi }) : 'Chưa có ngày hẹn'}</p>
+          <strong>{start ? format(start, 'HH:mm') : '—'}{end && <> <span>–</span> {format(end, 'HH:mm')}</>}</strong>
+          <small><Clock3 size={12} aria-hidden="true" />{end ? 'Giờ TP. Hồ Chí Minh' : 'Chưa có giờ kết thúc'}</small>
+        </div>
+      </div>
+      <ul className="bb-appointment-units">{services.map((item) => <li key={item.id}>
+        <span className="bb-appointment-card__service-icon" aria-hidden="true"><Scissors size={17} /></span>
+        <div className="flex-1"><strong>{item.service?.name || 'Dịch vụ'}</strong>{item.staff && <small className="bb-appointment-card__staff"><UserRound size={12} aria-hidden="true" />{item.staff.user?.fullName || item.staff.fullName}</small>}</div>
+        <strong className="shrink-0 text-right">{Number(item.priceAtBooking || 0).toLocaleString('vi-VN')}₫</strong>
+      </li>)}</ul>
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-[var(--bb-muted)]">{booking.bookingCode && <span>Mã lịch <span className="bb-mono font-semibold text-[var(--bb-ink)]">{booking.bookingCode}</span></span>}{duration > 0 && <Badge>{duration} phút</Badge>}</div>
-      {latestRequest && <div className="mt-3"><InlineNotice tone={latestRequest.status === 'REJECTED' ? 'danger' : latestRequest.status === 'APPROVED' ? 'success' : 'warning'}><b>Yêu cầu thay đổi:</b> {requestLabels[latestRequest.status] || latestRequest.status}. {latestRequest.status === 'PENDING' && 'Lịch hiện tại chưa thay đổi.'}{latestRequest.reviewNote ? ` ${latestRequest.reviewNote}` : ''}</InlineNotice></div>}
+      {latestRequest && <div className="mt-3"><InlineNotice tone={latestRequest.status === 'REJECTED' ? 'danger' : latestRequest.status === 'APPROVED' ? 'success' : 'warning'}><b>Yêu cầu thay đổi:</b> {requestLabels[latestRequest.status] || statusLabel(latestRequest.status)}. {latestRequest.status === 'PENDING' && 'Lịch hiện tại chưa thay đổi.'}{latestRequest.reviewNote ? ` ${latestRequest.reviewNote}` : ''}</InlineNotice></div>}
       {rescheduleLimitReached && tab === 'upcoming' && <div className="mt-3"><InlineNotice tone="warning">Lịch hẹn này đã đạt số lần đổi lịch tối đa.</InlineNotice></div>}
       {booking.cancelReason && <div className="mt-3"><InlineNotice tone="danger"><b>Lý do hủy:</b> {booking.cancelReason}</InlineNotice></div>}
       {tab === 'upcoming' && hours < 4 && <div className="mt-3"><InlineNotice tone="warning"><span className="flex gap-2"><Clock3 size={15} />Lịch sắp diễn ra; vui lòng xem chính sách trước khi thay đổi.</span></InlineNotice></div>}
     </div>
-    <footer className="flex flex-wrap gap-2 border-t border-[var(--bb-border)] p-4"><Link to={`/customer/appointments/${booking.id}`} className="inline-flex min-h-11 items-center gap-2 rounded-[var(--bb-radius-control)] border border-[var(--bb-border)] bg-white px-3 text-xs font-semibold hover:bg-[var(--bb-surface-subtle)]"><Eye size={14} />Chi tiết</Link>{canReschedule && <Button variant="secondary" size="sm" onClick={onReschedule}><ArrowRightLeft size={14} />Yêu cầu đổi lịch</Button>}{canCancel && <Button variant="secondary" size="sm" className="text-[var(--bb-danger)]" onClick={onCancel}><XCircle size={14} />{cancellationMode === 'request' ? 'Yêu cầu hủy sát giờ' : 'Hủy lịch'}</Button>}{canReview && <Button size="sm" onClick={onReview}><Star size={14} />Đánh giá</Button>}{tab !== 'upcoming' && services.length > 0 && <Button variant="secondary" size="sm" onClick={onRebook}><CalendarPlus size={14} />Đặt lại</Button>}</footer>
+    <footer><Link to={`/customer/appointments/${booking.id}`} className="bb-appointment-card__view inline-flex min-h-11 items-center gap-2 rounded-[var(--bb-radius-control)] border border-[var(--bb-border)] bg-white px-3 text-xs font-semibold hover:bg-[var(--bb-surface-subtle)]"><Eye size={14} />Chi tiết</Link>{canReschedule && <Button variant="secondary" size="sm" className="bb-appointment-card__reschedule" onClick={onReschedule}><ArrowRightLeft size={14} />Yêu cầu đổi lịch</Button>}{canCancel && <Button variant="secondary" size="sm" className="text-[var(--bb-danger)]" onClick={onCancel}><XCircle size={14} />{cancellationMode === 'request' ? 'Yêu cầu hủy sát giờ' : 'Hủy lịch'}</Button>}{canReview && <Button size="sm" onClick={onReview}><Star size={14} />Đánh giá</Button>}{tab !== 'upcoming' && services.length > 0 && <Button variant="secondary" size="sm" onClick={onRebook}><CalendarPlus size={14} />Đặt lại</Button>}</footer>
   </Card>;
 }
 

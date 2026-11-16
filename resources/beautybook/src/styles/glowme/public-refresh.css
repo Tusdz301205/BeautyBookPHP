@@ -1,0 +1,45 @@
+/* Public + customer chrome refresh: one pill rhythm for header actions, account pill and card actions. */
+
+/* Header: brand logo replaces the old mark; actions share the capsule's pill shape and type size. */
+.bb-public-header .bb-public-brand { gap: 0; }
+.bb-public-header .bb-public-actions { gap: .35rem; }
+.bb-public-header .bb-public-account-link { min-height: 2.5rem; gap: .4rem; padding: 0 .85rem; border-radius: 999px; font-size: .82rem; font-weight: 700; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.bb-public-header .bb-public-account-link:hover { background: var(--color-accent-soft); color: var(--color-accent-strong); }
+.bb-public-header .bb-public-account-link--account { border: 1px solid var(--color-border-base); background: var(--color-surface-2); }
+.bb-public-header .bb-public-account-link--account svg { color: var(--color-accent); }
+.bb-public-header .bb-public-actions .bb-public-cta { min-height: 2.5rem; gap: .4rem; padding: 0 1.05rem; border-radius: 999px; font-size: .82rem; font-weight: 800; box-shadow: 0 8px 18px -10px var(--color-accent); }
+.bb-public-header .bb-public-actions .bb-public-cta:hover { translate: none; }
+.bb-public-footer__mast .bb-brand-wordmark { font-size: 1.35rem; }
+
+/* Customer header: logo, booking CTA and a clear account pill. */
+.bb-customer-cta { min-height: 2.5rem; display: none; align-items: center; gap: .4rem; padding: 0 1.05rem; border-radius: 999px; background: var(--color-accent); color: var(--color-accent-ink); font-size: .82rem; font-weight: 800; text-decoration: none; white-space: nowrap; box-shadow: 0 8px 18px -10px var(--color-accent); transition: background-color var(--dur-fast) var(--ease-out); }
+.bb-customer-cta:hover { background: var(--color-accent-strong); }
+@media (min-width: 48rem) { .bb-customer-cta { display: inline-flex; } }
+.bb-customer-header .bb-customer-account-trigger { min-height: 2.75rem; gap: .55rem; padding: .25rem .25rem; border: 1px solid var(--color-border-base); border-radius: 999px; background: var(--color-surface-2); color: var(--color-ink); }
+@media (min-width: 40rem) { .bb-customer-header .bb-customer-account-trigger { padding-right: .7rem; } }
+.bb-customer-header .bb-customer-account-trigger:hover { background: var(--color-surface-2); border-color: var(--color-border-strong); }
+.bb-customer-header .bb-customer-account-trigger--active { color: var(--color-ink); background: var(--color-surface-2); border-color: var(--color-berry-200); }
+.bb-customer-header .bb-customer-account-trigger--open { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-soft); }
+.bb-customer-header .bb-customer-account-trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.bb-customer-account-trigger__avatar { width: 2.15rem; height: 2.15rem; flex: none; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--color-berry-400), var(--color-berry-700)); color: var(--gm-tone-fff); font-size: .72rem; font-weight: 800; letter-spacing: .03em; }
+.bb-customer-account-trigger__text { min-width: 0; max-width: 11rem; gap: .1rem; line-height: 1.2; }
+.bb-customer-account-trigger__text strong { overflow: hidden; color: var(--color-ink); font-size: .8rem; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.bb-customer-account-trigger__text small { color: var(--color-muted); font-size: .68rem; font-weight: 500; }
+.bb-customer-account-trigger > svg { color: var(--color-muted); }
+.bb-customer-account .bb-customer-account__avatar { background: linear-gradient(135deg, var(--color-berry-400), var(--color-berry-700)); color: var(--gm-tone-fff); }
+
+/* Service card actions: equal-height pills; booking is the single full-width primary action. */
+.bb-home-salon-card .bb-home-salon-card__actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; padding-top: 1.25rem; }
+.bb-home-salon-card .bb-home-salon-card__actions > * { min-width: 0; }
+.bb-home-salon-card .bb-home-salon-card__actions > span { display: flex; flex-direction: column; gap: .25rem; }
+.bb-home-salon-card .bb-home-salon-card__actions .bb-card-action {
+  width: 100%; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  margin: 0; padding: .55rem .9rem; border: 1px solid var(--color-border-base); border-radius: 999px;
+  background: var(--color-surface-2); color: var(--color-ink); font-size: .8125rem; font-weight: 700; line-height: 1.2;
+  text-decoration: none; white-space: nowrap; transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.bb-home-salon-card .bb-home-salon-card__actions .bb-card-action:hover:not(:disabled) { border-color: var(--color-accent); color: var(--color-accent-strong); }
+.bb-home-salon-card .bb-home-salon-card__actions .bb-card-action[aria-pressed="true"] { border-color: var(--color-berry-200); background: var(--color-accent-soft); color: var(--color-accent-strong); }
+.bb-home-salon-card .bb-home-salon-card__actions .bb-card-action--primary { grid-column: 1 / -1; border-color: var(--color-accent); background: var(--color-accent); color: var(--color-accent-ink); }
+.bb-home-salon-card .bb-home-salon-card__actions .bb-card-action--primary:hover { border-color: var(--color-accent-strong); background: var(--color-accent-strong); color: var(--color-accent-ink); }
+.bb-home-salon-card .bb-home-salon-card__actions > span > :is([role=alert], .text-sm) { font-size: .72rem; line-height: 1.35; white-space: normal; }

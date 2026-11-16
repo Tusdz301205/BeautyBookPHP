@@ -37,7 +37,7 @@ export default function BookingEventCard({
       </span>
       <span className={`${compact && !short ? 'line-clamp-2' : 'line-clamp-1'} break-words text-xs font-semibold leading-tight`}>{booking.customerName}</span>
       {!short && <span className="line-clamp-1 break-words text-[10px] leading-tight opacity-80">{booking.serviceNames.join(', ') || 'Chưa có dịch vụ'}{compact && booking.primaryStaffName ? ` · ${booking.primaryStaffName}` : ''}</span>}
-      {!compact && !short && <span className="mt-0.5 line-clamp-1 break-words text-[10px] leading-tight opacity-70">{booking.controlledOverbooking ? '⚠ Overbooking · chưa phân công' : booking.primaryStaffName || 'Chưa phân công'}</span>}
+      {!compact && !short && <span className="mt-0.5 line-clamp-1 break-words text-[10px] leading-tight opacity-70">{booking.controlledOverbooking ? '⚠ Vượt công suất · chưa phân công' : booking.primaryStaffName || 'Chưa phân công'}</span>}
       <OperationalTiming booking={booking} />
       {onResizeStart && (
         <span

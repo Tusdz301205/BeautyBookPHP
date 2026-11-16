@@ -62,14 +62,25 @@ class BookingLifecycleService
         ?string $reason = null,
         bool $confirmedNoShow = false,
         ?CarbonImmutable $at = null,
+        ?int $expectedVersion = null,
     ): Booking {
         $context = $this->access->resolve($request, $booking);
         $now = $at ?? CarbonImmutable::now('UTC');
         $target = strtoupper($toStatus);
 
-        return DB::transaction(function () use ($booking, $context, $target, $reason, $confirmedNoShow, $now) {
+        return DB::transaction(function () use ($booking, $context, $target, $reason, $confirmedNoShow, $now, $expectedVersion) {
             $locked = Booking::query()->whereKey($booking->id)->lockForUpdate()->firstOrFail();
             $this->access->assertCurrent($locked, $context);
+
+            if ($expectedVersion !== null && $expectedVersion !== $locked->statusHistory()->count() + 1) {
+                throw new BookingConflictException('Lịch hẹn đã thay đổi. Vui lòng tải lại trước khi thao tác.');
+            }
+
+            if (!config('beautybook.legacy_ui', false)) {
+                if ($target === 'REJECTED' && !trim($reason ?? '')) throw new BookingConflictException('Cần nhập lý do từ chối lịch hẹn.');
+                if ($locked->status === 'PENDING' && $target !== 'EXPIRED' && $locked->pending_expires_at && $locked->pending_expires_at->lessThanOrEqualTo($now)) throw new BookingConflictException('Thời gian giữ chỗ đã hết. Vui lòng tải lại lịch.');
+                if ($target === 'CONFIRMED' && $locked->appointment_start_at->lessThanOrEqualTo($now)) throw new BookingConflictException('Lịch hẹn đã đến giờ bắt đầu.');
+            }
 
             if ($locked->status === $target) {
                 return $locked;
@@ -82,9 +93,11 @@ class BookingLifecycleService
             \App\Services\Wallet\WalletCore::transition($locked->id, $target, ['customerCancelled' => $context['kind'] === 'CUSTOMER' && $target === 'CANCELLED', 'now' => $now, 'actorId' => $context['actor_user_id']]);
             $fromStatus = $locked->status;
             $locked->status = $target;
+            $locked->pending_expires_at = null;
             $locked->save();
             app(\App\Services\Promotions\PromotionPricingService::class)->transition($locked, $target);
             if ($target === 'COMPLETED') {
+                if (!config('beautybook.legacy_ui', false)) $locked->services()->whereIn('status',['SCHEDULED','IN_PROGRESS'])->update(['status'=>'COMPLETED','updated_at'=>now()]);
                 app(\App\Services\Operations\LoyaltyService::class)->earnForBooking($locked->id, $context['actor_user_id']);
                 app(\App\Services\Finance\SettlementService::class)->ensureFee($locked, $context['actor_user_id']);
             }
@@ -118,6 +131,14 @@ class BookingLifecycleService
 
     private function assertTransitionAllowed(Booking $booking, array $context, string $target): void
     {
+        if (!config('beautybook.legacy_ui', false)) {
+            $graph = ['PENDING'=>['CONFIRMED','CANCELLED','REJECTED','EXPIRED'], 'CONFIRMED'=>['CHECKED_IN','CANCELLED','NO_SHOW'], 'CHECKED_IN'=>['COMPLETED','CANCELLED'], 'IN_PROGRESS'=>['COMPLETED','CANCELLED']];
+            if (!in_array($target, $graph[$booking->status] ?? [], true)) throw new BookingConflictException('Trạng thái lịch hẹn không cho phép thao tác này.');
+            abort_unless(in_array($context['kind'], ['OWNER','RECEPTIONIST','CUSTOMER'], true),403);
+            if ($context['kind']==='CUSTOMER') abort_unless($target==='CANCELLED' && in_array($booking->status,['PENDING','CONFIRMED'],true),403);
+            if ($target==='COMPLETED') abort_unless($context['kind']==='OWNER',403);
+            return;
+        }
         $legalTargets = self::TRANSITIONS[$booking->status] ?? [];
         if (! in_array($target, $legalTargets, true)) {
             throw new BookingConflictException('Trạng thái lịch hẹn đã thay đổi hoặc không cho phép thao tác này.');
@@ -163,16 +184,17 @@ class BookingLifecycleService
             throw new BookingConflictException('Chưa đến giờ bắt đầu lịch hẹn.');
         }
 
-        if ($target === 'COMPLETED' && $now->lessThan($end)) {
+        if (config('beautybook.legacy_ui', false) && $target === 'COMPLETED' && $now->lessThan($end)) {
             throw new BookingConflictException('Chưa đến thời điểm hoàn thành lịch hẹn.');
         }
 
         if ($target === 'NO_SHOW') {
             abort_unless(in_array($context['kind'], ['OWNER', 'RECEPTIONIST'], true), 403);
-            if (! $confirmedNoShow) {
+            if (config('beautybook.legacy_ui',false) && ! $confirmedNoShow) {
                 throw new BookingConflictException('Cần xác nhận rõ trước khi đánh dấu khách vắng mặt.');
             }
-            if (! $now->greaterThan($start->addMinutes($rules['gracePeriodMinutes']))) {
+            $deadline=$start->addMinutes($rules['gracePeriodMinutes']);
+            if (config('beautybook.legacy_ui',false) ? $now->lessThanOrEqualTo($deadline) : $now->lessThan($deadline)) {
                 throw new BookingConflictException('Chỉ được đánh dấu vắng mặt sau hơn '.$rules['gracePeriodMinutes'].' phút kể từ giờ hẹn.');
             }
 

@@ -26,18 +26,18 @@ export function SalonStats() {
   useEffect(() => { void load(); }, [year]);
   const financial = data.financial;
   return <Page>
-    <PageHeader eyebrow="Phân tích" title="Báo cáo vận hành & tài chính" description="Doanh thu chỉ lấy giao dịch đã xác minh; refund và reversal được ghi nhận đúng kỳ, độc lập với giá niêm yết." actions={<Select aria-label="Chọn năm" value={year} onChange={(event) => setYear(Number(event.target.value))}>{[0, 1, 2].map((offset) => { const value = new Date().getFullYear() - offset; return <option key={value}>{value}</option>; })}</Select>} />
+    <PageHeader eyebrow="Phân tích" title="Báo cáo vận hành & tài chính" description="Doanh thu chỉ lấy giao dịch đã xác minh; khoản hoàn tiền và giao dịch đảo được ghi nhận đúng kỳ, độc lập với giá niêm yết." actions={<Select aria-label="Chọn năm" value={year} onChange={(event) => setYear(Number(event.target.value))}>{[0, 1, 2].map((offset) => { const value = new Date().getFullYear() - offset; return <option key={value}>{value}</option>; })}</Select>} />
     {loading ? <Skeleton rows={8} /> : error ? <Card><ErrorState message={error} onRetry={load} /></Card> : <>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard icon={CalendarCheck} label="Lịch đã tạo" value={financial?.bookedCount ?? '—'} title={financial?.definitions?.bookedCount} />
         <MetricCard icon={WalletCards} label="Thực thu" value={money(financial?.grossCollected)} tone="info" title={financial?.definitions?.grossCollected} />
-        <MetricCard icon={RotateCcw} label="Refund / reversal" value={money(financial?.refundAmount)} tone="warning" title={financial?.definitions?.netCollected} />
+        <MetricCard icon={RotateCcw} label="Hoàn tiền / giao dịch đảo" value={money(financial?.refundAmount)} tone="warning" title={financial?.definitions?.netCollected} />
         <MetricCard icon={CircleDollarSign} label="Thu ròng" value={money(financial?.netCollected)} tone="success" title={financial?.definitions?.netCollected} />
       </div>
       <Card className="p-5"><div className="flex flex-wrap justify-between gap-3"><div><h2 className="font-bold">Đối chiếu ghi nhận</h2><p className="mt-1 text-sm text-[var(--bb-muted)]">{financial?.definitions?.recognizedServiceRevenue}</p></div><strong>{money(financial?.recognizedServiceRevenue)}</strong></div><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-3"><div><dt className="text-[var(--bb-muted)]">Hoàn thành</dt><dd className="font-bold">{financial?.completedCount || 0}</dd></div><div><dt className="text-[var(--bb-muted)]">Đã hủy</dt><dd className="font-bold">{financial?.cancelledCount || 0}</dd></div><div><dt className="text-[var(--bb-muted)]">Còn phải thu</dt><dd className="font-bold">{money(financial?.outstandingAmount)}</dd></div></dl></Card>
       <Card className="p-5"><h2 className="font-bold">Thu ròng theo tháng</h2><div className="mt-5 h-72">{data.revenue.length ? <ResponsiveContainer width="100%" height="100%"><BarChart data={data.revenue}><CartesianGrid stroke="#e4e1dd" strokeDasharray="3 3" vertical={false} /><XAxis dataKey="month" /><YAxis /><Tooltip formatter={(value) => money(value)} /><Bar dataKey="netRevenue" name="Thu ròng" fill="#c0266d" radius={[6, 6, 0, 0]} /></BarChart></ResponsiveContainer> : <EmptyState title="Chưa có giao dịch đã xác minh" />}</div></Card>
       <Rank title="Nhu cầu theo dịch vụ" items={data.services} />
-      <Card className="p-5"><div className="flex items-center gap-2"><BarChart3 size={18} /><h2 className="font-bold">Nguồn đối chiếu</h2></div><p className="mt-2 text-sm text-[var(--bb-muted)]">{financial?.drillDown?.bookingIds?.length || 0} booking · {financial?.drillDown?.paymentTransactionIds?.length || 0} giao dịch đã xác minh · {financial?.drillDown?.refundIds?.length || 0} refund.</p></Card>
+      <Card className="p-5"><div className="flex items-center gap-2"><BarChart3 size={18} /><h2 className="font-bold">Nguồn đối chiếu</h2></div><p className="mt-2 text-sm text-[var(--bb-muted)]">{financial?.drillDown?.bookingIds?.length || 0} lịch hẹn · {financial?.drillDown?.paymentTransactionIds?.length || 0} giao dịch đã xác minh · {financial?.drillDown?.refundIds?.length || 0} khoản hoàn tiền.</p></Card>
     </>}
   </Page>;
 }

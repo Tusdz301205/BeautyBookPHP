@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { runtimeEnvironment } from './environment.mjs';
+const root=path.resolve(import.meta.dirname,'../..');
+const checkpoint=path.join(root,'ml/glowme_ml/release/phobert-beauty-v2/best_model.pt');
+if(!fs.existsSync(checkpoint)||createHash('sha256').update(fs.readFileSync(checkpoint)).digest('hex')!=='6146252c727eb76b966621f3496c422ba2590f782923386e300cf4dbb2f6b7cc')throw new Error('Pinned checkpoint missing or invalid. Hydrate it with Git LFS first.');
+const run=(exe,args)=>{const r=spawnSync(exe,args,{cwd:root,env:runtimeEnvironment(),stdio:'inherit',windowsHide:true});if(r.error||r.status!==0)throw new Error('ML installation failed: '+(r.error?.code||r.status));};
+const python=path.join(root,'ml/.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+if(!fs.existsSync(python))run(process.env.ABSA_PYTHON|| (process.platform==='win32'?'python3.13.exe':'python3'),['-m','venv','ml/.venv']);
+run(python,['-c','import sys; assert sys.version_info[:2] == (3,13), "Python 3.13 required"']);
+run(python,['-m','pip','install','--index-url','https://download.pytorch.org/whl/cpu','torch==2.14.1']);
+run(python,['-m','pip','install','-r','ml/requirements.txt']);
+run(python,['-m','pip','check']);
+run(python,['-B','-c',"import sys; sys.path.insert(0,'ml'); from glowme_ml.ml.src.segmenter import java_tools, compile_worker; java_tools(); compile_worker(); print('JDK and segmenter compilation ready')"]);
+console.log('ML environment ready. Run npm run ai:start.');

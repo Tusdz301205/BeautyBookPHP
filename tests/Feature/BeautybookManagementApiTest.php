@@ -19,6 +19,34 @@ class BeautybookManagementApiTest extends TestCase
         $this->actingAs($user)->withHeader('Authorization','Bearer '.$token)->withSession(['workspace_assignment_id'=>$assignment->id,'beautybook_access_hash'=>hash('sha256',$token),'beautybook_access_expires'=>time()+3600]);
         return $user;
     }
+    public function test_imported_metadata_cannot_replace_local_business_or_branch_identities(): void
+    {
+        $owner = $this->actor('owner@beautybook.local');
+        $business = Business::where('slug', 'beautybook-demo')->firstOrFail();
+        $branch = Branch::where('slug', 'tan-tao')->firstOrFail();
+        $sourceId = '1c071d87-a652-57e9-a378-2c24b4f74533';
+        DB::table('beautybook_branch_settings')->updateOrInsert(['branch_id' => $branch->id], [
+            'metadata' => json_encode(['id' => $sourceId, 'businessId' => $sourceId, 'directions' => 'Imported directions']),
+        ]);
+        DB::table('beautybook_business_settings')->updateOrInsert(['business_id' => $business->id], [
+            'metadata' => json_encode(['id' => $sourceId]),
+        ]);
+        $rows = $this->getJson('/api/v1/branches/accessible')->assertOk()->json();
+        $row = collect($rows)->firstWhere('id', (string) $branch->id);
+        $this->assertNotNull($row);
+        $this->assertSame((string) $business->id, $row['businessId']);
+        $this->assertSame('Imported directions', $row['directions']);
+        $this->getJson('/api/v1/branches/accessible/'.$row['id'])->assertOk()->assertJsonPath('id', (string) $branch->id);
+        foreach (['bookings', 'services/manage', 'staff', 'reviews/manage'] as $endpoint) {
+            $this->getJson('/api/v1/'.$endpoint.'?branchId='.$row['id'])->assertOk();
+        }
+        $presented = app(ManagementPresenter::class)->business($business);
+        $this->assertSame((string) $business->id, $presented['id']);
+        $this->assertNotNull(collect($presented['branches'])->firstWhere('id', (string) $branch->id));
+        $foreign = Branch::where('business_id', '<>', $business->id)->firstOrFail();
+        $this->getJson('/api/v1/branches/accessible/'.$foreign->id)->assertForbidden();
+        $this->getJson('/api/v1/bookings?branchId='.$sourceId)->assertUnprocessable();
+    }
     public function test_catalog_source_contract_and_branch_coverage_actions_preserve_catalog_history(): void
     {
         $this->actor('owner@beautybook.local');$branch=Branch::where('slug','tan-tao')->firstOrFail();
@@ -128,6 +156,13 @@ class BeautybookManagementApiTest extends TestCase
         $this->actor('owner@beautybook.local');$branch=Branch::where('slug','tan-tao')->firstOrFail();$offering=BranchServiceOffering::where('branch_id',$branch->id)->firstOrFail();
         $variant=$this->postJson('/api/v1/services/'.$offering->id.'/variants',['code'=>'SOURCE-RANGE','name'=>'Source range variant','priceType'=>'RANGE','price'=>100000,'maxPrice'=>150000,'durationMinutes'=>30,'maxDurationMinutes'=>45,'bufferBeforeMinutes'=>5,'bufferAfterMinutes'=>10])->assertOk()->assertJsonPath('priceType','RANGE')->json();
         $this->patchJson('/api/v1/services/variants/'.$variant['id'],['status'=>'INACTIVE'])->assertOk()->assertJsonPath('status','INACTIVE');
+        $managed = $this->getJson('/api/v1/services/offerings/'.$offering->id)->assertOk()->json('variants');
+        $this->assertSame('INACTIVE', collect($managed)->firstWhere('id', $variant['id'])['status']);
+        $this->assertNotContains($variant['id'], array_column($this->getJson('/api/v1/services/'.$offering->id.'/variants')->assertOk()->json(), 'id'));
+        $this->patchJson('/api/v1/services/variants/'.$variant['id'],['status'=>'ACTIVE'])->assertOk();
+        $this->assertSame('ACTIVE', collect($this->getJson('/api/v1/services/offerings/'.$offering->id)->assertOk()->json('variants'))->firstWhere('id', $variant['id'])['status']);
+        $foreign = BranchServiceOffering::where('business_id', '<>', $offering->business_id)->firstOrFail();
+        $this->getJson('/api/v1/services/offerings/'.$foreign->id)->assertForbidden();
         $this->postJson('/api/v1/services/'.$offering->id.'/price-rules',['name'=>'Morning surcharge','adjustmentType'=>'FIXED_AMOUNT','adjustmentValue'=>12345.67,'conditions'=>['daysOfWeek'=>[1],'startTime'=>'09:00','endTime'=>'11:00']])->assertOk()->assertJsonPath('conditions.daysOfWeek.0',1);
         $this->patchJson('/api/v1/staff/branches/'.$branch->id.'/holidays',['date'=>'2026-12-25','name'=>'Holiday','isClosed'=>true])->assertOk()->assertJsonPath('isClosed',true);
         $this->postJson('/api/v1/staff/branches/'.$branch->id.'/special-days',['date'=>'2026-12-26','startTime'=>'10:00','endTime'=>'16:00'])->assertOk()->assertJsonPath('openTime','10:00:00');
@@ -156,5 +191,19 @@ class BeautybookManagementApiTest extends TestCase
         $afterOffboarding=app(ManagementPresenter::class)->catalog($catalogService,$branch->id)['branchAvailability'][0];
         $this->assertSame($beforeOffboarding['futureBookingCount']-1,$afterOffboarding['futureBookingCount']);
         $this->assertLessThan($beforeOffboarding['staffCount'],$afterOffboarding['staffCount']);
+    }
+    public function test_combo_list_and_detail_expose_ordered_service_lines_for_the_owner_editor(): void
+    {
+        $this->actor('owner@beautybook.local');
+        $branch=Branch::where('slug','tan-tao')->firstOrFail();
+        $offerings=BranchServiceOffering::where('branch_id',$branch->id)->orderBy('id')->take(2)->get();
+        $combo=\App\Models\Combo::create(['business_id'=>$branch->business_id,'branch_id'=>$branch->id,'name'=>'Combo kiểm tra giao diện','combo_price'=>200000,'pricing_mode'=>'FIXED','staff_assignment_mode'=>'SINGLE_PROVIDER','status'=>'INACTIVE','version'=>1]);
+        foreach($offerings as $index=>$offering)$combo->items()->create(['branch_service_offering_id'=>$offering->id,'quantity'=>$index+1,'sort_order'=>$index,'transition_minutes'=>0,'price_snapshot'=>$offering->price,'duration_snapshot'=>$offering->duration_minutes]);
+        $rows=$this->getJson('/api/v1/combos?branchId='.$branch->id)->assertOk()->json();
+        $row=collect($rows)->firstWhere('id',(string)$combo->id);
+        $this->assertNotNull($row);$this->assertCount(2,$row['comboServices']);$this->assertSame($row['items'],$row['comboServices']);
+        $this->assertSame((string)$offerings[0]->id,$row['comboServices'][0]['serviceId']);$this->assertSame(2,$row['comboServices'][1]['quantity']);
+        $this->assertNotEmpty($row['comboServices'][0]['service']['name']);
+        $this->getJson('/api/v1/combos/'.$combo->id)->assertOk()->assertJsonCount(2,'comboServices')->assertJsonPath('comboServices.0.serviceId',(string)$offerings[0]->id);
     }
 }

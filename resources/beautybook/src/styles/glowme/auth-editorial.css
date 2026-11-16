@@ -1,0 +1,13 @@
+/* Clear image/text separation; no lettering over photography. */
+#root .bb-auth-shell .bb-auth-magazine{margin:1.9rem 0 1.5rem;min-width:0}
+#root .bb-auth-shell .bb-auth-magazine__cover{height:300px;width:100%;position:relative;overflow:hidden;border-radius:110px 22px 110px 22px;background:var(--gm-tone-785b43)}
+#root .bb-auth-shell .bb-auth-magazine__photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+#root .bb-auth-shell .bb-auth-magazine__headline{padding:22px 2px 0;border:0;color:var(--gm-tone-352c22)}
+#root .bb-auth-shell .bb-auth-magazine__eyebrow{display:block;color:var(--gm-tone-816a53);font-size:.48rem;font-weight:600;letter-spacing:.18em;margin-bottom:8px}
+#root .bb-auth-shell .bb-auth-magazine__title{margin:0!important;max-width:none;font:400 clamp(1.9rem,3vw,2.8rem)/1.22 'Times New Roman',Times,serif;letter-spacing:-.035em;color:var(--gm-tone-352c22)}
+#root .bb-auth-shell .bb-auth-magazine__title em{font-weight:400;color:var(--gm-tone-8a6749)}
+#root .bb-auth-shell .bb-auth-magazine__title strong{font-weight:400;color:var(--gm-tone-352c22)}
+#root .bb-auth-shell .bb-auth-magazine__description{margin:10px 0 0!important;max-width:100%;font-size:.68rem;line-height:1.85;color:var(--gm-tone-75614e)}
+#root .bb-auth-shell .bb-auth-magazine--register .bb-auth-magazine__cover{border-radius:22px 110px 22px 110px}
+@media(min-width:1450px){#root .bb-auth-shell .bb-auth-magazine__cover{height:330px}}
+@media(min-width:761px) and (max-width:1050px){#root .bb-auth-shell .bb-auth-magazine__cover{height:260px;border-radius:80px 18px 80px 18px}#root .bb-auth-shell .bb-auth-magazine--register .bb-auth-magazine__cover{border-radius:18px 80px 18px 80px}#root .bb-auth-shell .bb-auth-magazine__title{font-size:1.85rem}}

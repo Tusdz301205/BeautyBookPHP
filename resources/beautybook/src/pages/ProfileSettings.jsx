@@ -9,7 +9,7 @@ import { FileUpload } from '../components/media/FileUpload';
 import { birthDateError, currentBirthDateDay } from '../utils/profileBirthDate';
 
 const initialForm = { fullName: '', phone: '', address: '', gender: '', dateOfBirth: '', staffBio: '', experienceYears: '', emergencyContactName: '', emergencyContactPhone: '' };
-const staffStatus = { ACTIVE: 'Hoạt động', INACTIVE: 'Tạm ngưng nhận lịch' };
+const staffStatus = { ACTIVE: 'Hoạt động', INACTIVE: 'Đã ngừng làm việc' };
 
 export default function ProfileSettings() {
   const [form, setForm] = useState(initialForm);

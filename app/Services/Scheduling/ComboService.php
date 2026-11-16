@@ -114,6 +114,16 @@ class ComboService
     public function releaseUsage(\App\Models\Booking $booking): void
     {
         $usage = DB::table('combo_booking_usages')->where('booking_id', $booking->id)->lockForUpdate()->first();
+        if (!$usage) {
+            $snapshot=\App\Models\BookingPricingSnapshot::where('booking_id',$booking->id)->lockForUpdate()->first();
+            $data=$snapshot?->source_snapshot??[];
+            if(!$snapshot || empty($data['selections']) || !empty($data['combo_usage_released_at']))return;
+            $counts=[];foreach($data['selections'] as $selection)if(isset($selection['comboId']))$counts[$selection['comboId']]=($counts[$selection['comboId']]??0)+(int)$selection['quantity'];
+            ksort($counts);
+            foreach($counts as $id=>$quantity){$combo=Combo::withTrashed()->whereKey($id)->lockForUpdate()->first();if($combo)$combo->update(['used_count'=>max(0,$combo->used_count-$quantity)]);}
+            $data['combo_usage_released_at']=now()->toIso8601String();$snapshot->update(['source_snapshot'=>$data]);
+            return;
+        }
         if (! $usage || $usage->status !== 'RESERVED') {
             return;
         }

@@ -26,6 +26,7 @@ class DirectDepositTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        config(['beautybook.legacy_ui' => true, 'wallet.public_wallet' => false, 'wallet.booking_deposit_enabled' => false]);
         $this->prepareDirectDeposits();
     }
 
@@ -93,7 +94,7 @@ class DirectDepositTest extends TestCase
 
         // A wrong secret, another connection's secret, a wrong account, a stale timestamp and a plain GM-like code verify nothing.
         $other = $this->create()->assertCreated()->json();
-        $this->transfer($connection, 'f'.substr($secret, 1), $connection['verificationCode'], 1000)->assertUnauthorized();
+        $this->transfer($connection, ($secret[0] === 'f' ? 'e' : 'f').substr($secret, 1), $connection['verificationCode'], 1000)->assertUnauthorized();
         $this->transfer($connection, $other['secret'], $connection['verificationCode'], 1000)->assertUnauthorized();
         $this->transfer($connection, $secret, $connection['verificationCode'], 1000, ['accountNumber' => '999999'])->assertStatus(400);
         $this->transfer($connection, $secret, 'GS'.str_repeat('0', 24), 1000)->assertOk();
@@ -135,8 +136,10 @@ class DirectDepositTest extends TestCase
     {
         $data = $this->bookingData();
         $none = $this->terms($data);
-        $this->assertSame([false, null, null], [$none['walletMode'], $none['depositMode'], $none['terms']], 'no enabled account, no deposit');
-        $this->assertSame(201, $this->book($this->bookingData(10), null, 'direct-no-account-0001')->status(), 'a branch without a direct account books as before');
+        $this->assertSame([false, null, null], [$none['walletMode'], $none['depositMode'], $none['terms']]);
+        $this->assertFalse($none['readiness']['ok']);
+        $this->book($this->bookingData(10), null, 'direct-no-account-0001')->assertConflict();
+        $this->assertDatabaseCount('bookings', 0);
 
         [$connection] = $this->connect();
         $terms = $this->terms($data);

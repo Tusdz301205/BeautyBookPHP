@@ -20,8 +20,13 @@ test('removed destinations stay blocked with query strings, fragments, descendan
   }
 });
 
-test('non-owner staff retain ownership invitations and permitted reports', () => {
-  assert.equal(allow('/salon/incoming-ownership?invitation=1', 'salon', () => false), '/salon/incoming-ownership?invitation=1');
+test('ownership invitations stay hidden for every role while permitted reports remain available', () => {
+  for (const isOwner of [false, true]) {
+    for (const suffix of ['', '?invitation=1', '#details', '/details', '/']) {
+      assert.equal(allow('/salon/incoming-ownership' + suffix, 'salon', () => true, {}, true, isOwner), '');
+    }
+    assert.equal(allow('/salon/incoming-ownershi%70', 'salon', () => true, {}, true, isOwner), '');
+  }
   assert.equal(allow('/salon/stats', 'salon', code => code === 'report:revenue:branch'), '/salon/stats');
   assert.equal(allow('/salon/stats', 'salon', () => false), '');
   assert.equal(allow('/salon/incoming-ownership', 'salon', () => true, {}, false, true), '');

@@ -228,9 +228,9 @@ export default function SchedulerView({
   const platformWorkspace = user?.workspace === 'PLATFORM' || roleCodes.has('PLATFORM_ADMIN');
   const selectedBranch = branches.find((branch) => branch.id === activeBranchIds[0]);
   const selectedRights = bookingCapabilities(user, { branchId: activeBranchIds[0], businessId: selectedBranch?.businessId });
-  const canMove = !platformWorkspace && activeBranchIds.length === 1 && selectedRights.canAssign
+  const canMove = false && !platformWorkspace && activeBranchIds.length === 1 && selectedRights.canAssign
     && (selectedRights.owner || can('booking:reschedule:branch', selectedRights.ctx));
-  const canResize = !platformWorkspace && activeBranchIds.length === 1 && selectedRights.owner && selectedRights.canUpdate;
+  const canResize = false && !platformWorkspace && activeBranchIds.length === 1 && selectedRights.owner && selectedRights.canUpdate;
 
   useEffect(() => {
     onStatsChange?.(stats, formatCalendarPeriod(viewMode, currentDate));

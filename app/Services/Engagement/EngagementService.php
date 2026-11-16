@@ -76,6 +76,8 @@ class EngagementService
                 $photos[$id]->update(['review_id' => $review->id, 'sort_order' => $position]);
             }
 
+            DB::afterCommit(fn () => app(\App\Services\Reviews\AbsaStore::class)->enqueue($review->id));
+
             return $review->load('photos');
         }, 3);
     }

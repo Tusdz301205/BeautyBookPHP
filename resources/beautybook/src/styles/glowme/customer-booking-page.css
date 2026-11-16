@@ -1,0 +1,50 @@
+/* Page chrome only. Appointment-card content and styling stay independent. */
+.bb-bookings-page { padding-top: .4rem; padding-bottom: 1rem; }
+.bb-bookings-page > .bb-bookings-page__hero { display: flex; position: relative; align-items: center; justify-content: space-between; gap: 2rem; overflow: hidden; padding: 2rem 2.25rem; border: 1px solid var(--gm-tone-efdee6); border-radius: 1.35rem; background: linear-gradient(110deg,var(--gm-tone-fff) 25%,var(--gm-tone-fcf1f6) 100%); }
+.bb-bookings-page__hero-copy { position: relative; z-index: 1; min-width: 0; }
+.bb-bookings-page__eyebrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--gm-tone-a16c84); font-size: .6rem; font-weight: 650; letter-spacing: .14em; }
+.bb-bookings-page__eyebrow > span { width: .35rem; height: .35rem; border-radius: 50%; background: var(--bb-brand); }
+.bb-bookings-page__hero h1 { margin-top: .7rem; color: var(--bb-ink); font-size: clamp(1.8rem,2.9vw,2.5rem); line-height: 1.15; font-weight: 700; letter-spacing: -.055em; }
+.bb-bookings-page__hero h1 > span { color: var(--bb-brand); }
+.bb-bookings-page__hero-copy > p { margin-top: .85rem; color: var(--bb-muted); font-size: .79rem; line-height: 1.85; }
+.bb-bookings-page__hero-action { display: flex; align-items: center; gap: 1.7rem; flex-shrink: 0; }
+.bb-bookings-page__hero-action > .bb-home-button { display: inline-flex; align-items: center; gap: .55rem; min-height: 2.8rem; border-radius: .8rem; font-size: .77rem; padding-inline: 1rem; }
+.bb-bookings-page__hero-icon { display: grid; place-items: center; width: 6.25rem; height: 6.25rem; transform: rotate(-9deg); border: 1px solid var(--gm-tone-ecd7e2); border-radius: 1.7rem; background: var(--gm-tone-ffffffa6); box-shadow: 7px 8px 0 var(--gm-tone-f2e2eb70); color: var(--gm-tone-b77b98); }
+.bb-bookings-page > .bb-bookings-page__toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1rem; padding: .65rem; border: 1px solid var(--bb-border); border-radius: .95rem; background: var(--gm-tone-fff); }
+.bb-bookings-page__toolbar > .bb-appointments-tabs { display: inline-flex; flex: 0 1 auto; flex-wrap: wrap; gap: .3rem; padding: .2rem; border: 0; }
+.bb-bookings-page__toolbar > .bb-appointments-tabs button { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 2.5rem; padding: .6rem .9rem; border: 1px solid transparent; border-radius: .65rem; background: transparent; color: var(--bb-muted); font-size: .75rem; line-height: 1.4; transition: background 120ms,color 120ms; }
+.bb-bookings-page__toolbar > .bb-appointments-tabs button:hover { color: var(--bb-brand-strong); background: var(--gm-tone-fcf6f9); }
+.bb-bookings-page__toolbar > .bb-appointments-tabs button[aria-pressed=true] { border-color: var(--gm-tone-f0dae5); background: var(--gm-tone-faedf3); color: var(--bb-brand-strong); }
+.bb-bookings-page__tools { display: flex; align-items: center; gap: .25rem; padding-right: .2rem; }
+.bb-bookings-page__tools > :is(a,button) { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.5rem; padding: .5rem .65rem; border: 1px solid transparent; border-radius: .6rem; color: var(--bb-ink-soft); font-size: .7rem; font-weight: 500; }
+.bb-bookings-page__tools > :is(a,button):hover { background: var(--bb-surface-subtle); color: var(--bb-brand-strong); }
+.bb-bookings-page > .bb-bookings-page__list-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.7rem; }
+.bb-bookings-page__list-heading h2 { display: flex; align-items: center; gap: .6rem; color: var(--bb-ink); font-size: .96rem; letter-spacing: -.015em; }
+.bb-bookings-page__list-heading h2 > span { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding-inline: .35rem; border: 1px solid var(--gm-tone-eadce3); border-radius: 2rem; background: var(--gm-tone-fff); color: var(--bb-muted); font-size: .65rem; font-weight: 500; }
+.bb-bookings-page__list-heading p { margin-top: .3rem; color: var(--bb-muted); font-size: .72rem; line-height: 1.7; }
+.bb-bookings-page__timezone { display: inline-flex; flex-shrink: 0; align-items: center; gap: .35rem; color: var(--gm-tone-9d8b97); font-size: .65rem; }
+.bb-bookings-page .bb-bookings-page__pagination { margin-top: 1.5rem; padding: 1rem 0 .2rem; border-top: 1px solid var(--bb-border); color: var(--bb-muted); }
+.bb-bookings-page__pagination > p { font-size: .72rem; }
+.bb-bookings-page__pagination > p > strong { color: var(--bb-ink-soft); font-weight: 600; }
+.bb-bookings-page__pagination > div { display: flex; align-items: center; gap: .4rem; }
+.bb-bookings-page__pagination .bb-button { min-height: 2.35rem; padding-inline: .6rem; border-radius: .65rem; font-size: .7rem; }
+.bb-bookings-page__page-number { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-height: 2.2rem; min-width: 3.5rem; border: 1px solid var(--bb-border); border-radius: .6rem; background: white; color: var(--bb-ink); font-size: .7rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.bb-bookings-page__page-number > span { color: var(--bb-muted); font-weight: 400; }
+@media(max-width: 63.99rem) { .bb-bookings-page__hero-icon { display: none; } }
+@media(max-width: 47.99rem) {
+ .bb-bookings-page > .bb-bookings-page__hero { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding: 1.5rem; border-radius: 1rem; }
+ .bb-bookings-page__hero h1 { font-size: 1.95rem; }
+ .bb-bookings-page__hero-copy > p { font-size: .75rem; }
+ .bb-bookings-page__hero-action { width: 100%; }
+ .bb-bookings-page__hero-action > .bb-home-button { justify-content: center; width: 100%; min-height: 2.75rem; }
+ .bb-bookings-page > .bb-bookings-page__toolbar { gap: .4rem; padding: .5rem; }
+ .bb-bookings-page__toolbar > .bb-appointments-tabs { width: 100%; flex-basis: 100%; gap: .1rem; }
+ .bb-bookings-page__toolbar > .bb-appointments-tabs button { flex: 1; min-width: 0; padding: .65rem .25rem; gap: .3rem; font-size: .68rem; }
+ .bb-bookings-page__toolbar > .bb-appointments-tabs button svg { width: 14px; height: 14px; }
+ .bb-bookings-page__tools { justify-content: space-between; width: 100%; padding: .35rem .15rem 0; border-top: 1px solid var(--bb-border-soft); }
+ .bb-bookings-page__tools > :is(a,button) { min-height: 2.75rem; font-size: .68rem; }
+ .bb-bookings-page__timezone { display: none; }
+ .bb-bookings-page__list-heading h2 { font-size: .9rem; }
+ .bb-bookings-page .bb-bookings-page__pagination { flex-direction: column; gap: .8rem; }
+ .bb-bookings-page__pagination .bb-button { min-height: 2.75rem; }
+}

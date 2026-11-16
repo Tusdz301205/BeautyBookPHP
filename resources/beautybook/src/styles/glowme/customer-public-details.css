@@ -1,0 +1,8 @@
+/* Retain BB's original detail structure, with clear local navigation. */
+.bb-detail-section-nav { display: flex; flex-wrap: wrap; gap: .4rem 1rem; padding-block: 1rem; border-bottom: 1px solid var(--bb-border); }
+.bb-detail-section-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: .5rem .7rem; white-space: nowrap; font-size: .875rem; font-weight: 600; border-radius: var(--bb-radius-control); }
+.bb-detail-section-nav a:hover { background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-detail-section-nav a:focus-visible { outline: 2px solid var(--bb-focus); outline-offset: 2px; }
+.bb-detail-document .bb-detail-section { scroll-margin-top: 7rem; }
+.bb-detail-document .bb-detail-review-list article,.bb-detail-document .bb-detail-directory > article { min-width: 0; overflow-wrap: anywhere; }
+@media(max-width:47.99rem) { .bb-detail-section-nav { gap: .25rem; } .bb-detail-section-nav a { padding-inline: .5rem; font-size: .8rem; } }

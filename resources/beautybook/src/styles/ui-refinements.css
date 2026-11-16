@@ -1,0 +1,51 @@
+/* Shared UI accessibility refinements; import after the existing theme/adapter. */
+.bb-field {
+  min-inline-size: 0;
+}
+
+/* Preserve the existing label typography after separating label and control. */
+.bb-field > label:first-child {
+  color: var(--color-neutral-800);
+  font-size: var(--text-label);
+  font-weight: 700;
+}
+
+.bb-field > :is(label, span) {
+  overflow-wrap: anywhere;
+}
+
+#root :is(.bb-button, .bb-select__trigger, .bb-select__mobile-heading button):focus-visible {
+  outline: 2px solid var(--bb-focus);
+  outline-offset: 2px;
+}
+
+.bb-select__list:focus-visible {
+  outline: 2px solid var(--bb-focus);
+  outline-offset: -2px;
+}
+
+.bb-select--disabled .bb-select__trigger {
+  cursor: not-allowed;
+  color: var(--bb-muted);
+}
+
+.bb-dialog {
+  min-block-size: 0;
+}
+
+.bb-dialog__body {
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
+  scroll-padding-block: 1rem;
+}
+
+@media (max-width: 39.99rem) {
+  /* Keep iOS from zooming the page when a form control receives focus. */
+  #root :is(input.bb-control, textarea.bb-control, .bb-select__search input) {
+    font-size: max(1rem, 16px);
+  }
+
+  .bb-dialog > footer {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}

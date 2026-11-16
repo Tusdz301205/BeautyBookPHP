@@ -1,0 +1,42 @@
+.bb-auth-shell.bb-auth-shell--signup { grid-template-columns: minmax(0,1fr) minmax(0,490px); column-gap: clamp(2rem,6vw,6rem); row-gap: 2.5rem; padding: 1.75rem max(1.5rem,calc((100vw - 1180px)/2)) 1.25rem; align-items: start; background: radial-gradient(ellipse at 15% 48%,var(--gm-tone-f4e7ef80),transparent 55%),var(--gm-tone-faf8f7); }
+.bb-signup-nav { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--gm-tone-e9dfe5); }
+.bb-signup-nav > a { display: inline-flex; align-items: center; gap: .5rem; }
+.bb-signup-nav > a:last-child { color: var(--gm-tone-76616e); font-size: .75rem; font-weight: 550; }
+.bb-signup-story { min-width: 0; padding-top: 2rem; }
+.bb-signup-story__tag { display: inline-flex; align-items: center; gap: .5rem; font-size: .6rem; font-weight: 700; letter-spacing: .14em; color: var(--gm-tone-9d366d); }
+.bb-signup-story h2 { margin: 1.2rem 0; font-family: var(--font-body); font-size: clamp(2.4rem,4.1vw,3.7rem); font-weight: 550; letter-spacing: -.055em; line-height: 1.16; color: var(--gm-tone-2f2530); }
+.bb-signup-story h2 em { color: var(--gm-tone-b93477); font-weight: 550; font-style: normal; }
+.bb-signup-story > p { max-width: 420px; color: var(--gm-tone-806f7b); line-height: 1.9; font-size: .87rem; }
+.bb-signup-story__visual { position: relative; margin: 2rem 0 2.75rem; padding-right: 1.75rem; }
+.bb-signup-story__photo { height: 260px; width: 100%; aspect-ratio: auto!important; border-radius: 22px 65px 22px 22px; overflow: hidden; border: 0; }
+.bb-signup-story__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.bb-signup-story__photo .bb-home-media__illustration { display: none; }
+.bb-signup-story__note { position: absolute; bottom: -22px; right: 0; left: 2rem; display: flex; align-items: center; gap: .8rem; padding: 1rem; border: 1px solid var(--gm-tone-eee5eb); border-radius: 16px; background: var(--gm-tone-fffffff5); box-shadow: 0 12px 30px var(--gm-tone-6f35550c); }
+.bb-signup-story__note > span { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; color: var(--gm-tone-b93477); background: var(--gm-tone-fbedf4); flex-shrink: 0; }
+.bb-signup-story__note > div { flex: 1; min-width: 0; }
+.bb-signup-story__note strong { display: block; font-size: .78rem; font-weight: 650; }
+.bb-signup-story__note small { display: block; margin-top: .25rem; color: var(--gm-tone-8d7c88); font-size: .68rem; }
+.bb-signup-story__note > svg { color: var(--gm-tone-bd8aab); flex-shrink: 0; }
+.bb-signup-story__benefits { display: flex; flex-wrap: wrap; gap: .9rem 1.1rem; }
+.bb-signup-story__benefits > span { display: inline-flex; align-items: center; gap: .4rem; font-size: .65rem; color: var(--gm-tone-806f7b); }
+.bb-signup-story__benefits svg { color: var(--gm-tone-a77c96); }
+.bb-auth-shell--signup .bb-auth-main { border: 1px solid var(--gm-tone-ede2e8); border-radius: 24px; padding: 1.85rem 2rem; background: var(--gm-tone-fff); box-shadow: 0 14px 45px var(--gm-tone-60364c06); }
+.bb-auth-shell--signup .bb-auth-heading { margin-top: 0; }
+.bb-signup-form-icon { display: grid!important; place-items: center; width: 44px; height: 44px; margin-bottom: 1rem; border-radius: 13px; color: var(--gm-tone-b93477)!important; background: var(--gm-tone-fbf0f6); }
+.bb-auth-shell--signup .bb-auth-heading h1 { font-size: 1.6rem; line-height: 1.3; letter-spacing: -.035em; }
+.bb-auth-shell--signup .bb-auth-heading > span:not(.bb-signup-form-icon) { font-size: .75rem; }
+.bb-auth-shell--signup .bb-auth-form { margin-top: 1.25rem; }
+.bb-signup-form-security { display: flex; align-items: center; justify-content: center; gap: .35rem; margin-top: 1rem; font-size: .62rem; color: var(--gm-tone-a08d9b); }
+.bb-signup-footer { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--gm-tone-e9dfe5); font-size: .65rem; color: var(--gm-tone-a08d9b); }
+.bb-auth-shell.bb-auth-shell--signin { align-content: center; }
+.bb-auth-shell--signin .bb-signup-story { padding-top: 1.25rem; }
+.bb-auth-shell--signin .bb-signup-story h2 { font-size: clamp(2.4rem,3.7vw,3.3rem); }
+.bb-auth-shell--signin .bb-signup-story__photo { height: 220px; }
+.bb-auth-shell--signin .bb-auth-main { align-self: center; padding-block: 2.25rem; }
+.bb-auth-shell--signin .bb-auth-heading h1 { font-size: 1.85rem; }
+.bb-auth-shell--signin .bb-auth-form { gap: .9rem; margin-top: 1.6rem; }
+.bb-auth-shell--signin .bb-auth-form__between { margin-top: -.4rem; }
+.bb-auth-shell--signin .bb-auth-guest { line-height: 1.8; }
+@media(max-width:1000px) { .bb-auth-shell.bb-auth-shell--signup { grid-template-columns: minmax(0,1fr) minmax(0,450px); column-gap: 2rem; padding-inline: 1.5rem; } .bb-signup-story { padding-top: 1rem; } .bb-signup-story h2 { font-size: 2.65rem; } .bb-signup-story__note { left: .5rem; } .bb-signup-story__photo { height: 230px; } }
+@media(max-width:760px) { .bb-auth-shell.bb-auth-shell--signup { display: grid; grid-template-columns: minmax(0,1fr); padding: 1.15rem; gap: 1.5rem; } .bb-signup-nav { padding-bottom: 1rem; } .bb-signup-nav > a:last-child { font-size: .65rem; } .bb-signup-story { display: none; } .bb-auth-shell--signup .bb-auth-main { min-height: 0; padding: 1.5rem; width: 100%; max-width: 500px; margin: 0 auto; } .bb-signup-footer { justify-content: center; text-align: center; } .bb-signup-footer > span:last-child { display: none; } }
+@media(max-width:380px) { .bb-auth-shell.bb-auth-shell--signup { padding: .9rem; } .bb-signup-nav > a:last-child { max-width: 110px; text-align: right; line-height: 1.6; } .bb-auth-shell--signup .bb-auth-main { padding: 1.2rem; } .bb-auth-shell--signup .bb-auth-heading h1 { font-size: 1.4rem; } }

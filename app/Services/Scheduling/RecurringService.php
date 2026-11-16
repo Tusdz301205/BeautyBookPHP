@@ -44,7 +44,9 @@ class RecurringService
         $cursor = CarbonImmutable::parse($data['start_date'].' '.$data['preferred_time'], $branch->timezone ?: 'Asia/Ho_Chi_Minh');
         $end = isset($data['end_date']) ? $data['end_date'] : null;
         $dates = [];
+        $base=$cursor;
         for ($index = 0; $index < $data['occurrence_count']; $index++) {
+            if(isset($data['selections']) && $data['frequency']==='MONTHLY')$cursor=$base->addMonthsNoOverflow($index);
             if ($end !== null && $cursor->toDateString() > $end) {
                 break;
             }
@@ -56,7 +58,7 @@ class RecurringService
                 default => $cursor->addDays(7),
             };
         }
-        if (count($dates) < 2) {
+        if (count($dates) < (isset($data['selections'])?1:2)) {
             throw new DomainException('Chuỗi lịch cần ít nhất hai kỳ trong khoảng ngày đã chọn.');
         }
 
@@ -66,12 +68,12 @@ class RecurringService
     public function preview(Branch $branch, array $context, array $data): array
     {
         abort_unless($context['kind'] === 'CUSTOMER', 403);
-        $cart=!empty($data['items']);
+        $cart=!empty($data['items'])||!empty($data['selections']);
         $quote = empty($data['combo_id'])&&!$cart ? $this->quotes->quote($branch, (int) $data['branch_service_offering_id'], $data['service_variant_id'] ?? null) : null;
         $occurrences = [];
         foreach ($this->dates($branch, $data) as $index => $date) {
             try {
-                $staffId = $cart ? app(\App\Services\Booking\CartBookingService::class)->previewPlan($branch,$context,['items'=>$data['items'],'staff_profile_id'=>$data['staff_mode']==='SAME_STAFF'?$data['staff_profile_id']:null,'start_at'=>$date->format('Y-m-d\TH:i'),'source_timeline'=>true])[0]['staff_id'] : ($quote
+                $staffId = $cart ? app(\App\Services\Booking\CartBookingService::class)->previewPlan($branch,$context,$this->cartData($data)+['start_at'=>$date->format('Y-m-d\TH:i')])[0]['staff_id'] : ($quote
                     ? $this->findStaff($branch, $context, $data, $quote, $date->format('Y-m-d\TH:i'))
                     : $this->findComboStaff($branch, $context, $data, $date->format('Y-m-d\TH:i')));
                 $occurrences[] = ['sequence' => $index, 'start_at' => $date->format('Y-m-d\TH:i'), 'available' => true, 'staff_profile_id' => $staffId];
@@ -94,6 +96,7 @@ class RecurringService
             }
         }
         unset($occurrence);
+        $available = count(array_filter($occurrences, fn ($o) => $o['available']));
 
         return ['occurrences' => $occurrences, 'available_count' => $available, 'conflict_count' => count($occurrences) - $available,
             'wallet_mode' => \App\Services\Wallet\LiveWalletPolicy::walletMode(), 'deposit_mode' => $mode && $anyTerms ? $mode : null, 'wallet_deposit_total_vnd' => $depositTotal];
@@ -112,11 +115,19 @@ class RecurringService
      * start time, the staff member it is given, the same cart or combo), so the quote returned here is the quote the create
      * path will accept. Null when the branch takes no deposit for it.
      */
-    private function occurrenceDeposit(Branch $branch, array $context, array $data, ?array $quote, array $occurrence, string $mode): ?array
+    private function occurrenceDeposit(Branch $branch, array $context, array $data, ?array $quote, array &$occurrence, string $mode): ?array
     {
         $total = $this->occurrenceTotal($branch, $context, $data, $quote, $occurrence['start_at'], $occurrence['staff_profile_id'] ?? null);
         $hours = \App\Services\Booking\BranchBookingRules::cancellationHours((int) $branch->id);
         if ($mode === 'DIRECT') {
+            $readiness = \App\Services\Payments\DirectDeposit::readiness((int) $branch->business_id, $total);
+            $occurrence['deposit_readiness'] = $readiness;
+            if (! $readiness['ok']) {
+                $occurrence['available'] = false;
+                $occurrence['reason'] = $readiness['reason'];
+
+                return null;
+            }
             $terms = \App\Services\Payments\DirectDeposit::terms((int) $branch->business_id, (int) $branch->id, $total, $hours);
             if ($terms) unset($terms['connectionId']);
 
@@ -135,8 +146,10 @@ class RecurringService
             return $this->comboBookings->previewPrice($branch, $combo, $context, ['start_at' => $start, 'staff_profile_id' => $staffId,
                 'staff_assignments' => $combo->items->mapWithKeys(fn ($item) => [$item->branch_service_offering_id => $staffId])->all()])['final_amount'];
         }
-        if (! empty($data['items'])) {
-            return app(\App\Services\Booking\CartBookingService::class)->quote($branch, $context, ['items' => $data['items'], 'staff_profile_id' => $staffId, 'start_at' => $start, 'source_timeline' => true])['final_amount'];
+        if (! empty($data['items']) || !empty($data['selections'])) {
+            $cartData=$this->cartData($data);
+            if(!isset($data['selections']))$cartData['staff_profile_id']=$staffId;
+            return app(\App\Services\Booking\CartBookingService::class)->quote($branch, $context, $cartData+['start_at' => $start])['final_amount'];
         }
 
         return $quote['final_amount'];
@@ -186,9 +199,8 @@ class RecurringService
                             'contact'=>$data['contact']??null,'contact_consent'=>$data['contact_consent']??false,
                             'wallet_deposit_quote' => $data['wallet_deposit_quotes'][$index] ?? null,
                         ])['booking'];
-                    } elseif(!empty($data['items'])) {
-                        $booking=app(\App\Services\Booking\CartBookingService::class)->create($branch,$context,[
-                            'items'=>$data['items'],'staff_profile_id'=>$data['staff_mode']==='SAME_STAFF'?$data['staff_profile_id']:null,
+                    } elseif(!empty($data['items']) || !empty($data['selections'])) {
+                        $booking=app(\App\Services\Booking\CartBookingService::class)->create($branch,$context,$this->cartData($data)+[
                             'start_at'=>$start,'source_timeline'=>true,'idempotency_key'=>'recurring:'.$series->id.':'.$index,
                             'note'=>$data['note']??null,'violation_acknowledged'=>$data['violation_acknowledged']??false,
                             'contact'=>$data['contact']??null,'contact_consent'=>$data['contact_consent']??false,
@@ -221,6 +233,11 @@ class RecurringService
 
             return ['series' => $series->load('occurrences.booking'), 'replayed' => false];
         }, 3);
+    }
+
+    private function cartData(array $data):array
+    {
+        return ['items'=>$data['items']??null,'staff_profile_id'=>$data['staff_mode']==='SAME_STAFF'?($data['staff_profile_id']??null):null,'source_timeline'=>true,'voucher_code'=>$data['voucher_code']??null]+(isset($data['selections'])?['selections'=>$data['selections']]:[]);
     }
 
     private function findStaff(Branch $branch, array $context, array $data, array $quote, string $start, bool $lock = false): int

@@ -189,7 +189,7 @@ class PromotionPricingService
         };
     }
 
-    private function quotaEligible($rule, int $customerId, bool $voucher): bool
+    public function quotaEligible($rule, int $customerId, bool $voucher): bool
     {
         $column = $voucher ? 'voucher_id' : 'promotion_id';
         $usage = DB::table($voucher ? 'voucher_redemptions' : 'promotion_redemptions')->where($column, $rule->id)->whereIn('status', ['RESERVED', 'APPLIED']);

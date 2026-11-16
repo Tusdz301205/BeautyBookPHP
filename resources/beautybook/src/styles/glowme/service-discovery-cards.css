@@ -1,0 +1,43 @@
+.bb-home-salon-card.bb-service-discovery-card { border: 1px solid var(--gm-tone-eee3e9); border-radius: 20px; background: var(--gm-tone-fff); box-shadow: 0 4px 20px var(--gm-tone-51304705); overflow: hidden; transition: box-shadow .2s,border-color .2s; }
+.bb-home-salon-card.bb-service-discovery-card:hover { border-color: var(--gm-tone-dfc9d5); box-shadow: 0 10px 30px var(--gm-tone-63384e0d); }
+.bb-service-discovery-card__visual { position: relative; }
+.bb-service-discovery-card .bb-home-salon-card__media-link { display: block; }
+.bb-service-discovery-card .bb-home-salon-card__media-link .bb-home-media { height: 215px; aspect-ratio: auto!important; border-radius: 0; border: 0; }
+.bb-service-discovery-card .bb-home-media img { width: 100%; height: 100%; object-fit: cover; }
+.bb-service-discovery-card .bb-home-media__illustration { bottom: .7rem; right: .7rem; font-size: .55rem; }
+.bb-service-discovery-card .bb-home-media__placeholder { padding-bottom: 3rem; }
+.bb-service-discovery-card__duration { position: absolute; left: .85rem; bottom: .85rem; display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .55rem; border: 1px solid var(--gm-tone-ffffffaa); border-radius: 8px; background: var(--gm-tone-fffffff2); color: var(--gm-tone-65535f); font-size: .65rem; font-weight: 550; }
+.bb-service-discovery-card__save { position: absolute; top: .8rem; right: .8rem; z-index: 1; }
+.bb-service-discovery-card__save > span { align-items: flex-end; }
+.bb-service-discovery-card__save-button { display: inline-flex; align-items: center; justify-content: center; width: 37px; height: 37px; border: 1px solid var(--gm-tone-eee3e9); border-radius: 50%; background: var(--gm-tone-fffffff5); color: var(--gm-tone-8b687d); box-shadow: 0 2px 8px var(--gm-tone-00000006); }
+.bb-service-discovery-card__save-button > span { display: none; }
+.bb-service-discovery-card__save-button[aria-pressed=true] { color: var(--gm-tone-b82c70); background: var(--gm-tone-fff0f7); }
+.bb-service-discovery-card__save-button:disabled { opacity: .6; cursor: not-allowed; }
+.bb-service-discovery-card__save > span > :not(button) { max-width: 200px; padding: .4rem .6rem; border-radius: 6px; background: white; font-size: .65rem; }
+.bb-service-discovery-card .bb-home-salon-card__body { padding: 1.1rem; gap: 0; }
+.bb-service-discovery-card .bb-home-salon-card__eyebrow { font-size: .6rem; letter-spacing: .04em; text-transform: none; color: var(--gm-tone-9f587f); }
+.bb-service-discovery-card .bb-home-salon-card__eyebrow > span { padding: .25rem .55rem; border-radius: 6px; background: var(--gm-tone-fbf0f6); }
+.bb-service-discovery-card h3 { font-family: var(--font-body); font-size: 1.12rem; font-weight: 650; line-height: 1.45; letter-spacing: -.025em; margin-top: .65rem; }
+.bb-service-discovery-card .bb-home-salon-card__business { margin-top: .3rem; color: var(--gm-tone-75606f); font-size: .74rem; line-height: 1.6; }
+.bb-service-discovery-card .bb-home-salon-card__address { font-size: .7rem; color: var(--gm-tone-96838f); line-height: 1.7; margin-top: .65rem; }
+.bb-service-discovery-card .bb-home-salon-card__address svg { width: 13px; height: 13px; color: var(--gm-tone-ae8ca0); }
+.bb-service-discovery-card .bb-home-salon-card__address { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.bb-service-discovery-card .bb-home-salon-card__address svg { display: inline; vertical-align: -2px; margin-right: .25rem; }
+.bb-service-review-preview { min-height: 34px; margin: .85rem 0 1rem; }
+.bb-service-review-preview__rating { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem; font-size: .72rem; color: var(--gm-tone-6f5b69); }
+.bb-service-review-preview__rating svg { color: var(--gm-tone-d99a35); }
+.bb-service-review-preview__rating strong { color: var(--gm-tone-42323e); font-weight: 700; }
+.bb-service-review-preview__count { color: var(--gm-tone-9b8694); font-size: .65rem; }
+.bb-service-review-preview blockquote { padding: .7rem .8rem; margin-top: .75rem; border-radius: 10px; background: var(--gm-tone-faf7f9); border: 1px solid var(--gm-tone-f3edf1); }
+.bb-service-review-preview blockquote p { color: var(--gm-tone-7b6775); font-size: .7rem; line-height: 1.7; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+.bb-service-review-preview cite { display: block; margin-top: .35rem; color: var(--gm-tone-a08b99); font-size: .6rem; font-style: normal; }
+.bb-service-review-preview__empty,.bb-service-review-preview__retry { display: flex; align-items: center; gap: .35rem; font-size: .68rem; color: var(--gm-tone-9e8b98); }
+.bb-service-review-preview__retry { color: var(--gm-tone-ad3974); min-height: 32px; }
+.bb-service-review-preview__loading { font-size: .65rem; color: var(--gm-tone-a18e9c); }
+.bb-service-discovery-card__price { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; padding-top: .9rem; border-top: 1px solid var(--gm-tone-f1e9ee); margin-top: auto; }
+.bb-service-discovery-card__price > span { font-size: .65rem; color: var(--gm-tone-9b8694); }
+.bb-service-discovery-card__price strong { color: var(--gm-tone-993464); font-size: 1.1rem; font-weight: 700; letter-spacing: -.025em; }
+.bb-service-discovery-card .bb-home-salon-card__actions { margin-top: 0; padding-top: .9rem; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: .5rem; }
+.bb-service-discovery-card .bb-home-salon-card__actions .bb-card-action { min-height: 42px; border-radius: 10px; font-size: .72rem; padding-inline: .5rem; }
+.bb-service-discovery-card .bb-home-salon-card__actions .bb-card-action--primary { grid-column: auto; }
+@media(max-width:600px) { .bb-service-discovery-card .bb-home-salon-card__media-link .bb-home-media { height: 200px; } }

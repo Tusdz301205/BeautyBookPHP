@@ -1,0 +1,19 @@
+.bb-booking-page { min-width: 0; }
+.bb-booking-page__navigation { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }
+.bb-booking-page__navigation a { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; color: var(--bb-muted); font-size: .8125rem; font-weight: 600; text-decoration: none; }
+.bb-booking-page__navigation a:hover { color: var(--bb-brand-strong); }
+.bb-booking-mode { max-width: 72rem; min-width: 0; margin: 0 auto 1.5rem; padding: 1.25rem; border: 1px solid var(--bb-border); border-radius: 1rem; background: var(--bb-surface); }
+.bb-booking-mode header h2 { margin: 0; font-size: 1.125rem; font-weight: 700; }
+.bb-booking-mode header p { margin: .375rem 0 0; color: var(--bb-muted); font-size: .8125rem; line-height: 1.6; }
+.bb-booking-mode__choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .875rem; margin-top: 1rem; }
+.bb-booking-mode__choice { display: flex; min-width: 0; align-items: flex-start; gap: .75rem; padding: 1rem; border: 1px solid var(--bb-border); border-radius: .875rem; background: var(--bb-surface); color: var(--bb-ink); text-decoration: none; transition: background-color .15s,border-color .15s; }
+.bb-booking-mode__choice:hover, .bb-booking-mode__choice.is-selected { border-color: var(--bb-brand); background: var(--bb-brand-soft); }
+.bb-booking-mode__choice[aria-disabled="true"] { cursor: not-allowed; opacity: .6; }
+.bb-booking-mode__icon { display: grid; flex: none; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: var(--bb-surface-subtle); color: var(--bb-brand-strong); }
+.bb-booking-mode__copy { display: grid; min-width: 0; flex: 1; gap: .375rem; }
+.bb-booking-mode__copy strong { font-size: .875rem; font-weight: 700; }
+.bb-booking-mode__copy small { color: var(--bb-muted); font-size: .75rem; line-height: 1.6; }
+.bb-booking-mode__check { display: grid; flex: none; width: 1.125rem; height: 1.125rem; margin-top: .125rem; place-items: center; border: 1px solid var(--bb-border); border-radius: 50%; }
+.is-selected > .bb-booking-mode__check { border-color: var(--bb-brand); background: var(--bb-brand); color: white; }
+.bb-booking-mode__note { min-height: 3.2em; margin: .875rem 0 0; color: var(--bb-muted); font-size: .75rem; line-height: 1.6; }
+@media (max-width: 600px) { .bb-booking-mode { padding: 1rem; } .bb-booking-mode__choices { grid-template-columns: minmax(0,1fr); } }

@@ -1,8 +1,19 @@
 <?php
 
-// Customer wallet, booking deposit and private SePay "Live lab" policy (live-wallet-policy.ts in the API package).
-// Every value is read from the server environment; nothing here is a secret. The lab is refused in production.
+// Shared customer wallet and legacy compatibility settings. Bank credentials stay in the server environment.
 return [
+    'public_wallet' => filter_var(env('WALLET_BOOKING_DEPOSIT_ENABLED', false), FILTER_VALIDATE_BOOL)
+        || filter_var(env('SEPAY_WALLET_ENABLED', false), FILTER_VALIDATE_BOOL),
+    'booking_deposit_enabled' => filter_var(env('WALLET_BOOKING_DEPOSIT_ENABLED', false), FILTER_VALIDATE_BOOL),
+    'central' => [
+        'enabled' => filter_var(env('SEPAY_WALLET_ENABLED', false), FILTER_VALIDATE_BOOL),
+        'webhook_secret' => env('SEPAY_WALLET_WEBHOOK_SECRET', ''),
+        'bank_code' => env('SEPAY_WALLET_BANK_CODE', ''),
+        'account_number' => env('SEPAY_WALLET_ACCOUNT_NUMBER', ''),
+        'account_name' => env('SEPAY_WALLET_ACCOUNT_NAME', ''),
+        'min_topup_vnd' => env('SEPAY_WALLET_MIN_TOPUP_VND', '1000'),
+        'max_topup_vnd' => env('SEPAY_WALLET_MAX_TOPUP_VND', '500000'),
+    ],
     // INTERNAL_WALLET or SIMULATED_WALLET turns on wallet deposits at booking time; empty keeps today's behaviour.
     'mode' => env('BEAUTYBOOK_PAYMENT_MODE', ''),
     // Direct deposits: the customer pays the business's own bank account and a signed SePay receipt confirms it

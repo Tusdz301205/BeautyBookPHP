@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
-const PIE_COLORS = ["#D6597B", "#C99A4E", "#6E8A64", "#8E7CB8", "#7C93B8"];
+const PIE_COLORS = ['var(--bb-brand)', 'var(--bb-warning)', 'var(--bb-success)', 'var(--color-berry-400)', 'var(--bb-info)'];
 
 export const CategoryPieChart = ({ data }) => {
   const total = data.reduce((sum, item) => sum + Number(item.value || 0), 0);

@@ -15,6 +15,8 @@ Route::get('customer/saved-services', [C::class, 'saved']);
 Route::post('customer/saved-services/{id}', [C::class, 'save']);
 Route::delete('customer/saved-services/{id}', [C::class, 'unsave']);
 Route::get('reviews/manage', [C::class, 'reviews']);
+Route::get('reviews/manage/absa/summary', [\App\Http\Controllers\Beautybook\AbsaController::class, 'summary']);
+Route::get('reviews/manage/absa/reviews', [\App\Http\Controllers\Beautybook\AbsaController::class, 'reviews']);
 Route::get('reviews/staff/{id}', [C::class, 'staffReviews']);
 Route::post('reviews', [C::class, 'createReview']);
 Route::post('reviews/booking/{booking}/photos', [C::class, 'uploadReviewPhoto'])->whereNumber('booking')->middleware('throttle:30,1');

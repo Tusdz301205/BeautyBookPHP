@@ -1,0 +1,51 @@
+/* Shared account forms; all controls follow the same single-column rhythm. */
+.bb-auth-shell.bb-auth-shell--renewed { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: 0; min-height: 100svh; padding: 2rem max(1.5rem,calc((100vw - 1160px)/2)); align-items: stretch; background: radial-gradient(ellipse at 90% 0,var(--gm-tone-faeaf2),transparent 60%),var(--gm-tone-f8f5f6); }
+.bb-auth-shell--renewed .bb-auth-editorial { position: relative; top: auto; height: auto; min-height: 600px; padding: 2rem; border-radius: 24px 0 0 24px; overflow: hidden; }
+.bb-auth-shell--renewed .bb-auth-editorial__media { border-radius: 0; }
+.bb-auth-shell--renewed .bb-auth-editorial::after { background: linear-gradient(180deg,var(--gm-tone-24172255) 0%,var(--gm-tone-2817240a) 20%,var(--gm-tone-321426c9) 65%,var(--gm-tone-2a1626f5) 100%); }
+.bb-auth-shell--renewed .bb-auth-editorial__media .bb-home-media__illustration { display: none; }
+.bb-auth-shell--renewed .bb-auth-brand { align-self: flex-start; }
+.bb-auth-shell--renewed .bb-auth-editorial__copy { padding-top: 5rem; }
+.bb-auth-shell--renewed .bb-auth-editorial__copy > p { font-size: clamp(1.85rem,2.8vw,2.55rem); line-height: 1.18; max-width: 17ch; }
+.bb-auth-shell--renewed .bb-auth-editorial__copy > span { display: block; font-size: .82rem; line-height: 1.8; margin-top: 1rem; }
+.bb-auth-shell--renewed .bb-auth-editorial__points { gap: .8rem; margin-top: 1.5rem; padding-top: 1.25rem; }
+.bb-auth-shell--renewed .bb-auth-editorial__points li { font-size: .73rem; font-weight: 450; line-height: 1.6; align-items: flex-start; }
+.bb-auth-shell--renewed .bb-auth-main { display: flex; min-width: 0; min-height: 0; padding: 2rem 2.75rem; border: 1px solid var(--gm-tone-eee3e9); border-left: 0; border-radius: 0 24px 24px 0; background: var(--gm-tone-fff); box-shadow: 12px 10px 40px var(--gm-tone-5b2b4105); align-items: center; }
+.bb-auth-shell--renewed .bb-auth-main__inner,.bb-auth-shell--renewed:has(.bb-auth-form--register) .bb-auth-main__inner { width: 100%; max-width: 440px; margin-inline: auto; padding: 0; }
+.bb-auth-shell--renewed .bb-auth-back { padding: 0; min-height: 32px; border: 0; border-radius: 0; background: none; color: var(--bb-muted); font-size: .75rem; }
+.bb-auth-shell--renewed .bb-auth-heading { margin-top: 1.35rem; }
+.bb-auth-shell--renewed .bb-auth-heading > p { padding: 0; background: none; border-radius: 0; font-size: .62rem; letter-spacing: .13em; }
+.bb-auth-shell--renewed .bb-auth-heading h1 { margin-top: .6rem; font-size: clamp(1.55rem,2.3vw,1.9rem); line-height: 1.3; font-weight: 750; letter-spacing: -.03em; }
+.bb-auth-shell--renewed .bb-auth-heading > span { display: block; margin-top: .55rem; font-size: .79rem; line-height: 1.75; color: var(--bb-muted); }
+.bb-auth-shell--renewed .bb-auth-form,.bb-auth-shell--renewed .bb-auth-form--register { display: grid; grid-template-columns: minmax(0,1fr); gap: .6rem; margin-top: 1.5rem; }
+.bb-auth-shell--renewed .bb-auth-form--register > * { grid-column: 1 / -1 !important; min-width: 0; }
+.bb-auth-shell--renewed .bb-auth-field { display: grid; width: 100%; gap: .4rem; }
+.bb-auth-shell--renewed .bb-auth-field > label { font-size: .77rem; font-weight: 600; }
+.bb-auth-shell--renewed .bb-auth-input { display: block; width: 100%; height: 46px; min-height: 46px; border: 1px solid var(--gm-tone-e6dce2); border-radius: 10px; background: var(--gm-tone-fff); padding: .65rem .85rem; box-shadow: none; font-size: .85rem; transition: border-color .15s,box-shadow .15s; }
+.bb-auth-shell--renewed .bb-auth-input:hover { border-color: var(--gm-tone-cdaec0); }
+.bb-auth-shell--renewed .bb-auth-input:focus { outline: none; border-color: var(--bb-brand); box-shadow: 0 0 0 3px var(--gm-tone-f8eaf2); }
+.bb-auth-shell--renewed .bb-auth-password { width: 100%; min-width: 0; }
+.bb-auth-shell--renewed .bb-auth-password .bb-auth-input { padding-right: 3rem; }
+.bb-auth-shell--renewed .bb-auth-password button { top: 4px; right: 5px; width: 38px; height: 38px; border-radius: 8px; translate: none; }
+.bb-auth-shell--renewed .bb-auth-field__message { min-height: 0; font-size: .68rem; line-height: 1.5; }
+.bb-auth-shell--renewed .bb-auth-field__message:not([id]) { display: none; }
+.bb-auth-shell--renewed .bb-auth-strength { padding-top: 0; margin: -.15rem 0 .15rem; gap: .35rem; }
+.bb-auth-shell--renewed .bb-auth-strength p { font-size: .65rem; }
+.bb-auth-shell--renewed .bb-auth-strength > div { max-width: 155px; }
+.bb-auth-shell--renewed .bb-auth-consent { margin: .4rem 0; padding: 0; }
+.bb-auth-shell--renewed .bb-auth-consent label { font-size: .71rem; line-height: 1.75; grid-template-columns: 18px minmax(0,1fr); gap: .6rem; }
+.bb-auth-shell--renewed .bb-auth-consent label > span { width: 18px; height: 18px; border-radius: 5px; margin-top: 2px; }
+.bb-auth-shell--renewed .bb-auth-submit { min-height: 47px; margin-top: .25rem; border-radius: 10px; font-size: .82rem; box-shadow: 0 5px 12px var(--gm-tone-bb33751a); }
+.bb-auth-shell--renewed .bb-auth-submit:hover:not(:disabled) { translate: none; }
+.bb-auth-shell--renewed .bb-auth-form__between { margin: -.3rem 0 0; }
+.bb-auth-shell--renewed .bb-auth-form__between a { font-size: .73rem; }
+.bb-auth-shell--renewed .bb-auth-google { margin-top: 1.1rem; }
+.bb-auth-shell--renewed .bb-auth-divider { font-size: .65rem; margin-bottom: .75rem; }
+.bb-auth-shell--renewed .bb-auth-google__hint { font-size: .65rem; }
+.bb-auth-shell--renewed .bb-auth-alternate { display: flex; justify-content: center; flex-wrap: wrap; gap: .35rem; margin-top: 1.1rem; padding-top: 1rem; font-size: .74rem; }
+.bb-auth-shell--renewed .bb-auth-alternate a,.bb-auth-shell--renewed .bb-auth-guest a { font-size: .74rem; }
+.bb-auth-shell--renewed .bb-auth-guest { font-size: .72rem; text-align: center; margin-top: .7rem; }
+@media(min-width:1400px) { .bb-auth-shell.bb-auth-shell--renewed { padding-block: 3rem; } }
+@media(max-width:950px) { .bb-auth-shell.bb-auth-shell--renewed { grid-template-columns: minmax(0,.7fr) minmax(0,1fr); padding: 1.25rem; } .bb-auth-shell--renewed .bb-auth-editorial { padding: 1.4rem; } .bb-auth-shell--renewed .bb-auth-main { padding: 1.5rem; } }
+@media(max-width:760px) { .bb-auth-shell.bb-auth-shell--renewed { display: block; padding: 1rem; } .bb-auth-shell--renewed .bb-auth-editorial { display: none; } .bb-auth-shell--renewed .bb-auth-main { border: 1px solid var(--gm-tone-eee3e9); border-radius: 20px; min-height: calc(100svh - 2rem); padding: 1.5rem; } .bb-auth-shell--renewed .bb-auth-mobile-brand { display: inline-flex; } .bb-auth-shell--renewed .bb-auth-heading { margin-top: 1.4rem; } }
+@media(max-width:380px) { .bb-auth-shell.bb-auth-shell--renewed { padding: .65rem; } .bb-auth-shell--renewed .bb-auth-main { padding: 1.1rem; } .bb-auth-shell--renewed .bb-auth-heading h1 { font-size: 1.45rem; } }

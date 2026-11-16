@@ -133,6 +133,7 @@ class BookingController extends Controller
 
     private function data(Request $r, bool $store = false): array
     {
+        if($r->has('selections')) return \App\Services\Booking\BookingRecipe::input($r,$store);
         $r->validate(['branchId' => 'required|integer|min:1', 'serviceIds' => 'nullable', 'staffId' => ['nullable', 'regex:/^(?:[1-9][0-9]*|AUTO)$/D'], 'variantSelections' => 'nullable', 'voucherCode' => 'nullable|string|max:64', 'source' => 'nullable|in:ONLINE_WEB,ONLINE_APP,WALK_IN,PHONE,STAFF_CREATED,ADMIN_CREATED']);
         $ids = $r->input('serviceIds', []);
         if (is_string($ids)) {
@@ -257,11 +258,15 @@ class BookingController extends Controller
             $combo = Combo::where('branch_id', $branch->id)->findOrFail($r->comboId);
             $q = app(CreateComboBookingService::class)->previewPrice($branch, $combo, $context, $this->comboStaff($branch, $combo, $context, $data));
         } else {
-            if (isset($data['start_at'])) {
+            if (isset($data['start_at']) && !isset($data['selections'])) {
                 $data['staff_profile_id'] = $cart->previewPlan($branch, $context, $data)[0]['staff_id'];
             }$q = $cart->quote($branch, $context, $data);
         }
         $rules = $q['discount_rules'] ?? [];
+        $depositReadiness = $context['kind'] === 'CUSTOMER'
+            ? \App\Services\Payments\DirectDeposit::readiness((int) $branch->business_id, $q['final_amount'])
+            : ['direct' => false, 'required' => false, 'ok' => true, 'reasonCode' => null, 'reason' => null];
+        $depositPreview = ['readiness' => $depositReadiness, 'depositOk' => $depositReadiness['ok'], 'depositReason' => $depositReadiness['reason']];
         $promo = 0;
         $voucher = 0;
         $promotionCodeDiscount = 0;
@@ -275,7 +280,7 @@ class BookingController extends Controller
             }
         }
 
-        return ['subtotal' => $q['subtotal_amount'], 'subtotalAmount' => $q['subtotal_amount'], 'discountAmount' => $q['discount_amount'], 'promotionDiscount' => Money::decimal($promo), 'promotionCodeDiscount' => Money::decimal($promotionCodeDiscount), 'promotionCodeApplied' => $promotionCodeDiscount > 0, 'promotionCodeValid' => $q['promotion_code_valid'] ?? false, 'voucherDiscount' => Money::decimal($voucher), 'voucherApplied' => $voucher > 0, 'code' => $r->voucherCode ? strtoupper(trim($r->voucherCode)) : null, 'totalAmount' => $q['final_amount'], 'finalAmount' => $q['final_amount'], 'totalDuration' => $q['duration_minutes'], 'durationMinutes' => $q['duration_minutes'], 'currency' => 'VND', 'items' => $q['items'], 'appliedPromotions' => $rules];
+        return $depositPreview + ['subtotal' => $q['subtotal_amount'], 'subtotalAmount' => $q['subtotal_amount'], 'discountAmount' => $q['discount_amount'], 'promotionDiscount' => Money::decimal($promo), 'promotionCodeDiscount' => Money::decimal($promotionCodeDiscount), 'promotionCodeApplied' => $promotionCodeDiscount > 0, 'promotionCodeValid' => $q['promotion_code_valid'] ?? false, 'voucherDiscount' => Money::decimal($voucher), 'voucherApplied' => $voucher > 0, 'code' => $r->voucherCode ? strtoupper(trim($r->voucherCode)) : null, 'totalAmount' => $q['final_amount'], 'finalAmount' => $q['final_amount'], 'totalDuration' => $q['duration_minutes'], 'durationMinutes' => $q['duration_minutes'], 'currency' => 'VND', 'items' => $q['items'], 'appliedPromotions' => $rules];
     }
 
     public function slots(Request $r, CartBookingService $cart, BookingAccessService $access)
@@ -285,11 +290,12 @@ class BookingController extends Controller
         $branch = Branch::findOrFail($r->branchId);
         $result = $cart->slots($branch, $access->resolve($this->operating($r, $branch), $branch), $data + ['date' => $r->date]);
 
-        return ['branchId' => (string) $branch->id, 'date' => $r->date, 'serverNow' => now()->toIso8601String(), 'slots' => array_map(fn ($s) => ['start' => CarbonImmutable::parse($s['value'], $result['timezone'])->toIso8601String(), 'end' => CarbonImmutable::parse($r->date.' '.$s['end'], $result['timezone'])->toIso8601String()], $result['slots'])];
+        return ['branchId' => (string) $branch->id, 'date' => $r->date, 'serverNow' => now()->toIso8601String(), 'slots' => array_map(fn ($s) => ['start' => CarbonImmutable::parse($s['value'], $result['timezone'])->toIso8601String(), 'end' => CarbonImmutable::parse($r->date.' '.$s['end'], $result['timezone'])->toIso8601String(),'assignments'=>$s['assignments']??[]], $result['slots'])];
     }
 
     public function store(Request $r, CartBookingService $cart, BookingAccessService $access)
     {
+        abort_unless(config('beautybook.legacy_ui',false)||$r->user()->account_kind===AccountKind::Customer,403,'Lịch mới được tạo từ tài khoản khách hàng.');
         $data = $this->data($r, true);
         $branch = Branch::findOrFail($r->branchId);
         $context = $access->resolve($this->operating($r, $branch), $branch);
@@ -307,12 +313,13 @@ class BookingController extends Controller
 
     public function status(Request $r, int $id, BookingLifecycleService $lifecycle)
     {
-        $r->validate(['status' => 'required|in:PENDING,CONFIRMED,CHECKED_IN,IN_PROGRESS,COMPLETED,CANCELLED,NO_SHOW,REJECTED,EXPIRED', 'note' => 'nullable|string|max:1000', 'noShowConfirmed' => 'nullable|boolean']);
+        $r->validate(['expectedVersion'=>(config('beautybook.legacy_ui',false)?'sometimes':'required').'|integer|min:1']);
+        $r->validate(['status' => 'required|in:PENDING,CONFIRMED,CHECKED_IN,IN_PROGRESS,COMPLETED,CANCELLED,NO_SHOW,REJECTED,EXPIRED', 'note' => 'nullable|string|max:1000', 'reason'=>'nullable|string|max:1000', 'noShowConfirmed' => 'nullable|boolean']);
 
         $booking = $this->booking($r, $id);
         $operatingRequest = $r;
         if ($r->user()->account_kind !== AccountKind::Customer) {
-            $roles = in_array($r->status, ['IN_PROGRESS', 'COMPLETED'], true) ? ['BUSINESS_OWNER', 'STAFF'] : ['BUSINESS_OWNER', 'RECEPTIONIST'];
+            $roles = in_array($r->status, ['IN_PROGRESS', 'COMPLETED'], true) ? (config('beautybook.legacy_ui',false) ? ['BUSINESS_OWNER','STAFF'] : ['BUSINESS_OWNER']) : ['BUSINESS_OWNER', 'RECEPTIONIST'];
             $operatingRequest = app(ApiScope::class)->requestForRoles($r, $roles, $booking->business_id, $booking->branch_id);
             $role = app(ApiScope::class)->current($operatingRequest);
             if ($role->role_name === 'STAFF') {
@@ -320,7 +327,7 @@ class BookingController extends Controller
             }
         }
 
-        return $this->presenter->detail($lifecycle->transition($operatingRequest, $booking, $r->status, $r->note, $r->boolean('noShowConfirmed')));
+        return $this->presenter->detail($lifecycle->transition($operatingRequest, $booking, $r->status, $r->note ?? $r->reason, $r->boolean('noShowConfirmed'), null, $r->filled('expectedVersion') ? (int)$r->expectedVersion : null));
     }
 
     public function checkin(Request $r, int $id, BookingLifecycleService $s)
@@ -481,6 +488,12 @@ class BookingController extends Controller
 
     private function recurringData(Request $r): array
     {
+        if($r->has('selections')){
+            $base=\App\Services\Booking\BookingRecipe::input($r,false);
+            $v=$r->validate(['frequency'=>'required|in:WEEKLY,BIWEEKLY,MONTHLY','startDate'=>'required|date_format:Y-m-d','preferredTime'=>'required|date_format:H:i','occurrenceCount'=>'required|integer|between:1,12','staffMode'=>'required|in:SAME_STAFF,ANY_AVAILABLE','staffId'=>'nullable|integer|min:1','violationAcknowledged'=>'sometimes|boolean','note'=>'nullable|string|max:1000','walletDepositQuotes'=>'sometimes|array|max:12']);
+            if($v['staffMode']==='SAME_STAFF')abort_unless(!empty($v['staffId']),422);
+            return array_replace($base,['items'=>null,'combo_id'=>null,'frequency'=>$v['frequency'],'start_date'=>$v['startDate'],'preferred_time'=>$v['preferredTime'],'occurrence_count'=>$v['occurrenceCount'],'staff_mode'=>$v['staffMode'],'staff_profile_id'=>$v['staffId']??null,'skip_conflicts'=>false,'note'=>$v['note']??null,'violation_acknowledged'=>$v['violationAcknowledged']??false,'wallet_deposit_quotes'=>$v['walletDepositQuotes']??[]]);
+        }
         $r->validate(['branchId' => 'required|integer', 'serviceIds' => 'required_without:comboId|array|min:1|max:20', 'serviceIds.*' => 'integer|min:1', 'comboId' => 'nullable|integer', 'staffId' => 'nullable|integer', 'staffMode' => 'required|in:SAME_STAFF,ANY_AVAILABLE', 'frequency' => 'required|in:WEEKLY,BIWEEKLY,MONTHLY', 'startDate' => 'required|date', 'endDate' => 'nullable|date|after_or_equal:startDate', 'preferredTime' => 'required|date_format:H:i', 'occurrenceCount' => 'required|integer|between:2,52', 'skipConflicts' => 'nullable|boolean', 'violationAcknowledged' => 'nullable|boolean', 'note' => 'nullable|string|max:2000', 'walletDepositQuotes' => 'nullable|array|max:52', 'walletDepositQuotes.*' => 'nullable|string|max:64']);
         if ($r->staffMode === 'SAME_STAFF') {
             abort_unless($r->staffId, 422);
@@ -502,15 +515,28 @@ class BookingController extends Controller
         $data = $this->recurringData($r);
         $branch = Branch::findOrFail($r->branchId);
         $p = $s->preview($branch, $s->context($r, $branch), $data);
+        $quotes=[];
+        if(isset($data['selections']))foreach($p['occurrences'] as $o){
+            $quoteRequest=clone $r;
+            $quoteRequest->merge(['startAt'=>CarbonImmutable::parse($o['start_at'],$branch->timezone ?: 'Asia/Ho_Chi_Minh')->toIso8601String()]);
+            $quotes[]=$this->preview($quoteRequest,app(CartBookingService::class),app(BookingAccessService::class));
+        }
+        if($quotes)$p['occurrences']=array_map(fn($o,$q)=>$o+['quote'=>$q],$p['occurrences'],$quotes);
 
-        return ['availableCount' => $p['available_count'], 'conflictCount' => $p['conflict_count'], 'walletMode' => $p['wallet_mode'], 'depositMode' => $p['deposit_mode'] ?? null, 'walletDepositTotalVnd' => $p['wallet_deposit_total_vnd'], 'occurrences' => array_map(fn ($o) => ['walletDeposit' => $o['wallet_deposit'] ?? null, 'index' => $o['sequence'], 'appointmentDate' => CarbonImmutable::parse($o['start_at'], $branch->timezone ?: 'Asia/Ho_Chi_Minh')->toIso8601String(), 'available' => $o['available'], 'staffId' => isset($o['staff_profile_id']) ? (string) $o['staff_profile_id'] : null, 'reason' => $o['reason'] ?? null], $p['occurrences'])];
+        return ['availableCount' => $p['available_count'], 'conflictCount' => $p['conflict_count'], 'walletMode' => $p['wallet_mode'], 'depositMode' => $p['deposit_mode'] ?? null, 'walletDepositTotalVnd' => $p['wallet_deposit_total_vnd'], 'occurrences' => array_map(fn ($o) => ['readiness'=>$o['deposit_readiness']??null,'depositOk'=>$o['deposit_readiness']['ok']??true,'depositReason'=>$o['deposit_readiness']['reason']??null,'quote'=>$o['quote']??null,'walletDeposit' => $o['wallet_deposit'] ?? null, 'index' => $o['sequence'], 'appointmentDate' => CarbonImmutable::parse($o['start_at'], $branch->timezone ?: 'Asia/Ho_Chi_Minh')->toIso8601String(), 'available' => $o['available'], 'staffId' => isset($o['staff_profile_id']) ? (string) $o['staff_profile_id'] : null, 'reason' => $o['reason'] ?? null], $p['occurrences'])];
     }
 
     public function recurringStore(Request $r, RecurringService $s)
     {
         $data = $this->recurringData($r);
-        $r->validate(['customerName' => 'required|string|min:2|max:160', 'customerPhone' => ['required', 'regex:/^(?:0\d{9}|\+84\d{9})$/D'], 'contactConsent' => 'required|accepted']);
-        $data['contact'] = ['full_name' => $r->customerName, 'phone' => $r->customerPhone, 'email' => $r->user()->email];
+        if($r->has('selections')){
+            $r->merge(['contact'=>array_replace($r->input('contact',[]),['phone'=>preg_replace('/[ ()-]/','',(string)$r->input('contact.phone'))])]);
+            $v=$r->validate(['contact.name'=>'required|string|min:2|max:120','contact.phone'=>['required','regex:/^\+?[0-9]{8,15}$/D'],'contact.email'=>'nullable|email|max:254','contactConsent'=>'required|accepted']);
+            $data['contact']=['full_name'=>trim($v['contact']['name']),'phone'=>$v['contact']['phone'],'email'=>$v['contact']['email']??null];
+        }else{
+            $r->validate(['customerName' => 'required|string|min:2|max:160', 'customerPhone' => ['required', 'regex:/^(?:0\d{9}|\+84\d{9})$/D'], 'contactConsent' => 'required|accepted']);
+            $data['contact'] = ['full_name' => $r->customerName, 'phone' => $r->customerPhone, 'email' => $r->user()->email];
+        }
         $data['contact_consent'] = true;
         $key = $r->header('Idempotency-Key');
         abort_unless(is_string($key) && strlen($key) >= 8 && strlen($key) <= 100, 422);

@@ -8,12 +8,12 @@
         <p class="eyebrow">Onboarding doanh nghiệp</p>
         <h1>{{ $business ? $business->name : 'Tạo hồ sơ doanh nghiệp.' }}</h1>
         @if ($business)
-            <p>Trạng thái hiện tại: <strong>{{ $business->status->value }}</strong></p>
+            <p>Trạng thái hiện tại: <strong>{{ __($business->status->value) }}</strong></p>
             @if ($business->review_note)
                 <div class="notice danger-panel">Phản hồi kiểm duyệt: {{ $business->review_note }}</div>
             @endif
         @else
-            <p>Điền thông tin cơ bản. Sau khi tạo, tài khoản này sẽ được gán quyền BUSINESS_OWNER cho doanh nghiệp.</p>
+            <p>Điền thông tin cơ bản. Sau khi tạo, tài khoản này sẽ được gán quyền chủ doanh nghiệp cho doanh nghiệp.</p>
         @endif
     </div>
 
@@ -90,7 +90,7 @@
                         <div class="list-row">
                             <div>
                                 <strong>{{ $branch->public_name ?: $branch->name }}</strong>
-                                <span>{{ $branch->review_status->value }} · {{ $branch->operational_status->value }}</span>
+                                <span>{{ __($branch->review_status->value) }} · {{ __($branch->operational_status->value) }}</span>
                             </div>
                             <a class="text-link" href="{{ route('owner.branches.edit', [$business, $branch]) }}">Mở</a>
                         </div>

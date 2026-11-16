@@ -1,3 +1,4 @@
+import { statusLabel } from '../../utils/displayLabels';
 import { ReviewPhotoGallery } from '../../components/customer/ReviewPhotoGallery';
 import React, { useEffect, useMemo, useState } from 'react';
 import { differenceInMinutes, format } from 'date-fns';
@@ -31,6 +32,11 @@ const LABELS = { PENDING: 'Chờ xác nhận', CONFIRMED: 'Đã xác nhận', CH
 const TONES = { PENDING: 'warning', CONFIRMED: 'info', CHECKED_IN: 'info', IN_PROGRESS: 'brand', COMPLETED: 'success', CANCELLED: 'danger', NO_SHOW: 'neutral', REJECTED: 'danger', EXPIRED: 'neutral' };
 const ITEM_LABELS = { SCHEDULED: 'Đã lên lịch', IN_PROGRESS: 'Đang thực hiện', COMPLETED: 'Hoàn thành', CANCELLED: 'Đã hủy', SKIPPED: 'Đã bỏ qua' };
 const money = (value) => `${Number(value || 0).toLocaleString('vi-VN')}₫`;
+const CREATED_EVENTS = new Set(['BOOKING_CREATED', 'CART_BOOKING_CREATED']);
+const historyLabel = (item) => CREATED_EVENTS.has(item.note)
+  ? 'Đã tạo lịch hẹn'
+  : LABELS[item.toStatus || item.status] || 'Đã cập nhật lịch hẹn';
+const historyNote = (item) => item.note && !/^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+$/.test(item.note.trim()) ? item.note : '';
 
 export function CustomerAppointmentDetail() {
   const { id } = useParams();
@@ -76,7 +82,7 @@ export function CustomerAppointmentDetail() {
     if (!branchId || !serviceIds.length) return;
     setBranch(branchId);
     serviceIds.forEach((serviceId) => toggleService(serviceId));
-    navigate('/book');
+    navigate('/book?serviceId='+encodeURIComponent(serviceIds[0]));
   };
   const cancel = async () => {
     if (!cancelReason.trim()) return;
@@ -89,16 +95,16 @@ export function CustomerAppointmentDetail() {
   if (error || !booking) return <Page className="max-w-4xl"><Link to="/customer/appointments" className="mb-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--bb-brand-strong)]"><ArrowLeft size={16} />Quay lại lịch hẹn</Link><Card><ErrorState message={error || 'Không tìm thấy lịch hẹn'} onRetry={load} /></Card></Page>;
   return <Page className="max-w-6xl">
     <Link to="/customer/appointments" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--bb-brand-strong)] hover:underline"><ArrowLeft size={16} />Lịch hẹn của tôi</Link>
-    <PageHeader eyebrow={`Mã lịch ${booking.bookingCode || '—'}`} title={booking.branch?.business?.name || booking.branch?.name || 'Chi tiết lịch hẹn'} description="Thông tin dưới đây được lấy trực tiếp từ hồ sơ lịch hẹn của bạn." actions={<Badge tone={TONES[booking.status] || 'neutral'}>{LABELS[booking.status] || booking.status}</Badge>} />
+    <PageHeader eyebrow={`Mã lịch ${booking.bookingCode || '—'}`} title={booking.branch?.business?.name || booking.branch?.name || 'Chi tiết lịch hẹn'} actions={<Badge tone={TONES[booking.status] || 'neutral'}>{LABELS[booking.status] || statusLabel(booking.status)}</Badge>} />
 
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,0.8fr)]">
       <div className="space-y-5">
         <Card className="overflow-hidden"><div className="grid gap-4 p-5 sm:grid-cols-2"><Info icon={Clock3} label="Thời gian" value={start ? `${format(start, 'dd/MM/yyyy · HH:mm')}${end ? ` – ${format(end, 'HH:mm')}` : ''}` : 'Chưa cập nhật'} note={duration ? `${duration} phút` : undefined} /><Info icon={MapPin} label="Địa điểm" value={booking.branch?.name || 'Cơ sở làm đẹp'} note={booking.branch?.addressLine} /></div><div className="flex flex-wrap gap-2 border-t border-[var(--bb-border)] p-4">{booking.branch?.phone && <a href={`tel:${booking.branch.phone}`} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[var(--bb-border)] px-3 text-sm font-semibold hover:bg-[var(--bb-surface-subtle)]"><Phone size={16} />Gọi cơ sở</a>}{directionsUrl && <a href={directionsUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[var(--bb-border)] px-3 text-sm font-semibold hover:bg-[var(--bb-surface-subtle)]"><ExternalLink size={16} />Chỉ đường</a>}</div></Card>
 
-        <Card className="overflow-hidden"><header className="border-b border-[var(--bb-border)] p-5"><h2 className="font-bold">Dịch vụ & nhân viên</h2></header><div className="divide-y divide-[var(--bb-border)]">{services.map((item) => <article key={item.id} className="flex items-start gap-3 p-5"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[var(--bb-brand-soft)] text-[var(--bb-brand-strong)]"><Scissors size={18} /></span><div className="min-w-0 flex-1"><h3 className="font-semibold">{item.serviceNameSnapshot || item.service?.name || 'Dịch vụ'}</h3>{item.status && <div className="mt-1"><Badge tone={TONES[item.status] || 'neutral'}>{ITEM_LABELS[item.status] || item.status}</Badge></div>}<p className="mt-1 flex items-center gap-1 text-xs text-[var(--bb-muted)]"><UserRound size={13} />{item.staff?.user?.fullName || item.staff?.fullName || 'Cơ sở sẽ sắp xếp nhân viên'}</p></div><div className="text-right"><p className="font-semibold">{money(item.priceAtBooking)}</p>{(item.durationMinutes ?? item.service?.durationMinutes) > 0 && <p className="mt-1 text-xs text-[var(--bb-muted)]">{item.durationMinutes ?? item.service.durationMinutes} phút</p>}</div></article>)}</div><footer className="flex justify-between gap-4 border-t border-[var(--bb-border)] bg-[var(--bb-surface-subtle)] p-5"><span className="font-semibold">Tổng giá dịch vụ</span><strong className="text-lg">{money(booking.finalAmount ?? booking.totalAmount)}</strong></footer></Card>
+        <Card className="overflow-hidden"><header className="border-b border-[var(--bb-border)] p-5"><h2 className="font-bold">Dịch vụ & nhân viên</h2></header><div className="divide-y divide-[var(--bb-border)]">{services.map((item) => <article key={item.id} className="flex items-start gap-3 p-5"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[var(--bb-brand-soft)] text-[var(--bb-brand-strong)]"><Scissors size={18} /></span><div className="min-w-0 flex-1"><h3 className="font-semibold">{item.serviceNameSnapshot || item.service?.name || 'Dịch vụ'}</h3>{item.status && <div className="mt-1"><Badge tone={TONES[item.status] || 'neutral'}>{ITEM_LABELS[item.status] || statusLabel(item.status)}</Badge></div>}<p className="mt-1 flex items-center gap-1 text-xs text-[var(--bb-muted)]"><UserRound size={13} />{item.staff?.user?.fullName || item.staff?.fullName || 'Cơ sở sẽ sắp xếp nhân viên'}</p></div><div className="text-right"><p className="font-semibold">{money(item.priceAtBooking)}</p>{(item.durationMinutes ?? item.service?.durationMinutes) > 0 && <p className="mt-1 text-xs text-[var(--bb-muted)]">{item.durationMinutes ?? item.service.durationMinutes} phút</p>}</div></article>)}</div><footer className="flex justify-between gap-4 border-t border-[var(--bb-border)] bg-[var(--bb-surface-subtle)] p-5"><span className="font-semibold">Tổng giá dịch vụ</span><strong className="text-lg">{money(booking.finalAmount ?? booking.totalAmount)}</strong></footer></Card>
 
         <DirectDepositPanel bookingId={booking.id} onChange={load} />
-        {chronologicalHistory.length > 0 && <Card className="p-5"><h2 className="font-bold">Tiến trình lịch hẹn</h2><ol className="mt-5 space-y-4">{chronologicalHistory.map((item, index) => <li key={item.id} className="relative grid grid-cols-[1rem_1fr] gap-3"><span className="relative mt-1.5 h-3 w-3 rounded-full bg-[var(--bb-brand)] before:absolute before:left-[5px] before:top-3 before:h-[calc(100%+1rem)] before:w-px before:bg-[var(--bb-border)] last:before:hidden" /><div><p className="text-sm font-semibold">{LABELS[item.status] || item.status}</p><p className="mt-1 text-xs text-[var(--bb-muted)]">{new Date(item.createdAt).toLocaleString('vi-VN')}{item.note ? ` · ${item.note}` : ''}</p></div></li>)}</ol></Card>}
+        {chronologicalHistory.length > 0 && <Card className="p-5"><h2 className="font-bold">Tiến trình lịch hẹn</h2><ol className="mt-5 space-y-4">{chronologicalHistory.map((item) => <li key={item.id} className="relative grid grid-cols-[1rem_1fr] gap-3"><span className="relative mt-1.5 h-3 w-3 rounded-full bg-[var(--bb-brand)] before:absolute before:left-[5px] before:top-3 before:h-[calc(100%+1rem)] before:w-px before:bg-[var(--bb-border)] last:before:hidden" /><div><p className="text-sm font-semibold">{historyLabel(item)}</p><p className="mt-1 text-xs text-[var(--bb-muted)]">{new Date(item.createdAt).toLocaleString('vi-VN')}{historyNote(item) ? ` · ${historyNote(item)}` : ''}</p></div></li>)}</ol></Card>}
       </div>
 
       <aside className="space-y-5">

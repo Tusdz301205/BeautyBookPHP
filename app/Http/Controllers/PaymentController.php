@@ -92,7 +92,7 @@ class PaymentController extends Controller
     private function respond(Request $request, int $bookingId, callable $callback, int $code = 200)
     {
         try { $record = $callback(); }
-        catch (UniqueConstraintViolationException) { abort(409, 'Mã yêu cầu hoặc mã đối soát đã được sử dụng.'); }
+        catch (UniqueConstraintViolationException) { abort(409, 'Mã yêu cầu hoặc mã giao dịch ngân hàng đã được sử dụng.'); }
         return $request->expectsJson() ? response()->json(['id' => $record->id, 'status' => $record->status, 'amount' => Money::decimal($record->amount_cents)], $code)
             : redirect()->route('finance.show', $bookingId)->with('status', 'Đã cập nhật thanh toán.');
     }

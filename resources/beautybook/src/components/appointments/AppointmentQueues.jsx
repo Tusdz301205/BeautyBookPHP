@@ -94,7 +94,7 @@ export default function AppointmentQueues({ branchIds = [], branches = [], onCou
     if (!booking || !rightsFor(booking).canUpdate) return;
     setBusy(id);
     try {
-      await bookingsApi.updateStatus(id, 'CONFIRMED');
+      await bookingsApi.updateStatus(id, 'CONFIRMED', undefined, undefined, undefined, booking.version);
       toast.success('Đã xác nhận lịch');
       await refreshAll();
     } catch (updateError) {
@@ -108,7 +108,7 @@ export default function AppointmentQueues({ branchIds = [], branches = [], onCou
     if (!reject || !rightsFor(reject).canCancel || reason.trim().length < 3) return;
     setBusy(reject.id);
     try {
-      await bookingsApi.updateStatus(reject.id, 'CANCELLED', undefined, reason.trim());
+      await bookingsApi.updateStatus(reject.id, reject.flow==='AGGREGATE'?'REJECTED':'CANCELLED', undefined, reason.trim(), undefined, reject.version);
       toast.success('Đã từ chối lịch');
       setReject(null);
       await refreshAll();
@@ -188,7 +188,7 @@ function PendingCard({ booking, busy, canUpdate, canCancel, onApprove, onReject 
     <Card as="article" className="overflow-hidden">
       <header className="flex items-start gap-3 border-b border-[var(--bb-border)] p-5">
         <div className="min-w-0 flex-1"><h3 className="font-bold">{booking.customer_name || 'Khách hàng'}</h3><p className="mt-1 text-xs text-[var(--bb-muted)]">{booking.services?.map((service) => service.name).filter(Boolean).join(', ') || '—'}</p></div>
-        <Badge tone="warning">PENDING</Badge>
+        <Badge tone="warning">Chờ xác nhận</Badge>
       </header>
       <div className="p-5"><p className="text-sm font-bold">{normalized.startAt ? format(normalized.startAt, 'dd/MM/yyyy · HH:mm') : '—'}</p><p className="mt-1 text-xs text-[var(--bb-muted)]">{booking.branch_name || booking.salon_name || '—'}</p><p className="bb-mono mt-3 text-xs text-[var(--bb-muted)]">{booking.bookingCode || booking.id}</p></div>
       {(canUpdate || canCancel) && <footer className="flex justify-end gap-2 border-t border-[var(--bb-border)] p-4">{canCancel && <Button variant="secondary" disabled={busy === id} onClick={onReject}>Từ chối</Button>}{canUpdate && <Button loading={busy === id} onClick={() => onApprove(id)}>Xác nhận</Button>}</footer>}

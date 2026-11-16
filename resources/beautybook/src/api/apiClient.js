@@ -57,7 +57,7 @@ export async function refreshSession() {
 /**
  * Gọi API — tự động attach token + auto-refresh khi 401.
  */
-async function request(endpoint, options = {}, _isRetry = false) {
+export async function request(endpoint, options = {}, _isRetry = false) {
   const url = `${API_BASE}${endpoint}`;
   const { accessToken, user, setSession, clearSession } =
     useAuthStore.getState();
@@ -222,12 +222,12 @@ export const bookingsApi = {
 
   getByCustomer: (userId) => request(`/bookings/by-customer/${userId}`),
 
-  updateStatus: (id, status, changedBy, note, noShowConfirmed) => {
+  updateStatus: (id, status, changedBy, note, noShowConfirmed, expectedVersion) => {
     // Convert label to enum if needed
     const mappedStatus = STATUS_LABEL_TO_ENUM[status] || status;
     return request(`/bookings/${id}/status`, {
       method: 'PATCH',
-      body: JSON.stringify({ status: mappedStatus, changedBy, note, noShowConfirmed }),
+      body: JSON.stringify({ status: mappedStatus, changedBy, note, noShowConfirmed, expectedVersion }),
     });
   },
 
@@ -297,7 +297,7 @@ export const bookingsApi = {
       body: JSON.stringify({ newEndTime }),
     }),
 
-  checkin: (id) => request(`/bookings/${id}/checkin`, { method: 'POST' }),
+  checkin: (id, expectedVersion) => request(`/bookings/${id}/checkin`, { method: 'POST', body: JSON.stringify({expectedVersion}) }),
 
   assignStaff: (id, staffId) =>
     request(`/bookings/${id}/assign`, {
@@ -784,6 +784,15 @@ export const notificationsApi = {
 
 // ======================== REVIEWS ========================
 export const reviewsApi = {
+  absaSummary: (branchId, {from, to, rating, visibility} = {}) => {
+    const query = new URLSearchParams(Object.entries({branchId, from, to, rating, visibility}).filter(([, v]) => v !== undefined && v !== null && v !== ''));
+    return request(`/reviews/manage/absa/summary?${query}`);
+  },
+  absaReviews: (branchId, {page = 1, limit = 10, from, to, rating, visibility, aspect, sentiment, status} = {}) => {
+    const query = new URLSearchParams(Object.entries({branchId, page, limit, from, to, rating, visibility, aspect, sentiment, status}).filter(([, v]) => v !== undefined && v !== null && v !== ''));
+    return request(`/reviews/manage/absa/reviews?${query}`);
+  },
+
   uploadPhoto: (bookingId, file) => {
     const body = new FormData();
     body.append('file', file);

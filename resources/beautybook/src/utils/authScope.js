@@ -88,6 +88,7 @@ export function canAt(user, code, ctx = {}) {
 }
 
 export function bookingCapabilities(user, booking) {
+  const aggregate = booking?.raw?.flow === 'AGGREGATE' || booking?.flow === 'AGGREGATE';
   const tenantId = booking?.businessId || booking?.raw?.branch?.businessId || booking?.raw?.businessId;
   const branchId = booking?.branchId;
   const ctx = { tenantId, branchId };
@@ -103,9 +104,9 @@ export function bookingCapabilities(user, booking) {
     canUpdate: permitted('update'),
     canCheckIn: permitted('check_in'),
     canCancel: permitted('cancel'),
-    canAssign: permitted('assign'),
-    canProvide: (owner && permitted('update')) || (assigned && canAt(user, 'booking:update:branch', ctx)),
-    canComplete: (owner && permitted('update')) || (assigned && canAt(user, 'booking:complete:branch', ctx)),
+    canAssign: !aggregate && permitted('assign'),
+    canProvide: (owner && permitted('update')) || (!aggregate && assigned && canAt(user, 'booking:update:branch', ctx)),
+    canComplete: (owner && permitted('update')) || (!aggregate && assigned && canAt(user, 'booking:complete:branch', ctx)),
     ctx,
   };
 }

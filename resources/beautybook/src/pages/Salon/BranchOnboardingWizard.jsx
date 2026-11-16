@@ -488,7 +488,7 @@ export default function BranchOnboardingWizard() {
       });
       setPendingDocuments((current) => current.filter((_, itemIndex) => itemIndex !== index));
       if (document.replaceDocumentId) setReplacementTarget(null);
-      toast.success('Đã gắn tài liệu private vào hồ sơ chi nhánh');
+      toast.success('Đã gắn tài liệu vào hồ sơ chi nhánh');
       await refreshBranch();
     } catch (requestError) {
       toast.error(requestError.message);
@@ -555,11 +555,11 @@ export default function BranchOnboardingWizard() {
       <PageHeader
         eyebrow="Thiết lập chi nhánh"
         title={branch ? branch.name : 'Thêm chi nhánh mới'}
-        description="Biểu mẫu được lưu nháp theo từng bước. Chi nhánh chỉ nhận đặt lịch sau khi hồ sơ được duyệt và đủ điều kiện vận hành."
+        description="Hoàn thiện hồ sơ để gửi xét duyệt chi nhánh."
         actions={branch ? (
           <div className="flex flex-wrap gap-2">
             <Badge tone={reviewTone[branch.reviewStatus]}>{statusLabel(branch.reviewStatus)}</Badge>
-            <Badge tone={operationalTone[branch.operationalStatus]}>{branch.operationalStatus}</Badge>
+            <Badge tone={operationalTone[branch.operationalStatus]}>{statusLabel(branch.operationalStatus)}</Badge>
             <Button variant="secondary" loading={saving} onClick={() => save()}>
               <Save size={16} />Lưu nháp
             </Button>
@@ -626,7 +626,7 @@ export default function BranchOnboardingWizard() {
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     {[
                       [true, 'Có, cùng hệ thống doanh nghiệp', 'Tiếp tục tạo chi nhánh và quản lý tập trung.'],
-                      [false, 'Không, pháp nhân độc lập', 'Chuyển sang đăng ký Business mới; không tạo nháp chi nhánh sai mô hình.'],
+                      [false, 'Không, pháp nhân độc lập', 'Đăng ký doanh nghiệp mới.'],
                     ].map(([value, label, description]) => (
                       <button
                         key={String(value)}
@@ -648,9 +648,6 @@ export default function BranchOnboardingWizard() {
                     <option value="BOTH">Tại cơ sở và tại nhà</option>
                   </Select>
                 </Field>
-                {form.sameLegalEntity === false && (
-                  <InlineNotice tone="warning">Hệ thống sẽ không tạo Branch. Bước tiếp theo dẫn tới luồng đăng ký Business mới.</InlineNotice>
-                )}
               </div>
             )}
 
@@ -755,8 +752,8 @@ export default function BranchOnboardingWizard() {
             {step === 6 && (
               <div className="space-y-4">
                 <InlineNotice tone="info">Gói dịch vụ chỉ có thể bật khi mọi dịch vụ đang hoạt động, nhận lịch và có nhân viên phù hợp tại chi nhánh.</InlineNotice>
-                {!combos.length ? <EmptyState title="Chưa có combo tại chi nhánh" description="Tạo combo ở trạng thái chưa kích hoạt, sau đó quay lại checklist để kiểm tra." /> : (
-                  <div className="space-y-2">{combos.map((combo) => <div key={combo.id} className="flex items-center justify-between gap-3 rounded-xl border border-[var(--bb-border)] p-4"><div><strong>{combo.name}</strong><p className="mt-1 text-xs text-[var(--bb-muted)]">{combo.comboServices?.length || 0} dịch vụ</p></div><Badge tone={combo.status === 'ACTIVE' ? 'success' : 'neutral'}>{combo.status}</Badge></div>)}</div>
+                {!combos.length ? <EmptyState title="Chưa có combo tại chi nhánh" description="Tạo gói dịch vụ ở trạng thái chưa kích hoạt, sau đó quay lại danh sách kiểm tra." /> : (
+                  <div className="space-y-2">{combos.map((combo) => <div key={combo.id} className="flex items-center justify-between gap-3 rounded-xl border border-[var(--bb-border)] p-4"><div><strong>{combo.name}</strong><p className="mt-1 text-xs text-[var(--bb-muted)]">{combo.comboServices?.length || 0} dịch vụ</p></div><Badge tone={combo.status === 'ACTIVE' ? 'success' : 'neutral'}>{statusLabel(combo.status)}</Badge></div>)}</div>
                 )}
                 <Link to={`/salon/combos${branchId ? `?branchId=${branchId}` : ''}`}><Button variant="secondary">Mở quản lý combo</Button></Link>
               </div>
@@ -764,7 +761,7 @@ export default function BranchOnboardingWizard() {
 
             {step === 7 && (
               <div className="space-y-5">
-                <InlineNotice tone="info">Hệ thống phân công nhân viên vào nhiều chi nhánh nhưng vẫn giữ một hồ sơ nhân sự duy nhất. Nhân viên mới được phân công chưa tự động nhận lịch.</InlineNotice>
+                <InlineNotice tone="info">Nhân viên có thể làm việc tại nhiều chi nhánh. Nhân viên mới được phân công chưa tự động nhận lịch.</InlineNotice>
                 <div>
                   <h3 className="font-bold">Nhân viên đã gán</h3>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -791,8 +788,8 @@ export default function BranchOnboardingWizard() {
                 <Field label="Hủy trước (giờ)"><Input type="number" min="0" value={form.cancellationHours} onChange={set('cancellationHours')} /></Field>
                 <Field label="Đổi lịch trước (giờ)"><Input type="number" min="0" value={form.rescheduleHours} onChange={set('rescheduleHours')} /></Field>
                 <Field label="Grace period (phút)"><Input type="number" min="0" value={form.gracePeriodMinutes} onChange={set('gracePeriodMinutes')} /></Field>
-                <Field label="Buffer mặc định (phút)"><Input type="number" min="0" value={form.defaultBufferMinutes} onChange={set('defaultBufferMinutes')} /></Field>
-                <label className="flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-semibold"><input type="checkbox" checked={form.overbookingEnabled} onChange={set('overbookingEnabled')} />Bật overbooking có kiểm soát</label>
+                <Field label="Thời gian đệm mặc định (phút)"><Input type="number" min="0" value={form.defaultBufferMinutes} onChange={set('defaultBufferMinutes')} /></Field>
+                <label className="flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-semibold"><input type="checkbox" checked={form.overbookingEnabled} onChange={set('overbookingEnabled')} />Cho phép nhận lịch vượt công suất có kiểm soát</label>
                 <Field label="Số lịch ngoại lệ tối đa cùng khung giờ"><Input type="number" min="0" max="5" disabled={!form.overbookingEnabled} value={form.maxOverbookedSlots} onChange={set('maxOverbookedSlots')} /></Field>
                 <Field label="Xử lý khách không đến" className="sm:col-span-2 lg:col-span-3"><Textarea value={form.noShowHandling} onChange={set('noShowHandling')} /></Field>
                 <label className="flex items-center gap-2 text-sm font-semibold"><input type="checkbox" checked={form.allowWalkIn} onChange={set('allowWalkIn')} />Cho phép walk-in</label>
@@ -814,7 +811,7 @@ export default function BranchOnboardingWizard() {
                     onRemoved={() => refreshBranch()}
                   />
                 )}
-                <InlineNotice tone="info">Chỉ media công khai xuất hiện ở gallery. Tài liệu KYC/private được tải ở bước kế tiếp và không có public URL.</InlineNotice>
+                <InlineNotice tone="info">Ảnh tại đây được hiển thị công khai. Tài liệu xác minh được tải riêng ở bước tiếp theo.</InlineNotice>
               </div>
             )}
 
@@ -838,7 +835,7 @@ export default function BranchOnboardingWizard() {
                     replaceDocumentId: replacementTarget?.id,
                   }])}
                 /> : <InlineNotice tone="info">Hồ sơ đang được xét duyệt hoặc đã duyệt nên tài liệu chỉ có thể xem. Khi Admin yêu cầu bổ sung, chức năng thay thế sẽ được mở lại.</InlineNotice>}
-                {replacementTarget && <InlineNotice tone="info">Tệp tiếp theo sẽ tạo phiên bản v{replacementTarget.currentVersion + 1}; phiên bản cũ vẫn được giữ trong nhật ký kiểm toán. <Button size="sm" variant="ghost" onClick={() => setReplacementTarget(null)}>Hủy thay thế</Button></InlineNotice>}
+                {replacementTarget && <InlineNotice tone="info">Tệp tiếp theo sẽ tạo phiên bản v{replacementTarget.currentVersion + 1}; phiên bản cũ vẫn được lưu. <Button size="sm" variant="ghost" onClick={() => setReplacementTarget(null)}>Hủy thay thế</Button></InlineNotice>}
                 {pendingDocuments.map((document, index) => (
                   <article key={document.media.id} className="grid gap-3 rounded-xl border border-[var(--bb-border)] p-4 sm:grid-cols-2">
                     <Field label="Tên file"><Input value={document.documentName} onChange={(event) => setPendingDocuments((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, documentName: event.target.value } : item))} /></Field>
@@ -850,16 +847,25 @@ export default function BranchOnboardingWizard() {
                   </article>
                 ))}
                 <div className="space-y-2">
-                  {(branch?.documents || []).map((document) => <article key={document.id} className="grid gap-3 rounded-xl bg-[var(--bb-surface-subtle)] p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"><div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><strong className="truncate">{document.versions?.[0]?.documentName || documentLabel(document.documentType)}</strong><Badge>{document.status}</Badge><Badge tone="neutral">Phiên bản {document.currentVersion}</Badge></div><p className="mt-2 text-xs text-[var(--bb-muted)]">{documentLabel(document.documentType)} · {document.expiresAt ? `Hết hạn ${new Date(document.expiresAt).toLocaleDateString('vi-VN')}` : 'Không có ngày hết hạn'} · tải lên {new Date(document.versions?.[0]?.createdAt || document.createdAt).toLocaleDateString('vi-VN')}</p></div><div className="flex flex-wrap gap-2"><Button size="sm" variant="secondary" onClick={() => previewDocument(document)}><Eye size={15} />Xem</Button>{documentEditable && <><Button size="sm" variant="secondary" onClick={() => setReplacementTarget(document)}>Thay thế</Button><Button size="sm" variant="ghost" className="text-[var(--bb-danger)]" disabled={saving} onClick={() => archiveDocument(document)}><Trash2 size={15} />Xóa</Button></>}</div></article>)}
+                  {(branch?.documents || []).map((document) => <article key={document.id} className="grid gap-3 rounded-xl bg-[var(--bb-surface-subtle)] p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"><div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><strong className="truncate">{document.versions?.[0]?.documentName || documentLabel(document.documentType)}</strong><Badge>{statusLabel(document.status)}</Badge><Badge tone="neutral">Phiên bản {document.currentVersion}</Badge></div><p className="mt-2 text-xs text-[var(--bb-muted)]">{documentLabel(document.documentType)} · {document.expiresAt ? `Hết hạn ${new Date(document.expiresAt).toLocaleDateString('vi-VN')}` : 'Không có ngày hết hạn'} · tải lên {new Date(document.versions?.[0]?.createdAt || document.createdAt).toLocaleDateString('vi-VN')}</p></div><div className="flex flex-wrap gap-2"><Button size="sm" variant="secondary" onClick={() => previewDocument(document)}><Eye size={15} />Xem</Button>{documentEditable && <><Button size="sm" variant="secondary" onClick={() => setReplacementTarget(document)}>Thay thế</Button><Button size="sm" variant="ghost" className="text-[var(--bb-danger)]" disabled={saving} onClick={() => archiveDocument(document)}><Trash2 size={15} />Xóa</Button></>}</div></article>)}
                 </div>
               </div>
             )}
 
             {step === 11 && (
-              <div className="space-y-4">
-                <InlineNotice tone="info">Lịch hẹn chỉ sử dụng thông tin liên hệ và dịch vụ đã chọn.</InlineNotice>
-                <InlineNotice tone="success">Không có dữ liệu nhạy cảm mới được thu thập ở bước này. Bạn có thể tiếp tục kiểm tra điều kiện vận hành.</InlineNotice>
-              </div>
+              <dl className="grid gap-4 sm:grid-cols-2">
+                {[
+                  ['Người phụ trách', form.managerName],
+                  ['Điện thoại', form.phone],
+                  ['Email', form.email],
+                  ['Múi giờ', form.timezone],
+                ].map(([label, value]) => (
+                  <div key={label} className="min-w-0">
+                    <dt className="text-sm text-[var(--bb-muted)]">{label}</dt>
+                    <dd className="mt-1 break-words font-semibold">{value || 'Chưa cập nhật'}</dd>
+                  </div>
+                ))}
+              </dl>
             )}
 
             {step === 12 && (
@@ -888,9 +894,9 @@ export default function BranchOnboardingWizard() {
 
             {step === 13 && (
               <div className="space-y-5">
-                <InlineNotice tone="warning">Gửi duyệt không đồng nghĩa với công khai. Quản trị nền tảng chỉ duyệt hồ sơ; chủ doanh nghiệp vẫn phải hoàn thành các điều kiện vận hành và bấm “Bật nhận đặt lịch”.</InlineNotice>
+                <InlineNotice tone="warning">Chi nhánh chỉ hiển thị cho khách sau khi được duyệt, đủ điều kiện và bật nhận lịch.</InlineNotice>
                 <dl className="grid gap-3 rounded-xl bg-[var(--bb-surface-subtle)] p-4 sm:grid-cols-3">
-                  <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Doanh nghiệp</dt><dd className="mt-1 font-bold">{business?.status}</dd></div>
+                  <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Doanh nghiệp</dt><dd className="mt-1 font-bold">{statusLabel(business?.status)}</dd></div>
                   <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Xét duyệt chi nhánh</dt><dd className="mt-1 font-bold">{statusLabel(branch?.reviewStatus)}</dd></div>
                   <div><dt className="text-xs font-bold uppercase text-[var(--bb-muted)]">Nhận đặt lịch</dt><dd className="mt-1 font-bold">{statusLabel(branch?.operationalStatus)}</dd></div>
                 </dl>

@@ -250,7 +250,7 @@ export function StaffTimeOffPanel({ staffId, scope, timezone, canEdit, onBusyCha
   const list = resource.value;
   return <Card className="space-y-4 p-4 sm:p-5">
     <div className="flex flex-wrap items-start justify-between gap-3">
-      <div><h2 className="font-bold">Lịch nghỉ nhân viên</h2><p className="mt-1 text-sm text-[var(--bb-muted)]">Khoảng nghỉ chặn slot mới của nhân viên.</p></div>
+      <div><h2 className="font-bold">Lịch nghỉ nhân viên</h2><p className="mt-1 text-sm text-[var(--bb-muted)]">Không nhận lịch mới của nhân viên trong khoảng nghỉ.</p></div>
       {canEdit && <Button disabled={write.busy} onClick={() => edit(null)}>Thêm lịch nghỉ</Button>}
     </div>
     <CalendarWarnings result={write.result} timezone={timezone} />

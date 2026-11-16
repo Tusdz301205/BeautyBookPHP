@@ -8,7 +8,7 @@ export const TopSalonsBookingBarChart = ({ data }) => (
       <XAxis dataKey="name" tick={{ fontSize: 9 }} />
       <YAxis tick={{ fontSize: 11 }} />
       <Tooltip />
-      <Bar dataKey="bookings" fill="var(--gold)" radius={[6,6,0,0]} />
+      <Bar dataKey="bookings" name="Số lượt đặt" fill="var(--bb-brand)" radius={[6,6,0,0]} />
     </BarChart>
   </ResponsiveContainer>
 );

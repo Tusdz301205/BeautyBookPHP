@@ -1,0 +1,21 @@
+/* Hallmark · pre-emit critique: P4 H5 E4 S5 R5 V4 · existing rose tokens */
+.bb-wallet-amounts { display: flex; flex-wrap: wrap; gap: .5rem; }
+.bb-wallet-amounts button { white-space: nowrap; }
+.bb-wallet-topup-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 1rem; }
+.bb-wallet-topup-form > button { margin-top: 1.75rem; }
+.bb-wallet-transfer { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.bb-wallet-qr { width: 12rem; max-width: 100%; border: 1px solid var(--bb-border); border-radius: .75rem; background: var(--bb-surface); }
+.bb-wallet-receiver { display: grid; gap: .5rem; font-size: .875rem; }
+.bb-wallet-receiver dt { color: var(--bb-muted); font-size: .75rem; }
+.bb-wallet-receiver dd { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-width: 0; margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.bb-wallet-receiver code { min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.bb-wallet-receiver button { display: grid; place-items: center; flex: 0 0 2.75rem; min-height: 2.75rem; color: var(--bb-brand-strong); border-radius: .5rem; }
+.bb-wallet-receiver button:hover { background: var(--bb-surface-subtle); }
+.bb-wallet-receiver button:active { background: var(--bb-brand-soft); }
+.bb-wallet-receiver button:focus-visible { outline: 2px solid var(--bb-focus); outline-offset: 2px; }
+@media(max-width: 600px) { .bb-wallet-transfer, .bb-wallet-topup-form { grid-template-columns: minmax(0, 1fr); } .bb-wallet-qr { justify-self: center; } .bb-wallet-topup-form > button { margin-top: 0; width: 100%; } }
+
+.bb-wallet-policy summary { cursor: pointer; font-size: .8125rem; color: var(--bb-muted); padding-block: .75rem; }
+.bb-wallet-policy summary:hover { color: var(--bb-brand-strong); }
+.bb-wallet-policy summary:focus-visible { outline: 2px solid var(--bb-focus); outline-offset: 2px; border-radius: .25rem; }
+.bb-wallet-policy p { margin: 0; padding-bottom: .5rem; }

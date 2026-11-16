@@ -1,0 +1,26 @@
+.bb-combo-card { display: flex; min-width: 0; flex-direction: column; gap: 1rem; padding: 1rem; box-shadow: 0 2px 8px var(--gm-tone-2d162008); }
+.bb-combo-card__header { display: flex; align-items: flex-start; gap: .75rem; }
+.bb-combo-card__icon { display: grid; flex: none; width: 2.5rem; height: 2.5rem; margin-top: .125rem; place-items: center; border: 1px solid var(--bb-border); border-radius: .75rem; background: var(--bb-surface-subtle); color: var(--bb-brand-strong); }
+.bb-combo-card__identity { min-width: 0; flex: 1; }
+.bb-combo-card__identity h2 { margin: 0 0 .375rem; font-size: 1rem; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.bb-combo-card__identity > span { padding: .125rem .5rem; font-size: .6875rem; line-height: 1.25rem; }
+.bb-combo-card__description { display: -webkit-box; min-height: 2.5rem; margin: 0; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: var(--bb-muted); font-size: .8125rem; line-height: 1.25rem; overflow-wrap: anywhere; }
+.bb-combo-card__services { min-width: 0; }
+.bb-combo-card__services-label { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .625rem; color: var(--bb-muted); font-size: .6875rem; font-weight: 600; }
+.bb-combo-card__services ol { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.bb-combo-card__services li { display: flex; align-items: flex-start; gap: .5rem; font-size: .8125rem; line-height: 1.5rem; }
+.bb-combo-card__order { display: grid; flex: none; width: 1.5rem; height: 1.5rem; place-items: center; border-radius: .5rem; background: var(--bb-brand-soft); color: var(--bb-brand-strong); font-size: .6875rem; font-weight: 700; }
+.bb-combo-card__service-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.bb-combo-card__quantity { flex: none; color: var(--bb-muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+.bb-combo-card__more { margin: .5rem 0 0; color: var(--bb-muted); font-size: .75rem; }
+.bb-combo-card__metrics { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .75rem; margin: auto 0 0; padding: .75rem; border-radius: .625rem; background: var(--bb-surface-subtle); }
+.bb-combo-card__metrics dt { margin-bottom: .25rem; color: var(--bb-muted); font-size: .6875rem; }
+.bb-combo-card__metrics dd { margin: 0; font-variant-numeric: tabular-nums; }
+.bb-combo-card__metrics > div:last-child { text-align: right; }
+.bb-combo-card__price { color: var(--bb-brand-strong); font-size: 1.125rem; font-weight: 700; overflow-wrap: anywhere; }
+.bb-combo-card__duration { display: flex; align-items: center; justify-content: flex-end; gap: .375rem; font-size: .8125rem; font-weight: 600; }
+.bb-combo-card__duration svg { flex: none; color: var(--bb-muted); }
+.bb-combo-card__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.bb-combo-card__media:empty { display: none; }
+.bb-combo-card__media > section { padding-top: .75rem; }
+.bb-combo-card__media h3 { color: var(--bb-muted); font-size: .75rem; font-weight: 600; }

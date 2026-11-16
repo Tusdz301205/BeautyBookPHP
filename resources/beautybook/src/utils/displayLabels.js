@@ -1,4 +1,8 @@
 export const STATUS_LABELS = {
+  PENDING_NEW_OWNER_ACCEPTANCE: 'Chờ chủ mới chấp nhận', UNDER_REVIEW: 'Đang xem xét',
+  EXECUTION_FAILED: 'Thực hiện không thành công', VERIFIED: 'Đã xác minh', OPEN: 'Đang mở',
+  READY_TO_COMPLETE: 'Sẵn sàng hoàn tất', RESOLVED: 'Đã xử lý', ESCALATED: 'Đã chuyển cấp xử lý',
+  BOOKED: 'Đã đặt lịch', SKIPPED: 'Đã bỏ qua', CREATING: 'Đang tạo', USED: 'Đã sử dụng',
   ACTIVE: 'Đang hoạt động',
   INACTIVE: 'Tạm ngưng',
   DRAFT: 'Bản nháp',

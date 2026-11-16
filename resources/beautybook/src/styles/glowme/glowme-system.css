@@ -1,0 +1,255 @@
+/* Shared presentation for the existing routes. The editorial homepage keeps
+   its own scoped artwork/layout; forms, permissions and state stay in JSX. */
+
+html:root {
+  --gm-serif: 'Noto Serif', 'Times New Roman', serif;
+  --font-display: var(--gm-serif);
+  --color-paper: var(--gm-tone-f6f1eb);
+  --color-paper-2: var(--gm-tone-f1e9df);
+  --color-paper-3: var(--gm-tone-e9ddd0);
+  --color-surface: var(--gm-tone-fffdf9);
+  --color-surface-0: var(--gm-tone-f6f1eb);
+  --color-surface-1: var(--gm-tone-faf8f5);
+  --color-surface-2: var(--gm-tone-fffdf9);
+  --color-surface-3: var(--gm-tone-ffffff);
+  --color-surface-4: var(--gm-tone-ffffff);
+  --color-ink: var(--gm-tone-30291f);
+  --color-ink-2: var(--gm-tone-5f5145);
+  --color-muted: var(--gm-tone-776654);
+  --color-neutral: var(--gm-tone-776654);
+  --color-neutral-0: var(--gm-tone-fffdf9);
+  --color-neutral-25: var(--gm-tone-faf8f5);
+  --color-neutral-50: var(--gm-tone-f6f1eb);
+  --color-neutral-100: var(--gm-tone-eee6de);
+  --color-neutral-200: var(--gm-tone-e2d5c8);
+  --color-neutral-400: var(--gm-tone-8c7968);
+  --color-neutral-600: var(--gm-tone-66584c);
+  --color-neutral-800: var(--gm-tone-463a30);
+  --color-neutral-950: var(--gm-tone-30291f);
+  --color-accent: var(--gm-tone-30291f);
+  --color-accent-strong: var(--gm-tone-51433e);
+  --color-accent-soft: var(--gm-tone-f0e5dd);
+  --color-accent-ink: var(--gm-tone-ffffff);
+  --color-berry-50: var(--gm-tone-f8f1eb);
+  --color-berry-100: var(--gm-tone-f0e5dd);
+  --color-berry-200: var(--gm-tone-debcad);
+  --color-berry-400: var(--gm-tone-a97b67);
+  --color-berry-500: var(--gm-tone-805e46);
+  --color-berry-600: var(--gm-tone-72513f);
+  --color-berry-700: var(--gm-tone-614738);
+  --color-berry-900: var(--gm-tone-382d25);
+  --color-lavender-50: var(--gm-tone-faf8f5);
+  --color-lavender-100: var(--gm-tone-f1e9df);
+  --color-lavender-200: var(--gm-tone-e9ddd0);
+  --color-border-base: var(--gm-tone-e2d5c8);
+  --color-border-soft: var(--gm-tone-eee6de);
+  --color-border-strong: var(--gm-tone-b49b84);
+  --color-border-focus: var(--gm-tone-886b54);
+  --color-rule: var(--gm-tone-c7b5a8);
+  --color-rule-2: var(--gm-tone-e2d5c8);
+  --color-focus: var(--gm-tone-886b54);
+  --color-overlay: var(--gm-tone-30291f70);
+  --bb-radius-control: .75rem;
+  --bb-radius-card: 1rem;
+  --bb-radius-panel: 1.25rem;
+  --shadow-xs: 0 1px 3px var(--gm-tone-402d1c0a);
+  --shadow-sm: 0 4px 18px var(--gm-tone-402d1c0a);
+  --shadow-md: 0 12px 32px var(--gm-tone-402d1c12);
+  --shadow-lg: 0 20px 56px var(--gm-tone-402d1c1f);
+}
+
+/* A common type hierarchy; data, fields and action labels remain sans serif. */
+#root :is(.bb-page-header h1, .bb-auth-heading h1, .bb-booking-heading h1,
+  .bb-bookings-page__hero h1, .bb-booking-page > header h1, .bb-detail-hero h1, .bb-business-hero h1,
+  .bb-service-detail h1, .bb-branch-detail h1) {
+  font-family: var(--gm-serif);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: 1.2;
+  color: var(--bb-ink);
+}
+#root .bb-page-header h1 { font-size: clamp(1.75rem, 2.6vw, 2.6rem); }
+#root .bb-page-header { padding-bottom: 1.5rem; border-bottom: 1px solid var(--bb-border); }
+#root .bb-page-header__eyebrow { color: var(--gm-tone-805e46); font-size: .65rem; font-weight: 600; letter-spacing: .18em; }
+#root .bb-page-header p:not(.bb-page-header__eyebrow) { line-height: 1.8; }
+#root .bb-card { border-color: var(--bb-border); background: var(--bb-surface); box-shadow: var(--shadow-xs); }
+#root .bb-card h2 { letter-spacing: -.02em; }
+#root .bb-field { font-weight: 500; }
+#root .bb-control { border-color: var(--bb-border); background-color: var(--bb-surface); box-shadow: none; }
+#root .bb-control::placeholder { color: var(--gm-tone-8b7c70); }
+#root .bb-control[aria-invalid="true"] { border-color: var(--bb-danger); }
+#root .bb-control:focus-visible { outline-color: var(--bb-focus); border-color: var(--bb-focus); }
+#root .bb-button { box-shadow: none; font-weight: 500; border-radius: 999px; }
+#root .bb-button:disabled { cursor: not-allowed; }
+#root .bb-segmented { padding: .3rem; border-radius: 999px; box-shadow: none; background: var(--bb-surface); }
+#root .bb-segmented > :is(button, a) { border-radius: 999px; font-weight: 500; }
+#root .bb-segmented > :is(button, a):is([aria-pressed="true"], [aria-selected="true"], [aria-current="page"]) {
+  color: var(--bb-ink); background: var(--bb-brand-soft); box-shadow: none;
+}
+
+/* Public discovery and detail pages share the homepage's quiet navigation. */
+#root .bb-public-shell:not(.bb-public-shell--luxury) {
+  --color-paper: var(--gm-tone-f6f1eb); --color-paper-2: var(--gm-tone-f1e9df); --color-paper-3: var(--gm-tone-e9ddd0);
+  --color-surface: var(--gm-tone-fffdf9); --color-ink: var(--gm-tone-30291f); --color-ink-2: var(--gm-tone-5f5145);
+  --color-muted: var(--gm-tone-776654); --color-rule: var(--gm-tone-c7b5a8); --color-rule-2: var(--gm-tone-e2d5c8);
+  --color-lavender: var(--gm-tone-f1e9df); --color-blush: var(--gm-tone-f0e5dd); --color-sky: var(--gm-tone-eee6da);
+  --font-display: var(--gm-serif);
+  background: var(--bb-canvas);
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-public-header {
+  position: sticky; top: 0; width: 100%; max-width: none; margin: 0;
+  border: 0; border-bottom: 1px solid var(--bb-border); border-radius: 0;
+  background: var(--gm-tone-faf8f5f5); border-color: var(--bb-border); box-shadow: none;
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-public-header__inner {
+  max-width: 1320px; width: 100%; min-height: 88px; padding: .5rem 2.5rem; margin-inline: auto;
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-home-boundary { width: min(calc(100% - 3rem), 1240px); margin-inline: auto; }
+#root .bb-explore-hero { background: var(--gm-tone-eee6da); padding-block: 3.5rem 6rem; }
+#root .bb-explore-hero h1 { font-family: var(--gm-serif); font-weight: 400; font-size: clamp(2.3rem, 4.8vw, 4.6rem); line-height: 1.15; letter-spacing: -.045em; }
+#root .bb-home--explore .bb-home-kicker { font-size: .65rem; font-weight: 500; letter-spacing: .18em; }
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-public-nav > a { font-size: .75rem; font-weight: 500; }
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-public-cta { background: var(--bb-brand); color: var(--gm-tone-fff); box-shadow: none; font-weight: 500; }
+#root .bb-public-shell:not(.bb-public-shell--luxury) :is(.bb-home-search, .bb-detail-section, .bb-detail-directory__service) {
+  background: var(--bb-surface); border-color: var(--bb-border); box-shadow: none;
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) :is(.bb-home-search__submit, .bb-home-button--primary) {
+  background: var(--bb-brand); color: var(--gm-tone-fff); border-color: var(--bb-brand); border-radius: 999px; box-shadow: none;
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) :is(.bb-home-section-heading h2, .bb-detail-section__heading h2) {
+  font-family: var(--gm-serif); font-weight: 400; letter-spacing: -.035em;
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) :is(.bb-home-salon-card, .bb-detail-staff-card) {
+  border-color: var(--bb-border); background: var(--bb-surface); box-shadow: var(--shadow-xs);
+}
+#root .bb-public-shell:not(.bb-public-shell--luxury) .bb-detail-section-nav { background: var(--gm-tone-faf8f5f5); border-color: var(--bb-border); }
+#root .bb-detail-document :is(.bb-detail-hero, .bb-detail-booking-dock) { border-color: var(--bb-border); background: var(--bb-surface); box-shadow: var(--shadow-xs); }
+#root .bb-public-main--contained { padding-top: clamp(1.25rem, 3vw, 2.5rem); }
+#root .bb-detail-document.bb-detail-document--refined { margin-top: 0; }
+#root .bb-detail-document :is(.bb-detail-back, .bb-detail-hero__meta, .bb-detail-hero__description,
+  .bb-detail-facts small, .bb-detail-booking-dock small, .bb-detail-section__heading div > p:last-child:not(.bb-home-kicker)) { color: var(--bb-muted); }
+#root .bb-detail-document :is(.bb-detail-facts strong, .bb-detail-booking-dock > p) { color: var(--gm-tone-614738); }
+#root .bb-detail-document .bb-detail-facts > div { background: var(--gm-tone-f1e9df); }
+#root .bb-detail-document .bb-home-kicker { color: var(--gm-tone-805e46); }
+#root .bb-detail-document :is(.bb-detail-empty, .bb-detail-staff-card__avatar) { background: var(--gm-tone-f1e9df); border-color: var(--bb-border); }
+#root .bb-business-hero { background: var(--gm-tone-f1e9df); border-color: var(--bb-border); }
+#root .bb-business-hero h1 em { color: var(--gm-tone-8a6b50); }
+#root .bb-business-kicker { color: var(--gm-tone-805e46); }
+#root .bb-business-button--primary { background: var(--bb-brand); border-color: var(--bb-brand); color: white; border-radius: 999px; box-shadow: none; }
+#root .bb-business-section__heading h2 { font-family: var(--gm-serif); font-weight: 400; }
+
+/* Customer navigation and account menu. Preserve the existing responsive shell. */
+#root .bb-customer-shell .bb-customer-header.bb-customer-header--clear {
+  background: var(--gm-tone-faf8f5f5) !important; border-color: var(--bb-border); box-shadow: none;
+}
+#root .bb-customer-header .bb-customer-header__nav > a { color: var(--bb-muted); font-weight: 500; }
+#root .bb-customer-header .bb-customer-header__nav > a:is(:hover, [aria-current="page"]) {
+  color: var(--bb-ink); border-color: var(--bb-border); background: var(--bb-brand-soft);
+}
+#root .bb-customer-header :is(.bb-customer-header__notifications, .bb-customer-account-trigger) {
+  background: var(--bb-surface); border-color: var(--bb-border); border-radius: 999px; box-shadow: none;
+}
+#root .bb-customer-account-trigger__avatar,
+#root .bb-customer-account .bb-customer-account__avatar { background: var(--gm-tone-805e46); color: white; }
+#root .bb-customer-account { background: var(--bb-surface); border-color: var(--bb-border); box-shadow: var(--shadow-lg); }
+#root .bb-customer-account__item--active { background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+#root .bb-customer-account__group > h2 { color: var(--bb-muted); letter-spacing: .1em; }
+
+/* Booking selections and totals: keep dimensions stable across loading states. */
+#root :is(.bb-booking-mode, .bb-booking-progress, .bb-booking-panel, .bb-booking-summary,
+  .bb-appointment-card, .bb-appointment-summary) {
+  border-color: var(--bb-border); background: var(--bb-surface); box-shadow: var(--shadow-xs);
+}
+#root .bb-booking-selection { border-color: var(--bb-border); background: var(--bb-surface); }
+#root .bb-booking-selection[aria-pressed="true"] { border-color: var(--gm-tone-886b54); background: var(--gm-tone-f1e9df); }
+#root .bb-booking-selection__icon { color: var(--gm-tone-805e46); background: var(--gm-tone-f1e9df); }
+#root :is(.bb-booking-summary, .bb-appointment-summary) { border-top: 3px solid var(--gm-tone-b79a7e); }
+#root :is(.bb-booking-summary, .bb-appointment-summary) strong { font-variant-numeric: tabular-nums; }
+#root .bb-booking-mode__choice.is-selected { background: var(--bb-brand-soft); border-color: var(--gm-tone-886b54); }
+#root .bb-bookings-page > .bb-bookings-page__hero { background: var(--gm-tone-f1e9df); border-color: var(--bb-border); }
+#root .bb-bookings-page__eyebrow { color: var(--gm-tone-805e46); }
+#root .bb-bookings-page__hero-icon { transform: none; color: var(--gm-tone-805e46); border-color: var(--bb-border); background: var(--gm-tone-faf8f5); box-shadow: none; }
+#root .bb-bookings-page__toolbar > .bb-appointments-tabs button[aria-pressed="true"] {
+  background: var(--gm-tone-e9ddd0); border-color: var(--bb-border); color: var(--gm-tone-463a30);
+}
+#root :is(.bb-appointment-card__venue-icon, .bb-appointment-card__service-icon, .bb-recurring-plans__icon) { background: var(--gm-tone-f1e9df); color: var(--gm-tone-805e46); }
+#root .bb-offer-ticket { background: var(--bb-surface); border-color: var(--bb-border); box-shadow: var(--shadow-xs); }
+#root .bb-offer-ticket__amount { font-family: var(--gm-serif); color: var(--gm-tone-614738); }
+#root .bb-offer-ticket__icon { background: var(--gm-tone-f1e9df); color: var(--gm-tone-805e46); }
+#root .bb-customer-account-layer--refined .bb-customer-account__header { background: var(--gm-tone-f1e9df); border-color: var(--bb-border); }
+
+/* Salon and admin retain their operational layouts and full navigation. */
+#root .bb-app-shell .bb-app-sidebar.bb-app-sidebar--light {
+  background: var(--gm-tone-faf8f5) !important; border-color: var(--bb-border); box-shadow: none;
+}
+#root .bb-app-sidebar__brand { background: var(--gm-tone-faf8f5); }
+#root .bb-app-sidebar--light .bb-app-nav-link { border-radius: .75rem; font-weight: 400; }
+#root .bb-app-sidebar--light .bb-app-nav-link:hover { background: var(--gm-tone-f1e9df); color: var(--bb-ink); }
+#root .bb-app-sidebar--light .bb-app-nav-link--active { background: var(--gm-tone-e9ddd0); color: var(--gm-tone-463a30); font-weight: 600; }
+#root .bb-app-sidebar--light .bb-app-nav-link--active::before { background: var(--gm-tone-a18367); }
+#root .bb-app-sidebar--light .bb-app-nav-link--active > svg:first-child { color: var(--gm-tone-805e46); }
+#root .bb-app-shell > div > header { background: var(--gm-tone-faf8f5f5); border-color: var(--bb-border); box-shadow: none; }
+#root .bb-app-shell main { background: var(--bb-canvas); }
+#root .bb-app-shell :is(.bb-approval-toolbar, .bb-combo-card__metrics) {
+  background: var(--gm-tone-faf8f5); border-color: var(--bb-border); box-shadow: none;
+}
+#root .bb-app-shell :is(.bb-service-card, .bb-combo-card, .bb-staff-card, .bb-promotion-card) {
+  background: var(--bb-surface); border-color: var(--bb-border); box-shadow: var(--shadow-xs);
+}
+#root .bb-app-shell :is(.bb-service-card__icon, .bb-combo-card__icon, .bb-staff-card__avatar, .bb-promotion-card__icon) {
+  background: var(--gm-tone-f1e9df); color: var(--gm-tone-805e46); border-color: var(--bb-border);
+}
+#root .bb-app-shell :is(.bb-combo-card__price strong, .bb-service-card__price strong) { color: var(--gm-tone-614738); }
+#root .bb-app-shell table { font-variant-numeric: tabular-nums; }
+#root .bb-app-shell thead { background: var(--gm-tone-f1e9df); color: var(--bb-ink-soft); }
+
+/* Authentication uses the same warm paper and restrained editorial typography. */
+#root .bb-auth-shell:is(.bb-auth-shell--refined, .bb-auth-shell--renewed, .bb-auth-shell--signup) {
+  background: var(--gm-tone-f6f1eb);
+}
+#root .bb-auth-shell .bb-auth-main__inner { background: var(--bb-surface); border-color: var(--bb-border); box-shadow: var(--shadow-sm); }
+#root .bb-auth-shell .bb-auth-heading h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+#root .bb-auth-shell :is(.bb-auth-heading > p, .bb-auth-back, .bb-auth-form__between a, .bb-auth-alternate a, .bb-auth-guest a) { color: var(--gm-tone-72513f); }
+#root .bb-auth-shell :is(.bb-auth-input, .bb-auth-google) { border-color: var(--bb-border); border-radius: .75rem; background: var(--bb-surface); box-shadow: none; }
+#root .bb-auth-shell .bb-auth-input:focus { border-color: var(--bb-focus); box-shadow: 0 0 0 3px var(--gm-tone-e9ddd080); }
+#root .bb-auth-shell .has-error .bb-auth-input { border-color: var(--bb-danger); }
+#root .bb-auth-shell .bb-auth-submit { background: var(--gm-tone-30291f); color: var(--gm-tone-fff); border-radius: 999px; box-shadow: none; font-weight: 500; }
+#root .bb-auth-shell .bb-auth-submit:hover:not(:disabled) { background: var(--gm-tone-51433e); }
+#root .bb-signup-story h2 { font-family: var(--gm-serif); font-weight: 400; color: var(--gm-tone-30291f); }
+#root .bb-signup-story h2 em { color: var(--gm-tone-8a6b50); font-style: italic; font-weight: 400; }
+#root .bb-signup-story__tag { color: var(--gm-tone-805e46); }
+#root .bb-signup-story > p { color: var(--bb-muted); }
+#root .bb-signup-nav { border-color: var(--bb-border); }
+#root .bb-signup-nav > a:last-child { color: var(--gm-tone-72513f); }
+#root .bb-signup-story__note { border-color: var(--bb-border); box-shadow: var(--shadow-sm); }
+#root .bb-signup-story__note > span { color: var(--gm-tone-805e46); background: var(--gm-tone-f1e9df); }
+#root .bb-signup-story__note > svg,
+#root .bb-signup-story__benefits svg { color: var(--gm-tone-a18367); }
+#root .bb-signup-form-icon { color: var(--gm-tone-805e46) !important; background: var(--gm-tone-f1e9df); }
+#root .bb-auth-shell .bb-auth-editorial { background: var(--gm-tone-463a30); }
+#root .bb-auth-shell .bb-auth-editorial::after {
+  background: linear-gradient(180deg, var(--gm-tone-30291f40), var(--gm-tone-30291f10) 30%, var(--gm-tone-30291f80) 65%, var(--gm-tone-30291fe8));
+}
+
+/* Portalled controls inherit root tokens too, including direct-entry routes. */
+body > [role="presentation"] > [role="dialog"] { color: var(--bb-ink); }
+body > [role="presentation"] > [role="dialog"] > header {
+  background: var(--gm-tone-faf8f5); border-color: var(--bb-border);
+}
+body > [role="presentation"] > [role="dialog"] > header h2 {
+  font-family: var(--gm-serif); font-weight: 400; letter-spacing: -.025em;
+}
+body > [role="presentation"] > [role="dialog"] > footer { background: var(--gm-tone-faf8f5); border-color: var(--bb-border); }
+body > [role="presentation"] .bb-button { border-radius: 999px; box-shadow: none; font-weight: 500; }
+body .bb-select-portal .bb-select__panel { background: var(--bb-surface); border-color: var(--bb-border); box-shadow: var(--shadow-md); }
+
+@media (max-width: 639px) {
+  #root .bb-public-shell:not(.bb-public-shell--luxury) .bb-public-header__inner { min-height: 72px; padding-inline: 1rem; }
+  #root .bb-public-shell:not(.bb-public-shell--luxury) .bb-home-boundary { width: calc(100% - 2rem); }
+  #root .bb-explore-hero { padding-block: 2.5rem 4rem; }
+  #root .bb-page-header { padding-bottom: 1.125rem; }
+  #root .bb-page-header h1 { font-size: 1.75rem; }
+  #root .bb-page-header__actions { gap: .5rem; }
+  #root .bb-auth-shell .bb-auth-heading h1 { font-size: 1.75rem; }
+  #root .bb-segmented { border-radius: 1rem; }
+}

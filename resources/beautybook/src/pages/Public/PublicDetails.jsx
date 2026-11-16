@@ -152,7 +152,7 @@ function BackLink() {
   return <Link to={destination} className="bb-detail-back"><ArrowLeft size={16} />Quay lại khám phá</Link>;
 }
 
-function DetailHero({ type, eyebrow, title, description, media, mediaAlt, fallbackMedia, fallbackAlt, facts }) {
+function DetailHero({ type, eyebrow, title, description, media, mediaAlt, fallbackMedia, fallbackAlt, facts, children }) {
   const showMedia = Boolean(media || fallbackMedia);
   return (
     <header className={`bb-detail-hero${showMedia ? '' : ' bb-detail-hero--without-media'}`}>
@@ -162,6 +162,7 @@ function DetailHero({ type, eyebrow, title, description, media, mediaAlt, fallba
         <h1>{title}</h1>
         {description ? <p className="bb-detail-hero__description">{description}</p> : null}
         {facts?.length ? <dl className="bb-detail-facts">{facts.filter((fact) => fact.value).map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : null}
+        {children ? <div className="bb-detail-hero__actions">{children}</div> : null}
       </div>
       {showMedia ? (
         <HomeMedia
@@ -183,9 +184,21 @@ function BookingDock({ to, label, title, meta }) {
   return <aside className="bb-detail-booking-dock" aria-label="Đặt lịch"><div><CalendarCheck size={20} aria-hidden="true" /><span><small>Đặt lịch trực tuyến</small><strong>{title}</strong></span></div>{meta ? <p>{meta}</p> : null}<Link className="bb-home-button bb-home-button--primary" to={to}>{label}<ArrowRight size={16} /></Link><small>Thời gian trống được kiểm tra sau khi bạn chọn đủ dịch vụ và chuyên viên.</small></aside>;
 }
 
-function Section({ index, eyebrow, title, intro, children, className = '' }) {
+function DetailAnchor({ id, children, ...props }) {
+  const location = useLocation();
+  return <Link {...props} to={{ pathname: location.pathname, search: location.search, hash: `#${id}` }} state={location.state}>{children}</Link>;
+}
+
+// Preserve the current query and discovery return state when changing section tabs.
+function DetailSectionNav({ label, sections }) {
+  return <nav className="bb-detail-section-nav" aria-label={label}>
+    {sections.filter(Boolean).map(([id, title]) => <DetailAnchor key={id} id={id}>{title}</DetailAnchor>)}
+  </nav>;
+}
+
+function Section({ id, index, eyebrow, title, intro, children, className = '' }) {
   return (
-    <section className={`bb-detail-section${className ? ` ${className}` : ''}`}>
+    <section id={id} tabIndex={-1} className={`bb-detail-section${className ? ` ${className}` : ''}`}>
       <div className="bb-detail-section__heading">
         <span aria-hidden="true">{String(index).padStart(2, '0')}</span>
         <div><p className="bb-home-kicker">{eyebrow}</p><h2>{title}</h2>{intro ? <p>{intro}</p> : null}</div>
@@ -289,14 +302,19 @@ export function PublicBranchDetail({ preview = false }) {
       structuredData: branch && !preview ? branchStructuredData(branch, branchSeoImage) : [],
     },
   );
-  return <PublicShell preview={preview}><DetailState loading={loading} error={error} retry={load}>{branch ? <article className="bb-detail-document">
-    <DetailHero type="cơ sở" eyebrow="Cơ sở làm đẹp" title={branch.name} description={branch.business?.description || 'Thông tin giới thiệu đang được cơ sở cập nhật.'} media={firstMedia(branch.images)} mediaAlt={`Không gian tại ${branch.name}`} fallbackMedia={getBranchFallbackMedia(branch)} fallbackAlt={`Ảnh minh họa nhóm dịch vụ tại ${branch.name}`} facts={[{ label: 'Thương hiệu', value: branch.business?.name }, { label: 'Địa chỉ', value: address }]} bookingTo={`/book?branchId=${branch.id}`} bookingLabel="Đặt lịch tại cơ sở" />
+  return <PublicShell preview={preview}><DetailState loading={loading} error={error} retry={load}>{branch ? <article className="bb-detail-document bb-detail-document--refined bb-service-detail-page bb-branch-detail-page">
+    <DetailHero type="cơ sở" eyebrow="Cơ sở làm đẹp" title={branch.name} description={branch.business?.description || 'Thông tin giới thiệu đang được cơ sở cập nhật.'} media={firstMedia(branch.images)} mediaAlt={`Không gian tại ${branch.name}`} fallbackMedia={getBranchFallbackMedia(branch)} fallbackAlt={`Ảnh minh họa nhóm dịch vụ tại ${branch.name}`} facts={[{ label: 'Thương hiệu', value: branch.business?.name }, { label: 'Địa chỉ', value: address }]} ><DetailAnchor className="bb-home-button bb-home-button--primary" id="detail-section-2">Chọn dịch vụ để đặt lịch</DetailAnchor><DetailAnchor className="bb-detail-action" id="detail-section-1">Giờ hoạt động</DetailAnchor></DetailHero>
     <BookingDock to={`/book?branchId=${branch.id}`} label="Chọn dịch vụ" title={branch.name} meta={address} />
-    <Section index={1} eyebrow="Thông tin ghé thăm" title="Một địa chỉ, mọi thông tin cần thiết" intro="Giờ hoạt động được lấy trực tiếp từ hồ sơ cơ sở."><div className="bb-detail-address"><MapPin size={20} /><div><strong>{address || 'Địa chỉ đang cập nhật'}</strong><span>{branch.business?.name}</span></div></div><div className="bb-detail-hours">{branch.workingHours?.length ? branch.workingHours.map((row) => <div key={row.id || row.dayOfWeek}><strong>{days[row.dayOfWeek]}</strong><span>{row.isClosed ? 'Đóng cửa' : `${clock(row.openTime)} – ${clock(row.closeTime)}`}</span></div>) : <div className="bb-detail-empty"><Clock3 size={21} /><p>Giờ mở cửa đang được cập nhật.</p></div>}</div></Section>
-    <Section index={2} eyebrow="Danh mục" title={preview ? 'Dịch vụ trong bản xem trước' : 'Dịch vụ đang nhận lịch'}><ServiceDirectory services={branch.services} savedIds={savedIds} onToggleSaved={toggleSaved} preview={preview} /></Section>
-    <Section index={3} eyebrow="Đội ngũ" title="Chọn người phù hợp" className="bb-detail-section--staff"><StaffDirectory staff={branch.staff} /></Section>
-    <Section index={4} eyebrow="Không gian" title="Hình ảnh do cơ sở cung cấp"><Gallery images={branch.images} label={`Hình ảnh ${branch.name}`} /></Section>
-    <Section index={5} eyebrow="Trải nghiệm thật" title="Đánh giá đã được duyệt"><ReviewList data={reviews} /></Section>
+    <DetailSectionNav label="Nội dung cơ sở" sections={[
+      ['detail-section-1', 'Tổng quan'], ['detail-section-2', 'Dịch vụ'],
+      ['detail-section-3', 'Chuyên viên'], ['detail-section-4', 'Hình ảnh'],
+      ['detail-section-5', 'Đánh giá'],
+    ]} />
+    <Section id="detail-section-1" index={1} eyebrow="Thông tin ghé thăm" title="Một địa chỉ, mọi thông tin cần thiết" intro="Giờ hoạt động được lấy trực tiếp từ hồ sơ cơ sở."><div className="bb-detail-address"><MapPin size={20} /><div><strong>{address || 'Địa chỉ đang cập nhật'}</strong><span>{branch.business?.name}</span></div></div><div className="bb-detail-hours">{branch.workingHours?.length ? branch.workingHours.map((row) => <div key={row.id || row.dayOfWeek}><strong>{days[row.dayOfWeek]}</strong><span>{row.isClosed ? 'Đóng cửa' : `${clock(row.openTime)} – ${clock(row.closeTime)}`}</span></div>) : <div className="bb-detail-empty"><Clock3 size={21} /><p>Giờ mở cửa đang được cập nhật.</p></div>}</div></Section>
+    <Section id="detail-section-2" index={2} eyebrow="Danh mục" title={preview ? 'Dịch vụ trong bản xem trước' : 'Dịch vụ đang nhận lịch'}><ServiceDirectory services={branch.services} savedIds={savedIds} onToggleSaved={toggleSaved} preview={preview} /></Section>
+    <Section id="detail-section-3" index={3} eyebrow="Đội ngũ" title="Chọn người phù hợp" className="bb-detail-section--staff"><StaffDirectory staff={branch.staff} /></Section>
+    <Section id="detail-section-4" index={4} eyebrow="Không gian" title="Hình ảnh do cơ sở cung cấp"><Gallery images={branch.images} label={`Hình ảnh ${branch.name}`} /></Section>
+    <Section id="detail-section-5" index={5} eyebrow="Trải nghiệm thật" title="Đánh giá đã được duyệt"><ReviewList data={reviews} /></Section>
   </article> : null}</DetailState></PublicShell>;
 }
 
@@ -337,18 +355,25 @@ export function PublicServiceDetail() {
     service ? `Hình ảnh dịch vụ ${service.name}` : '',
     { structuredData: service ? serviceStructuredData(service, serviceSeoImage, reviews) : [] },
   );
-  return <PublicShell><DetailState loading={loading} error={error} retry={load}>{service ? <article className="bb-detail-document">
-    <DetailHero type="dịch vụ" eyebrow={service.category?.name || 'Dịch vụ làm đẹp'} title={service.name} description={service.description || 'Thông tin mô tả đang được cơ sở cập nhật.'} media={firstMedia(service.images)} mediaAlt={`Dịch vụ ${service.name}`} fallbackMedia={getServiceFallbackMedia(service)} fallbackAlt={`Ảnh minh họa cho dịch vụ ${service.name}`} facts={[{ label: 'Giá', value: service.priceDisplay || money(service.price) }, { label: 'Thời lượng', value: service.durationMinutes ? `${service.durationMinutes} phút` : null }, { label: 'Địa điểm', value: [service.branch?.business?.name, service.branch?.name].filter(Boolean).join(' · ') }]} />
-    {onlineBookable ? <BookingDock to={`/book?branchId=${service.branchId}&serviceId=${service.id}`} label="Đặt dịch vụ này" title={service.name} meta={`${service.priceDisplay || money(service.price)}${service.durationMinutes ? ` · ${service.durationMinutes} phút` : ''}`} /> : <aside className="bb-detail-booking-dock"><div><CalendarCheck size={20} /><span><small>Cần tư vấn trước</small><strong>{service.name}</strong></span></div><p>Cơ sở sẽ xác nhận điều kiện, thời lượng và báo giá trước khi tạo lịch.</p></aside>}
-    <div className="flex flex-wrap gap-3">
+  return <PublicShell><DetailState loading={loading} error={error} retry={load}>{service ? <article className="bb-detail-document bb-detail-document--refined bb-service-detail-page">
+    <DetailHero type="dịch vụ" eyebrow={service.category?.name || 'Dịch vụ làm đẹp'} title={service.name} description={service.description || 'Thông tin mô tả đang được cơ sở cập nhật.'} media={firstMedia(service.images)} mediaAlt={`Dịch vụ ${service.name}`} fallbackMedia={getServiceFallbackMedia(service)} fallbackAlt={`Ảnh minh họa cho dịch vụ ${service.name}`} facts={[{ label: 'Giá', value: service.priceDisplay || money(service.price) }, { label: 'Thời lượng', value: service.durationMinutes ? `${service.durationMinutes} phút` : null }, { label: 'Địa điểm', value: [service.branch?.business?.name, service.branch?.name].filter(Boolean).join(' · ') }]}>
+      {onlineBookable ? <Link className="bb-home-button bb-home-button--primary" to={`/book?branchId=${service.branchId}&serviceId=${service.id}`}><CalendarCheck size={17} aria-hidden="true" />Đặt dịch vụ này</Link> : null}
       {authenticated ? <button type="button" className="bb-home-button bb-home-button--secondary" disabled={saving} onClick={async () => { if (!customer) { toast.error(CUSTOMER_ACCOUNT_REQUIRED); return; } const previous = saved; setSaved(!previous); setSaving(true); try { if (previous) await savedServicesApi.remove(service.id); else await savedServicesApi.save(service.id); toast.success(previous ? 'Đã bỏ lưu dịch vụ' : 'Đã lưu dịch vụ'); } catch (requestError) { setSaved(previous); toast.error(requestError.message); } finally { setSaving(false); } }}><Heart size={16} fill={saved ? 'currentColor' : 'none'} />{saving ? 'Đang cập nhật…' : saved ? 'Đã lưu' : 'Lưu dịch vụ'}</button> : <Link className="bb-home-button bb-home-button--secondary" to="/login" state={{ from: `/explore/services/${service.id}` }}><Heart size={16} />Đăng nhập để lưu</Link>}
-    </div>
-    {service.variants?.length ? <Section index={1} eyebrow="Lựa chọn" title="Giá và thời lượng theo nhu cầu"><div className="bb-detail-directory">{service.variants.map((variant) => <article key={variant.id} className="rounded-2xl border border-[var(--bb-border)] p-4"><span className="text-xs font-bold uppercase tracking-wider text-[var(--bb-brand-strong)]">{variant.priceType === 'QUOTE' ? 'Cần báo giá' : 'Có thể đặt lịch'}</span><h3 className="mt-2 font-bold">{variant.name}</h3><p className="mt-1 text-sm text-[var(--bb-muted)]">{variant.priceDisplay} · {variant.durationMinutes || 0}{variant.maxDurationMinutes ? `–${variant.maxDurationMinutes}` : ''} phút</p>{variant.eligibilityRules && <p className="mt-2 text-xs text-amber-700">Cơ sở sẽ xác nhận điều kiện trước khi thực hiện.</p>}</article>)}</div></Section> : null}
-    <Section index={service.variants?.length ? 2 : 1} eyebrow="Thực hiện bởi" title="Chuyên viên phù hợp" className="bb-detail-section--staff"><StaffDirectory staff={team} /></Section>
-    <Section index={service.variants?.length ? 3 : 2} eyebrow="Hình ảnh" title="Hình ảnh dịch vụ"><Gallery images={service.images} label={`Hình ảnh ${service.name}`} fallbackMedia={getServiceFallbackMedia(service)} fallbackAlt={`Ảnh minh họa cho dịch vụ ${service.name}`} /></Section>
-    {service.promotionLinks?.length ? <Section index={3} eyebrow="Ưu đãi" title="Khuyến mãi đang áp dụng"><div className="bb-detail-offers">{service.promotionLinks.map(({ promotion }) => <article key={promotion.id}><span>Ưu đãi hiện hành</span><h3>{promotion.name}</h3><p>{promotion.description || 'Chi tiết ưu đãi hiển thị khi xác nhận lịch.'}</p></article>)}</div></Section> : null}
-    <Section index={service.promotionLinks?.length ? 4 : 3} eyebrow="Trải nghiệm thật" title="Đánh giá dịch vụ"><ReviewList data={reviews} /></Section>
-    <Section index={service.promotionLinks?.length ? 5 : 4} eyebrow="Kết quả làm đẹp" title="Ảnh kết quả dịch vụ"><PublicResultGallery key={service.id} serviceId={service.id} name={service.name} /></Section>
+      {service.branchId ? <Link className="bb-detail-action" to={`/explore/branches/${service.branchId}`}><MapPin size={16} aria-hidden="true" />Xem cơ sở</Link> : null}
+    </DetailHero>
+    {onlineBookable ? <BookingDock to={`/book?branchId=${service.branchId}&serviceId=${service.id}`} label="Đặt dịch vụ này" title={service.name} meta={`${service.priceDisplay || money(service.price)}${service.durationMinutes ? ` · ${service.durationMinutes} phút` : ''}`} /> : <aside className="bb-detail-booking-dock"><div><CalendarCheck size={20} /><span><small>Cần tư vấn trước</small><strong>{service.name}</strong></span></div><p>Cơ sở sẽ xác nhận điều kiện, thời lượng và báo giá trước khi tạo lịch.</p></aside>}
+    <DetailSectionNav label="Nội dung dịch vụ" sections={[
+      service.variants?.length ? ['detail-section-1', 'Dịch vụ & giá'] : null,
+      service.promotionLinks?.length ? ['detail-section-2', 'Ưu đãi'] : null,
+      ['detail-section-3', 'Chuyên viên'], ['detail-section-4', 'Hình ảnh'],
+      ['detail-section-5', 'Kết quả'], ['detail-section-6', 'Đánh giá'],
+    ]} />
+    {service.variants?.length ? <Section id="detail-section-1" index={1} eyebrow="Lựa chọn" title="Giá và thời lượng theo nhu cầu"><div className="bb-detail-directory">{service.variants.map((variant) => <article key={variant.id} className="rounded-2xl border border-[var(--bb-border)] p-4"><span className="text-xs font-bold uppercase tracking-wider text-[var(--bb-brand-strong)]">{variant.priceType === 'QUOTE' ? 'Cần báo giá' : 'Có thể đặt lịch'}</span><h3 className="mt-2 font-bold">{variant.name}</h3><p className="mt-1 text-sm text-[var(--bb-muted)]">{variant.priceDisplay} · {variant.durationMinutes || 0}{variant.maxDurationMinutes ? `–${variant.maxDurationMinutes}` : ''} phút</p>{variant.eligibilityRules && <p className="mt-2 text-xs text-amber-700">Cơ sở sẽ xác nhận điều kiện trước khi thực hiện.</p>}</article>)}</div></Section> : null}
+    {service.promotionLinks?.length ? <Section id="detail-section-2" index={service.variants?.length ? 2 : 1} eyebrow="Ưu đãi" title="Khuyến mãi đang áp dụng"><div className="bb-detail-offers">{service.promotionLinks.map(({ promotion }) => <article key={promotion.id}><span>Ưu đãi hiện hành</span><h3>{promotion.name}</h3><p>{promotion.description || 'Chi tiết ưu đãi hiển thị khi xác nhận lịch.'}</p></article>)}</div></Section> : null}
+    <Section id="detail-section-3" index={1 + (service.variants?.length ? 1 : 0) + (service.promotionLinks?.length ? 1 : 0)} eyebrow="Thực hiện bởi" title="Chuyên viên phù hợp" className="bb-detail-section--staff"><StaffDirectory staff={team} /></Section>
+    <Section id="detail-section-4" index={2 + (service.variants?.length ? 1 : 0) + (service.promotionLinks?.length ? 1 : 0)} eyebrow="Hình ảnh" title="Hình ảnh dịch vụ"><Gallery images={service.images} label={`Hình ảnh ${service.name}`} fallbackMedia={getServiceFallbackMedia(service)} fallbackAlt={`Ảnh minh họa cho dịch vụ ${service.name}`} /></Section>
+    <Section id="detail-section-5" index={3 + (service.variants?.length ? 1 : 0) + (service.promotionLinks?.length ? 1 : 0)} eyebrow="Kết quả làm đẹp" title="Ảnh kết quả dịch vụ"><PublicResultGallery key={service.id} serviceId={service.id} name={service.name} /></Section>
+    <Section id="detail-section-6" index={4 + (service.variants?.length ? 1 : 0) + (service.promotionLinks?.length ? 1 : 0)} eyebrow="Trải nghiệm thật" title="Đánh giá dịch vụ"><ReviewList data={reviews} /></Section>
   </article> : null}</DetailState></PublicShell>;
 }
 
@@ -379,11 +404,14 @@ export function PublicStaffDetail() {
     staffSeoImage && staff ? `Chuyên viên ${staff.fullName}` : (staffSocialImage?.alt || 'Hình ảnh BeautyBook'),
     { structuredData: staff ? staffStructuredData(staff, staffSeoImage, services) : [] },
   );
-  return <PublicShell><DetailState loading={loading} error={error} retry={load}>{staff ? <article className="bb-detail-document">
+  return <PublicShell><DetailState loading={loading} error={error} retry={load}>{staff ? <article className="bb-detail-document bb-detail-document--refined">
     <DetailHero type="chuyên viên" eyebrow={staff.professionalTitle || 'Chuyên viên làm đẹp'} title={staff.fullName} description={staff.bio || 'Thông tin giới thiệu đang được chuyên viên cập nhật.'} media={staff.avatarUrl || firstMedia(staff.images)} mediaAlt={`Chuyên viên ${staff.fullName}`} facts={[{ label: 'Cơ sở', value: [staff.branch?.business?.name, staff.branch?.name].filter(Boolean).join(' · ') }, { label: 'Chuyên môn', value: services.map((service) => service.name).join(', ') }, ...(staff.ratingCount ? [{ label: 'Đánh giá', value: `${staff.rating}/5 · ${staff.ratingCount} lượt` }] : [])]} bookingTo={`/book?branchId=${staff.branch?.id}&staffId=${staff.id}`} bookingLabel="Đặt lịch với chuyên viên" />
     <BookingDock to={`/book?branchId=${staff.branch?.id}&staffId=${staff.id}`} label="Đặt lịch với chuyên viên" title={staff.fullName} meta={staff.professionalTitle || 'Chuyên viên làm đẹp'} />
-    <Section index={1} eyebrow="Chuyên môn" title="Dịch vụ phụ trách"><ServiceDirectory services={services} /></Section>
-    <Section index={2} eyebrow="Hồ sơ hình ảnh" title="Hình ảnh do cơ sở cung cấp"><Gallery images={staff.images} label={`Hình ảnh ${staff.fullName || 'chuyên viên'}`} /></Section>
-    <Section index={3} eyebrow="Trải nghiệm thật" title="Đánh giá chuyên viên"><ReviewList data={reviews} /></Section>
+    <DetailSectionNav label="Nội dung chuyên viên" sections={[
+      ['detail-section-1', 'Dịch vụ'], ['detail-section-2', 'Hình ảnh'], ['detail-section-3', 'Đánh giá'],
+    ]} />
+    <Section id="detail-section-1" index={1} eyebrow="Chuyên môn" title="Dịch vụ phụ trách"><ServiceDirectory services={services} /></Section>
+    <Section id="detail-section-2" index={2} eyebrow="Hồ sơ hình ảnh" title="Hình ảnh do cơ sở cung cấp"><Gallery images={staff.images} label={`Hình ảnh ${staff.fullName || 'chuyên viên'}`} /></Section>
+    <Section id="detail-section-3" index={3} eyebrow="Trải nghiệm thật" title="Đánh giá chuyên viên"><ReviewList data={reviews} /></Section>
   </article> : null}</DetailState></PublicShell>;
 }

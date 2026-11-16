@@ -4,9 +4,11 @@ import { Flag, MessageSquareReply, Search, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { reviewsApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
+import { roleAt } from '../../utils/authScope';
+import AbsaWorkspace from '../../components/reviews/AbsaWorkspace';
 import { Badge, Button, Card, Dialog, EmptyState, ErrorState, Field, Input, MetricCard, Page, PageHeader, Select, Skeleton, Textarea } from '../../components/ui';
 
-const statusMeta = { APPROVED: ['Đang hiển thị', 'success'], REPORTED: ['Đã báo cáo', 'warning'], HIDDEN: ['Đã ẩn bởi Platform', 'danger'] };
+const statusMeta = { APPROVED: ['Đang hiển thị', 'success'], REPORTED: ['Đã báo cáo', 'warning'], HIDDEN: ['Đã ẩn bởi nền tảng', 'danger'] };
 const formatDate = (value) => value ? new Date(value).toLocaleDateString('vi-VN') : '—';
 
 function Stars({ value, size = 15 }) {
@@ -42,7 +44,7 @@ function ReplyDialog({ review, onClose, onSent }) {
     catch (error) { toast.error(error.message || 'Không thể gửi phản hồi'); }
     finally { setSaving(false); }
   };
-  return <Dialog open={Boolean(review)} onClose={onClose} title="Trả lời đánh giá" description={review?.customer?.user?.fullName || 'Khách hàng'} footer={<><Button variant="secondary" onClick={onClose}>Hủy</Button><Button loading={saving} disabled={!content.trim()} onClick={submit}>Gửi phản hồi</Button></>}><Field label="Nội dung phản hồi" required hint="Phản hồi sẽ hiển thị công khai cùng review."><Textarea autoFocus value={content} onChange={(event) => setContent(event.target.value)} maxLength={2000} /></Field></Dialog>;
+  return <Dialog open={Boolean(review)} onClose={onClose} title="Trả lời đánh giá" description={review?.customer?.user?.fullName || 'Khách hàng'} footer={<><Button variant="secondary" onClick={onClose}>Hủy</Button><Button loading={saving} disabled={!content.trim()} onClick={submit}>Gửi phản hồi</Button></>}><Field label="Nội dung phản hồi" required hint="Phản hồi sẽ hiển thị công khai cùng đánh giá."><Textarea autoFocus value={content} onChange={(event) => setContent(event.target.value)} maxLength={2000} /></Field></Dialog>;
 }
 
 function ReportDialog({ review, onClose, onSent }) {
@@ -52,14 +54,14 @@ function ReportDialog({ review, onClose, onSent }) {
   const submit = async () => {
     if (!form.reason.trim()) return;
     setSaving(true);
-    try { await reviewsApi.report(review.id, { ...form, reason: form.reason.trim() }); toast.success('Đã gửi review vào hàng hậu kiểm của Platform'); onSent(); }
-    catch (error) { toast.error(error.message || 'Không thể báo cáo review'); }
+    try { await reviewsApi.report(review.id, { ...form, reason: form.reason.trim() }); toast.success('Đã gửi đánh giá để nền tảng kiểm tra'); onSent(); }
+    catch (error) { toast.error(error.message || 'Không thể báo cáo đánh giá'); }
     finally { setSaving(false); }
   };
-  return <Dialog open={Boolean(review)} onClose={onClose} title="Báo cáo review vi phạm" description="Nội dung nguy cơ cao sẽ được tạm ẩn ngay để Platform kiểm tra." footer={<><Button variant="secondary" onClick={onClose}>Hủy</Button><Button variant="danger" loading={saving} disabled={!form.reason.trim()} onClick={submit}>Gửi báo cáo</Button></>}><div className="grid gap-3 sm:grid-cols-2"><Field label="Phân loại" required><Select value={form.category} onChange={(event) => setForm((current) => ({ ...current, category: event.target.value }))}><option value="OTHER">Khác</option><option value="PII">Thông tin cá nhân</option><option value="ABUSE">Xúc phạm</option><option value="THREAT">Đe dọa</option><option value="HATE">Thù ghét</option><option value="SPAM">Spam / giả mạo</option></Select></Field><Field label="Mức độ" required><Select value={form.severity} onChange={(event) => setForm((current) => ({ ...current, severity: event.target.value }))}><option value="LOW">Thấp</option><option value="MEDIUM">Trung bình</option><option value="HIGH">Cao — tạm ẩn</option><option value="CRITICAL">Nghiêm trọng — tạm ẩn</option></Select></Field><Field className="sm:col-span-2" label="Lý do" required><Textarea autoFocus value={form.reason} onChange={(event) => setForm((current) => ({ ...current, reason: event.target.value }))} maxLength={1000} placeholder="Mô tả nội dung và tác động cần Platform kiểm tra..." /></Field></div></Dialog>;
+  return <Dialog open={Boolean(review)} onClose={onClose} title="Báo cáo đánh giá vi phạm" description="Nội dung nguy cơ cao sẽ được tạm ẩn ngay để nền tảng kiểm tra." footer={<><Button variant="secondary" onClick={onClose}>Hủy</Button><Button variant="danger" loading={saving} disabled={!form.reason.trim()} onClick={submit}>Gửi báo cáo</Button></>}><div className="grid gap-3 sm:grid-cols-2"><Field label="Phân loại" required><Select value={form.category} onChange={(event) => setForm((current) => ({ ...current, category: event.target.value }))}><option value="OTHER">Khác</option><option value="PII">Thông tin cá nhân</option><option value="ABUSE">Xúc phạm</option><option value="THREAT">Đe dọa</option><option value="HATE">Thù ghét</option><option value="SPAM">Spam / giả mạo</option></Select></Field><Field label="Mức độ" required><Select value={form.severity} onChange={(event) => setForm((current) => ({ ...current, severity: event.target.value }))}><option value="LOW">Thấp</option><option value="MEDIUM">Trung bình</option><option value="HIGH">Cao — tạm ẩn</option><option value="CRITICAL">Nghiêm trọng — tạm ẩn</option></Select></Field><Field className="sm:col-span-2" label="Lý do" required><Textarea autoFocus value={form.reason} onChange={(event) => setForm((current) => ({ ...current, reason: event.target.value }))} maxLength={1000} placeholder="Mô tả nội dung và tác động cần nền tảng kiểm tra..." /></Field></div></Dialog>;
 }
 
-export function SalonReviews() {
+function OrdinaryReviews() {
   const can = useAuthStore((state) => state.can);
   const [allReviews, setAllReviews] = useState([]);
   const [filter, setFilter] = useState('ALL');
@@ -80,13 +82,32 @@ export function SalonReviews() {
   const stats = useMemo(() => { const total = allReviews.length; const sum = allReviews.reduce((value, review) => value + Number(review.overallRating || 0), 0); const distribution = allReviews.reduce((value, review) => ({ ...value, [review.overallRating]: (value[review.overallRating] || 0) + 1 }), {}); return { total, avg: total ? sum / total : 0, distribution }; }, [allReviews]);
   const reviews = useMemo(() => allReviews.filter((review) => { const text = `${review.customer?.user?.fullName || ''} ${review.comment || ''}`.toLocaleLowerCase('vi'); return (filter === 'ALL' || review.status === filter) && (!query.trim() || text.includes(query.trim().toLocaleLowerCase('vi'))); }), [allReviews, filter, query]);
   return <Page>
-    <PageHeader eyebrow="Chất lượng dịch vụ" title="Đánh giá khách hàng" description="Review được đăng ngay sau booking hợp lệ. Cơ sở có thể phản hồi hoặc báo cáo; chỉ Platform mới được ẩn nội dung vi phạm." />
+    <PageHeader eyebrow="Chất lượng dịch vụ" title="Đánh giá khách hàng" description="Đánh giá được đăng sau lịch hẹn hợp lệ. Cơ sở có thể phản hồi hoặc báo cáo; chỉ nền tảng mới có quyền ẩn nội dung vi phạm." />
     <div className="grid gap-3 md:grid-cols-3"><MetricCard icon={Star} label="Điểm trung bình" value={stats.avg ? stats.avg.toFixed(1) : '—'} tone="warning" /><MetricCard icon={MessageSquareReply} label="Tổng đánh giá" value={stats.total} /><Distribution distribution={stats.distribution} total={stats.total} /></div>
-    <Card className="grid gap-3 p-4 md:grid-cols-[1fr_220px]"><Field label="Tìm đánh giá"><div className="relative"><Search className="pointer-events-none absolute left-3 top-3.5 text-[var(--bb-muted)]" size={16} /><Input className="pl-9" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Khách hàng hoặc nội dung" /></div></Field><Field label="Trạng thái"><Select value={filter} onChange={(event) => setFilter(event.target.value)}><option value="ALL">Tất cả</option><option value="APPROVED">Đang hiển thị</option><option value="REPORTED">Đã báo cáo</option><option value="HIDDEN">Đã ẩn bởi Platform</option></Select></Field></Card>
+    <Card className="grid gap-3 p-4 md:grid-cols-[1fr_220px]"><Field label="Tìm đánh giá"><div className="relative"><Search className="pointer-events-none absolute left-3 top-3.5 text-[var(--bb-muted)]" size={16} /><Input className="pl-9" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Khách hàng hoặc nội dung" /></div></Field><Field label="Trạng thái"><Select value={filter} onChange={(event) => setFilter(event.target.value)}><option value="ALL">Tất cả</option><option value="APPROVED">Đang hiển thị</option><option value="REPORTED">Đã báo cáo</option><option value="HIDDEN">Đã ẩn bởi nền tảng</option></Select></Field></Card>
     {loading ? <Card className="p-5"><Skeleton rows={6} /></Card> : error ? <Card><ErrorState message={error} onRetry={load} /></Card> : reviews.length === 0 ? <Card><EmptyState icon={Star} title="Không có đánh giá phù hợp" /></Card> : <div className="space-y-3">{reviews.map((review) => <ReviewCard key={review.id} review={review} canReply={canReply} canReport={canReport} onReply={setReply} onReport={setReport} />)}</div>}
     <ReplyDialog review={reply} onClose={() => setReply(null)} onSent={async () => { setReply(null); await load(); }} />
     <ReportDialog review={report} onClose={() => setReport(null)} onSent={async () => { setReport(null); await load(); }} />
   </Page>;
+}
+
+function OwnerReviewWorkspace({ businessId }) {
+  const [tab, setTab] = useState('analysis');
+  return <Page>
+    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Đánh giá khách hàng" onKeyDown={event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?'analysis':event.key==='End'?'reviews':tab==='analysis'?'reviews':'analysis';setTab(next);document.getElementById(next==='analysis'?'reviews-analysis-tab':'reviews-list-tab')?.focus();}}>
+      <Button role="tab" id="reviews-analysis-tab" tabIndex={tab === 'analysis' ? 0 : -1} aria-controls="reviews-analysis-panel" aria-selected={tab === 'analysis'} variant={tab === 'analysis' ? 'primary' : 'secondary'} onClick={() => setTab('analysis')}>Phân tích đánh giá</Button>
+      <Button role="tab" id="reviews-list-tab" tabIndex={tab === 'reviews' ? 0 : -1} aria-controls="reviews-list-panel" aria-selected={tab === 'reviews'} variant={tab === 'reviews' ? 'primary' : 'secondary'} onClick={() => setTab('reviews')}>Đánh giá & phản hồi</Button>
+    </div>
+    {tab === 'analysis' ? <div role="tabpanel" id="reviews-analysis-panel" aria-labelledby="reviews-analysis-tab"><AbsaWorkspace businessId={businessId}/></div>
+      : <div role="tabpanel" id="reviews-list-panel" aria-labelledby="reviews-list-tab"><OrdinaryReviews/></div>}
+  </Page>;
+}
+
+export function SalonReviews() {
+  const user = useAuthStore(s => s.user), token = useAuthStore(s => s.accessToken);
+  const businessId = useAuthStore(s => s.activeContext().tenantId);
+  if (!businessId || !roleAt(user, 'BUSINESS_OWNER', businessId)) return <Page><EmptyState title="Chọn doanh nghiệp thuộc quyền Chủ doanh nghiệp để xem đánh giá"/></Page>;
+  return <OwnerReviewWorkspace key={JSON.stringify([user?.id, token, businessId])} businessId={businessId}/>;
 }
 
 export default SalonReviews;

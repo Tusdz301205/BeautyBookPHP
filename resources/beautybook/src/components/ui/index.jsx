@@ -2,6 +2,7 @@ import { normalizeNameSearch } from '../../utils/nameSearch';
 import React, { useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { AlertCircle, Check, CheckCircle2, ChevronDown, Inbox, LoaderCircle, Search, X } from 'lucide-react';
 import { STATUS_LABELS } from '../../utils/displayLabels';
+import { PAYMENT_LABELS } from '../../utils/paymentLabels';
 
 export const cx = (...classes) => classes.filter(Boolean).join(' ');
 
@@ -14,7 +15,7 @@ const buttonVariants = {
 
 export const Button = React.forwardRef(({ variant = 'primary', size = 'md', loading = false, className = '', children, disabled, type = 'button', onClick, ...props }, ref) => {
   const sizes = { sm: 'min-h-11 px-3 text-xs sm:min-h-9', md: 'min-h-11 px-4 text-sm', lg: 'min-h-12 px-5 text-base', icon: 'h-11 w-11 p-0' };
-  return <button ref={ref} type={type} disabled={disabled || loading} className={cx('bb-button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--bb-radius-control)] border font-semibold active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50', buttonVariants[variant], sizes[size], className)} {...props} onClick={(event) => { event.currentTarget.focus(); onClick?.(event); }}>{loading && <LoaderCircle size={16} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />}{children}</button>;
+  return <button ref={ref} type={type} aria-busy={loading || undefined} disabled={disabled || loading} className={cx('bb-button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--bb-radius-control)] border font-semibold active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50', buttonVariants[variant], sizes[size], className)} {...props} onClick={(event) => { event.currentTarget.focus(); onClick?.(event); }}>{loading && <LoaderCircle size={16} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />}{children}</button>;
 });
 Button.displayName = 'Button';
 
@@ -23,13 +24,15 @@ IconButton.displayName = 'IconButton';
 
 export function Field({ label, required, hint, error, children, className = '' }) {
   const id = useId();
-  const control = React.isValidElement(children) ? React.cloneElement(children, {
+  const isControl = React.isValidElement(children) && children.type !== React.Fragment;
+  const describedBy = [isControl && children.props['aria-describedby'], hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(' ') || undefined;
+  const control = isControl ? React.cloneElement(children, {
     id: children.props.id || id,
-    'aria-required': required || undefined,
-    'aria-invalid': Boolean(error),
-    'aria-describedby': error ? `${id}-error` : hint ? `${id}-hint` : undefined,
+    'aria-required': required || children.props['aria-required'] || undefined,
+    'aria-invalid': error ? true : children.props['aria-invalid'],
+    'aria-describedby': describedBy,
   }) : children;
-  return <label htmlFor={control?.props?.id || id} className={cx('bb-field grid gap-1.5 text-sm font-medium text-[var(--bb-ink)]', className)}><span>{label}{required && <span className="ml-1 text-[var(--bb-danger)]" aria-hidden="true">*</span>}{required && <span className="bb-sr-only"> (bắt buộc)</span>}</span>{control}{hint && !error && <span id={`${id}-hint`} className="min-h-[1lh] text-xs font-normal text-[var(--bb-muted)]">{hint}</span>}{error && <span id={`${id}-error`} role="alert" className="min-h-[1lh] text-xs font-normal text-[var(--bb-danger)]">{error}</span>}{!hint && !error && <span aria-hidden="true" className="min-h-[1lh] text-xs">&nbsp;</span>}</label>;
+  return <div className={cx('bb-field grid gap-1.5 text-sm font-medium text-[var(--bb-ink)]', className)}><label htmlFor={control?.props?.id || id}>{label}{required && <span className="ml-1 text-[var(--bb-danger)]" aria-hidden="true">*</span>}{required && <span className="bb-sr-only"> (bắt buộc)</span>}</label>{control}{hint && <span id={`${id}-hint`} className="min-h-[1lh] text-xs font-normal text-[var(--bb-muted)]">{hint}</span>}{error && <span id={`${id}-error`} role="alert" className="min-h-[1lh] text-xs font-normal text-[var(--bb-danger)]">{error}</span>}{!hint && !error && <span aria-hidden="true" className="min-h-[1lh] text-xs">&nbsp;</span>}</div>;
 }
 
 const controlClass = 'bb-control min-h-11 w-full rounded-[var(--bb-radius-control)] border border-[var(--bb-border)] bg-white px-3 text-sm text-[var(--bb-ink)] outline-2 outline-transparent placeholder:text-zinc-400 focus-visible:border-[var(--bb-focus)] focus-visible:outline-[var(--bb-focus)] focus-visible:outline-offset-1 disabled:cursor-not-allowed disabled:bg-[var(--bb-surface-subtle)] disabled:text-[var(--bb-muted)]';
@@ -43,15 +46,15 @@ function readOptionLabel(children) {
   return '';
 }
 
-function collectOptions(children, result = []) {
+function collectOptions(children, result = [], groupDisabled = false) {
   React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) return;
     if (child.type === 'option') {
       const label = readOptionLabel(child.props.children);
-      result.push({ value: String(child.props.value ?? label), label, disabled: Boolean(child.props.disabled) });
+      result.push({ value: String(child.props.value ?? label), label, disabled: groupDisabled || Boolean(child.props.disabled) });
       return;
     }
-    if (child.type === React.Fragment || child.type === 'optgroup') collectOptions(child.props.children, result);
+    if (child.type === React.Fragment || child.type === 'optgroup') collectOptions(child.props.children, result, groupDisabled || (child.type === 'optgroup' && Boolean(child.props.disabled)));
   });
   return result;
 }
@@ -68,6 +71,7 @@ export const Select = React.forwardRef(({
   const triggerRef = useRef(null);
   const panelRef = useRef(null);
   const searchRef = useRef(null);
+  const listRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -96,8 +100,12 @@ export const Select = React.forwardRef(({
     if (disabled || loading) return;
     setOpen(true);
     setQuery('');
-    setActiveIndex(Math.max(0, options.findIndex((option) => option.value === selectedValue)));
-    if (showSearch) window.requestAnimationFrame(() => searchRef.current?.focus());
+    const selectedIndex = options.findIndex((option) => option.value === selectedValue && !option.disabled);
+    setActiveIndex(selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled));
+    window.requestAnimationFrame(() => {
+      if (showSearch) searchRef.current?.focus();
+      else if (window.matchMedia('(max-width: 39.99rem)').matches) listRef.current?.focus();
+    });
   };
 
   const choose = (option) => {
@@ -115,45 +123,61 @@ export const Select = React.forwardRef(({
       const path = event.composedPath();
       if (!path.includes(panelRef.current) && !path.includes(triggerRef.current)) close(false);
     };
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') { event.preventDefault(); close(true); return; }
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        const direction = event.key === 'ArrowDown' ? 1 : -1;
-        setActiveIndex((current) => {
-          if (!visibleOptions.length) return 0;
-          let next = current;
-          do next = (next + direction + visibleOptions.length) % visibleOptions.length;
-          while (visibleOptions[next]?.disabled && next !== current);
-          return next;
-        });
-        return;
-      }
-      if (event.key === 'Home' || event.key === 'End') {
-        event.preventDefault();
-        setActiveIndex(event.key === 'Home' ? 0 : Math.max(0, visibleOptions.length - 1));
-        return;
-      }
-      if (event.key === 'Enter' && visibleOptions[activeIndex]) { event.preventDefault(); choose(visibleOptions[activeIndex]); return; }
-      if (event.key === 'Tab' && window.matchMedia('(max-width: 39.99rem)').matches) {
-        const focusable = [...(panelRef.current?.querySelectorAll('input:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])') || [])]
-          .filter((element) => element.getClientRects().length);
-        if (!focusable.length) return;
-        const first = focusable[0]; const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-      }
-    };
     document.addEventListener('pointerdown', onPointerDown);
-    document.addEventListener('keydown', onKeyDown);
-    return () => { document.removeEventListener('pointerdown', onPointerDown); document.removeEventListener('keydown', onKeyDown); };
+    return () => document.removeEventListener('pointerdown', onPointerDown);
   }, [activeIndex, open, selectedValue, visibleOptions]);
 
-  useEffect(() => {
-    if (activeIndex >= visibleOptions.length) setActiveIndex(Math.max(0, visibleOptions.length - 1));
-  }, [activeIndex, visibleOptions.length]);
+  const onSelectKeyDown = (event) => {
+    if (!open || event.isComposing || event.nativeEvent?.isComposing) return;
+    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); close(true); return; }
+    if (event.key !== 'Tab' && ![triggerRef.current, searchRef.current, listRef.current].includes(event.target) && event.target.getAttribute('role') !== 'option') return;
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const direction = event.key === 'ArrowDown' ? 1 : -1;
+      setActiveIndex((current) => {
+        if (!visibleOptions.length) return 0;
+        for (let step = 1; step <= visibleOptions.length; step += 1) {
+          const start = current < 0 ? (direction > 0 ? -1 : 0) : current;
+          const next = (start + direction * step + visibleOptions.length) % visibleOptions.length;
+          if (!visibleOptions[next].disabled) return next;
+        }
+        return -1;
+      });
+      return;
+    }
+    if ((event.key === 'Home' || event.key === 'End') && event.target !== searchRef.current) {
+      event.preventDefault();
+      const enabled = visibleOptions.map((option, index) => option.disabled ? -1 : index).filter((index) => index >= 0);
+      setActiveIndex((event.key === 'Home' ? enabled[0] : enabled.at(-1)) ?? -1);
+      return;
+    }
+    if (event.key === 'Enter' || (event.key === ' ' && event.target !== searchRef.current)) { event.preventDefault(); choose(visibleOptions[activeIndex]); return; }
+    if (event.key === 'Tab' && window.matchMedia('(max-width: 39.99rem)').matches) {
+      const focusable = [...(panelRef.current?.querySelectorAll('input:not([disabled]), button:not([disabled]):not([tabindex="-1"])') || [])]
+        .filter((element) => element.getClientRects().length);
+      if (!showSearch && listRef.current) focusable.push(listRef.current);
+      event.preventDefault();
+      const current = focusable.indexOf(document.activeElement);
+      const next = (current + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length;
+      (focusable[next] || listRef.current)?.focus();
+    }
+  };
 
-  return <span className={cx('bb-select', open && 'bb-select--open', disabled && 'bb-select--disabled', className)}>
+  useEffect(() => {
+    if (!visibleOptions[activeIndex] || visibleOptions[activeIndex].disabled) {
+      setActiveIndex(visibleOptions.findIndex((option) => !option.disabled));
+    }
+  }, [activeIndex, visibleOptions]);
+
+  useEffect(() => {
+    if (open) document.getElementById(`${listboxId}-option-${activeIndex}`)?.scrollIntoView?.({ block: 'nearest' });
+  }, [open, activeIndex, listboxId, visibleOptions]);
+
+  useEffect(() => {
+    if (disabled || loading) setOpen(false);
+  }, [disabled, loading]);
+
+  return <span className={cx('bb-select', open && 'bb-select--open', (disabled || loading) && 'bb-select--disabled', className)} onKeyDown={onSelectKeyDown} onBlur={(event) => { if (open && !event.currentTarget.contains(event.relatedTarget)) close(false); }}>
     <button
       {...props}
       ref={triggerRef}
@@ -164,11 +188,12 @@ export const Select = React.forwardRef(({
       aria-label={ariaLabel}
       aria-describedby={ariaDescribedBy}
       aria-invalid={ariaInvalid}
-      aria-required={required || undefined}
+      aria-required={required || props['aria-required'] || undefined}
       aria-expanded={open}
       aria-haspopup="listbox"
-      aria-controls={listboxId}
-      aria-activedescendant={open && visibleOptions[activeIndex] ? `${listboxId}-option-${activeIndex}` : undefined}
+      aria-controls={open ? listboxId : undefined}
+      aria-busy={loading || undefined}
+      aria-activedescendant={open && !showSearch && visibleOptions[activeIndex] ? `${listboxId}-option-${activeIndex}` : undefined}
       disabled={disabled || loading}
       onClick={() => open ? close(false) : openList()}
       onKeyDown={(event) => {
@@ -180,14 +205,14 @@ export const Select = React.forwardRef(({
       {loading ? <LoaderCircle className="bb-select__chevron animate-spin motion-reduce:animate-none" size={17} aria-hidden="true" /> : <ChevronDown className="bb-select__chevron" size={17} aria-hidden="true" />}
     </button>
     {name ? <input type="hidden" name={name} form={form} value={selectedValue} disabled={disabled} /> : null}
-    {required ? <input className="bb-select__validation" tabIndex="-1" aria-hidden="true" value={selectedValue} readOnly required disabled={disabled} form={form} onInvalid={(event) => { event.preventDefault(); triggerRef.current?.focus(); }} /> : null}
+    {required ? <input className="bb-select__validation" tabIndex="-1" aria-hidden="true" value={selectedValue} onChange={() => {}} required disabled={disabled || loading} form={form} onInvalid={(event) => { event.preventDefault(); triggerRef.current?.focus(); }} /> : null}
     {open ? <>
       <span className="bb-select__backdrop" aria-hidden="true" onPointerDown={() => close(true)} />
       <span ref={panelRef} className="bb-select__panel">
         <span className="bb-select__mobile-heading"><strong>{ariaLabel || placeholder || 'Chọn một giá trị'}</strong><button type="button" onClick={() => close(true)} aria-label="Đóng danh sách"><X size={18} /></button></span>
-        {showSearch ? <span className="bb-select__search"><Search size={16} aria-hidden="true" /><input ref={searchRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder={searchPlaceholder} aria-label={searchPlaceholder} autoComplete="off" /></span> : null}
-        <span id={listboxId} role="listbox" aria-label={ariaLabel || placeholder || 'Danh sách lựa chọn'} className="bb-select__list bb-scrollbar">
-          {visibleOptions.length ? visibleOptions.map((option, index) => <button type="button" role="option" id={`${listboxId}-option-${index}`} aria-selected={option.value === selectedValue} disabled={option.disabled} tabIndex="-1" key={`${option.value}-${index}`} className={cx('bb-select__option', index === activeIndex && 'bb-select__option--active')} onPointerMove={() => setActiveIndex(index)} onClick={() => choose(option)}><span>{option.label}</span>{option.value === selectedValue ? <Check size={17} aria-hidden="true" /> : null}</button>) : <span className="bb-select__empty">{emptyMessage}</span>}
+        {showSearch ? <span className="bb-select__search"><Search size={16} aria-hidden="true" /><input ref={searchRef} role="combobox" aria-expanded="true" aria-autocomplete="list" aria-controls={listboxId} aria-activedescendant={visibleOptions[activeIndex] ? `${listboxId}-option-${activeIndex}` : undefined} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder={searchPlaceholder} aria-label={searchPlaceholder} autoComplete="off" /></span> : null}
+        <span ref={listRef} id={listboxId} role="listbox" tabIndex={-1} aria-activedescendant={!showSearch && visibleOptions[activeIndex] ? `${listboxId}-option-${activeIndex}` : undefined} aria-label={ariaLabel || placeholder || 'Danh sách lựa chọn'} className="bb-select__list bb-scrollbar">
+          {visibleOptions.length ? visibleOptions.map((option, index) => <button type="button" role="option" id={`${listboxId}-option-${index}`} aria-selected={option.value === selectedValue} disabled={option.disabled} tabIndex="-1" key={`${option.value}-${index}`} className={cx('bb-select__option', index === activeIndex && 'bb-select__option--active')} onMouseDown={(event) => event.preventDefault()} onPointerMove={() => { if (!option.disabled) setActiveIndex(index); }} onClick={() => choose(option)}><span>{option.label}</span>{option.value === selectedValue ? <Check size={17} aria-hidden="true" /> : null}</button>) : <span role="status" className="bb-select__empty">{emptyMessage}</span>}
         </span>
       </span>
     </> : null}
@@ -212,7 +237,7 @@ export function MetricCard({ icon: Icon, label, value = '—', note, tone = 'bra
 
 export function Badge({ tone = 'neutral', children, className = '' }) {
   const tones = { neutral: 'border-zinc-200 bg-zinc-50 text-zinc-700', brand: 'border-pink-200 bg-pink-50 text-pink-700', success: 'border-emerald-200 bg-emerald-50 text-emerald-700', warning: 'border-amber-200 bg-amber-50 text-amber-800', danger: 'border-red-200 bg-red-50 text-red-700', info: 'border-blue-200 bg-blue-50 text-blue-700' };
-  const content = typeof children === 'string' ? STATUS_LABELS[children] || children : children;
+  const content = typeof children === 'string' ? STATUS_LABELS[children] || PAYMENT_LABELS[children] || children : children;
   return <span className={cx('bb-badge inline-flex min-h-6 items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold', tones[tone] || tones.neutral, className)}>{content}</span>;
 }
 
@@ -221,51 +246,68 @@ export function EmptyState({ title = 'Chưa có dữ liệu', description, actio
 export function ErrorState({ title = 'Không thể tải dữ liệu', message, onRetry }) { return <div role="alert" className="grid min-h-64 place-items-center p-6 text-center"><div><AlertCircle className="mx-auto text-[var(--bb-danger)]" /><h3 className="mt-3 font-bold">{title}</h3>{message && <p className="mt-1 max-w-md text-sm text-[var(--bb-muted)]">{message}</p>}{onRetry && <Button variant="secondary" className="mt-4" onClick={onRetry}>Thử lại</Button>}</div></div>; }
 export function SuccessState({ title, message, action }) { return <div className="grid min-h-64 place-items-center p-6 text-center"><div><CheckCircle2 className="mx-auto text-[var(--bb-success)]" size={34} /><h2 className="mt-3 text-xl font-bold">{title}</h2>{message && <p className="mt-1 text-sm text-[var(--bb-muted)]">{message}</p>}{action && <div className="mt-5">{action}</div>}</div></div>; }
 
+// Only the topmost shared modal owns focus and Escape; nested overlays share the scroll lock.
+const modalStack = [];
+let modalBodyOverflow;
+const modalFocusable = (root) => [...(root?.querySelectorAll('a[href], button, input, select, textarea, [tabindex], [contenteditable="true"]') || [])]
+  .filter((element) => element.tabIndex >= 0 && !element.matches(':disabled, [hidden], [inert], input[type="hidden"]') && !element.closest('[inert]') && element.getClientRects().length);
+
+function useModalFocus(open, containerRef, closeRef, onClose) {
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
+  useEffect(() => {
+    if (!open) return undefined;
+    const container = containerRef.current;
+    const previousFocus = document.activeElement;
+    const entry = { container };
+    if (!modalStack.length) {
+      modalBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    }
+    modalStack.push(entry);
+    const isTop = () => modalStack.at(-1) === entry;
+    const focusFirst = () => (container?.querySelector('[autofocus]:not(:disabled)') || closeRef.current || container)?.focus();
+    const frame = requestAnimationFrame(() => { if (isTop()) focusFirst(); });
+    const key = (event) => {
+      if (!isTop() || event.defaultPrevented || event.isComposing) return;
+      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); onCloseRef.current?.(); return; }
+      if (event.key !== 'Tab') return;
+      const focusable = modalFocusable(container);
+      const first = focusable[0]; const last = focusable.at(-1);
+      if (!first) { event.preventDefault(); container?.focus(); return; }
+      const current = document.activeElement;
+      if (!container?.contains(current) || !focusable.includes(current)) {
+        event.preventDefault(); (event.shiftKey ? last : first).focus();
+      } else if (event.shiftKey && current === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && current === last) { event.preventDefault(); first.focus(); }
+    };
+    const containFocus = (event) => {
+      if (isTop() && !container?.contains(event.target)) focusFirst();
+    };
+    document.addEventListener('keydown', key);
+    document.addEventListener('focusin', containFocus);
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener('keydown', key);
+      document.removeEventListener('focusin', containFocus);
+      const wasTop = isTop();
+      modalStack.splice(modalStack.indexOf(entry), 1);
+      if (!modalStack.length) document.body.style.overflow = modalBodyOverflow;
+      if (wasTop && previousFocus instanceof HTMLElement && previousFocus.isConnected && (!modalStack.length || modalStack.at(-1).container?.contains(previousFocus))) previousFocus.focus();
+    };
+  }, [open, containerRef, closeRef]);
+}
+
 export function Dialog({ open, onClose, title, description, children, footer, size = 'md' }) {
   const closeRef = useRef(null);
   const dialogRef = useRef(null);
-  const previousFocus = useRef(null);
-  const onCloseRef = useRef(onClose);
   const titleId = useId();
   const descriptionId = useId();
-  const closeDialog = () => {
-    let target = previousFocus.current;
-    if (!target || target === document.body || dialogRef.current?.contains(target)) {
-      target = [...document.querySelectorAll('button')].find((button) => !dialogRef.current?.contains(button) && button.textContent?.trim() === title);
-    }
-    onCloseRef.current?.();
-    requestAnimationFrame(() => target?.focus?.());
-  };
-  useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
-  useEffect(() => {
-    if (open) return undefined;
-    const rememberTrigger = (event) => {
-      if (event.target instanceof HTMLElement) previousFocus.current = event.target;
-    };
-    document.addEventListener('pointerdown', rememberTrigger, true);
-    return () => document.removeEventListener('pointerdown', rememberTrigger, true);
-  }, [open]);
-  useEffect(() => {
-    if (!open) return undefined;
-    if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) previousFocus.current = document.activeElement;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => (dialogRef.current?.querySelector('[autofocus]') || closeRef.current)?.focus());
-    const key = (event) => {
-      if (event.key === 'Escape') { event.preventDefault(); closeDialog(); return; }
-      if (event.key !== 'Tab') return;
-      const focusable = [...(dialogRef.current?.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || [])].filter((element) => !element.hidden && element.getClientRects().length);
-      if (!focusable.length) { event.preventDefault(); return; }
-      const first = focusable[0]; const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', key);
-    return () => { document.removeEventListener('keydown', key); document.body.style.overflow = previousOverflow; };
-  }, [open, title]);
+  useModalFocus(open, dialogRef, closeRef, onClose);
+  const closeDialog = () => onClose?.();
   if (!open) return null;
   const widths = { sm: 'max-w-md', md: 'max-w-xl', lg: 'max-w-3xl', xl: 'max-w-5xl' };
-  return <div className="fixed inset-0 z-[var(--z-modal)] grid items-end bg-[var(--color-overlay)] p-0 sm:place-items-center sm:p-4" role="presentation"><button tabIndex="-1" className="absolute inset-0" onClick={closeDialog} aria-label="Đóng hộp thoại" /><section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined} className={cx('relative flex max-h-[100dvh] w-full flex-col rounded-t-[var(--bb-radius-panel)] bg-white shadow-[var(--bb-shadow-float)] sm:max-h-[90dvh] sm:rounded-[var(--bb-radius-panel)]', widths[size])}><header className="flex items-start gap-4 border-b border-[var(--bb-border)] p-5"><div className="min-w-0 flex-1"><h2 id={titleId} className="text-lg font-bold">{title}</h2>{description && <p id={descriptionId} className="mt-1 text-sm text-[var(--bb-muted)]">{description}</p>}</div><IconButton ref={closeRef} label="Đóng" onClick={closeDialog}><X size={19} /></IconButton></header><div className="bb-scrollbar flex-1 overflow-y-auto p-5">{children}</div>{footer && <footer className="flex flex-wrap justify-end gap-2 border-t border-[var(--bb-border)] p-4">{footer}</footer>}</section></div>;
+  return <div className="fixed inset-0 z-[var(--z-modal)] grid items-end bg-[var(--color-overlay)] p-0 sm:place-items-center sm:p-4" role="presentation"><button tabIndex="-1" className="absolute inset-0" onClick={closeDialog} aria-label="Đóng hộp thoại" /><section ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined} className={cx('bb-dialog relative flex max-h-[100dvh] w-full flex-col rounded-t-[var(--bb-radius-panel)] bg-white shadow-[var(--bb-shadow-float)] sm:max-h-[90dvh] sm:rounded-[var(--bb-radius-panel)]', widths[size])}><header className="shrink-0 flex items-start gap-4 border-b border-[var(--bb-border)] p-5"><div className="min-w-0 flex-1"><h2 id={titleId} className="text-lg font-bold">{title}</h2>{description && <p id={descriptionId} className="mt-1 text-sm text-[var(--bb-muted)]">{description}</p>}</div><IconButton ref={closeRef} label="Đóng" onClick={closeDialog}><X size={19} /></IconButton></header><div className="bb-dialog__body bb-scrollbar min-h-0 flex-1 overflow-y-auto p-5">{children}</div>{footer && <footer className="shrink-0 flex flex-wrap justify-end gap-2 border-t border-[var(--bb-border)] p-4">{footer}</footer>}</section></div>;
 }
 
 export function Drawer({ open = true, onClose, title, description, children, footer, size = 'md' }) {
@@ -273,26 +315,10 @@ export function Drawer({ open = true, onClose, title, description, children, foo
   const drawerRef = useRef(null);
   const titleId = useId();
   const descriptionId = useId();
-  useEffect(() => {
-    if (!open) return undefined;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => closeRef.current?.focus());
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') { event.preventDefault(); onClose?.(); return; }
-      if (event.key !== 'Tab') return;
-      const focusable = [...(drawerRef.current?.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || [])].filter((element) => !element.hidden && element.getClientRects().length);
-      if (!focusable.length) { event.preventDefault(); return; }
-      const first = focusable[0]; const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => { document.removeEventListener('keydown', onKeyDown); document.body.style.overflow = previousOverflow; };
-  }, [onClose, open]);
+  useModalFocus(open, drawerRef, closeRef, onClose);
   if (!open) return null;
   const widths = { sm: 'max-w-md', md: 'max-w-2xl', lg: 'max-w-4xl' };
-  return <div className="fixed inset-0 z-[var(--z-modal)] flex justify-end bg-[var(--color-overlay)]" role="presentation"><button tabIndex="-1" className="absolute inset-0" onClick={onClose} aria-label="Đóng ngăn chi tiết" /><aside ref={drawerRef} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined} className={cx('relative flex h-full w-full flex-col bg-white shadow-[var(--bb-shadow-float)]', widths[size])}><header className="flex items-start gap-4 border-b border-[var(--bb-border)] p-5"><div className="min-w-0 flex-1"><h2 id={titleId} className="text-lg font-bold">{title}</h2>{description && <p id={descriptionId} className="mt-1 text-sm text-[var(--bb-muted)]">{description}</p>}</div><IconButton ref={closeRef} label="Đóng" onClick={onClose}><X size={19} /></IconButton></header><div className="bb-scrollbar flex-1 overflow-y-auto p-5">{children}</div>{footer && <footer className="flex flex-wrap justify-end gap-2 border-t border-[var(--bb-border)] p-4">{footer}</footer>}</aside></div>;
+  return <div className="fixed inset-0 z-[var(--z-modal)] flex justify-end bg-[var(--color-overlay)]" role="presentation"><button tabIndex="-1" className="absolute inset-0" onClick={onClose} aria-label="Đóng ngăn chi tiết" /><aside ref={drawerRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined} className={cx('bb-dialog relative flex h-full w-full flex-col bg-white shadow-[var(--bb-shadow-float)]', widths[size])}><header className="shrink-0 flex items-start gap-4 border-b border-[var(--bb-border)] p-5"><div className="min-w-0 flex-1"><h2 id={titleId} className="text-lg font-bold">{title}</h2>{description && <p id={descriptionId} className="mt-1 text-sm text-[var(--bb-muted)]">{description}</p>}</div><IconButton ref={closeRef} label="Đóng" onClick={onClose}><X size={19} /></IconButton></header><div className="bb-dialog__body bb-scrollbar min-h-0 flex-1 overflow-y-auto p-5">{children}</div>{footer && <footer className="shrink-0 flex flex-wrap justify-end gap-2 border-t border-[var(--bb-border)] p-4">{footer}</footer>}</aside></div>;
 }
 
 export function ConfirmDialog({ open, onClose, onConfirm, title, description, children, confirmLabel = 'Xác nhận', cancelLabel = 'Hủy', tone = 'danger', loading = false, disabled = false }) {

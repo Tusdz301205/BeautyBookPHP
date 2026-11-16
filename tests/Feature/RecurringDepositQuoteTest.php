@@ -282,4 +282,40 @@ class RecurringDepositQuoteTest extends TestCase
         $this->createSeries($series, $fresh, 'series-quote-moved-2')->assertOk();
         $this->assertStoredMatches($fresh);
     }
+
+    public function test_source_recipe_direct_deposits_keep_each_dates_signed_quote(): void
+    {
+        $this->connect();
+        config(['beautybook.legacy_ui'=>false]);
+        $series=$this->series(2);
+        $serviceId=$series['serviceIds'][0];
+        $this->rule((int)$serviceId,40000,$this->occurrenceStart($series,1)->subHour());
+        unset($series['serviceIds']);
+        $series['selections']=[['serviceId'=>$serviceId,'quantity'=>2]];
+        $series['contact']=['name'=>'Khách định kỳ có cọc','phone'=>'0901234567'];
+        $preview=$this->preview($series);
+        $this->assertSame('DIRECT',$preview['depositMode']);
+        $this->assertSame(80000,(int)$preview['occurrences'][1]['quote']['finalAmount']-(int)$preview['occurrences'][0]['quote']['finalAmount']);
+        $this->assertNotSame($preview['occurrences'][0]['walletDeposit']['quote'],$preview['occurrences'][1]['walletDeposit']['quote']);
+        $this->createSeries($series,$preview,'source-direct-series')->assertOk()->assertJsonCount(2,'bookings');
+        $this->assertStoredMatches($preview);
+    }
+
+    public function test_source_recipe_wallet_requires_enough_for_the_entire_series(): void
+    {
+        $this->configureLab();
+        config(['beautybook.legacy_ui'=>false]);
+        $series=$this->series(2);
+        $serviceId=$series['serviceIds'][0];unset($series['serviceIds']);
+        $series['selections']=[['serviceId'=>$serviceId,'quantity'=>2]];
+        $series['contact']=['name'=>'Khách định kỳ qua ví','phone'=>'0901234567'];
+        $preview=$this->preview($series);
+        $this->fund((int)$preview['walletDepositTotalVnd']-1);
+        $this->createSeries($series,$preview,'source-wallet-short')->assertStatus(402);
+        $this->assertDatabaseCount('bookings',0);
+        $this->fund(1000);
+        $this->createSeries($series,$preview,'source-wallet-funded')->assertOk();
+        $this->assertSame((string)$preview['walletDepositTotalVnd'],$this->wallet()['heldVnd']);
+        $this->assertStoredMatches($preview);
+    }
 }

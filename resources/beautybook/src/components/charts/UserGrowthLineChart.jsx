@@ -8,7 +8,7 @@ export const UserGrowthLineChart = ({ data }) => (
       <XAxis dataKey="month" tick={{ fontSize: 12 }} />
       <YAxis tick={{ fontSize: 12 }} />
       <Tooltip />
-      <Line type="monotone" dataKey="users" stroke="var(--sage)" strokeWidth={3} dot={{ r: 4 }} />
+      <Line type="monotone" dataKey="users" name="Số khách hàng" stroke="var(--bb-info)" strokeWidth={3} dot={{ r: 4 }} />
     </LineChart>
   </ResponsiveContainer>
 );

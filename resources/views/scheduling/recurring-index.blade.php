@@ -14,7 +14,7 @@
         <form class="form-stack" method="POST" action="{{ route('recurring.cancel', $plan) }}">@csrf<button class="button button-secondary" type="submit">Hủy chuỗi lịch</button></form>
         @endif
         <ul>@foreach($plan->occurrences as $occurrence)
-            <li>{{ $occurrence->scheduled_start_at->setTimezone($plan->branch->timezone ?: 'Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }} · {{ $occurrence->booking?->status ?? $occurrence->status }}
+            <li>{{ $occurrence->scheduled_start_at->setTimezone($plan->branch->timezone ?: 'Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }} · {{ __($occurrence->booking?->status ?? $occurrence->status) }}
                 @if($occurrence->reason)<span>{{ $occurrence->reason }}</span>@endif
                 @if($occurrence->booking)<a href="{{ route('bookings.index', ['booking' => $occurrence->booking_id]) }}">Xem lịch hẹn</a>@endif
                 @if(in_array($occurrence->booking?->status, ['PENDING', 'CONFIRMED']))<form class="form-stack" method="POST" action="{{ route('recurring.occurrences.cancel', [$plan, $occurrence->id]) }}">@csrf<button class="button button-secondary" type="submit">Hủy kỳ này</button></form>@endif

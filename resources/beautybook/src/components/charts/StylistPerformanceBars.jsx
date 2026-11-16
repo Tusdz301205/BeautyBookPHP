@@ -31,13 +31,13 @@ export const StylistPerformanceBars = ({ data }) => {
         />
         <Bar 
           dataKey="bookings" 
-          fill="#C44C6C" 
+          fill="var(--bb-brand)"
           name="Lịch hẹn"
           radius={[0, 4, 4, 0]}
         />
         <Bar 
           dataKey="revenue" 
-          fill="#FF6B9D" 
+          fill="var(--color-berry-400)"
           name="Doanh thu (M)"
           radius={[0, 4, 4, 0]}
         />

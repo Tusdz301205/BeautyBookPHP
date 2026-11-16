@@ -92,12 +92,25 @@ class DirectDeposit
 
     public static function activeConnection(int $businessId): ?object
     {
-        return DB::table('payment_connections')->where('business_id', $businessId)->where('enabled', 1)->where('status', 'READY')->first();
+        return DB::table('payment_connections')->where('business_id', $businessId)->where('enabled', 1)->where('status', 'READY')
+            ->whereNotNull('verified_at')->whereIn('environment', self::allowTest() ? ['live', 'test'] : ['live'])->first();
+    }
+
+    /** Read-only booking readiness. Missing bank setup must never turn a required deposit into a free booking. */
+    public static function readiness(int $businessId, int|float|string $total): array
+    {
+        $required = ! LiveWalletPolicy::walletMode() && self::enabled() && self::amounts($total)['depositVnd'] > 0;
+        $ready = ! $required || self::activeConnection($businessId) !== null;
+
+        return ['direct' => ! LiveWalletPolicy::walletMode() && self::enabled(), 'required' => $required, 'ok' => $ready,
+            'reasonCode' => $ready ? null : 'DIRECT_DEPOSIT_UNAVAILABLE',
+            'reason' => $ready ? null : 'Cơ sở chưa có tài khoản nhận cọc đã xác minh và đang bật. Chưa thể đặt lịch trực tuyến có phí.'];
     }
 
     /**
      * The terms a customer must accept before booking, or null when no direct deposit applies (wallet mode, feature
-     * off, no enabled and verified account, or a zero deposit). The quote covers the account, so a changed account asks again.
+     * off, no enabled and verified account, or a zero deposit). Readiness distinguishes missing setup from no deposit;
+     * createFor enforces it. The quote covers the account, so a changed account asks again.
      */
     public static function terms(int $businessId, int $branchId, int|float|string $total, int $cancellationHours): ?array
     {
@@ -108,7 +121,9 @@ class DirectDeposit
         $terms = ['fundingSource' => self::FUNDING] + $amounts + ['rateBps' => 3000, 'cancellationHours' => $cancellationHours];
 
         return $terms + ['environment' => $account->environment, 'bankCode' => $account->bank_code, 'accountName' => $account->account_name,
-            'quote' => WalletCore::hash(['version' => 1, 'branchId' => $branchId, 'connectionId' => (int) $account->id] + $amounts + ['rateBps' => 3000, 'cancellationHours' => $cancellationHours]), 'connectionId' => (int) $account->id];
+            'quote' => WalletCore::hash(['version' => 2, 'branchId' => $branchId, 'connectionId' => (int) $account->id,
+                'connectionVersion' => (int) $account->version, 'environment' => $account->environment, 'bankCode' => $account->bank_code,
+                'accountNumber' => $account->account_number, 'accountName' => $account->account_name] + $amounts + ['rateBps' => 3000, 'cancellationHours' => $cancellationHours]), 'connectionId' => (int) $account->id];
     }
 
     /**
@@ -119,6 +134,8 @@ class DirectDeposit
      */
     public static function createFor(object $booking, object $branch, int|float|string $total, \Carbon\CarbonInterface $startAt, ?string $acceptedQuote, array $rules): ?object
     {
+        $readiness = self::readiness((int) $branch->business_id, $total);
+        abort_unless($readiness['ok'], 409, $readiness['reason']);
         $terms = self::terms((int) $branch->business_id, (int) $branch->id, $total, $rules['cancellationHours']);
         if (! $terms) return null;
         if ($acceptedQuote !== $terms['quote']) abort(409, 'Review and accept the current deposit before booking');

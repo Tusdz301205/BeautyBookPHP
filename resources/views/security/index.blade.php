@@ -16,7 +16,7 @@
             <div class="assignment-list">
                 @foreach ($assignments as $assignment)
                     <div>
-                        <strong>{{ $assignment->role_name }}</strong>
+                        <strong>{{ __($assignment->role_name) }}</strong>
                         <span>{{ $assignment->business?->name ?? $assignment->scope_key }}{{ $assignment->branch ? ' · '.$assignment->branch->name : '' }}</span>
                     </div>
                 @endforeach

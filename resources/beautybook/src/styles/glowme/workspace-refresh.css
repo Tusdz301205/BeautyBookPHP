@@ -1,0 +1,119 @@
+/* Workspace shell: light, brand-tinted navigation replaces the near-black sidebar. */
+.bb-app-shell .bb-app-sidebar.bb-app-sidebar--light {
+  background: linear-gradient(180deg, var(--color-berry-50) 0, var(--color-neutral-0) 13rem) !important;
+  box-shadow: 1px 0 0 var(--color-border-soft);
+}
+.bb-app-sidebar__brand { background: transparent; }
+.bb-app-sidebar--light .bb-app-nav-link { position: relative; }
+.bb-app-sidebar--light .bb-app-nav-link > svg:first-child { flex: none; color: var(--color-neutral-400); transition: color var(--dur-fast) var(--ease-out); }
+.bb-app-sidebar--light .bb-app-nav-link:hover > svg:first-child,
+.bb-app-sidebar--light .bb-app-nav-link--active > svg:first-child { color: var(--color-accent); }
+.bb-app-sidebar--light .bb-app-nav-link--active::before {
+  content: '';
+  position: absolute;
+  inset: .55rem auto .55rem -.75rem;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--color-accent);
+}
+
+/* Segmented tabs used across Admin pages: soft brand selection instead of black pills. */
+.bb-segmented { display: inline-flex; max-width: 100%; flex-wrap: wrap; gap: .25rem; padding: .25rem; border: 1px solid var(--bb-border); border-radius: .85rem; background: var(--bb-surface); box-shadow: var(--shadow-xs); }
+.bb-segmented > :is(button, a) { min-height: 2.5rem; display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .95rem; border-radius: .6rem; color: var(--bb-ink-soft); font-size: .875rem; font-weight: 700; white-space: nowrap; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.bb-segmented > :is(button, a):hover:not(:disabled) { background: var(--bb-surface-subtle); color: var(--bb-ink); }
+.bb-segmented > :is(button, a)[aria-pressed="true"],
+.bb-segmented > :is(button, a)[aria-selected="true"],
+.bb-segmented > :is(button, a)[aria-current="page"] { background: var(--bb-brand-soft); color: var(--bb-brand-strong); box-shadow: inset 0 0 0 1px var(--color-berry-100); }
+.bb-segmented > button:disabled { cursor: progress; opacity: .7; }
+
+/* Admin partners: one compact toolbar instead of a full-width tab bar and a sparse filter card. */
+.bb-approval-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: .45rem; border-color: var(--color-berry-100); border-radius: 1rem; background: linear-gradient(135deg, var(--bb-surface) 65%, var(--bb-brand-soft)); box-shadow: var(--shadow-xs); }
+.bb-approval-toolbar__title { display: inline-flex; align-items: center; gap: .4rem; padding: 0 .35rem; color: var(--bb-brand-strong); font-size: .78rem; font-weight: 800; white-space: nowrap; }
+.bb-approval-toolbar__divider { align-self: stretch; width: 1px; min-height: 1.75rem; margin: .2rem .05rem; background: var(--bb-border); }
+.bb-approval-toolbar .bb-segmented { flex-wrap: nowrap; padding: .18rem; border: 0; border-radius: .75rem; box-shadow: none; background: var(--bb-surface-subtle); }
+.bb-approval-toolbar .bb-segmented > button { min-height: 2.15rem; padding: .35rem .7rem; border-radius: .6rem; }
+.bb-approval-toolbar__status { width: 9.5rem; max-width: 100%; }
+.bb-approval-toolbar__status select { min-height: 2.5rem; padding-block: .35rem; border-radius: .7rem; background-color: var(--bb-surface); font-weight: 700; }
+.bb-approval-toolbar__count { display: inline-flex; align-items: center; gap: .3rem; min-height: 2rem; margin: 0; padding: .25rem .65rem; border-radius: 999px; background: var(--bb-brand-soft); color: var(--bb-brand-strong); font-size: .75rem; white-space: nowrap; }
+.bb-approval-toolbar__count strong { color: inherit; font-size: .95rem; }
+.bb-approval-toolbar__reload { min-height: 2.5rem; border-radius: .7rem; }
+@media (max-width: 40rem) { .bb-approval-toolbar { width: 100%; } .bb-approval-toolbar__title { flex: 1; } .bb-approval-toolbar__divider { display: none; } .bb-approval-toolbar .bb-segmented { order: 2; width: 100%; display: grid; grid-template-columns: 1fr 1fr; } .bb-approval-toolbar .bb-segmented > button { justify-content: center; } .bb-approval-toolbar__status { order: 3; flex: 1; } .bb-approval-toolbar__count { margin-left: auto; } .bb-approval-toolbar__reload { order: 3; } }
+
+/* Shared branch scope across all business operation pages. */
+.bb-branch-workspace-scope { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; min-height: 5.75rem; padding: .9rem 1rem; }
+.bb-branch-workspace-scope__icon { display: grid; width: 2.75rem; height: 2.75rem; flex-shrink: 0; place-items: center; border-radius: .8rem; background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-branch-workspace-scope__summary { flex: 1; min-width: 10rem; }
+.bb-branch-workspace-scope__summary p { color: var(--bb-muted); font-size: .7rem; font-weight: 600; }
+.bb-branch-workspace-scope__summary > span { display: block; margin-top: .15rem; color: var(--bb-ink); font-size: .9rem; font-weight: 750; overflow-wrap: anywhere; }
+.bb-branch-workspace-scope__summary small { display: flex; align-items: baseline; gap: .25rem; margin-top: .2rem; color: var(--bb-muted); font-size: .72rem; overflow-wrap: anywhere; }
+.bb-branch-workspace-scope__summary small svg { flex-shrink: 0; }
+.bb-branch-workspace-scope__select { width: 19rem; max-width: 100%; }
+@media (max-width: 40rem) { .bb-branch-workspace-scope__select { width: 100%; } }
+
+/* Approval profile: labelled rows with readable body text. */
+.bb-approval-profile__list { margin: 0; }
+.bb-approval-profile__list > div { display: grid; grid-template-columns: minmax(0, 10rem) minmax(0, 1fr); gap: .35rem 1.5rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--bb-border-soft); }
+.bb-approval-profile__list > div:last-child { border-bottom: 0; }
+.bb-approval-profile__list dt { padding-top: .1rem; color: var(--bb-muted); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.bb-approval-profile__list dd { min-width: 0; margin: 0; color: var(--bb-ink); font-size: .95rem; line-height: 1.7; overflow-wrap: anywhere; }
+.bb-approval-profile__empty { color: var(--bb-muted) !important; font-style: italic; }
+.bb-approval-profile__note { padding: .6rem .8rem; border-left: 3px solid var(--color-info); border-radius: .5rem; background: var(--color-info-soft); color: var(--color-info-strong) !important; font-size: .9rem !important; }
+@media (max-width: 40rem) { .bb-approval-profile__list > div { grid-template-columns: minmax(0, 1fr); padding: .85rem 1rem; } }
+
+/* Admin report groups: heading with grouped controls, and an evenly aligned data table. */
+.bb-report-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; }
+.bb-report-toolbar > div:first-child { flex: 1 1 18rem; }
+.bb-report-toolbar__controls { flex: 0 1 auto; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .75rem; }
+.bb-report-toolbar__field { width: 13rem; max-width: 100%; }
+.bb-report-toolbar .bb-field > span[aria-hidden=true] { display: none; }
+.bb-report-group-card { box-shadow: 0 12px 32px color-mix(in srgb, var(--bb-ink) 6%, transparent); }
+.bb-report-group-header { padding: 1.25rem; background: linear-gradient(135deg, color-mix(in srgb, var(--bb-brand-soft) 62%, white), white 58%); }
+.bb-report-group-heading { flex: 1 1 22rem; display: flex; align-items: center; gap: .85rem; }
+.bb-report-group-icon { display: grid; flex: 0 0 auto; width: 2.75rem; height: 2.75rem; place-items: center; border-radius: .85rem; background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-report-group-chart { border-top: 1px solid var(--bb-border); background: color-mix(in srgb, var(--bb-surface-subtle) 42%, white); }
+.bb-report-group-chart > header { padding: 1.15rem 1.5rem .5rem; }
+.bb-report-group-kicker { color: var(--bb-brand-strong); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.bb-report-group-table { padding-top: .35rem; background: color-mix(in srgb, var(--bb-surface-subtle) 55%, white); }
+.bb-report-group-table .bb-report-table { width: calc(100% - 2rem); min-width: 48rem; margin: 0 1rem .35rem; border-collapse: separate; border-spacing: 0 .55rem; }
+.bb-report-group-table .bb-report-table caption { padding: 1rem .5rem .55rem; border: 0; color: var(--bb-ink); font-size: 1.05rem; }
+.bb-report-group-table .bb-report-table thead th { padding-block: .45rem; border: 0; background: transparent; color: var(--bb-ink-soft); }
+.bb-report-group-table .bb-report-table tbody :is(th, td) { padding-block: 1rem; border: 0; background: var(--bb-surface); box-shadow: 0 2px 8px color-mix(in srgb, var(--bb-ink) 4%, transparent); }
+.bb-report-group-table .bb-report-table tbody tr:nth-child(even) { background: transparent; }
+.bb-report-group-table .bb-report-table tbody tr > :first-child { border-radius: .8rem 0 0 .8rem; }
+.bb-report-group-table .bb-report-table tbody tr > :last-child { border-radius: 0 .8rem .8rem 0; }
+.bb-report-group-table .bb-report-table tbody th { color: var(--bb-ink); font-size: .95rem; font-weight: 700; }
+.bb-report-count { display: inline-grid; min-width: 2.25rem; min-height: 2rem; place-items: center; padding-inline: .55rem; border-radius: .65rem; background: var(--bb-brand-soft); color: var(--bb-brand-strong); font-weight: 800; }
+.bb-report-count--muted { background: var(--bb-surface-subtle); color: var(--bb-ink-soft); }
+.bb-report-group-footer { padding: .6rem 1.5rem 1.1rem; background: color-mix(in srgb, var(--bb-surface-subtle) 55%, white); }
+.bb-report-table { width: 100%; min-width: 50rem; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: .875rem; }
+.bb-report-table caption { padding: 1rem 1.25rem .75rem; text-align: left; font-weight: 700; }
+.bb-report-table__number { width: 9.5rem; }
+.bb-report-table__action { width: 13rem; }
+.bb-report-table thead th { padding: .7rem 1.25rem; border-block: 1px solid var(--bb-border); background: var(--bb-surface-subtle); color: var(--bb-muted); font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.bb-report-table tbody :is(th, td) { padding: .8rem 1.25rem; border-bottom: 1px solid var(--bb-border-soft); vertical-align: middle; }
+.bb-report-table tbody tr:last-child :is(th, td) { border-bottom: 0; }
+.bb-report-table tbody th { overflow-wrap: anywhere; font-weight: 600; }
+.bb-report-table tbody td { color: var(--bb-ink); font-size: .95rem; }
+.bb-report-table tbody tr:hover { background: color-mix(in oklch, var(--bb-brand-soft) 45%, transparent); }
+@media (max-width: 40rem) { .bb-report-toolbar__controls { width: 100%; } .bb-report-toolbar__field { flex: 1; } .bb-report-group-heading { align-items: flex-start; } .bb-report-group-icon { width: 2.5rem; height: 2.5rem; } .bb-report-group-footer { padding-inline: 1rem; } }
+
+/* Admin booking list: stronger column hierarchy for quick scanning. */
+.bb-booking-report-table { border-collapse: collapse; }
+.bb-booking-report-table thead { background: color-mix(in srgb, var(--bb-brand-soft) 68%, white); }
+.bb-booking-report-table thead th { border-bottom: 1px solid color-mix(in srgb, var(--bb-brand) 20%, var(--bb-border)); color: var(--bb-ink-soft); font-size: .72rem; font-weight: 800; letter-spacing: .055em; line-height: 1.4; text-transform: uppercase; white-space: nowrap; }
+.bb-booking-report-table tbody tr { transition: background-color var(--dur-fast) var(--ease-out); }
+.bb-booking-report-table tbody tr:hover { background: color-mix(in srgb, var(--bb-brand-soft) 34%, white); }
+.bb-booking-report-table tbody th { color: var(--bb-brand-strong); }
+
+/* Compact report filters with optional advanced scope controls. */
+.bb-admin-report-advanced { overflow: hidden; border-radius: .8rem; background: var(--bb-surface-subtle); }
+.bb-admin-report-advanced > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem .85rem; color: var(--bb-ink-soft); font-size: .875rem; font-weight: 700; list-style: none; cursor: pointer; }
+.bb-admin-report-advanced > summary::-webkit-details-marker { display: none; }
+.bb-admin-report-advanced > summary:hover { color: var(--bb-ink); background: color-mix(in srgb, var(--bb-brand-soft) 40%, transparent); }
+.bb-admin-report-advanced > summary small { padding: .15rem .45rem; border-radius: 999px; background: var(--bb-brand-soft); color: var(--bb-brand-strong); font-size: .68rem; }
+.bb-admin-report-advanced[open] > summary { color: var(--bb-brand-strong); }
+.bb-admin-report-advanced > summary > svg { transition: transform var(--dur-fast) var(--ease-out); }
+.bb-admin-report-advanced[open] > summary > svg { transform: rotate(180deg); }
+.bb-admin-report-advanced > div { border-top: 1px solid var(--bb-border-soft); }
+
+/* Slim workspace footer so operational pages end deliberately. */

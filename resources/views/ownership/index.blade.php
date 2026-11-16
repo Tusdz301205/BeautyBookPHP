@@ -11,7 +11,7 @@
 </article>
 @endforeach
 @endif
-@foreach($versions as $version)<article class="panel"><strong>{{ $version->type }} · v{{ $version->version }} · {{ $version->display_label }}</strong><p>@include('finance.status', ['value' => $version->verification_status])</p>
+@foreach($versions as $version)<article class="panel"><strong>{{ __($version->type) }} · v{{ $version->version }} · {{ $version->display_label }}</strong><p>@include('finance.status', ['value' => $version->verification_status])</p>
 @if($isAdmin && $version->verification_status === 'PENDING')<form class="form-stack" method="POST" action="{{ route('ownership.verify', $version->id) }}">@csrf<label>Kết quả <select name="approve"><option value="1">Xác minh</option><option value="0">Từ chối</option></select></label><label>Lý do <input type="text" name="reason" required maxlength="2000"></label><button class="button button-primary">Ghi kết quả</button></form>@endif</article>@endforeach
 @forelse($transfers as $transfer)<article class="panel"><h2>{{ $transfer->business_name }}</h2><p>@include('finance.status', ['value' => $transfer->status]) · Hiệu lực {{ \Carbon\CarbonImmutable::parse($transfer->effective_at, 'UTC')->setTimezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}</p><p>{{ $transfer->reason }}</p><p>{{ $transfer->review_reason }}</p>@php($transferImpact = json_decode($transfer->impact_snapshot, true) ?? [])
 <dl class="summary-grid"><div><dt>Chi nhánh</dt><dd>{{ count($transferImpact['branch_ids'] ?? []) }}</dd></div><div><dt>Lịch sắp tới</dt><dd>{{ $transferImpact['future_bookings'] ?? 0 }}</dd></div><div><dt>Thanh toán đang chờ</dt><dd>{{ $transferImpact['pending_payments'] ?? 0 }}</dd></div><div><dt>Hoàn tiền đang chờ</dt><dd>{{ $transferImpact['pending_refunds'] ?? 0 }}</dd></div></dl>

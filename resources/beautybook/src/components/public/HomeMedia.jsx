@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Image as ImageIcon } from 'lucide-react';
 import { uploadedMediaUrl } from '../../utils/mediaUrl';
 
@@ -15,6 +15,7 @@ export function HomeMedia({
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
   const [fallbackActive, setFallbackActive] = useState(false);
+  const imageRef = useRef(null);
   const primaryMedia = typeof src === 'string' ? { src } : (src || {});
   const backupMedia = typeof fallbackSrc === 'string' ? { src: fallbackSrc } : (fallbackSrc || {});
   const usingFallback = fallbackActive || (!primaryMedia.src && Boolean(backupMedia.src));
@@ -25,8 +26,9 @@ export function HomeMedia({
     : (alt ?? media.alt ?? '');
   const isIllustration = Boolean(media.illustration);
 
-  useEffect(() => {
-    setLoaded(false);
+  useLayoutEffect(() => {
+    // Cached images can finish before passive effects; do not hide them again.
+    setLoaded(Boolean(imageRef.current?.complete && imageRef.current.naturalWidth));
     setFailed(false);
     setFallbackActive(false);
   }, [primaryMedia.src, backupMedia.src]);
@@ -50,6 +52,7 @@ export function HomeMedia({
     >
       {showImage ? (
         <img
+          ref={imageRef}
           src={resolvedSrc}
           srcSet={media.srcSet}
           sizes={media.sizes}

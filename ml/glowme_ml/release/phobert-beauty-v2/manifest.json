@@ -1,0 +1,670 @@
+{
+  "model": "phobert-beauty-v2",
+  "seed": 42,
+  "checkpoint_sha256": "6146252c727eb76b966621f3496c422ba2590f782923386e300cf4dbb2f6b7cc",
+  "taxonomy_version": "beauty-4-v1",
+  "preprocessing_version": "prep-v1",
+  "base_model_revision": "01daacda68afe13d83023d16ec647239e344a1e6",
+  "aspects": [
+    "SERVICE_QUALITY",
+    "STAFF_ATTITUDE",
+    "WAIT_TIME",
+    "PRICE"
+  ],
+  "labels": [
+    "NOT_MENTIONED",
+    "POS",
+    "NEG",
+    "NEU"
+  ],
+  "device": "cpu",
+  "precision": "float32",
+  "max_length": 256,
+  "probability_note": "uncalibrated softmax output; not calibrated confidence",
+  "segmenter": "persistent",
+  "source_sha256": "82b152dd285845ae99ed96d7d65b6ef922acfda55e123692a63833b8202b9f9d",
+  "config": {
+    "model_name": "vinai/phobert-base",
+    "revision": "01daacda68afe13d83023d16ec647239e344a1e6",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "batch_size": 16,
+    "eval_batch_size": 64,
+    "epochs": 8,
+    "early_stopping_patience": 2,
+    "dropout": 0.1,
+    "max_length": 256,
+    "max_grad_norm": 1.0,
+    "mixed_precision_train_and_dev": "bf16",
+    "final_test_precision": "CPU fp32, fixed before running Test; deployment parity checked separately",
+    "selection_metric": "macro_e2e_f1",
+    "selection_split": "dev",
+    "preprocessing": "prep-v1",
+    "gradient_accumulation_steps": 1,
+    "shuffle": "Python random.Random(seed): shuffle examples, construct batches, shuffle batch plan as in old trainer",
+    "seed": 42
+  },
+  "results": {
+    "dev": {
+      "n_samples": 385,
+      "n_aspects": 4,
+      "n_gold_mentions": 888,
+      "n_pred_mentions": 867,
+      "macro_e2e_f1": 0.8986567119785779,
+      "macro_e2e_precision": 0.909721091304829,
+      "macro_e2e_recall": 0.8879141587416235,
+      "aspects_excluded_from_macro": [],
+      "micro_e2e_precision": 0.9100346020761245,
+      "micro_e2e_recall": 0.8885135135135135,
+      "micro_e2e_f1": 0.8991452991452991,
+      "micro_detection_precision": 0.9700115340253749,
+      "micro_detection_recall": 0.9470720720720721,
+      "micro_detection_f1": 0.9584045584045585,
+      "macro_detection_f1": 0.9586178458120624,
+      "macro_sentiment_f1_gold_aspect": 0.9181242879630764,
+      "pooled_sentiment_macro_f1_gold_aspect": 0.921382460150579,
+      "macro_f1_4class": 0.9067284483965276,
+      "accuracy_mean_over_aspects": 0.9188311688311688,
+      "exact_match_accuracy": 0.7792207792207793,
+      "per_aspect": {
+        "SERVICE_QUALITY": {
+          "support_mentioned": 225,
+          "predicted_mentioned": 222,
+          "e2e_tp": 196,
+          "e2e_fp": 26,
+          "e2e_fn": 29,
+          "e2e_precision": 0.8828828828828829,
+          "e2e_recall": 0.8711111111111111,
+          "e2e_f1": 0.8769574944071588,
+          "detection_precision": 0.9279279279279279,
+          "detection_recall": 0.9155555555555556,
+          "detection_f1": 0.9217002237136465,
+          "sentiment_macro_f1_gold_aspect": 0.9116369515064694,
+          "macro_f1_4class": 0.8659633852559486,
+          "accuracy": 0.8831168831168831,
+          "confusion": [
+            [
+              144,
+              5,
+              9,
+              2
+            ],
+            [
+              9,
+              91,
+              4,
+              1
+            ],
+            [
+              6,
+              0,
+              82,
+              0
+            ],
+            [
+              4,
+              4,
+              1,
+              23
+            ]
+          ]
+        },
+        "STAFF_ATTITUDE": {
+          "support_mentioned": 234,
+          "predicted_mentioned": 231,
+          "e2e_tp": 217,
+          "e2e_fp": 14,
+          "e2e_fn": 17,
+          "e2e_precision": 0.9393939393939394,
+          "e2e_recall": 0.9273504273504274,
+          "e2e_f1": 0.9333333333333335,
+          "detection_precision": 0.9783549783549783,
+          "detection_recall": 0.9658119658119658,
+          "detection_f1": 0.9720430107526881,
+          "sentiment_macro_f1_gold_aspect": 0.9583215522363595,
+          "macro_f1_4class": 0.9403626292708958,
+          "accuracy": 0.9428571428571428,
+          "confusion": [
+            [
+              146,
+              1,
+              2,
+              2
+            ],
+            [
+              0,
+              89,
+              2,
+              2
+            ],
+            [
+              8,
+              4,
+              72,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              56
+            ]
+          ]
+        },
+        "WAIT_TIME": {
+          "support_mentioned": 216,
+          "predicted_mentioned": 208,
+          "e2e_tp": 185,
+          "e2e_fp": 23,
+          "e2e_fn": 31,
+          "e2e_precision": 0.8894230769230769,
+          "e2e_recall": 0.8564814814814815,
+          "e2e_f1": 0.8726415094339622,
+          "detection_precision": 0.9855769230769231,
+          "detection_recall": 0.9490740740740741,
+          "detection_f1": 0.9669811320754716,
+          "sentiment_macro_f1_gold_aspect": 0.8827623170480313,
+          "macro_f1_4class": 0.8944935264365592,
+          "accuracy": 0.9116883116883117,
+          "confusion": [
+            [
+              166,
+              3,
+              0,
+              0
+            ],
+            [
+              3,
+              67,
+              7,
+              0
+            ],
+            [
+              6,
+              0,
+              72,
+              12
+            ],
+            [
+              2,
+              0,
+              1,
+              46
+            ]
+          ]
+        },
+        "PRICE": {
+          "support_mentioned": 213,
+          "predicted_mentioned": 206,
+          "e2e_tp": 191,
+          "e2e_fp": 15,
+          "e2e_fn": 22,
+          "e2e_precision": 0.9271844660194175,
+          "e2e_recall": 0.8967136150234741,
+          "e2e_f1": 0.9116945107398567,
+          "detection_precision": 0.9902912621359223,
+          "detection_recall": 0.9577464788732394,
+          "detection_f1": 0.9737470167064438,
+          "sentiment_macro_f1_gold_aspect": 0.9197763310614456,
+          "macro_f1_4class": 0.9260942526227062,
+          "accuracy": 0.9376623376623376,
+          "confusion": [
+            [
+              170,
+              0,
+              1,
+              1
+            ],
+            [
+              5,
+              65,
+              3,
+              4
+            ],
+            [
+              4,
+              2,
+              75,
+              3
+            ],
+            [
+              0,
+              1,
+              0,
+              51
+            ]
+          ]
+        }
+      },
+      "loss": 0.281309665333141
+    },
+    "test": {
+      "n_samples": 375,
+      "n_aspects": 4,
+      "n_gold_mentions": 777,
+      "n_pred_mentions": 776,
+      "macro_e2e_f1": 0.8740479662939555,
+      "macro_e2e_precision": 0.8750681482057152,
+      "macro_e2e_recall": 0.8732341592144743,
+      "aspects_excluded_from_macro": [],
+      "micro_e2e_precision": 0.875,
+      "micro_e2e_recall": 0.8738738738738738,
+      "micro_e2e_f1": 0.8744365743721828,
+      "micro_detection_precision": 0.961340206185567,
+      "micro_detection_recall": 0.9601029601029601,
+      "micro_detection_f1": 0.960721184803606,
+      "macro_detection_f1": 0.9614325068870524,
+      "macro_sentiment_f1_gold_aspect": 0.8971497215483066,
+      "pooled_sentiment_macro_f1_gold_aspect": 0.8988121290997132,
+      "macro_f1_4class": 0.8889802006145984,
+      "accuracy_mean_over_aspects": 0.9146666666666666,
+      "exact_match_accuracy": 0.7386666666666667,
+      "per_aspect": {
+        "SERVICE_QUALITY": {
+          "support_mentioned": 201,
+          "predicted_mentioned": 207,
+          "e2e_tp": 174,
+          "e2e_fp": 33,
+          "e2e_fn": 27,
+          "e2e_precision": 0.8405797101449275,
+          "e2e_recall": 0.8656716417910447,
+          "e2e_f1": 0.8529411764705882,
+          "detection_precision": 0.9130434782608695,
+          "detection_recall": 0.9402985074626866,
+          "detection_f1": 0.9264705882352942,
+          "sentiment_macro_f1_gold_aspect": 0.9020310451296366,
+          "macro_f1_4class": 0.8597852690265813,
+          "accuracy": 0.88,
+          "confusion": [
+            [
+              156,
+              7,
+              7,
+              4
+            ],
+            [
+              9,
+              79,
+              3,
+              1
+            ],
+            [
+              2,
+              1,
+              64,
+              2
+            ],
+            [
+              1,
+              2,
+              6,
+              31
+            ]
+          ]
+        },
+        "STAFF_ATTITUDE": {
+          "support_mentioned": 204,
+          "predicted_mentioned": 204,
+          "e2e_tp": 186,
+          "e2e_fp": 18,
+          "e2e_fn": 18,
+          "e2e_precision": 0.9117647058823529,
+          "e2e_recall": 0.9117647058823529,
+          "e2e_f1": 0.9117647058823528,
+          "detection_precision": 0.9754901960784313,
+          "detection_recall": 0.9754901960784313,
+          "detection_f1": 0.9754901960784313,
+          "sentiment_macro_f1_gold_aspect": 0.9204562362633859,
+          "macro_f1_4class": 0.9226996098222633,
+          "accuracy": 0.9386666666666666,
+          "confusion": [
+            [
+              166,
+              4,
+              1,
+              0
+            ],
+            [
+              0,
+              80,
+              0,
+              2
+            ],
+            [
+              4,
+              1,
+              62,
+              1
+            ],
+            [
+              1,
+              5,
+              4,
+              44
+            ]
+          ]
+        },
+        "WAIT_TIME": {
+          "support_mentioned": 190,
+          "predicted_mentioned": 184,
+          "e2e_tp": 161,
+          "e2e_fp": 23,
+          "e2e_fn": 29,
+          "e2e_precision": 0.875,
+          "e2e_recall": 0.8473684210526315,
+          "e2e_f1": 0.8609625668449198,
+          "detection_precision": 0.9619565217391305,
+          "detection_recall": 0.9315789473684211,
+          "detection_f1": 0.946524064171123,
+          "sentiment_macro_f1_gold_aspect": 0.9035699849054671,
+          "macro_f1_4class": 0.875206839051673,
+          "accuracy": 0.904,
+          "confusion": [
+            [
+              178,
+              7,
+              0,
+              0
+            ],
+            [
+              7,
+              51,
+              1,
+              8
+            ],
+            [
+              1,
+              1,
+              71,
+              1
+            ],
+            [
+              5,
+              2,
+              3,
+              39
+            ]
+          ]
+        },
+        "PRICE": {
+          "support_mentioned": 182,
+          "predicted_mentioned": 181,
+          "e2e_tp": 158,
+          "e2e_fp": 23,
+          "e2e_fn": 24,
+          "e2e_precision": 0.8729281767955801,
+          "e2e_recall": 0.8681318681318682,
+          "e2e_f1": 0.8705234159779615,
+          "detection_precision": 1.0,
+          "detection_recall": 0.9945054945054945,
+          "detection_f1": 0.9972451790633609,
+          "sentiment_macro_f1_gold_aspect": 0.862541619894737,
+          "macro_f1_4class": 0.898229084557876,
+          "accuracy": 0.936,
+          "confusion": [
+            [
+              193,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              65,
+              0,
+              1
+            ],
+            [
+              0,
+              5,
+              50,
+              9
+            ],
+            [
+              0,
+              0,
+              8,
+              43
+            ]
+          ]
+        }
+      },
+      "loss": 0.26547981921831765
+    },
+    "sources": {
+      "dev": "runs\\TECH-ML-REBUILD-20261104\\e1_seed42\\dev_metrics.json",
+      "test": "runs\\TECH-ML-REBUILD-20261104\\e1_seed42\\test_metrics.json"
+    },
+    "errors": {
+      "incorrect_labels": 128,
+      "total_labels": 1500,
+      "reviews_with_any_error": 98,
+      "total_reviews": 375,
+      "confusion_pairs": [
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "POS",
+          "pred": "NOT_MENTIONED",
+          "count": 9
+        },
+        {
+          "aspect": "PRICE",
+          "gold": "NEG",
+          "pred": "NEU",
+          "count": 9
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "POS",
+          "pred": "NEU",
+          "count": 8
+        },
+        {
+          "aspect": "PRICE",
+          "gold": "NEU",
+          "pred": "NEG",
+          "count": 8
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NOT_MENTIONED",
+          "pred": "POS",
+          "count": 7
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NOT_MENTIONED",
+          "pred": "NEG",
+          "count": 7
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NOT_MENTIONED",
+          "pred": "POS",
+          "count": 7
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "POS",
+          "pred": "NOT_MENTIONED",
+          "count": 7
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEU",
+          "pred": "NEG",
+          "count": 6
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEU",
+          "pred": "POS",
+          "count": 5
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEU",
+          "pred": "NOT_MENTIONED",
+          "count": 5
+        },
+        {
+          "aspect": "PRICE",
+          "gold": "NEG",
+          "pred": "POS",
+          "count": 5
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NOT_MENTIONED",
+          "pred": "NEU",
+          "count": 4
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NOT_MENTIONED",
+          "pred": "POS",
+          "count": 4
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEG",
+          "pred": "NOT_MENTIONED",
+          "count": 4
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEU",
+          "pred": "NEG",
+          "count": 4
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "POS",
+          "pred": "NEG",
+          "count": 3
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEU",
+          "pred": "NEG",
+          "count": 3
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEG",
+          "pred": "NOT_MENTIONED",
+          "count": 2
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEG",
+          "pred": "NEU",
+          "count": 2
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEU",
+          "pred": "POS",
+          "count": 2
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "POS",
+          "pred": "NEU",
+          "count": 2
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEU",
+          "pred": "POS",
+          "count": 2
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "POS",
+          "pred": "NEU",
+          "count": 1
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEG",
+          "pred": "POS",
+          "count": 1
+        },
+        {
+          "aspect": "SERVICE_QUALITY",
+          "gold": "NEU",
+          "pred": "NOT_MENTIONED",
+          "count": 1
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NOT_MENTIONED",
+          "pred": "NEG",
+          "count": 1
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEG",
+          "pred": "POS",
+          "count": 1
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEG",
+          "pred": "NEU",
+          "count": 1
+        },
+        {
+          "aspect": "STAFF_ATTITUDE",
+          "gold": "NEU",
+          "pred": "NOT_MENTIONED",
+          "count": 1
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "POS",
+          "pred": "NEG",
+          "count": 1
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEG",
+          "pred": "NOT_MENTIONED",
+          "count": 1
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEG",
+          "pred": "POS",
+          "count": 1
+        },
+        {
+          "aspect": "WAIT_TIME",
+          "gold": "NEG",
+          "pred": "NEU",
+          "count": 1
+        },
+        {
+          "aspect": "PRICE",
+          "gold": "POS",
+          "pred": "NOT_MENTIONED",
+          "count": 1
+        },
+        {
+          "aspect": "PRICE",
+          "gold": "POS",
+          "pred": "NEU",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "selection_lock_sha256": "18b0f357710a0b4565eb5c4f6697aad67660a7a0be206fcf2ae8bfe73279f997"
+}

@@ -14,7 +14,7 @@ services:
       APP_ENV: local
       APP_KEY: ${LARAVEL_APP_KEY:-base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=}
       APP_DEBUG: "true"
-      APP_URL: http://localhost:8000
+      APP_URL: ${APP_URL:-http://localhost:8000}
       APP_TIMEZONE: Asia/Ho_Chi_Minh
       APP_LOCALE: vi
       APP_FALLBACK_LOCALE: vi
@@ -30,6 +30,23 @@ services:
       CACHE_STORE: database
       QUEUE_CONNECTION: database
       MAIL_MAILER: log
+      WALLET_BOOKING_DEPOSIT_ENABLED: ${WALLET_BOOKING_DEPOSIT_ENABLED:-false}
+      SEPAY_WALLET_ENABLED: ${SEPAY_WALLET_ENABLED:-false}
+      SEPAY_WALLET_WEBHOOK_SECRET: ${SEPAY_WALLET_WEBHOOK_SECRET:-}
+      SEPAY_WALLET_BANK_CODE: ${SEPAY_WALLET_BANK_CODE:-}
+      SEPAY_WALLET_ACCOUNT_NUMBER: ${SEPAY_WALLET_ACCOUNT_NUMBER:-}
+      SEPAY_WALLET_ACCOUNT_NAME: ${SEPAY_WALLET_ACCOUNT_NAME:-}
+      SEPAY_WALLET_MIN_TOPUP_VND: ${SEPAY_WALLET_MIN_TOPUP_VND:-1000}
+      SEPAY_WALLET_MAX_TOPUP_VND: ${SEPAY_WALLET_MAX_TOPUP_VND:-500000}
+      DIRECT_DEPOSIT_ENABLED: ${DIRECT_DEPOSIT_ENABLED:-false}
+      SEPAY_CONNECTION_ENCRYPTION_KEY: ${SEPAY_CONNECTION_ENCRYPTION_KEY:-}
+      DIRECT_DEPOSIT_ALLOW_TEST: ${DIRECT_DEPOSIT_ALLOW_TEST:-true}
+      ABSA_SERVICE_URL: ${ABSA_SERVICE_URL:-http://host.docker.internal:8766}
+      ABSA_SERVICE_TOKEN: ${ABSA_SERVICE_TOKEN:-}
+      ABSA_WORKER_ENABLED: ${ABSA_WORKER_ENABLED:-false}
+      ABSA_BATCH_SIZE: ${ABSA_BATCH_SIZE:-4}
+      ABSA_REQUEST_TIMEOUT_MS: ${ABSA_REQUEST_TIMEOUT_MS:-60000}
+      ABSA_LEASE_MS: ${ABSA_LEASE_MS:-180000}
     ports:
       - "127.0.0.1:8001:8000"
     depends_on:
@@ -41,6 +58,20 @@ services:
       timeout: 5s
       retries: 12
       start_period: 10s
+
+  absa-worker:
+    image: beautybook-php-app
+    profiles: [ml]
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - beautybook_vendor:/var/www/html/vendor
+    environment: *laravel_environment
+    command: ["php", "artisan", "absa:work"]
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
 
   scheduler:
     image: beautybook-php-app

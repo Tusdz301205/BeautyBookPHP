@@ -12,7 +12,7 @@
         <p class="eyebrow">{{ $business->name }}</p>
         <h1>{{ $branch ? $branch->public_name : 'Tạo chi nhánh.' }}</h1>
         @if ($branch)
-            <p>{{ $branch->review_status->value }} · {{ $branch->operational_status->value }} · {{ $branch->status->value }}</p>
+            <p>{{ __($branch->review_status->value) }} · {{ __($branch->operational_status->value) }} · {{ __($branch->status->value) }}</p>
             @if ($branch->review_note)
                 <div class="notice danger-panel">Phản hồi kiểm duyệt: {{ $branch->review_note }}</div>
             @endif
@@ -89,7 +89,7 @@
                     <div>
                         <p class="card-label">Trạng thái</p>
                         <h2>Bước tiếp theo</h2>
-                        <p>Chi nhánh phải thuộc doanh nghiệp đã duyệt, đủ hồ sơ và đủ giờ mở cửa trước khi gửi review.</p>
+                        <p>Chi nhánh phải thuộc doanh nghiệp đã duyệt, đủ hồ sơ và đủ giờ mở cửa trước khi gửi xét duyệt.</p>
                     </div>
                     <div class="action-row">
                         <a class="button button-secondary" href="{{ route('owner.combos.index', $branch) }}">Combo</a>

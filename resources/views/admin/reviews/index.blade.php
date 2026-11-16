@@ -5,9 +5,9 @@
 @section('content')
 <section class="page-shell admin-shell">
     <div class="page-heading">
-        <p class="eyebrow">Platform admin</p>
+        <p class="eyebrow">Quản trị viên nền tảng</p>
         <h1>Hàng đợi kiểm duyệt.</h1>
-        <p>Chỉ hồ sơ đang ở trạng thái PENDING_REVIEW xuất hiện trong danh sách này.</p>
+        <p>Chỉ hồ sơ đang ở trạng thái chờ duyệt xuất hiện trong danh sách này.</p>
     </div>
 
     <div class="review-grid">
@@ -25,7 +25,7 @@
                             <strong>{{ $business->name }}</strong>
                             <span>{{ $business->ownerProfile?->user?->email }} · {{ optional($business->submitted_at)->format('d/m/Y H:i') }}</span>
                         </div>
-                        <a class="text-link" href="{{ route('admin.reviews.business', $business) }}">Review</a>
+                        <a class="text-link" href="{{ route('admin.reviews.business', $business) }}">Xét duyệt</a>
                     </div>
                 @empty
                     <p>Không có hồ sơ doanh nghiệp chờ xử lý.</p>
@@ -47,7 +47,7 @@
                             <strong>{{ $branch->public_name }}</strong>
                             <span>{{ $branch->business->name }} · {{ optional($branch->submitted_at)->format('d/m/Y H:i') }}</span>
                         </div>
-                        <a class="text-link" href="{{ route('admin.reviews.branch', $branch) }}">Review</a>
+                        <a class="text-link" href="{{ route('admin.reviews.branch', $branch) }}">Xét duyệt</a>
                     </div>
                 @empty
                     <p>Không có hồ sơ chi nhánh chờ xử lý.</p>

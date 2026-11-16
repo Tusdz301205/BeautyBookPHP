@@ -49,12 +49,12 @@ export default function BookingStep4() {
         <Field label="Số điện thoại" required error={errors.phone}>
           <Input type="tel" inputMode="tel" autoComplete="tel" required value={customerInfo.phone} onChange={(event) => setCustomerInfo({ phone: event.target.value })} />
         </Field>
-        <Field label="Email"><Input type="email" inputMode="email" autoComplete="email" disabled value={customerInfo.email} /></Field>
+        <Field label="Địa chỉ email"><Input type="email" inputMode="email" autoComplete="email" disabled value={customerInfo.email} /></Field>
 
         <Field label="Ghi chú vận hành" hint="Chỉ ghi chỉ dẫn liên hệ, vị trí hoặc hỗ trợ di chuyển. Không nhập dị ứng, thuốc, thai kỳ hay thông tin sức khỏe tại đây." className="sm:col-span-2">
           <Textarea value={customerInfo.note} onChange={(event) => setCustomerInfo({ note: event.target.value })} placeholder="Ví dụ: gọi trước khi đến, lối vào ở tầng 2" maxLength={1000} />
         </Field>
-        <Field label="Mã ưu đãi hoặc voucher" hint="Nhập mã ưu đãi hoặc voucher. Hệ thống sẽ kiểm tra và tính lại ở bước xác nhận." className="sm:col-span-2"><Input value={voucherCode} onChange={(event) => setVoucherCode(event.target.value.toUpperCase())} placeholder="Ví dụ: WELCOME10" /></Field>
+        <Field label="Mã ưu đãi hoặc phiếu ưu đãi" hint="Nhập mã ưu đãi hoặc phiếu ưu đãi. Hệ thống sẽ kiểm tra và tính lại ở bước xác nhận." className="sm:col-span-2"><Input value={voucherCode} onChange={(event) => setVoucherCode(event.target.value.toUpperCase())} placeholder="Ví dụ: WELCOME10" /></Field>
         <div className="sm:col-span-2">
           <label className="flex min-h-11 items-start gap-3 rounded-xl border border-[var(--bb-border)] p-4 text-sm">
             <input type="checkbox" className="mt-1 h-4 w-4 accent-[var(--bb-brand)]" checked={Boolean(customerInfo.consent)} onChange={(event) => setCustomerInfo({ consent: event.target.checked })} />

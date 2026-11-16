@@ -1,3 +1,4 @@
+import { statusLabel } from '../../utils/displayLabels';
 import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ownershipApi } from '../../api/apiClient';
@@ -41,7 +42,7 @@ export default function IncomingOwnership() {
       rows.length === 0 ? <Card><EmptyState title="Chưa có lời mời tiếp nhận" description="Khi chủ doanh nghiệp gửi yêu cầu, bạn sẽ thấy tại đây." /></Card> :
       <div className="space-y-3">{rows.map((row) => <Card key={row.id} className="p-5">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><h2 className="font-bold">{row.scopeSnapshot?.branches?.[0]?.name || 'Chuyển quyền sở hữu doanh nghiệp'}</h2><Badge tone="warning">{row.status}</Badge></div>
+          <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><h2 className="font-bold">{row.scopeSnapshot?.branches?.[0]?.name || 'Chuyển quyền sở hữu doanh nghiệp'}</h2><Badge tone="warning">{statusLabel(row.status, row.status === 'PENDING_NEW_OWNER_ACCEPTANCE' ? 'Chờ chủ mới xác nhận' : 'Chưa xác định')}</Badge></div>
             <p className="mt-2 text-sm text-[var(--bb-muted)]">Hiệu lực dự kiến {new Date(row.effectiveAt).toLocaleString('vi-VN')} · {row.reason}</p>
             <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-3"><div><dt>Lịch tương lai</dt><dd className="font-bold">{row.impactSnapshot?.futureBookings || 0}</dd></div><div><dt>Thanh toán chờ</dt><dd className="font-bold">{row.impactSnapshot?.pendingPayments || 0}</dd></div><div><dt>Hoàn tiền chờ</dt><dd className="font-bold">{row.impactSnapshot?.pendingRefunds || 0}</dd></div></dl>
           </div>

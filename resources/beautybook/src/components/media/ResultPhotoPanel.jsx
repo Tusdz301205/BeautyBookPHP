@@ -26,7 +26,7 @@ function ResultPhotoForm({ serviceId, scope, busy, run, onClose, onCreated }) {
     const row = await bookingsApi.getById(bookingId);
     const matches = row.bookingServices?.filter((item) => String(item.serviceId) === String(serviceId)) || [];
     if (String(row.branchId) !== String(scope.branchId) || !row.customerId || !matches.length) {
-      throw new Error('Booking cần có khách hàng và đúng lượt dịch vụ tại chi nhánh đang chọn.');
+      throw new Error('Lịch hẹn cần có khách hàng và đúng lượt dịch vụ tại chi nhánh đang chọn.');
     }
     return { row, item: matches[0] };
   }, ({ row, item }) => { setBooking(row); setItemId(item.id); });
@@ -34,9 +34,9 @@ function ResultPhotoForm({ serviceId, scope, busy, run, onClose, onCreated }) {
   const submit = (event) => {
     event.preventDefault();
     void run(async (isCurrent) => {
-      if (mode === 'BOOKING' && (!booking || !itemId)) throw new Error('Kiểm tra booking và chọn lượt dịch vụ đã mua.');
+      if (mode === 'BOOKING' && (!booking || !itemId)) throw new Error('Kiểm tra lịch hẹn và chọn lượt dịch vụ đã mua.');
       if (mode === 'EXTERNAL' && (!reference.trim() || (!proofFile && !proofId))) throw new Error('Nhập định danh và tải bằng chứng riêng tư.');
-      if (!mediaId && (!resultFile || reuse)) throw new Error('Tải ảnh kết quả hoặc nhập ID tệp private đã có.');
+      if (!mediaId && (!resultFile || reuse)) throw new Error('Tải ảnh kết quả hoặc nhập mã tệp riêng tư đã có.');
       let storedMedia = mediaId;
       let storedProof = proofId;
       if (!storedMedia) {
@@ -65,7 +65,7 @@ function ResultPhotoForm({ serviceId, scope, busy, run, onClose, onCreated }) {
         </Select>
       </Field>
       {mode === 'BOOKING' ? <div className="space-y-2">
-        <Field label="ID booking" required><Input type="number" min="1" value={bookingId} onChange={(event) => { setBookingId(event.target.value); setBooking(null); setItemId(''); }} /></Field>
+        <Field label="Mã lịch hẹn" required><Input type="number" min="1" value={bookingId} onChange={(event) => { setBookingId(event.target.value); setBooking(null); setItemId(''); }} /></Field>
         <Button type="button" variant="secondary" disabled={!bookingId || busy} onClick={verifyBooking}>Kiểm tra lịch hẹn</Button>
         {booking && <Field label={'Lượt đã mua · ' + booking.bookingCode}><Select value={itemId} onChange={(event) => setItemId(event.target.value)}>
           {items.map((item) => <option key={item.id} value={item.id}>{item.service?.name || 'Dịch vụ'} · #{item.id}</option>)}
@@ -74,9 +74,9 @@ function ResultPhotoForm({ serviceId, scope, busy, run, onClose, onCreated }) {
         <Textarea required rows={2} maxLength={1000} value={reference} onChange={(event) => setReference(event.target.value)} />
       </Field>}
       <label className="flex min-h-11 items-center gap-2 text-sm">
-        <input type="checkbox" checked={reuse} onChange={(event) => { setReuse(event.target.checked); setMediaId(''); setResultFile(null); }} /> Dùng lại tệp ảnh riêng tư theo ID
+        <input type="checkbox" checked={reuse} onChange={(event) => { setReuse(event.target.checked); setMediaId(''); setResultFile(null); }} /> Dùng lại tệp ảnh riêng tư theo mã
       </label>
-      {reuse ? <Field label="ID tệp ảnh" required><Input type="number" min="1" required value={mediaId} onChange={(event) => setMediaId(event.target.value)} /></Field>
+      {reuse ? <Field label="Mã tệp ảnh" required><Input type="number" min="1" required value={mediaId} onChange={(event) => setMediaId(event.target.value)} /></Field>
         : <div>
           <Field label="Tệp ảnh kết quả" hint="JPG, PNG hoặc WebP, tối đa 8 MB."><Input type="file" accept={images} onChange={(event) => { setResultFile(event.target.files?.[0]); setMediaId(''); }} /></Field>
           <label className="mt-1 flex min-h-11 items-center gap-2 text-sm">
@@ -183,7 +183,7 @@ export function ResultPhotoPanel({ serviceId, businessId, branchId, onBusyChange
         </div>}
     {photo && !creating && <Card className="space-y-3 p-4">
       <h4 className="font-bold">Chi tiết hồ sơ #{photo.id}</h4>
-      <p className="break-words text-sm">{photo.bookingId ? 'Booking #' + photo.bookingId : photo.consentSubjectReference} · ID tệp ảnh {photo.mediaId}</p>
+      <p className="break-words text-sm">{photo.bookingId ? 'Lịch hẹn #' + photo.bookingId : photo.consentSubjectReference} · Mã tệp ảnh {photo.mediaId}</p>
       <Button type="button" variant="secondary" disabled={busy} onClick={() => run(() => mediaApi.download(photo.mediaId), (blob) => setPreview(URL.createObjectURL(blob)))}>Xem ảnh riêng tư</Button>
       {preview && <img src={preview} alt="Ảnh kết quả riêng tư" className="max-h-48 max-w-full rounded-lg object-contain" />}
       {photo.proofMediaId && <Button type="button" variant="secondary" disabled={busy} onClick={() => run(() => mediaApi.download(photo.proofMediaId), (blob) => {

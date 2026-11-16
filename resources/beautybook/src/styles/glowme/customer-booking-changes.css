@@ -1,0 +1,21 @@
+.bb-appointment-changes { padding: 1.4rem; }
+.bb-appointment-change-heading { flex-wrap: nowrap; justify-content: flex-start; gap: .85rem; margin-bottom: 1.2rem; }
+.bb-appointment-change-heading > div { flex: 1; min-width: 0; }
+.bb-change-heading-icon { display: grid; place-items: center; width: 46px; height: 46px; flex-shrink: 0; border-radius: 14px; background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-appointment-change-heading h2 { font-size: 1rem; }
+.bb-appointment-change-heading p { margin-top: .3rem; line-height: 1.6; font-size: .8rem; }
+.bb-change-refresh { width: 38px; height: 38px; padding: 0; }
+.bb-change-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; }
+.bb-change-options > button { display: flex; align-items: center; gap: .7rem; padding: 1rem .85rem; text-align: left; border: 1px solid var(--bb-border); border-radius: 13px; background: white; transition: background .15s,border-color .15s; }
+.bb-change-options > button:hover:not(:disabled) { background: var(--bb-brand-soft); border-color: var(--bb-brand); }
+.bb-change-options > button:focus-visible { outline: 2px solid var(--bb-brand); outline-offset: 3px; }
+.bb-change-options > button:disabled { opacity: .5; cursor: not-allowed; }
+.bb-change-options > button > span:nth-child(2) { flex: 1; min-width: 0; }
+.bb-change-options strong { display: block; font-size: .85rem; font-weight: 650; }
+.bb-change-options small { display: block; font-size: .72rem; line-height: 1.6; margin-top: .25rem; color: var(--bb-muted); }
+.bb-change-options > button > svg { flex-shrink: 0; color: var(--bb-muted); }
+.bb-change-option-icon { display: grid; place-items: center; width: 35px; height: 35px; flex-shrink: 0; border-radius: 10px; color: var(--bb-brand-strong); background: var(--bb-brand-soft); }
+.bb-change-option-icon--cancel { background: var(--gm-tone-fff2f0); color: var(--gm-tone-b65252); }
+.bb-change-reassurance { display: flex; align-items: flex-start; gap: .5rem; color: var(--bb-muted); font-size: .75rem; line-height: 1.65; margin-top: 1rem; }
+.bb-change-reassurance svg { flex-shrink: 0; margin-top: 2px; color: var(--gm-tone-548473); }
+@media(max-width:640px) { .bb-appointment-changes { padding: 1rem; } .bb-change-options { grid-template-columns: 1fr; } .bb-change-heading-icon { width: 38px; height: 38px; } }

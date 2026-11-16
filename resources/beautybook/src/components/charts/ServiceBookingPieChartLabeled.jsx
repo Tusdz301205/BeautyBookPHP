@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
-const COLORS = ['#FF6B9D', '#C44C6C', '#E8779A', '#F4A0B5', '#FDAEC1'];
+const COLORS = ['var(--color-berry-500)', 'var(--color-berry-700)', 'var(--color-berry-400)', 'var(--color-berry-200)', 'var(--color-blue-400)'];
 
 export const ServiceBookingPieChartLabeled = ({ data }) => {
   if (!data || data.length === 0) {

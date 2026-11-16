@@ -1,0 +1,105 @@
+/* Find services: the homepage's warm, editorial style with task-focused content. */
+#root .gm-discovery { padding-bottom: 4rem; background: var(--gm-tone-f6f1eb); color: var(--gm-tone-30291f); }
+#root .gm-discovery-container { width: min(calc(100% - 5rem), 1240px); margin-inline: auto; }
+#root .gm-discovery-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; padding-block: 2rem 3.25rem; }
+#root .gm-discovery-hero__copy { min-width: 0; }
+#root .gm-discovery-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-bottom: 2rem; color: var(--gm-tone-776654); font-size: .7rem; }
+#root .gm-discovery-breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; }
+#root .gm-discovery-breadcrumb a:hover { color: var(--gm-tone-30291f); text-decoration: underline; text-underline-offset: 4px; }
+#root .gm-discovery-eyebrow { margin: 0 0 1.1rem; color: var(--gm-tone-805e46); font-size: .6rem; font-weight: 500; letter-spacing: .17em; line-height: 1.8; }
+#root .gm-discovery-hero h1 { margin: 0; color: var(--gm-tone-30291f); font-family: var(--gm-serif); font-size: clamp(2.75rem, 5.2vw, 4.75rem); font-weight: 400; line-height: 1.13; letter-spacing: -.055em; }
+#root .gm-discovery-hero h1 em { color: var(--gm-tone-8a6b50); font-weight: 400; }
+#root .gm-discovery-hero__intro { max-width: 31rem; margin: 1.3rem 0 0; color: var(--gm-tone-776654); font-size: .85rem; line-height: 1.9; }
+#root .gm-discovery-hero__visual { min-width: 0; margin: 1rem 0 0; padding-left: 1.5rem; border-left: 1px solid var(--gm-tone-e2d5c8); }
+#root .gm-discovery-hero__image { width: 100%; height: 270px; aspect-ratio: auto !important; overflow: hidden; border: 0; border-radius: 150px 150px 12px 12px; background: var(--gm-tone-eee3d7); }
+#root .gm-discovery-hero__image img { width: 100%; height: 100%; object-fit: cover; }
+#root .gm-discovery-hero__visual figcaption { margin-top: .8rem; color: var(--gm-tone-776654); font-family: var(--gm-serif); font-size: .85rem; font-style: italic; line-height: 1.6; }
+
+/* One clear filter surface. Controls and submit behavior remain HomeSearch. */
+#root .gm-discovery-filter { padding: 1.4rem 1.6rem; border: 1px solid var(--gm-tone-e2d5c8); border-radius: 14px; background: var(--gm-tone-fffdf9); }
+#root .gm-discovery-filter > header { display: flex; align-items: flex-start; gap: .85rem; margin-bottom: 1.2rem; }
+#root .gm-discovery-filter > header > span { display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border: 1px solid var(--gm-tone-e2d5c8); border-radius: 50%; color: var(--gm-tone-805e46); font-size: .65rem; }
+#root .gm-discovery-filter > header h2 { margin: 0; font-size: .95rem; font-weight: 500; line-height: 1.5; letter-spacing: -.02em; }
+#root .gm-discovery-filter > header p { margin: .25rem 0 0; color: var(--gm-tone-776654); font-size: .72rem; line-height: 1.6; }
+#root .gm-discovery-filter .bb-home-search { padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+#root .gm-discovery-filter .bb-home-search__lead { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) auto; align-items: stretch; gap: 0; background: transparent; }
+#root .gm-discovery-filter .bb-home-field { padding: .25rem 1.1rem; border: 0; border-right: 1px solid var(--gm-tone-e2d5c8); border-radius: 0; background: transparent; }
+#root .gm-discovery-filter .bb-home-field:first-child { padding-left: 0; }
+#root .gm-discovery-filter .bb-home-field > label { color: var(--gm-tone-776654); font-size: .6rem; font-weight: 500; letter-spacing: .08em; }
+#root .gm-discovery-filter .bb-home-field__control { gap: .6rem; min-height: 44px; }
+#root .gm-discovery-filter .bb-home-field__control > svg { width: 17px; color: var(--gm-tone-a18367); }
+#root .gm-discovery-filter :is(.bb-home-field input, .bb-lookup-trigger) { color: var(--gm-tone-30291f); font-size: .8rem; }
+#root .gm-discovery-filter .bb-home-search__submit { align-self: center; min-height: 46px; height: auto; margin-left: 1.1rem; padding: .8rem 1.25rem; border-radius: 999px; background: var(--gm-tone-30291f); color: var(--gm-tone-fff); box-shadow: none; font-size: .75rem; font-weight: 500; }
+#root .gm-discovery-filter .bb-home-search__submit:hover { background: var(--gm-tone-51433e); }
+#root .gm-discovery-filter .bb-home-search__advanced { margin-top: 1rem; padding-top: .7rem; border-top: 1px solid var(--gm-tone-eee6de); }
+#root .gm-discovery-filter .bb-home-search__advanced summary { color: var(--gm-tone-776654); font-size: .7rem; font-weight: 400; }
+#root .gm-discovery-filter .bb-home-search__advanced-grid { padding-top: 1rem; }
+
+/* Editorial service cards; real images, reviews, save and booking links are kept. */
+#root .gm-discovery-results .bb-home-salons--explore { padding-block: 2.75rem 0; }
+#root .gm-discovery-results .bb-home-section-heading { flex-direction: row; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+#root .gm-discovery-results .bb-home-kicker { margin-bottom: .65rem; color: var(--gm-tone-805e46); font-size: .6rem; font-weight: 500; letter-spacing: .16em; }
+#root .gm-discovery-results .bb-home-section-heading h2 { max-width: none; margin: 0; font-family: var(--gm-serif); font-size: clamp(1.8rem, 3vw, 2.45rem); font-weight: 400; letter-spacing: -.04em; line-height: 1.25; }
+#root .gm-discovery-results .bb-home-section-heading > div > p:last-child:not(.bb-home-kicker) { margin-top: .65rem; font-size: .75rem; line-height: 1.7; color: var(--gm-tone-776654); }
+#root .gm-discovery-results .bb-home-salon-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+#root .gm-discovery .bb-service-discovery-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--gm-tone-e2d5c8); border-radius: 16px; background: var(--gm-tone-fffdf9); box-shadow: none; }
+#root .gm-discovery .bb-service-discovery-card:hover { border-color: var(--gm-tone-b49b84); box-shadow: 0 8px 24px var(--gm-tone-40301c08); }
+#root .gm-discovery .bb-home-salon-card__media-link .bb-home-media { height: 225px; margin: 0; border-radius: 0; }
+#root .gm-discovery .bb-service-discovery-card__duration { border: 1px solid var(--gm-tone-e2d5c8); border-radius: 999px; background: var(--gm-tone-fffdf9f2); color: var(--gm-tone-5f5145); font-size: .65rem; }
+#root .gm-discovery .bb-service-discovery-card__save-button { border-color: var(--gm-tone-e2d5c8); background: var(--gm-tone-fffdf9f2); color: var(--gm-tone-805e46); }
+#root .gm-discovery .bb-service-discovery-card__save-button[aria-pressed="true"] { background: var(--gm-tone-f0e5dd); color: var(--gm-tone-614738); }
+#root .gm-discovery .bb-home-salon-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.25rem; }
+#root .gm-discovery .bb-home-salon-card__eyebrow { font-size: .6rem; letter-spacing: .1em; color: var(--gm-tone-805e46); }
+#root .gm-discovery .bb-home-salon-card__eyebrow > span { padding: 0; border-radius: 0; background: transparent; }
+#root .gm-discovery .bb-service-discovery-card h3 { margin-top: .55rem; font-family: var(--gm-serif); font-size: 1.3rem; font-weight: 400; line-height: 1.4; letter-spacing: -.025em; }
+#root .gm-discovery .bb-home-salon-card__business { margin-top: .5rem; color: var(--gm-tone-5f5145); font-size: .75rem; }
+#root .gm-discovery .bb-home-salon-card__address { color: var(--gm-tone-776654); font-size: .7rem; }
+#root .gm-discovery .bb-home-salon-card__address svg { color: var(--gm-tone-a18367); }
+#root .gm-discovery :is(.bb-service-review-preview__empty, .bb-service-review-preview__retry, .bb-service-review-preview__count, .bb-service-review-preview cite) { color: var(--gm-tone-776654); }
+#root .gm-discovery .bb-service-review-preview blockquote { background: var(--gm-tone-f6f1eb); border-color: var(--gm-tone-eee6de); }
+#root .gm-discovery .bb-service-review-preview blockquote p { color: var(--gm-tone-5f5145); }
+#root .gm-discovery .bb-service-discovery-card__price { gap: .5rem; border-top-color: var(--gm-tone-eee6de); }
+#root .gm-discovery .bb-service-discovery-card__price > span { color: var(--gm-tone-776654); font-size: .7rem; }
+#root .gm-discovery .bb-service-discovery-card__price strong { color: var(--gm-tone-614738); font-size: 1.1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+#root .gm-discovery .bb-home-salon-card__actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .65rem; padding-top: 1rem; }
+#root .gm-discovery .bb-home-salon-card__actions .bb-card-action { min-height: 44px; border-radius: 999px; border-color: var(--gm-tone-e2d5c8); background: transparent; color: var(--gm-tone-5f5145); font-weight: 500; box-shadow: none; }
+#root .gm-discovery .bb-home-salon-card__actions .bb-card-action--primary { grid-column: auto; background: var(--gm-tone-30291f); border-color: var(--gm-tone-30291f); color: white; }
+#root .gm-discovery .bb-home-salon-card__actions .bb-card-action--primary:hover { background: var(--gm-tone-51433e); border-color: var(--gm-tone-51433e); }
+#root .gm-discovery .bb-home-empty-results { padding: 2.5rem 1.5rem; border: 1px dashed var(--gm-tone-c7b5a8); border-radius: 16px; background: var(--gm-tone-eee6da); text-align: center; }
+#root .gm-discovery .bb-home-empty-results h3 { font-family: var(--gm-serif); font-size: 1.5rem; font-weight: 400; }
+#root .gm-discovery .bb-home-empty-results > p:not(.bb-home-kicker) { max-width: 35rem; margin-inline: auto; line-height: 1.8; }
+#root .gm-discovery .bb-explore-load-more { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .75rem; padding: 2rem 0 0; }
+#root .gm-discovery .bb-explore-load-more > span { margin-right: auto; color: var(--gm-tone-776654); font-size: .75rem; }
+#root .gm-discovery .bb-explore-load-more .bb-home-button { min-height: 44px; border: 1px solid var(--gm-tone-e2d5c8); border-radius: 999px; padding: .65rem 1rem; background: var(--gm-tone-fffdf9); color: var(--gm-tone-5f5145); font-size: .75rem; font-weight: 500; box-shadow: none; }
+#root .gm-discovery .bb-explore-load-more .bb-home-button:disabled { opacity: .45; cursor: not-allowed; }
+
+@media (max-width: 1000px) {
+  #root .gm-discovery-container { width: calc(100% - 3rem); }
+  #root .gm-discovery-hero { gap: 2rem; grid-template-columns: minmax(0, 1fr) minmax(0, .55fr); }
+  #root .gm-discovery-hero__image { height: 235px; }
+  #root .gm-discovery-results .bb-home-salon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #root .gm-discovery-filter .bb-home-search__lead { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  #root .gm-discovery-filter .bb-home-field { padding: .25rem .75rem; border: 1px solid var(--gm-tone-e2d5c8); border-radius: 10px; }
+  #root .gm-discovery-filter .bb-home-field:first-child { padding-left: .75rem; }
+  #root .gm-discovery-filter .bb-home-search__submit { align-self: stretch; margin: 0; }
+}
+@media (max-width: 600px) {
+  #root .gm-discovery { padding-bottom: 2.5rem; }
+  #root .gm-discovery-container { width: calc(100% - 2rem); }
+  #root .gm-discovery-hero { display: block; padding-block: 1rem 1.75rem; }
+  #root .gm-discovery-breadcrumb { margin-bottom: 1.1rem; }
+  #root .gm-discovery-hero h1 { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+  #root .gm-discovery-hero__intro { font-size: .8rem; }
+  #root .gm-discovery-hero__visual { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 0; border: 0; }
+  #root .gm-discovery-hero__image { flex: none; width: 100px; height: 95px; border-radius: 60px 60px 8px 8px; }
+  #root .gm-discovery-hero__visual figcaption { max-width: 15ch; margin: 0; font-size: .9rem; }
+  #root .gm-discovery-filter { padding: 1.1rem; }
+  #root .gm-discovery-filter .bb-home-search__lead { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  #root .gm-discovery-filter :is(.bb-home-field input, .bb-lookup-trigger) { font-size: 1rem; }
+  #root .gm-discovery-filter .bb-home-search__submit { min-height: 48px; }
+  #root .gm-discovery-results .bb-home-salons--explore { padding-top: 2rem; }
+  #root .gm-discovery-results .bb-home-salon-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  #root .gm-discovery .bb-home-salon-card__media-link .bb-home-media { height: 225px; }
+  #root .gm-discovery .bb-explore-load-more { gap: .5rem; }
+  #root .gm-discovery .bb-explore-load-more > span { flex-basis: 100%; margin-bottom: .25rem; }
+}

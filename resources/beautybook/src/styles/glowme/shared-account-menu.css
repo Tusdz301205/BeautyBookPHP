@@ -1,0 +1,37 @@
+#root .gm-account-links{padding:10px!important;background:var(--gm-tone-fffdf9)}
+#root .gm-account-links .bb-customer-account__group{padding:4px 0!important}
+#root .gm-account-links .bb-customer-account__group+.bb-customer-account__group{margin-top:6px;padding-top:12px!important;border-top:1px solid var(--gm-tone-e8ded2)}
+#root .gm-account-links .bb-customer-account__group>h2{margin:0 0 7px;padding:5px 10px;color:var(--gm-tone-8c7968);line-height:1.6;font-size:.5rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase}
+#root .gm-account-links .bb-customer-account__group>div{display:grid;gap:3px}
+#root .gm-account-links .gm-account-links__item{display:flex;align-items:center;gap:11px;min-height:58px;margin:0;padding:10px;border:1px solid transparent;border-radius:10px;color:var(--gm-tone-463a30);font-size:.73rem;text-decoration:none;background:transparent;font-weight:500}
+#root .gm-account-links .gm-account-links__item:is(:hover,.bb-customer-account__item--active){color:var(--gm-tone-30291f);border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-f1e9df)}
+#root .gm-account-links .gm-account-links__item>.bb-customer-account__item-icon{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:var(--gm-tone-f1e9df);color:var(--gm-tone-805e46)}
+#root .gm-account-links .gm-account-links__copy{display:grid;gap:3px;flex:1;min-width:0}
+#root .gm-account-links .gm-account-links__copy strong{font-size:.73rem;font-weight:500;line-height:1.45}
+#root .gm-account-links .gm-account-links__copy small{display:block;color:var(--gm-tone-776654);font-size:.6rem;font-weight:400;line-height:1.6}
+#root .gm-account-links .gm-account-links__item>svg:last-child{flex:none;width:14px;color:var(--gm-tone-a18367)}
+#root .gm-account-links .gm-account-links__item:focus-visible{outline:2px solid var(--gm-tone-a18367);outline-offset:-2px}
+#root .gm-site-header .bb-public-personal__panel{max-height:calc(100dvh - 110px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--gm-tone-b49b84) transparent}
+#root .gm-site-header .bb-public-personal__panel::-webkit-scrollbar{width:6px}
+#root .gm-site-header .bb-public-personal__panel::-webkit-scrollbar-thumb{border-radius:999px;background:var(--gm-tone-b49b84)}
+#root .bb-customer-account-layer--refined .bb-customer-account{width:min(calc(100% - 2rem),22rem);border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-fffdf9)}
+#root .bb-customer-account-layer--refined .bb-customer-account__header{background:var(--gm-tone-f1e9df);border-color:var(--gm-tone-e2d5c8);padding:16px;gap:12px}
+#root .bb-customer-account-layer--refined .bb-customer-account__avatar{width:38px;height:38px;border-radius:12px;background:var(--gm-tone-e9ddd0);color:var(--gm-tone-614738);border-color:var(--gm-tone-dfd0c1);box-shadow:none;font-size:.75rem}
+#root .bb-customer-account-layer--refined .bb-customer-account__header h2{font-size:.82rem;color:var(--gm-tone-30291f)}
+#root .bb-customer-account-layer--refined .bb-customer-account__header p{font-size:.6rem;color:var(--gm-tone-776654)}
+#root .bb-customer-account-layer--refined .bb-customer-account__header div>.bb-customer-account__eyebrow{color:var(--gm-tone-805e46);font-size:.48rem;letter-spacing:.11em}
+#root .bb-customer-account-layer--refined .bb-customer-account__scroll{padding:0;scrollbar-width:none}
+#root .bb-customer-account-layer--refined .bb-customer-account__scroll::-webkit-scrollbar{display:none}
+#root .gm-account-menu-footer{border-top:1px solid var(--gm-tone-e2d5c8);padding:10px;display:grid;gap:4px;background:var(--gm-tone-fffdf9)}
+#root .gm-account-menu-footer>a,#root .gm-account-menu-footer>button{display:flex;align-items:center;gap:10px;min-height:40px;padding:10px;border:0;border-radius:10px;background:transparent;color:var(--gm-tone-776654);font:inherit;font-size:.7rem;text-decoration:none;text-align:left;width:100%;cursor:pointer}
+#root .gm-account-menu-footer>a:hover,#root .gm-account-menu-footer>button:hover{background:var(--gm-tone-f1e9df);color:var(--gm-tone-463a30)}
+
+@media(min-width:768px){#root .bb-customer-account-layer--refined .bb-customer-account{width:18rem}}
+#root .bb-customer-account-layer--refined .gm-account-menu-footer{margin:0;padding:10px;border-color:var(--gm-tone-e2d5c8)}
+#root .bb-customer-account-layer--refined .gm-account-menu-footer .bb-customer-account__business{background:transparent;border:0;margin:0;min-height:40px}
+#root .bb-customer-account-layer--refined .gm-account-menu-footer .bb-customer-account__business small{display:none}
+#root .bb-customer-account-layer--refined .gm-account-menu-footer .bb-customer-account__business strong{font-size:.7rem;font-weight:400;color:var(--gm-tone-776654)}
+#root .bb-customer-account-layer--refined .gm-account-menu-footer .bb-customer-account__logout{margin:0;color:var(--gm-tone-776654)}
+#root .gm-site-header .bb-public-personal__trigger:focus:not(:focus-visible){outline:none;box-shadow:none}
+#root .gm-site-header .bb-public-personal__name{display:block;max-width:11rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:600px){#root .gm-site-header .bb-public-personal__name{max-width:7rem}}

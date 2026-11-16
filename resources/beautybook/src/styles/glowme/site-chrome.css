@@ -1,0 +1,142 @@
+/* Geometry is shared by every public/customer header, including direct entry.
+   Use the homepage's compact 66px/60px header and exact logo dimensions. */
+html:root {
+  --gm-header-height: 66px;
+  --gm-header-max-width: 1320px;
+  --gm-content-max-width: 1240px;
+  --gm-header-padding: 2.5rem;
+  --gm-logo-mark: 30px;
+  --gm-logo-wordmark: 110px;
+}
+#root .gm-site-header { box-sizing: border-box; height: var(--gm-header-height); min-height: var(--gm-header-height); }
+#root .gm-site-header .gm-site-header__inner {
+  box-sizing: border-box; display: flex; align-items: center;
+  width: 100%; max-width: var(--gm-header-max-width);
+  height: 100%; min-height: 0; margin-inline: auto;
+  padding: 0 var(--gm-header-padding); gap: 1.25rem;
+}
+#root .gm-site-header .gm-site-header__brand { min-height: 40px; flex-shrink: 0; }
+#root .gm-site-header .gm-site-header__brand .bb-brand { gap: .5rem; }
+#root .gm-site-header .gm-site-header__brand .bb-brand-mark { width: var(--gm-logo-mark); height: var(--gm-logo-mark); }
+#root .gm-site-header .gm-site-header__brand .bb-brand-wordmark { width: var(--gm-logo-wordmark); }
+#root .gm-site-header :is(.bb-public-nav, .bb-customer-header__nav) { gap: 1.1rem; }
+#root .gm-site-header .bb-public-nav { flex: 1; justify-content: center; }
+#root .gm-site-header .bb-public-menu-button { margin-left: auto; }
+#root .gm-site-header :is(.bb-public-nav, .bb-customer-header__nav) > a {
+  min-height: 36px; font-size: .71rem; font-weight: 400; letter-spacing: .015em;
+}
+#root .gm-site-header .bb-customer-header__nav > a { gap: .4rem; padding: .4rem .2rem; border-radius: 0; }
+#root .gm-site-header .bb-customer-header__nav > a[aria-current="page"] { border-color: transparent; border-bottom-color: var(--gm-tone-a18367); background: transparent; }
+#root .gm-site-header :is(.bb-public-cta, .bb-customer-cta) {
+  min-height: 36px; padding: .45rem 1rem; border-radius: 999px;
+  background: var(--gm-tone-30291f); color: var(--gm-tone-fff); font-size: .68rem; font-weight: 500; box-shadow: none;
+}
+#root .gm-site-header :is(.bb-public-cta, .bb-customer-cta):hover { background: var(--gm-tone-51433e); }
+#root .gm-site-header .bb-customer-header__actions { margin-left: auto; gap: .55rem; }
+#root .gm-site-header .bb-customer-header__notifications { width: 36px; height: 36px; flex-shrink: 0; background: transparent; border-color: transparent; }
+#root .gm-site-header .bb-customer-account-trigger { min-height: 36px; height: 36px; padding: .15rem .5rem .15rem .2rem; gap: .5rem; border-radius: 999px; background: var(--gm-tone-fffdf9); box-shadow: none; }
+#root .gm-site-header .bb-customer-account-trigger__avatar { width: 28px; height: 28px; border-radius: 50%; border-color: var(--gm-tone-e2d5c8); background: var(--gm-tone-e9ddd0); color: var(--gm-tone-614738); font-size: .62rem; }
+#root .gm-site-header .bb-customer-account-trigger__text strong { font-size: .7rem; font-weight: 500; }
+#root .gm-site-header .bb-customer-account-trigger__text small { color: var(--gm-tone-776654); font-size: .58rem; }
+#root .gm-site-header .bb-customer-account-trigger--open { border-color: var(--gm-tone-b49b84); background: var(--gm-tone-f1e9df); box-shadow: 0 0 0 2px var(--gm-tone-e9ddd080); }
+
+/* Public pages reserve the fixed header's space, just as the homepage does. */
+#root .bb-public-shell--luxury { padding-top: var(--gm-header-height); }
+#root .bb-public-shell--interior .gm-site-header { background: var(--gm-tone-faf8f5f5); border-bottom: 1px solid var(--gm-tone-e2d5c8); }
+#root .bb-public-shell--interior .bb-public-main--contained {
+  width: min(calc(100% - 5rem), var(--gm-content-max-width)); max-width: var(--gm-content-max-width);
+  margin-inline: auto; padding-block: 2.5rem 4rem;
+}
+#root .bb-customer-main { max-width: 1320px; padding: 2.5rem var(--gm-header-padding) 3.5rem; }
+#root .bb-customer-main > :is(.bb-booking-page, .bb-bookings-page, .bb-recurring-page, .bb-offers) { padding-top: 0; }
+#root .bb-customer-account-layer--refined .bb-customer-account {
+  width: min(calc(100% - 1.3rem), 20rem);
+  inset-block-start: calc(var(--gm-header-height) + .5rem); max-height: calc(100dvh - var(--gm-header-height) - 1.5rem);
+  border-color: var(--gm-tone-e2d5c8); background: var(--gm-tone-fffdf9); box-shadow: var(--shadow-lg);
+}
+#root .bb-customer-account-layer--refined .bb-customer-account__header { padding: .85rem; }
+#root .bb-customer-account-layer--refined .bb-customer-account__avatar { width: 2.35rem; height: 2.35rem; }
+#root .bb-customer-account-layer--refined .bb-customer-account__group { padding-block: .35rem; }
+#root .bb-customer-account-layer--refined .bb-customer-account__item { min-height: 2.5rem; }
+#root .bb-customer-account-layer--refined .bb-customer-account__bottom { padding: .5rem .65rem; }
+@media (min-width: 768px) {
+  #root .bb-customer-account-layer--refined { inset: 0; }
+  #root .bb-customer-account-layer--refined .bb-customer-account {
+    inset: var(--gm-account-top, calc(var(--gm-header-height) + .5rem)) var(--gm-account-right, 1rem) auto auto;
+    max-height: calc(100dvh - var(--gm-account-top, var(--gm-header-height)) - .75rem);
+  }
+}
+#root .bb-customer-account-layer--refined :is(.bb-customer-account__header, .bb-customer-account__bottom, .bb-customer-account__group + .bb-customer-account__group) { border-color: var(--gm-tone-e2d5c8); }
+#root .bb-customer-account-layer--refined .bb-customer-account__header { background: var(--gm-tone-f1e9df); }
+#root .bb-customer-account-layer--refined .bb-customer-account__avatar { background: var(--gm-tone-e9ddd0); border-color: var(--gm-tone-c7b5a8); color: var(--gm-tone-614738); }
+#root .bb-customer-account-layer--refined :is(.bb-customer-account__eyebrow, .bb-customer-account__header p, .bb-customer-account__group h2, .bb-customer-account__business small) { color: var(--gm-tone-776654); }
+#root .bb-customer-account-layer--refined .bb-customer-account__item { color: var(--gm-tone-5f5145); font-weight: 400; }
+#root .bb-customer-account-layer--refined .bb-customer-account__item-icon { color: var(--gm-tone-805e46); background: var(--gm-tone-f1e9df); }
+#root .bb-customer-account-layer--refined .bb-customer-account__item:is(:hover, .bb-customer-account__item--active) { color: var(--gm-tone-30291f); border-color: var(--gm-tone-e2d5c8); background: var(--gm-tone-f1e9df); }
+#root .bb-customer-account-layer--refined .bb-customer-account__item--active .bb-customer-account__item-icon { color: var(--gm-tone-614738); background: var(--gm-tone-e9ddd0); }
+#root .bb-customer-account-layer--refined .bb-customer-account__item:focus-visible { outline-color: var(--gm-tone-886b54); }
+#root .bb-customer-account-layer--refined .bb-customer-account__business { border-color: var(--gm-tone-e2d5c8); background: var(--gm-tone-faf8f5); }
+#root .bb-customer-account-layer--refined .bb-customer-account__business :is(strong, svg) { color: var(--gm-tone-72513f); }
+
+/* Management keeps its sidebar and permissions; top/brand bars share the scale. */
+#root .gm-site-header .bb-public-personal__trigger {min-height:36px;gap:.45rem;padding:.2rem .55rem .2rem .2rem;border:1px solid var(--gm-tone-e2d5c8);border-radius:999px;background:var(--gm-tone-fffdf9);color:var(--gm-tone-5f5145);font-size:.71rem;font-weight:500}
+#root .gm-site-header .bb-public-personal__trigger:is(:hover,[aria-expanded="true"]) {background:var(--gm-tone-f1e9df);border-color:var(--gm-tone-b49b84)}
+#root .gm-site-header .bb-public-personal__avatar {display:grid;place-items:center;flex:none;width:28px;height:28px;border:1px solid var(--gm-tone-dfd0c1);border-radius:50%;background:var(--gm-tone-e9ddd0);color:var(--gm-tone-614738);font-size:.6rem;font-weight:600}
+#root .gm-site-header .bb-public-personal__panel {right:-32px;top:calc(100% + .7rem);width:18rem;max-width:calc(100vw - 2rem);max-height:calc(100vh - 110px);max-height:calc(100dvh - 110px);padding:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;border:1px solid var(--gm-tone-e2d5c8);border-radius:16px;background:var(--gm-tone-fffdf9);box-shadow:0 16px 44px var(--gm-tone-40301c1a)}
+#root .gm-site-header .bb-public-personal__identity {display:flex;align-items:center;gap:.75rem;padding:1rem;border-bottom:1px solid var(--gm-tone-e2d5c8);background:var(--gm-tone-f1e9df)}
+#root .gm-site-header .bb-public-personal__identity > .bb-public-personal__avatar {width:38px;height:38px;border-radius:12px;font-size:.75rem}
+#root .gm-site-header .bb-public-personal__identity > div {min-width:0}
+#root .gm-site-header .bb-public-personal__eyebrow {display:block;margin-bottom:.3rem;color:var(--gm-tone-805e46);font-size:.48rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase}
+#root .gm-site-header .bb-public-personal__identity strong {overflow:hidden;color:var(--gm-tone-30291f);font-size:.82rem;font-weight:600;white-space:nowrap;text-overflow:ellipsis}
+#root .gm-site-header .bb-public-personal__identity small {overflow:hidden;color:var(--gm-tone-776654);font-size:.6rem;white-space:nowrap;text-overflow:ellipsis}
+#root .gm-site-header .bb-public-personal__panel nav {padding:.7rem .5rem .5rem}
+#root .gm-site-header .bb-public-personal__section-label {margin:0;padding:0 .5rem .5rem;color:var(--gm-tone-8c7968);font-size:.5rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase}
+#root .gm-site-header .bb-public-personal__panel nav > a {gap:.65rem;min-height:60px;padding:.6rem .5rem;border:1px solid transparent;border-radius:10px;color:var(--gm-tone-463a30);font-size:.73rem;font-weight:500}
+#root .gm-site-header .bb-public-personal__panel nav > a:hover {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-f1e9df)}
+#root .gm-site-header .bb-public-personal__link-icon {display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:var(--gm-tone-f1e9df);color:var(--gm-tone-805e46)}
+#root .gm-site-header .bb-public-personal__panel nav > a > span:nth-child(2) {flex:1;min-width:0}
+#root .gm-site-header .bb-public-personal__panel nav > a > svg:last-child {flex:none;color:var(--gm-tone-a18367)}
+#root .gm-site-header .bb-public-personal__panel nav small {color:var(--gm-tone-776654);font-size:.6rem;font-weight:400;line-height:1.6}
+@media(max-width:1100px) {#root .gm-site-header .bb-public-personal__panel {right:0}}
+#root .bb-app-shell > div > header { height: var(--gm-header-height); min-height: var(--gm-header-height); }
+#root .bb-app-shell .bb-app-sidebar__brand { height: var(--gm-header-height); min-height: var(--gm-header-height); }
+#root .bb-app-sidebar__brand .bb-brand-mark { width: var(--gm-logo-mark); height: var(--gm-logo-mark); }
+#root .bb-app-sidebar__brand .bb-brand-wordmark { width: var(--gm-logo-wordmark); }
+#root .bb-app-sidebar__brand .bb-brand__text small { font-size: .5rem; font-weight: 500; }
+
+@media (max-width: 1100px) {
+  html:root { --gm-header-padding: 1.5rem; }
+  #root .gm-site-header :is(.bb-public-nav, .bb-customer-header__nav) { gap: .75rem; }
+}
+@media (max-width: 767px) {
+  #root .bb-customer-main { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+  #root .bb-customer-account-layer--refined .bb-customer-account { inset: .65rem .65rem .65rem auto; max-height: calc(100dvh - 1.3rem); }
+}
+@media (max-width: 600px) {
+  html:root { --gm-header-height: 60px; --gm-header-padding: 1rem; --gm-logo-mark: 28px; --gm-logo-wordmark: 96px; }
+  #root .gm-site-header .gm-site-header__inner { gap: .75rem; }
+  #root .gm-site-header .bb-customer-header__actions { gap: .3rem; }
+  #root .gm-site-header .bb-customer-account-trigger { width: 36px; padding: 3px; }
+  #root .gm-site-header .bb-customer-account-trigger > svg { display: none; }
+  #root .bb-customer-main { padding-top: 1.5rem; }
+  #root .bb-public-shell--interior .bb-public-main--contained { width: calc(100% - 2rem); padding-block: 1.5rem 3rem; }
+}
+
+/* Customer navigation: text and underline, without boxed hover/selected backgrounds. */
+#root .gm-site-header .bb-customer-header__nav > a,
+#root .gm-site-header .bb-customer-header__nav > a:is(:hover,:focus,[aria-current="page"]) {
+  background:transparent;
+  border-color:transparent;
+  border-radius:0;
+  box-shadow:none;
+}
+#root .gm-site-header .bb-customer-header__nav > a {position:relative}
+#root .gm-site-header .bb-customer-header__nav > a::after {
+  content:'';position:absolute;left:.75rem;right:.75rem;bottom:0;height:1px;
+  background:var(--gm-tone-a18367);transform:scaleX(0);transition:transform 160ms ease;
+}
+#root .gm-site-header .bb-customer-header__nav > a[aria-current="page"] {color:var(--gm-tone-30291f);font-weight:600}
+#root .gm-site-header .bb-customer-header__nav > a:is(:hover,[aria-current="page"])::after {transform:scaleX(1)}
+#root .gm-site-header .bb-customer-header__nav > a:focus:not(:focus-visible) {outline:none}
+#root .gm-site-header .bb-customer-header__nav > a:focus-visible {outline:2px solid var(--gm-tone-a18367);outline-offset:3px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){#root .gm-site-header .bb-customer-header__nav > a::after{transition:none}}

@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawn } from 'node:child_process';
+import { runtimeEnvironment } from './environment.mjs';
+const root=path.resolve(import.meta.dirname,'../..');
+if(fs.existsSync(path.join(root,'.env')))process.loadEnvFile(path.join(root,'.env'));
+if(!process.env.ABSA_SERVICE_TOKEN||process.env.ABSA_SERVICE_TOKEN.length<24)throw new Error('Configure ABSA_SERVICE_TOKEN (at least 24 characters) in .env.');
+const python=path.join(root,'ml/.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+if(!fs.existsSync(python))throw new Error('Run npm run ai:install first.');
+const env={...runtimeEnvironment(),ABSA_SERVICE_HOST:'127.0.0.1',ABSA_SERVICE_PORT:process.env.ABSA_SERVICE_PORT||'8766'};
+const child=spawn(python,['-B','-u','-m','glowme_ml.service.absa_service'],{cwd:path.join(root,'ml'),env,windowsHide:true,stdio:'inherit'});
+child.once('error',e=>{console.error('ML service failed to start: '+e.code);process.exitCode=1;});
+child.once('exit',code=>{process.exitCode=code??1;});
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>child.kill(signal));

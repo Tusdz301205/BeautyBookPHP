@@ -83,14 +83,14 @@ function WalkInDialog({ open, onClose, onCreated }) {
       toast.error('Chi nhánh hiện không nhận khách vãng lai'); return;
     }
     if (form.controlledOverbooking && !canOverbook) {
-      toast.error('Chỉ chủ doanh nghiệp được duyệt overbooking trong doanh nghiệp của mình.'); return;
+      toast.error('Chỉ chủ doanh nghiệp được duyệt nhận lịch vượt công suất trong doanh nghiệp của mình.'); return;
     }
     const selectedStart = form.controlledOverbooking ? form.manualStart : form.appointmentDate;
     if (!form.branchId || !form.serviceId || !form.guestName.trim() || !selectedStart) {
       toast.error('Nhập đủ chi nhánh, dịch vụ, tên khách và thời gian'); return;
     }
     if (form.controlledOverbooking && form.overbookingReason.trim().length < 10) {
-      toast.error('Lý do overbooking phải có ít nhất 10 ký tự'); return;
+      toast.error('Lý do nhận lịch vượt công suất phải có ít nhất 10 ký tự'); return;
     }
     const instant = form.controlledOverbooking ? branchWallTimeToInstant(selectedStart, timezone) : new Date(selectedStart);
     if (!instant || Number.isNaN(instant.getTime())) {
@@ -124,7 +124,7 @@ function WalkInDialog({ open, onClose, onCreated }) {
       <Field label="Tên khách" required><Input value={form.guestName} onChange={set('guestName')} placeholder="Nguyễn Văn A" /></Field>
       <Field label="Số điện thoại"><Input type="tel" value={form.guestPhone} onChange={set('guestPhone')} /></Field>
       <div className="sm:col-span-2"><div className="mb-2 flex flex-wrap items-center justify-between gap-2"><div><p className="text-sm font-bold">Khung giờ còn trống</p><p className="mt-1 text-xs text-[var(--bb-muted)]">Kết quả đã kiểm tra giờ mở cửa, kỹ năng và lịch hẹn hiện có. Múi giờ: {timezone}.</p></div>{slots[0] && <Badge tone="success"><CalendarClock size={13} className="mr-1" />Gần nhất {slotTime(slots[0].start)}</Badge>}</div>{slotLoading ? <Skeleton rows={2} /> : slotError ? <InlineNotice tone="danger">{slotError} <button type="button" className="ml-1 font-bold underline" onClick={loadSlots}>Thử lại</button></InlineNotice> : !slots.length ? <InlineNotice tone="warning">Không còn khung giờ phù hợp trong ngày đã chọn. Hãy đổi ngày hoặc nhân viên.</InlineNotice> : <div className="grid max-h-48 grid-cols-3 gap-2 overflow-y-auto pr-1 sm:grid-cols-5">{slots.map((slot) => <button key={slot.start} type="button" aria-pressed={form.appointmentDate === slot.start} onClick={() => setForm((current) => ({ ...current, appointmentDate: slot.start }))} className={cx('min-h-11 rounded-lg border px-2 text-sm font-semibold', form.appointmentDate === slot.start ? 'border-[var(--bb-brand)] bg-[var(--bb-brand-soft)] text-[var(--bb-brand-strong)]' : 'border-[var(--bb-border)] hover:bg-[var(--bb-surface-subtle)]')}><Clock3 size={14} className="mr-1 inline" />{slotTime(slot.start)}</button>)}</div>}</div>
-      {canOverbook && <div className="sm:col-span-2 rounded-xl border border-amber-300 bg-amber-50 p-4"><label className="flex items-center gap-2 text-sm font-bold"><input type="checkbox" checked={form.controlledOverbooking} onChange={(event) => { slotSequence.current += 1; setSlots([]); setForm((current) => ({ ...current, appointmentDate: '', controlledOverbooking: event.target.checked, staffId: event.target.checked ? '' : current.staffId })); }} /> Overbooking có kiểm soát</label><p className="mt-1 text-xs text-amber-800">Chỉ tạo lịch chưa phân công; không bỏ qua xung đột cứng của nhân viên. Lịch điều phối sẽ hiển thị cảnh báo.</p>{form.controlledOverbooking && <div className="mt-3 grid gap-3 sm:grid-cols-2"><Field label={`Thời gian ngoại lệ (${timezone})`} required><Input type="datetime-local" value={form.manualStart} onChange={set('manualStart')} /></Field><Field label="Lý do phê duyệt" required><Input value={form.overbookingReason} onChange={set('overbookingReason')} placeholder="Nêu rõ lý do và phương án phân công" /></Field></div>}</div>}
+      {canOverbook && <div className="sm:col-span-2 rounded-xl border border-amber-300 bg-amber-50 p-4"><label className="flex items-center gap-2 text-sm font-bold"><input type="checkbox" checked={form.controlledOverbooking} onChange={(event) => { slotSequence.current += 1; setSlots([]); setForm((current) => ({ ...current, appointmentDate: '', controlledOverbooking: event.target.checked, staffId: event.target.checked ? '' : current.staffId })); }} /> Nhận lịch vượt công suất có kiểm soát</label><p className="mt-1 text-xs text-amber-800">Chỉ tạo lịch chưa phân công; không bỏ qua xung đột cứng của nhân viên. Lịch điều phối sẽ hiển thị cảnh báo.</p>{form.controlledOverbooking && <div className="mt-3 grid gap-3 sm:grid-cols-2"><Field label={`Thời gian ngoại lệ (${timezone})`} required><Input type="datetime-local" value={form.manualStart} onChange={set('manualStart')} /></Field><Field label="Lý do phê duyệt" required><Input value={form.overbookingReason} onChange={set('overbookingReason')} placeholder="Nêu rõ lý do và phương án phân công" /></Field></div>}</div>}
       {form.serviceId && <div className="sm:col-span-2 rounded-xl bg-[var(--bb-surface-subtle)] p-4"><div className="flex flex-wrap gap-x-6 gap-y-2 text-sm"><span><b>Dịch vụ:</b> {services.find((item) => item.id === form.serviceId)?.name || '—'}</span><span><b>Thời lượng:</b> {services.find((item) => item.id === form.serviceId)?.durationMinutes ? `${services.find((item) => item.id === form.serviceId).durationMinutes} phút` : 'Đang cập nhật'}</span><span><b>Giá:</b> {services.find((item) => item.id === form.serviceId)?.price != null ? `${Number(services.find((item) => item.id === form.serviceId).price).toLocaleString('vi-VN')}₫` : 'Đang cập nhật'}</span><span className="flex items-center gap-1"><UserRound size={15} /><b>Nhân viên:</b> {staff.find((item) => item.id === form.staffId)?.fullName || 'Hệ thống tự xếp'}</span></div></div>}
       <Field className="sm:col-span-2" label="Ghi chú vận hành" hint="Chỉ nhập thông tin cần thiết cho việc phục vụ và điều phối lịch."><Textarea value={form.note} onChange={set('note')} placeholder="Ví dụ: khách cần hỗ trợ di chuyển" /></Field>
     </form>
@@ -135,7 +135,7 @@ export function SalonAppointments() {
   const can = useAuthStore((state) => state.can);
   const [walkInOpen, setWalkInOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const canCreateWalkIn = can('booking:create:branch') || can('booking:create:tenant') || can('booking:create:platform');
+  const canCreateWalkIn = false;
   return <>
     <AppointmentCalendarWorkspace zone="salon" externalRefreshKey={refreshKey} headerAction={canCreateWalkIn ? <Button onClick={() => setWalkInOpen(true)}><Plus size={16} />Tạo lịch tại quầy</Button> : null} />
     {canCreateWalkIn && <WalkInDialog open={walkInOpen} onClose={() => setWalkInOpen(false)} onCreated={() => { setWalkInOpen(false); setRefreshKey((value) => value + 1); }} />}

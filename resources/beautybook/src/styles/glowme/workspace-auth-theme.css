@@ -1,0 +1,156 @@
+/* Workspace and authentication presentation. No workflow or status changes. */
+#root .bb-app-shell {background:var(--gm-tone-f6f1eb);color:var(--gm-tone-30291f)}
+#root .bb-app-shell .bb-app-sidebar.bb-app-sidebar--light {background:var(--gm-tone-faf8f5)!important;box-shadow:none}
+#root .bb-app-shell .bb-app-sidebar__brand {background:var(--gm-tone-faf8f5);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-app-shell .bb-app-sidebar > nav {padding:1.1rem .85rem}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link {min-height:44px;margin-bottom:.2rem;border:1px solid transparent;border-radius:12px;font-size:.8rem;font-weight:400;line-height:1.6}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link:hover {background:var(--gm-tone-eee6da);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link--active {background:var(--gm-tone-463a30);border-color:var(--gm-tone-463a30);color:var(--gm-tone-fffdf9);font-weight:500}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link--active:hover {background:var(--gm-tone-51433e);border-color:var(--gm-tone-51433e);color:var(--gm-tone-fffdf9)}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link--active > svg {color:var(--gm-tone-e2d5c8)}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link--active::before {content:none}
+#root .bb-app-shell > div > header {background:var(--gm-tone-faf8f5f5);border-color:var(--gm-tone-e2d5c8);box-shadow:none}
+#root .bb-app-shell > div > header > div > p:first-child {font-size:.85rem;font-weight:500;letter-spacing:-.015em}
+#root .bb-app-shell > div > header > button {min-height:40px;gap:.6rem;border:1px solid var(--gm-tone-e2d5c8);border-radius:999px;padding:.2rem .7rem .2rem .25rem;background:var(--gm-tone-fffdf9)}
+#root .bb-app-shell > div > header > button > span:first-child {width:30px;height:30px;background:var(--gm-tone-e9ddd0);color:var(--gm-tone-614738);font-size:.65rem;font-weight:500}
+#root .bb-app-shell > div > header > button:hover {background:var(--gm-tone-f1e9df);border-color:var(--gm-tone-c7b5a8)}
+#root .bb-app-shell .bb-page {max-width:1440px}
+#root .bb-app-shell .bb-page-header {gap:1.25rem;padding-bottom:1.35rem;border-color:var(--gm-tone-e2d5c8)}
+#root .bb-app-shell .bb-page-header__eyebrow {font-weight:500;font-size:.62rem;letter-spacing:.15em;color:var(--gm-tone-805e46)}
+#root .bb-app-shell .bb-page-header h1 {font-size:clamp(1.85rem,2.5vw,2.5rem);line-height:1.25}
+#root .bb-app-shell .bb-card {border-color:var(--gm-tone-e2d5c8);border-radius:16px;background:var(--gm-tone-fffdf9);box-shadow:0 2px 5px var(--gm-tone-40301c04)}
+#root .bb-app-shell [class~="bg-[#f7f6f3]"] {padding:0;background:transparent}
+#root .bb-app-shell .bg-white {background-color:var(--gm-tone-fffdf9)}
+#root .bb-app-shell :is(input,textarea,select):not([type="checkbox"]):not([type="radio"]):not([aria-invalid="true"]) {border-color:var(--gm-tone-dfd0c1);background-color:var(--gm-tone-fffdf9)}
+#root .bb-app-shell .bb-metric-card {padding:1.15rem}
+#root .bb-app-shell .bb-metric-card > p:first-of-type {font-size:1.75rem;font-weight:600;letter-spacing:-.035em;line-height:1.3}
+#root .bb-app-shell .bb-metric-card > p:nth-of-type(2) {font-weight:400;line-height:1.6}
+#root .bb-app-shell :is(.bb-section-header h2,.bb-report-group-heading h2) {font-family:var(--gm-serif);font-size:1.3rem;font-weight:400;letter-spacing:-.025em}
+#root .bb-app-shell .bb-button {font-size:.78rem;font-weight:500;box-shadow:none}
+#root .bb-app-shell .bb-control {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-dfd0c1);border-radius:10px;font-size:.8rem}
+#root .bb-app-shell .bb-control:not(:disabled):hover {border-color:var(--gm-tone-b49b84)}
+#root .bb-app-shell .bb-control[aria-invalid="true"] {border-color:var(--bb-danger)}
+#root .bb-app-shell .bb-field {font-size:.78rem;font-weight:500;line-height:1.6}
+#root .bb-app-shell .bb-field input[type="checkbox"],#root .bb-app-shell input[type="radio"] {accent-color:var(--gm-tone-805e46)}
+#root .bb-app-shell :is(.bb-business-current,.bb-branch-workspace-scope) {border-color:var(--gm-tone-e2d5c8);border-radius:14px;background:var(--gm-tone-fffdf9);box-shadow:none}
+#root .bb-app-shell .bb-business-current {padding:.7rem 1rem}
+#root .bb-app-shell .bb-branch-workspace-scope__icon {background:var(--gm-tone-f1e9df);border-radius:12px;color:var(--gm-tone-805e46)}
+#root .bb-app-shell :is(.bb-service-card,.bb-combo-card,.bb-staff-card,.bb-promotion-card) {border-radius:16px}
+#root .bb-app-shell :is(.bb-service-card__identity h2,.bb-combo-card__identity h2,.bb-staff-card__identity h2,.bb-promotion-card__header h2) {font-weight:600;line-height:1.5}
+#root .bb-app-shell :is(.bb-service-card__metrics,.bb-combo-card__metrics,.bb-promotion-card__offer) {border-radius:12px;background:var(--gm-tone-f1e9df)}
+#root .bb-app-shell .bb-segmented {border-color:var(--gm-tone-dfd0c1);background:var(--gm-tone-fffdf9)}
+#root .bb-app-shell .bb-segmented > :is(button,a) {min-height:38px;font-size:.78rem;font-weight:500}
+#root .bb-app-shell .bb-segmented > :is(button,a):is([aria-pressed="true"],[aria-selected="true"],[aria-current="page"]) {background:var(--gm-tone-e9ddd0);color:var(--gm-tone-463a30)}
+#root .bb-app-shell :is(.bb-hours-tabs,.bb-owner-appointments-tabs) {border-color:var(--gm-tone-e2d5c8)}
+#root .bb-app-shell :is(.bb-hours-tabs,.bb-owner-appointments-tabs) button {font-size:.8rem;font-weight:500;color:var(--gm-tone-776654)}
+#root .bb-app-shell :is(.bb-hours-tabs,.bb-owner-appointments-tabs) button:is([aria-current="page"],[aria-selected="true"]) {color:var(--gm-tone-614738);border-color:var(--gm-tone-a18367);background:var(--gm-tone-f1e9df)}
+#root .bb-app-shell .border-pink-700 {border-color:var(--gm-tone-a18367)}
+#root .bb-app-shell :is(.border-pink-100,.border-pink-200,.border-pink-300) {border-color:var(--gm-tone-dfd0c1)}
+#root .bb-app-shell :is(.bg-pink-100,.bg-pink-200) {background-color:var(--gm-tone-e9ddd0)}
+#root .bb-app-shell :is(.text-pink-600,.text-pink-800) {color:var(--gm-tone-72513f)}
+#root .bb-app-shell table {color:var(--gm-tone-30291f);font-size:.8rem;line-height:1.65}
+#root .bb-app-shell thead {background:var(--gm-tone-f1e9df);color:var(--gm-tone-665342)}
+#root .bb-app-shell :is(thead th,.bb-report-table thead th) {background:var(--gm-tone-f1e9df);border-color:var(--gm-tone-e2d5c8);color:var(--gm-tone-776654);font-size:.65rem;font-weight:500;letter-spacing:.055em}
+#root .bb-app-shell :is(tbody td,tbody th) {border-color:var(--gm-tone-eee6da)}
+#root .bb-app-shell tbody tr:hover {background:var(--gm-tone-faf8f5)}
+#root .bb-app-shell :is(.bb-approval-toolbar,.bb-report-toolbar,.bb-appointment-toolbar) {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-faf8f5);box-shadow:none}
+#root .bb-app-shell :is(.bb-report-group-footer,.bb-appointment-pagination,.bb-appointment-no-results) {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-faf8f5)}
+#root .bb-app-shell .bb-owner-appointments {border-color:var(--gm-tone-e2d5c8);border-radius:16px;background:var(--gm-tone-fffdf9)}
+#root .bb-app-shell :is(.bb-weekly-hours__row,.bb-staff-time-off__filter,.bb-staff-service-group) {border-color:var(--gm-tone-e2d5c8)}
+
+/* Portalled forms keep the same paper, controls and selected states. */
+body > [role="presentation"] > [role="dialog"] {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-dfd0c1);box-shadow:0 24px 80px var(--gm-tone-30291f26)}
+body > [role="presentation"] > [role="dialog"] > :is(header,footer) {background:var(--gm-tone-faf8f5);border-color:var(--gm-tone-e2d5c8)}
+body > [role="presentation"] :is(.bb-card,.bb-combo-section,.bb-combo-member,.bb-combo-service-item) {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-e2d5c8);box-shadow:none}
+body > [role="presentation"] :is(.bb-control,.bb-promotion-date-time__input) {border-color:var(--gm-tone-dfd0c1);background:var(--gm-tone-fffdf9)}
+body > [role="presentation"] :is(.bb-field,.bb-button) {font-weight:500}
+body > [role="presentation"] :is(.bg-pink-50,.bg-pink-100) {background-color:var(--gm-tone-f1e9df)}
+body > [role="presentation"] :is(.text-pink-600,.text-pink-700,.text-pink-800,.text-pink-900) {color:var(--gm-tone-72513f)}
+body > [role="presentation"] :is(.border-pink-200,.border-pink-300,.border-pink-700) {border-color:var(--gm-tone-b49b84)}
+body > [role="presentation"] :is(.bb-control[aria-invalid="true"],input[aria-invalid="true"],textarea[aria-invalid="true"]) {border-color:var(--bb-danger)}
+body .bb-select-portal :is(.bb-select__panel,.bb-select__search) {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-e2d5c8)}
+body .bb-select-portal [role="option"][aria-selected="true"] {background:var(--gm-tone-f1e9df);color:var(--gm-tone-614738)}
+
+/* Login, both registration paths and password recovery share one visual scale. */
+#root .bb-auth-shell {color:var(--gm-tone-30291f);background:var(--gm-tone-f6f1eb)}
+#root .bb-auth-shell.bb-auth-shell--signup {column-gap:clamp(2rem,5vw,5rem);background:var(--gm-tone-f6f1eb)}
+#root .bb-auth-shell .bb-signup-nav {align-items:center;min-height:66px;padding-bottom:1rem;border-color:var(--gm-tone-e2d5c8)}
+#root .bb-auth-shell .bb-auth-main {background:var(--gm-tone-fffdf9);border:1px solid var(--gm-tone-e2d5c8);border-radius:22px;box-shadow:0 12px 40px var(--gm-tone-40301c06)}
+#root .bb-auth-shell .bb-auth-main__inner {background:transparent;border:0;box-shadow:none}
+#root .bb-auth-shell .bb-auth-heading h1 {font-size:clamp(1.7rem,2.5vw,2.15rem);line-height:1.3;font-weight:400;letter-spacing:-.04em}
+#root .bb-auth-shell .bb-auth-heading > p {font-size:.61rem;font-weight:500;letter-spacing:.14em;color:var(--gm-tone-805e46)}
+#root .bb-auth-shell .bb-auth-heading > span:not(.bb-signup-form-icon) {color:var(--gm-tone-776654);line-height:1.9}
+#root .bb-auth-shell .bb-signup-story h2 {font-family:var(--gm-serif);font-size:clamp(2.4rem,3.7vw,3.4rem);font-weight:400;line-height:1.2;letter-spacing:-.045em}
+#root .bb-auth-shell .bb-signup-story h2 em {color:var(--gm-tone-8a6b50);font-style:italic;font-weight:400}
+#root .bb-auth-shell .bb-signup-story__photo {border:1px solid var(--gm-tone-e2d5c8);border-radius:100px 100px 12px 12px}
+#root .bb-auth-shell .bb-signup-story__note {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-dfd0c1);box-shadow:0 10px 28px var(--gm-tone-40301c08)}
+#root .bb-auth-shell :is(.bb-signup-story__note small,.bb-signup-story__benefits,.bb-signup-form-security,.bb-signup-footer) {color:var(--gm-tone-8c7968)}
+#root .bb-auth-shell .bb-signup-story__benefits > span {color:var(--gm-tone-776654)}
+#root .bb-auth-shell .bb-signup-footer {border-color:var(--gm-tone-e2d5c8)}
+#root .bb-auth-shell .bb-auth-field > label {color:var(--gm-tone-463a30);font-size:.76rem;font-weight:500}
+#root .bb-auth-shell .bb-auth-input {border-color:var(--gm-tone-dfd0c1);background:var(--gm-tone-fffdf9);border-radius:10px;box-shadow:none}
+#root .bb-auth-shell .bb-auth-input:hover {border-color:var(--gm-tone-b49b84)}
+#root .bb-auth-shell .bb-auth-input:focus {border-color:var(--gm-tone-886b54);box-shadow:0 0 0 3px var(--gm-tone-e9ddd080)}
+#root .bb-auth-shell .bb-auth-field__message {color:var(--gm-tone-8c7968);font-size:.65rem;line-height:1.6}
+#root .bb-auth-shell .has-error .bb-auth-input {border-color:var(--bb-danger)}
+#root .bb-auth-shell .has-error .bb-auth-field__message {color:var(--bb-danger)}
+#root .bb-auth-shell :is(.bb-auth-google,.bb-auth-recovery-email) {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-e2d5c8);border-radius:12px}
+#root .bb-auth-shell :is(.bb-auth-divider,.bb-auth-alternate) {border-color:var(--gm-tone-e2d5c8);color:var(--gm-tone-8c7968)}
+#root .bb-auth-shell .bb-auth-submit {background:var(--gm-tone-30291f);border:1px solid var(--gm-tone-30291f);border-radius:999px;box-shadow:none;font-weight:500}
+#root .bb-auth-shell .bb-auth-submit:hover:not(:disabled) {background:var(--gm-tone-51433e);border-color:var(--gm-tone-51433e)}
+#root .bb-auth-shell :is(.bb-auth-back,.bb-auth-guest a,.bb-auth-alternate a) {color:var(--gm-tone-72513f);text-underline-offset:4px}
+#root .bb-auth-shell input[type="checkbox"] {accent-color:var(--gm-tone-805e46)}
+#root .bb-auth-shell .bb-auth-editorial {border-radius:100px 12px 12px 12px;overflow:hidden}
+#root .bb-auth-shell .bb-auth-editorial__copy > p {font-family:var(--gm-serif);font-weight:400}
+#root .bb-business-registration-notice {background:var(--gm-tone-f6f1eb);color:var(--gm-tone-30291f)}
+#root .bb-business-registration-notice__card {background:var(--gm-tone-fffdf9);border-color:var(--gm-tone-e2d5c8);box-shadow:0 12px 40px var(--gm-tone-40301c08)}
+#root .bb-business-registration-notice h1 {font-family:var(--gm-serif);font-weight:400;font-size:clamp(1.7rem,3vw,2.2rem)}
+#root .bb-business-registration-notice :is(.bb-business-registration-notice__icon,.bb-business-registration-notice__account > span) {background:var(--gm-tone-e9ddd0);color:var(--gm-tone-805e46)}
+#root .bb-business-registration-notice__account {background:var(--gm-tone-faf8f5);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-business-registration-notice__info {background:var(--gm-tone-f1e9df);color:var(--gm-tone-776654)}
+#root .bb-business-registration-notice__info > svg {color:var(--gm-tone-805e46)}
+#root .bb-business-registration-notice__actions > a {border-color:var(--gm-tone-e2d5c8);border-radius:999px}
+#root .bb-business-registration-notice__actions > a:hover {background:var(--gm-tone-f1e9df)}
+@media(min-width:1024px) {#root .bb-app-shell {grid-template-columns:256px minmax(0,1fr)}}
+@media(max-width:760px) {
+ #root .bb-auth-shell .bb-signup-nav {min-height:60px;padding-bottom:.85rem}
+ #root .bb-auth-shell .bb-auth-main {padding:1.4rem;border-radius:18px}
+ #root .bb-auth-shell .bb-auth-heading h1 {font-size:1.75rem}
+}
+@media(max-width:600px) {
+ #root .bb-app-shell .bb-page-header h1 {font-size:1.8rem}
+ #root .bb-app-shell > div > header > button {padding:.2rem;border-color:transparent;background:transparent}
+ #root .bb-app-shell .bb-page-header__actions {width:100%;gap:.5rem}
+ #root .bb-app-shell .bb-page-header__actions .bb-button {white-space:normal}
+ #root .bb-app-shell .bb-metric-card {padding:1rem}
+ body > [role="presentation"] > [role="dialog"] > :is(header,footer) {padding:1rem}
+}
+@media(prefers-reduced-motion:reduce) {#root .bb-app-shell .bb-app-nav-link {transition:none}}
+
+/* Keep sidebar gutters even while scrolling; keyboard focus stays inside each item. */
+#root .bb-app-shell .bb-app-sidebar > nav {
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:16px;
+  overflow-x:hidden;
+  scrollbar-width:none;
+  scrollbar-gutter:auto;
+  -ms-overflow-style:none;
+}
+#root .bb-app-shell .bb-app-sidebar > nav::-webkit-scrollbar {display:none;width:0;height:0}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link {
+  flex-shrink:0;
+  width:100%;
+  box-sizing:border-box;
+  margin:0;
+  border:0;
+  padding-inline:14px;
+  box-shadow:none;
+}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link:focus:not(:focus-visible) {outline:none;box-shadow:none}
+#root .bb-app-shell .bb-app-sidebar--light .bb-app-nav-link:focus-visible {outline:2px solid var(--gm-tone-a88b6d);outline-offset:-3px;box-shadow:none}
+#root .bb-app-shell .bb-app-sidebar > .bb-app-sidebar__brand {flex-shrink:0}
+#root .bb-app-shell .bb-app-sidebar > nav + div {flex-shrink:0;padding:16px}
+#root .bb-app-shell .bb-app-sidebar > nav + div > button {padding-inline:14px}

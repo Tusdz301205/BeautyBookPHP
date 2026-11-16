@@ -44,7 +44,10 @@ class ManagementCatalogController extends Controller
     {
         $offering = BranchServiceOffering::with('service')->findOrFail($id);
         $this->scope->owner($request, $offering->business_id);
-        return $this->presenter->offering($offering);
+        return $this->presenter->offering($offering) + [
+            'variants' => $offering->variants()->orderBy('id')->get()
+                ->map(fn ($variant) => app(\App\Services\Beautybook\PublicPresenter::class)->variant($variant))->all(),
+        ];
     }
 
     public function save(Request $request, ?string $id = null): array

@@ -9,7 +9,7 @@
     @foreach($impact->items as $item)
     <article class="service-card">
         <h2>{{ $item->booking->booking_code }} · @include('finance.status', ['value' => $item->status])</h2><p>{{ $item->booking->customerProfile?->user?->name ?? $item->booking->contact?->full_name ?? 'Khách hàng' }}</p>
-        <p>{{ $item->booking->appointment_start_at->setTimezone($impact->branch->timezone)->format('d/m/Y H:i') }} · {{ $item->booking->status }}</p>
+        <p>{{ $item->booking->appointment_start_at->setTimezone($impact->branch->timezone)->format('d/m/Y H:i') }} · {{ __($item->booking->status) }}</p>
         <ul>@foreach($item->booking->services as $service)<li>{{ $service->service_name_snapshot }} · {{ $service->staffProfile?->full_name }}</li>@endforeach</ul>
         @if($item->status === 'PENDING' && $impact->status !== 'COMPLETED')
         <form data-impact-resolution data-current-branch="{{ $impact->branch_id }}" class="form-stack" method="POST" action="{{ route('impacts.resolve', [$impact, $item]) }}">@csrf @method('PATCH')

@@ -12,6 +12,12 @@ Tài liệu hiện hành cho môn Lập trình mã nguồn mở, dùng bản Lar
 | [Prompt đã sử dụng](course/PORT_IMPLEMENTATION_PROMPT.md) | Ghi lại cách áp dụng prompts.chat vào đồ án |
 | [Nghiệm thu](course/evidence/2026-10-07/FINAL_VALIDATION.md) | Kết quả kiểm thử, build và trình duyệt |
 | [Hướng dẫn chạy](../README.md) | Cài đặt Docker, tài khoản demo và lệnh kiểm thử |
+| [Tài khoản database demo local](DEMO_ACCOUNTS.md) | Phân biệt tài khoản dữ liệu đã nhập với tài khoản seed khi cài mới |
+| [Luồng đặt lịch](BOOKING_FLOW.md) | Các bước đặt lịch, công thức giá và điều kiện xác nhận |
+| [Ví và thanh toán](PAYMENT_SETUP.md) | Cọc từ ví, cấu hình SePay và giới hạn chi trả |
+| [Phân tích đánh giá bằng AI](ML_SETUP.md) | Git LFS, cài Python/JDK, cấu hình và chạy worker |
+| [Kiểm thử trình duyệt](../tests/Browser/README.md) | Fixture, môi trường QA và các kịch bản Playwright |
+| [Kết quả kiểm thử 14/11/2026](FULL_TEST_RESULTS_2026-11-14.md) | Kết quả nghiệm thu và giới hạn tại thời điểm ghi nhận |
 | [Đợt chuyển tính năng đăng ký 03/11/2026](migration/2026-11-03-registration/IMPLEMENTATION.md) | Pháp nhân, đăng ký chi nhánh, yêu cầu đổi địa chỉ có duyệt và kiểm thử |
 | [Kiểm thử và đối chiếu GlowMe 12/11/2026](audit/REPORT_2026-11-12.md) | Kết quả test và khác biệt chức năng |
 | [Dọn cấu trúc thư mục](audit/CLEANUP_2026-11-12.md) | Các mục đã chuyển, xóa và lý do giữ legacy |

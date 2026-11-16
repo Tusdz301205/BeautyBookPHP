@@ -233,10 +233,10 @@ export function SalonProfile() {
         <div className="space-y-6">
           {owner && business && (
             <Card className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_auto]">
-              <div className="flex items-start gap-4">
+              <div className="flex min-w-0 items-start gap-4">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[var(--bb-brand-soft)] text-[var(--bb-brand-strong)]"><Building2 size={22} /></span>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2"><h2 className="text-xl font-bold">{business.name}</h2><Badge tone="success">Doanh nghiệp: {business.status}</Badge></div>
+                  <div className="min-w-0 break-words">
+                    <div className="flex flex-wrap items-center gap-2"><h2 className="text-xl font-bold">{business.name}</h2><Badge tone="success">{({APPROVED:'Đã duyệt',ACTIVE:'Đang hoạt động',PENDING:'Chờ xét duyệt',PENDING_REVIEW:'Chờ xét duyệt',DRAFT:'Bản nháp',REJECTED:'Chưa được duyệt',SUSPENDED:'Tạm ngừng'})[business.status]||business.status}</Badge></div>
                   <p className="mt-2 text-sm text-[var(--bb-muted)]">{business.contactEmail} · {business.contactPhone}</p>
                   <p className="mt-1 text-sm text-[var(--bb-muted)]">{business.addressLine}</p>
                 </div>

@@ -6,9 +6,9 @@
 @php($dayNames = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'])
 <section class="page-shell admin-shell">
     <div class="page-heading">
-        <p class="eyebrow">Review chi nhánh · {{ $branch->business->name }}</p>
+        <p class="eyebrow">Xét duyệt chi nhánh · {{ $branch->business->name }}</p>
         <h1>{{ $branch->public_name }}</h1>
-        <p>{{ $branch->review_status->value }} · {{ $branch->operational_status->value }}</p>
+        <p>{{ __($branch->review_status->value) }} · {{ __($branch->operational_status->value) }}</p>
     </div>
 
     @if ($errors->any())
@@ -60,7 +60,7 @@
             <div class="stack-list">
                 @foreach ($branch->stateTransitions->sortByDesc('version') as $transition)
                     <div class="list-row">
-                        <div><strong>#{{ $transition->version }} · {{ $transition->action }}</strong><span>{{ $transition->from_review_status }} → {{ $transition->to_review_status }}</span></div>
+                        <div><strong>#{{ $transition->version }} · {{ __($transition->action) }}</strong><span>{{ __($transition->from_review_status) }} → {{ __($transition->to_review_status) }}</span></div>
                         <span>{{ $transition->from_operational_status }} → {{ $transition->to_operational_status }}</span>
                     </div>
                 @endforeach

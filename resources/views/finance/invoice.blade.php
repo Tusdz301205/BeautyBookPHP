@@ -11,6 +11,6 @@
 <details class="panel module-disclosure"><summary>Hủy hóa đơn</summary><form class="form-stack" method="POST" action="{{ route('finance.invoices.action',[$invoice->id,'cancel']) }}">@csrf<label>Lý do <textarea name="reason" required maxlength="1000"></textarea></label><button class="button button-secondary">Hủy</button></form></details>
 <details class="panel module-disclosure"><summary>Phát hành hóa đơn thay thế</summary><form class="form-stack" method="POST" action="{{ route('finance.invoices.action',[$invoice->id,'reissue']) }}">@csrf<label>Lý do <textarea name="reason" required maxlength="1000"></textarea></label><label>Tên người mua mới <input type="text" name="buyer_name" maxlength="160"></label><label>Email <input type="email" name="buyer_email"></label><label>Mã số thuế <input type="text" name="buyer_tax_code" maxlength="80"></label><label>Địa chỉ <input type="text" name="buyer_address" maxlength="500"></label><button class="button button-primary">Phát hành thay thế</button></form></details>
 @endif
-<h2>Lịch sử hóa đơn</h2>@foreach($events as $event)<p>{{ $event->action }} · {{ $event->reason }} · {{ $event->created_at }}</p>@endforeach
+<h2>Lịch sử hóa đơn</h2>@foreach($events as $event)<p>{{ __($event->action) }} · {{ $event->reason }} · {{ $event->created_at }}</p>@endforeach
 </section>
 @endsection

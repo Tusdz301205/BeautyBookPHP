@@ -1,3 +1,4 @@
+import {lazyPage,installPagePreloading} from './utils/lazyPage';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -13,14 +14,14 @@ import { PlatformShell } from './components/layout/PlatformShell';
 import { SalonShell } from './components/layout/SalonShell';
 import { CustomerShell } from './components/layout/CustomerShell';
 
-const lazyNamed = (loader, name) => React.lazy(() =>
+const lazyNamed = (loader, name) => lazyPage(() =>
   loader().then((module) => ({ default: module[name] })),
 );
 
 // Route-level chunks keep scheduler, charts and admin workspaces out of the
 // initial public/login bundle while preserving the existing guards and UI.
-const ChatInbox = React.lazy(() => import('./components/chat/ChatInbox'));
-const CustomerWallet = React.lazy(() => import('./pages/Customer/CustomerWallet'));
+const ChatInbox = lazyPage(() => import('./components/chat/ChatInbox'));
+const CustomerWallet = lazyPage(() => import('./pages/Customer/CustomerWallet'));
 const LoginScreen = lazyNamed(() => import('./pages/Login/LoginScreen'), 'LoginScreen');
 const RegisterScreen = lazyNamed(() => import('./pages/Login/RegisterScreen'), 'RegisterScreen');
 const AcceptInvitation = lazyNamed(() => import('./pages/Login/AuthActionPages'), 'AcceptInvitation');
@@ -29,20 +30,20 @@ const ResetPassword = lazyNamed(() => import('./pages/Login/AuthActionPages'), '
 const VerifyEmail = lazyNamed(() => import('./pages/Login/AuthActionPages'), 'VerifyEmail');
 const SalonOverview = lazyNamed(() => import('./pages/Salon/SalonOverview'), 'SalonOverview');
 const SalonServices = lazyNamed(() => import('./pages/Salon/SalonServices'), 'SalonServices');
-const SalonCombos = React.lazy(() => import('./pages/Salon/SalonCombos'));
+const SalonCombos = lazyPage(() => import('./pages/Salon/SalonCombos'));
 const SalonAppointments = lazyNamed(() => import('./pages/Salon/SalonAppointments'), 'SalonAppointments');
 const SalonStats = lazyNamed(() => import('./pages/Salon/SalonStats'), 'SalonStats');
 const SalonProfile = lazyNamed(() => import('./pages/Salon/SalonProfile'), 'SalonProfile');
-const SalonStaffManagement = React.lazy(() => import('./pages/Salon/SalonStaffManagement'));
-const StaffDetail = React.lazy(() => import('./pages/Salon/StaffDetail'));
-const SalonPromotions = React.lazy(() => import('./pages/Salon/SalonPromotions'));
-const SalonReviews = React.lazy(() => import('./pages/Salon/SalonReviews'));
-const SalonNotifications = React.lazy(() => import('./pages/Salon/SalonNotifications'));
-const BusinessOnboarding = React.lazy(() => import('./pages/Salon/BusinessOnboarding'));
-const BranchOnboardingWizard = React.lazy(() => import('./pages/Salon/BranchOnboardingWizard'));
-const PaymentsWorkspace = React.lazy(() => import('./pages/Salon/PaymentsWorkspace'));
-const SalonOperations = React.lazy(() => import('./pages/Salon/SalonOperations'));
-const SalonAudit = React.lazy(() => import('./pages/Admin/AdminAudit').then((module) => ({ default: () => <module.AdminAudit scopeLabel="thao tác của chính tài khoản bạn" /> })));
+const SalonStaffManagement = lazyPage(() => import('./pages/Salon/SalonStaffManagement'));
+const StaffDetail = lazyPage(() => import('./pages/Salon/StaffDetail'));
+const SalonPromotions = lazyPage(() => import('./pages/Salon/SalonPromotions'));
+const SalonReviews = lazyPage(() => import('./pages/Salon/SalonReviews'));
+const SalonNotifications = lazyPage(() => import('./pages/Salon/SalonNotifications'));
+const BusinessOnboarding = lazyPage(() => import('./pages/Salon/BusinessOnboarding'));
+const BranchOnboardingWizard = lazyPage(() => import('./pages/Salon/BranchOnboardingWizard'));
+const PaymentsWorkspace = lazyPage(() => import('./pages/Salon/PaymentsWorkspace'));
+const SalonOperations = lazyPage(() => import('./pages/Salon/SalonOperations'));
+const SalonAudit = lazyPage(() => import('./pages/Admin/AdminAudit').then((module) => ({ default: () => <module.AdminAudit scopeLabel="thao tác của chính tài khoản bạn" /> })));
 const AdminOverview = lazyNamed(() => import('./pages/Admin/AdminOverview'), 'AdminOverview');
 const AdminSalons = lazyNamed(() => import('./pages/Admin/AdminSalons'), 'AdminSalons');
 const AdminUsers = lazyNamed(() => import('./pages/Admin/AdminUsers'), 'AdminUsers');
@@ -51,31 +52,28 @@ const AdminBranchDetail = lazyNamed(() => import('./pages/Admin/AdminEntityDetai
 const AdminBusinessDetail = lazyNamed(() => import('./pages/Admin/AdminEntityDetails'), 'AdminBusinessDetail');
 const AdminAppointmentsView = lazyNamed(() => import('./pages/Admin/AdminAppointmentsView'), 'AdminAppointmentsView');
 const AdminReports = lazyNamed(() => import('./pages/Admin/AdminReports'), 'AdminReports');
-const AdminReviewsModeration = React.lazy(() => import('./pages/Admin/AdminReviewsModeration'));
-const AdminNotifications = React.lazy(() => import('./pages/Admin/AdminNotifications'));
-const AdminSettings = React.lazy(() => import('./pages/Admin/AdminSettings'));
-const AdminAudit = React.lazy(() => import('./pages/Admin/AdminAudit'));
-const BookingStep1 = React.lazy(() => import('./pages/Customer/BookingStep1'));
-const BookingStep2 = React.lazy(() => import('./pages/Customer/BookingStep2'));
-const BookingStep3 = React.lazy(() => import('./pages/Customer/BookingStep3'));
-const BookingStep4 = React.lazy(() => import('./pages/Customer/BookingStep4'));
-const BookingConfirm = React.lazy(() => import('./pages/Customer/BookingConfirm'));
-const BookingSuccess = React.lazy(() => import('./pages/Customer/BookingSuccess'));
+const AdminReviewsModeration = lazyPage(() => import('./pages/Admin/AdminReviewsModeration'));
+const AdminNotifications = lazyPage(() => import('./pages/Admin/AdminNotifications'));
+const AdminSettings = lazyPage(() => import('./pages/Admin/AdminSettings'));
+const AdminAudit = lazyPage(() => import('./pages/Admin/AdminAudit'));
+const CustomerRecurring = lazyPage(() => import('./pages/Customer/CustomerRecurring'));
+const CustomerBooking = lazyPage(() => import('./pages/Customer/CustomerBooking'));
 const CustomerAppointments = lazyNamed(() => import('./pages/Customer/CustomerAppointments'), 'CustomerAppointments');
 const CustomerAppointmentDetail = lazyNamed(() => import('./pages/Customer/CustomerAppointmentDetail'), 'CustomerAppointmentDetail');
 const CustomerNotifications = lazyNamed(() => import('./pages/Customer/CustomerNotifications'), 'CustomerNotifications');
 const CustomerVouchers = lazyNamed(() => import('./pages/Customer/CustomerVouchers'), 'CustomerVouchers');
 const CustomerReviews = lazyNamed(() => import('./pages/Customer/CustomerReviews'), 'CustomerReviews');
-const CustomerBenefits = React.lazy(() => import('./pages/Customer/CustomerBenefits'));
-const IncomingOwnership = React.lazy(() => import('./pages/Salon/IncomingOwnership'));
-const SecuritySettings = React.lazy(() => import('./pages/SecuritySettings'));
-const ProfileSettings = React.lazy(() => import('./pages/ProfileSettings'));
-const PublicHome = React.lazy(() => import('./pages/Public/PublicHome'));
+const CustomerBenefits = lazyPage(() => import('./pages/Customer/CustomerBenefits'));
+const SecuritySettings = lazyPage(() => import('./pages/SecuritySettings'));
+const ProfileSettings = lazyPage(() => import('./pages/ProfileSettings'));
+const PublicHome = lazyPage(() => import('./pages/Public/PublicHome'));
 const PublicBranchDetail = lazyNamed(() => import('./pages/Public/PublicDetails'), 'PublicBranchDetail');
 const PublicServiceDetail = lazyNamed(() => import('./pages/Public/PublicDetails'), 'PublicServiceDetail');
 const PublicStaffDetail = lazyNamed(() => import('./pages/Public/PublicDetails'), 'PublicStaffDetail');
 const PublicNotFound = lazyNamed(() => import('./pages/Public/PublicNotFound'), 'PublicNotFound');
-const BusinessLanding = React.lazy(() => import('./pages/Public/BusinessLanding'));
+const BusinessLanding = lazyPage(() => import('./pages/Public/BusinessLanding'));
+
+const preloadedPages=[['/',PublicHome],['/login',LoginScreen],['/register',RegisterScreen],['/explore',PublicHome],['/explore/services',PublicServiceDetail],['/explore/branches',PublicBranchDetail],['/explore/staff',PublicStaffDetail],['/book',CustomerBooking],['/customer/appointments',CustomerAppointments],['/customer/appointments/',CustomerAppointmentDetail],['/customer/recurring',CustomerRecurring],['/salon',SalonOverview],['/salon/appointments',SalonAppointments],['/salon/reviews',SalonReviews],['/salon/services',SalonServices],['/salon/staff',SalonStaffManagement],['/salon/combos',SalonCombos],['/salon/promotions',SalonPromotions],['/salon/profile',SalonProfile],['/salon/payments',PaymentsWorkspace],['/for-business',BusinessLanding]];
 
 function RouteFallback() {
   return (
@@ -192,11 +190,11 @@ function ProtectedRoute({ children, roles, can: canCode, scope }) {
     return <Navigate to="/login" replace state={{ from: `${location.pathname}${location.search}` }} />;
   }
   const isOwner = [...(user?.roles || []), ...(user?.scopes || []).map((item) => item.code)].includes('BUSINESS_OWNER');
-  if (isOwner && ['/salon/audit', '/salon/stats', '/salon/incoming-ownership'].some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`))) {
+  if (isOwner && ['/salon/audit', '/salon/stats'].some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`))) {
     return <Navigate to="/salon" replace />;
   }
   if (location.pathname === '/customer/benefits' && new URLSearchParams(location.search).get('tab') === 'ownership') {
-    return <Navigate to={isOwner ? '/salon' : '/salon/incoming-ownership'} replace />;
+    return <Navigate to={user?.sessionType === 'salon' ? '/salon' : user?.sessionType === 'admin' ? '/admin' : '/customer/benefits'} replace />;
   }
   if (roles?.includes('customer') && !isCustomerAccount(user)) {
     return <main className="mx-auto max-w-2xl p-8"><h1 className="text-2xl font-bold">Cần tài khoản khách hàng riêng</h1><p className="my-4">{CUSTOMER_ACCOUNT_REQUIRED}</p><a className="underline" href="/explore">Tiếp tục xem nội dung công khai</a></main>;
@@ -269,8 +267,9 @@ function AdminLanding() {
 }
 
 export default function App() {
+  useEffect(()=>installPagePreloading(preloadedPages,{base:document.querySelector('meta[name=beautybook-base]')?.content??'/beautybook'}),[]);
   return (
-    <BrowserRouter basename={document.querySelector('meta[name="beautybook-base"]')?.content ?? '/beautybook'}>
+    <BrowserRouter future={{v7_startTransition:true}} basename={document.querySelector('meta[name="beautybook-base"]')?.content ?? '/beautybook'}>
       <PublicRouteSeo />
       <Toaster
         position="top-right"
@@ -307,6 +306,8 @@ export default function App() {
                 <Routes>
                   <Route index element={<Navigate to="/customer/appointments" replace />} />
                   <Route path="appointments" element={<CustomerAppointments />} />
+                  <Route path="book" element={<CustomerBooking />} />
+                  <Route path="recurring" element={<CustomerRecurring />} />
                   <Route path="appointments/:id" element={<CustomerAppointmentDetail />} />
                   <Route path="notifications" element={<CustomerNotifications />} />
                   <Route path="messages" element={<ChatInbox scope="customer" />} />
@@ -325,12 +326,9 @@ export default function App() {
         />
 
         {/* Public users may browse availability, but creating a booking requires a customer account. */}
-        <Route path="/book" element={<ProtectedRoute roles={['customer']}><BookingStep1 /></ProtectedRoute>} />
-        <Route path="/book/staff" element={<ProtectedRoute roles={['customer']}><BookingStep2 /></ProtectedRoute>} />
-        <Route path="/book/time" element={<ProtectedRoute roles={['customer']}><BookingStep3 /></ProtectedRoute>} />
-        <Route path="/book/info" element={<ProtectedRoute roles={['customer']}><BookingStep4 /></ProtectedRoute>} />
-        <Route path="/book/confirm" element={<ProtectedRoute roles={['customer']}><BookingConfirm /></ProtectedRoute>} />
-        <Route path="/book/success" element={<ProtectedRoute roles={['customer']}><BookingSuccess /></ProtectedRoute>} />
+        <Route path="/book" element={<ProtectedRoute roles={['customer']}><CustomerShell><CustomerBooking /></CustomerShell></ProtectedRoute>} />
+        <Route path="/book/:step" element={<Navigate to="/book" replace />} />
+        <Route path="/book/success" element={<Navigate to="/customer/appointments" replace />} />
 
         {/* Salon routes */}
         <Route
@@ -343,7 +341,7 @@ export default function App() {
                   <Route path="onboarding" element={<PermissionGate fallback="/salon" anyOf={['business:create:self', 'business:update:tenant']}><BusinessOnboardingRoute /></PermissionGate>} />
                   <Route path="security" element={<SecuritySettings />} />
                   <Route path="account" element={<ProfileSettings />} />
-                  <Route path="incoming-ownership" element={<IncomingOwnership />} />
+                  <Route path="incoming-ownership/*" element={<Navigate to="/salon" replace />} />
                   <Route element={<ApprovedBusinessGate />}>
                     <Route index element={<SalonLanding />} />
                     <Route path="services" element={<PermissionGate fallback="/salon" anyOf={['business_service:update:tenant', 'branch_service_offering:status:tenant']}><SalonServices /></PermissionGate>} />
@@ -360,6 +358,7 @@ export default function App() {
                     <Route path="reviews" element={<PermissionGate fallback="/salon" anyOf={['review:moderate:tenant']}><SalonReviews /></PermissionGate>} />
                     <Route path="stats" element={<PermissionGate fallback="/salon" anyOf={['report:revenue:tenant', 'report:revenue:branch']}><SalonStats /></PermissionGate>} />
                     <Route path="profile" element={<PermissionGate fallback="/salon" anyOf={['branch:update:tenant']}><SalonProfile /></PermissionGate>} />
+                    <Route path="deposit-settings" element={<Navigate to="/salon/payments" replace />} />
                     <Route path="payments" element={<PermissionGate fallback="/salon" anyOf={['payment:read:branch', 'payment:read:tenant']}>{FINANCE_WORKSPACE_ENABLED ? <PaymentsWorkspace /> : <UnavailableFeature finance home="/salon" />}</PermissionGate>} />
                     <Route path="operations" element={<PermissionGate fallback="/salon" anyOf={['booking:read:tenant', 'booking:read:branch', 'payment:read:tenant', 'payment:read:branch']}><SalonOperations /></PermissionGate>} />
                     <Route path="audit" element={<PermissionGate fallback="/salon" anyOf={['audit:read:tenant']}><SalonAudit /></PermissionGate>} />

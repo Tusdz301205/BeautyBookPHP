@@ -1,0 +1,1 @@
+export function publicPageEnvelope(raw,{page=1,limit=50}={}){const items=Array.isArray(raw)?raw:raw.items||raw.data||[];if(!Array.isArray(items))throw new Error('Không đọc được danh sách lựa chọn.');return{items,total:raw.total??items.length,page:raw.page??page,limit:raw.limit??limit};}

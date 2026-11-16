@@ -1,0 +1,1 @@
+.bb-select-portal{position:fixed;inset:0;z-index:var(--bb-select-layer,1000);pointer-events:none}.bb-select-portal .bb-select__panel,.bb-select-portal .bb-select__backdrop{pointer-events:auto}.bb-select-portal .bb-select__panel{z-index:1}.bb-select-portal .bb-select__backdrop{z-index:0}@media(min-width:40rem){.bb-select-portal .bb-select__panel{max-width:calc(100vw - 24px)}}

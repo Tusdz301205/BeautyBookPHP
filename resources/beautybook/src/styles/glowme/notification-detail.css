@@ -1,0 +1,24 @@
+/* Notification layout keeps its shell and list geometry while requests run. */
+.bb-notification-inbox{min-height:calc(100dvh - 7rem)}
+.bb-notification-results{min-width:0;min-height:18rem;overflow-anchor:none}
+.bb-notification-list-loading>div{display:flex;align-items:center;gap:.75rem;min-height:6rem;padding:1rem;border-bottom:1px solid var(--bb-border)}
+.bb-notification-list-loading>div:last-child{border-bottom:0}
+.bb-notification-placeholder-icon{display:grid;place-items:center;width:2.5rem;height:2.5rem;flex-shrink:0;border-radius:.5rem;background:var(--bb-surface-subtle);color:var(--bb-muted)}
+.bb-notification-list-loading>div>span:last-child{display:grid;gap:.65rem;flex:1}
+.bb-notification-list-loading i{display:block;width:55%;max-width:22rem;height:.85rem;border-radius:.3rem;background:var(--bb-surface-subtle)}
+.bb-notification-list-loading i:last-child{width:75%;height:.65rem}
+.bb-notification-refresh-status{min-height:1.25rem;margin:0;font-size:.75rem;color:var(--bb-muted)}
+.bb-notification-inbox>header{min-height:7.5rem}
+
+.bb-notification-dialog { max-width: 34rem; overflow: hidden; }
+.bb-notification-dialog > header { flex-shrink: 0; align-items: center; padding: 1.25rem; }
+.bb-notification-dialog > header h2 { line-height: 1.4; overflow-wrap: anywhere; }
+.bb-notification-dialog > header p { font-size: .75rem; }
+.bb-notification-dialog > header button { flex-shrink: 0; border-radius: 50%; color: var(--bb-muted); }
+.bb-notification-dialog > .bb-scrollbar { min-height: 0; padding: 1.25rem; }
+.bb-notification-message { margin: 1rem 0 0; padding: 1rem; border-radius: var(--bb-radius-control); background: var(--bb-surface-subtle); color: var(--bb-ink-soft); font-size: .9375rem; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bb-notification-dialog > footer { flex-shrink: 0; padding: 1rem 1.25rem; background: var(--bb-surface-subtle); }
+@media (max-width: 40rem) {
+  .bb-notification-dialog > footer { display: grid; grid-template-columns: minmax(0,1fr); }
+  .bb-notification-dialog > footer button { width: 100%; min-width: 0; }
+}

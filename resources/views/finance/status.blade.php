@@ -6,7 +6,7 @@
         'PROCESSING' => 'Đang xử lý', 'COMPLETED' => 'Đã hoàn tất', 'CANCELLED' => 'Đã hủy',
         'FAILED' => 'Chưa thành công', 'DUE' => 'Chưa thanh toán', 'PAID' => 'Đã thanh toán',
         'AVAILABLE' => 'Có thể sử dụng', 'RESERVED' => 'Đã giữ lượt', 'REDEEMED' => 'Đã sử dụng',
-        'DRAFT' => 'Bản nháp', 'REVIEW' => 'Đang đối soát', 'ISSUED' => 'Đã phát hành',
+        'DRAFT' => 'Bản nháp', 'REVIEW' => 'Chờ duyệt', 'ISSUED' => 'Đã phát hành',
         'OVERDUE' => 'Quá hạn', 'WAITING' => 'Đang chờ lịch', 'OFFERED' => 'Đã có đề nghị',
         'ACCEPTED' => 'Đã tiếp nhận', 'RESOLVED' => 'Đã xử lý', 'ESCALATED' => 'Cần xử lý ưu tiên',
         'PENDING_NEW_OWNER_ACCEPTANCE' => 'Chờ chủ mới tiếp nhận', 'UNDER_REVIEW' => 'Đang thẩm định',

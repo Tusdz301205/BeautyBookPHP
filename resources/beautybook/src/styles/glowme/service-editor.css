@@ -1,0 +1,37 @@
+.bb-service-editor { height: min(90dvh, 50rem); }
+.bb-service-editor > .bb-scrollbar { scrollbar-gutter: stable; }
+.bb-service-editor__form > .bb-field > span:last-child[aria-hidden="true"] { display: none; }
+.bb-service-editor__form > .bb-field { align-content: start; }
+.bb-service-editor__form textarea { min-height: 5rem; height: 5rem; }
+.bb-service-editor__category { min-width: 0; }
+.bb-service-editor__category-label { display: block; margin-bottom: .375rem; color: var(--bb-ink); font-size: .875rem; font-weight: 600; }
+.bb-service-editor__category-label > span { color: var(--bb-danger); }
+.bb-category-search__form { display: grid; grid-template-columns: minmax(0, 1fr) 5rem 2.75rem; align-items: end; gap: .5rem; }
+.bb-category-search__submit { width: 5rem; }
+.bb-category-search__results { display: flex; height: 6.5rem; margin-top: .75rem; flex-direction: column; }
+.bb-category-search__heading { display: flex; flex: none; align-items: center; gap: .75rem; height: 1.25rem; margin-bottom: .375rem; padding-inline: .25rem; color: var(--bb-muted); font-size: .75rem; }
+.bb-category-search__summary { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.bb-category-search__progress { flex: none; }
+.bb-category-search__items { display: grid; flex: 1; min-height: 0; align-content: start; gap: .4rem; overflow-y: auto; scrollbar-gutter: stable; }
+.bb-category-search__option { display: flex; min-width: 0; min-height: 3.5rem; align-items: center; gap: .75rem; padding: .5rem .75rem; border: 1px solid var(--bb-border); border-radius: .625rem; background: var(--bb-surface); text-align: left; }
+.bb-category-search__option:hover { background: var(--bb-surface-subtle); }
+.bb-category-search__option:focus-visible { outline: 2px solid var(--bb-brand); outline-offset: -2px; }
+.bb-category-search__option[aria-pressed="true"] { box-shadow: inset 3px 0 0 var(--bb-brand); }
+.bb-category-search__create { border-style: dashed; background: var(--bb-brand-soft); }
+.bb-category-search__create:hover { background: color-mix(in srgb, var(--bb-brand-soft) 82%, var(--bb-surface)); }
+.bb-category-search__create .bb-category-search__icon, .bb-category-search__create .bb-category-search__check { color: var(--bb-brand-strong); }
+.bb-category-search__icon { display: grid; flex: none; width: 2.25rem; height: 2.25rem; place-items: center; border-radius: .625rem; background: var(--bb-surface-subtle); color: var(--bb-ink-soft); }
+.bb-category-search__option[aria-pressed="true"] .bb-category-search__icon { background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-category-search__name { flex: 1; min-width: 0; }
+.bb-category-search__name strong, .bb-category-search__name > span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bb-category-search__name strong { color: var(--bb-ink); font-size: .9375rem; font-weight: 600; }
+.bb-category-search__name > span { color: var(--bb-muted); font-size: .75rem; }
+.bb-category-search__check { display: inline-flex; flex: none; width: 5.25rem; height: 1.75rem; align-items: center; justify-content: center; gap: .25rem; border-radius: .5rem; color: var(--bb-muted); font-size: .75rem; font-weight: 600; }
+.bb-category-search__option[aria-pressed="true"] .bb-category-search__check { background: var(--bb-brand-soft); color: var(--bb-brand-strong); }
+.bb-category-search__message { margin: auto; padding: .25rem; color: var(--bb-muted); font-size: .8rem; text-align: center; }
+.bb-category-search__selection { display: flex; height: 2rem; align-items: center; gap: .375rem; margin-bottom: .5rem; color: var(--bb-brand-strong); font-size: .75rem; }
+.bb-category-search__selection > svg { flex: none; }
+.bb-category-search__selection > p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 40rem) {
+  .bb-service-editor { height: 100dvh; }
+}

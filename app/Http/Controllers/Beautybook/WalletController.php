@@ -46,8 +46,10 @@ class WalletController extends Controller
             $branch = \App\Models\Branch::findOrFail((int) $branchId);
             $direct = \App\Services\Payments\DirectDeposit::terms((int) $branch->business_id, (int) $branch->id, (int) $total, \App\Services\Booking\BranchBookingRules::cancellationHours((int) $branch->id));
             unset($direct['connectionId']);
+            $readiness = \App\Services\Payments\DirectDeposit::readiness((int) $branch->business_id, (int) $total);
 
-            return ['walletMode' => false, 'depositMode' => $direct ? 'DIRECT' : null, 'terms' => $direct];
+            return ['walletMode' => false, 'depositMode' => $direct ? 'DIRECT' : null, 'terms' => $direct,
+                'readiness' => $readiness, 'depositOk' => $readiness['ok'], 'depositReason' => $readiness['reason']];
         }
 
         return ['walletMode' => true, 'terms' => \App\Services\Wallet\WalletCore::terms((int) $branchId, (int) $total, \App\Services\Booking\BranchBookingRules::cancellationHours((int) $branchId))];

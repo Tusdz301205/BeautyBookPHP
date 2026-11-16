@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('workspace.store') }}" class="workspace-option {{ $current?->id === $assignment->id ? 'is-current' : '' }}">
                 @csrf
                 <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
-                <span class="card-label">{{ $assignment->role_name }}</span>
+                <span class="card-label">{{ __($assignment->role_name) }}</span>
                 <strong>{{ $assignment->business?->name ?? 'Nền tảng BeautyBook' }}</strong>
                 <span>{{ $assignment->branch?->name ?? $assignment->scope_key }}</span>
                 <button class="button button-secondary" type="submit">

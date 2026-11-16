@@ -45,7 +45,7 @@
             @elseif ($booking->status === 'CONFIRMED')
                 @if ($now->greaterThanOrEqualTo($startUtc->subMinutes(30)))
                     <button class="button" type="button" data-booking-transition data-url="{{ $transitionUrl }}" data-status="CHECKED_IN">
-                        Check-in
+                        Xác nhận khách đến
                     </button>
                 @endif
                 <button class="button button-danger" type="button" data-booking-transition data-url="{{ $transitionUrl }}" data-status="CANCELLED">
@@ -75,7 +75,7 @@
         @if ($booking->status === 'CONFIRMED' && $now->greaterThan($startUtc->addMinutes(15)))
             <label class="booking-no-show-confirm">
                 <input type="checkbox" data-no-show-confirm="{{ $booking->id }}">
-                <span>Tôi xác nhận khách chưa đến và đã kiểm tra yêu cầu hủy, check-in và tiến độ dịch vụ.</span>
+                <span>Tôi xác nhận khách chưa đến và đã kiểm tra yêu cầu hủy, tình trạng khách đến và tiến độ dịch vụ.</span>
             </label>
             <button
                 class="button button-danger"

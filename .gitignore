@@ -66,3 +66,17 @@ storage/logs/*
 public/storage
 .env.laravel
 .env.testing.local
+
+# Local ML environments and generated inference artifacts
+/ml/.venv/
+**/__pycache__/
+*.pyc
+/ml/glowme_ml/ml/.runtime/
+/ml/glowme_ml/ml/runs/
+
+# Local development reference libraries (not application dependencies)
+/skills/
+
+# Generated discovery inventory and unused image variant
+/resources/beautybook/api-call-inventory.json
+/public/images/beautybook/auth/glowme-hair-editorial-v2.png

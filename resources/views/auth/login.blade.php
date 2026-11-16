@@ -37,7 +37,7 @@
 
         @if (app()->environment('local'))
             <div class="demo-note">
-                <strong>Tài khoản demo</strong>
+                <strong>Tài khoản dùng thử</strong>
                 <span>customer / owner / receptionist / staff / admin @beautybook.local</span>
                 <span>Mật khẩu: BeautyBook123!</span>
             </div>

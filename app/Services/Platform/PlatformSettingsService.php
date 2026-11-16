@@ -19,8 +19,13 @@ class PlatformSettingsService
 
     public function get(): array
     {
+        $request=request();
+        $key='beautybook.platform_settings';
+        if($request->route() && is_array($cached=$request->attributes->get($key)))return $cached;
         $raw = DB::table('platform_settings')->where('key', 'platform')->value('value');
-        return array_replace(self::DEFAULTS, $raw ? json_decode($raw, true, 512, JSON_THROW_ON_ERROR) : []);
+        $settings=array_replace(self::DEFAULTS, $raw ? json_decode($raw, true, 512, JSON_THROW_ON_ERROR) : []);
+        if($request->route())$request->attributes->set($key,$settings);
+        return $settings;
     }
 
     public function value(string $key): mixed
@@ -30,6 +35,7 @@ class PlatformSettingsService
 
     public function update(array $input, int $actor): array
     {
+        request()->attributes->remove('beautybook.platform_settings');
         $ranges = [
             'maxAdvanceBookingDays' => [1, 365], 'minBookingLeadTimeHours' => [0, 168],
             'freeCancellationHours' => [4, 4], 'maxRescheduleCountPerBooking' => [0, 10],

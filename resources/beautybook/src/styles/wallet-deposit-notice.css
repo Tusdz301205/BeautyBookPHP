@@ -1,0 +1,58 @@
+.wallet-deposit-notice {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid var(--bb-border);
+  border-radius: 14px;
+  background: var(--bb-surface, #fff);
+  color: var(--bb-ink);
+}
+.wallet-deposit-notice .wallet-deposit-notice__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.wallet-deposit-notice__heading > span {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--bb-surface-subtle);
+  font-size: 12px;
+}
+.wallet-deposit-notice .wallet-deposit-notice__amounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0;
+}
+.wallet-deposit-notice__amounts > div + div {
+  padding-left: 18px;
+  border-left: 1px solid var(--bb-border);
+}
+.wallet-deposit-notice dt { font-size: 13px; color: var(--bb-muted); }
+.wallet-deposit-notice dd { margin: 0; font-variant-numeric: tabular-nums; }
+.wallet-deposit-notice__amounts dd { margin-top: 5px; font-size: 22px; font-weight: 600; }
+.wallet-deposit-notice__amounts .wallet-deposit-notice__deposit { font-size: 28px; color: var(--bb-brand); }
+.wallet-deposit-notice .wallet-deposit-notice__balance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--bb-surface-subtle);
+}
+.wallet-deposit-notice__balance > div { display: flex; align-items: baseline; gap: 8px; }
+.wallet-deposit-notice__balance dd { font-size: 13px; font-weight: 600; }
+.wallet-deposit-notice .wallet-deposit-notice__hint,
+.wallet-deposit-notice .wallet-deposit-notice__per { margin: 12px 0 0; color: var(--bb-muted); font-size: 13px; line-height: 1.5; }
+.wallet-deposit-notice__policy { margin-top: 6px; font-size: 13px; }
+.wallet-deposit-notice__policy summary { width: fit-content; padding: 5px 0; cursor: pointer; font-weight: 500; }
+.wallet-deposit-notice__policy summary:focus-visible { outline: 2px solid var(--bb-focus); outline-offset: 3px; }
+.wallet-deposit-notice__policy p { margin: 6px 0 0; line-height: 1.6; color: var(--bb-muted); }
+@media (max-width: 420px) {
+  .wallet-deposit-notice { padding: 16px; }
+  .wallet-deposit-notice__amounts dd { font-size: 19px; }
+  .wallet-deposit-notice__amounts .wallet-deposit-notice__deposit { font-size: 24px; }
+}

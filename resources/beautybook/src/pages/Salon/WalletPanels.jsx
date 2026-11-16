@@ -5,6 +5,7 @@ import { paymentsApi, walletApi } from '../../api/apiClient';
 import { useAuthStore } from '../../store/authStore';
 import { createIdempotencyKey } from '../../utils/idempotencyKey';
 import { RECEIPT_PROCESSING, REFUND_STATUS_LABEL, pageInfo } from '../../utils/depositAdmin';
+import { paymentLabel } from '../../utils/paymentLabels';
 import { REFUND_REASON } from '../../utils/directDeposit';
 import { Badge, Button, Card, EmptyState, ErrorState, Field, Input, Select, Skeleton, cx } from '../../components/ui';
 
@@ -23,16 +24,16 @@ const reviewText = {
   INVOICE_RECEIVER_MISMATCH: 'Tài khoản nhận khác thông tin trên yêu cầu',
   TEST_ACCOUNT_NOT_AUTHORIZED: 'Tài khoản không thuộc danh sách thử nghiệm',
   TEST_LIMIT_EXCEEDED: 'Vượt hạn mức thử nghiệm',
-  LIVE_LAB_DISABLED: 'Live lab đang tắt',
+  LIVE_LAB_DISABLED: 'Môi trường thử nghiệm đang tắt',
   OUTGOING_TRANSFER: 'Giao dịch tiền ra',
   POSTING_NOT_APPLIED: 'Chưa ghi sổ được',
 };
-const accountText = { PENDING: 'Chờ xác minh', VERIFIED_DEMO: 'Đã xác minh (demo)', DISABLED: 'Đã tắt' };
+const accountText = { PENDING: 'Chờ xác minh', VERIFIED_DEMO: 'Đã xác minh (mô phỏng)', DISABLED: 'Đã tắt' };
 const accountTone = { PENDING: 'warning', VERIFIED_DEMO: 'success', DISABLED: 'neutral' };
 const withdrawalTone = { PENDING_APPROVAL: 'warning', PROCESSING: 'info', FAILED: 'danger', SIMULATED_COMPLETED: 'success', REJECTED: 'danger', CANCELLED: 'neutral' };
-const withdrawalText = { PENDING_APPROVAL: 'Chờ duyệt', PROCESSING: 'Đang xử lý', FAILED: 'Thất bại', SIMULATED_COMPLETED: 'Hoàn tất (mô phỏng)', REJECTED: 'Đã từ chối', CANCELLED: 'Đã hủy' };
+const withdrawalText = { PENDING_APPROVAL: 'Chờ duyệt', PROCESSING: 'Đang xử lý', FAILED: 'Thất bại', SIMULATED_COMPLETED: 'Đã chi trả (mô phỏng)', REJECTED: 'Đã từ chối', CANCELLED: 'Đã hủy' };
 const emptyBank = { bankCode: '', bankName: '', accountNumber: '', accountName: '' };
-const settlementText = { PENDING: 'Chờ hoàn tất', SIMULATED_PAID: 'Đã hoàn tất (mô phỏng)' };
+const settlementText = { PENDING: 'Chờ chi trả', SIMULATED_PAID: 'Đã chi trả (mô phỏng)' };
 const settlementTone = { PENDING: 'warning', SIMULATED_PAID: 'success' };
 const isoDay = (offset) => new Date(Date.now() + offset * 86400000).toISOString().slice(0, 10);
 
@@ -43,28 +44,27 @@ export default function WalletPanels() {
   const isAdmin = can('platform_statement:manage:platform');
   const isOwner = can('payment_policy:manage:tenant');
   const tabs = useMemo(() => [
-    { id: 'overview', label: isAdmin ? 'Đối soát ví' : 'Ví & khoản phải trả', icon: Wallet, visible: isAdmin || isOwner },
+    { id: 'overview', label: isAdmin ? 'Đối soát nạp ví' : 'Số dư và tiền cọc', icon: Wallet, visible: isAdmin || isOwner },
     { id: 'accounts', label: 'Tài khoản ngân hàng', icon: Landmark, visible: isAdmin || isOwner },
     { id: 'payouts', label: 'Rút tiền', icon: Banknote, visible: isAdmin || isOwner },
-    { id: 'settlements', label: 'Đối soát lô', icon: ReceiptText, visible: isAdmin || isOwner },
-    { id: 'direct', label: 'Nhận cọc trực tiếp', icon: PlugZap, visible: isOwner && !isAdmin },
+    { id: 'settlements', label: 'Chi trả theo đợt', icon: ReceiptText, visible: isAdmin || isOwner },
     { id: 'depositAdmin', label: 'Hoàn cọc & chuyển khoản', icon: PlugZap, visible: isAdmin },
   ].filter((item) => item.visible), [isAdmin, isOwner]);
   const [tab, setTab] = useState(tabs[0]?.id || '');
   useEffect(() => { if (!tabs.some((item) => item.id === tab)) setTab(tabs[0]?.id || ''); }, [tab, tabs]);
   if (!tabs.length) return null;
   return <section className="space-y-4" aria-labelledby="wallet-panels-title">
-    <div><h2 id="wallet-panels-title" className="text-xl font-bold">Ví, cọc và rút tiền</h2><p className="mt-1 text-sm text-[var(--bb-muted)]">Cọc 30% giữ từ ví khách khi đặt lịch; hoàn tất lịch chuyển cọc thành khoản phải trả. Rút tiền chạy qua nhà cung cấp mô phỏng MOCK, không chuyển tiền thật.</p></div>
+    <div><h2 id="wallet-panels-title" className="text-xl font-bold">Ví & thanh toán</h2><p className="mt-1 text-sm text-[var(--bb-muted)]">Cọc 30% giữ từ ví khách khi đặt lịch; hoàn tất lịch chuyển cọc thành khoản phải trả. Rút tiền hiện được mô phỏng, chưa chuyển tiền ngân hàng.</p></div>
     <div className="flex gap-1 overflow-x-auto rounded-xl border border-[var(--bb-border)] bg-white p-1" role="tablist">
       {tabs.map(({ id, label, icon: Icon }) => <button key={id} type="button" role="tab" aria-selected={tab === id} onClick={() => setTab(id)} className={cx('inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg px-4 text-sm font-semibold', tab === id ? 'bg-[var(--bb-brand-soft)] text-[var(--bb-brand-strong)]' : 'text-[var(--bb-muted)] hover:bg-[var(--bb-surface-subtle)]')}><Icon size={16} aria-hidden="true" />{label}</button>)}
     </div>
     {isAdmin ? <>{tab === 'overview' && <AdminReview />}{tab === 'accounts' && <AdminAccounts />}{tab === 'payouts' && <AdminPayouts />}{tab === 'settlements' && <AdminSettlements />}{tab === 'depositAdmin' && <AdminDirectDeposits />}</>
-      : <>{tab === 'overview' && <OwnerOverview businessId={businessId} />}{tab === 'accounts' && <OwnerAccounts businessId={businessId} />}{tab === 'payouts' && <OwnerPayouts businessId={businessId} />}{tab === 'settlements' && <OwnerSettlements businessId={businessId} />}{tab === 'direct' && <OwnerDirectDeposits businessId={businessId} />}</>}
+      : <>{tab === 'overview' && <OwnerOverview businessId={businessId} />}{tab === 'accounts' && <OwnerAccounts businessId={businessId} />}{tab === 'payouts' && <OwnerPayouts businessId={businessId} />}{tab === 'settlements' && <OwnerSettlements businessId={businessId} />}</>}
   </section>;
 }
 
 function Balances({ balances, held }) {
-  const cards = [['Có thể rút', balances?.available], ['Đang giữ cho yêu cầu', balances?.locked], ['Đã rút (mô phỏng)', balances?.completed], ...(held !== undefined ? [['Cọc đang giữ (chưa hoàn tất)', held]] : [])];
+  const cards = [['Có thể rút', balances?.available], ['Đang giữ để chi trả', balances?.locked], ['Đã chi trả (mô phỏng)', balances?.completed], ...(held !== undefined ? [['Cọc đang giữ', held]] : [])];
   return <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{cards.map(([label, value]) => <Card key={label} className="p-4"><p className="text-xs text-[var(--bb-muted)]">{label}</p><p className="mt-1 text-xl font-bold tabular-nums">{money(value)}</p></Card>)}</div>;
 }
 
@@ -192,7 +192,7 @@ function useAdmin() {
   const [error, setError] = useState('');
   const load = useCallback(async () => {
     setError('');
-    try { setData(await walletApi.admin(1)); } catch (requestError) { setError(requestError.message || 'Không thể tải dữ liệu đối soát'); }
+    try { setData(await walletApi.admin(1)); } catch (requestError) { setError(requestError.message || 'Không thể tải dữ liệu ví'); }
   }, []);
   useEffect(() => { void load(); }, [load]);
   return { data, error, load };
@@ -209,12 +209,12 @@ function AdminReview() {
     catch (requestError) { toast.error(requestError.message); } finally { setBusy(''); }
   };
   return <div className="space-y-3">
-    {!data.webhooks.length ? <Card><EmptyState title="Không có biên nhận cần đối soát" description="Biên nhận không khớp yêu cầu nạp ví sẽ hiện ở đây." /></Card> :
+    {!data.webhooks.length ? <Card><EmptyState title="Không có giao dịch cần đối soát" description="Giao dịch chưa khớp yêu cầu nạp ví sẽ hiện ở đây." /></Card> :
       <Card className="overflow-x-auto"><table className="min-w-full text-left text-sm"><thead className="bg-[var(--bb-surface-subtle)] text-xs uppercase text-[var(--bb-muted)]"><tr><th className="p-4">Nhận lúc</th><th className="p-4">Mã SePay</th><th className="p-4">Kênh</th><th className="p-4 text-right">Số tiền</th><th className="p-4">Trạng thái</th><th className="p-4" /></tr></thead>
-        <tbody>{data.webhooks.map((row) => <tr key={row.id} className="border-t border-[var(--bb-border)]"><td className="p-4 whitespace-nowrap">{when(row.receivedAt)}</td><td className="p-4 font-mono text-xs">{row.providerTransactionId}<br />{row.environment}</td><td className="p-4 text-xs">{row.channel === 'WALLET_LIVE_LAB' ? 'Ví Live lab' : 'Biên nhận thường (chỉ lưu)'}</td><td className="p-4 text-right tabular-nums">{money(row.amountVnd)}</td>
+        <tbody>{data.webhooks.map((row) => <tr key={row.id} className="border-t border-[var(--bb-border)]"><td className="p-4 whitespace-nowrap">{when(row.receivedAt)}</td><td className="p-4 font-mono text-xs">{row.providerTransactionId}<br />{row.environment === 'live' ? 'Nhận tiền thật' : 'Thử nghiệm'}</td><td className="p-4 text-xs">{row.channel === 'WALLET_LIVE_LAB' ? 'Nạp ví' : 'Giao dịch khác'}</td><td className="p-4 text-right tabular-nums">{money(row.amountVnd)}</td>
           <td className="p-4"><Badge tone={row.processing === 'MANUAL_REVIEW' ? 'warning' : 'info'}>{row.processing}</Badge>{row.reviewReason && <p className="mt-1 text-xs">{reviewText[row.reviewReason] || row.reviewReason}</p>}</td>
           <td className="p-4 text-right">{row.channel === 'WALLET_LIVE_LAB' && <Button size="sm" variant="secondary" loading={busy === row.id} onClick={() => reconcile(row)}>Đối soát lại</Button>}</td></tr>)}</tbody></table></Card>}
-    <Card className="p-4 text-sm"><b>Nạp ví gần đây</b><ul className="mt-2 space-y-1">{data.topUps.slice(0, 8).map((topUp) => <li key={topUp.id} className="flex justify-between gap-3"><span className="font-mono text-xs">{topUp.code}</span><span>{money(topUp.amountVnd)}</span><Badge tone={topUp.status === 'SUCCESS' ? 'success' : topUp.status === 'PENDING' ? 'warning' : 'neutral'}>{topUp.status}</Badge></li>)}{!data.topUps.length && <li className="text-[var(--bb-muted)]">Chưa có yêu cầu nạp.</li>}</ul></Card>
+    <Card className="p-4 text-sm"><b>Nạp ví gần đây</b><ul className="mt-2 space-y-1">{data.topUps.slice(0, 8).map((topUp) => <li key={topUp.id} className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 border-b border-[var(--bb-border)] py-2 sm:grid-cols-[minmax(0,1fr)_auto_auto]"><span className="col-span-2 min-w-0 break-all font-mono text-xs sm:col-span-1">{topUp.code}</span><span>{money(topUp.amountVnd)}</span><Badge tone={topUp.status === 'SUCCESS' ? 'success' : topUp.status === 'PENDING' ? 'warning' : 'neutral'}>{({SUCCESS: 'Đã nhận',PENDING: 'Chờ nạp',EXPIRED: 'Hết hạn',FAILED: 'Thất bại'})[topUp.status]||topUp.status}</Badge></li>)}{!data.topUps.length && <li className="text-[var(--bb-muted)]">Chưa có yêu cầu nạp.</li>}</ul></Card>
   </div>;
 }
 
@@ -247,7 +247,7 @@ function AdminPayouts() {
     let reason;
     if (action === 'reject') { reason = window.prompt('Lý do từ chối?'); if (!reason) return; }
     setBusy(item.id);
-    try { await walletApi.decide(item.id, action, { version: item.version, ...(reason ? { reason } : {}) }); toast.success(action === 'reject' ? 'Đã từ chối' : 'Đã xử lý bằng nhà cung cấp MOCK'); await load(); }
+    try { await walletApi.decide(item.id, action, { version: item.version, ...(reason ? { reason } : {}) }); toast.success(action === 'reject' ? 'Đã từ chối' : 'Đã xử lý yêu cầu mô phỏng'); await load(); }
     catch (requestError) { toast.error(requestError.message); await load(); } finally { setBusy(''); }
   };
   return <div className="space-y-3">
@@ -260,7 +260,7 @@ function AdminPayouts() {
 
 function SettlementCard({ item, actions }) {
   return <Card className="p-5"><div className="flex flex-col gap-3 sm:flex-row sm:items-center"><div className="min-w-0 flex-1"><h3 className="font-bold">{money(item.amountVnd)} <span className="text-sm font-normal text-[var(--bb-muted)]">· đợt #{item.id}{item.businessName ? ` · ${item.businessName}` : ''}</span></h3>
-    <p className="text-xs text-[var(--bb-muted)]">Kỳ {day(item.periodStart)} – {day(item.periodEnd)} (không gồm ngày cuối) · {item.bankSnapshot?.bankName} · …{String(item.bankSnapshot?.accountNumber || '').slice(-4)} · {item.bankSnapshot?.accountName}{item.completedAt ? ` · hoàn tất ${when(item.completedAt)}` : ''}</p></div>
+    <p className="text-xs text-[var(--bb-muted)]">Khoản phát sinh từ {day(item.periodStart)} đến trước {day(item.periodEnd)} · {item.bankSnapshot?.bankName} · …{String(item.bankSnapshot?.accountNumber || '').slice(-4)} · {item.bankSnapshot?.accountName}{item.completedAt ? ` · hoàn tất ${when(item.completedAt)}` : ''}</p></div>
     <Badge tone={settlementTone[item.status] || 'neutral'}>{settlementText[item.status] || item.status}</Badge>{actions}</div></Card>;
 }
 
@@ -281,7 +281,7 @@ function AdminSettlements() {
     // One key per distinct request: a retry after a lost response repeats it, a changed request gets a new one.
     const next = attempt?.sig === signature ? attempt : { sig: signature, key: `st-${createIdempotencyKey()}`.replace(/[^A-Za-z0-9._:-]/g, '').padEnd(16, '0') };
     setAttempt(next); setBusy('create');
-    try { await walletApi.createSettlement(body, next.key); toast.success('Đã tạo đợt đối soát (mô phỏng)'); setAttempt(null); await load(); }
+    try { await walletApi.createSettlement(body, next.key); toast.success('Đã tạo đợt chi trả (mô phỏng)'); setAttempt(null); await load(); }
     catch (requestError) { toast.error(requestError.message); await load(); } finally { setBusy(''); }
   };
   const complete = async (item) => {
@@ -290,15 +290,15 @@ function AdminSettlements() {
     catch (requestError) { toast.error(requestError.message); await load(); } finally { setBusy(''); }
   };
   return <div className="space-y-3">
-    <Card className="p-5"><h3 className="mb-3 font-bold">Tạo đợt đối soát lô</h3>
+    <Card className="p-5"><h3 className="mb-3 font-bold">Tạo đợt chi trả</h3>
       <form onSubmit={create} className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Field label="Doanh nghiệp (có tài khoản mặc định đã xác minh)" required><Select required value={form.businessId} onChange={(event) => setForm({ ...form, businessId: event.target.value })}><option value="">{ready.length ? 'Chọn doanh nghiệp' : 'Chưa có tài khoản đã xác minh'}</option>{ready.map((row) => <option key={row.businessId} value={row.businessId}>{row.businessName} · {row.bankName} {row.accountNumberMasked}</option>)}</Select></Field>
         <Field label="Từ ngày" required><Input required type="date" value={form.start} onChange={(event) => setForm({ ...form, start: event.target.value })} /></Field>
-        <Field label="Đến ngày (không gồm)" required><Input required type="date" value={form.end} onChange={(event) => setForm({ ...form, end: event.target.value })} /></Field>
-        <div className="flex items-end"><Button type="submit" loading={busy === 'create'} disabled={!account || !form.start || !form.end}>Tạo đợt đối soát</Button></div>
+        <Field label="Trước ngày" required><Input required type="date" value={form.end} onChange={(event) => setForm({ ...form, end: event.target.value })} /></Field>
+        <div className="flex items-end"><Button type="submit" loading={busy === 'create'} disabled={!account || !form.start || !form.end}>Tạo đợt chi trả</Button></div>
       </form>
       <p className="mt-3 text-xs text-[var(--bb-muted)]">Gom các khoản phải trả chưa rút, chưa bị hoàn của kỳ đã chọn. Hoàn tất chỉ ghi sổ, không chuyển tiền thật.</p></Card>
-    {!data.settlements.length ? <Card><EmptyState title="Chưa có đợt đối soát" description="Đợt đối soát tạo ở đây sẽ hiện kèm nút hoàn tất." /></Card> : data.settlements.map((item) => <SettlementCard key={item.id} item={item} actions={item.status === 'PENDING' && <Button size="sm" loading={busy === item.id} onClick={() => complete(item)}>Hoàn tất (mô phỏng)</Button>} />)}
+    {!data.settlements.length ? <Card><EmptyState title="Chưa có đợt chi trả" description="Đợt chi trả tạo ở đây sẽ hiện kèm nút hoàn tất." /></Card> : data.settlements.map((item) => <SettlementCard key={item.id} item={item} actions={item.status === 'PENDING' && <Button size="sm" loading={busy === item.id} onClick={() => complete(item)}>Hoàn tất (mô phỏng)</Button>} />)}
   </div>;
 }
 
@@ -308,16 +308,16 @@ function OwnerSettlements({ businessId }) {
   if (error) return <Card><ErrorState message={error} onRetry={load} /></Card>;
   if (!data) return <Skeleton rows={3} />;
   return <div className="space-y-3">
-    {!data.settlements?.length ? <Card><EmptyState title="Chưa có đợt đối soát" description="Quản trị viên tạo đợt đối soát lô cho các khoản phải trả của doanh nghiệp. Đợt đã tạo sẽ hiện ở đây." /></Card> : data.settlements.map((item) => <SettlementCard key={item.id} item={item} />)}
+    {!data.settlements?.length ? <Card><EmptyState title="Chưa có đợt chi trả" description="Quản trị viên tạo đợt chi trả cho các khoản phải trả của doanh nghiệp. Đợt đã tạo sẽ hiện ở đây." /></Card> : data.settlements.map((item) => <SettlementCard key={item.id} item={item} />)}
   </div>;
 }
 
 const connectionTone = { SETUP: 'warning', READY: 'success' };
 const connectionText = { SETUP: 'Chờ xác minh', READY: 'Đã xác minh' };
-const emptyConnection = { bankCode: 'ACB', accountNumber: '', accountName: '', environment: 'test' };
+const emptyConnection = { bankCode: 'ACB', accountNumber: '', accountName: '', environment: 'live' };
 
 /** The owner's receiving accounts for direct deposits: create, verify by a signed transfer, enable, and see stray receipts. */
-function OwnerDirectDeposits({ businessId }) {
+export function OwnerDirectDeposits({ businessId }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const [form, setForm] = useState(emptyConnection);
@@ -334,7 +334,7 @@ function OwnerDirectDeposits({ businessId }) {
   if (!data) return <Skeleton rows={3} />;
   const create = async (event) => {
     event.preventDefault(); setBusy('create');
-    try { setSecret(await paymentsApi.createConnection(businessId, data.allowTest === false ? { ...form, environment: 'live' } : form)); setForm(emptyConnection); toast.success('Đã tạo kết nối. Hãy sao chép secret ngay, secret không hiện lại.'); await load(); }
+    try { setSecret(await paymentsApi.createConnection(businessId, data.allowTest === false ? { ...form, environment: 'live' } : form)); setForm(emptyConnection); toast.success('Đã tạo kết nối. Hãy lưu khóa bí mật ngay; khóa chỉ hiển thị một lần.'); await load(); }
     catch (requestError) { toast.error(requestError.message); } finally { setBusy(''); }
   };
   const toggle = async (connection) => {
@@ -345,26 +345,26 @@ function OwnerDirectDeposits({ businessId }) {
   const copy = async (value) => { try { await navigator.clipboard.writeText(value); toast.success('Đã sao chép'); } catch { toast.error('Không sao chép được'); } };
   return <div className="space-y-4">
     {!data.enabled && <Card className="p-4 text-sm text-[var(--bb-muted)]">Nhận cọc trực tiếp đang tắt trên máy chủ. Bạn vẫn xem được kết nối và biên nhận cũ; chưa tạo hoặc bật kết nối mới được.</Card>}
-    {secret && <Card className="space-y-2 border-amber-300 bg-amber-50 p-5 text-sm"><h3 className="font-bold">Kết nối mới: lưu secret ngay</h3>
-      <p>Secret chỉ hiện một lần. Dán vào phần HMAC-SHA256 của webhook SePay tiền vào (JSON, không dùng JWT hay API key).</p>
+    {secret && <Card className="space-y-2 border-amber-300 bg-amber-50 p-5 text-sm"><h3 className="font-bold">Kết nối mới: lưu khóa bí mật</h3>
+      <p>Khóa bí mật chỉ hiển thị một lần. Dán vào phần HMAC-SHA256 của webhook SePay tiền vào (JSON, không dùng JWT hay khóa API).</p>
       <p>URL webhook: <code className="break-all">{secret.webhookUrl || `${window.location.origin}${secret.webhookPath}`}</code> <button type="button" className="font-semibold underline" onClick={() => copy(secret.webhookUrl || `${window.location.origin}${secret.webhookPath}`)}>Sao chép</button></p>
-      <p>Secret: <code className="break-all">{secret.secret}</code> <button type="button" className="font-semibold underline" onClick={() => copy(secret.secret)}>Sao chép</button></p>
+      <p>Khóa bí mật: <code className="break-all">{secret.secret}</code> <button type="button" className="font-semibold underline" onClick={() => copy(secret.secret)}>Sao chép</button></p>
       <p>Mã xác minh: <code>{secret.verificationCode}</code>. Chuyển một khoản vào tài khoản này với nội dung chứa mã trên; khi nhận được webhook hợp lệ, kết nối chuyển sang “Đã xác minh”.</p>
-      {secret.environment === 'live' && <p className="rounded-md border border-amber-400 bg-white p-2 text-xs">Kết nối <b>Live</b> nhận tiền thật. Trong SePay: Webhooks → thêm webhook, URL ở trên (bắt buộc https), kiểu xác thực <b>HMAC-SHA256</b> với secret này, kiểu dữ liệu <b>JSON</b>, sự kiện <b>tiền vào</b>, đúng tài khoản ngân hàng đã khai ở đây. Chỉ bật nhận cọc sau khi kết nối chuyển sang “Đã xác minh”.</p>}
-      <Button size="sm" variant="secondary" onClick={() => setSecret(null)}>Tôi đã lưu secret</Button></Card>}
+      {secret.environment === 'live' && <p className="rounded-md border border-amber-400 bg-white p-2 text-xs">Kết nối này nhận tiền thật. Trong SePay: Webhooks → thêm webhook, URL ở trên (bắt buộc https), kiểu xác thực <b>HMAC-SHA256</b> với khóa bí mật này, kiểu dữ liệu <b>JSON</b>, sự kiện <b>tiền vào</b>, đúng tài khoản ngân hàng đã khai ở đây. Chỉ bật nhận cọc sau khi kết nối chuyển sang “Đã xác minh”.</p>}
+      <Button size="sm" variant="secondary" onClick={() => setSecret(null)}>Tôi đã lưu khóa bí mật</Button></Card>}
     <Card className="p-5"><h3 className="mb-3 font-bold">Thêm tài khoản nhận cọc</h3>
       <form onSubmit={create} className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         <Field label="Ngân hàng" required><Select value={form.bankCode} onChange={(event) => setForm({ ...form, bankCode: event.target.value })}>{data.banks.map((bank) => <option key={bank} value={bank}>{bank}</option>)}</Select></Field>
         <Field label="Số tài khoản" required><Input required value={form.accountNumber} onChange={(event) => setForm({ ...form, accountNumber: event.target.value })} /></Field>
         <Field label="Tên chủ tài khoản (không dấu)" required><Input required value={form.accountName} onChange={(event) => setForm({ ...form, accountName: event.target.value })} /></Field>
-        <Field label="Môi trường" required><Select value={data.allowTest === false ? 'live' : form.environment} onChange={(event) => setForm({ ...form, environment: event.target.value })}>{data.allowTest !== false && <option value="test">Test (không chuyển tiền thật)</option>}<option value="live">Live (tiền thật)</option></Select></Field>
+        <Field label="Môi trường" required><Select value={data.allowTest === false ? 'live' : form.environment} onChange={(event) => setForm({ ...form, environment: event.target.value })}>{data.allowTest !== false && <option value="test">Thử nghiệm (không chuyển tiền thật)</option>}<option value="live">Nhận tiền thật</option></Select></Field>
         <div className="flex items-end"><Button type="submit" loading={busy === 'create'} disabled={!data.enabled}>Tạo kết nối</Button></div></form></Card>
     {!data.connections.length ? <Card><EmptyState title="Chưa có tài khoản nhận cọc" description="Tạo kết nối, xác minh bằng một khoản chuyển có chữ ký rồi bật để khách chuyển cọc thẳng vào tài khoản của bạn." /></Card> :
       data.connections.map((connection) => <Card key={connection.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center"><div className="min-w-0 flex-1"><p className="font-bold">{connection.bankCode} · {connection.accountNumber} · {connection.accountName}</p>
-        <p className="text-xs text-[var(--bb-muted)]">{connection.environment === 'live' ? 'Live' : 'Test'} · mã xác minh {connection.verificationCode}{connection.verifiedAt ? ` · xác minh ${when(connection.verifiedAt)}` : ''}</p></div>
+        <p className="text-xs text-[var(--bb-muted)]">{connection.environment === 'live' ? 'Nhận tiền thật' : 'Thử nghiệm'} · mã xác minh {connection.verificationCode}{connection.verifiedAt ? ` · xác minh ${when(connection.verifiedAt)}` : ''}</p></div>
         <div className="flex flex-wrap items-center gap-2"><Badge tone={connectionTone[connection.status] || 'neutral'}>{connectionText[connection.status] || connection.status}</Badge>{connection.enabled && <Badge tone="info">Đang nhận cọc</Badge>}
           <Button size="sm" variant={connection.enabled ? 'secondary' : 'primary'} loading={busy === connection.id} disabled={!connection.enabled && (connection.status !== 'READY' || !data.enabled)} onClick={() => toggle(connection)}>{connection.enabled ? 'Tắt' : 'Bật nhận cọc'}</Button></div></Card>)}
-    <Card className="p-4 text-sm"><b>Biên nhận cần đối soát</b>
+    <Card className="p-4 text-sm"><b>Giao dịch cần đối soát</b>
       {!data.receipts.length ? <p className="mt-2 text-[var(--bb-muted)]">Không có khoản chuyển nào chưa khớp.</p> : <ul className="mt-2 space-y-2">{data.receipts.map((receipt) => <li key={receipt.id} className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--bb-border)] pt-2"><span className="font-mono text-xs">{receipt.providerTransactionId}</span><span>{money(receipt.amountVnd)}</span><span className="min-w-0 flex-1 truncate text-xs text-[var(--bb-muted)]">{receipt.content}</span><Badge tone={receipt.processing === 'REFUND_REQUIRED' ? 'warning' : 'neutral'}>{receipt.processing === 'REFUND_REQUIRED' ? 'Cần hoàn lại' : 'Chưa khớp mã'}</Badge>{receipt.bookingId && <span className="text-xs">Lịch #{receipt.bookingId}</span>}</li>)}</ul>}
       <p className="mt-3 text-xs text-[var(--bb-muted)]">Khoản không có mã, sai mã hoặc sai kết nối được giữ ở đây và không tự ghép vào lịch nào; hãy đối soát và hoàn lại thủ công ngoài hệ thống.</p></Card>
   </div>;
@@ -403,7 +403,7 @@ function AdminDirectDeposits() {
         <Field label="Lý do"><Select value={refundQuery.reason} onChange={(event) => setRefundQuery({ ...refundQuery, page: 1, reason: event.target.value })}><option value="">Tất cả</option>{Object.entries(REFUND_REASON).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</Select></Field></div>
       {!refunds ? <Skeleton rows={3} /> : refunds.items.length === 0 ? <EmptyState title="Không có khoản hoàn nào" description="Các khoản chuyển khoản cần hoàn lại cho khách sẽ hiện ở đây." /> : <ul className="space-y-2" aria-label="Danh sách hoàn cọc">{refunds.items.map((item) => <li key={item.id} className="rounded-lg border border-[var(--bb-border)] p-3 text-sm">
         <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-semibold">{money(item.amountVnd)} · {REFUND_REASON[item.reason] || item.reason}</span><Badge tone={item.status === 'CONFIRMED' ? 'success' : item.status === 'REPORTED' ? 'info' : 'warning'}>{REFUND_STATUS_LABEL[item.status] || item.status}</Badge></div>
-        <p className="mt-1 text-xs text-[var(--bb-muted)]">{item.businessName} · lịch {item.bookingCode} · cọc {item.depositStatus} · {when(item.createdAt)}</p>
+        <p className="mt-1 text-xs text-[var(--bb-muted)]">{item.businessName} · lịch {item.bookingCode} · cọc {paymentLabel(item.depositStatus)} · {when(item.createdAt)}</p>
         {item.destination && <p className="mt-1 text-xs">Chuyển trả về: {item.destination.bankCode} · {item.destination.accountNumber} · {item.destination.accountName}</p>}
         {item.reference && <p className="mt-1 text-xs">Mã chuyển trả: {item.reference}</p>}</li>)}</ul>}
       {refunds && <Pager result={refunds} onPage={(page) => setRefundQuery({ ...refundQuery, page })} />}</Card>
@@ -413,7 +413,7 @@ function AdminDirectDeposits() {
         const meta = RECEIPT_PROCESSING[item.processing] || { label: item.processing, tone: 'neutral' };
         return <li key={item.id} className="rounded-lg border border-[var(--bb-border)] p-3 text-sm">
           <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-semibold">{money(item.amountVnd)} · giao dịch {item.providerTransactionId}</span><Badge tone={meta.tone}>{meta.label}</Badge></div>
-          <p className="mt-1 break-words text-xs text-[var(--bb-muted)]">{item.businessName} · {item.environment} · {when(item.transactionAt)}{item.bookingId ? ` · lịch #${item.bookingId}` : ''} · nội dung: {item.content}</p>
+          <p className="mt-1 break-words text-xs text-[var(--bb-muted)]">{item.businessName} · {item.environment === 'live' ? 'Nhận tiền thật' : 'Thử nghiệm'} · {when(item.transactionAt)}{item.bookingId ? ` · lịch #${item.bookingId}` : ''} · nội dung: {item.content}</p>
           {item.reviews.map((entry, index) => <p key={index} className="mt-1 text-xs">Đã xem xét {when(entry.at)}: {entry.note}</p>)}
           <form className="mt-2 flex flex-wrap items-end gap-2" onSubmit={(event) => { event.preventDefault(); void review(item); }}><Field label="Ghi chú xem xét"><Input value={notes[item.id] || ''} onChange={(event) => setNotes({ ...notes, [item.id]: event.target.value })} maxLength={500} /></Field><Button type="submit" size="sm" variant="secondary" loading={busy === item.id} disabled={!(notes[item.id] || '').trim()}>Ghi nhận đã xem</Button></form></li>;
       })}</ul>}

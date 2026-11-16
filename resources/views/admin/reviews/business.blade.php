@@ -5,9 +5,9 @@
 @section('content')
 <section class="page-shell admin-shell">
     <div class="page-heading">
-        <p class="eyebrow">Review doanh nghiệp</p>
+        <p class="eyebrow">Xét duyệt doanh nghiệp</p>
         <h1>{{ $business->name }}</h1>
-        <p>{{ $business->status->value }} · gửi {{ optional($business->submitted_at)->format('d/m/Y H:i') }}</p>
+        <p>{{ __($business->status->value) }} · gửi {{ optional($business->submitted_at)->format('d/m/Y H:i') }}</p>
     </div>
 
     @if ($errors->any())
@@ -52,11 +52,11 @@
 
     @if ($business->reviewEvents->isNotEmpty())
         <article class="panel history-panel">
-            <h2>Lịch sử review</h2>
+            <h2>Lịch sử xét duyệt</h2>
             <div class="stack-list">
                 @foreach ($business->reviewEvents->sortByDesc('id') as $event)
                     <div class="list-row">
-                        <div><strong>{{ $event->action }}</strong><span>{{ $event->from_status }} → {{ $event->to_status }}</span></div>
+                        <div><strong>{{ __($event->action) }}</strong><span>{{ __($event->from_status) }} → {{ __($event->to_status) }}</span></div>
                         <span>{{ $event->actor?->email }}</span>
                     </div>
                 @endforeach

@@ -20,7 +20,7 @@ export async function submitCustomerCancellation(api, booking, reason, now = Dat
     return 'Đã gửi yêu cầu hủy. Lịch chỉ được hủy khi cơ sở chấp nhận.';
   }
   if (mode === 'direct') {
-    await api.updateStatus(booking.id, 'CANCELLED', undefined, reason.trim());
+    await api.updateStatus(booking.id, 'CANCELLED', undefined, reason.trim(), ...(booking.version ? [undefined, booking.version] : []));
     return 'Đã hủy lịch';
   }
   throw new Error(mode === 'pending' ? 'Lịch đang có yêu cầu chờ cơ sở xử lý.' : 'Lịch không còn cho phép tự hủy. Vui lòng liên hệ cơ sở.');

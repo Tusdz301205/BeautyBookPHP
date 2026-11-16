@@ -46,7 +46,21 @@ class ManagementOffersController extends Controller
     public function publicPromotions(Request $request,string $serviceId): array
     {
         $offering=BranchServiceOffering::whereKey($serviceId)->whereHas('branch',fn($q)=>$q->publicReady())->firstOrFail();
-        return Promotion::where('status','ACTIVE')->where('auto_apply',true)->where('start_date','<=',now())->where('end_date','>',now())->where(fn($q)=>$q->where('business_id',$offering->business_id)->orWhere(fn($platform)=>$platform->whereNull('business_id')->where('created_by_platform',true)))->get()->filter(fn($rule)=>app(\App\Services\Promotions\PromotionPricingService::class)->scopeEligible($rule,$offering->branch,[$offering->id]))->map(fn($rule)=>$this->promotionDto($rule))->values()->all();
+        return $this->publicPromotionRows($request,$offering->branch,[$offering->id]);
+    }
+    public function publicComboPromotions(Request $request,string $comboId,ComboService $service):array
+    {
+        $combo=$service->publicQuery()->whereKey($comboId)->firstOrFail();return $this->publicPromotionRows($request,$combo->branch,$combo->items->pluck('branch_service_offering_id')->all(),$combo->id);
+    }
+    private function publicPromotionRows(Request $request,Branch $branch,array $ids,?int $comboId=null):array
+    {
+        $request->validate(['page'=>'sometimes|integer|min:1','limit'=>'sometimes|integer|between:1,50','search'=>'sometimes|string|max:120']);
+        $query=Promotion::where('status','ACTIVE')->where('start_date','<=',now())->where('end_date','>',now())->where(fn($q)=>$q->where('business_id',$branch->business_id)->orWhere(fn($p)=>$p->whereNull('business_id')->where('created_by_platform',true)));
+        if(!$request->boolean('includeCodes'))$query->where('auto_apply',true);
+        else $query->where(fn($q)=>$q->where('auto_apply',true)->orWhere(fn($p)=>$p->whereNotNull('code')->where('code','<>','')));
+        $rows=$query->orderBy('id')->get()->filter(fn($rule)=>app(\App\Services\Promotions\PromotionPricingService::class)->scopeEligible($rule,$branch,$ids,$comboId))->map(fn($rule)=>$this->promotionDto($rule)+['type'=>$rule->discount_type==='PERCENTAGE'?'PERCENT':'FIXED','value'=>$rule->discount_value,'endsAt'=>$rule->end_date?->toIso8601String()])->values();
+        if($request->filled('search'))$rows=$rows->filter(fn($r)=>str_contains(mb_strtolower($r['name'].' '.($r['code']??'')),mb_strtolower($request->input('search'))))->values();
+        if(!$request->has('page'))return $rows->all();$page=(int)$request->input('page',1);$limit=(int)$request->input('limit',6);return ['items'=>$rows->slice(($page-1)*$limit,$limit)->values()->all(),'total'=>$rows->count(),'page'=>$page,'limit'=>$limit];
     }
     public function combos(Request $request): array
     {
@@ -58,6 +72,10 @@ class ManagementOffersController extends Controller
     {
         $branch=$request->input('branchId') ? Branch::publicReady()->findOrFail($request->input('branchId')):null;
         return $service->publicQuery($branch)->get()->map(fn($row)=>$this->presenter->combo($row))->all();
+    }
+    public function publicCombo(string $id,ComboService $service):array
+    {
+        return $this->presenter->combo($service->publicQuery()->whereKey($id)->firstOrFail());
     }
     public function comboDetail(Request $request,string $id): array
     {

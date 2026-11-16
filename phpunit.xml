@@ -21,6 +21,9 @@
         <env name="APP_ENV" value="testing" force="true"/>
         <!-- Existing Blade compatibility tests explicitly opt into the legacy surface. -->
         <env name="BEAUTYBOOK_LEGACY_UI" value="true" force="true"/>
+        <!-- Each wallet suite selects its policy explicitly; do not inherit live deployment flags. -->
+        <env name="WALLET_BOOKING_DEPOSIT_ENABLED" value="false" force="true"/>
+        <env name="SEPAY_WALLET_ENABLED" value="false" force="true"/>
         <env name="APP_KEY" value="base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" force="true"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file" force="true"/>
         <env name="BCRYPT_ROUNDS" value="4" force="true"/>
@@ -41,6 +44,8 @@
         <env name="NIGHTWATCH_ENABLED" value="false" force="true"/>
         <server name="APP_ENV" value="testing" force="true"/>
         <server name="BEAUTYBOOK_LEGACY_UI" value="true" force="true"/>
+        <server name="WALLET_BOOKING_DEPOSIT_ENABLED" value="false" force="true"/>
+        <server name="SEPAY_WALLET_ENABLED" value="false" force="true"/>
         <server name="APP_KEY" value="base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" force="true"/>
         <server name="APP_MAINTENANCE_DRIVER" value="file" force="true"/>
         <server name="BCRYPT_ROUNDS" value="4" force="true"/>

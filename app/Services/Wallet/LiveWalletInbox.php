@@ -77,7 +77,7 @@ class LiveWalletInbox
         WalletCore::post(['operationKey' => 'topup:'.$topUpId, 'kind' => 'TOPUP', 'walletId' => (int) $wallet->id, 'amount' => (int) $row->amount_vnd, 'availableDelta' => (int) $row->amount_vnd, 'actorId' => $actorId, 'reason' => 'SEPAY_LIVE_TOPUP']);
         DB::table('wallet_topups')->where('id', $topUpId)->update(['status' => 'SUCCESS', 'completed_at' => $now->format('Y-m-d H:i:s'), 'receipt_identity' => $proof['identity'], 'bank_event_id' => $proof['bankEventId'], 'updated_at' => now()]);
         $userId = (int) DB::table('customer_profiles')->where('id', $ref->customer_profile_id)->value('user_id');
-        self::notify($userId, 'WALLET_TOPUP_SUCCESS', 'Nạp ví thành công', 'Ví đã nhận '.number_format((int) $row->amount_vnd, 0, ',', '.').'₫ (Live lab).', 'wallet-topup:'.$topUpId);
+        self::notify($userId, 'WALLET_TOPUP_SUCCESS', 'Nạp ví thành công', 'Ví đã nhận '.number_format((int) $row->amount_vnd, 0, ',', '.').'₫.', 'wallet-topup:'.$topUpId);
         self::audit($actorId, 'LIVE_LAB_WALLET_TOPUP', 'WalletTopUp', $topUpId, ['amountVnd' => (string) $row->amount_vnd, 'provider' => $proof['provider'], 'simulation' => true]);
 
         return true;
@@ -96,7 +96,7 @@ class LiveWalletInbox
             if ($changed) self::audit(null, 'LIVE_LAB_RECEIPT_REVIEW', 'SepayWebhookEvent', $eventId, ['reason' => $reason, 'performedBy' => 'SYSTEM']);
             if ($topUpId && $changed) {
                 $userId = (int) DB::table('wallet_topups as t')->join('wallets as w', 'w.id', '=', 't.wallet_id')->join('customer_profiles as p', 'p.id', '=', 'w.customer_profile_id')->where('t.id', $topUpId)->value('p.user_id');
-                self::notify($userId, 'WALLET_TOPUP_REVIEW', 'Khoản nạp ví cần đối soát', 'Ngân hàng đã báo có nhưng khoản nạp chưa khớp yêu cầu. Quản trị viên sẽ đối soát.', 'live-review:'.$eventId);
+                self::notify($userId, 'WALLET_TOPUP_REVIEW', 'Khoản nạp ví đang được kiểm tra', 'Ngân hàng đã báo có nhưng khoản nạp chưa khớp yêu cầu. Quản trị viên sẽ kiểm tra giao dịch.', 'live-review:'.$eventId);
             }
 
             return false;

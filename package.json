@@ -3,10 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "ai:install": "node scripts/ml/install.mjs",
+    "ai:start": "node scripts/ml/background.mjs start",
     "build": "npm run build:laravel && npm run build:beautybook",
     "dev": "node node_modules/vite/bin/vite.js",
     "build:beautybook": "node node_modules/vite-beautybook/bin/vite.js build --config vite.beautybook.config.js",
-    "build:laravel": "node node_modules/vite/bin/vite.js build"
+    "build:laravel": "node node_modules/vite/bin/vite.js build",
+    "start": "node scripts/start-project.mjs",
+    "ai:foreground": "node scripts/ml/start.mjs",
+    "ai:status": "node scripts/ml/background.mjs status",
+    "ai:stop": "node scripts/ml/background.mjs stop"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",

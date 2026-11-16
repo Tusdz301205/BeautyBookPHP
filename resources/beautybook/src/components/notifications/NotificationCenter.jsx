@@ -73,7 +73,7 @@ const notificationRoutes = {
     [/^\/salon\/promotions$/, ['promotion:manage:tenant']],
     [/^\/salon\/reviews$/, ['review:moderate:tenant']],
     [/^\/salon\/stats$/, ['report:revenue:tenant', 'report:revenue:branch']],
-    [/^\/salon\/(security|account|incoming-ownership)$/, []],
+    [/^\/salon\/(security|account)$/, []],
     [/^\/salon\/notifications$/, ['notification:read:self']],
     [/^\/salon\/onboarding$/, ['business:create:self', 'business:update:tenant']],
     [/^\/salon\/payments$/, ['payment:read:tenant', 'payment:read:branch']],
@@ -115,7 +115,8 @@ function allowedNotificationUrl(url, zone, can, item = {}, financeEnabled = fals
   if (!financeEnabled && /\/(payments)(\/|$)/.test(pathname)) return '';
   // These destinations remain retired even if a producer retains an old URL.
   if (/\/(privacy|data-requests)(\/|$)/.test(pathname)) return '';
-  if ((isOwner && /^\/salon\/(audit|stats|incoming-ownership)(\/|$)/.test(pathname))
+  if (/^\/salon\/incoming-ownership(\/|$)/.test(pathname)
+    || (isOwner && /^\/salon\/(audit|stats)(\/|$)/.test(pathname))
     || /^\/admin\/ownership(\/|$)/.test(pathname)) return '';
   const route = notificationRoutes[zone]?.find(([pattern]) => pattern.test(pathname));
   if (!route) return '';
@@ -274,7 +275,7 @@ export function NotificationCenter({ platform = false, zone = platform ? 'platfo
 
       <BrowserPushPanel />
 
-      <Card className="grid gap-3 p-3 md:grid-cols-[minmax(12rem,1fr)_11rem_11rem_11rem]">
+      <Card className="grid gap-3 p-3 sm:grid-cols-2 xl:grid-cols-[minmax(12rem,1fr)_11rem_11rem_11rem]">
         <form className="relative" onSubmit={submitSearch} role="search">
           <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--bb-muted)]" size={17} aria-hidden="true" />
           <Input value={searchDraft} onChange={(event) => setSearchDraft(event.target.value)} className="pl-10" placeholder="Tìm tiêu đề hoặc nội dung" aria-label="Tìm thông báo" />

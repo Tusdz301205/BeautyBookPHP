@@ -69,7 +69,7 @@
                 <label>Email<input type="email" name="email" required></label>
                 <div class="form-grid-two">
                     <label>Vai trò
-                        <select name="role_code" required><option value="STAFF">STAFF</option><option value="RECEPTIONIST">RECEPTIONIST</option></select>
+                        <select name="role_code" required><option value="STAFF">Nhân viên</option><option value="RECEPTIONIST">Lễ tân</option></select>
                     </label>
                     <label>Chi nhánh
                         <select name="branch_id"><option value="">Toàn doanh nghiệp</option>@foreach ($business->branches as $branch)<option value="{{ $branch->id }}">{{ $branch->public_name ?: $branch->name }}</option>@endforeach</select>
@@ -87,7 +87,7 @@
                 <article class="panel management-card">
                     <div class="section-heading-row compact-heading">
                         <div>
-                            <p class="card-label">{{ $staff->status }} · {{ $staff->branch?->public_name ?: $staff->branch?->name }}</p>
+                            <p class="card-label">{{ __($staff->status) }} · {{ $staff->branch?->public_name ?: $staff->branch?->name }}</p>
                             <h2>{{ $staff->full_name }}</h2>
                             <p class="muted-note">{{ $staff->position ?: 'Chưa có vị trí' }} · {{ $staff->offerings->count() }} capability</p>
                         </div>
@@ -173,7 +173,7 @@
                 <p class="card-label">Lời mời gần đây</p>
                 <div class="stack-list">
                     @forelse ($invitations as $invitation)
-                        <div class="list-row"><div><strong>{{ $invitation->email }}</strong><span>{{ $invitation->role_code }} · {{ $invitation->status }}</span></div><span>{{ $invitation->expires_at?->format('d/m/Y') }}</span></div>
+                        <div class="list-row"><div><strong>{{ $invitation->email }}</strong><span>{{ __($invitation->role_code) }} · {{ __($invitation->status) }}</span></div><span>{{ $invitation->expires_at?->format('d/m/Y') }}</span></div>
                     @empty
                         <p class="muted-note">Chưa có lời mời.</p>
                     @endforelse

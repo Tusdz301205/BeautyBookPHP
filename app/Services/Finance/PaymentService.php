@@ -357,7 +357,7 @@ class PaymentService
             $transaction = $transaction->fresh();
             abort_unless($transaction->method === 'BANK_TRANSFER', 422);
             if ($transaction->status === 'VERIFIED') {
-                abort_unless($transaction->settlement_reference === trim($data['settlement_reference']), 409, 'Mã đối soát không khớp giao dịch đã xác minh.');
+                abort_unless($transaction->settlement_reference === trim($data['settlement_reference']), 409, 'Mã giao dịch ngân hàng không khớp giao dịch đã xác minh.');
                 return $transaction;
             }
             abort_unless($transaction->status === 'PENDING', 409);

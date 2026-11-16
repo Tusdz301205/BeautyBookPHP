@@ -1,0 +1,21 @@
+.bb-staff-photos-intro { display: flex; align-items: center; gap: .875rem; margin-bottom: 1.25rem; padding: 1rem; border: 1px solid var(--bb-border); border-radius: .875rem; background: var(--bb-surface-subtle); }
+.bb-staff-photos-intro__icon { display: grid; flex: none; width: 3rem; height: 3.5rem; place-items: center; border: 1px solid var(--bb-border); border-radius: 1.5rem 1.5rem .75rem .75rem; background: var(--bb-surface); color: var(--bb-brand-strong); }
+.bb-staff-photos-intro h3 { margin: 0 0 .25rem; font-size: .875rem; font-weight: 700; }
+.bb-staff-photos-intro p, .bb-staff-photos-upload > p { margin: 0; color: var(--bb-muted); font-size: .75rem; line-height: 1.6; }
+.bb-staff-photos-upload { display: grid; gap: .75rem; margin-bottom: 1.5rem; }
+.bb-staff-photos-upload > h3 { display: flex; align-items: center; gap: .5rem; color: var(--bb-ink); font-size: .875rem; font-weight: 700; }
+.bb-staff-photos-upload > h3 svg { color: var(--bb-brand-strong); }
+.bb-staff-photos-library { padding-top: 1rem; border-top: 1px solid var(--bb-border); }
+.bb-staff-photos-library > header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .875rem; }
+.bb-staff-photos-library h3 { font-size: .875rem; font-weight: 700; }
+.bb-staff-photos-empty { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1.5rem 1rem; border: 1px dashed var(--bb-border); border-radius: .75rem; text-align: center; }
+.bb-staff-photos-empty svg { color: var(--bb-muted); }
+.bb-staff-photos-empty strong { font-size: .875rem; }
+.bb-staff-photos-empty p { max-width: 25rem; margin: 0; color: var(--bb-muted); font-size: .75rem; line-height: 1.6; }
+.bb-staff-photos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.bb-staff-photo { min-width: 0; overflow: hidden; border: 1px solid var(--bb-border); border-radius: .875rem; }
+.bb-staff-photo__preview { padding: .75rem; background: var(--bb-surface-subtle); }
+.bb-staff-photo figcaption { padding: .875rem; }
+.bb-staff-photos-pagination { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem; margin-top: 1rem; }
+.bb-staff-photos-pagination > p { color: var(--bb-muted); font-size: .75rem; }
+@media (max-width: 540px) { .bb-staff-photos-grid { grid-template-columns: minmax(0, 1fr); } .bb-staff-photos-intro { align-items: flex-start; } }

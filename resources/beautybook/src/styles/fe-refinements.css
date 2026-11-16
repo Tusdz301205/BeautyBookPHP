@@ -1,0 +1,71 @@
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 */
+/* Refinements of the existing rose system, shared by all PHP React routes. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--bb-focus);
+  outline-offset: 3px;
+}
+
+#root :is(.bb-public-shell--interior .bb-public-main, .bb-customer-main, .bb-app-shell main) {
+  min-inline-size: 0;
+  scroll-margin-block-start: calc(var(--gm-header-height, 66px) + 1rem);
+}
+
+#root :is(.bb-public-shell--interior, .bb-customer-shell, .bb-app-shell, .bb-auth-shell) :is(h1, h2, h3) { min-inline-size: 0; overflow-wrap: anywhere; }
+#root :is(.bb-public-shell--interior, .bb-customer-shell) .gm-site-header :is(.bb-public-nav, .bb-customer-header__nav) > a {
+  font-size: .8125rem;
+  min-height: 44px;
+}
+#root :is(.bb-public-shell--interior, .bb-customer-shell) .gm-site-header :is(.bb-public-cta, .bb-customer-cta, .bb-public-account-link) {
+  min-height: 44px;
+  font-size: .8125rem;
+  white-space: nowrap;
+}
+#root .bb-customer-shell .gm-site-header :is(.bb-customer-header__notifications, .bb-customer-account-trigger) {
+  min-height: 44px;
+  height: 44px;
+}
+#root .bb-customer-shell .gm-site-header .bb-customer-header__notifications { width: 44px; }
+#root .bb-customer-shell .gm-site-header .bb-customer-account-trigger__text strong { font-size: .8125rem; }
+#root .bb-customer-shell .gm-site-header .bb-customer-account-trigger__text small { font-size: .6875rem; }
+#root .bb-public-shell--interior .gm-footer .bb-brand { color: var(--color-accent-ink); }
+#root .bb-public-shell--interior .gm-footer .bb-brand-mark { color: var(--color-accent-ink); }
+
+.bb-account-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: auto;
+  padding: 1.5rem max(1rem, calc((100% - var(--gm-content-max-width, 1240px)) / 2));
+  border-top: 1px solid var(--bb-border);
+  background: var(--bb-surface);
+  color: var(--bb-muted);
+  font-size: .75rem;
+}
+.bb-account-footer > a { color: var(--bb-ink); }
+.bb-account-footer nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-left: auto; }
+.bb-account-footer nav a { display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; }
+.bb-account-footer nav a:hover { color: var(--bb-brand-strong); text-decoration: underline; text-underline-offset: 4px; }
+.bb-account-footer .bb-brand-wordmark { font-size: 1rem; }
+
+#root .bb-signup-nav > a { min-width: 0; white-space: nowrap; }
+#root .recharts-legend-wrapper { max-width: 100%; }
+#root .recharts-default-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem .75rem; }
+#root .recharts-default-legend .recharts-legend-item { margin-inline: 0 !important; }
+#root .bb-booking-price dd { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.bb-recurring-occurrence > a { min-width: 0; }
+
+@media (max-width: 47.99rem) {
+  #root .bb-customer-main { padding-bottom: 2rem; }
+  .bb-account-footer { padding: 1rem; gap: .25rem 1rem; }
+  .bb-account-footer > span { margin-left: auto; }
+  .bb-account-footer nav { flex-basis: 100%; margin-left: 0; }
+  #root :is(.bb-booking input, .bb-booking textarea, .bb-auth-main input, .bb-public-shell--interior .bb-home-search input) { font-size: 1rem; }
+  #root .bb-app-shell main { padding: 1rem; }
+  #root .bb-signup-nav { padding-inline: 1rem; gap: .75rem; }
+  #root .bb-signup-nav > a:not(:first-child) { font-size: .6875rem; }
+  #root .bb-detail-section-nav { scroll-padding-inline: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #root *, #root *::before, #root *::after { scroll-behavior: auto !important; }
+}

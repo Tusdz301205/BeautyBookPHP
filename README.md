@@ -1,55 +1,243 @@
-# BeautyBookPHP — Laravel cho môn Lập trình mã nguồn mở
+# BeautyBookPHP
 
-BeautyBookPHP là đồ án PHP/Laravel/MySQL cho môn Lập trình mã nguồn mở. Backend, Eloquent, migration, middleware và Blade entry nằm tại thư mục gốc. Frontend BeautyBook gốc được sao chép vào `resources/beautybook`, giữ React, component, CSS, state và tương tác; API thật do Laravel xử lý. Nguồn người dùng bổ sung tại `../beauty-booking-api-main` chỉ được đọc, không chỉnh sửa.
+Ứng dụng đặt lịch và quản lý cơ sở làm đẹp, xây dựng bằng **Laravel, React và MySQL** cho đồ án môn Lập trình mã nguồn mở. Khách hàng có thể tìm dịch vụ, đặt lịch, thanh toán cọc và trao đổi với chi nhánh; cơ sở quản lý lịch hẹn, nhân sự, dịch vụ và tài chính trên cùng hệ thống.
 
-**Dữ liệu local ngày 12/11/2026:** database `beautybook_php` đã được thay trực tiếp bằng dữ liệu GlowMe hiện tại; các tài khoản demo PHP cũ không còn là thông tin đăng nhập mặc định. Dùng tài khoản/mật khẩu GlowMe của bạn. Mật khẩu nguồn được giữ nguyên và tự nâng cấp hash sau lần đăng nhập bằng mật khẩu thành công. Không chạy lại seeder demo vào database này nếu muốn giữ bộ dữ liệu GlowMe. Xem [kết quả nhập và các giới hạn](docs/migration/2026-11-12-glowme-data-import/IMPLEMENTATION.md).
+Backend Laravel cung cấp API, phân quyền và xử lý nghiệp vụ. Frontend React được phục vụ cùng origin qua Nginx. Dịch vụ Python tùy chọn sử dụng PhoBERT để phân tích đánh giá tiếng Việt.
 
-## Chạy bản PHP
+## Mục lục
 
-Runtime được kiểm tra qua Docker: PHP 8.4, MySQL 8.4, Laravel theo `composer.lock`. Lockfile hiện yêu cầu PHP >=8.4.1; PHP 8.3 cục bộ không chạy được bộ dependency này. Dùng Docker Desktop ở Windows, hoặc Docker Compose trên Linux.
+- [Chức năng](#chức-năng)
+- [Công nghệ và yêu cầu](#công-nghệ-và-yêu-cầu)
+- [Cài đặt](#cài-đặt)
+- [Tài khoản demo](#tài-khoản-demo)
+- [Cấu hình tích hợp](#cấu-hình-tích-hợp)
+- [Chạy và dừng](#chạy-và-dừng)
+- [Kiểm thử](#kiểm-thử)
+- [Cấu trúc dự án](#cấu-trúc-dự-án)
+- [Tài liệu](#tài-liệu)
+- [Đóng góp và giấy phép](#đóng-góp-và-giấy-phép)
 
-```bash
-docker compose -f docker-compose.laravel.yml up -d --wait mysql mysql_test
-docker compose -f docker-compose.laravel.yml build app
+## Chức năng
+
+| Vai trò | Chức năng chính |
+| --- | --- |
+| Khách hàng | Tìm cơ sở và dịch vụ; chọn chuyên viên, thời gian; đặt lịch đơn, combo hoặc định kỳ; quản lý lịch, ví, ưu đãi, đánh giá và tin nhắn. |
+| Chủ doanh nghiệp | Đăng ký doanh nghiệp, chi nhánh; quản lý dịch vụ, nhân sự, khuyến mãi, lịch hẹn, đánh giá và tài chính trong phạm vi được cấp. |
+| Lễ tân | Vận hành lịch hẹn, trao đổi với khách, xem nhân sự và xử lý thanh toán tại chi nhánh. |
+| Nhân viên | Xem lịch được giao, cập nhật tài khoản và nhận thông báo. |
+| Quản trị viên | Duyệt doanh nghiệp, quản lý người dùng, lịch hẹn, đánh giá, tài chính và báo cáo toàn nền tảng. |
+
+Hệ thống phân quyền theo doanh nghiệp/chi nhánh, kiểm tra lịch trống và khóa giao dịch khi đặt lịch. Tin nhắn và thông báo cập nhật qua dịch vụ realtime. AI phân tích bốn khía cạnh: chất lượng dịch vụ, thái độ nhân viên, thời gian chờ và giá cả.
+
+**Thanh toán:** chế độ ví giữ cọc 30% khi đặt lịch. Nạp ví qua SePay cần cấu hình riêng; chi trả ra ngân hàng cho cơ sở hiện dùng mô phỏng. Xem [hướng dẫn thanh toán](docs/PAYMENT_SETUP.md) trước khi bật tích hợp.
+
+## Công nghệ và yêu cầu
+
+| Thành phần | Công nghệ |
+| --- | --- |
+| Backend | PHP 8.4, Laravel 13, Eloquent |
+| Frontend | React 18, React Router 6, Zustand, Tailwind CSS, Vite |
+| Dữ liệu | MySQL 8.4; database ứng dụng và kiểm thử tách riêng |
+| Realtime | Node.js, WebSocket, Nginx |
+| AI tùy chọn | Python 3.13, PyTorch, PhoBERT, VnCoreNLP |
+| Kiểm thử | PHPUnit, Node.js Test Runner, Playwright |
+| Môi trường chạy | Docker Compose |
+
+Cần **Git**, **Docker Compose v2** và **Node.js >= 22.12** cùng npm. Trên Windows/macOS, mở Docker Desktop trước khi chạy. Các cổng mặc định: `8000` (web), `8001` (app), `3307` (MySQL), `3308` (MySQL test).
+
+Lockfile PHP hiện yêu cầu **PHP >= 8.4.1**; nên dùng container có sẵn thay vì PHP 8.3 trên máy. Phiên bản dependency được cố định trong `composer.lock` và `package-lock.json`. Nếu dùng AI, cần thêm **Git LFS**, **Python 3.13** và **JDK** có cả `java` lẫn `javac`.
+
+## Cài đặt
+
+### 1. Lấy mã nguồn và cấu hình
+
+```sh
+git clone https://github.com/Tusdz301205/BeautyBookPHP.git
+cd BeautyBookPHP
+cp .env.example .env
+```
+
+Trên PowerShell có thể dùng `Copy-Item .env.example .env`. Chỉ sao chép khi chưa có `.env`; giữ cấu hình riêng nếu đang dùng database có sẵn.
+
+Checkpoint AI được quản lý bằng Git LFS. Người chỉ chạy web có thể đặt biến môi trường `GIT_LFS_SKIP_SMUDGE=1` trước khi clone để bỏ qua tải checkpoint; khi cần AI, tải bằng lệnh ở phần [AI](#ai-phân-tích-đánh-giá).
+
+### 2. Cài dependency và build
+
+```sh
 npm ci
 npm run build
+docker compose -f docker-compose.laravel.yml build app
+```
+
+Composer được cài trong image PHP. Dependency PHP nằm trong volume Linux `beautybook_vendor`; không cần cài PHP/Composer trên host. Khi `composer.lock` thay đổi, entrypoint cập nhật volume theo lockfile.
+
+Tạo khóa ứng dụng:
+
+```sh
+docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan key:generate --show
+```
+
+Gán giá trị `base64:...` vừa tạo cho **`LARAVEL_APP_KEY`** trong `.env`. Compose đọc biến này để thiết lập `APP_KEY` trong container. Không đổi khóa sau khi đã lưu dữ liệu mã hóa.
+
+### 3. Khởi tạo database mới
+
+```sh
+docker compose -f docker-compose.laravel.yml up -d --wait mysql mysql_test
 docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan migrate --seed
+```
+
+Tùy chọn, thêm bộ cơ sở/dịch vụ minh họa:
+
+```sh
 docker compose -f docker-compose.laravel.yml run --rm --no-deps app php artisan db:seed --class=BeautybookSourceReferenceSeeder
+```
+
+Các lệnh seed dành cho database demo mới. Với database đang dùng, chỉ chạy migration cần thiết; không chạy `migrate:fresh`, reset hoặc seed lại dữ liệu.
+
+### 4. Khởi động
+
+```sh
 docker compose -f docker-compose.laravel.yml up -d --wait app realtime web scheduler
 ```
 
-Trong Visual Studio Code, chọn **File → Open Folder → BeautyBookPHP**, mở **Terminal → New Terminal** rồi chạy các lệnh trên. Cần Docker Desktop đang chạy và Node.js 22. `npm run build` build cả giao diện Blade và React nguồn.
+- Ứng dụng: [http://localhost:8000/beautybook](http://localhost:8000/beautybook)
+- Đăng nhập: [http://localhost:8000/beautybook/login](http://localhost:8000/beautybook/login)
+- Kiểm tra dữ liệu/dịch vụ: [http://localhost:8000/ready](http://localhost:8000/ready)
 
-Thư viện PHP được cài trong image và volume Linux `beautybook_vendor`, tránh đọc hàng nghìn file `vendor` qua ổ Windows mỗi request. Code ứng dụng vẫn cập nhật qua bind mount. Khi `composer.lock` thay đổi, entrypoint cài lại dependency đúng lockfile; không reset database. Composer chạy trong container quản lý volume này, không phải thư mục `vendor` trên Windows. Nếu đã chạy dự án trước đây, dùng `docker compose -f docker-compose.laravel.yml up -d --build --wait app realtime web scheduler` để áp dụng runtime mới.
+Truy cập cổng **8000** để dùng đầy đủ Nginx, asset và WebSocket. Cổng `8001` phục vụ chẩn đoán Laravel trực tiếp.
 
-Mở [BeautyBook](http://localhost:8000/beautybook). Địa chỉ `http://localhost:8000` tự chuyển tới giao diện này; nginx chỉ redirect trang `/`, các route Laravel hiện có được giữ. Nginx phục vụ asset và WebSocket cùng origin; port 8001 dùng chẩn đoán app, không thay cho port 8000 khi demo realtime. Readiness ở `/ready`. Compose dùng MySQL demo `beautybook_php` ở port 3307 và MySQL test `beautybook_test` ở port 3308, tách database BeautyBook nguồn. Không chạy test hoặc migration vào database nguồn. Cấu hình demo chỉ dành cho local; xem `.env.example` và Compose để cấu hình máy riêng.
+## Tài khoản demo
 
-Tài khoản seed Laravel: `customer@beautybook.local`, `owner@beautybook.local`, `owner2@beautybook.local`, `receptionist@beautybook.local`, `staff@beautybook.local`, `admin@beautybook.local`; mật khẩu fixture `BeautyBook123!`. Seeder chỉ tạo dữ liệu tổng hợp ở môi trường local/testing, không sao chép dữ liệu cá nhân của source.
+Sau khi chạy `migrate --seed` trên **database mới**, các tài khoản sau dùng chung mật khẩu **`BeautyBook123!`**:
 
-## Dữ liệu tham chiếu BeautyBook
+| Vai trò | Email |
+| --- | --- |
+| Khách hàng | `customer@beautybook.local` |
+| Chủ doanh nghiệp | `owner@beautybook.local` |
+| Chủ doanh nghiệp thứ hai | `owner2@beautybook.local` |
+| Lễ tân | `receptionist@beautybook.local` |
+| Nhân viên | `staff@beautybook.local` |
+| Quản trị viên | `admin@beautybook.local` |
 
-Fixture `database/data/beautybook-source-reference.json` lấy tên/địa chỉ/UUID từ entity plan và template seed nguồn. Để thêm 5 doanh nghiệp, 11 chi nhánh và 116 dịch vụ cùng ánh xạ minh họa gốc vào database demo đã migrate:
+Tài khoản vận hành đăng nhập bằng không gian **Cơ sở**; quản trị viên chọn không gian quản trị. Database đã nhập dữ liệu GlowMe có bộ tài khoản riêng, ghi tại [DEMO_ACCOUNTS](docs/DEMO_ACCOUNTS.md). Những tài khoản đó không được tạo tự động khi clone repo. Database local, mật khẩu đã đổi và ảnh tải lên của người dùng không nằm trong mã nguồn.
 
-```bash
-docker compose -f docker-compose.laravel.yml exec -T app php artisan db:seed --class=BeautybookSourceReferenceSeeder
+## Cấu hình tích hợp
+
+`.env.example` liệt kê biến và giá trị mẫu. Chỉ điền thông tin riêng vào `.env` hoặc môi trường máy chủ.
+
+| Tích hợp | Biến chính | Tài liệu |
+| --- | --- | --- |
+| Ví và nạp tiền SePay | `WALLET_BOOKING_DEPOSIT_ENABLED`, `SEPAY_WALLET_ENABLED`, `SEPAY_WALLET_*` | [PAYMENT_SETUP](docs/PAYMENT_SETUP.md) |
+| AI | `ABSA_SERVICE_TOKEN`, `ABSA_SERVICE_URL`, `ABSA_WORKER_ENABLED` | [ML_SETUP](docs/ML_SETUP.md) |
+| Email | `MAIL_MAILER`, `MAIL_HOST`, `MAIL_USERNAME`, `MAIL_PASSWORD` | `.env.example`; mặc định `log` |
+| Google đăng nhập | `GOOGLE_CLIENT_ID` | `.env.example` |
+| Firebase Push | `PUSH_ENABLED`, `FCM_*` | `.env.example` |
+| Media riêng tư trên R2 | `MEDIA_PRIVATE_DISK`, `R2_*` | `.env.example` |
+
+Compose chỉ truyền biến được khai báo trong file Compose. Khi thêm tích hợp, kiểm tra cấu hình tương ứng trong `docker-compose.laravel.yml` và tạo lại container để áp dụng thay đổi.
+
+### AI phân tích đánh giá
+
+AI được cài riêng; web có thể chạy khi chưa cài môi trường Python. Cấu hình AI đi kèm đã được kiểm tra trên **Windows với Docker Desktop**. Trên Linux chạy Docker Engine trực tiếp, container không truy cập được service chỉ bind loopback của host theo cấu hình này; chưa có quy trình AI cho Linux được kiểm chứng. Chỉ thêm ánh xạ `host.docker.internal` là chưa đủ. Dùng phần web hoặc thiết lập phương án kết nối riêng trước khi chạy AI.
+
+```sh
+git lfs install
+git lfs pull --include="ml/glowme_ml/release/phobert-beauty-v2/best_model.pt"
+npm run ai:install
 ```
 
-Seeder bổ sung, không reset dữ liệu hoặc ghi đè chỉnh sửa sau import; giữ tài khoản demo ở trên. Chủ doanh nghiệp tham chiếu dùng email/mật khẩu template nguồn `Password123!`; nhân viên dùng mẫu cố định `Demo Nhân viên`. Giá/thời lượng là `TEMPLATE_BASE_PRICE`, không phải export giá ngẫu nhiên/rating/booking/lịch sử thanh toán database gốc. Ảnh giữ `illustration: true`, không gán thành ảnh thực tế.
+Sau khi cấu hình token và bật worker theo [ML_SETUP](docs/ML_SETUP.md):
 
-Khi cần tạo lại fixture từ cây nguồn còn được giữ, chạy `node scripts/export-source-reference.mjs`; script chỉ đọc hằng số seed/entity plan và ghi JSON trong đồ án, không chạy seed/database nguồn. Runtime thông thường không cần cây nguồn bên cạnh.
+```sh
+npm start
+npm run ai:status
+```
 
-## Kiểm tra và tác vụ nền
+`npm start` khởi động AI trên host và Docker với profile `ml`; chỉ dùng sau khi hoàn tất cài đặt AI. Đánh giá được lưu trước khi đưa vào hàng đợi phân tích. Mô hình hiện chưa được xác nhận chất lượng trên dữ liệu người dùng thật; xem [model card](ml/glowme_ml/release/phobert-beauty-v2/model_card.md).
 
-```bash
+## Chạy và dừng
+
+```sh
+# Chạy web khi không dùng AI
+docker compose -f docker-compose.laravel.yml up -d --wait app realtime web scheduler
+
+# Kiểm tra dịch vụ và log
+docker compose -f docker-compose.laravel.yml ps
+docker compose -f docker-compose.laravel.yml logs --tail=100 app scheduler realtime
+
+# Build lại sau khi sửa frontend
+npm run build
+
+# Dừng container; giữ dữ liệu trong volume
+docker compose -f docker-compose.laravel.yml down
+
+# Dừng AI trên host nếu đã bật
+npm run ai:stop
+```
+
+Scheduler xử lý các tác vụ định kỳ qua `schedule:work`. Chạy một lượt bảo trì bằng `docker compose -f docker-compose.laravel.yml exec -T app php artisan beautybook:maintain`.
+
+## Kiểm thử
+
+### Backend
+
+```sh
+docker compose -f docker-compose.laravel.yml up -d --wait mysql_test
 docker compose -f docker-compose.laravel.yml exec -T app php artisan test
-docker compose -f docker-compose.laravel.yml exec -T app php artisan beautybook:maintain
-docker compose -f docker-compose.laravel.yml logs --tail=20 scheduler
 ```
 
-`beautybook:maintain` xử lý giữ chỗ/yêu cầu thay đổi hết hạn, database inbox outbox, dọn gói privacy export, offer waitlist hết hạn, chuyển chủ đến hạn và hồ sơ ảnh hưởng quá hạn. Container `scheduler` tự chạy lịch mỗi phút; log cho biết các lần thực thi. Outbox `SENT` ở đây là thông báo trong hộp thư database.
+`phpunit.xml` cố định database kiểm thử `beautybook_test` trên service `mysql_test`. Không đổi cấu hình test sang database ứng dụng. Các test tích hợp R2 chỉ chạy khi có môi trường tương ứng; xem `docker-compose.r2-test.yml`.
 
-Giao diện mặc định là React BeautyBook ở `/beautybook`. Bộ màn hình Blade cũ và các route mutation phụ đã tắt mặc định bằng `BEAUTYBOOK_LEGACY_UI=false`; chỉ bật `true` khi cần kiểm tra bản Blade tương thích. Media, xác minh email, API React và readiness vẫn hoạt động độc lập. Test Blade hiện có bật cờ này trong `phpunit.xml`; `SourceSurfaceTest` kiểm tra riêng trạng thái mặc định đã tắt. Không xóa dữ liệu lịch sử hay các service dùng chung. Xem [đợt đối chiếu và đo hiệu năng 11/10/2026](docs/course/PARITY_PERFORMANCE_AUDIT_2026-10-11.md), [rubric](docs/course/RUBRIC_TRACEABILITY.md) và [ERD/use case/demo](docs/course/ERD_USE_CASE.md).
+### Frontend và realtime
 
-Phạm vi chuyển đổi, chứng cứ và các giới hạn còn lại được ghi tại [IMPLEMENTATION_STATUS](docs/course/IMPLEMENTATION_STATUS.md) và [đối chiếu giao diện/luồng với nguồn](docs/course/UI_SOURCE_PARITY.md). Xem [prompt triển khai đã áp dụng](docs/course/PORT_IMPLEMENTATION_PROMPT.md) và [phạm vi](docs/course/COURSE_SCOPE.md). Chưa tuyên bố parity toàn bộ BeautyBook hay phát hành công khai.
+Trên PowerShell:
 
-Danh sách tài liệu phục vụ báo cáo và thuyết trình nằm trong [docs/README.md](docs/README.md).
+```powershell
+$testFiles = @(Get-ChildItem resources/beautybook/src -Recurse -Filter *.test.js | ForEach-Object FullName)
+node --test @testFiles realtime/server.test.mjs scripts/frontend-parity-cleanup.test.mjs
+npm run build
+```
+
+Kiểm thử trình duyệt và cách cô lập dữ liệu được mô tả trong [tests/Browser/README.md](tests/Browser/README.md). Một số script cũ dùng đường dẫn Playwright của máy phát triển; cần cấu hình thư viện trên máy mới theo tài liệu trước khi chạy.
+
+## Cấu trúc dự án
+
+```text
+app/                         Controllers, models, policies, services và commands
+config/                      Cấu hình Laravel, thanh toán, media và AI
+database/                    Migrations, seeders và dữ liệu minh họa
+docker/                      PHP runtime, entrypoint và Nginx
+docs/                        Nghiệp vụ, triển khai và kết quả kiểm thử
+lang/                        Bản dịch tiếng Việt
+ml/                          Dịch vụ inference, tokenizer và model qua Git LFS
+public/                      Điểm vào, font, ảnh và tài nguyên tĩnh
+realtime/                    WebSocket gateway và kiểm thử
+resources/beautybook/src/     Giao diện React
+resources/views/             Blade entry và giao diện tương thích
+routes/                      API và web routes
+scripts/                     Công cụ kiểm tra và vận hành AI
+tests/                       PHPUnit và kịch bản trình duyệt
+```
+
+Giao diện chính là React. Bộ màn hình Blade tương thích phục vụ kiểm thử và tắt mặc định bằng `BEAUTYBOOK_LEGACY_UI=false`. Hai pipeline Vite vẫn được build bởi `npm run build`.
+
+Repo giữ mã nguồn, lockfile, tài nguyên cần khi chạy và bằng chứng kiểm thử có liên kết trong tài liệu. Dependency, build output, cache, virtualenv, thư viện skills local, log, `.env`, database dump và tệp người dùng tải lên được Git bỏ qua.
+
+## Tài liệu
+
+- [Danh mục tài liệu](docs/README.md)
+- [Phạm vi đồ án](docs/course/COURSE_SCOPE.md)
+- [ERD, Usecase và kịch bản demo](docs/course/ERD_USE_CASE.md)
+- [Luồng đặt lịch](docs/BOOKING_FLOW.md)
+- [Ví, tiền cọc và thanh toán](docs/PAYMENT_SETUP.md)
+- [Cài đặt và vận hành AI](docs/ML_SETUP.md)
+- [Kết quả kiểm thử](docs/FULL_TEST_RESULTS_2026-11-14.md)
+- [Kết quả nhập dữ liệu GlowMe](docs/migration/2026-11-12-glowme-data-import/IMPLEMENTATION.md)
+
+Các báo cáo có ngày phản ánh trạng thái tại thời điểm ghi nhận; dùng cấu hình, lockfile và kết quả test hiện tại để kiểm tra phiên bản đang chạy.
+
+## Đóng góp và giấy phép
+
+Tạo nhánh cho thay đổi, mô tả vấn đề cùng cách kiểm tra trong pull request và chạy các kiểm thử liên quan trước khi gửi. Không đưa `.env`, khóa truy cập, dữ liệu khách hàng hoặc dependency cài trên máy vào commit.
+
+Dependency, font, PhoBERT và VnCoreNLP giữ giấy phép riêng trong các thư mục tương ứng. Metadata Composer khai báo MIT; repository hiện chưa có tệp `LICENSE` riêng cho toàn bộ ứng dụng.

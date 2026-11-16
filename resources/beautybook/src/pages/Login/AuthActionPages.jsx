@@ -26,38 +26,7 @@ function SubmitButton({ busy, children }) {
 }
 
 export function ForgotPassword() {
-  const [email, setEmail] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [done, setDone] = useState(false);
-  const [error, setError] = useState('');
-  const submit = async (event) => {
-    event.preventDefault();
-    if (busy) return;
-    setBusy(true);
-    setError('');
-    try {
-      await authApi.forgotPassword(email.trim());
-      setDone(true);
-    } catch (requestError) {
-      setError(requestError.message || 'Chưa thể gửi hướng dẫn. Kiểm tra kết nối rồi thử lại.');
-    } finally {
-      setBusy(false);
-    }
-  };
-  return (
-    <AuthShell mode="recovery" eyebrow="Bảo mật tài khoản" title="Khôi phục mật khẩu" description="Nếu email tồn tại, BeautyBook sẽ gửi một liên kết đặt lại có hiệu lực trong 30 phút.">
-      {done ? <ActionResult title="Yêu cầu đã được tiếp nhận" message="Kiểm tra hộp thư đến và thư rác. Vì lý do bảo mật, BeautyBook không xác nhận email có tồn tại hay không." /> : (
-        <form onSubmit={submit} className="bb-auth-form">
-          <AuthField id="recovery-email" label="Địa chỉ email" required>
-            <AuthInput type="email" inputMode="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
-          </AuthField>
-          {error ? <div className="bb-auth-alert" role="alert">{error}</div> : null}
-          <SubmitButton busy={busy}>Gửi hướng dẫn</SubmitButton>
-        </form>
-      )}
-      <p className="bb-auth-guest"><Link to="/login">Quay lại đăng nhập</Link></p>
-    </AuthShell>
-  );
+  return <RecoveryCodeForm />;
 }
 
 export function ResetPassword() {
@@ -80,14 +49,14 @@ export function ResetPassword() {
       await authApi.resetPassword(token, password);
       setDone(true);
     } catch (requestError) {
-      setError(requestError.message || 'Liên kết không hợp lệ hoặc đã hết hạn. Yêu cầu một liên kết mới.');
+      setError(requestError.message || 'Liên kết không hợp lệ hoặc đã hết hạn. Hãy yêu cầu mã đặt lại mật khẩu.');
     } finally {
       setBusy(false);
     }
   };
   return (
     <AuthShell mode="recovery" eyebrow="Bảo mật tài khoản" title="Đặt lại mật khẩu" description="Mật khẩu mới sẽ thu hồi các phiên đăng nhập đang hoạt động.">
-      {!token ? <div className="bb-auth-alert" role="alert">Liên kết đặt lại không hợp lệ. Hãy yêu cầu một liên kết mới.</div> : done ? (
+      {!token ? <div className="bb-auth-alert" role="alert">Liên kết đặt lại không hợp lệ. Hãy yêu cầu mã đặt lại mật khẩu.</div> : done ? (
         <ActionResult title="Mật khẩu đã được thay đổi" message="Đăng nhập lại bằng mật khẩu mới để tiếp tục." />
       ) : (
         <form onSubmit={submit} className="bb-auth-form">
@@ -97,7 +66,7 @@ export function ResetPassword() {
           <SubmitButton busy={busy}>Đặt lại mật khẩu</SubmitButton>
         </form>
       )}
-      <p className="bb-auth-guest"><Link to="/forgot-password">Yêu cầu liên kết mới</Link></p>
+      <p className="bb-auth-guest"><Link to="/forgot-password">Yêu cầu mã đặt lại mật khẩu</Link></p>
     </AuthShell>
   );
 }

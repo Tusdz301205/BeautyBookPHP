@@ -109,6 +109,9 @@ class BookingLifecycleAccessService
         }
 
         abort_unless((int) $assignment->business_id === (int) $booking->business_id, 403);
+        if ($context['kind'] === 'OWNER' && !config('beautybook.legacy_ui', false)) {
+            abort_unless(\App\Models\Business::whereKey($booking->business_id)->whereHas('ownerProfile', fn ($q) => $q->where('user_id', $context['actor_user_id']))->exists(), 403);
+        }
 
         if (in_array($context['kind'], ['RECEPTIONIST', 'STAFF'], true)) {
             abort_unless((int) $assignment->branch_id === (int) $booking->branch_id, 403);

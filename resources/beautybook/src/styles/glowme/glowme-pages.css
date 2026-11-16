@@ -1,0 +1,144 @@
+/* Page presentation only. Preserve all actions, authority and semantic status. */
+#root .bb-customer-main :is(.bb-page-header h1,.bb-offers h1,.bb-saved-page h1), #root .bb-app-shell main h1 {font-family:var(--gm-serif);font-size:clamp(1.8rem,2.6vw,2.6rem);font-weight:400;letter-spacing:-.045em;line-height:1.25;color:var(--gm-tone-30291f)}
+#root .bb-customer-main > :is(.bb-saved-page,.bb-recurring-page,.bb-offers) {width:100%;max-width:none;padding-top:0}
+#root .bb-customer-main .bb-home-kicker {color:var(--gm-tone-805e46);font-size:.65rem;font-weight:500;letter-spacing:.16em}
+#root .bb-customer-main .bb-page-header {margin-bottom:1.5rem}
+#root .bb-customer-main .bb-page-header p {font-weight:400}
+#root .bb-customer-main :is(.bb-home-button,.bb-offers button) {border-radius:999px;box-shadow:none;font-weight:500}
+#root .bb-customer-main .bb-home-button--primary {border-color:var(--gm-tone-30291f);background:var(--gm-tone-30291f);color:var(--gm-tone-fff)}
+#root .bb-customer-main .bb-home-button--primary:hover {background:var(--gm-tone-51433e)}
+#root .bb-saved-page > :is(div,ul) {margin-top:1.5rem}
+#root .bb-saved-page > div {padding:1.5rem;border-color:var(--gm-tone-e2d5c8);border-radius:16px;background:var(--gm-tone-fffdf9)}
+#root .bb-saved-page > div > p {color:var(--gm-tone-776654);line-height:1.8}
+#root .bb-saved-page li {border-color:var(--gm-tone-e2d5c8);border-radius:16px;background:var(--gm-tone-fffdf9);box-shadow:none}
+#root .bb-saved-page li h2 {font-family:var(--gm-serif);font-size:1.25rem;font-weight:400}
+#root .bb-saved-page li p {color:var(--gm-tone-776654)}
+#root .bb-offers {gap:1.5rem}
+#root .bb-offers .bb-page-header h1 {margin:0;font-size:clamp(1.8rem,2.6vw,2.6rem);font-weight:400}
+#root .bb-offers .bb-page-header {margin-bottom:0}
+#root .bb-offers .bb-page-header p {font-size:.875rem}
+#root .bb-offer-ticket {border-radius:16px;padding:1.5rem}
+#root .bb-offer-ticket::before {display:none}
+#root .bb-offer-ticket__amount {font-family:var(--gm-serif);font-size:2rem;font-weight:400}
+#root .bb-offer-ticket h2 {font-family:var(--gm-serif);font-size:1.25rem;font-weight:400;line-height:1.4}
+#root .bb-offer-ticket .bb-offer-ticket__cta {min-height:44px;border-radius:999px;font-weight:500}
+#root :is(.bb-offers-note,.bb-recurring-note) {background:var(--gm-tone-f1e9df);border:1px solid var(--gm-tone-e2d5c8);color:var(--gm-tone-5f5145)}
+#root .bb-recurring-ordinal {background:var(--gm-tone-e9ddd0);color:var(--gm-tone-614738)}
+#root :is(.bb-recurring-detail,.bb-recurring-plans > article) {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-fffdf9);box-shadow:none}
+#root .bb-recurring-detail h2 {font-family:var(--gm-serif);font-weight:400}
+#root .bb-recurring-page > nav {gap:1rem;padding-bottom:1rem;border-bottom:1px solid var(--gm-tone-e2d5c8)}
+#root .bb-bookings-page__hero h1 {font-size:clamp(1.8rem,2.6vw,2.6rem)}
+#root .bb-booking-page > header h1 {font-size:clamp(1.8rem,2.6vw,2.6rem)}
+#root .bb-booking-page form > :is(fieldset,aside) {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-fffdf9)}
+#root .bb-booking-page :is(select,textarea,input:not([type="checkbox"]):not([type="radio"])) {border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-fffdf9)}
+#root .bb-bookings-page__hero-action .bb-home-button {border-radius:999px}
+#root .bb-bookings-page__hero-icon {width:5rem;height:5rem;border-radius:50%}
+#root .bb-customer-main .bb-notification-inbox {max-width:none}
+#root .bb-bookings-page__timezone {color:var(--gm-tone-776654)}
+#root .bb-detail-document .bb-detail-facts dt {color:var(--gm-tone-776654)}
+#root .bb-detail-document .bb-detail-facts dd {color:var(--gm-tone-614738)}
+#root .bb-detail-document :is(.bb-service-review-preview__empty,.bb-service-review-preview__loading) {color:var(--gm-tone-776654)}
+#root .bb-detail-address {background:var(--gm-tone-f1e9df);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-detail-address > svg {color:var(--gm-tone-805e46)}
+#root .bb-detail-address span,#root .bb-detail-hours span {color:var(--gm-tone-776654)}
+#root .bb-detail-hours strong {color:var(--gm-tone-5f5145)}
+#root .bb-notification-inbox .bb-notification-placeholder-icon {background:var(--gm-tone-f1e9df);color:var(--gm-tone-805e46)}
+.bb-booking-review-items .bb-booking-service-row :is(strong,small) {display:block}
+.bb-booking-review-items .bb-booking-service-row small {margin-top:.35rem;color:var(--gm-tone-776654)}
+#root .bb-booking-offers {background:var(--gm-tone-faf8f5);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-booking-offers__icon {background:var(--gm-tone-e9ddd0);color:var(--gm-tone-72513f)}
+#root .bb-booking-offers :is(input,button) {border-color:var(--gm-tone-e2d5c8)}
+#root .bb-booking-offers :is(.bb-booking-offers__saving,.bb-booking-offers__label) {color:var(--gm-tone-5f5145)}
+#root .bb-customer-account-layer--refined .bb-customer-account__item > svg {color:var(--gm-tone-a18367)}
+.bb-categories-panel > div > .flex.justify-end {flex-wrap:wrap}
+
+/* Partner landing: the same editorial typography, warm paper and photo arches. */
+#root .bb-business {background:var(--gm-tone-f6f1eb);color:var(--gm-tone-30291f)}
+#root .bb-business :is(.bb-business-hero,.bb-business-section) {width:min(calc(100% - 5rem),1240px)}
+#root .bb-business-hero {min-height:0;padding-block:4.5rem 4rem;gap:4rem;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);background:transparent}
+#root .bb-business-hero__copy h1 {max-width:none;font-family:var(--gm-serif);font-size:clamp(2.8rem,4.3vw,4.6rem);font-weight:400;line-height:1.16;letter-spacing:-.05em}
+#root .bb-business-hero__copy h1 em {font-weight:400;color:var(--gm-tone-8a6b50)}
+#root .bb-business-kicker {color:var(--gm-tone-805e46);font-size:.62rem;font-weight:500;letter-spacing:.18em}
+#root .bb-business-lead {max-width:28rem;color:var(--gm-tone-776654);font-size:.88rem;line-height:1.9}
+#root .bb-business-button {min-height:44px;font-size:.75rem;font-weight:500}
+#root .bb-business-button--primary {padding:.85rem 1.2rem;background:var(--gm-tone-30291f);border-radius:999px;color:white}
+#root .bb-business-button--primary:hover {background:var(--gm-tone-51433e)}
+#root .bb-business-assurance {color:var(--gm-tone-776654);font-size:.7rem;line-height:1.7;align-items:start}
+#root .bb-business-assurance svg {flex:none;margin-top:.2rem;color:var(--gm-tone-a18367)}
+#root .bb-business-hero__media {width:82%;margin:0 0 -4rem auto;transform:none;border-radius:150px 150px 10px 10px;box-shadow:none}
+#root .bb-business-product {position:relative;min-height:0;border-color:var(--gm-tone-e2d5c8);border-radius:14px;transform:none;box-shadow:0 18px 40px var(--gm-tone-40301c0c)}
+#root .bb-business-product__bar {min-height:3rem;border-color:var(--gm-tone-e2d5c8);background:var(--gm-tone-fffdf9)}
+#root .bb-business-product__bar > span {background:var(--gm-tone-a18367)}
+#root .bb-business-product__bar small {font-size:.6rem}
+#root .bb-business-product__body {min-height:20rem;grid-template-columns:7rem minmax(0,1fr)}
+#root .bb-business-product__body aside {background:var(--gm-tone-eee6da);color:var(--gm-tone-776654)}
+#root .bb-business-product__body aside b {color:var(--gm-tone-30291f)}
+#root .bb-business-product__body aside .is-active {background:var(--gm-tone-dfcfbf);color:var(--gm-tone-463a30)}
+#root .bb-business-product__calendar {padding:1rem}
+#root .bb-business-product__calendar p {font-family:var(--gm-serif);font-size:1.35rem;font-weight:400}
+#root .bb-business-product__grid {min-height:14rem;background:var(--gm-tone-e2d5c8);border-color:var(--gm-tone-e2d5c8)}
+#root .bb-business-product__grid i:nth-child(1) {background:var(--gm-tone-eee3d7);border-left-color:var(--gm-tone-a18367)}
+#root .bb-business-proof {background:var(--gm-tone-eee6da);border-block:1px solid var(--gm-tone-e2d5c8);color:var(--gm-tone-5f5145);padding:.8rem max(2.5rem,calc((100% - 1240px)/2))}
+#root .bb-business-proof p {border-color:var(--gm-tone-d9c9b8);font-size:.75rem;font-weight:400}
+#root .bb-business-section {padding-block:4rem}
+#root .bb-business-section__heading {gap:2rem}
+#root .bb-business :is(.bb-business-section__heading h2,.bb-business-onboarding h2,.bb-business-cta h2) {font-family:var(--gm-serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:400;line-height:1.2;letter-spacing:-.04em}
+#root .bb-business-section__heading > p {color:var(--gm-tone-776654);font-size:.85rem;line-height:1.9}
+#root .bb-business-capabilities {margin-top:2.5rem;border-color:var(--gm-tone-e2d5c8)}
+#root .bb-business-capabilities article {min-height:15rem;border-color:var(--gm-tone-e2d5c8);padding:1.5rem}
+#root .bb-business-capabilities article > svg {color:var(--gm-tone-a18367)}
+#root .bb-business-capabilities h3 {margin-top:2.5rem;font-family:var(--gm-serif);font-size:1.4rem;font-weight:400}
+#root .bb-business-capabilities article p {color:var(--gm-tone-776654);font-size:.8rem;line-height:1.85}
+#root .bb-business-onboarding {padding:4rem max(2.5rem,calc((100% - 1240px)/2));background:var(--gm-tone-463a30);color:var(--gm-tone-faf8f5);gap:4rem}
+#root .bb-business-onboarding .bb-business-kicker,#root .bb-business-onboarding li span {color:var(--gm-tone-d3b89c)}
+#root .bb-business-onboarding li p {font-weight:400}
+#root .bb-business-onboarding > div > p:last-child {color:var(--gm-tone-e2d5c8);font-size:.85rem}
+#root .bb-business-cta {padding:4rem 1.5rem;background:var(--gm-tone-eee3d7)}
+#root .bb-business-cta > p:not(.bb-business-kicker) {color:var(--gm-tone-776654);font-size:.85rem}
+#root .bb-business-button--light {background:var(--gm-tone-30291f);border-radius:999px;color:white}
+#root .bb-business-button--light:hover {background:var(--gm-tone-51433e)}
+
+/* Decorative legacy utility colours. Semantic success/error colours stay intact. */
+#root :is(.bb-customer-shell,.bb-app-shell) :is(.bg-zinc-50,.bg-zinc-100,.bg-pink-50) {background-color:var(--gm-tone-f1e9df)}
+#root :is(.bb-customer-shell,.bb-app-shell) :is(.border-zinc-100,.border-zinc-200) {border-color:var(--gm-tone-e2d5c8)}
+#root :is(.bb-customer-shell,.bb-app-shell) :is(.text-zinc-500,.text-zinc-600,.text-zinc-700) {color:var(--gm-tone-776654)}
+#root :is(.bb-customer-shell,.bb-app-shell) :is(.text-zinc-900,.text-zinc-950) {color:var(--gm-tone-30291f)}
+#root :is(.bb-customer-shell,.bb-app-shell) .text-pink-700 {color:var(--gm-tone-805e46)}
+#root :is(.bb-customer-shell,.bb-app-shell) .text-pink-900 {color:var(--gm-tone-614738)}
+#root .bb-app-shell .bb-page-header {margin-bottom:1.5rem}
+#root .bb-app-shell :is(.bb-service-card__metrics,.bb-promotion-card__offer) {background:var(--gm-tone-f1e9df)}
+#root .bb-app-shell :is(.bb-service-card__price,.bb-promotion-card__offer strong) {color:var(--gm-tone-614738)}
+#root :is(.bb-signup-nav,.bb-auth-mobile-brand) .bb-brand-mark {width:var(--gm-logo-mark);height:var(--gm-logo-mark)}
+#root :is(.bb-signup-nav,.bb-auth-mobile-brand) .bb-brand-wordmark {width:var(--gm-logo-wordmark)}
+body > [role="presentation"]:has(> [role="dialog"]) {grid-template-columns:minmax(0,1fr)}
+body > [role="presentation"] > [role="dialog"] {min-width:0;border:1px solid var(--gm-tone-e2d5c8)}
+body > [role="presentation"] > [role="dialog"] > .bb-scrollbar {min-width:0}
+body > [role="presentation"] > [role="dialog"] > header h2 {font-size:1.35rem;line-height:1.4}
+body > [role="presentation"] :is(.bb-control,.bb-field input,.bb-field textarea) {border-color:var(--gm-tone-e2d5c8)}
+body > [role="presentation"] .bb-field [aria-invalid="true"] {border-color:var(--bb-danger)}
+
+@media(max-width:1000px) {
+ #root .bb-business :is(.bb-business-hero,.bb-business-section) {width:calc(100% - 3rem)}
+ #root .bb-business-hero {grid-template-columns:minmax(0,1fr);gap:2.5rem;padding-block:3rem}
+ #root .bb-business-hero__visual {max-width:36rem;margin-inline:auto}
+ #root .bb-business-hero__copy h1 {max-width:20ch}
+ #root .bb-business-onboarding {grid-template-columns:minmax(0,1fr);padding-inline:1.5rem;gap:2rem}
+}
+@media(max-width:600px) {
+ .bb-categories-panel > div > .flex.justify-end > .bb-button {flex:1 1 100%;min-width:0}
+ #root .bb-customer-main :is(.bb-page-header h1,.bb-offers h1),#root .bb-app-shell main h1 {font-size:1.8rem}
+ #root .bb-business :is(.bb-business-hero,.bb-business-section) {width:calc(100% - 2rem)}
+ #root .bb-business-hero {padding-block:2.5rem}
+ #root .bb-business-hero__copy h1 {font-size:clamp(2.3rem,10vw,3rem)}
+ #root .bb-business-lead {font-size:.8rem}
+ #root .bb-business-product__body {grid-template-columns:minmax(0,1fr);min-height:0}
+ #root .bb-business-hero__media {margin-bottom:-2rem}
+ #root .bb-business-proof {padding-inline:1rem}
+ #root .bb-business-section {padding-block:2.5rem}
+ #root .bb-business-capabilities article {min-height:0;padding:1.25rem}
+ #root .bb-business-capabilities h3 {margin-top:1.25rem}
+ #root .bb-business-onboarding {padding:2.5rem 1rem}
+ #root .bb-business-cta {padding-block:2.5rem}
+ #root .bb-offers-pager {justify-content:flex-start}
+ #root .bb-offers-pager > span {order:-1;flex-basis:100%}
+}

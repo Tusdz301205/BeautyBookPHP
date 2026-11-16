@@ -1,3 +1,4 @@
+import { statusLabel } from '../../utils/displayLabels';
 import { useEffect, useMemo, useState } from 'react';
 import {
   ArrowDown,
@@ -143,6 +144,7 @@ export default function SalonCombos() {
       ...combo,
       id: duplicate ? undefined : combo.id,
       name: duplicate ? `${combo.name} — Bản sao` : combo.name,
+      description: combo.description ?? '',
       comboPrice: Number(combo.comboPrice),
       validFrom: combo.validFrom?.slice(0, 10) || '',
       validTo: combo.validTo?.slice(0, 10) || '',
@@ -257,7 +259,7 @@ export default function SalonCombos() {
     const categoryName = typeof service.category === 'string'
       ? service.category
       : service.category?.name || '';
-    const active = service.status === 'ACTIVE' || service.active === true;
+    const active = service.isActive === true && service.bookable === true;
     return active &&
       !form?.services.some((item) => item.serviceId === service.id) &&
       (!serviceSearch.trim() || `${service.name} ${categoryName}`
@@ -317,7 +319,7 @@ export default function SalonCombos() {
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex items-start justify-between gap-3">
                       <h2 className="font-bold">{combo.name}</h2>
-                      <Badge tone={combo.status === 'ACTIVE' ? 'success' : combo.status === 'PAUSED' ? 'warning' : 'neutral'}>{combo.status}</Badge>
+                      <Badge tone={combo.status === 'ACTIVE' ? 'success' : combo.status === 'PAUSED' ? 'warning' : 'neutral'}>{statusLabel(combo.status)}</Badge>
                     </div>
                     <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--bb-muted)]">{combo.description || 'Chưa có mô tả.'}</p>
                     <ol className="mt-4 space-y-2">
@@ -331,7 +333,7 @@ export default function SalonCombos() {
                     <div className="mt-4 flex flex-wrap gap-2">
                       <Badge>{combo.comboServices.length} dịch vụ</Badge>
                       <Badge><Clock3 size={12} className="mr-1" />{combo.durationMinutes} phút</Badge>
-                      <Badge tone="brand">v{combo.version} · {money(combo.comboPrice)}</Badge>
+                      <Badge tone="brand">Phiên bản {combo.version} · {money(combo.comboPrice)}</Badge>
                     </div>
                     <p className="mt-3 text-xs text-[var(--bb-muted)]">Tiết kiệm {money(combo.savingAmount)} · {combo.staffAssignmentMode === 'PER_SERVICE_PROVIDER' ? 'Nhiều chuyên viên' : 'Một chuyên viên'}</p>
                     <div className="mt-auto flex flex-wrap gap-2 border-t border-[var(--bb-border)] pt-4">
@@ -348,7 +350,7 @@ export default function SalonCombos() {
       <Dialog
         open={Boolean(form)}
         onClose={() => setForm(null)}
-        title={form?.id ? 'Tạo phiên bản combo mới' : 'Combo Builder'}
+        title={form?.id ? 'Tạo phiên bản combo mới' : 'Tạo gói dịch vụ'}
         description="Chọn dịch vụ bằng tìm kiếm, sắp xếp đúng trình tự thực hiện và kiểm tra tổng trước khi lưu."
         size="lg"
         footer={<><Button variant="secondary" onClick={() => setForm(null)}>Hủy</Button><Button type="submit" form="combo-form" loading={busy === 'save'} disabled={(form?.services.length || 0) < 2}>Lưu combo</Button></>}

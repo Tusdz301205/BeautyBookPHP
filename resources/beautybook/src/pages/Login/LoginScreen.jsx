@@ -17,7 +17,7 @@ export function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(() => location.state?.logoutError || '');
 
   const requestedPath = registrationReturnPath(location);
   if (isAuthenticated()) return <Navigate to={requestedPath || homeFor(user?.sessionType)} replace />;

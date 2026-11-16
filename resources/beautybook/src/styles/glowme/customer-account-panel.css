@@ -1,0 +1,35 @@
+.bb-customer-account-layer--refined .bb-customer-account { width: min(calc(100% - 2rem),22rem); inset-block-start: 5.2rem; max-height: calc(100dvh - 6.2rem); border-color: var(--gm-tone-ebdfe6); border-radius: 1.15rem; background: var(--gm-tone-fff); box-shadow: 0 18px 60px var(--gm-tone-39202e1a),0 3px 10px var(--gm-tone-39202e08); }
+.bb-customer-account-layer--refined .bb-customer-account__header { flex-shrink: 0; gap: .8rem; padding: 1.15rem; border-color: var(--gm-tone-eee4e9); background: linear-gradient(115deg,var(--gm-tone-fff) 15%,var(--gm-tone-fcf3f8)); }
+.bb-customer-account-layer--refined .bb-customer-account__avatar { width: 2.8rem; height: 2.8rem; border: 1px solid var(--gm-tone-ecd0de); border-radius: .9rem; background: linear-gradient(135deg,var(--gm-tone-f8e9f2),var(--gm-tone-ebcbdc)); color: var(--color-accent-strong); font-size: .85rem; box-shadow: inset 0 1px 0 var(--gm-tone-fff); }
+.bb-customer-account-layer--refined .bb-customer-account__header div > .bb-customer-account__eyebrow { margin: 0 0 .3rem; color: var(--gm-tone-a18293); font-size: .5rem; font-weight: 600; letter-spacing: .12em; }
+.bb-customer-account-layer--refined .bb-customer-account__header h2 { font-size: .96rem; font-weight: 650; line-height: 1.4; letter-spacing: -.02em; }
+.bb-customer-account-layer--refined .bb-customer-account__header p { margin-top: .3rem; color: var(--gm-tone-9a8592); font-size: .62rem; line-height: 1.5; }
+.bb-customer-account-layer--refined .bb-customer-account__header > .bb-button { width: 1.9rem; height: 1.9rem; min-height: 1.9rem; align-self: start; padding: 0; border: 1px solid var(--gm-tone-eee4e9); border-radius: 50%; color: var(--gm-tone-a08c97); background: var(--gm-tone-ffffffa6); box-shadow: none; }
+.bb-customer-account-layer--refined .bb-customer-account__scroll { padding: .45rem 0 0; scrollbar-width: thin; scrollbar-color: var(--gm-tone-e0ced8) transparent; }
+.bb-customer-account-layer--refined .bb-customer-account__groups { padding: .35rem .65rem; }
+.bb-customer-account-layer--refined .bb-customer-account__group { padding-block: .5rem; }
+.bb-customer-account-layer--refined .bb-customer-account__group + .bb-customer-account__group { margin-top: .4rem; padding-top: .8rem; border-color: var(--gm-tone-f1e9ee); }
+.bb-customer-account-layer--refined .bb-customer-account__group h2 { margin-bottom: .55rem; padding-inline: .65rem; color: var(--gm-tone-a18b98); font-size: .56rem; font-weight: 600; letter-spacing: .08em; }
+.bb-customer-account-layer--refined .bb-customer-account__group > div { display: grid; gap: .2rem; }
+.bb-customer-account-layer--refined .bb-customer-account__item { gap: .7rem; min-height: 2.9rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: .8rem; color: var(--gm-tone-62535e); font-size: .76rem; font-weight: 500; }
+.bb-customer-account-layer--refined .bb-customer-account__item > .bb-customer-account__item-icon { display: grid; flex: 0 0 auto; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: .6rem; color: var(--gm-tone-9d8293); background: var(--gm-tone-f8f5f7); }
+.bb-customer-account-layer--refined .bb-customer-account__item > svg:last-child { width: .8rem; color: var(--gm-tone-c8b7c1); }
+.bb-customer-account-layer--refined .bb-customer-account__item:hover { background: var(--gm-tone-faf6f8); color: var(--color-accent-strong); }
+.bb-customer-account-layer--refined .bb-customer-account__item--active { border-color: var(--gm-tone-f1dce7); background: var(--gm-tone-fcf0f6); color: var(--color-accent-strong); font-weight: 600; }
+.bb-customer-account-layer--refined .bb-customer-account__item--active > .bb-customer-account__item-icon { color: var(--color-accent-strong); background: var(--gm-tone-f4dce9); }
+.bb-customer-account-layer--refined .bb-customer-account__item--active > svg:last-child { color: var(--gm-tone-bd7b9c); }
+.bb-customer-account-layer--refined .bb-customer-account__item:focus-visible { outline: 2px solid var(--gm-tone-c786a7); outline-offset: -2px; }
+.bb-customer-account-layer--refined .bb-customer-account__bottom { margin-top: .35rem; padding: .65rem; border-color: var(--gm-tone-eee5eb); }
+.bb-customer-account-layer--refined .bb-customer-account__business { min-height: 3.2rem; gap: .65rem; margin: 0; padding: .65rem .75rem; border: 1px solid var(--gm-tone-eee4eb); border-radius: .8rem; background: var(--gm-tone-faf7fa); }
+.bb-customer-account-layer--refined .bb-customer-account__business > svg:first-child { width: 1rem; color: var(--gm-tone-9f718c); }
+.bb-customer-account-layer--refined .bb-customer-account__business > svg:last-child { width: .8rem; color: var(--gm-tone-b8a2b0); }
+.bb-customer-account-layer--refined .bb-customer-account__business strong { color: var(--gm-tone-75616f); font-size: .72rem; font-weight: 600; }
+.bb-customer-account-layer--refined .bb-customer-account__business small { margin-top: .2rem; color: var(--gm-tone-a08b98); font-size: .6rem; }
+.bb-customer-account-layer--refined .bb-customer-account__logout { gap: .7rem; min-height: 2.65rem; margin-top: .5rem; padding-inline: .75rem; border-radius: .7rem; color: var(--gm-tone-ac4c63); font-size: .73rem; font-weight: 500; }
+.bb-customer-account-layer--refined .bb-customer-account__logout svg { width: 1rem; }
+.bb-customer-account-layer--refined .bb-customer-account__logout:hover { background: var(--gm-tone-fff1f4); }
+@media(max-width:47.99rem) {
+ .bb-customer-account-layer--refined .bb-customer-account { inset: .65rem .65rem .65rem auto; width: min(calc(100% - 1.3rem),22rem); height: auto; max-height: calc(100dvh - 1.3rem); border: 1px solid var(--gm-tone-ebdfe6); border-radius: 1.15rem; }
+ .bb-customer-account-layer--refined .bb-customer-account__header { padding-top: max(1.15rem,env(safe-area-inset-top)); }
+ .bb-customer-account-layer--refined .bb-customer-account__bottom { padding-bottom: max(.65rem,env(safe-area-inset-bottom)); }
+}

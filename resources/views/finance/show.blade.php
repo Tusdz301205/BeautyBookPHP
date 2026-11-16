@@ -19,9 +19,9 @@
 @endif
 @foreach($transactions as $transaction)
 <article class="card"><h2>Giao dịch {{ $loop->iteration }}</h2><p>{{ $transaction->method }} · {{ \App\Services\Finance\Money::decimal($transaction->amount_cents) }} {{ $transaction->currency }} · @include('finance.status', ['value' => $transaction->status])</p>
-@if($transaction->settlement_reference)<p>Mã đối soát: {{ $transaction->settlement_reference }}</p>@endif
+@if($transaction->settlement_reference)<p>Mã giao dịch ngân hàng: {{ $transaction->settlement_reference }}</p>@endif
 @if($transaction->status === 'PENDING' && in_array($role, ['BUSINESS_OWNER','RECEPTIONIST']))
-<form class="form-stack" method="POST" action="{{ route('finance.transaction', [$transaction, 'verify']) }}">@csrf<label>Mã đối soát <input type="text" required name="settlement_reference" maxlength="200"></label><label>Chứng từ xác minh <textarea name="evidence[receipt]" required maxlength="2000"></textarea></label><button class="button button-primary">Xác minh chuyển khoản</button></form>
+<form class="form-stack" method="POST" action="{{ route('finance.transaction', [$transaction, 'verify']) }}">@csrf<label>Mã giao dịch ngân hàng <input type="text" required name="settlement_reference" maxlength="200"></label><label>Chứng từ xác minh <textarea name="evidence[receipt]" required maxlength="2000"></textarea></label><button class="button button-primary">Xác minh chuyển khoản</button></form>
 @endif
 @if($transaction->status === 'VERIFIED' && ! $transaction->reversal && $role !== 'CUSTOMER')
 <details class="panel module-disclosure"><summary>Đảo giao dịch ghi nhận sai</summary><form class="form-stack" method="POST" action="{{ route('finance.transaction', [$transaction, 'reverse']) }}">@csrf<input type="hidden" name="idempotency_key" value="{{ (string) \Illuminate\Support\Str::uuid() }}"><label>Lý do <textarea name="reason" required maxlength="1000"></textarea></label><button class="button button-primary">Ghi bút toán đảo</button></form></details>
@@ -44,6 +44,6 @@
 </article>
 @endforeach
 <h2>Sổ ghi nhận tiền</h2>
-@forelse($ledger as $entry)<p>#{{ $entry->id }} · {{ $entry->type }} · {{ $entry->direction }} · {{ \App\Services\Finance\Money::decimal($entry->amount_cents) }} {{ $booking->currency }} · {{ $entry->created_at->format('d/m/Y H:i') }}</p>@empty<div class="empty-state panel"><h2>Chưa có dữ liệu</h2><p>Chưa có bút toán đã xác minh.</p></div>@endforelse
+@forelse($ledger as $entry)<p>#{{ $entry->id }} · {{ __($entry->type) }} · {{ __($entry->direction) }} · {{ \App\Services\Finance\Money::decimal($entry->amount_cents) }} {{ $booking->currency }} · {{ $entry->created_at->format('d/m/Y H:i') }}</p>@empty<div class="empty-state panel"><h2>Chưa có dữ liệu</h2><p>Chưa có bút toán đã xác minh.</p></div>@endforelse
 </section>
 @endsection

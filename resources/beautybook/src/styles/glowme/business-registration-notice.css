@@ -1,0 +1,21 @@
+.bb-business-registration-notice { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1rem; background: radial-gradient(ellipse at 50% 0,var(--gm-tone-fbeaf2) 0,transparent 65%),var(--gm-tone-faf7f8); color: var(--bb-ink); }
+.bb-business-registration-notice__brand { display: inline-flex; margin-bottom: 1.75rem; }
+.bb-business-registration-notice__card { width: 100%; max-width: 510px; padding: 2rem; border: 1px solid var(--gm-tone-ecdfe5); border-radius: 24px; background: white; box-shadow: 0 14px 50px var(--gm-tone-63364b09); text-align: center; }
+.bb-business-registration-notice__icon { width: 62px; height: 62px; display: grid; place-items: center; margin: 0 auto 1.1rem; border-radius: 19px; background: var(--gm-tone-fbedf4); color: var(--bb-brand-strong); }
+.bb-business-registration-notice__eyebrow { display: block; font-size: .65rem; font-weight: 700; letter-spacing: .16em; color: var(--bb-brand-strong); }
+.bb-business-registration-notice h1 { margin: .65rem 0 .5rem; font-size: clamp(1.35rem,4.5vw,1.7rem); font-weight: 750; line-height: 1.35; }
+.bb-business-registration-notice__intro { color: var(--bb-muted); font-size: .85rem; line-height: 1.7; }
+.bb-business-registration-notice__account { display: flex; align-items: center; gap: .8rem; padding: 1rem; margin-top: 1.5rem; border: 1px solid var(--gm-tone-eee6eb); border-radius: 13px; background: var(--gm-tone-fcfafb); text-align: left; }
+.bb-business-registration-notice__account > span { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; background: var(--gm-tone-f2e5ed); border-radius: 50%; color: var(--bb-brand-strong); }
+.bb-business-registration-notice__account > div { min-width: 0; }
+.bb-business-registration-notice__account small { display: block; font-size: .55rem; font-weight: 650; letter-spacing: .04em; color: var(--bb-muted); }
+.bb-business-registration-notice__account strong { display: block; margin-top: .25rem; font-size: .85rem; overflow-wrap: anywhere; }
+.bb-business-registration-notice__account p { margin-top: .15rem; font-size: .72rem; color: var(--bb-muted); overflow-wrap: anywhere; }
+.bb-business-registration-notice__info { display: flex; gap: .6rem; margin-top: 1rem; padding: .9rem; border-radius: 11px; background: var(--gm-tone-f6f7fb); text-align: left; font-size: .76rem; color: var(--gm-tone-626778); line-height: 1.8; }
+.bb-business-registration-notice__info > svg { flex-shrink: 0; margin-top: .18rem; color: var(--gm-tone-81869a); }
+.bb-business-registration-notice__actions { display: grid; gap: .6rem; margin-top: 1.5rem; }
+.bb-business-registration-notice__actions > .bb-button { width: 100%; white-space: normal; padding: .85rem .65rem; border-radius: 11px; font-size: .8rem; }
+.bb-business-registration-notice__actions > a { padding: .75rem; border: 1px solid var(--gm-tone-eae3e7); border-radius: 11px; font-size: .8rem; font-weight: 600; }
+.bb-business-registration-notice__actions > a:hover { background: var(--gm-tone-fcf6f9); }
+.bb-business-registration-notice__back { display: flex; align-items: center; gap: .4rem; margin-top: 1.25rem; color: var(--bb-muted); font-size: .75rem; padding: .5rem; }
+@media(max-width:400px) { .bb-business-registration-notice { padding: 1.5rem .9rem; } .bb-business-registration-notice__card { padding: 1.5rem 1rem; } }

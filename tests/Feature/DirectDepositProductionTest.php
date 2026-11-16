@@ -20,6 +20,7 @@ class DirectDepositProductionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        config(['beautybook.legacy_ui' => true, 'wallet.public_wallet' => false, 'wallet.booking_deposit_enabled' => false]);
         $this->prepareDirectDeposits();
     }
 

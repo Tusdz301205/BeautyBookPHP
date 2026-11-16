@@ -106,7 +106,7 @@
 
             @if ($bookingContext['kind'] === 'CUSTOMER')
                 <div class="form-field">
-                    <label for="booking-voucher">Mã voucher</label>
+                    <label for="booking-voucher">Mã ưu đãi</label>
                     <input id="booking-voucher" name="voucher_code" type="text" maxlength="64" placeholder="Nhập mã nếu có">
                     <p class="muted-note">Ưu đãi hợp lệ được tính vào báo giá trước khi xác nhận.</p>
                 </div>

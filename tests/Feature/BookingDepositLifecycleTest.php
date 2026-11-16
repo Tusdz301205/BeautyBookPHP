@@ -230,7 +230,8 @@ class BookingDepositLifecycleTest extends TestCase
         $this->assertSame(0, app(BookingMaintenanceService::class)->expire());
 
         $this->policy(['bookingConfirmationMode' => 'MANUAL_CONFIRMATION']);
-        $second = $this->bookingData(1, 9);
+        // Sunday normalization can make +8 and +9 land on the same Monday.
+        $second = $this->bookingData(1, 10);
         [$secondId] = $this->bookedWithDeposit($second, 'manual-confirm-0001');
         $manual = DB::table('bookings')->find($secondId);
         $this->assertSame('PENDING', $manual->status);

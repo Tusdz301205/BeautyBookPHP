@@ -10,14 +10,15 @@ export function BookingLayout({ step, title, description, children, aside }) {
   const { pathname } = useLocation();
   useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return <PublicShell>
-    <div className="bb-booking mx-auto max-w-6xl">
+    <div className="bb-booking bb-booking--navy mx-auto max-w-6xl">
       <nav aria-label="Tiến trình đặt lịch" className="bb-booking-progress mb-7">
+        <div className="bb-booking-progress__caption"><span>Tiến trình đặt lịch</span><span>Bước {step} / {steps.length}</span></div>
         <ol className="bb-booking-progress__list">
           {steps.map((label, index) => {
             const number = index + 1;
             const done = number < step;
             const current = number === step;
-            return <li key={label} className={cx('bb-booking-progress__step', current && 'bb-booking-progress__step--current')} aria-current={current ? 'step' : undefined}>
+            return <li key={label} className={cx('bb-booking-progress__step', current && 'bb-booking-progress__step--current', done && 'bb-booking-progress__step--done')} aria-current={current ? 'step' : undefined}>
               <span className={cx('bb-booking-progress__number', done && 'bb-booking-progress__number--done', current && 'bb-booking-progress__number--current')}>
                 {done ? <Check size={14} aria-label="Đã hoàn thành" /> : number}
               </span>

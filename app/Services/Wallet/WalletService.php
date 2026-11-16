@@ -72,8 +72,9 @@ class WalletService
             })->all();
             $enabled = LiveWalletPolicy::available($userId);
 
-            return ['simulation' => ! $live, 'internalTest' => true, 'wallet' => ['id' => (string) $wallet->id, 'scope' => $wallet->scope, 'availableVnd' => (string) $wallet->available_vnd, 'heldVnd' => (string) $wallet->held_vnd, 'version' => (int) $wallet->version],
+            return ['simulation' => ! $live, 'internalTest' => !config('wallet.public_wallet'), 'wallet' => ['id' => (string) $wallet->id, 'scope' => $wallet->scope, 'availableVnd' => (string) $wallet->available_vnd, 'heldVnd' => (string) $wallet->held_vnd, 'version' => (int) $wallet->version],
                 'history' => $history, 'topUps' => $topUps, 'total' => DB::table('wallet_transfers')->where('wallet_id', $wallet->id)->count(), 'page' => $page, 'limit' => 20,
+                'bookingDepositAvailable'=>config('wallet.public_wallet')?(bool)LiveWalletPolicy::walletMode():$enabled,'topUpAvailable'=>$live&&$enabled,'topUpLimits'=>$enabled?array_map('strval',LiveWalletPolicy::limits()):null,
                 'liveLabEligible' => LiveWalletPolicy::liveLabUser($userId), 'liveLabAvailable' => $live && $enabled, 'liveLabLimits' => $enabled ? array_map('strval', LiveWalletPolicy::limits()) : null];
         }, 3);
     }
@@ -87,7 +88,7 @@ class WalletService
         $receipts = DB::table('sepay_webhook_events')->where('top_up_id', $id)->get(['id', 'processing', 'review_reason', 'amount_vnd'])
             ->map(fn ($e) => ['id' => (string) $e->id, 'processing' => $e->processing, 'reviewReason' => $e->review_reason, 'amountVnd' => (string) $e->amount_vnd])->all();
 
-        return ['internalTest' => true, 'simulation' => $topUp->provider !== 'SEPAY_LIVE', 'topUp' => $this->presentTopUp($topUp, $userId, true, $receipts)];
+        return ['internalTest' => !config('wallet.public_wallet'), 'simulation' => $topUp->provider !== 'SEPAY_LIVE', 'topUp' => $this->presentTopUp($topUp, $userId, true, $receipts)];
     }
 
     public function topUp(Request $r, mixed $key, array $raw): array
@@ -118,13 +119,13 @@ class WalletService
             if ($amount < $limits['minimum'] || $amount > $limits['maximum'] || $committed + $amount > $limits['total']) abort(400, 'Private Live test top-up limit exceeded');
             $created = DB::table('wallet_topups')->insertGetId(['wallet_id' => $wallet->id, 'key_hash' => $keyHash, 'fingerprint' => $fingerprint, 'code' => 'WL'.strtoupper(bin2hex(random_bytes(12))), 'amount_vnd' => $amount, 'provider' => 'SEPAY_LIVE',
                 'expires_at' => now('UTC')->addMinutes(15)->format('Y-m-d H:i:s'), 'receiver_snapshot' => json_encode($receiver), 'created_at' => now(), 'updated_at' => now()]);
-            app(BookingNotificationService::class)->record($userId, 'WALLET_TOPUP_PENDING', 'Đã tạo yêu cầu nạp ví', 'Chuyển khoản đúng số tiền và nội dung trong 15 phút (Live lab).', null, 'live-pending:'.$created, 'INFO', ['simulation' => true]);
+            app(BookingNotificationService::class)->record($userId, 'WALLET_TOPUP_PENDING', 'Đã tạo yêu cầu nạp ví', 'Chuyển khoản đúng số tiền và nội dung trong 15 phút.', null, 'live-pending:'.$created, 'INFO', ['simulation' => true]);
 
             return $created;
         }, 3);
         $row = DB::table('wallet_topups')->find($id);
 
-        return ['simulation' => false, 'internalTest' => true, 'topUp' => $this->presentTopUp($row, $userId, true), 'receiver' => $receiver];
+        return ['simulation' => false, 'internalTest' => !config('wallet.public_wallet'), 'topUp' => $this->presentTopUp($row, $userId, true), 'receiver' => $receiver];
     }
 
     // ---- business owner ---------------------------------------------------------------------------------------
@@ -247,7 +248,7 @@ class WalletService
         $map = fn ($rows, callable $f) => $rows->map($f)->all();
 
         return [
-            'simulation' => true, 'internalTest' => true, 'page' => $page,
+            'simulation' => true, 'internalTest' => !config('wallet.public_wallet'), 'page' => $page,
             'topUps' => $map(DB::table('wallet_topups')->orderByDesc('created_at')->forPage($page, $limit)->get(), fn ($t) => ['id' => (string) $t->id, 'code' => $t->code, 'amountVnd' => (string) $t->amount_vnd, 'status' => $t->status, 'expiresAt' => $this->iso($t->expires_at)]),
             'deposits' => $map(DB::table('booking_deposits')->where('funding_source', 'SIMULATED_WALLET')->orderByDesc('created_at')->forPage($page, $limit)->get(), fn ($d) => ['id' => (string) $d->id, 'bookingId' => (string) $d->booking_id, 'amountVnd' => (string) $d->amount_vnd, 'status' => $d->status]),
             'settlements' => $map(DB::table('sim_settlements as s')->join('businesses as b', 'b.id', '=', 's.business_id')->orderByDesc('s.id')->forPage($page, $limit)->get(['s.*', 'b.name as business_name']), fn ($x) => $this->presentSettlement($x) + ['businessName' => $x->business_name]),
@@ -308,7 +309,7 @@ class WalletService
                 'period_start' => $start->utc()->format('Y-m-d H:i:s'), 'period_end' => $end->utc()->format('Y-m-d H:i:s'), 'actor_id' => $actorId, 'created_at' => now(), 'updated_at' => now()]);
             DB::table('business_payables')->whereIn('id', $items->pluck('id')->all())->whereNull('settlement_id')->update(['settlement_id' => $id, 'updated_at' => now()]);
             $owner = (int) DB::table('role_assignments')->where('business_id', $businessId)->where('role_name', 'BUSINESS_OWNER')->value('user_id');
-            app(BookingNotificationService::class)->record($owner, 'SIMULATED_SETTLEMENT_CREATED', 'Đã tạo đợt đối soát mô phỏng', 'Đợt đối soát '.number_format($amount, 0, ',', '.').'₫ đang chờ hoàn tất. Đây là mô phỏng, không có chuyển khoản thật.', null, 'settlement-created:'.$id, 'INFO', ['simulation' => true]);
+            app(BookingNotificationService::class)->record($owner, 'SIMULATED_SETTLEMENT_CREATED', 'Đã tạo đợt chi trả (mô phỏng)', 'Đợt chi trả '.number_format($amount, 0, ',', '.').'₫ đang chờ hoàn tất. Đây là mô phỏng, không có chuyển khoản thật.', null, 'settlement-created:'.$id, 'INFO', ['simulation' => true]);
             DB::table('audit_logs')->insert(['user_id' => $actorId, 'business_id' => $businessId, 'action' => 'SIMULATED_SETTLEMENT_CREATED', 'entity_type' => 'SimSettlement', 'entity_id' => (string) $id, 'metadata' => json_encode(['amountVnd' => (string) $amount, 'simulation' => true]), 'created_at' => now()]);
             $this->scope->platform($r);
 
@@ -331,7 +332,7 @@ class WalletService
             WalletCore::post(['operationKey' => 'settled:'.$id, 'kind' => 'SETTLEMENT', 'businessId' => (int) $row->business_id, 'amount' => (int) $row->amount_vnd, 'actorId' => (int) $r->user()->id, 'reason' => 'SIMULATED_SETTLEMENT_NO_BANK_TRANSFER']);
             DB::table('sim_settlements')->where('id', $id)->update(['status' => 'SIMULATED_PAID', 'completed_at' => now('UTC')->format('Y-m-d H:i:s'), 'updated_at' => now()]);
             $owner = (int) DB::table('role_assignments')->where('business_id', $row->business_id)->where('role_name', 'BUSINESS_OWNER')->value('user_id');
-            app(BookingNotificationService::class)->record($owner, 'SIMULATED_SETTLEMENT_COMPLETED', 'Đối soát mô phỏng đã hoàn tất', 'Đợt đối soát '.number_format((int) $row->amount_vnd, 0, ',', '.').'₫ đã được đánh dấu hoàn tất (mô phỏng, không có chuyển khoản thật).', null, 'wallet-settlement:'.$id, 'INFO', ['simulation' => true]);
+            app(BookingNotificationService::class)->record($owner, 'SIMULATED_SETTLEMENT_COMPLETED', 'Đợt chi trả đã hoàn tất (mô phỏng)', 'Đợt chi trả '.number_format((int) $row->amount_vnd, 0, ',', '.').'₫ đã được đánh dấu hoàn tất (mô phỏng, không có chuyển khoản thật).', null, 'wallet-settlement:'.$id, 'INFO', ['simulation' => true]);
             DB::table('audit_logs')->insert(['user_id' => (int) $r->user()->id, 'business_id' => (int) $row->business_id, 'action' => 'SIMULATED_SETTLEMENT_COMPLETED', 'entity_type' => 'SimSettlement', 'entity_id' => (string) $id, 'metadata' => json_encode(['simulation' => true]), 'created_at' => now()]);
             $this->scope->platform($r);
 

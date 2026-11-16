@@ -42,7 +42,7 @@
                         @endforeach
                     </select>
                 </label>
-                <label>Canonical service
+                <label>Dịch vụ chuẩn
                     <select name="canonical_service_id">
                         <option value="">Chưa ánh xạ</option>
                         @foreach ($canonicals as $canonical)
@@ -76,9 +76,9 @@
                 <article class="panel management-card">
                     <div class="section-heading-row compact-heading">
                         <div>
-                            <p class="card-label">{{ $service->category?->name }} · {{ $service->status }}</p>
+                            <p class="card-label">{{ $service->category?->name }} · {{ __($service->status) }}</p>
                             <h2>{{ $service->name }}</h2>
-                            <p class="muted-note">{{ $service->canonicalService?->name ?: 'Chưa ánh xạ canonical' }} · {{ number_format((float) $service->base_price, 0, ',', '.') }} đ · {{ $service->base_duration_minutes }} phút</p>
+                            <p class="muted-note">{{ $service->canonicalService?->name ?: 'Chưa liên kết dịch vụ chuẩn' }} · {{ number_format((float) $service->base_price, 0, ',', '.') }} đ · {{ $service->base_duration_minutes }} phút</p>
                         </div>
                         <form method="POST" action="{{ route('owner.catalog.archive', [$business, $service]) }}">
                             @csrf
@@ -176,8 +176,8 @@
                                             <label>Phút tối đa<input type="number" name="max_duration_minutes" min="5" max="720"></label>
                                         </div>
                                         <div class="form-grid-three">
-                                            <label>Buffer trước<input type="number" name="buffer_before_minutes" value="0" min="0" max="240" required></label>
-                                            <label>Buffer sau<input type="number" name="buffer_after_minutes" value="0" min="0" max="240" required></label>
+                                            <label>Thời gian chuẩn bị trước<input type="number" name="buffer_before_minutes" value="0" min="0" max="240" required></label>
+                                            <label>Thời gian nghỉ sau<input type="number" name="buffer_after_minutes" value="0" min="0" max="240" required></label>
                                             <label>Trạng thái
                                                 <select name="status" required><option value="ACTIVE">ACTIVE</option><option value="INACTIVE">INACTIVE</option></select>
                                             </label>
@@ -193,7 +193,7 @@
                                             <div class="variant-row">
                                                 <div>
                                                     <strong>{{ $variant->name }}</strong>
-                                                    <span>{{ $variant->code }} · {{ $variant->price_type }} · {{ $variant->status }}</span>
+                                                    <span>{{ $variant->code }} · {{ __($variant->price_type) }} · {{ __($variant->status) }}</span>
                                                 </div>
                                                 <form method="POST" action="{{ route('owner.variants.archive', [$business, $offering, $variant]) }}">
                                                     @csrf

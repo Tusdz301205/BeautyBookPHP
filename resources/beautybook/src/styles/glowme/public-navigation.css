@@ -1,0 +1,32 @@
+.bb-public-header--clear .bb-public-header__inner { gap: clamp(.7rem,1.6vw,1.4rem); padding-inline: 1rem .55rem; }
+.bb-public-header--clear .bb-public-nav { gap: clamp(.75rem,1.25vw,1.15rem); }
+.bb-public-header--clear .bb-public-nav > a { font-size: .77rem; font-weight: 550; }
+.bb-public-header--clear .bb-public-nav > .bb-public-partner-link { position: relative; display: inline-flex; gap: .35rem; margin-left: .2rem; padding-left: 1rem; color: var(--color-muted); font-size: .68rem; font-weight: 500; border-bottom: 0; }
+.bb-public-partner-link::before { content: ''; position: absolute; left: 0; top: 50%; width: 1px; height: 1rem; transform: translateY(-50%); background: var(--color-border-base); }
+.bb-public-header--clear .bb-public-actions { gap: .65rem; }
+.bb-public-header--clear .bb-public-account-link--account { border: 0; background: transparent; font-size: .75rem; font-weight: 550; padding-inline: .55rem; }
+.bb-public-personal { position: relative; }
+.bb-public-personal__trigger { display: inline-flex; min-height: 2.6rem; align-items: center; justify-content: center; gap: .45rem; padding: .5rem .6rem; border: 1px solid transparent; border-radius: .8rem; color: var(--color-ink-2); font-size: .75rem; font-weight: 550; white-space: nowrap; }
+.bb-public-personal__trigger > svg:first-child { color: var(--color-accent); }
+.bb-public-personal__trigger > svg:last-child { color: var(--color-muted); transition: transform 120ms; }
+.bb-public-personal__trigger[aria-expanded=true] { border-color: var(--color-border-base); background: var(--color-surface); }
+.bb-public-personal__trigger[aria-expanded=true] > svg:last-child { transform: rotate(180deg); }
+.bb-public-personal__trigger:hover { background: var(--color-accent-soft); }
+.bb-public-personal__trigger:focus-visible,.bb-public-personal__panel a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.bb-public-personal__panel { position: absolute; right: 0; top: calc(100% + .8rem); width: 17rem; max-width: calc(100vw - 2rem); padding: .4rem; border: 1px solid var(--color-border-base); border-radius: 1rem; background: var(--color-surface); box-shadow: 0 12px 35px var(--gm-tone-3824341c); }
+.bb-public-personal__panel > div { padding: .7rem .75rem; border-bottom: 1px solid var(--color-border-base); }
+.bb-public-personal__panel strong { display: block; font-size: .8rem; overflow-wrap: anywhere; }
+.bb-public-personal__panel small { display: block; margin-top: .25rem; font-size: .64rem; font-weight: 400; color: var(--color-muted); }
+.bb-public-personal__panel nav { padding-top: .3rem; }
+.bb-public-personal__panel nav > a { display: flex; align-items: center; gap: .7rem; padding: .8rem .75rem; border-radius: .65rem; color: var(--color-ink); font-size: .76rem; font-weight: 550; text-decoration: none; }
+.bb-public-personal__panel nav > a > svg { color: var(--color-accent); flex-shrink: 0; }
+.bb-public-personal__panel nav > a:hover { background: var(--color-accent-soft); }
+.bb-public-drawer__personal { display: grid; gap: .3rem; }
+.bb-public-drawer__personal > p { margin: .3rem 0 .4rem; color: var(--color-muted); font-size: .6rem; letter-spacing: .1em; font-weight: 600; }
+.bb-public-drawer__personal > a:not(.bb-home-button) { display: flex; align-items: center; gap: .6rem; min-height: 2.75rem; color: var(--color-ink); font-size: .85rem; text-decoration: none; }
+.bb-public-drawer__personal > .bb-home-button { display: flex; align-items: center; justify-content: center; gap: .6rem; margin-top: .4rem; }
+.bb-public-drawer__footer > .bb-public-drawer__partner { display: flex; align-items: center; gap: .75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--color-border-base); }
+.bb-public-drawer__partner > span { flex: 1; }
+.bb-public-drawer__partner small { display: block; margin-top: .25rem; color: var(--color-muted); font-size: .65rem; font-weight: 400; }
+@media(max-width: 68rem) { .bb-public-header--clear .bb-public-personal__panel { right: 0; } }
+@media(max-width: 48rem) { .bb-public-header--clear .bb-public-actions { display: none; } .bb-public-header--clear .bb-public-header__inner { padding-inline: 1rem; } }

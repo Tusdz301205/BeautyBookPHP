@@ -1,0 +1,23 @@
+.bb-branch-detail-page .bb-detail-hero__media { min-height: 380px; }
+.bb-branch-detail-page .bb-detail-facts { grid-template-columns: minmax(0,1fr); }
+.bb-branch-detail-page .bb-detail-facts > div:last-child { padding: .75rem; border-radius: 10px; background: var(--gm-tone-fbf7fa); }
+.bb-branch-detail-page .bb-detail-facts dd { font-size: .78rem; line-height: 1.8; }
+.bb-branch-detail-page .bb-detail-address { display: flex; align-items: flex-start; gap: .75rem; padding: 1rem; margin-bottom: 1.1rem; border: 1px solid var(--gm-tone-f0e6ec); border-radius: 12px; background: var(--gm-tone-fcfafb); }
+.bb-branch-detail-page .bb-detail-address > svg { color: var(--gm-tone-b3477e); flex-shrink: 0; margin-top: 2px; }
+.bb-branch-detail-page .bb-detail-address strong { font-size: .82rem; font-weight: 600; line-height: 1.8; }
+.bb-branch-detail-page .bb-detail-address span { display: block; font-size: .7rem; color: var(--gm-tone-a08b99); margin-top: .3rem; }
+.bb-branch-detail-page .bb-detail-hours { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.bb-branch-detail-page .bb-detail-hours > div { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .8rem; border: 1px solid var(--gm-tone-f0e8ed); border-radius: 10px; font-size: .72rem; background: var(--gm-tone-fff); }
+.bb-branch-detail-page .bb-detail-hours strong { font-weight: 550; color: var(--gm-tone-7a6171); }
+.bb-branch-detail-page .bb-detail-hours span { color: var(--gm-tone-9d8193); font-size: .68rem; }
+.bb-branch-detail-page .bb-detail-hours > .bb-detail-empty { grid-column: 1 / -1; }
+.bb-branch-detail-page .bb-detail-directory--services { display: grid; grid-template-columns: minmax(0,1fr); gap: .65rem; }
+.bb-branch-detail-page .bb-detail-directory__service { padding: 0; border: 1px solid var(--gm-tone-eee3e9); border-radius: 12px; background: var(--gm-tone-fcfafb); overflow: hidden; }
+.bb-branch-detail-page .bb-detail-directory__service > a { padding: 1rem; min-height: 80px; }
+.bb-branch-detail-page .bb-detail-directory__service h3 { font-size: .9rem; line-height: 1.6; }
+.bb-branch-detail-page .bb-detail-directory__service p,.bb-branch-detail-page .bb-detail-directory__service span { font-size: .65rem; color: var(--gm-tone-a08b99); }
+.bb-branch-detail-page .bb-detail-directory__service > a > strong { font-size: .85rem; color: var(--gm-tone-a1376c); }
+.bb-branch-detail-page .bb-detail-directory__service > span { padding: 0 1rem .7rem; }
+.bb-branch-detail-page .bb-detail-directory__service button { font-size: .7rem; }
+.bb-branch-detail-page .bb-detail-booking-dock > p { font-size: .75rem; font-weight: 400; color: var(--gm-tone-927d8b); line-height: 1.8; }
+@media(max-width:760px) { .bb-branch-detail-page .bb-detail-hero__media { min-height: 220px; } .bb-branch-detail-page .bb-detail-hours { grid-template-columns: minmax(0,1fr); } }

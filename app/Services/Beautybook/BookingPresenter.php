@@ -43,11 +43,11 @@ class BookingPresenter
             $profile = StaffProfile::where('user_id', $request->user()->id)->where('branch_id', $booking->branch_id)->value('id');
             $services = $services->where('staff_profile_id', $profile);
         }
-        $canCorrect = $atBranch->contains('role_name', 'BUSINESS_OWNER');
+        $canCorrect = config('beautybook.legacy_ui', false) && $atBranch->contains('role_name', 'BUSINESS_OWNER');
         $review = $user && $user->id === $request->user()?->id && $booking->relationLoaded('review')
             ? $booking->review : null;
 
-        return ['id' => (string) $booking->id, 'bookingCode' => $booking->booking_code, 'branchId' => (string) $booking->branch_id,
+        return ['id' => (string) $booking->id, 'version'=>$booking->statusHistory->count()+1, 'flow'=>config('beautybook.legacy_ui',false)?'LEGACY':'AGGREGATE', 'bookingCode' => $booking->booking_code, 'branchId' => (string) $booking->branch_id,
             'customerId' => $booking->customer_profile_id ? (string) $booking->customer_profile_id : null, 'status' => $booking->status,
             'appointmentDate' => $localStart?->format('Y-m-d\T00:00:00.000\Z'), 'appointmentStartTime' => $localStart?->format('1970-01-01\TH:i:s.000\Z'),
             'appointmentEndTime' => $localEnd?->format('1970-01-01\TH:i:s.000\Z'), 'appointmentStartAt' => $start?->toIso8601String(), 'appointmentEndAt' => $end?->toIso8601String(), 'totalAmount' => $booking->total_amount, 'finalAmount' => $booking->total_amount, 'source' => $booking->source, 'note' => $booking->note, 'serverNow' => now()->toIso8601String(),
@@ -64,7 +64,7 @@ class BookingPresenter
             'bookingServices' => $services->map(fn ($i) => $this->item($i) + ['canCorrectActualTime' => $canCorrect && $i->staffProfile?->user_id !== $request->user()?->id && in_array($i->status, ['SCHEDULED', 'COMPLETED', 'IN_PROGRESS'], true) && in_array($booking->status, ['PENDING', 'CONFIRMED', 'CHECKED_IN', 'IN_PROGRESS', 'COMPLETED'], true)])->values(),
             'statusHistory' => $booking->statusHistory->map(fn ($h) => ['id' => (string) $h->id, 'fromStatus' => $h->from_status, 'toStatus' => $h->to_status, 'note' => $h->reason, 'createdAt' => $h->created_at?->toIso8601String()]),
             'changeRequests' => $booking->changeRequests->map(fn ($c) => ['id' => (string) $c->id, 'bookingId' => (string) $c->booking_id, 'requestType' => $c->request_type, 'status' => $c->status, 'reason' => $c->reason, 'reviewNote' => $c->review_note, 'createdAt' => $c->created_at?->toIso8601String(), 'expiresAt' => $c->expires_at]),
-            'readyToComplete' => $booking->services->every(fn ($i) => in_array($i->status, ['COMPLETED', 'SKIPPED', 'CANCELLED'], true)), 'transitionAvailability' => $this->transitions($booking), 'policy' => $this->policy($booking)];
+            'readyToComplete' => !config('beautybook.legacy_ui',false) ? in_array($booking->status,['CHECKED_IN','IN_PROGRESS'],true) : $booking->services->every(fn ($i) => in_array($i->status, ['COMPLETED', 'SKIPPED', 'CANCELLED'], true)), 'transitionAvailability' => $this->transitions($booking), 'policy' => $this->policy($booking)];
     }
 
     /** The branch rules that decide what may still be done to this booking, with the instants they turn into (ISO, UTC). */
@@ -81,6 +81,7 @@ class BookingPresenter
     private function transitions(Booking $booking): array
     {
         $target = ['CONFIRMED' => 'CHECKED_IN', 'CHECKED_IN' => 'IN_PROGRESS', 'IN_PROGRESS' => 'COMPLETED'][$booking->status] ?? null;
+        if (!config('beautybook.legacy_ui',false) && in_array($booking->status,['CHECKED_IN','IN_PROGRESS'],true)) return ['COMPLETED'=>['allowed'=>true,'reason'=>null]];
         if (! $target) {
             return [];
         }
